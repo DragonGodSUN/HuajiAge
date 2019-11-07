@@ -1,0 +1,249 @@
+ {
+    "energyshot": {
+    "category": "neutral",
+    "sounds": [
+      {
+        "name": "huajiage:energyshot",
+        "stream": true
+      }
+    ]
+  },
+
+    "energyhit": {
+    "category": "neutral",
+    "sounds": [
+      {
+        "name": "huajiage:energyhit",
+        "stream": true
+      }
+    ]
+  },
+
+    "energyhit2": {
+    "category": "neutral",
+    "sounds": [
+      {
+        "name": "huajiage:energyhit2",
+        "stream": true
+      }
+    ]
+  },
+
+ "charge": {
+    "category": "neutral",
+    "sounds": [
+      {
+        "name": "huajiage:charge",
+        "stream": true
+      }
+    ]
+  },
+   "diacharge_01": {
+    "category": "neutral",
+    "sounds": [
+      {
+        "name": "huajiage:discharge_01",
+        "stream": true
+      }
+    ]
+  },
+   "loop_01": {
+    "category": "neutral",
+    "sounds": [
+      {
+        "name": "huajiage:loop_01",
+        "stream": true
+      }
+    ]
+  },
+   "charge_02": {
+    "category": "neutral",
+    "sounds": [
+      {
+        "name": "huajiage:charge_02",
+        "stream": true
+      }
+    ]
+  },
+   "wave_01": {
+    "category": "neutral",
+    "sounds": [
+      {
+        "name": "huajiage:wave_01",
+        "stream": true
+      }
+    ]
+  },
+  "stella": {
+    "category": "neutral",
+    "sounds": [
+      {
+        "name": "huajiage:stella",
+        "stream": true
+      }
+    ]
+  },
+  "exglutenbur_flavor1": {
+    "category": "neutral",
+    "sounds": [
+      {
+        "name": "huajiage:exglutenbur_flavor1",
+        "stream": true
+      }
+    ]
+  },
+  "exglutenbur_flavor2": {
+    "category": "neutral",
+    "sounds": [
+      {
+        "name": "huajiage:exglutenbur_flavor2",
+        "stream": true
+      }
+    ]
+  },
+  "exglutenbur_flavor3": {
+    "category": "neutral",
+    "sounds": [
+      {
+        "name": "huajiage:exglutenbur_flavor3",
+        "stream": true
+      }
+    ]
+  },
+  "exglutenbur_hit": {
+    "category": "neutral",
+    "sounds": [
+      {
+        "name": "huajiage:exglutenbur_hit",
+        "stream": true
+      }
+    ]
+  },
+  "orga_shot": {
+    "category": "neutral",
+    "sounds": [
+      {
+        "name": "huajiage:orga_shot",
+        "stream": true
+      }
+    ]
+  },
+  "orga_flower": {
+    "category": "music",
+    "sounds": [
+      {
+        "name": "huajiage:orga_flower",
+        "stream": true
+      }
+    ]
+  },
+    "orga_requiem_1": {
+    "category": "music",
+    "sounds": [
+      {
+        "name": "huajiage:orga_requiem_1",
+        "stream": false
+      }
+    ]
+  },
+  "orga_requiem_2": {
+    "category": "music",
+    "sounds": [
+      {
+        "name": "huajiage:orga_requiem_2",
+        "stream": false
+      }
+    ]
+  },
+  "orga_requiem_gold": {
+    "category": "music",
+    "sounds": [
+      {
+        "name": "huajiage:orga_requiem_gold",
+        "stream": false
+      }
+    ]
+  },
+    "orga_requiem_hit": {
+    "category": "music",
+    "sounds": [
+      {
+        "name": "huajiage:orga_requiem_hit",
+        "stream": true
+      }
+    ]
+  },
+   "the_world": {
+    "category": "neutral",
+    "sounds": [
+      {
+        "name": "huajiage:the_world",
+        "stream": true
+      }
+    ]
+  },
+   "the_world_1": {
+    "category": "neutral",
+    "sounds": [
+      {
+        "name": "huajiage:the_world_1",
+        "stream": true
+      }
+    ]
+  },
+   "the_world_2": {
+    "category": "neutral",
+    "sounds": [
+      {
+        "name": "huajiage:the_world_2",
+        "stream": true
+      }
+    ]
+  },
+   "the_world_3": {
+    "category": "neutral",
+    "sounds": [
+      {
+        "name": "huajiage:the_world_3",
+        "stream": true
+      }
+    ]
+  },
+   "road_roller": {
+    "category": "neutral",
+    "sounds": [
+      {
+        "name": "huajiage:road_roller",
+        "stream": true
+      }
+    ]
+  },
+   "dio_flag": {
+    "category": "neutral",
+    "sounds": [
+      {
+        "name": "huajiage:dio_flag",
+        "stream": true
+      }
+    ]
+  },
+   "dio_hit": {
+    "category": "neutral",
+    "sounds": [
+      {
+        "name": "huajiage:dio_hit",
+        "stream": true
+      }
+    ]
+  },
+   "noise_furnace": {
+    "category": "neutral",
+    "sounds": [
+      {
+        "name": "huajiage:noise_furnace",
+        "stream": true
+      }
+    ]
+  }
+
+}

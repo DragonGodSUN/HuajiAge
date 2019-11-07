@@ -1,0 +1,21 @@
+[
+{
+  "modid": "huajiage",
+  "name": "Huaji Age II : Infinite Galaxy",
+  "description": "Welcome to the Huaji (Humourist) Age!From now on,the whole Galaxy is rotating in your fingertips.",
+  "version": "${version}",
+  "mcversion": "${mcversion}",
+  "url": "",
+  "updateUrl": "",
+  "authorList": ["LH_Lshen"],
+  "credits": "Thanks for the tutorials from these guys:
+              MinecraftByExample [1.12.2] ---The Grey Ghost
+              https://github.com/TheGreyGhost/MinecraftByExample
+              Minecraft 1.8.9 FML Mod 开发教程      ---ustc-zzzz 
+              https://fmltutor.ustc-zzzz.net/
+  ",
+  "logoFile": "logo.png",
+  "screenshots": [],
+  "dependencies": []
+}
+]

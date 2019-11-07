@@ -1,0 +1,19 @@
+{
+    "type": "minecraft:crafting_shaped",
+  "pattern": [
+    "A A",
+    " B ",
+    "A A"
+  ],
+  "key": {
+    "A": {
+      "item": "huajiage:redstone_druse"
+    },
+    "B": {
+      "item": "huajiage:huaji_star"
+    }
+  },
+  "result": {
+    "item": "huajiage:ether"
+  }
+}

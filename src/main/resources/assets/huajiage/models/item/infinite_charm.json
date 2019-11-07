@@ -1,0 +1,22 @@
+{
+    "parent": "item/handheld",
+    "textures": {
+        "layer0": "huajiage:items/infinite_charm"
+    },
+
+    "overrides": [
+        {
+            "predicate": {
+                "orga": 0
+            },
+            "model": "huajiage:item/infinite_charm_n"
+        },
+        {
+            "predicate": {
+                "orga": 1
+                            },
+            "model": "huajiage:item/orga_flag"
+        }
+    ]
+
+}

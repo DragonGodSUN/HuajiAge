@@ -1,0 +1,13 @@
+{
+"variants": {
+        "age=0": { "model": "huaji:waterpaper_plant_0" },
+        "age=1": { "model": "huaji:waterpaper_plant_0" },
+        "age=2": { "model": "huaji:waterpaper_plant_1" },
+        "age=3": { "model": "huaji:waterpaper_plant_1" },
+        "age=4": { "model": "huaji:waterpaper_plant_2" },
+        "age=5": { "model": "huaji:waterpaper_plant_2" },
+        "age=6": { "model": "huaji:waterpaper_plant_2" },
+        "age=7": { "model": "huaji:waterpaper_plant_3" },
+		"inventory": {"model": "huaji:waterpaper_plant_3" }
+    }
+}

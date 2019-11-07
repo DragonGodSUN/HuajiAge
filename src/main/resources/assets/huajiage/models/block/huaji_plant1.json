@@ -1,0 +1,6 @@
+{
+    "parent": "block/crop",
+    "textures": {
+        "crop": "huaji:blocks/huaji_plant_1"
+    }
+}

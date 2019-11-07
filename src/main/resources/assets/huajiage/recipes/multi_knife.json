@@ -1,0 +1,24 @@
+{
+   "type": "minecraft:crafting_shaped",
+  "pattern": [
+    " A ",
+    " B ",
+    " S "
+  ],
+
+  "key": {
+    "A": {
+      "item": "huajiage:neutron_star_fragment"
+    },
+    "B": {
+      "item": "huajiage:hope_flower"
+    } ,
+    "S": {
+      "item": "huajiage:huaji_ingot"
+    }
+  },
+  "result": {
+    "item": "huajiage:multi_knife"
+   }
+ }  
+

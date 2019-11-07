@@ -1,0 +1,22 @@
+{
+    "parent": "item/handheld",
+    "textures": {
+        "layer0": "huajiage:items/star_sword"
+    },
+
+    "overrides": [
+        {
+            "predicate": {
+                "burst": 0
+            },
+            "model": "huajiage:item/star_sword_0"
+        },
+        {
+            "predicate": {
+                "burst": 1
+                            },
+            "model": "huajiage:item/star_sword_1"
+        }
+    ]
+
+}

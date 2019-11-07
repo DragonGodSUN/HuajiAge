@@ -1,0 +1,6 @@
+{
+    "parent": "block/cube_all",
+    "textures": {
+        "all": "huajiage:blocks/huaji_star_block"
+    }
+}

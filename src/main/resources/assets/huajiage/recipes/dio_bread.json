@@ -1,0 +1,27 @@
+{
+   "type": "minecraft:crafting_shaped",
+  "pattern": [
+    "CAC",
+    "ABA",
+    "CSC"
+  ],
+
+  "key": {
+    "A": {
+      "item": "minecraft:clock"
+    },
+    "B": {
+      "item": "huajiage:ether_circumflux_board"
+    } ,
+    "S": {
+      "item": "minecraft:bread"
+    },
+    "C": {
+      "item": "huajiage:huaji_ingot"
+    }
+  },
+   
+  "result": {
+    "item": "huajiage:dio_bread"
+  }
+}

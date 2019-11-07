@@ -1,0 +1,11 @@
+{
+    "forge_marker": 1,
+    "defaults": {
+        "model": "huaji:lighting_gun.obj"
+    },
+    "variants": {
+        "inventory": [{
+            "textures": { "#lighting_gun": "huaji:items/light_gun.png£©" }
+        }]
+    }
+}

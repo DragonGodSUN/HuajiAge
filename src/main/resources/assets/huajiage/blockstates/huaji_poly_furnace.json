@@ -1,0 +1,15 @@
+{
+   "forge_marker": 1,
+    "variants": {
+        "burning": {
+            "false": { "model": "huajiage:huaji_poly_furnace" },
+            "true": { "model": "huajiage:huaji_poly_furnace_working" }
+        },
+        "facing": {
+            "north": { "y": 270 },
+            "south": { "y": 90 },
+            "west": { "y": 180 },
+            "east": { "y": 0 }
+        }
+    }
+}

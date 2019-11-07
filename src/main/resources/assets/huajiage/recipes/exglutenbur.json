@@ -1,0 +1,22 @@
+{
+    "type": "minecraft:crafting_shaped",
+  "pattern": [
+    "ABA",
+    "ABA",
+    " C "
+  ],
+  "key": {
+    "A": {
+      "item": "huajiage:neutron_star_fragment"
+    },
+    "B": {
+      "item": "huajiage:baking_gluten"
+    },
+    "C": {
+      "item": "minecraft:stick"
+    }
+  },
+  "result": {
+    "item": "huajiage:exglutenbur"
+  }
+}

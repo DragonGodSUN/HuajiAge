@@ -1,0 +1,10 @@
+{ 
+    "forge_marker": 1,
+    "variants": {
+        "normal": { "model": "huajiage:huaji_bomb" },
+         "explode": {
+            "true": { "model": "huajiage:huaji_bomb"},
+            "false": { "model": "huajiage:huaji_bomb"}
+        }
+    }
+}

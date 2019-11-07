@@ -1,0 +1,16 @@
+{
+    "type": "minecraft:crafting_shaped",
+  "pattern": [
+    "AAA",
+    "AAA",
+    "AAA"
+  ],
+  "key": {
+    "A": {
+      "item": "huajiage:huaji_star"
+    }
+  },
+  "result": {
+    "item": "huajiage:huaji_star_block"
+  }
+}

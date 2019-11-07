@@ -1,0 +1,22 @@
+{
+    "type": "minecraft:crafting_shaped",
+  "pattern": [
+    " AC",
+    "ABA",
+    " A "
+  ],
+  "key": {
+    "A": {
+      "item": "huajiage:ether_circumflux_board"
+    },
+    "B": {
+      "item": "huajiage:huaji_star_block_sky"
+    },
+    "C": {
+      "item": "huajiage:huaji_star_sky"
+    }
+  },
+  "result": {
+    "item": "huajiage:lord_core"
+  }
+}

@@ -1,0 +1,31 @@
+{
+    "type": "minecraft:crafting_shaped",
+ "group": "huajiage:ha_02",
+  "pattern": [
+    " A ",
+    "ABA",
+    " S "
+  ],
+"conditions": [
+    {
+      "type": "forge:mod_loaded",
+      "modid": "latiaocraft"
+    }
+  ],
+
+  "key": {
+    "A": {
+      "item": "huajiage:neutron_star_fragment"
+    },
+    "B": {
+      "item": "latiaocraft:latiao_gold_sword"
+    } ,
+    "S": {
+      "item": "huajiage:huaji_star"
+    }
+  },
+   
+  "result": {
+    "item": "huajiage:huaji_latiao_sword"
+  }
+}
