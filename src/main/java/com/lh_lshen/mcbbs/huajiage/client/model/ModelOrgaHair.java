@@ -11,7 +11,7 @@ import javax.annotation.Nonnull;
 
 import com.lh_lshen.mcbbs.huajiage.config.ConfigHuaji;
 import com.lh_lshen.mcbbs.huajiage.item.ItemLoader;
-import com.lh_lshen.mcbbs.huajiage.item.OrgaBase;
+import com.lh_lshen.mcbbs.huajiage.item.ItemOrgaArmorBase;
 import com.lh_lshen.mcbbs.huajiage.util.NBTHelper;
 
 import net.minecraft.client.Minecraft;

@@ -1,11 +1,10 @@
 package com.lh_lshen.mcbbs.huajiage.item;
 
-import java.util.Random;
-
 import javax.annotation.Nullable;
 
 import com.google.common.collect.HashMultimap;
 import com.google.common.collect.Multimap;
+import com.lh_lshen.mcbbs.huajiage.common.HuajiConstant;
 import com.lh_lshen.mcbbs.huajiage.crativetab.CreativeTabLoader;
 import com.lh_lshen.mcbbs.huajiage.init.playsound.SoundLoader;
 
@@ -28,7 +27,6 @@ import net.minecraft.util.ActionResult;
 import net.minecraft.util.DamageSource;
 import net.minecraft.util.EnumActionResult;
 import net.minecraft.util.EnumHand;
-import net.minecraft.util.EnumParticleTypes;
 import net.minecraft.util.ResourceLocation;
 import net.minecraft.world.World;
 import net.minecraftforge.common.MinecraftForge;
@@ -103,7 +101,7 @@ public class ItemExglutenbur extends ItemSword {
 		  double r=Math.random();
 		  if(r<0.3d) {
 			  stack.damageItem(50, attacker);
-			  target.attackEntityFrom(new DamageSource("huaji.KeDaiJinLa"), 50f);
+			  target.attackEntityFrom(new DamageSource(HuajiConstant.KDJL), 50f);
 			  target.playSound(SoundLoader.EXGLUTENBUR_HIT, 1f, 1f);
 		  }
 		        

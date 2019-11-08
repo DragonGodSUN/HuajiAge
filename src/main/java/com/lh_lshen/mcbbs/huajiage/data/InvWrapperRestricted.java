@@ -8,7 +8,12 @@ import javax.annotation.Nonnull;
 import net.minecraft.inventory.ISidedInventory;
 import net.minecraft.item.ItemStack;
 import net.minecraftforge.items.wrapper.InvWrapper;
-
+/**
+ *  This class is transformed from @Lothrazar's Cyclic
+ * https://github.com/Lothrazar/Cyclic/blob/develop/src/main/java/com/lothrazar/cyclicmagic/block/core/TileEntityBaseMachine.java
+ * Follow The MIT License
+ * @return
+ */
 public class InvWrapperRestricted extends InvWrapper {
 
 	  private List<Integer> slotsAllowedInsert;

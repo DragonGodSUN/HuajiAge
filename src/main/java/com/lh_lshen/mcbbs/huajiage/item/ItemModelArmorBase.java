@@ -19,13 +19,13 @@ import net.minecraftforge.common.util.EnumHelper;
 import net.minecraftforge.fml.relauncher.Side;
 import net.minecraftforge.fml.relauncher.SideOnly;
 
-public abstract class ModelArmorBase extends ItemArmor {
+public abstract class ItemModelArmorBase extends ItemArmor {
 
 	protected Map<EntityEquipmentSlot, ModelBiped> models = null;
 	public final EntityEquipmentSlot type;
     protected abstract ModelBiped model(EntityEquipmentSlot slot);
    
-	public ModelArmorBase(EntityEquipmentSlot type, ArmorMaterial mat) {
+	public ItemModelArmorBase(EntityEquipmentSlot type, ArmorMaterial mat) {
 		super(mat, 0, type);
 		this.type = type;
 		this.setCreativeTab(CreativeTabLoader.tabhuaji);

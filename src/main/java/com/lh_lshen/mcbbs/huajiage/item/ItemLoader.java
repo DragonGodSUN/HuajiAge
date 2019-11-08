@@ -56,11 +56,11 @@ public class ItemLoader {
     public static ItemArmor huajiChestplate = new ItemHuajiArmor.Chestplate();
     public static ItemArmor huajiLeggings = new ItemHuajiArmor.Leggings();
     public static ItemArmor huajiBoots = new ItemHuajiArmor.Boots();
-    public static ItemArmor blanceHelmet = new BlancedHelmet();
-    public static ItemArmor orgaHair = new OrgaHair();
-    public static ItemArmor orgaChestplate = new OrgaBase.Chestplate();
-    public static ItemArmor orgaLeggings = new OrgaBase.Leggings();
-    public static ItemArmor orgaBoots = new OrgaBase.Boots();
+    public static ItemArmor blanceHelmet = new ItemBlancedHelmet();
+    public static ItemArmor orgaHair = new ItemOrgaHair();
+    public static ItemArmor orgaChestplate = new ItemOrgaArmorBase.Chestplate();
+    public static ItemArmor orgaLeggings = new ItemOrgaArmorBase.Leggings();
+    public static ItemArmor orgaBoots = new ItemOrgaArmorBase.Boots();
     
 	
     public ItemLoader(FMLPreInitializationEvent event)

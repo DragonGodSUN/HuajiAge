@@ -15,14 +15,14 @@ item.huajiStarUniverse.name=§e无尽之星
 item.eggRice.name=§e真香蛋炒饭
 item.eggRiceU.name=§d奥义·§e真香蛋炒饭
 
-death.attack.huaji.hopeFlower= %s死于世界线收束
-death.attack.huaji.orga.shot=%s被团长乱枪打死
-death.attack.huaji.second=%s被压成了PNG图像
-death.attack.huaji.stella=%s化为了天空中的一颗流星
-death.attack.huaji.KeDaiJinLa=%s感到非常带劲
-death.attack.huaji.requiem=%s被反伤致死
-death.attack.huaji.requiem.hit=%s被替身木大致死
-death.attack.huajiage.dio_hit=%s在时停中被木大致死
+death.attack.huajiage.hopeFlower= %s死于世界线收束
+death.attack.huajiage.orga.shot=%s被团长乱枪打死
+death.attack.huajiage.second=%s被压成了PNG图像
+death.attack.huajiage.stella=%s化为了天空中的一颗流星
+death.attack.huajiage.KeDaiJinLa=%s感到非常带劲
+death.attack.huajiage.requiem=%s被反伤致死
+death.attack.huajiage.requiem.hit=%s被替身木大致死
+death.attack.huajiage.dio.hit=%s在时停中被木大致死
 
 huajiage.burstout=§e·真名解放
 huajiage.stellawarning=§e警告：真名解放状态下可能会造成不可挽回的后果，请不要轻易将此状态下的弓弦拉满！！！

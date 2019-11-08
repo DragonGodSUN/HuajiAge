@@ -1,9 +1,10 @@
 package com.lh_lshen.mcbbs.huajiage.init.events;
 
+import com.lh_lshen.mcbbs.huajiage.common.HuajiConstant;
 import com.lh_lshen.mcbbs.huajiage.init.playsound.HuajiMusicClient;
 import com.lh_lshen.mcbbs.huajiage.init.playsound.SoundLoader;
 import com.lh_lshen.mcbbs.huajiage.item.ItemLoader;
-import com.lh_lshen.mcbbs.huajiage.item.OrgaBase;
+import com.lh_lshen.mcbbs.huajiage.item.ItemOrgaArmorBase;
 import com.lh_lshen.mcbbs.huajiage.network.HuajiAgeNetWorkHandler;
 import com.lh_lshen.mcbbs.huajiage.network.MessageOrgaRequiemClient;
 import com.lh_lshen.mcbbs.huajiage.network.TargetOrgaShotEffectMessageToClient;
@@ -67,7 +68,7 @@ public class EventOrga {
 		 }
 		 if(entity.isPotionActive(PotionLoader.potionFlowerHope)&&entity.getActivePotionEffect(PotionLoader.potionFlowerHope).getDuration()<10)
 			{
-			 entity.attackEntityFrom(new DamageSource("huaji.hopeFlower"), 9999f);
+			 entity.attackEntityFrom(new DamageSource(HuajiConstant.HOPE_FLOWER), 9999f);
 			 if(((EntityPlayer) entity).isCreative()) {
 			 ((EntityPlayer) entity).dropItem(true);
 			 entity.setHealth(0f);
@@ -82,10 +83,10 @@ public class EventOrga {
 	if(player!=null&&entity!=player) {
 		if(!player.inventory.hasItemStack(new ItemStack(ItemLoader.orgaRequiem))) {
 		 player.sendMessage(new TextComponentTranslation("message.huaji.orga.shot"));  }
-		 entity.attackEntityFrom(new EntityDamageSource("huaji.orga.shot",player), 30f);		
+		 entity.attackEntityFrom(new EntityDamageSource(HuajiConstant.ORGA_SHOT,player), 30f);		
 		                                     }
 	else {
-		entity.attackEntityFrom(new DamageSource("huaji.orga.shot"), 30f);	                             	 
+		entity.attackEntityFrom(new DamageSource(HuajiConstant.ORGA_SHOT), 30f);	                             	 
 		                                     }
 	     // must generate a fresh message for every player!
 		                   }  
@@ -97,10 +98,10 @@ public class EventOrga {
 		EntityLivingBase player=event.getEntityLiving(); 
 
 	if(player instanceof EntityPlayer) {
-		if(player.getItemStackFromSlot(EntityEquipmentSlot.HEAD).getItem() instanceof OrgaBase &&
-				player.getItemStackFromSlot(EntityEquipmentSlot.CHEST).getItem() instanceof OrgaBase &&
-				player.getItemStackFromSlot(EntityEquipmentSlot.LEGS).getItem() instanceof OrgaBase &&
-				player.getItemStackFromSlot(EntityEquipmentSlot.FEET).getItem() instanceof OrgaBase) {
+		if(player.getItemStackFromSlot(EntityEquipmentSlot.HEAD).getItem() instanceof ItemOrgaArmorBase &&
+				player.getItemStackFromSlot(EntityEquipmentSlot.CHEST).getItem() instanceof ItemOrgaArmorBase &&
+				player.getItemStackFromSlot(EntityEquipmentSlot.LEGS).getItem() instanceof ItemOrgaArmorBase &&
+				player.getItemStackFromSlot(EntityEquipmentSlot.FEET).getItem() instanceof ItemOrgaArmorBase) {
 		 
 			if(!player.isPotionActive(PotionLoader.potionFlowerHope)&&!((EntityPlayer)player).inventory.hasItemStack(new ItemStack(ItemLoader.orgaRequiem))) {
 				player.addPotionEffect(new PotionEffect(PotionLoader.potionFlowerHope,112*20+100));
@@ -124,14 +125,14 @@ public class EventOrga {
 		EntityLivingBase player=evt.getEntityLiving(); 
 		Entity attacker=evt.getSource().getTrueSource();
 		if(player instanceof EntityPlayer) {
-			if(player.getItemStackFromSlot(EntityEquipmentSlot.HEAD).getItem() instanceof OrgaBase &&
-					player.getItemStackFromSlot(EntityEquipmentSlot.CHEST).getItem() instanceof OrgaBase &&
-					player.getItemStackFromSlot(EntityEquipmentSlot.LEGS).getItem() instanceof OrgaBase &&
-					player.getItemStackFromSlot(EntityEquipmentSlot.FEET).getItem() instanceof OrgaBase &&
+			if(player.getItemStackFromSlot(EntityEquipmentSlot.HEAD).getItem() instanceof ItemOrgaArmorBase &&
+					player.getItemStackFromSlot(EntityEquipmentSlot.CHEST).getItem() instanceof ItemOrgaArmorBase &&
+					player.getItemStackFromSlot(EntityEquipmentSlot.LEGS).getItem() instanceof ItemOrgaArmorBase &&
+					player.getItemStackFromSlot(EntityEquipmentSlot.FEET).getItem() instanceof ItemOrgaArmorBase &&
 					attacker instanceof EntityLivingBase&&attacker!=null&&attacker!=player) {
 		 if(((EntityPlayer)player).inventory.hasItemStack(new ItemStack(ItemLoader.orgaRequiem)))
 		 {
-			 ((EntityLivingBase)attacker).attackEntityFrom(new EntityDamageSource("huaji.requiem.hit",player),evt.getAmount()*2);
+			 ((EntityLivingBase)attacker).attackEntityFrom(new EntityDamageSource(HuajiConstant.REQUIEM_BACK,player),evt.getAmount()*2);
 			 
 		 }    		
 		if(player.getHealth()<2) {		

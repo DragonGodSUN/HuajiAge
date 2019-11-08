@@ -1,7 +1,7 @@
 package com.lh_lshen.mcbbs.huajiage.init.events;
 
 import com.lh_lshen.mcbbs.huajiage.client.KeyLoader;
-import com.lh_lshen.mcbbs.huajiage.item.BlancedHelmet;
+import com.lh_lshen.mcbbs.huajiage.item.ItemBlancedHelmet;
 import com.lh_lshen.mcbbs.huajiage.network.HuajiAgeNetWorkHandler;
 import com.lh_lshen.mcbbs.huajiage.network.MessageKeyMode;
 
@@ -20,7 +20,7 @@ public class EventKeyInput {
 
 		if(KeyLoader.swich1.isPressed()) {
 		EntityPlayer player = Minecraft.getMinecraft().player;
-		 if(player.getItemStackFromSlot(EntityEquipmentSlot.HEAD).getItem() instanceof BlancedHelmet) {
+		 if(player.getItemStackFromSlot(EntityEquipmentSlot.HEAD).getItem() instanceof ItemBlancedHelmet) {
             HuajiAgeNetWorkHandler.sendToServer(new MessageKeyMode());
 		 }
 		}

@@ -12,6 +12,7 @@ import com.lh_lshen.mcbbs.huajiage.tileentity.TileEntityHuajiPolyfurnace;
 import com.lh_lshen.mcbbs.huajiage.tileentity.TileEntityHuajiPolyfurnace;
 
 import net.minecraft.client.Minecraft;
+import net.minecraft.client.gui.FontRenderer;
 import net.minecraft.client.gui.inventory.GuiContainer;
 import net.minecraft.client.renderer.GlStateManager;
 import net.minecraft.client.resources.I18n;
@@ -101,12 +102,16 @@ public class GuiHuajiPoly extends GuiContainer {
 	@Override
 	protected void drawGuiContainerForegroundLayer(int mouseX, int mouseY) {
 		super.drawGuiContainerForegroundLayer(mouseX, mouseY);
-		  
-		final int LABEL_XPOS = COOK_BAR_XPOS+12;
+		FontRenderer fontRenderer = Minecraft.getMinecraft().fontRenderer;
+		String name=tileEntity.getDisplayName().getUnformattedText();
+		String cookName="gui.huajiage.poly.cook";
+		final int LABEL_XPOS = (xSize -ENERGY_XPOS-ENERGY_WIDTH)/2 +ENERGY_XPOS+ENERGY_WIDTH - fontRenderer.getStringWidth(name)/2 -9;
 		final int LABEL_YPOS = 10;
 		int cookPercentage =(int)(tileEntity.fractionOfCookTimeComplete() * 100);
-        fontRenderer.drawString(TextFormatting.BOLD +tileEntity.getDisplayName().getUnformattedText(), LABEL_XPOS, LABEL_YPOS, TextFormatting.BLACK.getColorIndex());
-        fontRenderer.drawString(I18n.format("gui.huajiage.poly.cook")+"  "+TextFormatting.DARK_AQUA +""+TextFormatting.BOLD +""+ cookPercentage + "%",COOK_BAR_XPOS+22,COOK_BAR_YPOS+9, Color.darkGray.getRGB());
+		String proess=I18n.format(cookName)+"  "+TextFormatting.DARK_AQUA +""+TextFormatting.BOLD +""+ cookPercentage + "%";
+		final int cook_x=(xSize -ENERGY_XPOS-ENERGY_WIDTH)/2 +ENERGY_XPOS+ENERGY_WIDTH - fontRenderer.getStringWidth(proess)/2;
+        fontRenderer.drawString(TextFormatting.BOLD+name, LABEL_XPOS, LABEL_YPOS, TextFormatting.BLACK.getColorIndex());
+        fontRenderer.drawString(proess,cook_x,COOK_BAR_YPOS+9, Color.darkGray.getRGB());
         
 		List<String> hoveringText = new ArrayList<String>();
 

@@ -41,18 +41,18 @@ import net.minecraftforge.common.util.EnumHelper;
 import net.minecraftforge.fml.relauncher.Side;
 import net.minecraftforge.fml.relauncher.SideOnly;
 
-public class OrgaBase extends ItemArmor {
+public class ItemOrgaArmorBase extends ItemArmor {
 
 	protected Map<EntityEquipmentSlot, ModelBiped> models = null;
 	public final EntityEquipmentSlot type;
 	public static final ArmorMaterial orgaMaterial = EnumHelper.addArmorMaterial("ORGA",HuajiAge.MODID+":"+ "orga", 150,
 			new int[] {5,5,5,5}, 20, SoundEvents.ITEM_ARMOR_EQUIP_LEATHER, 3F);
 
-	public OrgaBase(EntityEquipmentSlot type) {
+	public ItemOrgaArmorBase(EntityEquipmentSlot type) {
 		this(type, orgaMaterial);
 	}
 	
-	public OrgaBase(EntityEquipmentSlot type, ArmorMaterial mat) {
+	public ItemOrgaArmorBase(EntityEquipmentSlot type, ArmorMaterial mat) {
 		super(mat, 0, type);
 		this.type = type;
 		this.setCreativeTab(CreativeTabLoader.tabhuaji);
@@ -143,7 +143,7 @@ public class OrgaBase extends ItemArmor {
 			addStringToTooltip(I18n.format("huajiage.orga.1"), list);
 		}
 
-	 public static class Chestplate extends OrgaBase
+	 public static class Chestplate extends ItemOrgaArmorBase
 	    {
 	        public Chestplate()
 	        {
@@ -167,7 +167,7 @@ public class OrgaBase extends ItemArmor {
 	    	}
 	    }
 
-	    public static class Leggings extends OrgaBase
+	    public static class Leggings extends ItemOrgaArmorBase
 	    {
 	        public Leggings()
 	        {
@@ -183,7 +183,7 @@ public class OrgaBase extends ItemArmor {
 	        }
 	    }
 
-	    public static class Boots extends OrgaBase
+	    public static class Boots extends ItemOrgaArmorBase
 	    {
 	        public Boots()
 	        {

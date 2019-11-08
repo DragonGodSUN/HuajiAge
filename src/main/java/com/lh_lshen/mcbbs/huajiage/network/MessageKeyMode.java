@@ -2,7 +2,7 @@ package com.lh_lshen.mcbbs.huajiage.network;
 
 import java.util.UUID;
 
-import com.lh_lshen.mcbbs.huajiage.item.BlancedHelmet;
+import com.lh_lshen.mcbbs.huajiage.item.ItemBlancedHelmet;
 import com.lh_lshen.mcbbs.huajiage.item.ItemHeroBow;
 import com.lh_lshen.mcbbs.huajiage.item.ItemLoader;
 
@@ -30,7 +30,7 @@ public class MessageKeyMode implements IMessage {
         public IMessage onMessage(MessageKeyMode message , MessageContext ctx) {
         	EntityPlayerMP player = ctx.getServerHandler().player;
         	ItemStack itemstack=ctx.getServerHandler().player.getItemStackFromSlot(EntityEquipmentSlot.HEAD);
-			player.mcServer.addScheduledTask(() -> ((BlancedHelmet) ItemLoader.blanceHelmet).ModeChange(itemstack, player));
+			player.mcServer.addScheduledTask(() -> ((ItemBlancedHelmet) ItemLoader.blanceHelmet).ModeChange(itemstack, player));
 			return null;
         }
     }

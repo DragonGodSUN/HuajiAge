@@ -6,6 +6,7 @@ import java.util.List;
 import org.apache.logging.log4j.core.config.builder.api.Component;
 
 import com.google.common.base.Predicate;
+import com.lh_lshen.mcbbs.huajiage.common.HuajiConstant;
 import com.lh_lshen.mcbbs.huajiage.crativetab.CreativeTabLoader;
 import com.lh_lshen.mcbbs.huajiage.entity.EntityMultiKnife;
 import com.lh_lshen.mcbbs.huajiage.entity.EntitySecondFoil;
@@ -79,7 +80,7 @@ private NBTTagCompound getTagCompoundSafe(ItemStack stack) {
 	public boolean hitEntity(ItemStack stack, EntityLivingBase target, EntityLivingBase attacker) {
 		float health=target.getHealth();
 		int i;
-		DamageSource second=new DamageSource("huaji.second");
+		DamageSource second=new DamageSource(HuajiConstant.SECOND);
 		for(i=0;i<120;i++) {
 		target.getCombatTracker().trackDamage(second,100*i,99*i);
 		target.getCombatTracker().trackDamage(second, health,health);
@@ -88,7 +89,7 @@ private NBTTagCompound getTagCompoundSafe(ItemStack stack) {
 	
 		}
 		stack.damageItem(1,attacker);
-		target.onDeath(new EntityDamageSource("huaji.second",attacker));
+		target.onDeath(new EntityDamageSource(HuajiConstant.SECOND,attacker));
 		 target.playSound(SoundEvents.BLOCK_GLASS_BREAK, 1.0F, 1.0F);
 		Item v=ItemLoader.expendedView;
         attacker.world.spawnEntity(new EntityItem(attacker.world, target.posX, target.posY, target.posZ, new ItemStack(v)));
@@ -102,9 +103,9 @@ private NBTTagCompound getTagCompoundSafe(ItemStack stack) {
 			EntityPlayer target=(EntityPlayer)entity;
 			
 			float health= target.getHealth();
-			target.getCombatTracker().trackDamage(new DamageSource("huaji.second"), health,health);
+			target.getCombatTracker().trackDamage(new DamageSource(HuajiConstant.SECOND), health,health);
 			target.setHealth(0);
-			target.onDeath(new DamageSource("huaji.second"));
+			target.onDeath(new DamageSource(HuajiConstant.SECOND));
 
 			return true;
 			

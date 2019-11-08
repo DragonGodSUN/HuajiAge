@@ -6,6 +6,7 @@ import java.util.UUID;
 import javax.annotation.Nullable;
 
 import com.google.common.collect.Lists;
+import com.lh_lshen.mcbbs.huajiage.common.HuajiConstant;
 import com.lh_lshen.mcbbs.huajiage.item.ItemLoader;
 
 import net.minecraft.enchantment.EnchantmentHelper;
@@ -415,7 +416,7 @@ public class EntitySecondFoil extends EntityShulkerBullet {
 	         if (result.entityHit instanceof EntityLivingBase)
 	                {  
 	                	if(!(owner instanceof EntityPlayer)) {
-	                	EntityDamageSource second=new EntityDamageSource("huaji.second",this.world.getClosestPlayerToEntity(this, 50));
+	                	EntityDamageSource second=new EntityDamageSource(HuajiConstant.SECOND,this.world.getClosestPlayerToEntity(this, 50));
 	                	
 	                	int i;
 						for(i=0;i<120;i++){
@@ -432,7 +433,7 @@ public class EntitySecondFoil extends EntityShulkerBullet {
 		                    world.spawnEntity(new EntityItem(this.world, this.posX, this.posY, this.posZ, new ItemStack(v)));
 	                	}
 	                	else {
-	                		EntityDamageSource second=new EntityDamageSource("huaji.second",owner);
+	                		EntityDamageSource second=new EntityDamageSource(HuajiConstant.SECOND,owner);
 		                	
 		                	int i;
 							for(i=0;i<120;i++){

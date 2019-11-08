@@ -6,6 +6,7 @@ import javax.annotation.Nullable;
 
 import org.lwjgl.input.Keyboard;
 
+import com.lh_lshen.mcbbs.huajiage.common.HuajiConstant;
 import com.lh_lshen.mcbbs.huajiage.crativetab.CreativeTabLoader;
 import com.lh_lshen.mcbbs.huajiage.entity.EntityHeroArrow;
 import com.lh_lshen.mcbbs.huajiage.entity.EntitySecondFoil;
@@ -151,7 +152,7 @@ public void onPlayerStoppedUsing(ItemStack stack, World worldIn, EntityLivingBas
                     entityarrow.shoot(entityplayer, entityplayer.rotationPitch, entityplayer.rotationYaw, 1F, f * 6.0F, 1.0F);
           
                     worldIn.spawnEntity(entityarrow);
-                    entityplayer.attackEntityFrom(new DamageSource("huaji.stella").setDamageIsAbsolute(),entityplayer.getMaxHealth()*5);
+                    entityplayer.attackEntityFrom(new DamageSource(HuajiConstant.STELLA).setDamageIsAbsolute(),entityplayer.getMaxHealth()*5);
                           }
                     else {
                     	entityplayer.sendMessage(new TextComponentTranslation("message.huaji.orga.hero.shot"));

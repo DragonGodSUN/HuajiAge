@@ -11,7 +11,9 @@ import net.minecraft.world.storage.loot.conditions.LootCondition;
 import net.minecraftforge.event.LootTableLoadEvent;
 import net.minecraftforge.fml.common.Mod;
 import net.minecraftforge.fml.common.eventhandler.SubscribeEvent;
-
+//This code is mainly based on @Choonster's Test Mod 3
+//https://github.com/Choonster-Minecraft-Mods/TestMod3/blob/1.12.2/src/main/java/choonster/testmod3/event/LootTableEventHandler.java
+//Follow the MIT License
 @Mod.EventBusSubscriber(modid = HuajiAge.MODID)
 public class LootTableModule {
 

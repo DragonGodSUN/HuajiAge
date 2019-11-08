@@ -45,7 +45,7 @@ public class ItemLordCore extends Item {
 		ItemStack stack = playerIn.getHeldItem(handIn);
 		ItemStack stackb= playerIn.getItemStackFromSlot(EntityEquipmentSlot.HEAD);
 		// TODO Auto-generated method stub
-		if(stackb.getItem() instanceof BlancedHelmet&&!stackb.getTagCompound().hasKey("active")) {
+		if(stackb.getItem() instanceof ItemBlancedHelmet&&!stackb.getTagCompound().hasKey("active")) {
 			NBTHelper.getTagCompoundSafe(stackb).setBoolean("active",true);
 			stack.shrink(1);
 			playerIn.playSound(SoundEvents.BLOCK_ANVIL_LAND,1f, 1f);

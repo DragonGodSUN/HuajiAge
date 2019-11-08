@@ -33,10 +33,10 @@ public class ItemArrowRequiem extends Item {
 	}
 	@Override
 	public ActionResult<ItemStack> onItemRightClick(World worldIn, EntityPlayer playerIn, EnumHand handIn) {
-	 if(playerIn.getItemStackFromSlot(EntityEquipmentSlot.HEAD).getItem() instanceof OrgaBase &&
-		playerIn.getItemStackFromSlot(EntityEquipmentSlot.CHEST).getItem() instanceof OrgaBase &&
-		playerIn.getItemStackFromSlot(EntityEquipmentSlot.LEGS).getItem() instanceof OrgaBase &&
-		playerIn.getItemStackFromSlot(EntityEquipmentSlot.FEET).getItem() instanceof OrgaBase) {
+	 if(playerIn.getItemStackFromSlot(EntityEquipmentSlot.HEAD).getItem() instanceof ItemOrgaArmorBase &&
+		playerIn.getItemStackFromSlot(EntityEquipmentSlot.CHEST).getItem() instanceof ItemOrgaArmorBase &&
+		playerIn.getItemStackFromSlot(EntityEquipmentSlot.LEGS).getItem() instanceof ItemOrgaArmorBase &&
+		playerIn.getItemStackFromSlot(EntityEquipmentSlot.FEET).getItem() instanceof ItemOrgaArmorBase) {
 	    if(worldIn.isRemote) {
 	     Minecraft.getMinecraft().getSoundHandler().stopSounds();
 		 HuajiMusicClient.playMusic(SoundLoader.ORGA_REQUIEM_1);}

@@ -1,8 +1,8 @@
 item.huaji.name=Huaji
-itemGroup.tabhuaji=Huaji
+itemGroup.huaji=Huaji Age II:Infinite Galaxy
 tile.oreHuaji.name=Huaji Ore
 tile.huajiStarBlock.name=Huaji Star Block
-tile.huajiStarBlockSky,name=Huaji Star Block-Sky
+tile.huajiStarBlockSky.name=Huaji Star Block-Sky
 tile.huajiBlader.name=Huaji Blader
 tile.huajiPolyFurnace.name=Huaji Polyfurnace
 
@@ -13,32 +13,32 @@ item.huajiStar.name=Huaji Star
 item.huajiIngot.name=Huaji Ingot
 item.huajiSword.name=Huaji Sword
 item.starSwordH.name=Star Sword
-item.huajiLatiaoSword.name=Spicy Sword-H
+item.huajiLatiaoSword.name=Spicy Sword-§eH
 item.neutronStarFragment.name=Neutron Star Fragment
 item.huajiStarSky.name=Huaji Star-Sky
 item.huajiStarUniverse.name=Huaji Star Universe
 item.eggRice.name=Fried Rice With Eggs
-item.eggRice.name=Fried Ultimate Rice With Eggs
+item.eggRiceU.name=Fried Ultimate Rice With Eggs
 item.huajiStarPoly.name=§o§lHuaji Star in Superposition States
 
 
-death.attack.huaji.hopeFlower=%s was dead of world line converge
-death.attack.huaji.second=%s has been compressed into a PNG image
-death.attack.huaji.stella=%s become the stella in the sky
-death.attack.huaji.KeDaiJinLa=%s feels good
-death.attack.huaji.requiem=%s was killed by %s
-death.attack.huaji.requiem.hit=%s was been killed by Golden Experience Requiem
+death.attack.huajiage.hope_flower=%s was dead of world line converge
+death.attack.huajiage.second=%s has been compressed into a PNG image
+death.attack.huajiage.stella=%s become the stella in the sky
+death.attack.huajiage.KeDaiJinLa=%s feels good
+death.attack.huajiage.requiem=%s was killed by %s
+death.attack.huajiage.requiem.hit=%s was been killed by Golden Experience Requiem
 death.attack.huajiage.dio_hit=%s was kill by THE WORLD
 
 
-
+item.orgaRequiem.name=§9Orga Requiem
 huajiage.burstout=§eBurst
-huajiage.stellawarning=§eWarning:The Burst Mode might cause an irretrivable situation,do not easily fire this bow with pulling fully!!!
+huajiage.stellawarning=§eWarning:§4The Burst Mode might cause an irretrivable situation,do not easily fire this bow with pulling fully!!!
 item.huajiHelmet.name=Huaji Helmet
 item.huajiChestPlate.name=Huaji Chestplate
 item.huajiLeggings.name=Huaji Leggings
 item.huajiBoots.name=Huaji Boots
-item.blanceHelmet.name=Blanced Helmet
+item.blanceHelmet.name=Super Plug Helmet
 item.ether.name=Fake Ether 
 item.etherCircumfluxBoard.name=Ether Circumflux Board
 item.redstoneDruse.name=Redstone Druse
@@ -55,7 +55,7 @@ item.hopeElement.name=Hope Element
 item.hopeFlower.name=Hope Flower
 item.infiniteCharm.name=§bInfinite §8Armor Charm
 item.multiKnife.name=Multi Stacks Knife
-item.dioBread.name=§l§eDio Bread
+item.dioBread.name=§e§lDio Bread
 item.roadRoller.name=§eRoad Roller
 item.huajiage.orga_flag.name=§4STEEL Flag
 item.huajiage.orgaFlag.name=STELL Logo
@@ -82,9 +82,9 @@ item.ether:unicode_tooltips.1.desc=It is not ether ,it's just a swich
 item.ether_circumflux_board:unicode_tooltips.1.desc=§4The concentrated etheric flow around the neutron star material that can absorb huge amount of energy
 item.ether:unicode_tooltips.2.desc=Extremely low purity etheric particles,far from reaching the level of infinite protoliths
 item.hero_bow:unicode_tooltips.1.1.desc=§cThe Capacity List
-item.hero_bow:unicode_tooltips.1.2.desc=§6Strong EX:With this,you can become stronger and faster,even free from the potion or wither effects
-item.hero_bow:unicode_tooltips.1.3.desc=§6Hawkeye A:You can aways have a eye with night vision 
-item.hero_bow:unicode_tooltips.1.4.desc=§6Arrow Making A:Don't worry about the cusume of arrows
+item.hero_bow:unicode_tooltips.1.2.desc=§6Strong EX:§rWith this,you can become stronger and faster,even free from the potion or wither effects
+item.hero_bow:unicode_tooltips.1.3.desc=§6Hawkeye A:§rYou can aways have a eye with night vision 
+item.hero_bow:unicode_tooltips.1.4.desc=§6Arrow Making A:§rDon't worry about the cusume of arrows
 item.hero_bow:unicode_tooltips.2.desc=§cPress Shift to see more
 item.hero_bow:unicode_tooltips.3.desc=§eNoble Phantasm:Stella!!!
 item.orga_requiem:tooltips.1=Requiem Owner
@@ -97,7 +97,7 @@ item.dio_bread:tooltips.2=§6The bread is basically in short supply.However, som
 item.lord_core:tooltips.1=§6It is the aggregate of Lord.Lu's great power
 messege.huaji.blancedHelmet.active=§lFrom now on it's called %s §lSquare！
 
-huajiage.orga.1=§e To celebrate! The birth of the most powerful king of Mars---Orga Izka
+huajiage.orga.1=§b To celebrate! The birth of the most powerful king of Mars---Orga Izka
 message.huaji.orga.shot=Oh,pretty shot.
 message.huaji.orga.hero.shot=§bKeep going now!Rider!
 messege.huaji.blancedHelmet.open=%s is plug-in
@@ -105,11 +105,11 @@ messege.huaji.blancedHelmet.failed=Maybe ether is the key?
 message.huajiage.the_world=§eThe World!!! Time Stop !
 message.huajiage.poly_huaji=Stacks:
 
-gui.huajiage.poly.cook=§lCook Process
+gui.huajiage.poly.cook=Process
 gui.huajiage.poly.fuel=Fuel Point
 gui.huajiage.poly.pool=Item Pool
 gui.huajiage.poly.energy=Energy
-gui.jei.category.huajiage.poly.pool=Point 
+gui.jei.category.huajiage.poly.pool=%s Point 
 
 config.huaji_age.huaji_config=§eHuaji Age
 config.huaji_age.huaji_config.hero_explode=The Terrain destruction of the big explosion created by the big hero's bow

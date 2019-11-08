@@ -58,11 +58,11 @@ import net.minecraftforge.fml.common.gameevent.InputEvent.KeyInputEvent;
 import net.minecraftforge.fml.relauncher.Side;
 import net.minecraftforge.fml.relauncher.SideOnly;
 
-public class BlancedHelmet extends ModelArmorBase {
+public class ItemBlancedHelmet extends ItemModelArmorBase {
 	public static final ArmorMaterial blanceMaterial = EnumHelper.addArmorMaterial("BLANCE",HuajiAge.MODID+":"+ "blance_helmet", 360,
 			new int[] {15,15,15,15}, 33, SoundEvents.ITEM_ARMOR_EQUIP_DIAMOND, 3F);
 	
-	public BlancedHelmet() {
+	public ItemBlancedHelmet() {
 		super(EntityEquipmentSlot.HEAD,blanceMaterial);
 		
 	}

@@ -13,7 +13,7 @@ package com.lh_lshen.mcbbs.huajiage.client.model;
 
 import javax.annotation.Nonnull;
 
-import com.lh_lshen.mcbbs.huajiage.item.BlancedHelmet;
+import com.lh_lshen.mcbbs.huajiage.item.ItemBlancedHelmet;
 import com.lh_lshen.mcbbs.huajiage.item.ItemLoader;
 import com.lh_lshen.mcbbs.huajiage.item.ItemLordCore;
 
@@ -155,7 +155,7 @@ public class ModelBlanceHelmet extends ModelArmor
 		super.render(entity, limbSwing, limbSwingAmount, ageInTicks, netHeadYaw, headPitch, scale);
 		if(entity instanceof EntityPlayer) {
 			ItemStack stack=((EntityPlayer)entity).getItemStackFromSlot(EntityEquipmentSlot.HEAD);
-			if(stack.getItem() instanceof BlancedHelmet) {
+			if(stack.getItem() instanceof ItemBlancedHelmet) {
 				if(stack.getTagCompound().hasKey("active")) {
 					Minecraft.getMinecraft().getRenderItem().renderItem(new ItemStack(ItemLoader.lordCore), TransformType.HEAD);
 				}

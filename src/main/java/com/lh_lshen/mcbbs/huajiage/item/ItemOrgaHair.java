@@ -40,9 +40,9 @@ import net.minecraftforge.fml.relauncher.Side;
 import net.minecraftforge.fml.relauncher.SideOnly;
 import scala.collection.immutable.Stack;
 
-public class OrgaHair extends OrgaBase {
+public class ItemOrgaHair extends ItemOrgaArmorBase {
 
-	public OrgaHair() {
+	public ItemOrgaHair() {
 		super(EntityEquipmentSlot.HEAD);
 	
 		 MinecraftForge.EVENT_BUS.register(this);
@@ -68,10 +68,10 @@ public class OrgaHair extends OrgaBase {
 	}
 	
 	 public static boolean isSetEquippedByPlayer(EntityPlayer player) {
-	        return player.getItemStackFromSlot(EntityEquipmentSlot.HEAD).getItem() instanceof OrgaHair &&
-	            player.getItemStackFromSlot(EntityEquipmentSlot.CHEST).getItem() instanceof OrgaBase &&
-	            player.getItemStackFromSlot(EntityEquipmentSlot.LEGS).getItem() instanceof OrgaBase &&
-	            player.getItemStackFromSlot(EntityEquipmentSlot.FEET).getItem() instanceof OrgaBase;
+	        return player.getItemStackFromSlot(EntityEquipmentSlot.HEAD).getItem() instanceof ItemOrgaHair &&
+	            player.getItemStackFromSlot(EntityEquipmentSlot.CHEST).getItem() instanceof ItemOrgaArmorBase &&
+	            player.getItemStackFromSlot(EntityEquipmentSlot.LEGS).getItem() instanceof ItemOrgaArmorBase &&
+	            player.getItemStackFromSlot(EntityEquipmentSlot.FEET).getItem() instanceof ItemOrgaArmorBase;
 	    }
  @Override
 	public void onArmorTick(World world, EntityPlayer player, ItemStack itemStack) {

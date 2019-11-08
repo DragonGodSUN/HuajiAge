@@ -84,8 +84,8 @@ public class ItemInfiniteCharm extends Item {
 				       }
 			      }	
 			 }
-			 if(ConfigHuaji.Huaji.orgaSuit&&(((EntityPlayer) entityIn).getItemStackFromSlot(EntityEquipmentSlot.HEAD).getItem() instanceof OrgaBase)&&(((EntityPlayer) entityIn).getItemStackFromSlot(EntityEquipmentSlot.CHEST).getItem() instanceof OrgaBase)&&
-					 (((EntityPlayer) entityIn).getItemStackFromSlot(EntityEquipmentSlot.LEGS).getItem() instanceof OrgaBase)&&(((EntityPlayer) entityIn).getItemStackFromSlot(EntityEquipmentSlot.FEET).getItem() instanceof OrgaBase)) {
+			 if(ConfigHuaji.Huaji.orgaSuit&&(((EntityPlayer) entityIn).getItemStackFromSlot(EntityEquipmentSlot.HEAD).getItem() instanceof ItemOrgaArmorBase)&&(((EntityPlayer) entityIn).getItemStackFromSlot(EntityEquipmentSlot.CHEST).getItem() instanceof ItemOrgaArmorBase)&&
+					 (((EntityPlayer) entityIn).getItemStackFromSlot(EntityEquipmentSlot.LEGS).getItem() instanceof ItemOrgaArmorBase)&&(((EntityPlayer) entityIn).getItemStackFromSlot(EntityEquipmentSlot.FEET).getItem() instanceof ItemOrgaArmorBase)) {
 				if(!NBTHelper.getTagCompoundSafe(stack).getBoolean("orga")) { 
 				 NBTHelper.getTagCompoundSafe(stack).setBoolean("orga",true);
 				 NBTHelper.setEntityBoolean(entityIn, "huajiage.orga.suit", true);
