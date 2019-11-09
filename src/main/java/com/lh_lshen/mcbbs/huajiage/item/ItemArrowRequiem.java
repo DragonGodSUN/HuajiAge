@@ -2,9 +2,8 @@ package com.lh_lshen.mcbbs.huajiage.item;
 
 import com.google.common.util.concurrent.CycleDetectingLockFactory.Policies;
 import com.lh_lshen.mcbbs.huajiage.crativetab.CreativeTabLoader;
-import com.lh_lshen.mcbbs.huajiage.init.playsound.HuajiMusicClient;
+import com.lh_lshen.mcbbs.huajiage.init.playsound.HuajiSoundPlayer;
 import com.lh_lshen.mcbbs.huajiage.init.playsound.SoundLoader;
-import com.lh_lshen.mcbbs.huajiage.init.playsound.SoundPlayer;
 import com.lh_lshen.mcbbs.huajiage.potion.PotionLoader;
 
 import net.minecraft.client.Minecraft;
@@ -39,7 +38,7 @@ public class ItemArrowRequiem extends Item {
 		playerIn.getItemStackFromSlot(EntityEquipmentSlot.FEET).getItem() instanceof ItemOrgaArmorBase) {
 	    if(worldIn.isRemote) {
 	     Minecraft.getMinecraft().getSoundHandler().stopSounds();
-		 HuajiMusicClient.playMusic(SoundLoader.ORGA_REQUIEM_1);}
+		 HuajiSoundPlayer.playMusic(SoundLoader.ORGA_REQUIEM_1);}
 	   
 			if(!worldIn.isRemote) {
 			playerIn.inventory.getCurrentItem().shrink(1);;

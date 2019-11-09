@@ -104,6 +104,7 @@ messege.huaji.blancedHelmet.open=%s is plug-in
 messege.huaji.blancedHelmet.failed=Maybe ether is the key?
 message.huajiage.the_world=§eThe World!!! Time Stop !
 message.huajiage.poly_huaji=Stacks:
+message.huajiage.patchouli_missing=[{"text":"[ Huaji Age II]:","color":"yellow","bold":true},{"text":"In order to get the best game experience please INSTILL ","color":"aqua","bold":false},{"text":"Patchouli Mod","color":"green","underlined":true,"bold":true,"clickEvent":{"action":"open_url","value":"https://www.curseforge.com/minecraft/mc-mods/patchouli"},"hoverEvent":{"action":"show_text","value":"https://www.curseforge.com/minecraft/mc-mods/patchouli"}},{"text":"to elicit the HUAJI Tutorial","color":"aqua","bold":false}]
 
 gui.huajiage.poly.cook=Process
 gui.huajiage.poly.fuel=Fuel Point

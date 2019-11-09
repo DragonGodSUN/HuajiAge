@@ -99,6 +99,7 @@ item.dio_bread:tooltips.1=§3意大利大财阀“热情”集团旗下GioGio甜
 item.dio_bread:tooltips.2=§6该款面包在当地基本上都属于供不应求状态。不过，有群众举报，怀疑该面包加入了大量添加剂，理由是其及时在水里泡上几周都不会腐烂亦或是破碎，就如同时间静止了一般。另有小道消息称，数人在使用该面包后表现出极端兴奋，表示High到不行，甚至时不时发出“Wryyyyyyyyy！”或是“平角裤！平角裤！”、“木大木大木大”等意义不明的词语。有目击者声称，其邻居在食用该面包后陷入了癫狂状态，整天没事对着空气大喊大叫，上街扰民，甚至还砸坏了路边的压路机。当地警方已对该食品进行了详细调查，其化验结果表明并无异常。对此，警官阿帕茶（化名）提醒，罗马市民们莫轻信谣言，传播谣言，莫让谣言影响正常的社会秩序
 item.lord_core:tooltips.1=§6至高的挂者之力，凝聚在其中
 
+message.huajiage.patchouli_missing=[{"text":"[ Huaji Age II]:","color":"yellow","bold":true},{"text":"为保证最佳游戏体验，请加载  ","color":"aqua","bold":false},{"text":"Patchouli-帕秋莉模组","color":"green","underlined":true,"bold":true,"clickEvent":{"action":"open_url","value":"https://www.curseforge.com/minecraft/mc-mods/patchouli"},"hoverEvent":{"action":"show_text","value":"https://www.curseforge.com/minecraft/mc-mods/patchouli"}},{"text":"§b来获取指南手册，这是鬼畜界先辈们为迎击§0§l♂Dark&&King§b势力耗尽其毕生修为传承下的§e§lJO§6§l级宝典","color":"yellow","bold":false}]
 message.huajiage:player_received_loot.no_loot=今天也是非气满满的一天呐
 message.huajiage.the_world=§e咋瓦鲁多！！！时间停止吧！  
 message.huajiage.poly_huaji=叠加事项： 
@@ -120,6 +121,9 @@ config.huaji_age.huaji_config.road_roller_explosion=是否允许压路机破坏�
 config.huaji_age.huaji_config.the_world=是否允许咋瓦鲁多暂停玩家时间？
 config.huaji_age.huaji_config.height_knife=小刀的飞行高度
 config.huaji_age.huaji_config.orga_suit=当装备起奥尔加套装时是否允许无限耐久护身符装换形态
+
+patchouil.huajiage.book.name=§e§lJO§6级宝典
+patchouil.huajiage.book.landing=在这个宇宙中，存在着一种名为滑稽的奇特之物，它们无处不在，并构成了千千万万的事物，据说，持有滑稽的星辉之力，便可得到传说中鬼畜先辈的无上之力
 
 *****************************************下方为一代翻译***************************************************
 item.huaJiCry.name=我哭了

@@ -1,7 +1,7 @@
 package com.lh_lshen.mcbbs.huajiage.init.events;
 
 import com.lh_lshen.mcbbs.huajiage.common.HuajiConstant;
-import com.lh_lshen.mcbbs.huajiage.init.playsound.HuajiMusicClient;
+import com.lh_lshen.mcbbs.huajiage.init.playsound.HuajiSoundPlayer;
 import com.lh_lshen.mcbbs.huajiage.init.playsound.SoundLoader;
 import com.lh_lshen.mcbbs.huajiage.item.ItemLoader;
 import com.lh_lshen.mcbbs.huajiage.item.ItemOrgaArmorBase;
@@ -64,7 +64,7 @@ public class EventOrga {
 		 if(entity.isPotionActive(PotionLoader.potionRequiem)&&entity.getActivePotionEffect(PotionLoader.potionRequiem).getDuration()==30*20-1)	{
 	        if(entity.world.isRemote )
 	        {Minecraft.getMinecraft().getSoundHandler().stopSounds();
-	        HuajiMusicClient .playMusic(SoundLoader.ORGA_REQUIEM_GOLD);}
+	        HuajiSoundPlayer .playMusic(SoundLoader.ORGA_REQUIEM_GOLD);}
 		 }
 		 if(entity.isPotionActive(PotionLoader.potionFlowerHope)&&entity.getActivePotionEffect(PotionLoader.potionFlowerHope).getDuration()<10)
 			{

@@ -7,7 +7,7 @@ import java.util.UUID;
 import org.lwjgl.input.Keyboard;
 
 import com.lh_lshen.mcbbs.huajiage.crativetab.CreativeTabLoader;
-import com.lh_lshen.mcbbs.huajiage.init.playsound.HuajiMusicClient;
+import com.lh_lshen.mcbbs.huajiage.init.playsound.HuajiSoundPlayer;
 import com.lh_lshen.mcbbs.huajiage.init.playsound.SoundLoader;
 import com.lh_lshen.mcbbs.huajiage.potion.PotionLoader;
 
@@ -67,7 +67,7 @@ public class ItemOrgaRequiem extends Item {
 			getTagCompoundSafe(stack).setString("owner_name", player.getName());
 			if(player.world.isRemote) {
 			Minecraft.getMinecraft().getSoundHandler().stopSounds();
-			HuajiMusicClient.playMusic(SoundLoader.ORGA_REQUIEM_2);}
+			HuajiSoundPlayer.playMusic(SoundLoader.ORGA_REQUIEM_2);}
 			player.addPotionEffect(new PotionEffect(MobEffects.SPEED,100,2));
 		} else if (!getTagCompoundSafe(stack).getString("owner").equals(player.getUniqueID().toString())) {
 			bindingMaster = false;
