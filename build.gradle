@@ -44,6 +44,11 @@ repositories {
     name = "ModMaven"
     url = "https://modmaven.k-4u.nl"
   }
+  maven {
+        // Patchouli
+        name = 'Blamejared Maven'
+        url = 'https://maven.blamejared.com'
+    }
 }
 
 dependencies {
@@ -68,12 +73,16 @@ dependencies {
     // http://www.gradle.org/docs/current/userguide/artifact_dependencies_tutorial.html
     // http://www.gradle.org/docs/current/userguide/dependency_management.html
 
-deobfCompile "mezz.jei:jei_${minecraft_version}:${jei_version}"
+	deobfCompile "mezz.jei:jei_${minecraft_version}:${jei_version}"
+  
+	compile "vazkii.patchouli:Patchouli:${patchouli_version}"
 
 
 
 }
-
+tasks.withType(JavaCompile) {
+    options.encoding = 'UTF-8'
+}
 processResources {
     // this will ensure that this task is redone when the versions change.
     inputs.property "version", project.version

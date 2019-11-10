@@ -25,18 +25,13 @@ import net.minecraftforge.oredict.OreDictionary;
 public class SoundLoader {
 	private static final List<SoundEvent> SOUND_LIST = new ArrayList<>();
 	public static final SoundEvent ENERGY_HIT=registerSound("energyhit");
-	public static final SoundEvent ENERGY_HIT2=registerSound("energyhit2");
 	public static final SoundEvent CHARGE=registerSound("charge");
-	public static final SoundEvent DISCHARGE=registerSound("discharge_01");
-	public static final SoundEvent CHARGE_2=registerSound("charge_02");
 	public static final SoundEvent WAVE1=registerSound("wave_01");
-	public static final SoundEvent LOOP=registerSound("loop_01");
 	public static final SoundEvent STELLA=registerSound("stella");
 	public static final SoundEvent EXGLUTENBUR_1=registerSound("exglutenbur_flavor1");
 	public static final SoundEvent EXGLUTENBUR_2=registerSound("exglutenbur_flavor2");
 	public static final SoundEvent EXGLUTENBUR_3=registerSound("exglutenbur_flavor3");
 	public static final SoundEvent EXGLUTENBUR_HIT=registerSound("exglutenbur_hit");
-	public static final SoundEvent ORGA_SHOT=registerSound("orga_shot");
 	public static final SoundEvent ORGA_FLOWER=registerSound("orga_flower");
 	public static final SoundEvent ORGA_REQUIEM_1=registerSound("orga_requiem_1");
 	public static final SoundEvent ORGA_REQUIEM_2=registerSound("orga_requiem_2");

@@ -1,14 +1,4 @@
- {
-    "energyshot": {
-    "category": "neutral",
-    "sounds": [
-      {
-        "name": "huajiage:energyshot",
-        "stream": true
-      }
-    ]
-  },
-
+{
     "energyhit": {
     "category": "neutral",
     "sounds": [
@@ -19,48 +9,11 @@
     ]
   },
 
-    "energyhit2": {
-    "category": "neutral",
-    "sounds": [
-      {
-        "name": "huajiage:energyhit2",
-        "stream": true
-      }
-    ]
-  },
-
  "charge": {
     "category": "neutral",
     "sounds": [
       {
         "name": "huajiage:charge",
-        "stream": true
-      }
-    ]
-  },
-   "diacharge_01": {
-    "category": "neutral",
-    "sounds": [
-      {
-        "name": "huajiage:discharge_01",
-        "stream": true
-      }
-    ]
-  },
-   "loop_01": {
-    "category": "neutral",
-    "sounds": [
-      {
-        "name": "huajiage:loop_01",
-        "stream": true
-      }
-    ]
-  },
-   "charge_02": {
-    "category": "neutral",
-    "sounds": [
-      {
-        "name": "huajiage:charge_02",
         "stream": true
       }
     ]

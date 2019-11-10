@@ -94,7 +94,7 @@ public class ItemHuajiStarSword extends ItemSword {
              
                 
                 target.playSound(SoundLoader.WAVE1, 1f,1f);
-                target.playSound(SoundLoader.ENERGY_HIT2, 1f, 0.1f);
+                target.playSound(SoundLoader.ENERGY_HIT, 1f, 0.1f);
 		}
         return true;
     }
@@ -175,7 +175,7 @@ public class ItemHuajiStarSword extends ItemSword {
 		           		          
 		        }
 		    } 
-		 playerIn.playSound(SoundLoader.CHARGE_2, 1f, 1f);
+		 playerIn.playSound(SoundLoader.CHARGE, 1f, 1f);
 	}
 		    return new ActionResult(EnumActionResult.SUCCESS, stack);
 		}
