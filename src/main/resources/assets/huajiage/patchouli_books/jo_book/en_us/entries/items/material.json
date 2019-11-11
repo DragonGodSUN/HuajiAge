@@ -1,0 +1,60 @@
+{
+	"sortnum": 3,
+    "name": "进阶材料",
+    "icon": "huajiage:neutron_star_fragment",
+    "category": "items_category",
+    "pages": [
+        {
+            "type": "text",
+            "text": ""
+        },
+		{
+			"type": "spotlight",
+			"item": "huajiage:huaji_ingot",
+			"title":"滑稽锭",
+			"text":""
+	    },
+		{
+			"type": "spotlight",
+			"item": "huajiage:neutron_star_fragment",
+			"title":"中子星碎片",
+			"text":""
+	    },
+		{
+			"type": "spotlight",
+			"item": "huajiage:redstone_druse",
+			"title":"红石晶簇",
+			"text":""
+	    },
+		{
+			"type": "spotlight",
+			"item": "huajiage:flash_flour",
+			"title":"劲爆的面团",
+			"text":""
+	    },
+		{
+			"type": "spotlight",
+			"item": "huajiage:hope_element",
+			"title":"希望要素",
+			"text":""
+	    },
+		{
+			"type": "spotlight",
+			"item": "huajiage:hope_flower",
+			"title":"希望之花",
+			"text":""
+	    },
+		{
+			"type": "spotlight",
+			"item": "huajiage:ether_circumflux_board",
+			"title":"以太中子环流板",
+			"text":""
+	    },
+		{
+			"type": "crafting",
+			"recipe":"huajiage:hope_flower",
+			"recipe2":"huajiage:ether_c"
+	    }
+		
+    ]
+}

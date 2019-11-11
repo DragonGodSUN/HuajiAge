@@ -1,0 +1,6 @@
+{
+	"name": "材料",
+	"description": "啊啊啊……都是素材啊，素材啊！",
+	"parent":"items_category",
+	"icon": "huajiage:huaji_star"
+}

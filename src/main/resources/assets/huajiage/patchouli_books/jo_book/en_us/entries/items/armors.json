@@ -1,0 +1,55 @@
+{
+	"sortnum": 5,
+    "name": "防具",
+    "icon": "huajiage:blance_helmet",
+    "category": "items_category",
+    "pages": [
+        {
+            "type": "text",
+            "text": "作者很懒，什么都还没写"
+        },
+		{
+			"type": "spotlight",
+			"item": "huajiage:huaji_helmet",
+			"title":"滑稽套",
+			"text":"作者很懒，什么都还没写"
+	    },
+		{
+			"type": "spotlight",
+			"item": "huajiage:blance_helmet",
+			"title":"五五开头盔",
+			"text":"作者很懒，什么都还没写"
+	    },
+		{
+			"type": "spotlight",
+			"item": "huajiage:orga_hair",
+			"title":"奥尔加套",
+			"text":"作者很懒，什么都还没写"
+	    },
+		{
+			"type": "crafting",
+			"recipe":"huajiage:huaji_helmet_recipe",
+			"recipe2":"huajiage:huaji_chest_recipe"
+	    },
+		{
+			"type": "crafting",
+			"recipe":"huajiage:huaji_leggings_recipe",
+			"recipe2":"huajiage:huaji_boots_recipe"
+	    },
+		{
+			"type": "crafting",
+			"recipe":"huajiage:orga_hair",
+			"recipe2":"huajiage:orga_chestplate"
+	    },
+		{
+			"type": "crafting",
+			"recipe":"huajiage:orga_leggings",
+			"recipe2":"huajiage:orga_boots"
+	    },
+		{
+			"type": "crafting",
+			"recipe":"huajiage:blance_helmet"
+	    }
+		
+    ]
+}

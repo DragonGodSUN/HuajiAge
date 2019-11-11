@@ -1,0 +1,70 @@
+{
+	"sortnum": 4,
+    "name": "武器",
+    "icon": "huajiage:huaji_star_sword",
+    "category": "items_category",
+    "pages": [
+        {
+            "type": "text",
+            "text": "作者很懒，什么都还没写"
+        },
+		{
+			"type": "spotlight",
+			"item": "huajiage:huaji_sword",
+			"title":"滑稽剑",
+			"text":"作者很懒，什么都还没写"
+	    },
+		{
+			"type": "spotlight",
+			"item": "huajiage:huaji_star_sword",
+			"title":"星辰之剑",
+			"text":"作者很懒，什么都还没写"
+	    },
+		{
+			"type": "spotlight",
+			"item": "huajiage:huaji_latiao_sword",
+			"title":"辣条之剑",
+			"text":"作者很懒，什么都还没写"
+	    },
+		{
+			"type": "spotlight",
+			"item": "huajiage:exglutenbur",
+			"title":"EX·面筋棒",
+			"text":"作者很懒，什么都还没写"
+	    },
+		{
+			"type": "spotlight",
+			"item": "huajiage:hero_bow",
+			"title":"大英雄之弓",
+			"text":"作者很懒，什么都还没写"
+	    },
+		{
+			"type": "spotlight",
+			"item": "huajiage:multi_knife",
+			"title":"Dio sama天天用来练习的小刀",
+			"text":"作者很懒，什么都还没写"
+	    },
+		{
+			"type": "spotlight",
+			"item": "huajiage:road_roller",
+			"title":"泷泽萝拉哒！！！",
+			"text":"作者很懒，什么都还没写"
+	    },
+		{
+			"type": "crafting",
+			"recipe":"huajiage:huaji_sword",
+			"recipe2":"huajiage:huaji_star_sword"
+	    },
+		{
+			"type": "crafting",
+			"recipe":"huajiage:exglutenbur",
+			"recipe2":"huajiage:hero_bow"
+	    },
+		{
+			"type": "crafting",
+			"recipe":"huajiage:latiao_sword"
+			
+	    }
+		
+    ]
+}

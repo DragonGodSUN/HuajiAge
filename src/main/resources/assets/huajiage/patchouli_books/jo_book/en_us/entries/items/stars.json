@@ -1,0 +1,42 @@
+{
+	"sortnum": 2,
+    "name": "闪耀的星辰",
+    "icon": "huajiage:huaji_star",
+    "category": "items_category",
+    "pages": [
+        {
+            "type": "text",
+            "text": ""
+        },
+		{
+			"type": "spotlight",
+			"item": "huajiage:huaji_star",
+			"title":"滑稽之星",
+			"text":""
+	    },
+		{
+			"type": "spotlight",
+			"item": "huajiage:huaji_star_sky",
+			"title":"空域之星",
+			"text":""
+	    },
+		{
+			"type": "spotlight",
+			"item": "huajiage:huaji_star_universe",
+			"title":"无尽之星",
+			"text":""
+	    },
+		{
+			"type": "spotlight",
+			"item": "huajiage:huaji_star_poly",
+			"title":"多重叠加态滑稽之星",
+			"text":""
+	    },
+		{
+			"type": "crafting",
+			"recipe":"huajiage:huaji_star_recipe",
+			"recipe2":"huajiage:huaji_star_sky_recipe"
+	    }
+		
+    ]
+}
