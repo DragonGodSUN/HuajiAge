@@ -6,7 +6,7 @@ package com.lh_lshen.mcbbs.huajiage.inventroy;
  * https://github.com/TheGreyGhost/MinecraftByExample
  * */
 import com.lh_lshen.mcbbs.huajiage.HuajiAge;
-import com.lh_lshen.mcbbs.huajiage.client.gui.GuiHuajiBlader;
+import com.lh_lshen.mcbbs.huajiage.client.gui.GuiHuajiBlender;
 import com.lh_lshen.mcbbs.huajiage.client.gui.GuiHuajiPoly;
 import com.lh_lshen.mcbbs.huajiage.common.GuiHandlerRegistry;
 import com.lh_lshen.mcbbs.huajiage.tileentity.TileEntityHuajiPolyfurnace;

@@ -34,9 +34,9 @@ public class HuajiBladerCategory extends HuajiBladerCategoryBase<HuajiWrapper>{
 
    public HuajiBladerCategory(IGuiHelper guiHelper){
 	   super(guiHelper);
-        title = Translator.translateToLocal(BlockLoader.huajiBlader.getLocalizedName());
+        title = Translator.translateToLocal(BlockLoader.huajiBlender.getLocalizedName());
         background = guiHelper.createDrawable(RL,0, 0, 106, 54);
-        icon = guiHelper.createDrawableIngredient(new ItemStack(BlockLoader.huajiBlader));
+        icon = guiHelper.createDrawableIngredient(new ItemStack(BlockLoader.huajiBlender));
      
     }
 

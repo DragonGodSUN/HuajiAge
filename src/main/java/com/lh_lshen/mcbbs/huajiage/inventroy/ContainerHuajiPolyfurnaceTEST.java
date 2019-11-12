@@ -5,7 +5,7 @@ package com.lh_lshen.mcbbs.huajiage.inventroy;
  * please enter the following site
  * https://github.com/TheGreyGhost/MinecraftByExample
  * */
-import com.lh_lshen.mcbbs.huajiage.tileentity.TileEntityHuajiBlader;
+import com.lh_lshen.mcbbs.huajiage.tileentity.TileEntityHuajiBlender;
 
 import net.minecraft.entity.player.EntityPlayer;
 import net.minecraft.entity.player.InventoryPlayer;
@@ -26,7 +26,7 @@ import net.minecraftforge.items.SlotItemHandler;
 public class ContainerHuajiPolyfurnaceTEST extends Container {
 
 	// Stores the tile entity instance for later use
-	private TileEntityHuajiBlader tileEntityHuajiBlader;
+	private TileEntityHuajiBlender tileEntityHuajiBlader;
 
 	// These store cache values, used by the server to only update the client side tile entity when values have changed
 	private int [] cachedFields;
@@ -62,7 +62,7 @@ public class ContainerHuajiPolyfurnaceTEST extends Container {
 	private final int FIRST_INPUT_SLOT_NUMBER = FIRST_FUEL_SLOT_NUMBER + FUEL_SLOTS_COUNT;
 	private final int FIRST_OUTPUT_SLOT_NUMBER = FIRST_INPUT_SLOT_NUMBER + INPUT_SLOTS_COUNT;
 
-	public ContainerHuajiPolyfurnaceTEST(InventoryPlayer invPlayer, TileEntityHuajiBlader tileEntityHuajiBlader) {
+	public ContainerHuajiPolyfurnaceTEST(InventoryPlayer invPlayer, TileEntityHuajiBlender tileEntityHuajiBlader) {
 		this.tileEntityHuajiBlader = tileEntityHuajiBlader;
 
 		final int SLOT_X_SPACING = 18;
@@ -138,11 +138,11 @@ public class ContainerHuajiPolyfurnaceTEST extends Container {
 		if (sourceSlotIndex >= VANILLA_FIRST_SLOT_INDEX && sourceSlotIndex < VANILLA_FIRST_SLOT_INDEX + VANILLA_SLOT_COUNT) {
 			// This is a vanilla container slot so merge the stack into one of the furnace slots
 			// If the stack is smeltable try to merge merge the stack into the input slots
-			if (!TileEntityHuajiBlader.getSmeltingResultForItem(sourceStack).isEmpty()){  //isEmptyItem
+			if (!TileEntityHuajiBlender.getSmeltingResultForItem(sourceStack).isEmpty()){  //isEmptyItem
 				if (!mergeItemStack(sourceStack, FIRST_INPUT_SLOT_INDEX, FIRST_INPUT_SLOT_INDEX + INPUT_SLOTS_COUNT, false)){
 					return ItemStack.EMPTY;  //EMPTY_ITEM;
 				}
-			}	else if (TileEntityHuajiBlader.getItemBurnTime(sourceStack) > 0) {
+			}	else if (TileEntityHuajiBlender.getItemBurnTime(sourceStack) > 0) {
 				if (!mergeItemStack(sourceStack, FIRST_FUEL_SLOT_INDEX, FIRST_FUEL_SLOT_INDEX + FUEL_SLOTS_COUNT, true)) {
 					// Setting the boolean to true places the stack in the bottom slot first
 					return ItemStack.EMPTY;  //EMPTY_ITEM;
@@ -227,7 +227,7 @@ public class ContainerHuajiPolyfurnaceTEST extends Container {
 		// if this function returns false, the player won't be able to insert the given item into this slot
 		@Override
 		public boolean isItemValid(ItemStack stack) {
-			return TileEntityHuajiBlader.isItemValidForFuelSlot(stack);
+			return TileEntityHuajiBlender.isItemValidForFuelSlot(stack);
 		}
 	}
 
@@ -240,7 +240,7 @@ public class ContainerHuajiPolyfurnaceTEST extends Container {
 		// if this function returns false, the player won't be able to insert the given item into this slot
 		@Override
 		public boolean isItemValid(ItemStack stack) {
-			return TileEntityHuajiBlader.isItemValidForInputSlot(stack);
+			return TileEntityHuajiBlender.isItemValidForInputSlot(stack);
 		}
 	}
 
@@ -253,7 +253,7 @@ public class ContainerHuajiPolyfurnaceTEST extends Container {
 		// if this function returns false, the player won't be able to insert the given item into this slot
 		@Override
 		public boolean isItemValid(ItemStack stack) {
-			return TileEntityHuajiBlader.isItemValidForOutputSlot(stack);
+			return TileEntityHuajiBlender.isItemValidForOutputSlot(stack);
 		}
 	}
 }

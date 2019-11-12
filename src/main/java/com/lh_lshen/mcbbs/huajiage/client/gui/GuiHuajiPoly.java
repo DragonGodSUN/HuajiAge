@@ -6,7 +6,7 @@ import java.util.ArrayList;
 import java.util.List;
 
 import com.lh_lshen.mcbbs.huajiage.HuajiAge;
-import com.lh_lshen.mcbbs.huajiage.inventroy.ContainerHuajiBlader;
+import com.lh_lshen.mcbbs.huajiage.inventroy.ContainerHuajiBlender;
 import com.lh_lshen.mcbbs.huajiage.inventroy.ContainerHuajiPolyfurnace;
 import com.lh_lshen.mcbbs.huajiage.tileentity.TileEntityHuajiPolyfurnace;
 import com.lh_lshen.mcbbs.huajiage.tileentity.TileEntityHuajiPolyfurnace;

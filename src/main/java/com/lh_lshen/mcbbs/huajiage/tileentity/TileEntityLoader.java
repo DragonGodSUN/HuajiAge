@@ -9,7 +9,7 @@ import net.minecraftforge.fml.common.registry.GameRegistry;
 public class TileEntityLoader {
 	 public TileEntityLoader(FMLPreInitializationEvent event)
 	    {
-	        registerTileEntity(TileEntityHuajiBlader.class, "HuajiBlader");
+	        registerTileEntity(TileEntityHuajiBlender.class, "HuajiBlader");
 	        registerTileEntity(TileEntityHuajiPolyfurnace.class, "HuajiPolyfurnace");
 	    }
 

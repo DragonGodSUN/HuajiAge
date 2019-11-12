@@ -54,7 +54,36 @@
 			"type": "crafting",
 			"recipe":"huajiage:hope_flower",
 			"recipe2":"huajiage:ether_c"
-	    }
-		
+	    },
+		{
+			"type": "image",
+			 "images": [
+        "huajiage:textures/book/image/huaji_blender.png",
+		"huajiage:textures/book/image/huaji_blender_gui.png"
+		],
+			"title": "§l滚筒式滑稽之力灌注仪",
+			"border": true,
+			"text":""
+	    },
+		{
+			"type": "text",
+			"title": "§l滑稽灌注",
+			"text":""
+	    },
+		{
+			"type": "blender",
+				"r1":"minecraft:gold_block",
+				"r2":"huajiage:huaji_star"
+		},
+		{
+			"type": "blender",
+				"r1":"minecraft:redstone_block",
+				"r2":"minecraft:hay_block"
+		},
+		{
+			"type": "blender",
+				"r1":"minecraft:chorus_flower",
+				"r2":""
+		}
     ]
 }

@@ -7,6 +7,7 @@ import java.util.stream.IntStream;
 
 import javax.annotation.Nullable;
 
+import com.lh_lshen.mcbbs.huajiage.block.BlockLoader;
 import com.lh_lshen.mcbbs.huajiage.data.InvWrapperRestricted;
 import com.lh_lshen.mcbbs.huajiage.item.ItemLoader;
 import com.lh_lshen.mcbbs.huajiage.recipelist.HuajiRecipeList;
@@ -30,7 +31,7 @@ import net.minecraft.util.text.ITextComponent;
 import net.minecraft.util.text.TextComponentString;
 import net.minecraft.util.text.TextComponentTranslation;
 import net.minecraft.world.EnumSkyBlock;
-public  class TileEntityHuajiBlader extends TileEntity implements IInventory, ITickable,ISidedInventory {
+public  class TileEntityHuajiBlender extends TileEntity implements IInventory, ITickable,ISidedInventory {
 	// Create and initialize the itemStacks variable that will store store the itemStacks
 	public static final int FUEL_SLOTS_COUNT = 1;
 	public static final int INPUT_SLOTS_COUNT = 1;
@@ -57,7 +58,7 @@ public  class TileEntityHuajiBlader extends TileEntity implements IInventory, IT
 
 	private ItemStack[] itemStacks;
 
-	public TileEntityHuajiBlader() 
+	public TileEntityHuajiBlender() 
 	{
 		itemStacks = new ItemStack[TOTAL_SLOTS_COUNT];
 		clear();
@@ -554,7 +555,7 @@ public  class TileEntityHuajiBlader extends TileEntity implements IInventory, IT
 	// will add a key for this container to the lang file so we can name it in the GUI
 	@Override
 	public String getName() {
-		return "tile.huajiBlader.name";
+		return BlockLoader.huajiBlender.getLocalizedName();
 	}
 
 	@Override

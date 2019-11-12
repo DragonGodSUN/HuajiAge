@@ -5,8 +5,8 @@ import java.util.ArrayList;
 import java.util.List;
 
 import com.lh_lshen.mcbbs.huajiage.HuajiAge;
-import com.lh_lshen.mcbbs.huajiage.inventroy.ContainerHuajiBlader;
-import com.lh_lshen.mcbbs.huajiage.tileentity.TileEntityHuajiBlader;
+import com.lh_lshen.mcbbs.huajiage.inventroy.ContainerHuajiBlender;
+import com.lh_lshen.mcbbs.huajiage.tileentity.TileEntityHuajiBlender;
 
 import net.minecraft.client.Minecraft;
 import net.minecraft.client.gui.inventory.GuiContainer;
@@ -14,14 +14,14 @@ import net.minecraft.client.renderer.GlStateManager;
 import net.minecraft.entity.player.InventoryPlayer;
 import net.minecraft.util.ResourceLocation;
 
-public class GuiHuajiBlader extends GuiContainer {
+public class GuiHuajiBlender extends GuiContainer {
 
 	// This is the resource location for the background image
-	private static final ResourceLocation texture = new ResourceLocation("huajiage", "textures/gui/container/gui_huaji_blader.png");
-	private TileEntityHuajiBlader tileEntity;
+	private static final ResourceLocation texture = new ResourceLocation("huajiage", "textures/gui/container/gui_huaji_blender.png");
+	private TileEntityHuajiBlender tileEntity;
 
-	public GuiHuajiBlader(InventoryPlayer invPlayer, TileEntityHuajiBlader tileInventoryFurnace) {
-		super(new ContainerHuajiBlader(invPlayer, tileInventoryFurnace));
+	public GuiHuajiBlender(InventoryPlayer invPlayer, TileEntityHuajiBlender tileInventoryFurnace) {
+		super(new ContainerHuajiBlender(invPlayer, tileInventoryFurnace));
 
 		// Set the width and height of the gui
 		xSize = 176;

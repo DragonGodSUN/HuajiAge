@@ -20,7 +20,7 @@ public class BlockLoader {
 	 public static Block oreHuaji = new OreHuaji();
 	 public static Block huajiStarBlock = new HuajiStarBlock();
 	 public static Block huajiStarBlockSky = new HuajiStarBlockSky();
-	 public static Block huajiBlader = new HuajiBlader();
+	 public static Block huajiBlender = new HuajiBlender();
 	 public static Block huajiBomb = new HuajiBomb();
 	 public static Block huajiPolyFurnace = new HuajiPolyfurnace();
 
@@ -29,7 +29,7 @@ public class BlockLoader {
 	        register(oreHuaji, "oreHuaji","ore_huaji");
 	        register(huajiStarBlock, "huajiStarBlock","huaji_star_block");
 	        register(huajiStarBlockSky, "huajiStarBlockSky","huaji_star_block_sky");
-	        register(huajiBlader, "huajiBlader","huaji_blader");
+	        register(huajiBlender, "huajiBlender","huaji_blender");
 	        register(huajiBomb, "huajiBomb","huaji_bomb");
 	        register(huajiPolyFurnace, "huajiPolyFurnace","huaji_poly_furnace");
 	    }
@@ -47,7 +47,7 @@ public class BlockLoader {
 	        registerRender(huajiBomb);
 	        registerRender(huajiStarBlock);
 	        registerRender(huajiStarBlockSky);
-	        registerRender(huajiBlader,0);
+	        registerRender(huajiBlender,0);
 	        registerRender(huajiPolyFurnace,0);
 	    }
 

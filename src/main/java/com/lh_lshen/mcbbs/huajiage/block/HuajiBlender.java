@@ -5,10 +5,10 @@ import java.awt.List;
 import java.util.Random;
 
 import com.lh_lshen.mcbbs.huajiage.HuajiAge;
-import com.lh_lshen.mcbbs.huajiage.client.gui.GuiHuajiBlader;
+import com.lh_lshen.mcbbs.huajiage.client.gui.GuiHuajiBlender;
 import com.lh_lshen.mcbbs.huajiage.crativetab.CreativeTabLoader;
-import com.lh_lshen.mcbbs.huajiage.inventroy.GuiHuajiBladerElementLoader;
-import com.lh_lshen.mcbbs.huajiage.tileentity.TileEntityHuajiBlader;
+import com.lh_lshen.mcbbs.huajiage.inventroy.GuiHuajiBlenderElementLoader;
+import com.lh_lshen.mcbbs.huajiage.tileentity.TileEntityHuajiBlender;
 
 import net.minecraft.block.Block;
 import net.minecraft.block.BlockContainer;
@@ -48,9 +48,9 @@ import net.minecraftforge.items.CapabilityItemHandler;
 import net.minecraftforge.items.IItemHandler;
 import net.minecraftforge.items.IItemHandlerModifiable;
 
-public class HuajiBlader extends BlockContainer {
+public class HuajiBlender extends BlockContainer {
 
-	protected HuajiBlader() {
+	protected HuajiBlender() {
 		super(Material.ROCK);
 		 this.setHardness(2.5F);
 	        this.setLightLevel(1.0f);
@@ -63,12 +63,12 @@ public class HuajiBlader extends BlockContainer {
 	@Override
 	public TileEntity createNewTileEntity(World worldIn, int meta) {
 		
-		return new TileEntityHuajiBlader();
+		return new TileEntityHuajiBlender();
 	}
 	@Override
 	 public Item getItemDropped(IBlockState state, Random rand, int fortune)
 	    {
-	        return Item.getItemFromBlock(BlockLoader.huajiBlader);
+	        return Item.getItemFromBlock(BlockLoader.huajiBlender);
 	    }
 	
 	 public static final PropertyDirection FACING = PropertyDirection.create("facing", EnumFacing.Plane.HORIZONTAL);
@@ -85,9 +85,9 @@ public class HuajiBlader extends BlockContainer {
 		public IBlockState getActualState(IBlockState state, IBlockAccess worldIn, BlockPos pos)
 		{
 			TileEntity tileEntity = worldIn.getTileEntity(pos);
-			if (tileEntity instanceof TileEntityHuajiBlader) {
-				TileEntityHuajiBlader tileInventoryFurnace = (TileEntityHuajiBlader)tileEntity;
-				int burningSlots = tileInventoryFurnace.numberOfBurningFuelSlots();
+			if (tileEntity instanceof TileEntityHuajiBlender) {
+				TileEntityHuajiBlender tileInventoryFurnace = (TileEntityHuajiBlender)tileEntity;
+				int burningSlots = 4*(int) tileInventoryFurnace.fractionOfCookTimeComplete();
 				burningSlots = MathHelper.clamp(burningSlots, 0, 4);
 				IBlockState origin = super.getActualState(state, worldIn, pos);
 				return origin.withProperty(BURNING_SIDES_COUNT, burningSlots);
@@ -135,7 +135,7 @@ public class HuajiBlader extends BlockContainer {
 			// open on the server side only  (not sure why you shouldn't open client side too... vanilla doesn't, so we better not either)
 			if (worldIn.isRemote) return true;
 
-			playerIn.openGui(HuajiAge.instance, GuiHuajiBladerElementLoader.getGuiID(), worldIn, pos.getX(), pos.getY(), pos.getZ());
+			playerIn.openGui(HuajiAge.instance, GuiHuajiBlenderElementLoader.getGuiID(), worldIn, pos.getX(), pos.getY(), pos.getZ());
 			return true;
 		}
 

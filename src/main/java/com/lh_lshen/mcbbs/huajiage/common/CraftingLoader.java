@@ -66,7 +66,7 @@ public class CraftingLoader
   	            'F', Items.EGG,
   	            'G', Items.CARROT
   	    });
-    	 GameRegistry.addShapedRecipe(new ResourceLocation("huajiage:huaji_blader"), optionalGroup, new ItemStack(BlockLoader.huajiBlader), new Object[]{
+    	 GameRegistry.addShapedRecipe(new ResourceLocation("huajiage:huaji_blender"), optionalGroup, new ItemStack(BlockLoader.huajiBlender), new Object[]{
  	            "DAD",
  	            "ABA",
  	            "DAD",

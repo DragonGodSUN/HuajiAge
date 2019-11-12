@@ -87,6 +87,7 @@ public class HuajiRecipeList
 
         return ItemStack.EMPTY;
     }
+    
 
     /**
      * Compares two itemstacks to ensure that they are the same. This checks both the item and the metadata of the item.
