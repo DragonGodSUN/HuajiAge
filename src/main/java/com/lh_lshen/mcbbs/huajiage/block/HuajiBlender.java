@@ -9,6 +9,7 @@ import com.lh_lshen.mcbbs.huajiage.client.gui.GuiHuajiBlender;
 import com.lh_lshen.mcbbs.huajiage.crativetab.CreativeTabLoader;
 import com.lh_lshen.mcbbs.huajiage.inventroy.GuiHuajiBlenderElementLoader;
 import com.lh_lshen.mcbbs.huajiage.tileentity.TileEntityHuajiBlender;
+import com.lh_lshen.mcbbs.huajiage.tileentity.TileEntityHuajiPolyfurnace;
 
 import net.minecraft.block.Block;
 import net.minecraft.block.BlockContainer;
@@ -73,24 +74,24 @@ public class HuajiBlender extends BlockContainer {
 	
 	 public static final PropertyDirection FACING = PropertyDirection.create("facing", EnumFacing.Plane.HORIZONTAL);
 
-	 public static final PropertyInteger BURNING_SIDES_COUNT = PropertyInteger.create("burning_sides_count", 0, 4);
+	 public static final PropertyBool BURNING = PropertyBool.create("burning");
 	   @Override
 	    protected BlockStateContainer createBlockState()
 	    {
-	        return new BlockStateContainer(this,FACING,BURNING_SIDES_COUNT);
+	        return new BlockStateContainer(this,FACING,BURNING);
 	    }
 	   
 	  
-	    @Override
+	   @Override
 		public IBlockState getActualState(IBlockState state, IBlockAccess worldIn, BlockPos pos)
 		{
 			TileEntity tileEntity = worldIn.getTileEntity(pos);
 			if (tileEntity instanceof TileEntityHuajiBlender) {
 				TileEntityHuajiBlender tileInventoryFurnace = (TileEntityHuajiBlender)tileEntity;
-				int burningSlots = 4*(int) tileInventoryFurnace.fractionOfCookTimeComplete();
-				burningSlots = MathHelper.clamp(burningSlots, 0, 4);
+				int burning = tileInventoryFurnace.getField(0);
+				boolean isBuring=burning>5;
 				IBlockState origin = super.getActualState(state, worldIn, pos);
-				return origin.withProperty(BURNING_SIDES_COUNT, burningSlots);
+				return origin.withProperty(BURNING,isBuring);
 			}
 			return state;
 		}
@@ -104,14 +105,16 @@ public class HuajiBlender extends BlockContainer {
 	    public IBlockState getStateFromMeta(int meta)
 	    {
 	        EnumFacing facing = EnumFacing.getHorizontal(meta & 3);
-	        Integer burning = Integer.valueOf(meta&4);
-	        return this.getDefaultState().withProperty(FACING, facing).withProperty(BURNING_SIDES_COUNT, burning);
+//	        Integer burning = Integer.valueOf(meta&4);
+	        Boolean burning = Boolean.valueOf((meta & 4) != 0);
+	        return this.getDefaultState().withProperty(FACING, facing).withProperty(BURNING, burning);
 	    }
 	    @Override
 	    public int getMetaFromState(IBlockState state)
 	    {
 	        int facing = state.getValue(FACING).getHorizontalIndex();
-	        int burning = state.getValue(BURNING_SIDES_COUNT).intValue();
+	        
+	        int burning = state.getValue(BURNING).booleanValue() ? 1 : 0;
 	        return facing | burning ;
 	    }
 	    @Override

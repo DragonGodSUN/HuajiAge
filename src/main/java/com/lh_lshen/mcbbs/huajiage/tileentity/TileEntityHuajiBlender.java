@@ -193,7 +193,7 @@ public  class TileEntityHuajiBlender extends TileEntity implements IInventory, I
 			// If cookTime has reached maxCookTime smelt the item and reset cookTime
 			if (cookTime >= COOK_TIME_FOR_COMPLETION) {
 				smeltItem();
-				cookTime = 0;
+				cookTime = 10;
 			}
 		}	else {
 			cookTime = 0;
@@ -203,16 +203,16 @@ public  class TileEntityHuajiBlender extends TileEntity implements IInventory, I
 		//   state will not be visible.  Likewise, we need to force a lighting recalculation.
 		// The block update (for renderer) is only required on client side, but the lighting is required on both, since
 		//    the client needs it for rendering and the server needs it for crop growth etc
-		int numberBurning = numberOfBurningFuelSlots();
-		if (cachedNumberOfBurningSlots != numberBurning) {
-			cachedNumberOfBurningSlots = numberBurning;
-			if (world.isRemote) {
+//		int numberBurning = numberOfBurningFuelSlots();
+//		if (cachedNumberOfBurningSlots != numberBurning) {
+//			cachedNumberOfBurningSlots = numberBurning;	}
+		if (world.isRemote) {
         IBlockState iblockstate = this.world.getBlockState(pos);
         final int FLAGS = 3;  // I'm not sure what these flags do, exactly.
         world.notifyBlockUpdate(pos, iblockstate, iblockstate, FLAGS);
-			}
 			world.checkLightFor(EnumSkyBlock.BLOCK, pos);
-		}
+
+			}
 	}
 
 	/**

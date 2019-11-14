@@ -2,7 +2,7 @@
 	"sortnum": 3,
     "name": "进阶材料",
     "icon": "huajiage:neutron_star_fragment",
-    "category": "items_category",
+    "category": "items_material",
     "pages": [
         {
             "type": "text",

@@ -1,54 +1,54 @@
 {
-	"sortnum": 4,
+	"sortnum": 1,
     "name": "武器",
     "icon": "huajiage:huaji_star_sword",
     "category": "items_category",
     "pages": [
         {
             "type": "text",
-            "text": "作者很懒，什么都还没写"
+            "text": "这里是吉尔家美食van的藏宝阁"
         },
 		{
 			"type": "spotlight",
 			"item": "huajiage:huaji_sword",
 			"title":"滑稽剑",
-			"text":"作者很懒，什么都还没写"
+			"text":"看起来很Cool的剑，唔~功能嘛~利一点算不算？"
 	    },
 		{
 			"type": "spotlight",
 			"item": "huajiage:huaji_star_sword",
 			"title":"星辰之剑",
-			"text":"作者很懒，什么都还没写"
+			"text":"集聚了万千星辰之力的神剑，据说$(1)Lord.Lu$()曾经将其化作可轻易破碎星河的银河规模爆能枪阵，不过，这也只是传说罢了。"
 	    },
 		{
 			"type": "spotlight",
 			"item": "huajiage:huaji_latiao_sword",
 			"title":"辣条之剑",
-			"text":"作者很懒，什么都还没写"
+			"text":"$(e)<请安装$(4)辣条工艺$(e)模组>$()来自辣条位面的馈赠，采用与星辰之剑相似的工艺打造而成，好吃又好玩。$(li)约束模式下提升攻速，并每过几秒消耗饱食度修复耐久$(li)解放模式下右击一次回复1点饱食度，并释放一次$(4)烈焰腾空$()。"
 	    },
 		{
 			"type": "spotlight",
 			"item": "huajiage:exglutenbur",
 			"title":"EX·面筋棒",
-			"text":"作者很懒，什么都还没写"
+			"text":"隐居于“香辣面筋岛”的高人“面筋哥”守卫的四川火锅湖下的神兵，具有强大的两种形态，不过，据说只有真正的猛士才敢解放其第三形态。"
 	    },
 		{
 			"type": "spotlight",
 			"item": "huajiage:hero_bow",
 			"title":"大英雄之弓",
-			"text":"作者很懒，什么都还没写"
+			"text":"遇事不决$(4)$(l)Stella！！！$(li)$(e)（可通过配制文件关闭大爆炸产生的破坏）"
 	    },
 		{
 			"type": "spotlight",
 			"item": "huajiage:multi_knife",
-			"title":"Dio sama天天用来练习的小刀",
-			"text":"作者很懒，什么都还没写"
+			"title":"压缩刀具",
+			"text":"Dio Sama天天用来练习的小刀"
 	    },
 		{
 			"type": "spotlight",
 			"item": "huajiage:road_roller",
-			"title":"泷泽萝拉哒！！！",
-			"text":"作者很懒，什么都还没写"
+			"title":"压路机",
+			"text":"泷泽萝拉哒！！！$(li)时停中每10m内隔空击打一次增加2点撞击伤害，连续击打5次将引发大型爆炸。$(e)（可通过配制文件关闭其造成的破坏）"
 	    },
 		{
 			"type": "crafting",

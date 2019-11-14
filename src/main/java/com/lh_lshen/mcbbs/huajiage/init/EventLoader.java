@@ -118,11 +118,13 @@ public class EventLoader {
 	        	int j;
 	        	int i=event.getEntityItem().getItem().getMaxDamage()-(event.getEntityItem().getItem().getItemDamage())+2;
 	        	for(j=0;j<i;j++) {
+	        		World world=event.getEntityItem().world;
 	            BlockPos pos = event.getEntityItem().getPosition();
 	        	EntityPlayer player=event.getEntityItem().getEntityWorld().getPlayerEntityByName(NBTHelper.getTagCompoundSafe(event.getEntityItem().getItem()).getString("owner"));
-	        	World world=event.getEntityItem().world;
+	        	EntityLivingBase target=(EntityLivingBase)world.findNearestEntityWithinAABB(EntityLivingBase.class,event.getEntityItem().getEntityBoundingBox().grow(100),event.getEntityItem());
 	        	 if(player!=null){
-	            Entity s = new  EntitySecondFoil(world,player,world.findNearestEntityWithinAABB(EntityLivingBase.class,event.getEntityItem().getEntityBoundingBox().grow(100),event.getEntityItem()),player.getHorizontalFacing().getAxis()); 
+	            Entity s = new  EntitySecondFoil(world,player,target,player.getHorizontalFacing().getAxis()); 
+	            s.setPosition(pos.getX(), pos.getY(), pos.getZ());
 	            world.spawnEntity(s);}
 	            }
 	        	

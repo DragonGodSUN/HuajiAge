@@ -1,0 +1,24 @@
+{
+	"sortnum": 1,
+    "name": "机器",
+    "icon": "huajiage:huaji_blender",
+    "category": "blocks_category",
+    "pages": [
+        {
+            "type": "text",
+            "text": ""
+        },
+		{
+			"type": "spotlight",
+			"item": "huajiage:huaji_blender",
+			"title":"§l滚筒式滑稽之力灌注仪",
+			"text":""
+	    },
+		{
+			"type": "spotlight",
+			"item": "huajiage:huaji_poly_furnace",
+			"title":"§e§l滑稽§d§l终极熔炼炉",
+			"text":""
+	    }
+    ]
+}

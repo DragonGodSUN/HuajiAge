@@ -1,0 +1,36 @@
+{
+	"sortnum": 0,
+    "name": "方块",
+    "icon": "huajiage:ore_huaji",
+    "category": "blocks_category",
+    "pages": [
+        {
+            "type": "text",
+            "text": ""
+        },
+		{
+			"type": "spotlight",
+			"item": "huajiage:ore_huaji",
+			"title":"滑稽矿",
+			"text":""
+	    },
+		{
+			"type": "spotlight",
+			"item": "huajiage:huaji_star_block",
+			"title":"滑稽之星压缩块",
+			"text":""
+	    },
+		{
+			"type": "spotlight",
+			"item": "huajiage:huaji_star_block_sky",
+			"title":"天域之星压缩块",
+			"text":""
+	    },
+		{
+			"type": "spotlight",
+			"item": "huajiage:huaji_bomb",
+			"title":"滑稽炸弹",
+			"text":""
+	    }
+    ]
+}

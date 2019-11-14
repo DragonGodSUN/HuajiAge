@@ -2,7 +2,7 @@
 	"sortnum": 2,
     "name": "闪耀的星辰",
     "icon": "huajiage:huaji_star",
-    "category": "items_category",
+    "category": "items_material",
     "pages": [
         {
             "type": "text",

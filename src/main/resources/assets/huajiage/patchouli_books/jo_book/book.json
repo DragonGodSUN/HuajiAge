@@ -3,5 +3,6 @@
 	"landing_text": "patchouil.huajiage.book.landing",
 	"show_progress": false, 
       "model":"huajiage:book_huaji",
+	  "creative_tab":"huaji",
        "version": 1
 }

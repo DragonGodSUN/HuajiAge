@@ -1,12 +1,9 @@
 {
    "forge_marker": 1,
     "variants": {
-        "burning_sides_count": {
-            "0": { "model": "huajiage:huaji_blender" },
-            "1": { "model": "huajiage:huaji_blender_working" },
-			"2": { "model": "huajiage:huaji_blender_working" },
-			"3": { "model": "huajiage:huaji_blender_working" },
-			"4": { "model": "huajiage:huaji_blender_working" }
+        "burning": {
+            "false": { "model": "huajiage:huaji_blender" },
+            "true": { "model": "huajiage:huaji_blender_working" }
         },
         "facing": {
             "north": { "y": 0 },
