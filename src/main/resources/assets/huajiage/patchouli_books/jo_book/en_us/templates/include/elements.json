@@ -5,6 +5,11 @@
             "text": "#icount",
             "x": 70
         }, 
+		{
+            "type": "header",
+            "text": "#ipool",
+            "x": 110,"y":12
+        },
         {
             "type": "text",
             "text": "#iname",

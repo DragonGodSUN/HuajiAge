@@ -1,0 +1,17 @@
+{
+  "type": "minecraft:crafting_shapeless",
+  "result": {
+    "type": "minecraft:item_nbt",
+    "item": "patchouli:guide_book",
+    "nbt": {
+      "patchouli:book": "huajiage:jo_book"
+    }
+  },
+  "ingredients": [
+   {
+      "item": "huajiage:huaji"
+    }, {
+      "item": "minecraft:book"
+    }
+  ]
+}

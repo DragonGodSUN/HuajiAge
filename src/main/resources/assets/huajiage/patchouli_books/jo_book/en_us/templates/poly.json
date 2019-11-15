@@ -1,0 +1,19 @@
+{
+    "include": [
+        {
+            "template": "include/recipe_poly",
+            "as": "recipe1",
+            "using": {
+                "recipe": "#r1" 
+            }
+        },
+        {
+            "template": "include/recipe_poly",
+            "as": "recipe2",
+            "using": {
+                "recipe": "#r2"
+            },
+            "y": 60
+        }
+    ]
+}
