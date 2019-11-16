@@ -1,30 +1,34 @@
 {
 	"sortnum": 5,
-    "name": "防具",
+    "name": "Armor",
     "icon": "huajiage:blance_helmet",
     "category": "items_category",
     "pages": [
         {
             "type": "text",
-            "text": "这里有很多好康的~"
+            "text": "There's a lot to see here~"
         },
 		{
 			"type": "spotlight",
 			"item": "huajiage:huaji_helmet",
-			"title":"滑稽套",
-			"text":"采用灌注了$(e)$(l)666滑稽之力$()的金块制成，$(l)8848$()型号滑稽套装，成功人士的选择。"
+			"title":"HUAJI Armor",
+			"text":"Made of gold block infused with $(e)$(l)666funny power$()，model $(l)8848$() HUAJI set，the choice of successful people."
 	    },
 		{
 			"type": "spotlight",
 			"item": "huajiage:blance_helmet",
-			"title":"五五开头盔",
-			"text":"上古时期，阿伟族人在华农山下拾得的一件法宝，经上千年而不朽，至今仍光亮如新，据说，这是卢来佛祖赐福所致。现代，经贴吧考古学家确认，这是上纪元Lord.Lu留下的圣遗物，其中沉睡的强大力量甚至连宇宙坍缩都没能磨灭。如今，这股力量已经相当衰弱了，不及当年Lord.Lu力量的亿万分之一，却仍是现代人望而却步的终极力量。"
+			"title":"Super Plugin Helmet",
+			"text":"In ancient times, the awei people picked up a magic weapon at the foot of huannong mountain, which has been immortal for thousands of years and is still as bright as new. It is said that this is the blessing of Buddha lu lai.In modern times, archeologists at tieba have identified it as a relic left by Lord.Lu from an"
 	    },
+		{
+            "type": "text",
+            "text": "earlier era, in which a powerful sleeping force could not even erase the collapse of the universe.Today, this power is quite weak, less than a millionth of the power of Lord."
+        },
 		{
 			"type": "spotlight",
 			"item": "huajiage:orga_hair",
-			"title":"奥尔加套",
-			"text":"最没用的套装，除了吟咏希望之花外一无是处。$(li)濒死时发动奥尔加因果打击$(li)不会在希望之花吟咏结束前死亡$(li)可用虫箭觉醒镇魂曲"
+			"title":"Orga Armor",
+			"text":"The most useless suit is nothing but a chant of flowers of hope.$(li)Launch an Olga cause-and-effect attack while dying$(li)Will not die before the flowers of hope are over$(li)Can use THE ARROW to awaken Requiem"
 	    },
 		{
 			"type": "crafting",

@@ -1,0 +1,34 @@
+{
+    "processor": "com.lh_lshen.mcbbs.huajiage.client.patchouli.RecipePolyProcessor",
+    "include": [
+        {
+            "template": "include/elements",
+            "as": "nn",
+            "using": {
+                "iname": "#iname",
+				"ipool": "#ipool",
+				"item_in": "#item_in",
+				"item_out": "#item_out"
+            },
+            "x": 0,
+            "y": 20
+        }
+    ],
+	"components": [
+	{
+		"type": "image",
+		"image": "huajiage:textures/jei/gui_huaji_poly_jei.png",
+		"width":30,"height":17,
+		"u":0,"v":156,
+		"x":45,"y":20
+        },
+	{
+		"type": "image",
+		"image": "huajiage:textures/jei/gui_huaji_poly_jei.png",
+		"width":28,"height":28,
+		"u":199,"v":4,
+		"x": 81,"y":12
+        }
+	]
+
+}

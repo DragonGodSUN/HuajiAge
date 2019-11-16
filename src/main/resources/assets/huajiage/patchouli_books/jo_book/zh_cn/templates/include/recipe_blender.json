@@ -1,0 +1,25 @@
+{
+    "processor": "com.lh_lshen.mcbbs.huajiage.client.patchouli.RecipeBlenderProcessor",
+    "include": [
+        {
+            "template": "include/elements",
+            "as": "nn",
+            "using": {
+                "iname": "#iname",
+				"item_in": "#item_in",
+				"item_out": "#item_out"
+            },
+            "x": 0,
+            "y": 20
+        }
+    ],
+	"components": [
+	{
+		"type": "image",
+		"image": "huajiage:textures/gui/container/gui_huaji_blender.png",
+		"width":30,"height":17,
+		"u":0,"v":156,
+		"x":45,"y":20
+        }
+	]
+}

@@ -1,24 +1,29 @@
 {
 	"sortnum": 1,
-    "name": "机器",
+    "name": "Machines",
     "icon": "huajiage:huaji_blender",
     "category": "blocks_category",
     "pages": [
         {
             "type": "text",
-            "text": "“春蚕到了丝方尽，蜡炬成灰泪始干，我愿把双眼化作灯塔，照亮你们远大的前程！没毛病，干就完了！奥利给！！！”---吉蒙·詹·琼恩"
+            "text": "Silkworm to death silk, wax torch ashes tears dry, I would like to turn the eyes into a lighthouse, illuminate your great future!No problem, done!AOLIGEI ! ! !---Giant Jhnson Jone"
         },
 		{
 			"type": "spotlight",
 			"item": "huajiage:huaji_blender",
-			"title":"§l滚筒式滑稽之力灌注仪",
-			"text":"灌注滑稽之力的重要仪器。$(br2)$(li)$(l)$(l:items/material)滑稽灌注"
+			"title":"§lHUAJI Blender",
+			"text":"An important instrument that infuses HUAJI power$(br2)$(li)$(l)$(l:items/material)HUAJI Perfusion"
 	    },
 		{
 			"type": "spotlight",
 			"item": "huajiage:huaji_poly_furnace",
-			"title":"§e§l滑稽§d§l终极熔炼炉。",
-			"text":"聚合无尽之星的终极秘器$(br2)$(li)$(l)$(l:items/ultra_mat)究极聚合"
+			"title":"§e§lHUAJI §d§lPolyfurnace。",
+			"text":"Assemble the ultimate secret instrument of Infinite Universe Star$(br2)$(li)$(l)$(l:items/ultra_mat)Infinite Polymerization"
+	    },
+		{
+			"type": "crafting",
+			"recipe":"huajiage:huaji_blender",
+			"recipe2":"huajiage:huaji_poly_furnace"
 	    }
     ]
 }

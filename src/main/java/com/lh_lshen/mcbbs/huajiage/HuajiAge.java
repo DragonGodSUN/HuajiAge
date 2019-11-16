@@ -23,7 +23,7 @@ public class HuajiAge
             serverSide = "com.lh_lshen.mcbbs.huajiage.common.CommonProxy")
     public static CommonProxy proxy;
     public static final String MODID = "huajiage";
-    public static final String NAME = "Huaji Age";
+    public static final String NAME = "HUAJI Age";
     public static final String VERSION = "@VERSION@";
  
     @Instance(HuajiAge.MODID)

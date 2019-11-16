@@ -1,17 +1,17 @@
 {
 	"sortnum": 4,
-    "name": "Infinite Polymerization",
+    "name": "究极聚合",
     "icon": "huajiage:huaji_star_universe",
     "category": "items_material",
     "pages": [
 		{
             "type": "text",
-            "text": "Take that ! Dio ! --- HUAJI splash with radius of 20 light-years ! ! !"
+            "text": "接招吧！屑神父！——半径20光年的滑稽水花！！！"
         },
         {
            "type": "spotlight",
 			"item": "huajiage:huaji_poly_furnace",
-            "text": "$(li)When the aggregate value reaches full, you can get Infinite Universe Star$(li)HUAJI can be used as fuel, or directly connected to RF and other energy modules wire$(li)The aggregate value of a Multiple superposition state HUAJI star is related to its stack number"
+            "text": "$(li)聚合达到全满时，即可得到无尽之星$(li)可用滑稽作为燃料，或是直接接上RF等能源模组的电线$(li)叠加之星聚合值与其叠加数有关"
         },
 		{
 			"type": "poly",

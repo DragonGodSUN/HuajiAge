@@ -1,0 +1,42 @@
+{
+	"sortnum": 2,
+    "name": "闪耀的星辰",
+    "icon": "huajiage:huaji_star",
+    "category": "items_material",
+    "pages": [
+        {
+            "type": "text",
+            "text": "“无论何时，击碎星辰的都是普通的人类啊。”$(br)“星辰？”$(br)“没事，只是件往事罢了。”$(br)（远远的，传来一声Stella！！！）"
+        },
+		{
+			"type": "spotlight",
+			"item": "huajiage:huaji_star",
+			"title":"滑稽之星",
+			"text":"凝聚着滑稽之力的星辰，合成高级道具的基本材料。"
+	    },
+		{
+			"type": "spotlight",
+			"item": "huajiage:huaji_star_sky",
+			"title":"空域之星",
+			"text":"天空中的闪耀星辰，支配着穹顶之下的无垠滑稽。$(li)可在末地城的宝箱中找到"
+	    },
+		{
+			"type": "spotlight",
+			"item": "huajiage:huaji_star_universe",
+			"title":"无尽之星",
+			"text":"无穷无尽的星辰之力凝聚于此，其中涌现出的磅礴力量，已经相当接近原初的稽点了。"
+	    },
+		{
+			"type": "spotlight",
+			"item": "huajiage:huaji_star_poly",
+			"title":"多重叠加态滑稽之星",
+			"text":"以多重量子态叠加的滑稽之星，是熔炼炉聚合无尽之星的过渡态中间产物。"
+	    },
+		{
+			"type": "crafting",
+			"recipe":"huajiage:huaji_star_recipe",
+			"recipe2":"huajiage:huaji_star_sky_recipe"
+	    }
+		
+    ]
+}

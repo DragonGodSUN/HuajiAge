@@ -1,48 +1,56 @@
 {
 	"sortnum": 0,
-    "name": "道具",
+    "name": "Item",
     "icon": "huajiage:egg_rice_u",
     "category": "items_category",
     "pages": [
         {
             "type": "text",
-            "text": "这里收录的是继承了鬼畜先辈们星辰般闪耀的意志的传奇物品。（史蒂夫！下界之星的储量还够吗！！）"
+            "text": "Here is a collection of legendary items that inherited the shinny will of the comical predecessors.(Steve!Nether star reserves enough?!!)"
         },
 		{
 			"type": "spotlight",
 			"item": "huajiage:second_foil",
-			"title":"二向箔",
-			"text":"“清新宇宙，你我更亲近。”$(br)鸽者文明推出的轻量二向箔新品，成本低，清理效率高，被多元宇宙论坛评为稽元2333年垃圾清理神器。由于地球人还不知道因此被删减。$(li)单击生物以启动二维化$(li)右击以释放二维化导弹，自动寻敌$(li)在玩家物品栏标志好后丢出，倒计时10秒后释放二维化导弹"
+			"title":"Second Foil",
+			"text":"Cleaner universe,closer you and me.$(br)Pigeon civilization launched a new lightweight two-way foil, low cost, high cleaning efficiency, by the multiverse BBS as ji yuan 2333 garbage cleaning artifact.It was deleted because earthlings did not know it."
 	    },
+		{
+            "type": "text",
+            "text": "$(li)Click on the creature to initiate two-dimensional$(li)Right - click to release 2d missile that automatically finds enemy$(li)After the player's item bar is marked, throw it out. Release the 2d missile after the countdown of 10 seconds"
+        },
 		{
 			"type": "spotlight",
 			"item": "huajiage:egg_rice_u",
-			"title":"究极·真香蛋炒饭",
-			"text":"利用蛋炒饭的香气引发出$(d)$(l)真·$(6)$(l)香之王$()的一部分究极力量，可谓最经济的神器了。"
+			"title":"Fried Ultimate Rice With Eggs",
+			"text":"Using the aroma of egg-fried rice to trigger a part of the king of real fragrance, it can be said that the most economic magic."
 	    },
 		{
 			"type": "spotlight",
 			"item": "huajiage:arrow_requiem",
-			"title":"虫箭",
-			"text":"一根有着精致雕文的箭矢，似乎没什么用……奥尔加对其评价为“全部木大”，似乎有着逆转“$(b)希望之花$()”的效果。$(li)穿着奥尔加套装使用，可觉醒$(1)停不下来的奥尔加镇魂曲"
+			"title":"THE ARROW",
+			"text":"An arrow with an elaborate inscription, it seemed, was of little use...Olga called it 'useless' and seemed to have the effect of reversing the '$(b)flower of hope$()'.$(li)Wear Olga suit to use, can wake up Olga Requiem"
 	    },
 		{
 			"type": "spotlight",
 			"item": "huajiage:infinite_charm",
-			"title":"无尽耐久护甲护身符",
-			"text":"木大的东西，除了给护甲提供了不毁效果外一点软用也木有。不过$(4)铁华团$()对此似乎有特别的关注$(li)当该物品在玩家背包时，给予其装备$(l)$()不毁的效果$(li)当装备为奥尔加套装时有特殊效果"
+			"title":"Infinite Armor Charm",
+			"text":"Useless things, except to provide armor does not destroy the effect at all.However, $(4)Iron Flower Brigade$() seems to have a particular concern.$(li)When this item is in a player's backpack, it is now protected from damage$(li)Special effects when equipped with Olga set"
 	    },
 		{
 			"type": "spotlight",
 			"item": "huajiage:dio_bread",
 			"title":"Dio Bread",
-			"text":"GIOGIO甜品屋推出的纪念款面包，以纪念其集团董事长父亲逝世30周年，现由荒木庄联合出品。$(li)吃下去后就变得DIO里DIO气的$(li)咋瓦鲁多！！！$(li)木大木大木大！(击中目标在时停结束后受到9秒的连击，时停中每击打一次连击伤害+2)$(li)30%发动的泷泽萝拉哒——！！（可在10m射程内隔空连击）"
+			"text":"GIOGIO's dessert shop has launched a commemorative bread to commemorate the 30th anniversary of the death of its group chairman's father, which is now produced by Araki Village."
 	    },
+		{
+            "type": "text",
+            "text": "$(li)When you eat it, you become DIO$(li)The World!!!$(li)Useless!Useless!Useless!(Hit target takes a 9 second combo at the end of stop-time, and deals +2 damage per hit in stop-time)$(li)30% probability of launching Road Roller(air separation combo within 10m range)"
+        },
 		{
 			"type": "spotlight",
 			"item": "huajiage:lord_core",
-			"title":"挂者核心",
-			"text":"$(1)$(l)Lord.Lu$()留下的解除其挂者力量封印的钥匙，鬼知道这是怎么从宇宙坍缩中存留下来的。"
+			"title":"Lord Core",
+			"text":"The key left by Lord.Lu to unlock the seal of his hangers' power. Who knows how it survived the collapse of the universe."
 	    },
 		{
 			"type": "crafting",

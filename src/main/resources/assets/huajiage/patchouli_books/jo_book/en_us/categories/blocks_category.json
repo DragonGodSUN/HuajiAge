@@ -1,6 +1,6 @@
 {
     "sortnum": 2,
-	"name": "方块篇",
-	"description": "$(li)报告长官，前方发现一只凋零骷髅！$(li)什么！是下界之星！！！（精神错乱）",
+	"name": "Blocks",
+	"description": "$(li) Sir, a wither skeleton is found ahead!$(li)(Crazily)Wither?!!The Nether Star!!!",
 	"icon": "huajiage:huaji_blender"
 }

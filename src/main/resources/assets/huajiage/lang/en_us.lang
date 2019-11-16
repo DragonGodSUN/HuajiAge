@@ -1,25 +1,25 @@
-item.huaji.name=Huaji
-itemGroup.huaji=Huaji Age II:Infinite Galaxy
-tile.oreHuaji.name=Huaji Ore
-tile.huajiStarBlock.name=Huaji Star Block
-tile.huajiStarBlockSky.name=Huaji Star Block-Sky
-tile.huajiBlender.name=Huaji Blender
-tile.huajiPolyFurnace.name=Huaji Polyfurnace
+item.huaji.name=HUAJI
+itemGroup.huaji=HUAJI Age II:Infinite Galaxy
+tile.oreHuaji.name=HUAJI Ore
+tile.huajiStarBlock.name=HUAJI Star Block
+tile.huajiStarBlockSky.name=Airspace Star Block
+tile.huajiBlender.name=HUAJI Blender
+tile.huajiPolyFurnace.name=HUAJI Polyfurnace
 
 
-item.huajiFragment.name=Huaji Fragment
+item.huajiFragment.name=HUAJI Fragment
 item.expendedView.name=Expended View
-item.huajiStar.name=Huaji Star
-item.huajiIngot.name=Huaji Ingot
-item.huajiSword.name=Huaji Sword
+item.huajiStar.name=HUAJI Star
+item.huajiIngot.name=HUAJI Ingot
+item.huajiSword.name=HUAJI Sword
 item.starSwordH.name=Star Sword
 item.huajiLatiaoSword.name=Spicy Sword-§eH
 item.neutronStarFragment.name=Neutron Star Fragment
-item.huajiStarSky.name=Huaji Star-Sky
-item.huajiStarUniverse.name=Huaji Star Universe
+item.huajiStarSky.name=Airspace Star 
+item.huajiStarUniverse.name=Infinite Universe Star
 item.eggRice.name=Fried Rice With Eggs
 item.eggRiceU.name=Fried Ultimate Rice With Eggs
-item.huajiStarPoly.name=§o§lHuaji Star in Superposition States
+item.huajiStarPoly.name=§o§lMultiple superposition state HUAJI star
 
 
 death.attack.huajiage.hope_flower=%s was dead of world line converge
@@ -34,17 +34,18 @@ death.attack.huajiage.dio_hit=%s was kill by THE WORLD
 item.orgaRequiem.name=§9Orga Requiem
 huajiage.burstout=§eBurst
 huajiage.stellawarning=§eWarning:§4The Burst Mode might cause an irretrivable situation,do not easily fire this bow with pulling fully!!!
-item.huajiHelmet.name=Huaji Helmet
-item.huajiChestPlate.name=Huaji Chestplate
-item.huajiLeggings.name=Huaji Leggings
-item.huajiBoots.name=Huaji Boots
-item.blanceHelmet.name=Super Plug Helmet
+item.huajiHelmet.name=HUAJI Helmet
+item.huajiChestPlate.name=HUAJI Chestplate
+item.huajiLeggings.name=HUAJI Leggings
+item.huajiBoots.name=HUAJI Boots
+item.arrowRequiem.name=§eTHE ARROW
+item.blanceHelmet.name=Super Plugin Helmet
 item.ether.name=Fake Ether 
 item.etherCircumfluxBoard.name=Ether Circumflux Board
 item.redstoneDruse.name=Redstone Druse
-item.heroBow.name=§4The Big Hero's Bow
+item.heroBow.name=§4Bow of the great hero
 item.exglutenbur.name=§4Exglutenbur
-item.flashFlour.name=Flash Flour
+item.flashFlour.name=Flash Dough
 item.rawGluten.name=Raw Gluten
 item.bakingGluten.name=Baking Gluten
 item.orgaHair.name=Orga's hair
@@ -62,14 +63,14 @@ item.huajiage.orgaFlag.name=STELL Logo
 item.loot.name=§lLOOT STICK
 item.lordCore.name=§3§lLord Core
 
-potion.huaji=Huaji
+potion.huaji=HUAJI
 potion.huaji.five=Five-fold Power
 potion.huajiage.flower=Hope Flower
 potion.huajiage.requiem=§eRequiem
 potion.huajiage.requiem.target=§Requiem Target
 potion.huajiage.orga.target=Orga Target
 
-key.category.huajiage=Huaji Age
+key.category.huajiage=HUAJI Age
 key.huaji.swich_1=Swich
 item.blance_helmet:changeMode=§ePush %s to change mode
 item.blance_helmet:unicode_tooltips.1.desc=The method of unsealing(Press Shift to see more)
@@ -104,7 +105,7 @@ messege.huaji.blancedHelmet.open=%s is plug-in
 messege.huaji.blancedHelmet.failed=Maybe ether is the key?
 message.huajiage.the_world=§eThe World!!! Time Stop !
 message.huajiage.poly_huaji=Stacks:
-message.huajiage.patchouli_missing=[{"text":"[ Huaji Age II]:","color":"yellow","bold":true},{"text":"In order to get the best game experience please INSTILL ","color":"aqua","bold":false},{"text":"Patchouli Mod","color":"green","underlined":true,"bold":true,"clickEvent":{"action":"open_url","value":"https://www.curseforge.com/minecraft/mc-mods/patchouli"},"hoverEvent":{"action":"show_text","value":"https://www.curseforge.com/minecraft/mc-mods/patchouli"}},{"text":"to elicit the HUAJI Tutorial","color":"aqua","bold":false}]
+message.huajiage.patchouli_missing=[{"text":"[ HUAJI Age II]:","color":"yellow","bold":true},{"text":"In order to get the best game experience please INSTILL ","color":"aqua","bold":false},{"text":"Patchouli Mod","color":"green","underlined":true,"bold":true,"clickEvent":{"action":"open_url","value":"https://www.curseforge.com/minecraft/mc-mods/patchouli"},"hoverEvent":{"action":"show_text","value":"https://www.curseforge.com/minecraft/mc-mods/patchouli"}},{"text":"to elicit the HUAJI Tutorial","color":"aqua","bold":false}]
 
 gui.huajiage.poly.cook=Process
 gui.huajiage.poly.fuel=Fuel Point
@@ -118,8 +119,12 @@ config.huaji_age.huaji_config.the_world=Can THE WORLD stop the time of players?
 config.huaji_age.huaji_config.height_knife=The flight height of the multi knife
 config.huaji_age.huaji_config.orga_suit=Dose The Infinite Charm Change mode when dress Orga suit?
 
+patchouil.huajiage.book.name=§e§lHUAJI§6Book
+patchouil.huajiage.book.landing=HUAJI,means comical or funny things,is making up awkwardly or funnily for hilarious festivals. In this universe, there is a peculiar thing named HUAJI, which is ubiquitous and constitutes thousands of things. It is said that holding the funny starlight power can obtain the supreme power of the legendary HUAJI ancestor.
+
+
 item.huaJiCry.name=I'm crying
-tile.huajiBomb.name=huaji bomb
+tile.huajiBomb.name=HUAJI bomb
 tile.huajiAntimatterBomb.name=huaji antimatter bomb
 item.huajiAxe.name=huaji axe
 tile.look.name=look

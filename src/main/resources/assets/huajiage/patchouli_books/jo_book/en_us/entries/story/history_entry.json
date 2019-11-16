@@ -1,20 +1,28 @@
 {
 	"sortnum": 0,
-    "name": "《鬼畜斗士·闪耀的星辰》",
+    "name": "HUAJI FIGHTER-Shining STARS",
     "icon": "minecraft:writable_book",
     "category": "overview_category",
     "pages": [
         {
             "type": "text",
-            "text": "114514亿亿亿年前，$(0)$(l)Dark$()r势力联合日暮里星系霸主$(7)$(l)THE KING $()向宇宙各大星系发动了一次巨大的征服，史称$(0)黑暗浪潮。$()在黑暗势力压倒性的恐怖下，三位豪杰站了出来，他们分别是“$(3)$(l)希望之花·$(4)$(l)奥尔加$()”、“$(d)$(l)真·$(6)$(l)香之王$()”以及“$(1)$(l)Lord·Lu$()”，他们组建了鬼畜联盟，英勇地对抗$(0)$(l)Dark$(8)&&$(7)$(l)KING$()联盟的邪恶统治。"
+            "text": "114514 billion billion billion years ago, $(0)$(l)Dark$() forces combined with the sunset galaxy hegemony $(7)$(l)THE KING $() launched a huge conquest of the universe to the major galaxies, known as the $(0) Dark wave.Under the overwhelming terror of the Dark forces, the three heroes stand out, they are respectively 'flower of hope Olga', 'KING of true fragrance' and 'Lord Lu', they form the HUAJI Association,"
         },
 		{
 			"type": "text",
-			"text": "然而，在鬼畜联盟经过艰难的作战封印了$(0)$(l)Dark 骑士王$()与$(7)$(l)THE KING$()后，在幕后策划一切的阴谋家却借机篡取了两位帝王的无上神力。此人正是$(0)$(l)Dark蛇$()神父，他得到了无尽加速时间的力量，并以此力量轻松地消灭了鬼畜联盟的绝大部分力量，然而，他万万没想到的是，在他以为取得完全胜利的时候，原本已经吟咏起“希望之花”的奥尔加，奇迹般地站了起来，引爆了其最终的$(b)$(l)奥义· $(4)$(l)不要停下来啊!!!$()，与$(0)$(l)Dark蛇$()神父在宇宙尽头展开了最后的对决。"
+			"text": " bravely fighting against the evil rule of the alliance of $(0)$(l)Dark$(8)&&$(7)$(l)KING$()."
 	    },
 		{
 			"type": "text",
-			"text": "最终，鬼畜联盟在终极的加速时间下与$(0)$(l)Dark$()r势力最后的阴谋操盘人$(0)$(l)Dark蛇$()神父同归于尽，宇宙也随着时间加速而坍缩，再度爆发后释放出了象征着鬼畜斗士无比闪耀的灵魂的$(7)$(l)无尽星辰之辉$()，化作了如今的滑稽宇宙。"
+			"text": "However, after the HUAJI alliance sealed $(0)$(l)Dark knight KING$() and $(7)$(l)THE KING$() after a difficult battle, the conspirators who planned everything behind the scenes took the opportunity to usurp the supreme divine power of the two emperors.This person is Father $(0)$(l)Dark Snake $(), who has acquired the power of infinite acceleration time, and by this power has easily eliminated most of the power of HUAJI alliance.What he never thought, however, was that, just when he thought he had won"
+	    },
+		{
+			"type": "text",
+			"text": "the victory, Olga, who had been chanting the 'flower of hope', miraculously stood up and exploded the final of his orgy -'$(4)$(l) Don't stop!!!$()', and Father $(0)$(l)Dark Snake $() at the end of the universe in the final showdown."
+	    },
+		{
+			"type": "text",
+			"text": "Finally, HUAJI alliance perish together with $(0)$(l)Dark$() forces' the final conspiracy operator Father $(0)$(l)Dark Snake $() in the ultimate acceleration time, the universe also with the acceleration of time to collapse, re-outbreak after the release of a symbol of HUAJI fighter extremely shining soul of the soul of $(7)$(l) the light of endless stars $(), into today's HUAJI universe."
 	    }
     ]
 }

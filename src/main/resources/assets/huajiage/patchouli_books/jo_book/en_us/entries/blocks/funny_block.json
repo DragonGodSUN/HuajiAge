@@ -1,35 +1,35 @@
 {
 	"sortnum": 0,
-    "name": "方块",
+    "name": "Block",
     "icon": "huajiage:ore_huaji",
     "category": "blocks_category",
     "pages": [
         {
             "type": "text",
-            "text": "给$(playername)倒杯卡布奇诺~"
+            "text": "Pour cappuccino for $(playername)~"
         },
 		{
 			"type": "spotlight",
 			"item": "huajiage:ore_huaji",
-			"title":"滑稽矿",
-			"text":"积蓄了高浓度滑稽粒子的矿物，在主世界5至15层生成，多有萤石伴生。"
+			"title":"HUAJI Ore",
+			"text":"Minerals that accumulate high concentrations of HUAJI particles form in the 5 to 15 layers of the main world, often accompanied by glowstone."
 	    },
 		{
 			"type": "spotlight",
 			"item": "huajiage:huaji_star_block",
-			"title":"滑稽之星压缩块",
-			"text":"滑稽之星的压缩方块，或许是土豪的美观建材？"
+			"title":"HUAJI Star Block",
+			"text":"HUAJI Star compression block, perhaps the beautiful building materials of the rich?"
 	    },
 		{
 			"type": "spotlight",
 			"item": "huajiage:huaji_star_block_sky",
-			"title":"天域之星压缩块",
-			"text":"空域之星的压缩方块，或许是土豪的美观灯饰？"
+			"title":"Airspace Star Block",
+			"text":"The compressed block of the star of airspace, perhaps be the beautiful lamp of The Croesus ACTS the role ofing?"
 	    },
 		{
 			"type": "spotlight",
 			"item": "huajiage:huaji_bomb",
-			"title":"滑稽炸弹",
+			"title":"HUAJI Bomb",
 			"text":"Creeper?Awwwww----Boom！！！"
 	    }
     ]

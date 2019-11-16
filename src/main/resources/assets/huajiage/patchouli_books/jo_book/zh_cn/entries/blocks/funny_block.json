@@ -1,0 +1,36 @@
+{
+	"sortnum": 0,
+    "name": "方块",
+    "icon": "huajiage:ore_huaji",
+    "category": "blocks_category",
+    "pages": [
+        {
+            "type": "text",
+            "text": "给$(playername)倒杯卡布奇诺~"
+        },
+		{
+			"type": "spotlight",
+			"item": "huajiage:ore_huaji",
+			"title":"滑稽矿",
+			"text":"积蓄了高浓度滑稽粒子的矿物，在主世界5至15层生成，多有萤石伴生。"
+	    },
+		{
+			"type": "spotlight",
+			"item": "huajiage:huaji_star_block",
+			"title":"滑稽之星压缩块",
+			"text":"滑稽之星的压缩方块，或许是土豪的美观建材？"
+	    },
+		{
+			"type": "spotlight",
+			"item": "huajiage:huaji_star_block_sky",
+			"title":"天域之星压缩块",
+			"text":"空域之星的压缩方块，或许是土豪的美观灯饰？"
+	    },
+		{
+			"type": "spotlight",
+			"item": "huajiage:huaji_bomb",
+			"title":"滑稽炸弹",
+			"text":"Creeper?Awwwww----Boom！！！"
+	    }
+    ]
+}

@@ -32,6 +32,7 @@ public class SoundLoader {
 	public static final SoundEvent EXGLUTENBUR_2=registerSound("exglutenbur_flavor2");
 	public static final SoundEvent EXGLUTENBUR_3=registerSound("exglutenbur_flavor3");
 	public static final SoundEvent EXGLUTENBUR_HIT=registerSound("exglutenbur_hit");
+	public static final SoundEvent ORGA_SHOT=registerSound("orga_shot");
 	public static final SoundEvent ORGA_FLOWER=registerSound("orga_flower");
 	public static final SoundEvent ORGA_REQUIEM_1=registerSound("orga_requiem_1");
 	public static final SoundEvent ORGA_REQUIEM_2=registerSound("orga_requiem_2");

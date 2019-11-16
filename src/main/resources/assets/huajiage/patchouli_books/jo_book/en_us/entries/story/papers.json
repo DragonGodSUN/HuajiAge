@@ -1,12 +1,12 @@
 {
 	"sortnum": 1,
-    "name": "前纪元考古文献资料",
+    "name": "Archaeological Documents",
     "icon": "minecraft:paper",
     "category": "overview_category",
     "pages": [
         {
             "type": "text",
-            "text": "前纪元毁于宇宙坍缩，然而，一些古老的信息却在滑稽粒子的内部保留了下来，科学家利用意识-粒子超谐振脑补技术，生动的重现了当时留下的珍贵影像。"
+            "text": "The pre-epoch was destroyed by the collapse of the universe, but some ancient information remains inside the HUAJI particles, and scientists have vividly recreated the precious images left by the time, using the conscious-particle hyperresonance imaging technology."
         },
 		{
 			"type": "image",
@@ -14,12 +14,11 @@
         "huajiage:textures/book/story/cheer_up.png"
 		],
 			"border": true,
-			"text": "$(l)盟军奥利给舰队指挥官吉蒙·詹·琼恩在星港发表战前演讲"
+			"text": "$(l)Giant Jhnson Jone, commander of the allied APLIGEI fleet, gives a "
 	    },
 		{
             "type": "text",
-			"title":"§l奥利给舰队的经典演讲",
-            "text": "$(li)“我们遇到什么困难也不要怕，微笑着面对它，消除恐惧的最好办法就是面对恐惧！坚持！才是胜利！加油，奥利给！！！”---吉蒙·詹·琼恩"
+            "text": "$(l)pre-war speech in the starport$()$(br2)$(li)We should not be afraid of any difficulties, but face them with a smile. The best way to eliminate our fears is to face them!Insist ! Victory!Come on, AOLIGEI ! ! !---Giant Jhnson Jone"
         }
     ]
 }

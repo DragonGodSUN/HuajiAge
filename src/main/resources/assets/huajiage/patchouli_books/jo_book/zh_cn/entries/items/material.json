@@ -1,0 +1,78 @@
+{
+	"sortnum": 3,
+    "name": "进阶材料",
+    "icon": "huajiage:neutron_star_fragment",
+    "category": "items_material",
+    "pages": [
+        {
+            "type": "text",
+            "text": "以为打败凋零就结束了吗？不不不，通往无垠星辰的探索之路，才刚刚开始。"
+        },
+		{
+			"type": "spotlight",
+			"item": "huajiage:huaji_ingot",
+			"title":"滑稽锭",
+			"text":"由金块灌注滑稽之力而成，奢华的基础材料。"
+	    },
+		{
+			"type": "spotlight",
+			"item": "huajiage:neutron_star_fragment",
+			"title":"中子星碎片",
+			"text":"由恒星坍缩而形成的中子星的碎片，密度为每立方厘米数十亿吨——当然，由于mc的奇妙物理，质量，密度，万有引力什么的完全不必在意。"
+	    },
+		{
+			"type": "spotlight",
+			"item": "huajiage:redstone_druse",
+			"title":"红石晶簇",
+			"text":"吸纳了滑稽粒子的红石晶胞生长出的晶簇，奇妙的物质异构催化剂。"
+	    },
+		{
+			"type": "spotlight",
+			"item": "huajiage:flash_flour",
+			"title":"劲爆的面团",
+			"text":"香辣面筋岛上才能产出的奇妙面团，据说这是制作纯正烤面筋的必备材料。"
+	    },
+		{
+			"type": "spotlight",
+			"item": "huajiage:hope_element",
+			"title":"希望要素",
+			"text":"在彼岸盛开的希望之花花瓣，是宇宙中极为重要的能源物质。"
+	    },
+		{
+			"type": "crafting",
+			"recipe":"huajiage:ether_c",
+			"recipe2":"huajiage:hope_flower"
+	    },
+		{
+			"type": "image",
+			 "images": [
+        "huajiage:textures/book/image/huaji_blender.png",
+		"huajiage:textures/book/image/huaji_blender_gui.png"
+		],
+			"title": "",
+			"border": true,
+			"text":"$(l)滚筒式滑稽之力灌注仪"
+	    },
+		{
+			"type": "spotlight",
+			"title": "§l滑稽灌注",
+			"item": "huajiage:huaji_blender",
+			"text":"滑稽粒子具有重要的应用价值，不过其单质具有很强的惰性，直接应用价值不高，只在与其他材料混合之后，其特殊之处才能真正体现出来。$(li)该仪器可将滑稽与其他材料混合。"
+	    },
+		{
+			"type": "blender",
+				"r1":"minecraft:gold_block",
+				"r2":"huajiage:huaji_star"
+		},
+		{
+			"type": "blender",
+				"r1":"minecraft:redstone_block",
+				"r2":"minecraft:hay_block"
+		},
+		{
+			"type": "blender",
+				"r1":"minecraft:chorus_flower",
+				"r2":""
+		}
+    ]
+}

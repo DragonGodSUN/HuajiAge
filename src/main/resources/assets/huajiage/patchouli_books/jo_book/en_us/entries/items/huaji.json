@@ -1,24 +1,24 @@
 {
 	"sortnum": 1,
-    "name": "基础材料",
+    "name": "Basic Material",
     "icon": "huajiage:huaji",
     "category": "items_material",
     "pages": [
         {
             "type": "text",
-            "text": "滑稽者——世界之本源之一，该物质在宇宙万物间均有分布，不过，仅是以极低的浓度存在，难以直接提取，其高浓度的结晶尽在地壳深处才含有。最新的贴吧地质学表明，这些滑稽的结晶矿似乎是由富含滑稽的海水以及地下水在经过上亿年的地底沉积转化过来的。"
+            "text": "HUAJI, one of the origin of the world, this substance is distributed in all things in the universe, but it exists only in a very low concentration, which is difficult to extract directly.According to the latest tieba geology, these comical crystals appear to have been transformed by HUAJI-rich seawater and groundwater deposited underground over hundreds of millions of years."
         },
 		{
 			"type": "spotlight",
 			"item": "huajiage:huaji_fragment",
-			"title":"滑稽碎片",
-			"text":"在地下深处积蓄的富含滑稽的石片，由于滑稽在高浓度下呈现的高沸点特性，可直接加热以提取滑稽。"
+			"title":"HUAJI Fragment",
+			"text":"Accumulated in the depths of the earth, the HUAJI-rich stone flakes can be heated directly to extract the HUAJI due to its high boiling point at a high concentration."
 	    },
 		{
 			"type": "spotlight",
 			"item": "huajiage:huaji",
-			"title":"滑稽",
-			"text":"滑稽在常温中自然结晶呈现的形态，其奇特的形态成为了千百年来艺术家不竭的艺术源泉。"
+			"title":"HUAJI",
+			"text":"The form of HUAJI naturally crystallized in normal temperature has become an inexhaustible source of art for artists for thousands of years."
 	    },
 		{
 			"type": "smelting",
