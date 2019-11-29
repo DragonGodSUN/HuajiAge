@@ -30,27 +30,25 @@ public class EventRequiem {
 
              ((EntityLivingBase) hit).getEntityData().setInteger(HuajiConstant.REQUIEM, 60);
              }
-
-	  
      }
   @SubscribeEvent
 	public static void requiemTarget(LivingUpdateEvent evt){
 		EntityLivingBase target=evt.getEntityLiving();
 		EntityPlayer player=target.world.getClosestPlayerToEntity(target, 100);
+		if(target.getEntityData().getInteger(HuajiConstant.REQUIEM)<=0) {
+			return;
+		}
 		if(target.getEntityData().getInteger(HuajiConstant.REQUIEM)>0) {
 			target.getEntityData().setInteger(HuajiConstant.REQUIEM, target.getEntityData().getInteger(HuajiConstant.REQUIEM) - 1);
 			if(!(target instanceof EntityPlayer)) {
 	    		if(target.ticksExisted %5==0) {
 	    			target.attackEntityFrom(new EntityDamageSource(HuajiConstant.REQUIEM_DAMAGE,player),12f);
 	    		   }
-	    		
 	    		}else {
 	    			if(target.ticksExisted %10==0) {
 	    			target.attackEntityFrom(new DamageSource(HuajiConstant.REQUIEM_DAMAGE),12f);
-
-	    			}
 	    		}
-	    			
+	    	}
 		}
 	}
   @SubscribeEvent
@@ -65,15 +63,17 @@ public class EventRequiem {
 					entity.getItemStackFromSlot(EntityEquipmentSlot.FEET).getItem() instanceof ItemOrgaArmorBase) {
 				if(entity.isPotionActive(PotionLoader.potionRequiem)) {
 				if(((EntityPlayer)entity).inventory.hasItemStack(new ItemStack(ItemLoader.orgaRequiem))) {
-					
 			             	}
 				else {
 					entity.removePotionEffect(PotionLoader.potionRequiem);
 					if(entity.world.isRemote) {
 					Minecraft.getMinecraft().getSoundHandler().stopSounds();
 					   }
+					
 					}
+				
 				}
+			
 			}
 			
 		}
@@ -84,7 +84,9 @@ public class EventRequiem {
         EntityLivingBase target =evt.getEntityLiving(); 
     	EntityPlayer player=target.world.getClosestPlayerToEntity(target, 100);
     	if(target.isPotionActive(PotionLoader.potionRequiemTarget)) {
-    		if(!(target instanceof EntityPlayer)) {
+    		if(!(target instanceof EntityPlayer)&&
+    				!target.isPotionActive(PotionLoader.potionFlowerHope)&&
+    					!target.isPotionActive(PotionLoader.potionRequiem)) {
     		if(target.ticksExisted %5==0) {
     			target.attackEntityFrom(new EntityDamageSource(HuajiConstant.REQUIEM_DAMAGE,player),12f);
     		   }
@@ -92,14 +94,12 @@ public class EventRequiem {
     		}else {
     			if(target.ticksExisted %10==0) {
     			target.attackEntityFrom(new DamageSource(HuajiConstant.REQUIEM_DAMAGE),12f);
-
     			}
+    			
     		}
     			
-
     	}
 		
-    	
 	}
  
 }

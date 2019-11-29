@@ -15,12 +15,12 @@ item.huajiStarUniverse.name=§e无尽之星
 item.eggRice.name=§e真香蛋炒饭
 item.eggRiceU.name=§d奥义·§e真香蛋炒饭
 
-death.attack.huajiage.hopeFlower= %s死于世界线收束
+death.attack.huajiage.hope_flower= %s死于世界线收束
 death.attack.huajiage.orga.shot=%s被团长乱枪打死
 death.attack.huajiage.second=%s被压成了PNG图像
 death.attack.huajiage.stella=%s化为了天空中的一颗流星
 death.attack.huajiage.KeDaiJinLa=%s感到非常带劲
-death.attack.huajiage.requiem=%s被反伤致死
+death.attack.huajiage.requiem.back=%s被反伤致死
 death.attack.huajiage.requiem.hit=%s被替身木大致死
 death.attack.huajiage.dio.hit=%s在时停中被木大致死
 

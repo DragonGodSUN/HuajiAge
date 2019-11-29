@@ -2,7 +2,7 @@ package com.lh_lshen.mcbbs.huajiage.capability;
 
 import net.minecraftforge.energy.EnergyStorage;
 /**
- * This class is made by @Lothrazar
+ * This class's author is @Lothrazar
  * https://github.com/Lothrazar/Cyclic/blob/develop/src/main/java/com/lothrazar/cyclicmagic/block/core/TileEntityBaseMachine.java
  * Follow The MIT License
  * @return

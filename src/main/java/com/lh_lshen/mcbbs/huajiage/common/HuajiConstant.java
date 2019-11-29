@@ -16,6 +16,7 @@ public  class HuajiConstant {
 	
 //	Requiem
 	public static final String REQUIEM=HuajiAge.MODID+"."+"requiem";
+	public static final String REQUIEM_OWNER=HuajiAge.MODID+"."+"requiem_owner";
 	
 //	DamageSource
 	public static final String SECOND=HuajiAge.MODID+"."+"second";

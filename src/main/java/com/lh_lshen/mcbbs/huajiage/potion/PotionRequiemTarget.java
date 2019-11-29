@@ -22,7 +22,7 @@ public class PotionRequiemTarget extends Potion {
 
 	protected PotionRequiemTarget() {
 		super(false,0Xfff600);
-        this.setPotionName("potion.huajiage.orga.requiem.target");
+        this.setPotionName("potion.huajiage.requiem.target");
         this.setIconIndex(0, 0);
        
 	}

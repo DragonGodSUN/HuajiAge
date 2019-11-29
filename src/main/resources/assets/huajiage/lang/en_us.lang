@@ -26,9 +26,9 @@ death.attack.huajiage.hope_flower=%s was dead of world line converge
 death.attack.huajiage.second=%s has been compressed into a PNG image
 death.attack.huajiage.stella=%s become the stella in the sky
 death.attack.huajiage.KeDaiJinLa=%s feels good
-death.attack.huajiage.requiem=%s was killed by %s
+death.attack.huajiage.requiem.back=%s was killed by %s
 death.attack.huajiage.requiem.hit=%s was been killed by Golden Experience Requiem
-death.attack.huajiage.dio_hit=%s was kill by THE WORLD
+death.attack.huajiage.dio.hit=%s was kill by THE WORLD
 
 
 item.orgaRequiem.name=§9Orga Requiem
@@ -67,7 +67,7 @@ potion.huaji=HUAJI
 potion.huaji.five=Five-fold Power
 potion.huajiage.flower=Hope Flower
 potion.huajiage.requiem=§eRequiem
-potion.huajiage.requiem.target=§Requiem Target
+potion.huajiage.requiem.target=§eRequiem Target
 potion.huajiage.orga.target=Orga Target
 
 key.category.huajiage=HUAJI Age

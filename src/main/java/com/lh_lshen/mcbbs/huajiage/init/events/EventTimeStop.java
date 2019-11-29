@@ -27,11 +27,15 @@ public class EventTimeStop {
 	 @SubscribeEvent
      public static void onTimeStop(LivingUpdateEvent evt)
      {
-	  EntityLivingBase target =evt.getEntityLiving(); 
-    		if(NBTHelper.getEntityInteger(target,HuajiConstant.TIME_STOP)>0) {	
+		 EntityLivingBase target =evt.getEntityLiving(); 
+		  if(NBTHelper.getEntityInteger(target,HuajiConstant.TIME_STOP)<=0&&NBTHelper.getEntityInteger(target,HuajiConstant.DIO_HIT)<=0&&NBTHelper.getEntityInteger(target,HuajiConstant.DIO_FLAG)<=0) 
+		  {
+			  return;
+		  }
+    	if(NBTHelper.getEntityInteger(target,HuajiConstant.TIME_STOP)>0) {	
     		target.getEntityData().setInteger(HuajiConstant.TIME_STOP,NBTHelper.getEntityInteger(target,HuajiConstant.TIME_STOP)-1);
-    		if(target instanceof EntityPlayer) {
-    			if(ConfigHuaji.Huaji.allowTimeStopPlayer) {
+    	if(target instanceof EntityPlayer) {
+    		if(ConfigHuaji.Huaji.allowTimeStopPlayer&&NBTHelper.getEntityInteger(target,HuajiConstant.THE_WORLD)<=0) {
     			int t=NBTHelper.getEntityInteger(target,HuajiConstant.TIME_STOP);
 //    			if(!target.isPotionActive(MobEffects.SLOWNESS)||target.getActivePotionEffect(MobEffects.SLOWNESS).getAmplifier()<9) {
 //   			    target.addPotionEffect(new PotionEffect(MobEffects.SLOWNESS,t,9));
@@ -46,11 +50,12 @@ public class EventTimeStop {
     			if(!target.isPotionActive(MobEffects.BLINDNESS)) {
     			target.addPotionEffect(new PotionEffect(MobEffects.BLINDNESS,t));}
 //    			}
-    			}
-    		}else {
+    										}
+    							}
+    		else {
     		evt.setCanceled(true);
     		}
-    		}
+    	}
     		if(NBTHelper.getEntityInteger(target,HuajiConstant.DIO_FLAG)>0) {	
         		target.getEntityData().setInteger(HuajiConstant.DIO_FLAG,NBTHelper.getEntityInteger(target,HuajiConstant.DIO_FLAG)-1);
         		}
@@ -63,7 +68,6 @@ public class EventTimeStop {
                       }else {
                     	target.attackEntityFrom(new DamageSource(HuajiConstant.DIO_ATTACK), NBTHelper.getEntityInteger(target,HuajiConstant.DIO_HIT_EXTRA)+10);
                       }
-        			
         		}
         	}else {
         		 target.getEntityData().setInteger(HuajiConstant.DIO_HIT_EXTRA,0);
@@ -186,6 +190,9 @@ public class EventTimeStop {
      public static void onTheWorld(LivingUpdateEvent evt)
      {
 	  EntityLivingBase eater =evt.getEntityLiving(); 
+//	  if(eater.getEntityData().getInteger(HuajiConstant.THE_WORLD)<=0) {
+//		  return;
+//	  }
     	if(eater.getEntityData().getInteger(HuajiConstant.THE_WORLD)>0) {
     		int t=eater.getEntityData().getInteger(HuajiConstant.THE_WORLD);
     		eater.getEntityData().setInteger(HuajiConstant.THE_WORLD, t-1);

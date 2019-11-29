@@ -6,10 +6,12 @@ import java.util.UUID;
 
 import org.lwjgl.input.Keyboard;
 
+import com.lh_lshen.mcbbs.huajiage.common.HuajiConstant;
 import com.lh_lshen.mcbbs.huajiage.crativetab.CreativeTabLoader;
 import com.lh_lshen.mcbbs.huajiage.init.playsound.HuajiSoundPlayer;
 import com.lh_lshen.mcbbs.huajiage.init.playsound.SoundLoader;
 import com.lh_lshen.mcbbs.huajiage.potion.PotionLoader;
+import com.lh_lshen.mcbbs.huajiage.util.NBTHelper;
 
 import net.minecraft.client.Minecraft;
 import net.minecraft.client.audio.MusicTicker;
@@ -54,14 +56,16 @@ public class ItemOrgaRequiem extends Item {
 		if(entityIn instanceof EntityPlayer) {
 		EntityPlayer player =((EntityPlayer)entityIn);
 		this.update(stack, player);
-		    
+		if(!player.world.isRemote) {
+			if(!NBTHelper.getEntityString(player, HuajiConstant.REQUIEM_OWNER).equals(getTagCompoundSafe(stack).getString("owner"))&&player.ticksExisted%40==0) 
+			{NBTHelper.setEntityString(player, HuajiConstant.REQUIEM_OWNER,getTagCompoundSafe(stack).getString("owner"));}
+		     }    
 		}
 	}
 	public void update(ItemStack stack, EntityPlayer player) {
 		if(stack.isEmpty() || !(stack.getItem() instanceof ItemOrgaRequiem))
 			return;
-
-		boolean bindingMaster = true;
+		boolean owner = true;
 		if(!getTagCompoundSafe(stack).hasKey("owner")) {
 			getTagCompoundSafe(stack).setString("owner", player.getUniqueID().toString());
 			getTagCompoundSafe(stack).setString("owner_name", player.getName());
@@ -70,17 +74,19 @@ public class ItemOrgaRequiem extends Item {
 			HuajiSoundPlayer.playMusic(SoundLoader.ORGA_REQUIEM_2);}
 			player.addPotionEffect(new PotionEffect(MobEffects.SPEED,100,2));
 		} else if (!getTagCompoundSafe(stack).getString("owner").equals(player.getUniqueID().toString())) {
-			bindingMaster = false;
+			owner = false;
 		}
 
-		if(!bindingMaster){
-			stack.shrink(1);
+	if(!owner){
+		if(player.ticksExisted%60==0&&!player.isPotionActive(PotionLoader.potionFlowerHope)
+				&&!player.isPotionActive(PotionLoader.potionRequiem)){	
 			player.playSound(SoundLoader.ORGA_REQUIEM_HIT, 1f, 1f);
 		if(!player.world.isRemote) {
-			player.addPotionEffect(new PotionEffect(PotionLoader.potionRequiemTarget,20));
-			                            }
-	       }
-		}
+			player.addPotionEffect(new PotionEffect(PotionLoader.potionRequiemTarget,60));
+	                    }
+		       		}
+				}
+			}
 
 	@Override
 	public void addInformation(ItemStack stack, World worldIn, List<String> tooltip, ITooltipFlag flagIn) {
