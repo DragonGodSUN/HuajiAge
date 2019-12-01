@@ -4,9 +4,9 @@ import com.lh_lshen.mcbbs.huajiage.HuajiAge;
 import com.lh_lshen.mcbbs.huajiage.common.CommonProxy;
 import com.lh_lshen.mcbbs.huajiage.entity.EntityLoader;
 import com.lh_lshen.mcbbs.huajiage.network.HuajiAgeNetWorkHandler;
-import com.lh_lshen.mcbbs.huajiage.network.MessageOrgaShot;
-import com.lh_lshen.mcbbs.huajiage.network.MessageOrgaShotHandlerOnClient;
-import com.lh_lshen.mcbbs.huajiage.network.TargetOrgaShotEffectMessageToClient;
+import com.lh_lshen.mcbbs.huajiage.network.messages.MessageOrgaShot;
+import com.lh_lshen.mcbbs.huajiage.network.messages.MessageOrgaShotHandlerOnClient;
+import com.lh_lshen.mcbbs.huajiage.network.messages.TargetOrgaShotEffectMessageToClient;
 import com.lh_lshen.mcbbs.huajiage.particle.ParticleTexLoader;
 
 import net.minecraft.client.renderer.block.model.ModelResourceLocation;

@@ -1,4 +1,4 @@
-package com.lh_lshen.mcbbs.huajiage.network;
+package com.lh_lshen.mcbbs.huajiage.network.messages;
 
 import java.util.UUID;
 
@@ -28,7 +28,9 @@ public class MessageLeftClick implements IMessage {
         public IMessage onMessage(MessageLeftClick message , MessageContext ctx) {
         	EntityPlayerMP player = ctx.getServerHandler().player;
         	ItemStack itemstack=ctx.getServerHandler().player.getHeldItemMainhand();
+        if(itemstack.getItem()==ItemLoader.heroBow) {
 			player.mcServer.addScheduledTask(() -> ((ItemHeroBow) ItemLoader.heroBow).ModeChange(itemstack, player));
+					}
 			return null;
         }
     }

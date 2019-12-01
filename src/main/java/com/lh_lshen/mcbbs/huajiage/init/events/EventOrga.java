@@ -6,8 +6,8 @@ import com.lh_lshen.mcbbs.huajiage.init.playsound.SoundLoader;
 import com.lh_lshen.mcbbs.huajiage.item.ItemLoader;
 import com.lh_lshen.mcbbs.huajiage.item.ItemOrgaArmorBase;
 import com.lh_lshen.mcbbs.huajiage.network.HuajiAgeNetWorkHandler;
-import com.lh_lshen.mcbbs.huajiage.network.MessageOrgaRequiemClient;
-import com.lh_lshen.mcbbs.huajiage.network.TargetOrgaShotEffectMessageToClient;
+import com.lh_lshen.mcbbs.huajiage.network.messages.MessageOrgaRequiemClient;
+import com.lh_lshen.mcbbs.huajiage.network.messages.TargetOrgaShotEffectMessageToClient;
 import com.lh_lshen.mcbbs.huajiage.potion.PotionLoader;
 import com.lh_lshen.mcbbs.huajiage.util.NBTHelper;
 
@@ -112,7 +112,7 @@ public class EventOrga {
 				player.getItemStackFromSlot(EntityEquipmentSlot.LEGS).getItem() instanceof ItemOrgaArmorBase &&
 				player.getItemStackFromSlot(EntityEquipmentSlot.FEET).getItem() instanceof ItemOrgaArmorBase) {
 		 
-			if(!player.isPotionActive(PotionLoader.potionFlowerHope)) 
+			if(!player.isPotionActive(PotionLoader.potionFlowerHope)&&!player.isPotionActive(PotionLoader.potionRequiem)) 
 			{
 				if(((EntityPlayer)player).inventory.hasItemStack(new ItemStack(ItemLoader.orgaRequiem))&&
 					NBTHelper.getEntityString(player, HuajiConstant.REQUIEM_OWNER).equals(player.getUniqueID().toString())) 

@@ -12,7 +12,7 @@ import com.lh_lshen.mcbbs.huajiage.entity.EntityHeroArrow;
 import com.lh_lshen.mcbbs.huajiage.entity.EntitySecondFoil;
 import com.lh_lshen.mcbbs.huajiage.init.playsound.SoundLoader;
 import com.lh_lshen.mcbbs.huajiage.network.HuajiAgeNetWorkHandler;
-import com.lh_lshen.mcbbs.huajiage.network.MessageLeftClick;
+import com.lh_lshen.mcbbs.huajiage.network.messages.MessageLeftClick;
 import com.lh_lshen.mcbbs.huajiage.potion.PotionLoader;
 import com.lh_lshen.mcbbs.huajiage.util.NBTHelper;
 

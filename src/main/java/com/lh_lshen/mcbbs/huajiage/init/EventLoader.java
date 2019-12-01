@@ -25,17 +25,19 @@ import com.lh_lshen.mcbbs.huajiage.item.ItemLoader;
 import com.lh_lshen.mcbbs.huajiage.item.ItemOrgaArmorBase;
 import com.lh_lshen.mcbbs.huajiage.item.ItemOrgaHair;
 import com.lh_lshen.mcbbs.huajiage.network.HuajiAgeNetWorkHandler;
-import com.lh_lshen.mcbbs.huajiage.network.MessageLeftClick;
-import com.lh_lshen.mcbbs.huajiage.network.MessageOrgaRequiemClient;
-import com.lh_lshen.mcbbs.huajiage.network.MessageOrgaShot;
-import com.lh_lshen.mcbbs.huajiage.network.MessagePlaySoundClient;
-import com.lh_lshen.mcbbs.huajiage.network.TargetOrgaShotEffectMessageToClient;
+import com.lh_lshen.mcbbs.huajiage.network.messages.MessageExglutenburMode;
+import com.lh_lshen.mcbbs.huajiage.network.messages.MessageLeftClick;
+import com.lh_lshen.mcbbs.huajiage.network.messages.MessageOrgaRequiemClient;
+import com.lh_lshen.mcbbs.huajiage.network.messages.MessageOrgaShot;
+import com.lh_lshen.mcbbs.huajiage.network.messages.MessagePlaySoundClient;
+import com.lh_lshen.mcbbs.huajiage.network.messages.TargetOrgaShotEffectMessageToClient;
 import com.lh_lshen.mcbbs.huajiage.potion.PotionLoader;
 import com.lh_lshen.mcbbs.huajiage.util.NBTHelper;
 import com.lh_lshen.mcbbs.huajiage.util.ServerUtil;
 
 import net.minecraft.client.Minecraft;
 import net.minecraft.client.audio.MusicTicker;
+import net.minecraft.client.entity.EntityPlayerSP;
 import net.minecraft.client.resources.I18n;
 import net.minecraft.entity.Entity;
 import net.minecraft.entity.EntityLiving;
@@ -68,6 +70,7 @@ import net.minecraft.util.text.TextComponentTranslation;
 import net.minecraft.util.text.TextFormatting;
 import net.minecraft.util.text.event.HoverEvent;
 import net.minecraft.world.World;
+import net.minecraftforge.client.event.MouseEvent;
 import net.minecraftforge.common.MinecraftForge;
 import net.minecraftforge.event.brewing.PlayerBrewedPotionEvent;
 import net.minecraftforge.event.entity.living.LivingDeathEvent;
@@ -132,7 +135,7 @@ public class EventLoader {
 	        	
 	        }
 	    }
-
+	 
 	@SubscribeEvent
 	     public void onHuajiPotion(LivingUpdateEvent event)
 	     {

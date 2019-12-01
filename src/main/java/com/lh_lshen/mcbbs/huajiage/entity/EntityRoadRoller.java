@@ -5,7 +5,7 @@ import java.util.List;
 import javax.annotation.Nonnull;
 
 import com.lh_lshen.mcbbs.huajiage.config.ConfigHuaji;
-import com.lh_lshen.mcbbs.huajiage.network.MessageDioHitClient;
+import com.lh_lshen.mcbbs.huajiage.network.messages.MessageDioHitClient;
 import com.lh_lshen.mcbbs.huajiage.util.ServerUtil;
 
 import net.minecraft.block.Block;

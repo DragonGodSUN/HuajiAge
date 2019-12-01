@@ -1,4 +1,4 @@
-package com.lh_lshen.mcbbs.huajiage.network;
+package com.lh_lshen.mcbbs.huajiage.network.messages;
 
 import java.util.Random;
 import java.util.UUID;

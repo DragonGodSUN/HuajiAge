@@ -1,6 +1,6 @@
 package com.lh_lshen.mcbbs.huajiage.init.playsound;
 
-import com.lh_lshen.mcbbs.huajiage.network.MessagePlaySoundClient;
+import com.lh_lshen.mcbbs.huajiage.network.messages.MessagePlaySoundClient;
 import com.lh_lshen.mcbbs.huajiage.util.ServerUtil;
 
 import net.minecraft.client.Minecraft;

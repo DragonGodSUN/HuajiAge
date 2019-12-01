@@ -6,7 +6,7 @@ import java.util.ArrayList;
 import com.lh_lshen.mcbbs.huajiage.inventroy.slot.SlotHuajiPolyFuel;
 import com.lh_lshen.mcbbs.huajiage.inventroy.slot.SlotHuajiPolyOutput;
 import com.lh_lshen.mcbbs.huajiage.network.HuajiAgeNetWorkHandler;
-import com.lh_lshen.mcbbs.huajiage.network.PacketGuiShortOverride;
+import com.lh_lshen.mcbbs.huajiage.network.messages.PacketGuiShortOverride;
 import com.lh_lshen.mcbbs.huajiage.recipelist.HuajiPolyRecipeList;
 import com.lh_lshen.mcbbs.huajiage.tileentity.TileEntityHuajiPolyfurnace;
 

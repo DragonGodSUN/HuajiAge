@@ -4,7 +4,7 @@ import java.util.List;
 
 import com.lh_lshen.mcbbs.huajiage.common.HuajiConstant;
 import com.lh_lshen.mcbbs.huajiage.config.ConfigHuaji;
-import com.lh_lshen.mcbbs.huajiage.network.MessageDioHitClient;
+import com.lh_lshen.mcbbs.huajiage.network.messages.MessageDioHitClient;
 import com.lh_lshen.mcbbs.huajiage.util.NBTHelper;
 import com.lh_lshen.mcbbs.huajiage.util.ServerUtil;
 

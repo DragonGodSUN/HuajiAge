@@ -1,4 +1,4 @@
-package com.lh_lshen.mcbbs.huajiage.network;
+package com.lh_lshen.mcbbs.huajiage.network.messages;
 
 import io.netty.buffer.ByteBuf;
 import net.minecraft.util.math.Vec3d;

@@ -4,10 +4,16 @@ import javax.annotation.Nullable;
 
 import com.google.common.collect.HashMultimap;
 import com.google.common.collect.Multimap;
+import com.lh_lshen.mcbbs.huajiage.common.CommonProxy;
 import com.lh_lshen.mcbbs.huajiage.common.HuajiConstant;
 import com.lh_lshen.mcbbs.huajiage.crativetab.CreativeTabLoader;
 import com.lh_lshen.mcbbs.huajiage.init.playsound.SoundLoader;
+import com.lh_lshen.mcbbs.huajiage.network.HuajiAgeNetWorkHandler;
+import com.lh_lshen.mcbbs.huajiage.network.messages.MessageExglutenburMode;
+import com.lh_lshen.mcbbs.huajiage.util.NBTHelper;
 
+import net.minecraft.client.Minecraft;
+import net.minecraft.client.entity.EntityPlayerSP;
 import net.minecraft.entity.Entity;
 import net.minecraft.entity.EntityLivingBase;
 import net.minecraft.entity.SharedMonsterAttributes;
@@ -29,6 +35,7 @@ import net.minecraft.util.EnumActionResult;
 import net.minecraft.util.EnumHand;
 import net.minecraft.util.ResourceLocation;
 import net.minecraft.world.World;
+import net.minecraftforge.client.event.MouseEvent;
 import net.minecraftforge.common.MinecraftForge;
 import net.minecraftforge.common.util.EnumHelper;
 import net.minecraftforge.event.entity.player.PlayerInteractEvent;
@@ -114,12 +121,51 @@ public class ItemExglutenbur extends ItemSword {
 		@SubscribeEvent
 		public void leftClick(PlayerInteractEvent.LeftClickEmpty evt) {
 			if (!evt.getItemStack().isEmpty()
-					&& evt.getItemStack().getItem() == this) {
+					&& evt.getItemStack().getItem() instanceof ItemExglutenbur) {
 	            EntityPlayer player = evt.getEntityPlayer();
 	            if(flavor(evt.getItemStack())==2) {
 	            player.playSound(SoundEvents.ENTITY_BLAZE_SHOOT, 1f, 1f);
 	            }
 			}
+		}
+		@SubscribeEvent
+		public void onMouseDwheelInput(MouseEvent evt) {
+			 Minecraft mc = Minecraft.getMinecraft();
+	         EntityPlayerSP player = mc.player;
+	         boolean flag=evt.getDwheel() < 0;
+	         if (player.isSneaking()&&mc.inGameHasFocus && evt.getDwheel() != 0 && player.getHeldItemMainhand().getItem() == ItemLoader.exglutenbur) {
+	             HuajiAgeNetWorkHandler.sendToServer(new MessageExglutenburMode(flag));
+				 switch(flavor(player.getHeldItemMainhand())) {
+				 case 0: {
+					 if(flag) {
+			    	 player.playSound(SoundLoader.EXGLUTENBUR_1, 1f, 1f);}
+					 else {
+					 player.playSound(SoundLoader.EXGLUTENBUR_3, 1f, 1f);	 
+					 }
+			    	 break;
+			              }
+				 case 1:{
+					 if(flag) {
+				    	 player.playSound(SoundLoader.EXGLUTENBUR_2, 1f, 1f);}
+			    	 break;
+			             } 
+				 case 2:{
+					 if(flag) {
+				    	 player.playSound(SoundLoader.EXGLUTENBUR_3, 1f, 1f);}
+						 else {
+						 player.playSound(SoundLoader.EXGLUTENBUR_1, 1f, 1f);	 
+						 }
+			    	 break;
+			             }
+				 case 3:{
+					 if(!flag) {
+						 player.playSound(SoundLoader.EXGLUTENBUR_2, 1f, 1f);	 
+						 }
+			    	 break;
+			             }
+			       }
+	             evt.setCanceled(true);
+	         }
 		}
    @Override
    public void onUpdate(ItemStack stack, World worldIn, Entity entityIn, int itemSlot, boolean isSelected) {
@@ -154,15 +200,10 @@ public class ItemExglutenbur extends ItemSword {
 			}
 				}
 			break;
+					}
 				}
-				
-			
 			}
-			}
-			
-			
-				
-			}
+		}
 		private NBTTagCompound getTagCompoundSafe(ItemStack stack) {
 		    NBTTagCompound tagCompound = stack.getTagCompound();
 		    if (tagCompound == null) {
@@ -172,9 +213,7 @@ public class ItemExglutenbur extends ItemSword {
 		    return tagCompound;
 		}
 		
-		private int flavor(ItemStack stack) {  
-			   return  getTagCompoundSafe(stack).getInteger("flavor");
-		}
+		
 		@Override
 		public Multimap<String, AttributeModifier> getAttributeModifiers(EntityEquipmentSlot slot, ItemStack stack) {
 
@@ -201,6 +240,12 @@ public class ItemExglutenbur extends ItemSword {
 		
 			}
 			return multimap;
+		}
+		public static int flavor(ItemStack stack) {  
+			   return  NBTHelper.getTagCompoundSafe(stack).getInteger("flavor");
+		}
+		public static void setFlavor(ItemStack stack,int flavor) {  
+			   NBTHelper.getTagCompoundSafe(stack).setInteger("flavor",flavor);
 		}
 		@Override
 			public ActionResult<ItemStack> onItemRightClick(World worldIn, EntityPlayer playerIn, EnumHand handIn) {
@@ -245,8 +290,22 @@ public class ItemExglutenbur extends ItemSword {
 			   }
 			    return new ActionResult(EnumActionResult.SUCCESS, stack);
 			}
-			
-			
 
-				
+//	public void ModeChange(ItemStack stack,EntityPlayer playerIn) {
+//		if(playerIn.isSneaking()) {
+//			 if (!playerIn.world.isRemote) {
+//				 switch(getTagCompoundSafe(stack).getInteger("flavor")){
+//				 case -1:{
+//					 getTagCompoundSafe(stack).setInteger("flavor",3);  
+//					 break;
+//				     } 
+//				 case 4:{
+//					 getTagCompoundSafe(stack).setInteger("flavor",0);  
+//					 break;
+//				     } 
+//				 }
+//		   }
+//		}
+//	}
+
 }

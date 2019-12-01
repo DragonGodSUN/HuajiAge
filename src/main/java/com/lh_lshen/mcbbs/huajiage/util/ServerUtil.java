@@ -1,7 +1,7 @@
 package com.lh_lshen.mcbbs.huajiage.util;
 
 import com.lh_lshen.mcbbs.huajiage.network.HuajiAgeNetWorkHandler;
-import com.lh_lshen.mcbbs.huajiage.network.MessageDioHitClient;
+import com.lh_lshen.mcbbs.huajiage.network.messages.MessageDioHitClient;
 
 import net.minecraft.entity.EntityLivingBase;
 import net.minecraft.entity.player.EntityPlayer;
