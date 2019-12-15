@@ -7,6 +7,7 @@ import com.google.common.collect.Multimap;
 import com.lh_lshen.mcbbs.huajiage.common.CommonProxy;
 import com.lh_lshen.mcbbs.huajiage.common.HuajiConstant;
 import com.lh_lshen.mcbbs.huajiage.crativetab.CreativeTabLoader;
+import com.lh_lshen.mcbbs.huajiage.init.playsound.HuajiSoundPlayer;
 import com.lh_lshen.mcbbs.huajiage.init.playsound.SoundLoader;
 import com.lh_lshen.mcbbs.huajiage.network.HuajiAgeNetWorkHandler;
 import com.lh_lshen.mcbbs.huajiage.network.messages.MessageExglutenburMode;
@@ -34,6 +35,7 @@ import net.minecraft.util.DamageSource;
 import net.minecraft.util.EnumActionResult;
 import net.minecraft.util.EnumHand;
 import net.minecraft.util.ResourceLocation;
+import net.minecraft.util.SoundCategory;
 import net.minecraft.world.World;
 import net.minecraftforge.client.event.MouseEvent;
 import net.minecraftforge.common.MinecraftForge;
@@ -138,28 +140,37 @@ public class ItemExglutenbur extends ItemSword {
 				 switch(flavor(player.getHeldItemMainhand())) {
 				 case 0: {
 					 if(flag) {
-			    	 player.playSound(SoundLoader.EXGLUTENBUR_1, 1f, 1f);}
+					 HuajiSoundPlayer.playMovingSoundClient(player, SoundLoader.EXGLUTENBUR_1, SoundCategory.PLAYERS, 1f);
+//			    	 player.playSound(SoundLoader.EXGLUTENBUR_1, 1f, 1f);
+					 }
 					 else {
-					 player.playSound(SoundLoader.EXGLUTENBUR_3, 1f, 1f);	 
+					 HuajiSoundPlayer.playMovingSoundClient(player, SoundLoader.EXGLUTENBUR_3, SoundCategory.PLAYERS, 1f);
+//					 player.playSound(SoundLoader.EXGLUTENBUR_3, 1f, 1f);	 
 					 }
 			    	 break;
 			              }
 				 case 1:{
 					 if(flag) {
-				    	 player.playSound(SoundLoader.EXGLUTENBUR_2, 1f, 1f);}
+						 HuajiSoundPlayer.playMovingSoundClient(player, SoundLoader.EXGLUTENBUR_2, SoundCategory.PLAYERS, 1f);
+//				    	 player.playSound(SoundLoader.EXGLUTENBUR_2, 1f, 1f);
+						 }
 			    	 break;
 			             } 
 				 case 2:{
 					 if(flag) {
-				    	 player.playSound(SoundLoader.EXGLUTENBUR_3, 1f, 1f);}
+						 HuajiSoundPlayer.playMovingSoundClient(player, SoundLoader.EXGLUTENBUR_3, SoundCategory.PLAYERS, 1f);
+//				    	 player.playSound(SoundLoader.EXGLUTENBUR_3, 1f, 1f);
+				    	 }
 						 else {
-						 player.playSound(SoundLoader.EXGLUTENBUR_1, 1f, 1f);	 
+						 HuajiSoundPlayer.playMovingSoundClient(player, SoundLoader.EXGLUTENBUR_1, SoundCategory.PLAYERS, 1f);
+//						 player.playSound(SoundLoader.EXGLUTENBUR_1, 1f, 1f);	 
 						 }
 			    	 break;
 			             }
 				 case 3:{
 					 if(!flag) {
-						 player.playSound(SoundLoader.EXGLUTENBUR_2, 1f, 1f);	 
+						 HuajiSoundPlayer.playMovingSoundClient(player, SoundLoader.EXGLUTENBUR_2, SoundCategory.PLAYERS, 1f);
+//						 player.playSound(SoundLoader.EXGLUTENBUR_2, 1f, 1f);	 
 						 }
 			    	 break;
 			             }

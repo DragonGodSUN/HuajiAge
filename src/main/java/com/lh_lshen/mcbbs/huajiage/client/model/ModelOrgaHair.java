@@ -163,19 +163,19 @@ public class ModelOrgaHair extends ModelArmor
  		
 
  		super.render(entity, limbSwing, limbSwingAmount, ageInTicks, netHeadYaw, headPitch, scale);
- 		if(entity instanceof EntityPlayer) {
- 			EntityPlayer p=(EntityPlayer)entity;
- 			ItemStack item=new ItemStack(ItemLoader.infiniteCharm);
- 			ItemStack items=new ItemStack(ItemLoader.orgaFlag);
- 			if(p.inventory.hasItemStack(item)){
- 				if(!(p.getHeldItemMainhand().getItem()==ItemLoader.infiniteCharm)&&!(p.getHeldItemOffhand().getItem()==ItemLoader.infiniteCharm))
- 					 if(NBTHelper.getEntityBoolean(p, "huajiage.orga.suit")) {
- 						 Minecraft.getMinecraft().getRenderItem().renderItem(items, TransformType.HEAD);  
- 			       }else {
- 			    	  Minecraft.getMinecraft().getRenderItem().renderItem(item, TransformType.HEAD);  
- 		        }
- 			}
- 		}
+// 		if(entity instanceof EntityPlayer) {
+// 			EntityPlayer p=(EntityPlayer)entity;
+// 			ItemStack item=new ItemStack(ItemLoader.infiniteCharm);
+// 			ItemStack items=new ItemStack(ItemLoader.orgaFlag);
+// 			if(p.inventory.hasItemStack(item)){
+// 				if(!(p.getHeldItemMainhand().getItem()==ItemLoader.infiniteCharm)&&!(p.getHeldItemOffhand().getItem()==ItemLoader.infiniteCharm))
+// 					 if(NBTHelper.getEntityBoolean(p, "huajiage.orga.suit")) {
+// 						 Minecraft.getMinecraft().getRenderItem().renderItem(items, TransformType.HEAD);  
+// 			       }else {
+// 			    	  Minecraft.getMinecraft().getRenderItem().renderItem(item, TransformType.HEAD);  
+// 		        }
+// 			}
+// 		}
  	}
   
   private void setRotation(ModelRenderer model, float x, float y, float z)

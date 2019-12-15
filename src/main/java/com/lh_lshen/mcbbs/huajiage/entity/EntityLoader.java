@@ -3,7 +3,7 @@ package com.lh_lshen.mcbbs.huajiage.entity;
 import com.lh_lshen.mcbbs.huajiage.HuajiAge;
 import com.lh_lshen.mcbbs.huajiage.entity.render.RenderHeroArrow;
 import com.lh_lshen.mcbbs.huajiage.entity.render.RenderMultiKnife;
-import com.lh_lshen.mcbbs.huajiage.entity.render.RenderPlayer;
+import com.lh_lshen.mcbbs.huajiage.entity.render.RenderPlayerLayers;
 import com.lh_lshen.mcbbs.huajiage.entity.render.RenderRoadRoller;
 import com.lh_lshen.mcbbs.huajiage.entity.render.RenderSecondFoil;
 
