@@ -59,11 +59,14 @@ public class EntityHeroArrow extends EntityThrowable {
 	  
 	@Override
 	public void onEntityUpdate() {
-		if(world.isRemote) {
-		 this.world.spawnParticle(EnumParticleTypes.LAVA,false,posX,posY,posZ,0,0,1);	
-		 this.world.spawnParticle(EnumParticleTypes.FIREWORKS_SPARK,true,posX,posY,posZ,0,0,0.5);	
-	}
+	if(world.isRemote) {
+		double r=(Math.random()-0.5)*0.5;
+		for(int i=0;i<5;i++) {
+			this.world.spawnParticle(EnumParticleTypes.LAVA,false,posX+r,posY,posZ+r,0,0,0.01);	
+			}
+			this.world.spawnParticle(EnumParticleTypes.FIREWORKS_SPARK,true,posX,posY,posZ,0,0,0.03);	
 		}
+	}
 	@Override
 	protected void onImpact(RayTraceResult result)
     {

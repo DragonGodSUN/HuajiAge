@@ -39,7 +39,6 @@ public class MessageExglutenburMode implements IMessage {
     public static class Handler implements IMessageHandler<MessageExglutenburMode, IMessage> {
         @Override
         public IMessage onMessage(MessageExglutenburMode message , MessageContext ctx) {
-
     		EntityPlayerMP player = ctx.getServerHandler().player;
     		ItemStack itemstack = player.getHeldItemMainhand();
     		if(itemstack.getItem()==ItemLoader.exglutenbur) {

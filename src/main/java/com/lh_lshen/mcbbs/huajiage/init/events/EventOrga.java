@@ -35,90 +35,79 @@ import net.minecraftforge.fml.common.eventhandler.SubscribeEvent;
 public class EventOrga {
 	@SubscribeEvent
     public static void onOrgaLivingUpdate(LivingUpdateEvent event) {
-		EntityLivingBase entity=event.getEntityLiving(); 
-
-		if(entity instanceof EntityPlayer) {
+	EntityLivingBase entity=event.getEntityLiving(); 
+	if(entity instanceof EntityPlayer) {
 		if(entity.isPotionActive(PotionLoader.potionFlowerHope)&&entity.getActivePotionEffect(PotionLoader.potionFlowerHope).getDuration()<=112*20-100)	{
-			     Item mlik =entity.getHeldItemMainhand().getItem();
-			     ItemStack mlikS =entity.getHeldItemMainhand();
-			     if(mlik instanceof ItemBucketMilk) {
-                     if(!entity.world.isRemote) {   
-                     ((EntityPlayer)entity).inventory.deleteStack(mlikS);
-			         ((EntityPlayer)entity).dropItem(mlik, 1); 
-                     		}
-                     }
-			 }
-		 if(entity.isPotionActive(PotionLoader.potionFlowerHope)&&
-				 ((EntityPlayer)entity).inventory.hasItemStack(new ItemStack(ItemLoader.orgaRequiem))&&
-				 NBTHelper.getEntityString(((EntityPlayer)entity), HuajiConstant.REQUIEM_OWNER).equals(((EntityPlayer)entity).getUniqueID().toString())) 
-		 {
-			 entity.removePotionEffect(PotionLoader.potionFlowerHope);
-			 entity.removePotionEffect(MobEffects.SLOWNESS);
-		                            }
-		 
-		 if(entity.isPotionActive(PotionLoader.potionFlowerHope)&&entity.getActivePotionEffect(PotionLoader.potionFlowerHope).getDuration()==112*20-10)	{
-			 entity.playSound(SoundLoader.ORGA_FLOWER,5f,1f);
-			 entity.addPotionEffect(new PotionEffect(MobEffects.SLOWNESS,112*20,5));
-		 }
-		 
-		 if(entity.isPotionActive(PotionLoader.potionFlowerHope)&&entity.getActivePotionEffect(PotionLoader.potionFlowerHope).getDuration()==52*20)	{
-			 entity.addPotionEffect(new PotionEffect(MobEffects.SLOWNESS,52*20,6));
-			 entity.addPotionEffect(new PotionEffect(MobEffects.BLINDNESS,52*20));
-		 }
-		 
-		 if(entity.isPotionActive(PotionLoader.potionRequiem)&&entity.getActivePotionEffect(PotionLoader.potionRequiem).getDuration()==30*20-1)	{
-	        if(entity.world.isRemote )
-	        {Minecraft.getMinecraft().getSoundHandler().stopSounds();
-	        HuajiSoundPlayer .playMusic(SoundLoader.ORGA_REQUIEM_GOLD);}
-		 }
-		 
-		 if(entity.isPotionActive(PotionLoader.potionFlowerHope)&&entity.getActivePotionEffect(PotionLoader.potionFlowerHope).getDuration()<10)
-			{
-			 entity.attackEntityFrom(new DamageSource(HuajiConstant.HOPE_FLOWER), 9999f);
-			 if(((EntityPlayer) entity).isCreative()) {
-			 ((EntityPlayer) entity).dropItem(true);
-			 entity.setHealth(0f);
-			    }		
-			 }
-		 		 
-		 }
-		
-		try { 
-		if(entity.isPotionActive(PotionLoader.potionOrgaTarget)&&entity.getActivePotionEffect(PotionLoader.potionOrgaTarget).getDuration()==30)
-		{ 
+		Item mlik =entity.getHeldItemMainhand().getItem();
+		ItemStack mlikS =entity.getHeldItemMainhand();
+			if(mlik instanceof ItemBucketMilk) {
+				if(!entity.world.isRemote) {   
+				((EntityPlayer)entity).inventory.deleteStack(mlikS);
+				((EntityPlayer)entity).dropItem(mlik, 1); 
+				}
+			}
+		}
+	if(entity.isPotionActive(PotionLoader.potionFlowerHope)&&
+	((EntityPlayer)entity).inventory.hasItemStack(new ItemStack(ItemLoader.orgaRequiem))&&
+	NBTHelper.getEntityString(((EntityPlayer)entity), HuajiConstant.REQUIEM_OWNER).equals(((EntityPlayer)entity).getUniqueID().toString())) {
+		entity.removePotionEffect(PotionLoader.potionFlowerHope);
+		entity.removePotionEffect(MobEffects.SLOWNESS);
+		}
+ 
+	if(entity.isPotionActive(PotionLoader.potionFlowerHope)&&entity.getActivePotionEffect(PotionLoader.potionFlowerHope).getDuration()==112*20-10) {
+		entity.playSound(SoundLoader.ORGA_FLOWER,5f,1f);
+		entity.addPotionEffect(new PotionEffect(MobEffects.SLOWNESS,112*20,5));
+		}
+ 
+	 if(entity.isPotionActive(PotionLoader.potionFlowerHope)&&entity.getActivePotionEffect(PotionLoader.potionFlowerHope).getDuration()==52*20) {
+		 entity.addPotionEffect(new PotionEffect(MobEffects.SLOWNESS,52*20,6));
+		 entity.addPotionEffect(new PotionEffect(MobEffects.BLINDNESS,52*20));
+	 	}
+ 
+	 if(entity.isPotionActive(PotionLoader.potionRequiem)&&entity.getActivePotionEffect(PotionLoader.potionRequiem).getDuration()==30*20-1)	{
+	    if(entity.world.isRemote ) {
+	    Minecraft.getMinecraft().getSoundHandler().stopSounds();
+	    HuajiSoundPlayer .playMusic(SoundLoader.ORGA_REQUIEM_GOLD);
+	    }
+	 }
+	if(entity.isPotionActive(PotionLoader.potionFlowerHope)&&entity.getActivePotionEffect(PotionLoader.potionFlowerHope).getDuration()<10) {
+			entity.attackEntityFrom(new DamageSource(HuajiConstant.HOPE_FLOWER), 9999f);
+				if(((EntityPlayer) entity).isCreative()) {
+				((EntityPlayer) entity).dropItem(true);
+				entity.setHealth(0f);
+			}		
+		}		 
+	}
+	try { 
+		if(entity.isPotionActive(PotionLoader.potionOrgaTarget)&&entity.getActivePotionEffect(PotionLoader.potionOrgaTarget).getDuration()==30){ 
 			EntityPlayer player= entity.world.getClosestPlayerToEntity(entity, 100);
-			
-		if(player!=null&&entity!=player) {
-			if(!player.inventory.hasItemStack(new ItemStack(ItemLoader.orgaRequiem))) {
-			 player.sendMessage(new TextComponentTranslation("message.huaji.orga.shot")); 
-			 											}
-			 entity.attackEntityFrom(new EntityDamageSource(HuajiConstant.ORGA_SHOT,player), 30f);		
-			                                     }
-		else {
-			entity.attackEntityFrom(new DamageSource(HuajiConstant.ORGA_SHOT), 30f);	                             	 
-			                                     }
-			                   }  
-			       }
-		catch(Exception e){e.printStackTrace();}
-	 
+				if(player!=null&&entity!=player) {
+					if(!player.inventory.hasItemStack(new ItemStack(ItemLoader.orgaRequiem))) {
+					player.sendMessage(new TextComponentTranslation("message.huaji.orga.shot")); 
+					}
+				entity.attackEntityFrom(new EntityDamageSource(HuajiConstant.ORGA_SHOT,player), 30f);		
+				}
+				else {
+				entity.attackEntityFrom(new DamageSource(HuajiConstant.ORGA_SHOT), 30f);	                             	 
+				}
+			}  
+		}catch(Exception e){e.printStackTrace();} 
 	}
 	@SubscribeEvent
-	      public static void onOrgaPlayerDeath(LivingDeathEvent event) {
-		EntityLivingBase player=event.getEntityLiving(); 
-
+	public static void onOrgaPlayerDeath(LivingDeathEvent event) {
+	EntityLivingBase player=event.getEntityLiving(); 
 	if(player instanceof EntityPlayer) {
-		if(player.getItemStackFromSlot(EntityEquipmentSlot.HEAD).getItem() instanceof ItemOrgaArmorBase &&
-				player.getItemStackFromSlot(EntityEquipmentSlot.CHEST).getItem() instanceof ItemOrgaArmorBase &&
-				player.getItemStackFromSlot(EntityEquipmentSlot.LEGS).getItem() instanceof ItemOrgaArmorBase &&
-				player.getItemStackFromSlot(EntityEquipmentSlot.FEET).getItem() instanceof ItemOrgaArmorBase) {
-		 
+		if(player.getItemStackFromSlot(EntityEquipmentSlot.HEAD).getItem()   instanceof ItemOrgaArmorBase &&
+			player.getItemStackFromSlot(EntityEquipmentSlot.CHEST).getItem() instanceof ItemOrgaArmorBase &&
+			player.getItemStackFromSlot(EntityEquipmentSlot.LEGS).getItem()  instanceof ItemOrgaArmorBase &&
+			player.getItemStackFromSlot(EntityEquipmentSlot.FEET).getItem()  instanceof ItemOrgaArmorBase   ) {
 			if(!player.isPotionActive(PotionLoader.potionFlowerHope)&&!player.isPotionActive(PotionLoader.potionRequiem)) 
 			{
 				if(((EntityPlayer)player).inventory.hasItemStack(new ItemStack(ItemLoader.orgaRequiem))&&
-					NBTHelper.getEntityString(player, HuajiConstant.REQUIEM_OWNER).equals(player.getUniqueID().toString())) 
-				{
+					NBTHelper.getEntityString(player, HuajiConstant.REQUIEM_OWNER).equals(player.getUniqueID().toString())) {
 					player.addPotionEffect(new PotionEffect(PotionLoader.potionRequiem,30*20));
-				}else {
+				}
+				else {
 					player.addPotionEffect(new PotionEffect(PotionLoader.potionFlowerHope,112*20+100));
 				}
 			 }
@@ -131,50 +120,44 @@ public class EventOrga {
 	}
 	@SubscribeEvent
 	public static void onOrgaPlayerHurt(LivingHurtEvent evt) {
-		EntityLivingBase player=evt.getEntityLiving(); 
-		Entity attacker=evt.getSource().getTrueSource();
-		if(player instanceof EntityPlayer) {
-			if(player.getItemStackFromSlot(EntityEquipmentSlot.HEAD).getItem() instanceof ItemOrgaArmorBase &&
-					player.getItemStackFromSlot(EntityEquipmentSlot.CHEST).getItem() instanceof ItemOrgaArmorBase &&
-					player.getItemStackFromSlot(EntityEquipmentSlot.LEGS).getItem() instanceof ItemOrgaArmorBase &&
-					player.getItemStackFromSlot(EntityEquipmentSlot.FEET).getItem() instanceof ItemOrgaArmorBase &&
-					attacker instanceof EntityLivingBase&&attacker!=null&&attacker!=player) {
-		 if(((EntityPlayer)player).inventory.hasItemStack(new ItemStack(ItemLoader.orgaRequiem))&&
-				 NBTHelper.getEntityString(((EntityPlayer)player), HuajiConstant.REQUIEM_OWNER).equals(((EntityPlayer)player).getUniqueID().toString()))
-		 {
-			 ((EntityLivingBase)attacker).attackEntityFrom(new EntityDamageSource(HuajiConstant.REQUIEM_BACK,player),evt.getAmount()*2);
-			 
-		 }    		
-		if(player.getHealth()<2) {		
-		 
-		 Vec3d targetPosition = player.getPositionVector();  	 
-//               try {
-                int dimension = player.dimension;
-         	    MinecraftServer minecraftServer = player.getServer();
-         	    for (EntityPlayerMP player0 : minecraftServer.getPlayerList().getPlayers()) {
-        
-         	    TargetOrgaShotEffectMessageToClient msg1 = new TargetOrgaShotEffectMessageToClient(targetPosition); 
-         	    MessageOrgaRequiemClient msg2 =new MessageOrgaRequiemClient(targetPosition);
-         	    // must generate a fresh message for every player!
-        if (dimension == player.dimension) {
-		         if(!((EntityPlayer)player).inventory.hasItemStack(new ItemStack(ItemLoader.orgaRequiem))) {     
-		         	          HuajiAgeNetWorkHandler.sendTo(player0, msg1);
-		         	          }
-				         else {
-				        	          HuajiAgeNetWorkHandler.sendTo(player0, msg2);
-				         }
-         	        }
-         	    }
-//                 }catch(Exception e) {e.printStackTrace();} 
-       if(!((EntityLivingBase)attacker).isPotionActive(PotionLoader.potionOrgaTarget)) 
-       {
-         ((EntityLivingBase)attacker).addPotionEffect(new PotionEffect(PotionLoader.potionOrgaTarget,100));
-         
-       }
-//				((EntityLiving)attacker).attackEntityFrom(DamageSource.OUT_OF_WORLD,30f);
-//				((EntityLiving)attacker).onDeath(new EntityDamageSource("orga",player));
-			      }
+	EntityLivingBase player=evt.getEntityLiving(); 
+	Entity attacker=evt.getSource().getTrueSource();
+	if(player instanceof EntityPlayer) {
+		if(player.getItemStackFromSlot(EntityEquipmentSlot.HEAD).getItem()       instanceof ItemOrgaArmorBase &&
+		player.getItemStackFromSlot(EntityEquipmentSlot.CHEST).getItem() instanceof ItemOrgaArmorBase &&
+		player.getItemStackFromSlot(EntityEquipmentSlot.LEGS).getItem()  instanceof ItemOrgaArmorBase &&
+		player.getItemStackFromSlot(EntityEquipmentSlot.FEET).getItem()  instanceof ItemOrgaArmorBase &&
+		attacker instanceof EntityLivingBase&&attacker!=null&&attacker!=player) {
+			if(((EntityPlayer)player).inventory.hasItemStack(new ItemStack(ItemLoader.orgaRequiem))&&
+			NBTHelper.getEntityString(((EntityPlayer)player), HuajiConstant.REQUIEM_OWNER).equals(((EntityPlayer)player).getUniqueID().toString())) {
+				((EntityLivingBase)attacker).attackEntityFrom(new EntityDamageSource(HuajiConstant.REQUIEM_BACK,player),evt.getAmount()*2);
+				}    		
+			if(player.getHealth()<2) {		
+				Vec3d targetPosition = player.getPositionVector();  	 
+				//               try {
+				int dimension = player.dimension;
+				MinecraftServer minecraftServer = player.getServer();
+				for (EntityPlayerMP player0 : minecraftServer.getPlayerList().getPlayers()) {
+					TargetOrgaShotEffectMessageToClient msg1 = new TargetOrgaShotEffectMessageToClient(targetPosition); 
+					MessageOrgaRequiemClient msg2 =new MessageOrgaRequiemClient(targetPosition);
+					// must generate a fresh message for every player!
+						if (dimension == player.dimension) {
+				            if(!((EntityPlayer)player).inventory.hasItemStack(new ItemStack(ItemLoader.orgaRequiem))) {     
+				         	HuajiAgeNetWorkHandler.sendTo(player0, msg1);
+				         	}
+							else {
+									        	          HuajiAgeNetWorkHandler.sendTo(player0, msg2);
+							}
+						}
+					}
+				//                 }catch(Exception e) {e.printStackTrace();} 
+					if(!((EntityLivingBase)attacker).isPotionActive(PotionLoader.potionOrgaTarget)) {
+					((EntityLivingBase)attacker).addPotionEffect(new PotionEffect(PotionLoader.potionOrgaTarget,100));  
+					}
+				//				((EntityLiving)attacker).attackEntityFrom(DamageSource.OUT_OF_WORLD,30f);
+				//				((EntityLiving)attacker).onDeath(new EntityDamageSource("orga",player));
+				}
 			}
 		}
-    }
+	}
 }

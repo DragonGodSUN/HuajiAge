@@ -1,0 +1,35 @@
+{
+  "type": "minecraft:crafting_shapeless",
+  "result": {
+    "type": "minecraft:item_nbt",
+    "item": "huajiage:multi_knife",
+    "nbt": {
+      "light": true
+    }
+  },
+  "ingredients": [
+    {
+      "item": "huajiage:baking_gluten"
+    }, {
+      "item": "minecraft:diamond"
+    }, {
+      "item": "huajiage:baking_gluten"
+    }, {
+      "item": "minecraft:magma"
+    }, {
+    "type": "minecraft:item_nbt",
+    "item": "huajiage:multi_knife",
+    "nbt": {
+          "light": false
+        }
+    },{
+      "item": "minecraft:magma"
+    }, {
+      "item": "huajiage:baking_gluten"
+    }, {
+      "item": "minecraft:diamond"
+    }, {
+      "item": "huajiage:baking_gluten"
+    }
+  ]
+}

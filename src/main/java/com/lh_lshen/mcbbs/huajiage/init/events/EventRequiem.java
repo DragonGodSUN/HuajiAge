@@ -19,87 +19,73 @@ import net.minecraftforge.event.entity.player.AttackEntityEvent;
 import net.minecraftforge.fml.common.eventhandler.SubscribeEvent;
 
 public class EventRequiem {
-	 @SubscribeEvent
-     public static void onRequiemHit(AttackEntityEvent evt)
-     {
-	  EntityPlayer player = evt.getEntityPlayer();
-	  Entity hit =evt.getTarget();
- 		if (player.getHeldItemMainhand().isEmpty()&&player.isPotionActive(PotionLoader.potionRequiem)&&hit instanceof EntityLivingBase) {
-             player.playSound(SoundLoader.ORGA_REQUIEM_HIT, 1f, 1f);
-             ((EntityLivingBase) hit).attackEntityFrom(new EntityDamageSource(HuajiConstant.REQUIEM_DAMAGE,player),5f);
-
-             ((EntityLivingBase) hit).getEntityData().setInteger(HuajiConstant.REQUIEM, 60);
-             }
-     }
-  @SubscribeEvent
-	public static void requiemTarget(LivingUpdateEvent evt){
-		EntityLivingBase target=evt.getEntityLiving();
-		EntityPlayer player=target.world.getClosestPlayerToEntity(target, 100);
-		if(target.getEntityData().getInteger(HuajiConstant.REQUIEM)<=0) {
-			return;
-		}
-		if(target.getEntityData().getInteger(HuajiConstant.REQUIEM)>0) {
-			target.getEntityData().setInteger(HuajiConstant.REQUIEM, target.getEntityData().getInteger(HuajiConstant.REQUIEM) - 1);
-			if(!(target instanceof EntityPlayer)) {
-	    		if(target.ticksExisted %5==0) {
-	    			target.attackEntityFrom(new EntityDamageSource(HuajiConstant.REQUIEM_DAMAGE,player),12f);
-	    		   }
-	    		}else {
-	    			if(target.ticksExisted %10==0) {
-	    			target.attackEntityFrom(new DamageSource(HuajiConstant.REQUIEM_DAMAGE),12f);
-	    		}
-	    	}
+	@SubscribeEvent
+	public static void onRequiemHit(AttackEntityEvent evt) {
+	EntityPlayer player = evt.getEntityPlayer();
+	Entity hit =evt.getTarget();
+		if (player.getHeldItemMainhand().isEmpty()&&player.isPotionActive(PotionLoader.potionRequiem)&&hit instanceof EntityLivingBase) {
+		player.playSound(SoundLoader.ORGA_REQUIEM_HIT, 1f, 1f);
+		((EntityLivingBase) hit).attackEntityFrom(new EntityDamageSource(HuajiConstant.REQUIEM_DAMAGE,player),5f);
+		((EntityLivingBase) hit).getEntityData().setInteger(HuajiConstant.REQUIEM, 60);
 		}
 	}
   @SubscribeEvent
-     public static void onRequiem(LivingUpdateEvent event)
-     {
-		EntityLivingBase entity=event.getEntityLiving(); 
-
-		if(entity instanceof EntityPlayer) {
-			if(entity.getItemStackFromSlot(EntityEquipmentSlot .HEAD).getItem() instanceof ItemOrgaArmorBase&&
-					entity.getItemStackFromSlot(EntityEquipmentSlot.CHEST).getItem() instanceof ItemOrgaArmorBase &&
-					entity.getItemStackFromSlot(EntityEquipmentSlot.LEGS).getItem() instanceof ItemOrgaArmorBase &&
-					entity.getItemStackFromSlot(EntityEquipmentSlot.FEET).getItem() instanceof ItemOrgaArmorBase) {
-				if(entity.isPotionActive(PotionLoader.potionRequiem)) {
+	public static void requiemTarget(LivingUpdateEvent evt){
+	EntityLivingBase target=evt.getEntityLiving();
+	EntityPlayer player=target.world.getClosestPlayerToEntity(target, 100);
+		if(target.getEntityData().getInteger(HuajiConstant.REQUIEM)<=0) {
+		return;
+		}
+		if(target.getEntityData().getInteger(HuajiConstant.REQUIEM)>0) {
+		target.getEntityData().setInteger(HuajiConstant.REQUIEM, target.getEntityData().getInteger(HuajiConstant.REQUIEM) - 1);
+			if(!(target instanceof EntityPlayer)) {
+				if(target.ticksExisted %5==0) {
+				target.attackEntityFrom(new EntityDamageSource(HuajiConstant.REQUIEM_DAMAGE,player),12f);
+				}
+			}else {
+				if(target.ticksExisted %10==0) {
+				target.attackEntityFrom(new DamageSource(HuajiConstant.REQUIEM_DAMAGE),12f);
+				}
+			}
+		}
+	}
+  @SubscribeEvent
+	public static void onRequiem(LivingUpdateEvent event)
+	{
+	EntityLivingBase entity=event.getEntityLiving(); 
+	if(entity instanceof EntityPlayer) {
+		if(entity.getItemStackFromSlot(EntityEquipmentSlot .HEAD).getItem() instanceof ItemOrgaArmorBase&&
+		entity.getItemStackFromSlot(EntityEquipmentSlot.CHEST).getItem() instanceof ItemOrgaArmorBase &&
+		entity.getItemStackFromSlot(EntityEquipmentSlot.LEGS).getItem() instanceof ItemOrgaArmorBase &&
+		entity.getItemStackFromSlot(EntityEquipmentSlot.FEET).getItem() instanceof ItemOrgaArmorBase) {
+			if(entity.isPotionActive(PotionLoader.potionRequiem)) {
 				if(((EntityPlayer)entity).inventory.hasItemStack(new ItemStack(ItemLoader.orgaRequiem))) {
-			             	}
+				}
 				else {
 					entity.removePotionEffect(PotionLoader.potionRequiem);
 					if(entity.world.isRemote) {
-					Minecraft.getMinecraft().getSoundHandler().stopSounds();
-					   }
-					
+						Minecraft.getMinecraft().getSoundHandler().stopSounds();
+						}
 					}
-				
 				}
-			
 			}
-			
 		}
-	  
-     }
+	}
   @SubscribeEvent
 	public static void RequiemHit(LivingUpdateEvent evt) {
-        EntityLivingBase target =evt.getEntityLiving(); 
-    	EntityPlayer player=target.world.getClosestPlayerToEntity(target, 100);
-    	if(target.isPotionActive(PotionLoader.potionRequiemTarget)) {
-    		if(!(target instanceof EntityPlayer)&&
-    				!target.isPotionActive(PotionLoader.potionFlowerHope)&&
-    					!target.isPotionActive(PotionLoader.potionRequiem)) {
-    		if(target.ticksExisted %5==0) {
-    			target.attackEntityFrom(new EntityDamageSource(HuajiConstant.REQUIEM_DAMAGE,player),12f);
-    		   }
-    		
-    		}else {
-    			if(target.ticksExisted %10==0) {
-    			target.attackEntityFrom(new DamageSource(HuajiConstant.REQUIEM_DAMAGE),12f);
-    			}
-    			
-    		}
-    			
-    	}
-		
-	}
- 
+	EntityLivingBase target =evt.getEntityLiving(); 
+	EntityPlayer player=target.world.getClosestPlayerToEntity(target, 100);
+	if(target.isPotionActive(PotionLoader.potionRequiemTarget)) {
+		if(!(target instanceof EntityPlayer)&&!target.isPotionActive(PotionLoader.potionFlowerHope)&&!target.isPotionActive(PotionLoader.potionRequiem)) {
+			if(target.ticksExisted %5==0) {
+				target.attackEntityFrom(new EntityDamageSource(HuajiConstant.REQUIEM_DAMAGE,player),12f);
+				}
+			}
+			else {
+			if(target.ticksExisted %10==0) {
+				target.attackEntityFrom(new DamageSource(HuajiConstant.REQUIEM_DAMAGE),12f);
+				}	
+			}			
+		}	
+	} 
 }

@@ -2,5 +2,19 @@
     "parent": "item/handheld",
     "textures": {
         "layer0": "huajiage:items/multi_knife"
+        },
+    "overrides": [
+        {
+            "predicate": {
+                "light":0
+            },
+            "model": "huajiage:item/multi_knife_n"
+        },
+        {
+            "predicate": {
+                "light":1
+            },
+            "model": "huajiage:item/multi_knife_shiny"
         }
+    ]
 }

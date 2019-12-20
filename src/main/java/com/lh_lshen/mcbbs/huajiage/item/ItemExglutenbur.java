@@ -61,7 +61,6 @@ public class ItemExglutenbur extends ItemSword {
 			  MinecraftForge.EVENT_BUS.register(this);
 			  this.addPropertyOverride(new ResourceLocation("flavor"), new IItemPropertyGetter()
 		        {
-				    
 		            @SideOnly(Side.CLIENT)
 		            @Override
 		            public float apply(ItemStack stack, @Nullable World worldIn, @Nullable EntityLivingBase entityIn)

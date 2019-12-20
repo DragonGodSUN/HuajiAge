@@ -18,7 +18,11 @@
     }
   },
   "result": {
-    "item": "huajiage:multi_knife"
+    "type": "minecraft:item_nbt",
+    "item": "huajiage:multi_knife",
+     "nbt": {
+      "light": false
+    }
    }
  }  
 
