@@ -106,10 +106,11 @@ public class EntityMultiKnife extends EntityThrowable{
 			this.setRotation(this.getPitch(), this.getRotation());
 		}else {
 			if(getLight()) {
+				double r1=(Math.random()-0.5)*0.2;
+				double r2=(Math.random()-0.5)*0.2;
+				double r3=(Math.random()-0.5)*0.2;
+					world.spawnParticle(EnumParticleTypes.SMOKE_NORMAL,posX+r1, posY+r2, posZ+r3, r1, r2, r3);
 				for(int i=0;i<2;i++) {
-					double r1=(Math.random()-0.5)*0.2;
-					double r2=(Math.random()-0.5)*0.2;
-					double r3=(Math.random()-0.5)*0.2;
 					world.spawnParticle(EnumParticleTypes.LAVA,posX+r1, posY+r2, posZ+r3, r1, r2, r3);
 				}
 			}

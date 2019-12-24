@@ -85,7 +85,7 @@ public class ModelMuliKnife extends ModelBase
   }
   
   @Override
-public void render(Entity entityIn, float limbSwing, float limbSwingAmount, float ageInTicks, float netHeadYaw,
+  public void render(Entity entityIn, float limbSwing, float limbSwingAmount, float ageInTicks, float netHeadYaw,
 		float headPitch, float scale) {
 	
     setRotationAngles( limbSwing, limbSwingAmount, ageInTicks, headPitch,netHeadYaw, scale);
@@ -99,7 +99,7 @@ public void render(Entity entityIn, float limbSwing, float limbSwingAmount, floa
     Shape8.render(scale);
 	
 	super.render(entityIn, limbSwing, limbSwingAmount, ageInTicks, netHeadYaw, headPitch, scale);
-}
+  }
  
   
   private void setRotation(ModelRenderer model, float x, float y, float z)

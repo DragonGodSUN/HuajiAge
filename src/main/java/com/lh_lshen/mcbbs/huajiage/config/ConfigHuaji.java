@@ -28,6 +28,9 @@ public class ConfigHuaji {
 		@Config.Comment("Can THE WORLD stop the time of players?")
 		@LangKey("config.huaji_age.huaji_config.the_world")
 		public boolean allowTimeStopPlayer=true;
+		@Config.Comment("Can THE WORLD Destory blocks?")
+		@LangKey("config.huaji_age.huaji_config.the_world.blocks")
+		public boolean allowTheWorldDestory=false;
 		@Config.Comment("Dose The Infinite Charm Change mode when dress Orga suit?")
 		@LangKey("config.huaji_age.huaji_config.orga_suit")
 		public boolean orgaSuit=true;

@@ -2,6 +2,7 @@ package com.lh_lshen.mcbbs.huajiage.entity.render;
 
 import com.lh_lshen.mcbbs.huajiage.entity.render.layers.LayerCharmDisplay;
 import com.lh_lshen.mcbbs.huajiage.entity.render.layers.LayerHeldTopItem;
+import com.lh_lshen.mcbbs.huajiage.entity.render.layers.LayerTheWorld;
 import com.lh_lshen.mcbbs.huajiage.item.ItemRoadRoller;
 import com.lh_lshen.mcbbs.huajiage.item.ItemSecondFoilEntity;
 
@@ -22,7 +23,8 @@ public class RenderPlayerLayers extends net.minecraft.client.renderer.entity.Ren
     	for (RenderPlayer playerRender : Minecraft.getMinecraft().getRenderManager().getSkinMap().values()) {
 //		if() {
 
-		        	playerRender.addLayer(new LayerCharmDisplay(playerRender));     
+		        	playerRender.addLayer(new LayerCharmDisplay(playerRender));
+		        	playerRender.addLayer(new LayerTheWorld(playerRender));  
 	        
 //			}
 			

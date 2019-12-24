@@ -20,6 +20,7 @@ public class PotionLoader {
 	 public static Potion potionOrgaTarget;
 	 public static Potion potionRequiem;
 	 public static Potion potionRequiemTarget;
+	 public static Potion potionStand;
 
 	  
 	    @SubscribeEvent
@@ -30,6 +31,7 @@ public class PotionLoader {
 	    	potionOrgaTarget=new PotionOrgaTarget() ;
 	    	potionRequiem=new PotionRequiem() ;
 	    	potionRequiemTarget=new PotionRequiemTarget() ;
+	    	potionStand=new PotionStand();
 	    	
 	    	
 	        event.getRegistry().registerAll(potionHuajiProtection.setRegistryName(HuajiAge.MODID, "potion_huaji"),
@@ -37,7 +39,8 @@ public class PotionLoader {
 	        		                        potionFlowerHope.setRegistryName(HuajiAge.MODID, "potion_huaji_flower"),
 	        		                        potionOrgaTarget.setRegistryName(HuajiAge.MODID, "potion_huaji_orga_target"),
 	        		                        potionRequiem.setRegistryName(HuajiAge.MODID, "potion_huaji_requiem"),
-	        		                        potionRequiemTarget.setRegistryName(HuajiAge.MODID, "potion_huaji_requiem_target")
+	        		                        potionRequiemTarget.setRegistryName(HuajiAge.MODID, "potion_huaji_requiem_target"),
+	        		                        potionStand.setRegistryName(HuajiAge.MODID, "potion_huaji_stand")
 	        		);
 	        
 	    }

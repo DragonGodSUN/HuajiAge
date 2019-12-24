@@ -1,10 +1,16 @@
 package com.lh_lshen.mcbbs.huajiage.init.events;
 
 import java.util.List;
+import java.util.Random;
 
 import com.lh_lshen.mcbbs.huajiage.common.HuajiConstant;
 import com.lh_lshen.mcbbs.huajiage.config.ConfigHuaji;
+import com.lh_lshen.mcbbs.huajiage.config.ConfigHuaji.HuajiConfig;
+import com.lh_lshen.mcbbs.huajiage.init.playsound.HuajiSoundPlayer;
+import com.lh_lshen.mcbbs.huajiage.network.HuajiAgeNetWorkHandler;
 import com.lh_lshen.mcbbs.huajiage.network.messages.MessageDioHitClient;
+import com.lh_lshen.mcbbs.huajiage.network.messages.MessageParticleGenerator;
+import com.lh_lshen.mcbbs.huajiage.potion.PotionLoader;
 import com.lh_lshen.mcbbs.huajiage.util.NBTHelper;
 import com.lh_lshen.mcbbs.huajiage.util.ServerUtil;
 
@@ -13,14 +19,21 @@ import net.minecraft.entity.EntityLivingBase;
 import net.minecraft.entity.IProjectile;
 import net.minecraft.entity.item.EntityItem;
 import net.minecraft.entity.player.EntityPlayer;
+import net.minecraft.entity.player.EntityPlayerMP;
 import net.minecraft.entity.projectile.EntityFireball;
+import net.minecraft.init.Blocks;
 import net.minecraft.init.MobEffects;
+import net.minecraft.init.SoundEvents;
 import net.minecraft.potion.PotionEffect;
 import net.minecraft.util.DamageSource;
 import net.minecraft.util.EntityDamageSource;
+import net.minecraft.util.EnumParticleTypes;
+import net.minecraft.util.math.AxisAlignedBB;
 import net.minecraft.util.math.Vec3d;
 import net.minecraftforge.event.entity.living.LivingEvent.LivingUpdateEvent;
 import net.minecraftforge.event.entity.player.AttackEntityEvent;
+import net.minecraftforge.event.entity.player.PlayerEvent;
+import net.minecraftforge.event.world.BlockEvent;
 import net.minecraftforge.fml.common.eventhandler.SubscribeEvent;
 
 public class EventTimeStop {
@@ -83,109 +96,25 @@ public class EventTimeStop {
 	  Vec3d targetPosition = player.getPositionVector();
 	  if(NBTHelper.getEntityInteger(player,HuajiConstant.THE_WORLD)>0) {
 		  player.heal(3f);
-//            try { 
-//                int dimension = player.dimension;
-//         	    MinecraftServer minecraftServer = player.getServer();
-//         	    if(minecraftServer.getPlayerList().getPlayers()!=null) {
-//         	    for (EntityPlayerMP player0 : minecraftServer.getPlayerList().getPlayers()) {
-//        
-         	    MessageDioHitClient msg1 = new MessageDioHitClient(targetPosition, false); 
-         	    MessageDioHitClient msg2 =new MessageDioHitClient(targetPosition, true); 
-//         	    // must generate a fresh message for every player!
-//         	        if (dimension == player.dimension) {
+		  EventTimeStop.standPower(player);
+ 	      MessageDioHitClient msg1 = new MessageDioHitClient(targetPosition, false); 
+ 	      MessageDioHitClient msg2 =new MessageDioHitClient(targetPosition, true); 
          if(NBTHelper.getEntityInteger(player,HuajiConstant.DIO_FLAG)==0) {     
-//         	          HuajiAgeNetWorkHandler.sendTo(player0, msg1);
         	          ServerUtil.sendPacketToPlayers(player, msg1);
          	          player.getEntityData().setInteger(HuajiConstant.DIO_FLAG, 180);
          	          }
          if(NBTHelper.getEntityInteger(player,HuajiConstant.DIO_FLAG)<140&&NBTHelper.getEntityInteger(player,HuajiConstant.DIO_FLAG)>0) {   
         	          ServerUtil.sendPacketToPlayers(player, msg2);
          }
-        
-         	        
-//         	        }
-//         	      }
-//         	    }
-//                 }catch(Exception e) {e.printStackTrace();}
           if(hit instanceof EntityLivingBase) {  
              ((EntityLivingBase) hit).getEntityData().setInteger(HuajiConstant.DIO_HIT, 120);
             int a= NBTHelper.getEntityInteger(((EntityLivingBase) hit),HuajiConstant.DIO_HIT_EXTRA);
             ((EntityLivingBase) hit).getEntityData().setInteger(HuajiConstant.DIO_HIT_EXTRA,a+2);
                }
-//          if(hit instanceof EntityRoadRoller) {  
-//
-//             int a= ((EntityRoadRoller) hit).getEntityData().getInteger("huajiage.dio_push");
-//             ((EntityRoadRoller) hit).getEntityData().setInteger("huajiage.dio_push",a+2);
-//                }
             }
-             }
-
-	  
-	
-	/* @SubscribeEvent
-     public void onTimeStopItem(EntityEvent evt)
-     {
-	  Entity target =evt.getEntity();
-	  EntityLivingBase tp=null;
-	  List<Entity> targetp =target.getEntityWorld().getEntitiesWithinAABB(Entity.class, target.getEntityBoundingBox().grow(100)); 
-    		for(Entity b:targetp){
-    			if(b instanceof EntityLivingBase) {
-    			if(b.getEntityData().getInteger("the_world")>0) {
-    				tp=(EntityLivingBase) b;
-    			   }
-    			}
-    		}
-    	{if(target instanceof EntityArrow) {
-    		if(target.getEntityData().getBoolean("time_stop")) {
-    		if(tp!=null) {
-    			(( EntityArrow)target).motionX=0;
-    			(( EntityArrow)target).motionY=0;
-    			(( EntityArrow)target).motionZ=0;
-    			(( EntityArrow)target).setNoGravity(true);
-    			}
-    		else {
-    			target.getEntityData().setBoolean("time_stop",false);
-    				Double v_x=target.getEntityData().getDouble("v_x");
-    				Double v_y=target.getEntityData().getDouble("v_y");
-    				Double v_z=target.getEntityData().getDouble("v_z");
-    				(( EntityArrow)target).setNoGravity(false);
-    				(( EntityArrow)target).motionX=v_x;
-        			(( EntityArrow)target).motionY=v_y;
-        			(( EntityArrow)target).motionZ=v_z;
-        			}
-    			}
-    			
-    		  }
-    		if(target instanceof EntityItem) {
-    			if(NBTHelper.getEntityInteger(target,"time_stop")>0) {
-    	    		
-    	    		Double v_x=target.getEntityData().getDouble("v_x");
-    	    		Double v_y=target.getEntityData().getDouble("v_y");
-    	    		Double v_z=target.getEntityData().getDouble("v_z");
-    			while(target.ticksExisted%2==0) {
-    				target.getEntityData().setInteger("time_stop",NBTHelper.getEntityInteger(target,"time_stop")-2);
-    				(( EntityItem)target).setPosition(v_x,v_y,v_z);
-        			}
-        			if(NBTHelper.getEntityInteger(target,"time_stop")<=2) {
-    				((EntityItem)target).setNoGravity(false);
-        		  }
-        		}
-    		  }
-    		}
-    		
-
+	  evt.setCanceled(true);
      }
-     */
-//  @SubscribeEvent
-//   public static void onTheWorldPlayer(AttackEntityEvent evt)
-//     {
-//	  EntityLivingBase p=evt.getEntityPlayer();
-//	  if(NBTHelper.getEntityInteger(p,HuajiConstant.TIME_STOP)>0) 
-//	  {
-//		  evt.setCanceled(true);
-//	  }
-//		 
-//     }
+
   @SubscribeEvent
      public static void onTheWorld(LivingUpdateEvent evt)
      {
@@ -258,21 +187,86 @@ public class EventTimeStop {
             					i.setNoGravity(false);
         					}
     				}
-    				if(i instanceof EntityLivingBase) {
-    					if(i!=eater&&i.getEntityData().getInteger(HuajiConstant.TIME_STOP)==0) {
-    					i.getEntityData().setInteger(HuajiConstant.TIME_STOP, t);
-    					if(i instanceof EntityPlayer) {
-    					i.getEntityData().setDouble("huajiage.time_stop.x", i.posX);
-    					i.getEntityData().setDouble("huajiage.time_stop.y", i.posY);
-    					i.getEntityData().setDouble("huajiage.time_stop.z", i.posZ);
-    					   }
-    					}
-    				}
-    			}
+	    				if(i instanceof EntityLivingBase) {
+	    					if(i!=eater&&i.getEntityData().getInteger(HuajiConstant.TIME_STOP)==0) {
+	    					i.getEntityData().setInteger(HuajiConstant.TIME_STOP, t);
+	    					if(i instanceof EntityPlayer) {
+	    					i.getEntityData().setDouble("huajiage.time_stop.x", i.posX);
+	    					i.getEntityData().setDouble("huajiage.time_stop.y", i.posY);
+	    					i.getEntityData().setDouble("huajiage.time_stop.z", i.posZ);
+	    					   }
+	    					}
+	    				}
+	    			}
+	    		}
     		}
-
-    	}
-		
-    }
-
+     	}
+	  @SubscribeEvent
+	  public static void onTheWorldStand(LivingUpdateEvent evt)
+	  {
+		  EntityLivingBase eater =evt.getEntityLiving(); 
+		  List<EntityLivingBase> hits = eater.getEntityWorld().getEntitiesWithinAABB(EntityLivingBase.class, eater.getEntityBoundingBox().grow(2, 2, 2));
+		  if(!eater.isPotionActive(PotionLoader.potionStand)) {
+			  return;
+		  }
+		  if(eater.isPotionActive(PotionLoader.potionStand)) {
+			  for(EntityLivingBase target:hits) {
+			  if(target!=eater) {
+				  if(eater instanceof EntityPlayerMP) {
+					  EntityPlayerMP player =(EntityPlayerMP) eater;
+					  if(target.isSpectatedByPlayer(player)) {
+						  if(NBTHelper.getEntityInteger(target, HuajiConstant.DIO_HIT)<60) {
+								  NBTHelper.setEntityInteger(target, HuajiConstant.DIO_HIT, 60);
+								  HuajiSoundPlayer.playToNearbyClient(target, SoundEvents.ENTITY_GENERIC_EXPLODE);
+							      }
+						  if(target.ticksExisted%2==0) {
+						  target.world.playEvent(2001, target.getPosition().add(0, target.getPositionEyes(0).y-target.getPosition().getY(), 0), Blocks.OBSIDIAN.getStateId(Blocks.OBSIDIAN.getStateFromMeta(0)));
+						  }
+					        }
+				  	   }else {
+					  if(NBTHelper.getEntityInteger(target, HuajiConstant.DIO_HIT)<60) {
+							  NBTHelper.setEntityInteger(target, HuajiConstant.DIO_HIT, 60);
+							  HuajiSoundPlayer.playToNearbyClient(target, SoundEvents.ENTITY_GENERIC_EXPLODE);
+						    }
+					  if(target.ticksExisted%2==0) {
+						  target.world.playEvent(2001, target.getPosition().add(0, target.getPositionEyes(0).y-target.getPosition().getY(), 0), Blocks.OBSIDIAN.getStateId(Blocks.OBSIDIAN.getStateFromMeta(0)));
+						  }
+				       }
+				  }
+			  }
+		  }
+  	  }
+	  @SubscribeEvent
+	  public static void onBreaking(PlayerEvent.BreakSpeed evt)
+	  {
+		  if(ConfigHuaji.Huaji.allowTheWorldDestory) {
+			  float op =evt.getOriginalSpeed();
+			  if(NBTHelper.getEntityInteger(evt.getEntityPlayer(), HuajiConstant.THE_WORLD)>0) {
+				  evt.setNewSpeed(op*30);
+				  EventTimeStop.standPower(evt.getEntityPlayer());
+			  }else {
+				  evt.setNewSpeed(op);
+			  }
+		  }
+	  }
+//	  @SubscribeEvent
+//	  public static void onBreak(BlockEvent.HarvestDropsEvent evt)
+//	  {
+//		  if(ConfigHuaji.Huaji.allowTheWorldDestory) {
+//			  if(NBTHelper.getEntityInteger(evt.getHarvester(), HuajiConstant.THE_WORLD)>0) {
+//				  evt.isSilkTouching();
+//			  }
+//		  }
+//	  }
+	  public static void standPower(EntityPlayer player) {
+			  if(!player.isPotionActive(PotionLoader.potionStand)) {
+				  player.addPotionEffect(new PotionEffect(PotionLoader.potionStand,60,0));
+				  HuajiSoundPlayer.playToNearbyClient(player, SoundEvents.ENTITY_EXPERIENCE_ORB_PICKUP);
+				  ServerUtil.sendPacketToNearbyPlayers(player, new MessageParticleGenerator(player.getPositionVector(), EnumParticleTypes.FIREWORKS_SPARK));
+			  }
+			  if(player.isPotionActive(PotionLoader.potionStand)&&player.getActivePotionEffect(PotionLoader.potionStand).getDuration()<20) {
+				  player.addPotionEffect(new PotionEffect(PotionLoader.potionStand,60,0));
+			  }
+			  
+	}
 }

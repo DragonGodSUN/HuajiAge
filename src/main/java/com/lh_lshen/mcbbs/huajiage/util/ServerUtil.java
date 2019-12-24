@@ -1,14 +1,13 @@
 package com.lh_lshen.mcbbs.huajiage.util;
 
 import com.lh_lshen.mcbbs.huajiage.network.HuajiAgeNetWorkHandler;
-import com.lh_lshen.mcbbs.huajiage.network.messages.MessageDioHitClient;
 
 import net.minecraft.entity.EntityLivingBase;
-import net.minecraft.entity.player.EntityPlayer;
 import net.minecraft.entity.player.EntityPlayerMP;
 import net.minecraft.server.MinecraftServer;
 import net.minecraft.util.ResourceLocation;
 import net.minecraft.util.SoundEvent;
+import net.minecraft.util.math.BlockPos;
 import net.minecraftforge.fml.common.network.simpleimpl.IMessage;
 
 public class ServerUtil {
@@ -27,6 +26,12 @@ public class ServerUtil {
           }catch(Exception e) {e.printStackTrace();}
 
      }
+	public static void sendPacketToNearbyPlayers(EntityLivingBase player,IMessage msg) {	
+		try { 
+			BlockPos pos = player.getPosition();
+			HuajiAgeNetWorkHandler.sendToNearby(player.world, pos, msg);
+		}catch(Exception e) {e.printStackTrace();}
+	}
 	  public static SoundEvent getRegisteredSoundEvent(String id)
 	    {
 	        SoundEvent soundevent = SoundEvent.REGISTRY.getObject(new ResourceLocation(id));

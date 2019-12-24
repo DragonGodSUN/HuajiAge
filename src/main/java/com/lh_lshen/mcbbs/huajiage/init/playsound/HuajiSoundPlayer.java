@@ -50,5 +50,10 @@ public class HuajiSoundPlayer {
     	IMessage msg=new MessagePlaySoundClient(entity.getPositionVector(), sound);
         ServerUtil.sendPacketToPlayers(entity, msg);
     }
+    @SideOnly(Side.CLIENT)
+    public static void playToNearbyClient(EntityLivingBase entity,SoundEvent sound) {
+    	IMessage msg=new MessagePlaySoundClient(entity.getPositionVector(), sound);
+        ServerUtil.sendPacketToNearbyPlayers(entity, msg);
+    }
      
   }
