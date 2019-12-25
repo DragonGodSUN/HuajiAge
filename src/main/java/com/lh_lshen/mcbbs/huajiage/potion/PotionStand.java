@@ -35,7 +35,7 @@ public class PotionStand extends Potion {
      
         mc.getTextureManager().bindTexture(new ResourceLocation(HuajiAge.MODID + ":" + "potions/potion_01.png"));
 
-        Gui.drawModalRectWithCustomSizedTexture(x+2, y+2 , 0, 99, 18, 18, 256, 256);
+        Gui.drawModalRectWithCustomSizedTexture(x+2, y+2 , 0, 71, 18, 18, 256, 256);
     }
     @Override
     public void performEffect(EntityLivingBase entityLivingBaseIn, int amplifier) {

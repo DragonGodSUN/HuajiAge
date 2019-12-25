@@ -292,19 +292,19 @@ public class ModelTheWorld extends ModelBase
   }
   
   public void setRotationAngles(float limbSwing, float limbSwingAmount, float rotateFloat, float rotateYaw,
-          float rotatePitch, float scale, Entity entity)
+          float rotatePitch, float scale, Entity entity ,float speed)
   {
     super.setRotationAngles(limbSwing, limbSwingAmount, rotateFloat, rotateYaw, rotatePitch, scale, entity);
-    handl1.rotateAngleY = MathHelper.cos(rotateFloat) * 1.5F;
-    handl2.rotateAngleY = MathHelper.cos(rotateFloat+(float)Math.PI/3) * 1.4F;
-    handl3.rotateAngleY = MathHelper.cos(rotateFloat+(float)(2*Math.PI/3)) * 1.6F;
-    handl4.rotateAngleY = MathHelper.cos(rotateFloat+(float)(2.5*Math.PI/3)) * 1.3F;
-    handl5.rotateAngleY = MathHelper.cos(rotateFloat+(float)(3*Math.PI/3)) * 1.7F;
-    handr1.rotateAngleY = MathHelper.cos(rotateFloat+(float)(3.5*Math.PI/3)) * 1.2F;
-    handr2.rotateAngleY = MathHelper.cos(rotateFloat+(float)(6*Math.PI/3)) * 1.1F;
-    handr3.rotateAngleY = MathHelper.cos(rotateFloat+(float)(8*Math.PI/3)) * 1.4F;
-    handr4.rotateAngleY = MathHelper.cos(rotateFloat+(float)(10*Math.PI/3)) * 1.5F;
-    handr5.rotateAngleY = MathHelper.cos(rotateFloat+(float)(1.5*Math.PI/3) )* 1.6F;
+    handl1.rotateAngleY = MathHelper.cos(rotateFloat) * 1.5F * speed;
+    handl2.rotateAngleY = MathHelper.cos(rotateFloat+(float)Math.PI/3) * 1.4F * speed;
+    handl3.rotateAngleY = MathHelper.cos(rotateFloat+(float)(2*Math.PI/3)) * 1.6F * speed;
+    handl4.rotateAngleY = MathHelper.cos(rotateFloat+(float)(2.5*Math.PI/3)) * 1.3F * speed;
+    handl5.rotateAngleY = MathHelper.cos(rotateFloat+(float)(3*Math.PI/3)) * 1.7F * speed;
+    handr1.rotateAngleY = MathHelper.cos(rotateFloat+(float)(3.5*Math.PI/3)) * 1.2F * speed;
+    handr2.rotateAngleY = MathHelper.cos(rotateFloat+(float)(6*Math.PI/3)) * 1.1F * speed;
+    handr3.rotateAngleY = MathHelper.cos(rotateFloat+(float)(8*Math.PI/3)) * 1.4F * speed;
+    handr4.rotateAngleY = MathHelper.cos(rotateFloat+(float)(10*Math.PI/3)) * 1.5F * speed;
+    handr5.rotateAngleY = MathHelper.cos(rotateFloat+(float)(1.5*Math.PI/3) )* 1.6F * speed;
   }
 
 }

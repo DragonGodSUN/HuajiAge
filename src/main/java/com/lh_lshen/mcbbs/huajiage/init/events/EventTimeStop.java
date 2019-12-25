@@ -1,13 +1,10 @@
 package com.lh_lshen.mcbbs.huajiage.init.events;
 
 import java.util.List;
-import java.util.Random;
 
 import com.lh_lshen.mcbbs.huajiage.common.HuajiConstant;
 import com.lh_lshen.mcbbs.huajiage.config.ConfigHuaji;
-import com.lh_lshen.mcbbs.huajiage.config.ConfigHuaji.HuajiConfig;
 import com.lh_lshen.mcbbs.huajiage.init.playsound.HuajiSoundPlayer;
-import com.lh_lshen.mcbbs.huajiage.network.HuajiAgeNetWorkHandler;
 import com.lh_lshen.mcbbs.huajiage.network.messages.MessageDioHitClient;
 import com.lh_lshen.mcbbs.huajiage.network.messages.MessageParticleGenerator;
 import com.lh_lshen.mcbbs.huajiage.potion.PotionLoader;
@@ -21,6 +18,7 @@ import net.minecraft.entity.item.EntityItem;
 import net.minecraft.entity.player.EntityPlayer;
 import net.minecraft.entity.player.EntityPlayerMP;
 import net.minecraft.entity.projectile.EntityFireball;
+import net.minecraft.entity.projectile.ProjectileHelper;
 import net.minecraft.init.Blocks;
 import net.minecraft.init.MobEffects;
 import net.minecraft.init.SoundEvents;
@@ -28,12 +26,13 @@ import net.minecraft.potion.PotionEffect;
 import net.minecraft.util.DamageSource;
 import net.minecraft.util.EntityDamageSource;
 import net.minecraft.util.EnumParticleTypes;
-import net.minecraft.util.math.AxisAlignedBB;
+import net.minecraft.util.math.BlockPos;
+import net.minecraft.util.math.MathHelper;
 import net.minecraft.util.math.Vec3d;
+import net.minecraftforge.event.entity.ProjectileImpactEvent.Fireball;
 import net.minecraftforge.event.entity.living.LivingEvent.LivingUpdateEvent;
 import net.minecraftforge.event.entity.player.AttackEntityEvent;
 import net.minecraftforge.event.entity.player.PlayerEvent;
-import net.minecraftforge.event.world.BlockEvent;
 import net.minecraftforge.fml.common.eventhandler.SubscribeEvent;
 
 public class EventTimeStop {
@@ -96,7 +95,7 @@ public class EventTimeStop {
 	  Vec3d targetPosition = player.getPositionVector();
 	  if(NBTHelper.getEntityInteger(player,HuajiConstant.THE_WORLD)>0) {
 		  player.heal(3f);
-		  EventTimeStop.standPower(player);
+		  EventStand.standPower(player);
  	      MessageDioHitClient msg1 = new MessageDioHitClient(targetPosition, false); 
  	      MessageDioHitClient msg2 =new MessageDioHitClient(targetPosition, true); 
          if(NBTHelper.getEntityInteger(player,HuajiConstant.DIO_FLAG)==0) {     
@@ -201,72 +200,5 @@ public class EventTimeStop {
 	    		}
     		}
      	}
-	  @SubscribeEvent
-	  public static void onTheWorldStand(LivingUpdateEvent evt)
-	  {
-		  EntityLivingBase eater =evt.getEntityLiving(); 
-		  List<EntityLivingBase> hits = eater.getEntityWorld().getEntitiesWithinAABB(EntityLivingBase.class, eater.getEntityBoundingBox().grow(2, 2, 2));
-		  if(!eater.isPotionActive(PotionLoader.potionStand)) {
-			  return;
-		  }
-		  if(eater.isPotionActive(PotionLoader.potionStand)) {
-			  for(EntityLivingBase target:hits) {
-			  if(target!=eater) {
-				  if(eater instanceof EntityPlayerMP) {
-					  EntityPlayerMP player =(EntityPlayerMP) eater;
-					  if(target.isSpectatedByPlayer(player)) {
-						  if(NBTHelper.getEntityInteger(target, HuajiConstant.DIO_HIT)<60) {
-								  NBTHelper.setEntityInteger(target, HuajiConstant.DIO_HIT, 60);
-								  HuajiSoundPlayer.playToNearbyClient(target, SoundEvents.ENTITY_GENERIC_EXPLODE);
-							      }
-						  if(target.ticksExisted%2==0) {
-						  target.world.playEvent(2001, target.getPosition().add(0, target.getPositionEyes(0).y-target.getPosition().getY(), 0), Blocks.OBSIDIAN.getStateId(Blocks.OBSIDIAN.getStateFromMeta(0)));
-						  }
-					        }
-				  	   }else {
-					  if(NBTHelper.getEntityInteger(target, HuajiConstant.DIO_HIT)<60) {
-							  NBTHelper.setEntityInteger(target, HuajiConstant.DIO_HIT, 60);
-							  HuajiSoundPlayer.playToNearbyClient(target, SoundEvents.ENTITY_GENERIC_EXPLODE);
-						    }
-					  if(target.ticksExisted%2==0) {
-						  target.world.playEvent(2001, target.getPosition().add(0, target.getPositionEyes(0).y-target.getPosition().getY(), 0), Blocks.OBSIDIAN.getStateId(Blocks.OBSIDIAN.getStateFromMeta(0)));
-						  }
-				       }
-				  }
-			  }
-		  }
-  	  }
-	  @SubscribeEvent
-	  public static void onBreaking(PlayerEvent.BreakSpeed evt)
-	  {
-		  if(ConfigHuaji.Huaji.allowTheWorldDestory) {
-			  float op =evt.getOriginalSpeed();
-			  if(NBTHelper.getEntityInteger(evt.getEntityPlayer(), HuajiConstant.THE_WORLD)>0) {
-				  evt.setNewSpeed(op*30);
-				  EventTimeStop.standPower(evt.getEntityPlayer());
-			  }else {
-				  evt.setNewSpeed(op);
-			  }
-		  }
-	  }
-//	  @SubscribeEvent
-//	  public static void onBreak(BlockEvent.HarvestDropsEvent evt)
-//	  {
-//		  if(ConfigHuaji.Huaji.allowTheWorldDestory) {
-//			  if(NBTHelper.getEntityInteger(evt.getHarvester(), HuajiConstant.THE_WORLD)>0) {
-//				  evt.isSilkTouching();
-//			  }
-//		  }
-//	  }
-	  public static void standPower(EntityPlayer player) {
-			  if(!player.isPotionActive(PotionLoader.potionStand)) {
-				  player.addPotionEffect(new PotionEffect(PotionLoader.potionStand,60,0));
-				  HuajiSoundPlayer.playToNearbyClient(player, SoundEvents.ENTITY_EXPERIENCE_ORB_PICKUP);
-				  ServerUtil.sendPacketToNearbyPlayers(player, new MessageParticleGenerator(player.getPositionVector(), EnumParticleTypes.FIREWORKS_SPARK));
-			  }
-			  if(player.isPotionActive(PotionLoader.potionStand)&&player.getActivePotionEffect(PotionLoader.potionStand).getDuration()<20) {
-				  player.addPotionEffect(new PotionEffect(PotionLoader.potionStand,60,0));
-			  }
-			  
-	}
+	 
 }

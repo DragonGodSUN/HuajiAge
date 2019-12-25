@@ -3,7 +3,10 @@ package com.lh_lshen.mcbbs.huajiage.item;
 import java.util.List;
 
 import com.lh_lshen.mcbbs.huajiage.init.LootTablesLoader;
+import com.lh_lshen.mcbbs.huajiage.init.events.EventStand;
+import com.lh_lshen.mcbbs.huajiage.init.events.EventTimeStop;
 import com.lh_lshen.mcbbs.huajiage.init.playsound.SoundLoader;
+import com.lh_lshen.mcbbs.huajiage.potion.PotionLoader;
 import com.lh_lshen.mcbbs.huajiage.util.NBTHelper;
 
 import net.minecraft.entity.player.EntityPlayer;
@@ -55,6 +58,8 @@ public class ItemLootTableTest extends Item {
 			return "Time Stop ---Dio";
 		case 3:
 			return "Time Stop ---Passerby";
+		case 4:
+			return "Stand Power!!!";
 		}
 	    return null;
 	}
@@ -65,7 +70,7 @@ public class ItemLootTableTest extends Item {
 		if(stack.getItem()==ItemLoader.loottest) {
 		if(playerIn.isSneaking()) {
 			int mode=getmode(stack);
-			if(mode<3) {
+			if(mode<4) {
 			modeSwitch(stack, mode+1);
 			}else {
 			modeSwitch(stack,0);	
@@ -125,11 +130,16 @@ public class ItemLootTableTest extends Item {
 		playerIn.getEntityData().setDouble("huajiage.time_stop.y", playerIn.posY);
 		playerIn.getEntityData().setDouble("huajiage.time_stop.z", playerIn.posZ);
         playerIn.sendMessage(new TextComponentTranslation("message.huajiage.the_world"));
-       
-       
         break;
-		       }
-		      }
+		   }
+		}
+		case 4:{
+			if(!playerIn.world.isRemote) {
+			EventStand.standPower(playerIn);
+			playerIn.addPotionEffect(new PotionEffect(PotionLoader.potionStand,200));
+	        break;
+			}
+		}
 		    }
 		  }
 		}
