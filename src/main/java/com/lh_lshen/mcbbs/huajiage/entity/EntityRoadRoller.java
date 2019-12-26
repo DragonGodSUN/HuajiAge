@@ -112,7 +112,7 @@ public class EntityRoadRoller extends EntityThrowable {
 			if(extra>getExtra()) {
 				 Vec3d targetPosition = thrower.getPositionVector();
 				 MessageDioHitClient msg1 = new MessageDioHitClient(targetPosition, false); 
-	         	    MessageDioHitClient msg2 =new MessageDioHitClient(targetPosition, true); 
+         	     MessageDioHitClient msg2 = new MessageDioHitClient(targetPosition, true ); 
 	         if(thrower.getEntityData().getInteger("huajiage.dio_flag")==0) {  
 	        	 if(thrower instanceof EntityPlayer) {
 	        	          ServerUtil.sendPacketToPlayers((EntityPlayer) thrower, msg1);}

@@ -48,7 +48,7 @@ public class LayerTheWorld implements  LayerRenderer<EntityLivingBase> {
 	 					OpenGlHelper.setLightmapTextureCoords(OpenGlHelper.lightmapTexUnit, 240f, 240f);
 	 					GlStateManager.pushMatrix();
 	 		            GlStateManager.translate(0.0F, 0.0F, -0.75F);
-	 		            MODEL.setRotationAngles(limbSwing, limbSwingAmount, ageInTicks, netHeadYaw, headPitch, scale, entitylivingbaseIn, 1f);
+	 		            MODEL.setRotationAngles(limbSwing, limbSwingAmount, ageInTicks, netHeadYaw, headPitch, scale, entitylivingbaseIn, 1f ,1.5f);
 	 					MODEL.render(p, limbSwing, limbSwingAmount, ageInTicks, netHeadYaw, headPitch, scale);
  						GlStateManager.disableBlend();
  						GlStateManager.enableLighting();

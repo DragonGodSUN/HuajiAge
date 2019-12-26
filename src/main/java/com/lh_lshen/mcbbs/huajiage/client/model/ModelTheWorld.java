@@ -7,6 +7,7 @@ package com.lh_lshen.mcbbs.huajiage.client.model;
 
 import net.minecraft.client.model.ModelBase;
 import net.minecraft.client.model.ModelRenderer;
+import net.minecraft.client.renderer.GlStateManager;
 import net.minecraft.entity.Entity;
 import net.minecraft.util.math.MathHelper;
 
@@ -292,19 +293,33 @@ public class ModelTheWorld extends ModelBase
   }
   
   public void setRotationAngles(float limbSwing, float limbSwingAmount, float rotateFloat, float rotateYaw,
-          float rotatePitch, float scale, Entity entity ,float speed)
+          float rotatePitch, float scale, Entity entity ,float power ,float speed)
   {
     super.setRotationAngles(limbSwing, limbSwingAmount, rotateFloat, rotateYaw, rotatePitch, scale, entity);
-    handl1.rotateAngleY = MathHelper.cos(rotateFloat) * 1.5F * speed;
-    handl2.rotateAngleY = MathHelper.cos(rotateFloat+(float)Math.PI/3) * 1.4F * speed;
-    handl3.rotateAngleY = MathHelper.cos(rotateFloat+(float)(2*Math.PI/3)) * 1.6F * speed;
-    handl4.rotateAngleY = MathHelper.cos(rotateFloat+(float)(2.5*Math.PI/3)) * 1.3F * speed;
-    handl5.rotateAngleY = MathHelper.cos(rotateFloat+(float)(3*Math.PI/3)) * 1.7F * speed;
-    handr1.rotateAngleY = MathHelper.cos(rotateFloat+(float)(3.5*Math.PI/3)) * 1.2F * speed;
-    handr2.rotateAngleY = MathHelper.cos(rotateFloat+(float)(6*Math.PI/3)) * 1.1F * speed;
-    handr3.rotateAngleY = MathHelper.cos(rotateFloat+(float)(8*Math.PI/3)) * 1.4F * speed;
-    handr4.rotateAngleY = MathHelper.cos(rotateFloat+(float)(10*Math.PI/3)) * 1.5F * speed;
-    handr5.rotateAngleY = MathHelper.cos(rotateFloat+(float)(1.5*Math.PI/3) )* 1.6F * speed;
+    handl1.rotateAngleY = MathHelper.cos(speed*rotateFloat) * 1.2F * power;
+    handl2.rotateAngleY = MathHelper.cos(speed*rotateFloat+(float)Math.PI/3) * 1.4F * power;
+    handl3.rotateAngleY = MathHelper.cos(speed*rotateFloat+(float)(2*Math.PI/3)) * 1.6F * power;
+    handl4.rotateAngleY = MathHelper.cos(speed*rotateFloat+(float)(2.5*Math.PI/3)) * 1.3F * power;
+    handl5.rotateAngleY = MathHelper.cos(speed*rotateFloat+(float)(3*Math.PI/3)) * 1.7F * power;
+    handr1.rotateAngleY = MathHelper.cos(speed*rotateFloat+(float)(3.5*Math.PI/3)) * 1.2F * power;
+    handr2.rotateAngleY = MathHelper.cos(speed*rotateFloat+(float)(6*Math.PI/3)) * 1.1F * power;
+    handr3.rotateAngleY = MathHelper.cos(speed*rotateFloat+(float)(8*Math.PI/3)) * 1.4F * power;
+    handr4.rotateAngleY = MathHelper.cos(speed*rotateFloat+(float)(10*Math.PI/3)) * 1.5F * power;
+    handr5.rotateAngleY = MathHelper.cos(speed*rotateFloat+(float)(1.5*Math.PI/3) )* 1.6F * power;
+  }
+  public void doHandRender(float x ,float y ,float z ,float scale ,float alpha) {
+	  	GlStateManager.translate(x, y, z);
+	  	GlStateManager.color(1.0F, 1.0F, 1.0F, alpha);
+	  	handl1.render(scale);
+	    handl2.render(scale);
+	    handl3.render(scale);
+	    handl4.render(scale);
+	    handl5.render(scale);
+	    handr1.render(scale);
+	    handr2.render(scale);
+	    handr3.render(scale);
+	    handr4.render(scale);
+	    handr5.render(scale);
   }
 
 }

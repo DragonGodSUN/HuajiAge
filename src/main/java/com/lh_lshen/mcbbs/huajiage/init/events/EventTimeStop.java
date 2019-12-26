@@ -110,8 +110,8 @@ public class EventTimeStop {
             int a= NBTHelper.getEntityInteger(((EntityLivingBase) hit),HuajiConstant.DIO_HIT_EXTRA);
             ((EntityLivingBase) hit).getEntityData().setInteger(HuajiConstant.DIO_HIT_EXTRA,a+2);
                }
+          evt.setCanceled(true);
             }
-	  evt.setCanceled(true);
      }
 
   @SubscribeEvent
