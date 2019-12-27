@@ -13,10 +13,12 @@ import com.lh_lshen.mcbbs.huajiage.entity.EntitySecondFoil;
 import com.lh_lshen.mcbbs.huajiage.entity.render.layers.LayerTheWorld;
 import com.lh_lshen.mcbbs.huajiage.init.events.EventKeyInput;
 import com.lh_lshen.mcbbs.huajiage.init.events.EventOrga;
+import com.lh_lshen.mcbbs.huajiage.init.events.EventPlayerCapability;
 import com.lh_lshen.mcbbs.huajiage.init.events.EventRequiem;
 import com.lh_lshen.mcbbs.huajiage.init.events.EventStand;
 import com.lh_lshen.mcbbs.huajiage.init.events.EventTimeStop;
 import com.lh_lshen.mcbbs.huajiage.item.ItemLoader;
+import com.lh_lshen.mcbbs.huajiage.network.messages.SyncStandMessage;
 import com.lh_lshen.mcbbs.huajiage.potion.PotionLoader;
 import com.lh_lshen.mcbbs.huajiage.potion.PotionStand;
 import com.lh_lshen.mcbbs.huajiage.util.NBTHelper;
@@ -66,6 +68,7 @@ public class EventLoader {
 	        MinecraftForge.EVENT_BUS.register(EventOrga.class);
 	        MinecraftForge.EVENT_BUS.register(EventTimeStop.class);
 	        MinecraftForge.EVENT_BUS.register(EventStand.class);
+	        MinecraftForge.EVENT_BUS.register(EventPlayerCapability.class);
 	        
 	        EventLoader.EVENT_BUS.register(this);
 	    }

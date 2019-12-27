@@ -5,6 +5,8 @@ import java.util.List;
 import org.lwjgl.input.Keyboard;
 import org.lwjgl.opengl.GL11;
 
+import com.lh_lshen.mcbbs.huajiage.capability.CapabilityStandHandler;
+import com.lh_lshen.mcbbs.huajiage.capability.StandHandler;
 import com.lh_lshen.mcbbs.huajiage.common.HuajiConstant;
 import com.lh_lshen.mcbbs.huajiage.config.ConfigHuaji;
 import com.lh_lshen.mcbbs.huajiage.crativetab.CreativeTabLoader;
@@ -12,6 +14,7 @@ import com.lh_lshen.mcbbs.huajiage.entity.EntityRoadRoller;
 import com.lh_lshen.mcbbs.huajiage.init.playsound.SoundLoader;
 import com.lh_lshen.mcbbs.huajiage.network.HuajiAgeNetWorkHandler;
 import com.lh_lshen.mcbbs.huajiage.network.messages.MessageDioHitClient;
+import com.lh_lshen.mcbbs.huajiage.util.EnumStandtype;
 import com.lh_lshen.mcbbs.huajiage.util.NBTHelper;
 import com.lh_lshen.mcbbs.huajiage.util.ServerUtil;
 
@@ -58,6 +61,7 @@ public class ItemDioBread extends ItemFood{
     {
         if (!worldIn.isRemote)
         {
+        	StandHandler stand = player.getCapability(CapabilityStandHandler.STAND_TYPE, null);
         	double rand=Math.random()*100;
         	player.addPotionEffect(new PotionEffect(MobEffects.NIGHT_VISION,9*20,0));
         	player.addPotionEffect(new PotionEffect(MobEffects.STRENGTH,9*20,4));
@@ -66,6 +70,8 @@ public class ItemDioBread extends ItemFood{
         	player.addPotionEffect(new PotionEffect(MobEffects.REGENERATION,9*20,2));
             player.sendMessage(new TextComponentTranslation("message.huajiage.the_world"));
             player.heal(5f);
+//            NBTHelper.setEntityInteger(player, HuajiConstant.STAND_TYPE, 21);
+            stand.setStand(EnumStandtype.THE_WORLD.getname());
             player.getEntityData().setInteger(HuajiConstant.THE_WORLD, HuajiConstant.THE_WORLD_TIME);
             if(rand<30d) {
             	player.inventory.addItemStackToInventory(new ItemStack(ItemLoader.roadRoller));

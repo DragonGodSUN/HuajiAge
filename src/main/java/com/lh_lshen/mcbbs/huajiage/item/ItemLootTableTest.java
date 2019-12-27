@@ -2,11 +2,15 @@ package com.lh_lshen.mcbbs.huajiage.item;
 
 import java.util.List;
 
+import com.lh_lshen.mcbbs.huajiage.capability.CapabilityStandHandler;
+import com.lh_lshen.mcbbs.huajiage.capability.StandHandler;
+import com.lh_lshen.mcbbs.huajiage.common.HuajiConstant;
 import com.lh_lshen.mcbbs.huajiage.init.LootTablesLoader;
 import com.lh_lshen.mcbbs.huajiage.init.events.EventStand;
 import com.lh_lshen.mcbbs.huajiage.init.events.EventTimeStop;
 import com.lh_lshen.mcbbs.huajiage.init.playsound.SoundLoader;
 import com.lh_lshen.mcbbs.huajiage.potion.PotionLoader;
+import com.lh_lshen.mcbbs.huajiage.util.EnumStandtype;
 import com.lh_lshen.mcbbs.huajiage.util.NBTHelper;
 
 import net.minecraft.entity.player.EntityPlayer;
@@ -68,6 +72,7 @@ public class ItemLootTableTest extends Item {
 	public ActionResult<ItemStack> onItemRightClick(final World worldIn, final EntityPlayer playerIn, final EnumHand hand) {
 		ItemStack stack=playerIn.getHeldItemMainhand();
 		if(stack.getItem()==ItemLoader.loottest) {
+		StandHandler stand = playerIn.getCapability(CapabilityStandHandler.STAND_TYPE, null);
 		if(playerIn.isSneaking()) {
 			int mode=getmode(stack);
 			if(mode<4) {
@@ -104,6 +109,8 @@ public class ItemLootTableTest extends Item {
 		case 1:{playerIn.playSound(SoundLoader.ORGA_FLOWER, 2f, 1f); break;}
 		case 2:{
 		if(!playerIn.world.isRemote) {
+//		NBTHelper.setEntityInteger(playerIn, HuajiConstant.STAND_TYPE, 21);
+		stand.setStand(EnumStandtype.THE_WORLD.getname());
 		playerIn.getEntityData().setInteger("huajiage.the_world",9*20);
     	playerIn.addPotionEffect(new PotionEffect(MobEffects.NIGHT_VISION,9*20,0));
     	playerIn.addPotionEffect(new PotionEffect(MobEffects.STRENGTH,9*20,4));
@@ -125,6 +132,7 @@ public class ItemLootTableTest extends Item {
 		      }
 		case 3:{
 		if(!playerIn.world.isRemote) {
+		stand.setStand("");
 		playerIn.getEntityData().setInteger("huajiage.time_stop",9*20);
 		playerIn.getEntityData().setDouble("huajiage.time_stop.x", playerIn.posX);
 		playerIn.getEntityData().setDouble("huajiage.time_stop.y", playerIn.posY);
@@ -136,7 +144,9 @@ public class ItemLootTableTest extends Item {
 		case 4:{
 			if(!playerIn.world.isRemote) {
 			EventStand.standPower(playerIn);
-			playerIn.addPotionEffect(new PotionEffect(PotionLoader.potionStand,200));
+			NBTHelper.setEntityInteger(playerIn, HuajiConstant.STAND_TYPE, 21);
+//			playerIn.addPotionEffect(new PotionEffect(PotionLoader.potionStand,200));
+			stand.setStand(EnumStandtype.THE_WORLD.getname());
 	        break;
 			}
 		}

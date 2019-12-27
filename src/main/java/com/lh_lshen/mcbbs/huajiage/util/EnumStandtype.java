@@ -11,6 +11,7 @@ public enum EnumStandtype {
 		this.name=name;
 	}
 	private String name;
+	
 	public String getname() {
 		return name;
 	}
@@ -28,5 +29,17 @@ public enum EnumStandtype {
 		}
 		return "textures/entity/entity_the_world.png";
 	}
+
+	    public static EnumStandtype getType(String string) {
+	        switch(string) {
+	        case "the_world":
+	            return THE_WORLD;
+	        }
+	        return null;
+	    }
+
+	    public static int getLength() {
+	        return values().length;
+	    }
 	
 }

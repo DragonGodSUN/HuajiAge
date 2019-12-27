@@ -14,6 +14,9 @@ public  class HuajiConstant {
 	
 	public static final int THE_WORLD_TIME=9*20;
 	
+//	Stand type
+	public static final String STAND_TYPE=HuajiAge.MODID+"."+"stand_type";
+	
 //	Requiem
 	public static final String REQUIEM=HuajiAge.MODID+"."+"requiem";
 	public static final String REQUIEM_OWNER=HuajiAge.MODID+"."+"requiem_owner";

@@ -4,8 +4,10 @@ import com.lh_lshen.mcbbs.huajiage.HuajiAge;
 import com.lh_lshen.mcbbs.huajiage.client.model.ModelMuliKnife;
 import com.lh_lshen.mcbbs.huajiage.client.model.ModelTheWorld;
 import com.lh_lshen.mcbbs.huajiage.common.HuajiConstant;
+import com.lh_lshen.mcbbs.huajiage.init.events.EventStand;
 import com.lh_lshen.mcbbs.huajiage.item.ItemLoader;
 import com.lh_lshen.mcbbs.huajiage.potion.PotionLoader;
+import com.lh_lshen.mcbbs.huajiage.util.EnumStandtype;
 import com.lh_lshen.mcbbs.huajiage.util.NBTHelper;
 
 import net.minecraft.client.Minecraft;
@@ -40,6 +42,10 @@ public class LayerTheWorld implements  LayerRenderer<EntityLivingBase> {
 			float partialTicks, float ageInTicks, float netHeadYaw, float headPitch, float scale) {
 			EntityLivingBase p=entitylivingbaseIn;
 	 				if(p.isPotionActive(PotionLoader.potionStand)){
+	 					EnumStandtype type = EventStand.getType(p);
+	 					if(type == null) {
+	 						return;
+	 					}
 	 					GlStateManager.color(1.0F, 1.0F, 1.0F, 1.0F);
 	 		            GlStateManager.enableBlend();
 	 		            GlStateManager.disableLighting();
