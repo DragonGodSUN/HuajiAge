@@ -26,10 +26,10 @@ public class ServerUtil {
           }catch(Exception e) {e.printStackTrace();}
 
      }
-	public static void sendPacketToNearbyPlayers(EntityLivingBase player,IMessage msg) {	
+	public static void sendPacketToNearbyPlayers(EntityLivingBase entity,IMessage msg) {	
 		try { 
-			BlockPos pos = player.getPosition();
-			HuajiAgeNetWorkHandler.sendToNearby(player.world, pos, msg);
+			BlockPos pos = entity.getPosition();
+			HuajiAgeNetWorkHandler.sendToNearby(entity.world, pos, msg);
 		}catch(Exception e) {e.printStackTrace();}
 	}
 	  public static SoundEvent getRegisteredSoundEvent(String id)

@@ -104,25 +104,27 @@ public class EventStand {
 				if(type == null) {
 					return;
 				}
+			  if(NBTHelper.getEntityInteger(evt.getEntityLiving(), HuajiConstant.THE_WORLD)>0) {
+				EventStand.standPower(evt.getEntityLiving());
+			  }
 			  float op =evt.getOriginalSpeed();
 			  if(evt.getEntityPlayer().isPotionActive(PotionLoader.potionStand)) {
-				  evt.setNewSpeed(op*30);
+				  evt.setNewSpeed(op*25*type.getSpeed());
 			  }else {
 				  evt.setNewSpeed(op);
 			  }
-			  if(NBTHelper.getEntityInteger(evt.getEntityPlayer(), HuajiConstant.THE_WORLD)>0) {
-				 EventStand.standPower(evt.getEntityPlayer());
-			  }
 		  }
 	  }
-	  public static void standPower(EntityPlayer player) {
-			  if(!player.isPotionActive(PotionLoader.potionStand)) {
-				  player.addPotionEffect(new PotionEffect(PotionLoader.potionStand,60,0));
-				  HuajiSoundPlayer.playToNearbyClient(player, SoundEvents.ENTITY_EXPERIENCE_ORB_PICKUP);
-				  ServerUtil.sendPacketToNearbyPlayers(player, new MessageParticleGenerator(player.getPositionVector(), EnumParticleTypes.FIREWORKS_SPARK));
+	  
+	  
+	  public static void standPower(EntityLivingBase entity) {
+			  if(!entity.isPotionActive(PotionLoader.potionStand)) {
+				  entity.addPotionEffect(new PotionEffect(PotionLoader.potionStand,60,0));
+				  HuajiSoundPlayer.playToNearbyClient(entity, SoundEvents.ENTITY_EXPERIENCE_ORB_PICKUP);
+				  ServerUtil.sendPacketToNearbyPlayers(entity, new MessageParticleGenerator(entity.getPositionVector(), EnumParticleTypes.FIREWORKS_SPARK));
 			  }
-			  if(player.isPotionActive(PotionLoader.potionStand)&&player.getActivePotionEffect(PotionLoader.potionStand).getDuration()<20) {
-				  player.addPotionEffect(new PotionEffect(PotionLoader.potionStand,60,0));
+			  if(entity.isPotionActive(PotionLoader.potionStand)&&entity.getActivePotionEffect(PotionLoader.potionStand).getDuration()<20) {
+				  entity.addPotionEffect(new PotionEffect(PotionLoader.potionStand,60,0));
 			  }
 			  
 	}
@@ -156,13 +158,13 @@ public class EventStand {
 		if(type == null) {
 			return;
 		}
+		ResourceLocation STAND_TEX = new ResourceLocation(HuajiAge.MODID,type.getTex());
 		switch(type) {
 		case THE_WORLD:
-			ModelTheWorld THE_WORLD_MODEL = (ModelTheWorld) EnumStandtype.THE_WORLD.newModel();
-			ResourceLocation THE_WORLD_TEX = new ResourceLocation(HuajiAge.MODID, EnumStandtype.THE_WORLD.getTex());
-			Minecraft.getMinecraft().getTextureManager().bindTexture(THE_WORLD_TEX);
+			ModelTheWorld THE_WORLD_MODEL = (ModelTheWorld) type.newModel();
+			Minecraft.getMinecraft().getTextureManager().bindTexture(STAND_TEX);
 			OpenGlHelper.setLightmapTextureCoords(OpenGlHelper.lightmapTexUnit, 240f, 240f);
-			THE_WORLD_MODEL.setRotationAngles(0, 0, entity.ticksExisted, 0, 0, 1, entity ,0.5f ,1.2f);
+			THE_WORLD_MODEL.setRotationAngles(0, 0, entity.ticksExisted, 0, 0, 1, entity ,0.5f,type.getSpeed());
 			THE_WORLD_MODEL.doHandRender(0, -1f, -0.75f, 1f,0.6f);
 			break;
 		}
@@ -170,8 +172,11 @@ public class EventStand {
 	}
 	private static void doStandPower(EntityLivingBase eater) {
 		EnumStandtype type = getType(eater);
-		List<Entity> entityCllection = eater.getEntityWorld().getEntitiesWithinAABB(Entity.class, eater.getEntityBoundingBox().grow(2, 2, 2));
 		if(type == null) {
+			return;
+		}
+		List<Entity> entityCllection = eater.getEntityWorld().getEntitiesWithinAABB(Entity.class, eater.getEntityBoundingBox().grow(type.getDistance()));
+		if(entityCllection == null) {
 			return;
 		}
 		switch(type) {
@@ -182,9 +187,9 @@ public class EventStand {
 						  BlockPos target_pos=i.getPosition();
 						  Vec3d back = new Vec3d(target_pos.getX()-eater_pos.x, target_pos.getY()-eater_pos.y, target_pos.getZ()-eater_pos.z).normalize();
 						  if(!(i.motionX==0 && i.motionY==0 && i.motionZ==0)) {
-							  	  i.motionX=back.x;
-								  i.motionY=back.y;
-								  i.motionZ=back.z;
+							  	  i.motionX=(type.getDamage()/10)*back.x;
+								  i.motionY=(type.getDamage()/10)*back.y;
+								  i.motionZ=(type.getDamage()/10)*back.z;
 							  }
 					  		}
 					  if(i instanceof EntityLivingBase) {
@@ -193,30 +198,28 @@ public class EventStand {
 								  BlockPos eater_pos=eater.getPosition();
 								  BlockPos target_pos=target.getPosition();
 								  Vec3d back = new Vec3d(target_pos.getX()-eater_pos.getX(), target_pos.getY()-eater_pos.getY(), target_pos.getZ()-eater_pos.getZ()).normalize();
-								  if(eater instanceof EntityPlayerMP) {
-									  EntityPlayerMP player =(EntityPlayerMP) eater;
-									  if(target.isSpectatedByPlayer(player)) {
-										  if(NBTHelper.getEntityInteger(target, HuajiConstant.TIME_STOP)>0&&NBTHelper.getEntityInteger(target, HuajiConstant.DIO_HIT)<60) {
-											  NBTHelper.setEntityInteger(target, HuajiConstant.DIO_HIT, 60);
-										  }else {
-											  target.attackEntityFrom(DamageSource.causePlayerDamage(player), 10f);
-										  }
-										  if(target.ticksExisted%2==0) {
-											  HuajiSoundPlayer.playToNearbyClient(target, SoundEvents.ENTITY_GENERIC_EXPLODE);
-											  target.world.playEvent(2001, target.getPosition().add(0, target.getPositionEyes(0).y-target.getPosition().getY(), 0), Blocks.OBSIDIAN.getStateId(Blocks.OBSIDIAN.getStateFromMeta(0)));
-										  }
-									  }
-								  }else {
+//								  if(eater instanceof EntityPlayer) {
+//									  EntityPlayer player =(EntityPlayer) eater;
+//									  if(NBTHelper.getEntityInteger(target, HuajiConstant.TIME_STOP)>0&&NBTHelper.getEntityInteger(target, HuajiConstant.DIO_HIT)<60) {
+//										  NBTHelper.setEntityInteger(target, HuajiConstant.DIO_HIT, 60);
+//									  }else {
+//										  target.attackEntityFrom(DamageSource.causePlayerDamage(player), 10f);
+//									  }
+//									  if(target.ticksExisted%2==0) {
+//										  HuajiSoundPlayer.playToNearbyClient(target, SoundEvents.ENTITY_GENERIC_EXPLODE);
+//										  target.world.playEvent(2001, target.getPosition().add(0, target.getPositionEyes(0).y-target.getPosition().getY(), 0), Blocks.OBSIDIAN.getStateId(Blocks.OBSIDIAN.getStateFromMeta(0)));
+//									  }
+//								  }else {
 									  if(NBTHelper.getEntityInteger(target, HuajiConstant.TIME_STOP)>0&&NBTHelper.getEntityInteger(target, HuajiConstant.DIO_HIT)<60) {
 										  NBTHelper.setEntityInteger(target, HuajiConstant.DIO_HIT, 60);
 									  }else {
-										  target.attackEntityFrom(DamageSource.causeIndirectDamage(eater, eater), 10f);
+										  target.attackEntityFrom(DamageSource.causeIndirectDamage(eater, eater), type.getDamage());
 									  }
 									  if(target.ticksExisted%2==0) {
 										  HuajiSoundPlayer.playToNearbyClient(target, SoundEvents.ENTITY_GENERIC_EXPLODE);
 										  target.world.playEvent(2001, target.getPosition().add(0, target.getPositionEyes(0).y-target.getPosition().getY(), 0), Blocks.OBSIDIAN.getStateId(Blocks.OBSIDIAN.getStateFromMeta(0)));
 									  }
-								  }
+//								  }
 								  target.motionX=back.x;
 								  target.motionY=back.y;
 								  target.motionZ=back.z;

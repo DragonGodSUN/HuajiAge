@@ -1,6 +1,7 @@
 package com.lh_lshen.mcbbs.huajiage.common;
 
 import com.lh_lshen.mcbbs.huajiage.HuajiAge;
+import com.lh_lshen.mcbbs.huajiage.util.EnumStandtype;
 
 import net.minecraft.init.SoundEvents;
 

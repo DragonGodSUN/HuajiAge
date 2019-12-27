@@ -13,6 +13,7 @@ import com.lh_lshen.mcbbs.huajiage.potion.PotionLoader;
 import com.lh_lshen.mcbbs.huajiage.util.EnumStandtype;
 import com.lh_lshen.mcbbs.huajiage.util.NBTHelper;
 
+import net.minecraft.entity.EntityLivingBase;
 import net.minecraft.entity.player.EntityPlayer;
 import net.minecraft.init.MobEffects;
 import net.minecraft.item.Item;
@@ -143,10 +144,10 @@ public class ItemLootTableTest extends Item {
 		}
 		case 4:{
 			if(!playerIn.world.isRemote) {
-			EventStand.standPower(playerIn);
-			NBTHelper.setEntityInteger(playerIn, HuajiConstant.STAND_TYPE, 21);
-//			playerIn.addPotionEffect(new PotionEffect(PotionLoader.potionStand,200));
+//			EventStand.standPower(playerIn);
+//			NBTHelper.setEntityInteger(playerIn, HuajiConstant.STAND_TYPE, 21);
 			stand.setStand(EnumStandtype.THE_WORLD.getname());
+			playerIn.addPotionEffect(new PotionEffect(PotionLoader.potionStand,EnumStandtype.THE_WORLD.getDuration()));
 	        break;
 			}
 		}
@@ -155,6 +156,11 @@ public class ItemLootTableTest extends Item {
 		}
 		return new ActionResult<>(EnumActionResult.SUCCESS, playerIn.getHeldItem(hand));
 
+	}
+	@Override
+	public boolean hitEntity(ItemStack stack, EntityLivingBase target, EntityLivingBase attacker) {
+		
+		return super.hitEntity(stack, target, attacker);
 	}
 }
 	
