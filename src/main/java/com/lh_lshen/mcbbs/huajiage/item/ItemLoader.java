@@ -50,6 +50,7 @@ public class ItemLoader {
 	public static Item lordCore=new ItemLordCore();
 	public static Item etherC=new ItemEtherCircumfluxBoard();
 	public static Item huajiStarPoly=new ItemHuajiStarPoly();
+	public static Item tarot=new ItemTarot();
 	public static ItemFood eggRice = new ItemEggRice();
 	public static ItemFood eggRiceU = new ItemEggRiceU();
     public static ItemArmor huajiHelmet = new ItemHuajiArmor.Helmet();
@@ -109,6 +110,7 @@ public class ItemLoader {
         register(orgaFlag,"orgaFlag","orga_flag");
         register(etherC,"etherCircumfluxBoard","ether_circumflux_board");
         register(lordCore,"lordCore","lord_core");
+        register(tarot,"tarot","tarot");
     }
 
     @SideOnly(Side.CLIENT)
@@ -158,6 +160,7 @@ public class ItemLoader {
         registerRender(etherC);
         registerRender(lordCore);
         registerRender(huajiStarPoly);
+        registerRender(tarot);
     }
     public void init(FMLInitializationEvent event)
     {

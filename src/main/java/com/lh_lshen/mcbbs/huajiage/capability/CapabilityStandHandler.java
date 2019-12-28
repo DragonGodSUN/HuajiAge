@@ -4,7 +4,9 @@ import javax.annotation.Nonnull;
 import javax.annotation.Nullable;
 
 import net.minecraft.nbt.NBTBase;
+import net.minecraft.nbt.NBTTagCompound;
 import net.minecraft.nbt.NBTTagInt;
+import net.minecraft.nbt.NBTTagList;
 import net.minecraft.nbt.NBTTagString;
 import net.minecraft.util.EnumFacing;
 import net.minecraftforge.common.capabilities.Capability;
@@ -21,12 +23,21 @@ public class CapabilityStandHandler implements ICapabilitySerializable<NBTBase> 
         CapabilityManager.INSTANCE.register(StandHandler.class, new Capability.IStorage<StandHandler>() {
             @Override
             public void readNBT(Capability<StandHandler> capability, StandHandler instance, EnumFacing side, NBTBase nbt) {
-                instance.setStand(((NBTTagString) nbt).getString());
+//            	NBTTagList list = (NBTTagList) nbt;
+//            	String stand = list.getStringTagAt(0);
+//            	int stage = list.getIntAt(1);
+//            	instance.setStand(stand);
+//                instance.setStage(stage);
+            	instance.setStand(((NBTTagString)nbt).getString());
             }
 
             @Override
             public NBTBase writeNBT(Capability<StandHandler> capability, StandHandler instance, EnumFacing side) {
-                return new NBTTagString(instance.getStand());
+//            	NBTTagList list = new NBTTagList();
+//            	list.appendTag(new NBTTagString(instance.getStand()));
+//            	list.appendTag(new NBTTagInt(instance.getStage()));
+//                return list;
+            	return new NBTTagString(instance.getStand());
             }
         }, StandHandler.FACTORY);
     }

@@ -7,6 +7,7 @@ import net.minecraft.util.math.MathHelper;
 public class StandHandler {
 	 static StandHandler.Factory FACTORY = new StandHandler.Factory();
 	    private String stand = "";
+	    private int stage;
 	    private boolean dirty;
 	    
 	    public void setStand(String stand) {
@@ -18,7 +19,15 @@ public class StandHandler {
 	        return this.stand;
 	    }
 
-	    public void markDirty() {
+	    public int getStage() {
+			return stage;
+		}
+
+		public void setStage(int i) {
+			this.stage = i;
+		}
+
+		public void markDirty() {
 	        dirty = true;
 	    }
 

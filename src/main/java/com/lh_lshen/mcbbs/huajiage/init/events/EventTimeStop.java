@@ -2,12 +2,14 @@ package com.lh_lshen.mcbbs.huajiage.init.events;
 
 import java.util.List;
 
+import com.lh_lshen.mcbbs.huajiage.capability.CapabilityStandHandler;
 import com.lh_lshen.mcbbs.huajiage.common.HuajiConstant;
 import com.lh_lshen.mcbbs.huajiage.config.ConfigHuaji;
 import com.lh_lshen.mcbbs.huajiage.init.playsound.HuajiSoundPlayer;
 import com.lh_lshen.mcbbs.huajiage.network.messages.MessageDioHitClient;
 import com.lh_lshen.mcbbs.huajiage.network.messages.MessageParticleGenerator;
 import com.lh_lshen.mcbbs.huajiage.potion.PotionLoader;
+import com.lh_lshen.mcbbs.huajiage.util.EnumStandtype;
 import com.lh_lshen.mcbbs.huajiage.util.NBTHelper;
 import com.lh_lshen.mcbbs.huajiage.util.ServerUtil;
 
@@ -95,7 +97,10 @@ public class EventTimeStop {
 	  Vec3d targetPosition = player.getPositionVector();
 	  if(NBTHelper.getEntityInteger(player,HuajiConstant.THE_WORLD)>0) {
 		  player.heal(3f);
-		  EventStand.standPower(player);
+		  if(player.getCapability(CapabilityStandHandler.STAND_TYPE, null).getStand().equals(EnumStandtype.THE_WORLD.getName()))
+		  {
+			  EventStand.standPower(player);
+		  }
  	      MessageDioHitClient msg1 = new MessageDioHitClient(targetPosition, false); 
  	      MessageDioHitClient msg2 =new MessageDioHitClient(targetPosition, true); 
          if(NBTHelper.getEntityInteger(player,HuajiConstant.DIO_FLAG)==0) {     

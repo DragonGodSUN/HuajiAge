@@ -21,9 +21,6 @@ public enum EnumStandtype {
 	private float distance;
 	
 	
-	public String getname() {
-		return name;
-	}
 	public ModelBase newModel() {
 		switch(name) {
 		case("the_world"):
@@ -60,16 +57,22 @@ public enum EnumStandtype {
 		return "textures/entity/entity_the_world.png";
 	}
 
-	    public static EnumStandtype getType(String string) {
-	        switch(string) {
-	        case "the_world":
-	            return THE_WORLD;
-	        }
-	        return null;
-	    }
+    public static EnumStandtype getType(String string) {
+        switch(string) {
+        case "the_world":
+            return THE_WORLD;
+        }
+        return null;
+    }
+    public static EnumStandtype getTypeWithIndex(int index) {
+    	if (index < 0 || index >= values().length) {
+            return THE_WORLD;
+        }
+        return values()[index];
+    }
 
-	    public static int getLength() {
-	        return values().length;
-	    }
-	
+    public static int getLength() {
+        return values().length;
+    }
+
 }

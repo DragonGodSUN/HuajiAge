@@ -111,7 +111,7 @@ public class ItemLootTableTest extends Item {
 		case 2:{
 		if(!playerIn.world.isRemote) {
 //		NBTHelper.setEntityInteger(playerIn, HuajiConstant.STAND_TYPE, 21);
-		stand.setStand(EnumStandtype.THE_WORLD.getname());
+//		stand.setStand(EnumStandtype.THE_WORLD.getName());
 		playerIn.getEntityData().setInteger("huajiage.the_world",9*20);
     	playerIn.addPotionEffect(new PotionEffect(MobEffects.NIGHT_VISION,9*20,0));
     	playerIn.addPotionEffect(new PotionEffect(MobEffects.STRENGTH,9*20,4));
@@ -146,7 +146,7 @@ public class ItemLootTableTest extends Item {
 			if(!playerIn.world.isRemote) {
 //			EventStand.standPower(playerIn);
 //			NBTHelper.setEntityInteger(playerIn, HuajiConstant.STAND_TYPE, 21);
-			stand.setStand(EnumStandtype.THE_WORLD.getname());
+			stand.setStand(EnumStandtype.THE_WORLD.getName());
 			playerIn.addPotionEffect(new PotionEffect(PotionLoader.potionStand,EnumStandtype.THE_WORLD.getDuration()));
 	        break;
 			}
