@@ -16,7 +16,7 @@ import static com.lh_lshen.mcbbs.huajiage.init.LootTablesLoader.RegistrationHand
 //Follow the MIT License
 public class LootTablesLoader {
 	public static final ResourceLocation LOOT_TABLE_HUAJI = create("huaji_loot");
-
+	public static final ResourceLocation LOOT_TABLE_STAND_DESERT = create("stand_loot_desert");
 
 	/**
 	 * Register this mod's {@link LootTable}s.

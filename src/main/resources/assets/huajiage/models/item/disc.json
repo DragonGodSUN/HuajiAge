@@ -1,0 +1,17 @@
+{
+   "parent": "item/generated",
+    "overrides": [
+        {
+            "predicate": {
+                "stand": 0
+            },
+            "model": "huajiage:item/disc_null"
+        },
+        {
+            "predicate": {
+                "stand": 1
+            },
+            "model": "huajiage:item/disc_the_world"
+        }
+    ]
+}

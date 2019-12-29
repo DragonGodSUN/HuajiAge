@@ -11,11 +11,14 @@ import scala.swing.event.MouseDragged;
 
 public class KeyLoader {
 
-	public static KeyBinding  swich1;
+	public static KeyBinding  modeSwitch;
+	public static KeyBinding  standUp;
 	public KeyLoader(){
 		
-		KeyLoader.swich1=new KeyBinding("key.huaji.swich_1", KeyConflictContext.IN_GAME,KeyModifier.CONTROL,Keyboard.KEY_K, "key.category.huajiage");
-		ClientRegistry.registerKeyBinding(swich1);
+		KeyLoader.modeSwitch=new KeyBinding("key.huajiage.switch", KeyConflictContext.IN_GAME,KeyModifier.CONTROL,Keyboard.KEY_K, "key.category.huajiage");
+		KeyLoader.standUp=new KeyBinding("key.huajiage.stand_up", KeyConflictContext.IN_GAME,KeyModifier.ALT,Keyboard.KEY_P, "key.category.huajiage");
+		ClientRegistry.registerKeyBinding(modeSwitch);
+		ClientRegistry.registerKeyBinding(standUp);
 		
 	}
 	

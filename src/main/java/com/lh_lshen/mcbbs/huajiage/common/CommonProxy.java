@@ -2,6 +2,7 @@ package com.lh_lshen.mcbbs.huajiage.common;
 
 import com.lh_lshen.mcbbs.huajiage.block.BlockLoader;
 import com.lh_lshen.mcbbs.huajiage.capability.CapabilityStandHandler;
+import com.lh_lshen.mcbbs.huajiage.capability.CapabilityStandSkillHandler;
 import com.lh_lshen.mcbbs.huajiage.client.KeyLoader;
 import com.lh_lshen.mcbbs.huajiage.common.world.gen.OreGenEventHandler;
 import com.lh_lshen.mcbbs.huajiage.crativetab.CreativeTabLoader;
@@ -57,6 +58,7 @@ public class CommonProxy
     	
        LootTablesLoader.registerLootTables();
        CapabilityStandHandler.register();
+       CapabilityStandSkillHandler.register();
     	new CraftingLoader();
     	new EventLoader();
         new OreGenEventHandler();

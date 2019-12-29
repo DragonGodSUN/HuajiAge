@@ -61,7 +61,7 @@ public class ItemDioBread extends ItemFood{
     {
         if (!worldIn.isRemote)
         {
-        	StandHandler stand = player.getCapability(CapabilityStandHandler.STAND_TYPE, null);
+//        	StandHandler stand = player.getCapability(CapabilityStandHandler.STAND_TYPE, null);
         	double rand=Math.random()*100;
         	player.addPotionEffect(new PotionEffect(MobEffects.NIGHT_VISION,9*20,0));
         	player.addPotionEffect(new PotionEffect(MobEffects.STRENGTH,9*20,4));
@@ -71,7 +71,7 @@ public class ItemDioBread extends ItemFood{
             player.sendMessage(new TextComponentTranslation("message.huajiage.the_world"));
             player.heal(5f);
 //            NBTHelper.setEntityInteger(player, HuajiConstant.STAND_TYPE, 21);
-            stand.setStand(EnumStandtype.THE_WORLD.getname());
+//            stand.setStand(EnumStandtype.THE_WORLD.getName());
             player.getEntityData().setInteger(HuajiConstant.THE_WORLD, HuajiConstant.THE_WORLD_TIME);
             if(rand<30d) {
             	player.inventory.addItemStackToInventory(new ItemStack(ItemLoader.roadRoller));

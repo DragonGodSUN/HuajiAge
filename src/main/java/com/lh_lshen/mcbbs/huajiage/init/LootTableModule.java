@@ -2,6 +2,7 @@ package com.lh_lshen.mcbbs.huajiage.init;
 
 import com.lh_lshen.mcbbs.huajiage.HuajiAge;
 
+import net.minecraft.util.ResourceLocation;
 import net.minecraft.world.storage.loot.LootEntry;
 import net.minecraft.world.storage.loot.LootEntryTable;
 import net.minecraft.world.storage.loot.LootPool;
@@ -29,16 +30,19 @@ public class LootTableModule {
 	@SubscribeEvent
 	public static void lootTableLoad(final LootTableLoadEvent event) {
 		if (event.getName().equals(LootTableList.CHESTS_END_CITY_TREASURE)) {
-			final String name = LootTablesLoader.LOOT_TABLE_HUAJI.toString();
-
-			final LootEntry entry = new LootEntryTable(LootTablesLoader.LOOT_TABLE_HUAJI, 1, 0,
-					new LootCondition[0], name);
-
-			final RandomValueRange rolls = new RandomValueRange(0,1);
-
-			final LootPool pool = new LootPool(new LootEntry[]{entry}, new LootCondition[0], rolls, rolls, name);
-
-			event.getTable().addPool(pool);
+			LootTableModule.addPool(LootTablesLoader.LOOT_TABLE_HUAJI, event);
 		}
+		
+		if (event.getName().equals(LootTableList.CHESTS_DESERT_PYRAMID)) {
+			LootTableModule.addPool(LootTablesLoader.LOOT_TABLE_STAND_DESERT, event);
+		}
+	}
+	public static void addPool(ResourceLocation table ,LootTableLoadEvent event) {
+		final String name = table.toString();
+		final LootEntry entry = new LootEntryTable(table, 1, 0,
+				new LootCondition[0], name);
+		final RandomValueRange rolls = new RandomValueRange(0,1);
+		final LootPool pool = new LootPool(new LootEntry[]{entry}, new LootCondition[0], rolls, rolls, name);
+		event.getTable().addPool(pool);
 	}
 }

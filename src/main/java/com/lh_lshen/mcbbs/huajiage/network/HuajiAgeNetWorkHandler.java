@@ -10,7 +10,9 @@ import com.lh_lshen.mcbbs.huajiage.network.messages.MessageOrgaRequiemClient;
 import com.lh_lshen.mcbbs.huajiage.network.messages.MessageOrgaShotHandlerOnClient;
 import com.lh_lshen.mcbbs.huajiage.network.messages.MessageParticleGenerator;
 import com.lh_lshen.mcbbs.huajiage.network.messages.MessagePlaySoundClient;
+import com.lh_lshen.mcbbs.huajiage.network.messages.MessageStandUp;
 import com.lh_lshen.mcbbs.huajiage.network.messages.SyncStandMessage;
+import com.lh_lshen.mcbbs.huajiage.network.messages.SyncStandSkillMessage;
 import com.lh_lshen.mcbbs.huajiage.network.messages.TargetOrgaShotEffectMessageToClient;
 
 import net.minecraft.entity.Entity;
@@ -32,6 +34,7 @@ public final class  HuajiAgeNetWorkHandler {
 		int id = 0;
 		HANDLER.registerMessage(MessageLeftClick.Handler.class, MessageLeftClick.class, id++, Side.SERVER);
 		HANDLER.registerMessage(MessageKeyInput.Handler.class, MessageKeyInput.class, id++, Side.SERVER);
+		HANDLER.registerMessage(MessageStandUp.Handler.class, MessageStandUp.class, id++, Side.SERVER);
 		HANDLER.registerMessage(MessageLeftClickRoadRoller.Handler.class, MessageLeftClickRoadRoller.class, id++, Side.SERVER);
 		HANDLER.registerMessage(MessageExglutenburMode.Handler.class, MessageExglutenburMode.class, id++, Side.SERVER);
 	    
@@ -42,6 +45,7 @@ public final class  HuajiAgeNetWorkHandler {
 	    HANDLER.registerMessage(MessagePlaySoundClient.Handler.class,MessagePlaySoundClient.class, id++, Side.CLIENT);
 	    HANDLER.registerMessage(MessageParticleGenerator.Handler.class,MessageParticleGenerator.class, id++, Side.CLIENT);
 	    HANDLER.registerMessage(SyncStandMessage.Handler.class,SyncStandMessage.class, id++, Side.CLIENT);
+	    HANDLER.registerMessage(SyncStandSkillMessage.Handler.class,SyncStandSkillMessage.class, id++, Side.CLIENT);
 	}
     /**
 	 * Send message to all within 64 blocks that have this chunk loaded

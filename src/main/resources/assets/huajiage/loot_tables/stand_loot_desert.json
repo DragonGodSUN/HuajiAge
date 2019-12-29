@@ -1,15 +1,15 @@
 {
     "pools": [
         {
-            "name": "main",
+            "name": "stand",
             "rolls": {
                 "min": 1,
-                "max": 2
+                "max": 3
             },
             "entries": [
                 {
                     "type": "item",
-                    "name": "huajiage:huaji_star",
+                    "name": "huajiage:huaji",
                     "weight": 30,
                     "functions": [
                         {
@@ -20,7 +20,7 @@
                 },
                 {
                     "type": "item",
-                    "name": "huajiage:huaji_star_sky",
+                    "name": "huajiage:baking_gluten",
                     "weight": 10,
                     "functions": [
                         {
@@ -32,7 +32,7 @@
                 {
                     "type": "item",
                     "name": "huajiage:disc",
-                    "weight": 15,
+                    "weight": 5,
                     "functions": [
                         {
                             "function": "set_count",

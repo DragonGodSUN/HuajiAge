@@ -1,5 +1,5 @@
 ﻿
-item.huaji.name=滑稽
+item.huajiage.huaji.name=滑稽
 itemGroup.huaji=滑稽纪元
 tile.oreHuaji.name=充斥着滑稽之力的石头
 tile.huajiStarBlock.name=§b滑稽之星压缩块
@@ -7,13 +7,13 @@ tile.huajiStarBlockSky.name=§e空域之星压缩块
 tile.huajiBlender.name=滚筒式滑稽之力混合仪
 tile.huajiPolyFurnace.name=§e§l滑稽§d§l终极熔炼炉
 
-item.huajiFragment.name=蕴含着滑稽之力的碎片
-item.expendedView.name=§0二维碎片
-item.huajiStar.name=§8滑稽之星
-item.huajiStarSky.name=§b空域之星
-item.huajiStarUniverse.name=§e无尽之星
-item.eggRice.name=§e真香蛋炒饭
-item.eggRiceU.name=§d奥义·§e真香蛋炒饭
+item.huajiage.huajiFragment.name=蕴含着滑稽之力的碎片
+item.huajiage.expendedView.name=§0二维碎片
+item.huajiage.huajiStar.name=§8滑稽之星
+item.huajiage.huajiStarSky.name=§b空域之星
+item.huajiage.huajiStarUniverse.name=§e无尽之星
+item.huajiage.eggRice.name=§e真香蛋炒饭
+item.huajiage.eggRiceU.name=§d奥义·§e真香蛋炒饭
 
 death.attack.huajiage.hope_flower= %s死于世界线收束
 death.attack.huajiage.orga.shot=%s被团长乱枪打死
@@ -26,19 +26,19 @@ death.attack.huajiage.dio.hit=%s在时停中被木大致死
 
 huajiage.burstout=§e·真名解放
 huajiage.stellawarning=§e警告：真名解放状态下可能会造成不可挽回的后果，请不要轻易将此状态下的弓弦拉满！！！
-item.huajiIngot.name=滑稽锭
-item.huajiSword.name=滑稽剑
-item.starSwordH.name=§8星辰之剑
-item.huajiLatiaoSword.name=§4辣条之剑·§e滑稽
-item.neutronStarFragment.name=中子星碎片
-item.huajiHelmet.name=滑稽头盔
-item.huajiChestPlate.name=滑稽钻甲
-item.huajiLeggings.name=滑稽飞毛腿
-item.huajiBoots.name=滑稽滑板鞋
-item.blanceHelmet.name=§d五五开头盔
+item.huajiage.huajiIngot.name=滑稽锭
+item.huajiage.huajiSword.name=滑稽剑
+item.huajiage.starSwordH.name=§8星辰之剑
+item.huajiage.huajiLatiaoSword.name=§4辣条之剑·§e滑稽
+item.huajiage.neutronStarFragment.name=中子星碎片
+item.huajiage.huajiHelmet.name=滑稽头盔
+item.huajiage.huajiChestPlate.name=滑稽钻甲
+item.huajiage.huajiLeggings.name=滑稽飞毛腿
+item.huajiage.huajiBoots.name=滑稽滑板鞋
+item.huajiage.blanceHelmet.name=§d五五开头盔
 item.huajiage.orgaFlag.name=§4铁华团的不灭誓约
-item.orgaFlag.name=木大的誓约
-item.tarot.name=命运的塔罗牌
+item.huajiage.orgaFlag.name=木大的誓约
+item.huajiage.tarot.name=命运的塔罗牌
 
 potion.huaji=滑稽·施工中
 potion.huaji.five=§d五五开
@@ -49,32 +49,33 @@ potion.huajiage.requiem.target=§e镇魂曲木大目标
 potion.huajiage.stand=§b§lStand Power
 
 key.category.huajiage=滑稽纪元
-key.huaji.swich_1=转换模式
+key.huajiage.switch=转换模式
+key.huajiage.stand_up=释放替身
 
-item.ether.name=§4以太粒子·伪
-item.etherCircumfluxBoard.name=以太中子环流板
-item.redstoneDruse.name=红石晶簇
-item.heroBow.name=§4大英雄之弓
-item.flashFlour.name=劲爆的面团
-item.rawGluten.name=面筋
-item.bakingGluten.name=烤面筋
-item.exglutenbur.name=§4EX面筋棒·§eExglutenbur
-item.orgaHair.name=奥尔加的发型
-item.orgaChestplate.name=希望之衣
-item.orgaLeggings.name=希望之裤
-item.orgaBoots.name=黑色高档皮鞋
-item.arrowRequiem.name=§e虫箭
-item.orgaRequiem.name=§9停不下来的奥尔加镇魂曲
-item.hopeElement.name=希望要素
-item.hopeFlower.name=§b希望之花
-item.infiniteCharm.name=§b无限耐久§8护甲护身符
-item.dioBread.name=§e§lDio Bread
-item.roadRoller.name=§e压路机
-item.multiKnife.name=超空间折叠复合小刀
-item.multiKnife.shiny.name=§e8848至尊折叠刀
-item.loot.name=§l卖鱼强
-item.lordCore.name=§3§l挂者核心
-item.huajiStarPoly.name=§o§l多重叠加态滑稽之星
+item.huajiage.ether.name=§4以太粒子·伪
+item.huajiage.etherCircumfluxBoard.name=以太中子环流板
+item.huajiage.redstoneDruse.name=红石晶簇
+item.huajiage.heroBow.name=§4大英雄之弓
+item.huajiage.flashFlour.name=劲爆的面团
+item.huajiage.rawGluten.name=面筋
+item.huajiage.bakingGluten.name=烤面筋
+item.huajiage.exglutenbur.name=§4EX面筋棒·§eExglutenbur
+item.huajiage.orgaHair.name=奥尔加的发型
+item.huajiage.orgaChestplate.name=希望之衣
+item.huajiage.orgaLeggings.name=希望之裤
+item.huajiage.orgaBoots.name=黑色高档皮鞋
+item.huajiage.arrowRequiem.name=§e虫箭
+item.huajiage.orgaRequiem.name=§9停不下来的奥尔加镇魂曲
+item.huajiage.hopeElement.name=希望要素
+item.huajiage.hopeFlower.name=§b希望之花
+item.huajiage.infiniteCharm.name=§b无限耐久§8护甲护身符
+item.huajiage.dioBread.name=§e§lDio Bread
+item.huajiage.roadRoller.name=§e压路机
+item.huajiage.multiKnife.name=超空间折叠复合小刀
+item.huajiage.multiKnife.shiny.name=§e8848至尊折叠刀
+item.huajiage.loot.name=§l卖鱼强
+item.huajiage.lordCore.name=§3§l挂者核心
+item.huajiage.huajiStarPoly.name=§o§l多重叠加态滑稽之星
 
 
 item.blance_helmet:unicode_tooltips.1.desc=释放力量的唯一方法§b（按住Shift以查看更多）
@@ -101,6 +102,11 @@ huajiage.orga.1=§b 庆贺吧！汇聚了所有时间线希望之花的火星之
 item.dio_bread:tooltips.1=§3意大利大财阀“热情”集团旗下GioGio甜品工坊出品，据说是为纪念其集团董事长父亲逝世30周年而推出的纪念款面包§b（按住Shift以查看都市传说）
 item.dio_bread:tooltips.2=§6该款面包在当地基本上都属于供不应求状态。不过，有群众举报，怀疑该面包加入了大量添加剂，理由是其及时在水里泡上几周都不会腐烂亦或是破碎，就如同时间静止了一般。另有小道消息称，数人在使用该面包后表现出极端兴奋，表示High到不行，甚至时不时发出“Wryyyyyyyyy！”或是“平角裤！平角裤！”、“木大木大木大”等意义不明的词语。有目击者声称，其邻居在食用该面包后陷入了癫狂状态，整天没事对着空气大喊大叫，上街扰民，甚至还砸坏了路边的压路机。当地警方已对该食品进行了详细调查，其化验结果表明并无异常。对此，警官阿帕茶（化名）提醒，罗马市民们莫轻信谣言，传播谣言，莫让谣言影响正常的社会秩序
 item.lord_core:tooltips.1=§6至高的挂者之力，凝聚在其中
+item.tarot:tooltips.1=存储替身：
+item.tarot:tooltips.2=阶段：
+item.huajiage.disc.tooltip.1=存储替身： 
+item.huajiage.disc.tooltip.2=阶段：  
+
 
 message.huajiage.patchouli_missing=[{"text":"[ Huaji Age II]:","color":"yellow","bold":true},{"text":"为保证最佳游戏体验，请加载  ","color":"aqua","bold":false},{"text":"Patchouli-帕秋莉模组","color":"green","underlined":true,"bold":true,"clickEvent":{"action":"open_url","value":"https://www.curseforge.com/minecraft/mc-mods/patchouli"},"hoverEvent":{"action":"show_text","value":"https://www.curseforge.com/minecraft/mc-mods/patchouli"}},{"text":"§b来获取指南手册，这是鬼畜界先辈们为迎击§0§l♂Dark&&King§b势力耗尽其毕生修为传承下的§e§lJO§6§l级宝典","color":"yellow","bold":false}]
 message.huajiage:player_received_loot.no_loot=今天也是非气满满的一天呐
@@ -111,6 +117,8 @@ message.huaji.orga.hero.shot=§b加把劲吧骑士！
 messege.huaji.blancedHelmet.open=§e§l我%s§e§l没有开挂！！！
 messege.huaji.blancedHelmet.failed=§4或许你还没有集齐挂逼之力？
 messege.huaji.blancedHelmet.active=§6§l从现在开始这里叫%s§l广场！
+message.huajiage.tarot.stand.store=§f替身数据已储存
+message.huajiage.tarot.stand.fail_load=§e您可能已经拥有了一个替身，如果您想更换替身，请找一张空的塔罗牌卸载
 
 gui.huajiage.poly.cook=§l进程
 gui.huajiage.poly.fuel=§6黄金精神
@@ -125,6 +133,9 @@ config.huaji_age.huaji_config.the_world=是否允许咋瓦鲁多暂停玩家时�
 config.huaji_age.huaji_config.height_knife=小刀的飞行高度
 config.huaji_age.huaji_config.orga_suit=当装备起奥尔加套装时是否允许无限耐久护身符装换形态
 config.huaji_age.huaji_config.the_world.blocks=是否允许替身摧毁方块？
+
+stand.huajiage.empty=缺失
+stand.huajiage.the_world=§e§lThe World
 
 patchouil.huajiage.book.name=§e§lJO§6级宝典
 patchouil.huajiage.book.landing=在这个宇宙中，存在着一种名为滑稽的奇特之物，它们无处不在，并构成了千千万万的事物，据说，持有滑稽的星辉之力，便可得到传说中鬼畜先辈的无上之力

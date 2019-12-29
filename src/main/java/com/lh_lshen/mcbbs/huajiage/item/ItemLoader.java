@@ -1,5 +1,6 @@
 package com.lh_lshen.mcbbs.huajiage.item;
 
+import com.lh_lshen.mcbbs.huajiage.HuajiAge;
 import com.lh_lshen.mcbbs.huajiage.crativetab.CreativeTabLoader;
 
 import net.minecraft.client.renderer.block.model.ModelResourceLocation;
@@ -51,6 +52,7 @@ public class ItemLoader {
 	public static Item etherC=new ItemEtherCircumfluxBoard();
 	public static Item huajiStarPoly=new ItemHuajiStarPoly();
 	public static Item tarot=new ItemTarot();
+	public static Item disc=new ItemDiscStand();
 	public static ItemFood eggRice = new ItemEggRice();
 	public static ItemFood eggRiceU = new ItemEggRiceU();
     public static ItemArmor huajiHelmet = new ItemHuajiArmor.Helmet();
@@ -111,6 +113,7 @@ public class ItemLoader {
         register(etherC,"etherCircumfluxBoard","ether_circumflux_board");
         register(lordCore,"lordCore","lord_core");
         register(tarot,"tarot","tarot");
+        register(disc,"disc","disc");
     }
 
     @SideOnly(Side.CLIENT)
@@ -161,6 +164,7 @@ public class ItemLoader {
         registerRender(lordCore);
         registerRender(huajiStarPoly);
         registerRender(tarot);
+        registerRender(disc);
     }
     public void init(FMLInitializationEvent event)
     {
@@ -168,7 +172,7 @@ public class ItemLoader {
     }
     private static void register(Item item ,String name1,String name2)
     {
-    	item.setUnlocalizedName(name1);
+    	item.setUnlocalizedName(HuajiAge.MODID+"."+name1);
     	item.setRegistryName(name2);
     	ForgeRegistries.ITEMS.register(item);
     }

@@ -17,6 +17,8 @@ public  class HuajiConstant {
 	
 //	Stand type
 	public static final String STAND_TYPE=HuajiAge.MODID+"."+"stand_type";
+	public static final String STAND_THE_WORLD="stand"+"."+HuajiAge.MODID+"."+EnumStandtype.THE_WORLD.getName();
+	public static final String STAND_EMPTY="stand"+"."+HuajiAge.MODID+"."+EnumStandtype.EMPTY;
 	
 //	Requiem
 	public static final String REQUIEM=HuajiAge.MODID+"."+"requiem";

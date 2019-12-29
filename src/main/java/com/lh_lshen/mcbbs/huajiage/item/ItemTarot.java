@@ -3,6 +3,7 @@ package com.lh_lshen.mcbbs.huajiage.item;
 import java.util.List;
 
 import com.lh_lshen.mcbbs.huajiage.capability.CapabilityStandHandler;
+import com.lh_lshen.mcbbs.huajiage.capability.CapabilityStandSkillHandler;
 import com.lh_lshen.mcbbs.huajiage.capability.StandHandler;
 import com.lh_lshen.mcbbs.huajiage.common.HuajiConstant;
 import com.lh_lshen.mcbbs.huajiage.crativetab.CreativeTabLoader;
@@ -15,14 +16,17 @@ import net.minecraft.client.util.ITooltipFlag;
 import net.minecraft.creativetab.CreativeTabs;
 import net.minecraft.entity.EntityLivingBase;
 import net.minecraft.entity.player.EntityPlayer;
+import net.minecraft.init.SoundEvents;
 import net.minecraft.item.Item;
 import net.minecraft.item.ItemStack;
 import net.minecraft.nbt.NBTTagCompound;
 import net.minecraft.nbt.NBTTagList;
 import net.minecraft.potion.PotionEffect;
 import net.minecraft.util.ActionResult;
+import net.minecraft.util.EnumActionResult;
 import net.minecraft.util.EnumHand;
 import net.minecraft.util.NonNullList;
+import net.minecraft.util.SoundEvent;
 import net.minecraft.util.text.TextComponentString;
 import net.minecraft.util.text.TextComponentTranslation;
 import net.minecraft.world.World;
@@ -30,13 +34,7 @@ import net.minecraftforge.fml.relauncher.Side;
 import net.minecraftforge.fml.relauncher.SideOnly;
 
 public class ItemTarot extends Item {
-	private static final String DEFAULT_STAND_ID = EnumStandtype.THE_WORLD.getName();
-//	private static List<String> stands = null;
-//	static {
-//		for(EnumStandtype stand : EnumStandtype.values()) {
-//			stands.add(stand.getName());
-//		}
-//	}
+	private static final String DEFAULT_STAND_ID = EnumStandtype.EMPTY;
 	public ItemTarot()
 	{
 		 super();
@@ -46,57 +44,74 @@ public class ItemTarot extends Item {
 	@Override
 	public void addInformation(ItemStack stack, World worldIn, List<String> tooltip, ITooltipFlag flagIn) {
 		super.addInformation(stack, worldIn, tooltip, flagIn);
-		tooltip.add(I18n.format("Stand: " + NBTHelper.getTagCompoundSafe(stack).getString(NBT.STAND_NAME.getName())));
+		String stand=NBTHelper.getTagCompoundSafe(stack).getString(NBT.STAND_NAME.getName());
+		int stage=NBTHelper.getTagCompoundSafe(stack).getInteger(NBT.STAND_STAGE.getName());
+		tooltip.add(I18n.format("item.tarot:tooltips.1") +I18n.format(EnumStandtype.getDisplayName(stand)));
+		tooltip.add(I18n.format("item.tarot:tooltips.2") +stage);
 	}
 	@Override
 	@SideOnly(Side.CLIENT)
 	public void getSubItems(CreativeTabs tab, NonNullList<ItemStack> items) {
-		items.add(getItemData("","",0));
+		if (this.isInCreativeTab(tab)) {
+			items.add(getItemData(DEFAULT_STAND_ID,0));
+		}
 	}
 	@Override
 	public ActionResult<ItemStack> onItemRightClick(World worldIn, EntityPlayer playerIn, EnumHand handIn) {
 		ItemStack stack = playerIn.getHeldItem(handIn);
 		String stand = playerIn.getCapability(CapabilityStandHandler.STAND_TYPE, null).getStand();
-		boolean flag = NBTHelper.getTagCompoundSafe(stack).getString(NBT.STAND_NAME.getName()).equals("");
+		int stage = playerIn.getCapability(CapabilityStandSkillHandler.STAND_SKILL, null).getStage();
+		boolean flag = NBTHelper.getTagCompoundSafe(stack).getString(NBT.STAND_NAME.getName()).equals(DEFAULT_STAND_ID);
 		
 		if(playerIn.isSneaking()) {
-			if(flag) {
-				setStand(playerIn, stack, stand, 0);
-				playerIn.getCapability(CapabilityStandHandler.STAND_TYPE, null).setStand("");
+			if(flag && !stand.equals(DEFAULT_STAND_ID)) {
+				setStandTag(playerIn, stack, stand, stage);
+				playerIn.getCapability(CapabilityStandHandler.STAND_TYPE, null).setStand(DEFAULT_STAND_ID);
+				playerIn.getCapability(CapabilityStandSkillHandler.STAND_SKILL, null).setStage(0);
 				if(worldIn.isRemote) {
-				playerIn.sendMessage(new TextComponentString(stand+" is Loaded"));
+				playerIn.playSound(SoundEvents.ITEM_BOTTLE_FILL_DRAGONBREATH, 1f, 1f);
+				playerIn.sendMessage(new TextComponentString(I18n.format(EnumStandtype.getDisplayName(stand))+I18n.format("message.huajiage.tarot.stand.store")));
 				}
 			}
 		}else {
-			String standName = NBTHelper.getTagCompoundSafe(stack).getString(NBT.STAND_NAME.getName());
-			playerIn.getCapability(CapabilityStandHandler.STAND_TYPE, null).setStand(standName);
-			playerIn.addPotionEffect(new PotionEffect(PotionLoader.potionStand,200));
+			String standTag = NBTHelper.getTagCompoundSafe(stack).getString(NBT.STAND_NAME.getName());
+			int stageTag = NBTHelper.getTagCompoundSafe(stack).getInteger(NBT.STAND_STAGE.getName());
+			if(stand.equals(DEFAULT_STAND_ID)&&!standTag.equals(DEFAULT_STAND_ID)) {
+			playerIn.getCapability(CapabilityStandHandler.STAND_TYPE, null).setStand(standTag);
+			playerIn.getCapability(CapabilityStandSkillHandler.STAND_SKILL, null).setStage(stageTag);
+			playerIn.playSound(SoundEvents.BLOCK_GLASS_BREAK, 1f, 1f);
+			playerIn.playSound(SoundEvents.UI_TOAST_CHALLENGE_COMPLETE, 1f, 1f);
+			setStandTag(playerIn, stack, DEFAULT_STAND_ID, 0);
+			}else {
+				if(worldIn.isRemote) {
+					if(!stand.equals(DEFAULT_STAND_ID)) {
+					playerIn.sendMessage(new TextComponentTranslation("message.huajiage.tarot.stand.fail_load"));
+					}
+					
+				}
 			}
-		return super.onItemRightClick(worldIn, playerIn, handIn);
+//			playerIn.addPotionEffect(new PotionEffect(PotionLoader.potionStand,200));
+			}
+		return new ActionResult(EnumActionResult.SUCCESS, stack);
 	}
-	public static ItemStack getItemData(String owner_id, String stand_id, int weak) {
+	public static ItemStack getItemData(String stand_id, int stage) {
         ItemStack stack = new ItemStack(ItemLoader.tarot);
 		NBTTagCompound data = NBTHelper.getTagCompoundSafe(stack);
-        data.setString(NBT.OWNER.getName(), owner_id);
         
         if (stand_id != null) {
         	data.setString(NBT.STAND_NAME.getName(), stand_id);
-        	data.setInteger(NBT.STAND_WEAK.getName(), weak);
+        	data.setInteger(NBT.STAND_STAGE.getName(), stage);
         }
         return stack;
     }
-	public void setStand(EntityLivingBase entity,ItemStack stack , String stand_id, int weak) {
+	public void setStandTag(EntityLivingBase entity,ItemStack stack , String stand_id, int stage) {
 			NBTTagCompound data = NBTHelper.getTagCompoundSafe(stack);
-	        if (stand_id != "") {
 	        	data.setString(NBT.STAND_NAME.getName(), stand_id);
-	        	data.setInteger(NBT.STAND_WEAK.getName(), weak);
-	        }
+	        	data.setInteger(NBT.STAND_STAGE.getName(), stage);
 	}
 	 public enum NBT {
-	        OWNER("Owner"),
-	        INDEX("Index"),
 		 	STAND_NAME("Name"),
-	        STAND_WEAK("Weak");
+	        STAND_STAGE("Stage");
 
 	        private String name;
 

@@ -1,8 +1,11 @@
 package com.lh_lshen.mcbbs.huajiage.util;
 
 import com.lh_lshen.mcbbs.huajiage.client.model.ModelTheWorld;
+import com.lh_lshen.mcbbs.huajiage.common.HuajiConstant;
 
 import net.minecraft.client.model.ModelBase;
+import net.minecraft.util.text.ITextComponent;
+import net.minecraft.util.text.TextComponentTranslation;
 
 public enum EnumStandtype {
 	THE_WORLD("the_world",1.2f,10f,200,2f);
@@ -14,6 +17,7 @@ public enum EnumStandtype {
 		this.duration=duration;
 		this.distance=distance;
 	}
+	public static final String EMPTY = "empty";
 	private String name;
 	private float speed;
 	private float damage;
@@ -57,6 +61,13 @@ public enum EnumStandtype {
 		return "textures/entity/entity_the_world.png";
 	}
 
+	public static String getDisplayName(String name) {
+		switch(name){
+		case "the_world":
+			return HuajiConstant.STAND_THE_WORLD;
+		}
+		return HuajiConstant.STAND_EMPTY;
+	}
     public static EnumStandtype getType(String string) {
         switch(string) {
         case "the_world":

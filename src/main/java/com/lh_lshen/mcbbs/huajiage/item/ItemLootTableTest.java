@@ -133,7 +133,7 @@ public class ItemLootTableTest extends Item {
 		      }
 		case 3:{
 		if(!playerIn.world.isRemote) {
-		stand.setStand("");
+		stand.setStand(EnumStandtype.EMPTY);
 		playerIn.getEntityData().setInteger("huajiage.time_stop",9*20);
 		playerIn.getEntityData().setDouble("huajiage.time_stop.x", playerIn.posX);
 		playerIn.getEntityData().setDouble("huajiage.time_stop.y", playerIn.posY);
