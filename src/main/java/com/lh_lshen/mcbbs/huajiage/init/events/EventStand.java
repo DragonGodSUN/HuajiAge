@@ -99,7 +99,7 @@ public class EventStand {
 	  @SubscribeEvent
 	  public static void onBreaking(PlayerEvent.BreakSpeed evt)
 	  {
-		  if(ConfigHuaji.Huaji.allowTheWorldDestory) {
+		  if(ConfigHuaji.Stands.allowTheWorldDestory) {
 			  EnumStandtype type = getType(evt.getEntityLiving());
 				if(type == null) {
 					return;
@@ -198,18 +198,18 @@ public class EventStand {
 								  BlockPos eater_pos=eater.getPosition();
 								  BlockPos target_pos=target.getPosition();
 								  Vec3d back = new Vec3d(target_pos.getX()-eater_pos.getX(), target_pos.getY()-eater_pos.getY(), target_pos.getZ()-eater_pos.getZ()).normalize();
-//								  if(eater instanceof EntityPlayer) {
-//									  EntityPlayer player =(EntityPlayer) eater;
-//									  if(NBTHelper.getEntityInteger(target, HuajiConstant.TIME_STOP)>0&&NBTHelper.getEntityInteger(target, HuajiConstant.DIO_HIT)<60) {
-//										  NBTHelper.setEntityInteger(target, HuajiConstant.DIO_HIT, 60);
-//									  }else {
-//										  target.attackEntityFrom(DamageSource.causePlayerDamage(player), 10f);
-//									  }
-//									  if(target.ticksExisted%2==0) {
-//										  HuajiSoundPlayer.playToNearbyClient(target, SoundEvents.ENTITY_GENERIC_EXPLODE);
-//										  target.world.playEvent(2001, target.getPosition().add(0, target.getPositionEyes(0).y-target.getPosition().getY(), 0), Blocks.OBSIDIAN.getStateId(Blocks.OBSIDIAN.getStateFromMeta(0)));
-//									  }
-//								  }else {
+								  if(eater instanceof EntityPlayer) {
+									  EntityPlayer player =(EntityPlayer) eater;
+									  if(NBTHelper.getEntityInteger(target, HuajiConstant.TIME_STOP)>0&&NBTHelper.getEntityInteger(target, HuajiConstant.DIO_HIT)<60) {
+										  NBTHelper.setEntityInteger(target, HuajiConstant.DIO_HIT, 60);
+									  }else {
+										  target.attackEntityFrom(DamageSource.causePlayerDamage(player), 10f);
+									  }
+									  if(target.ticksExisted%2==0) {
+										  HuajiSoundPlayer.playToNearbyClient(target, SoundEvents.ENTITY_GENERIC_EXPLODE);
+										  target.world.playEvent(2001, target.getPosition().add(0, target.getPositionEyes(0).y-target.getPosition().getY(), 0), Blocks.OBSIDIAN.getStateId(Blocks.OBSIDIAN.getStateFromMeta(0)));
+									  }
+								  }else {
 									  if(NBTHelper.getEntityInteger(target, HuajiConstant.TIME_STOP)>0&&NBTHelper.getEntityInteger(target, HuajiConstant.DIO_HIT)<60) {
 										  NBTHelper.setEntityInteger(target, HuajiConstant.DIO_HIT, 60);
 									  }else {
@@ -219,7 +219,7 @@ public class EventStand {
 										  HuajiSoundPlayer.playToNearbyClient(target, SoundEvents.ENTITY_GENERIC_EXPLODE);
 										  target.world.playEvent(2001, target.getPosition().add(0, target.getPositionEyes(0).y-target.getPosition().getY(), 0), Blocks.OBSIDIAN.getStateId(Blocks.OBSIDIAN.getStateFromMeta(0)));
 									  }
-//								  }
+								  }
 								  target.motionX=back.x;
 								  target.motionY=back.y;
 								  target.motionZ=back.z;

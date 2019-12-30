@@ -137,7 +137,7 @@ public class EntityRoadRoller extends EntityThrowable {
 	}
 	@Override
 	protected void onImpact(RayTraceResult result) {
-		boolean flag=getExtra()>10&&ConfigHuaji.Huaji.roadRolerExplosion;
+		boolean flag=getExtra()>10&&ConfigHuaji.Stands.roadRolerExplosion;
 		if(result.entityHit!=null) {
 			if(result.entityHit!=thrower) {
 			 if(!world.isRemote) {

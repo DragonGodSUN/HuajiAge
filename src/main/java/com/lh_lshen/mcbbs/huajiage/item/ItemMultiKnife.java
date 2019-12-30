@@ -114,7 +114,7 @@ public class ItemMultiKnife extends Item {
 				knife.shoot(playerIn, playerIn.rotationPitch, playerIn.rotationYaw, 1F,1F,0f);
 				float fn=MathHelper.sqrt(v1.x*v1.x+v1.y*v1.y+v1.z*v1.z);
 				knife.posX+=v1.x/fn;
-				knife.posY+=ConfigHuaji.Huaji.knifeHeight +0.1f +v1.y/fn;
+				knife.posY+=ConfigHuaji.Stands.knifeHeight +0.1f +v1.y/fn;
 				knife.posZ+=v1.z/fn;
 				knife.setRotation(MathHelper.wrapDegrees(-playerIn.rotationYaw));
 				knife.setPitch(playerIn.rotationPitch);
@@ -140,6 +140,7 @@ public class ItemMultiKnife extends Item {
 	}
 	
 	@Override
+	@SideOnly(Side.CLIENT)
 	public String getItemStackDisplayName(ItemStack stack) {
 		return getLight(stack)?I18n.format(this.getUnlocalizedName()+".shiny.name"):super.getItemStackDisplayName(stack);
 	}

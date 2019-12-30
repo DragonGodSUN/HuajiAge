@@ -50,7 +50,12 @@ potion.huajiage.stand=§b§lStand Power
 
 key.category.huajiage=滑稽纪元
 key.huajiage.switch=转换模式
-key.huajiage.stand_up=释放替身
+key.huajiage.stand_up=放出或收回替身
+
+stand.huajiage.name=替身：
+stand.huajiage.stage=阶段：
+stand.huajiage.tip=提示：按下%s键以放出或收回替身
+
 
 item.huajiage.ether.name=§4以太粒子·伪
 item.huajiage.etherCircumfluxBoard.name=以太中子环流板

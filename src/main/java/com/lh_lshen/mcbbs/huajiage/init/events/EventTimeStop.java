@@ -49,7 +49,7 @@ public class EventTimeStop {
     	if(NBTHelper.getEntityInteger(target,HuajiConstant.TIME_STOP)>0) {	
     		target.getEntityData().setInteger(HuajiConstant.TIME_STOP,NBTHelper.getEntityInteger(target,HuajiConstant.TIME_STOP)-1);
     	if(target instanceof EntityPlayer) {
-    		if(ConfigHuaji.Huaji.allowTimeStopPlayer&&NBTHelper.getEntityInteger(target,HuajiConstant.THE_WORLD)<=0) {
+    		if(ConfigHuaji.Stands.allowTimeStopPlayer&&NBTHelper.getEntityInteger(target,HuajiConstant.THE_WORLD)<=0) {
     			int t=NBTHelper.getEntityInteger(target,HuajiConstant.TIME_STOP);
 //    			if(!target.isPotionActive(MobEffects.SLOWNESS)||target.getActivePotionEffect(MobEffects.SLOWNESS).getAmplifier()<9) {
 //   			    target.addPotionEffect(new PotionEffect(MobEffects.SLOWNESS,t,9));

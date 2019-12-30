@@ -35,6 +35,7 @@ public class MessageStandUp implements IMessage {
         		return null;
 			player.mcServer.addScheduledTask(() -> {
 				if(!player.isPotionActive(PotionLoader.potionStand)) {
+					player.getFoodStats().setFoodLevel(player.getFoodStats().getFoodLevel()-1);
 					player.addPotionEffect(new PotionEffect(PotionLoader.potionStand,stand.getDuration()));
 					}else {
 						player.removePotionEffect(PotionLoader.potionStand);;

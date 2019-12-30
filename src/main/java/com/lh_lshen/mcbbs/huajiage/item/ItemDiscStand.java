@@ -90,7 +90,7 @@ public class ItemDiscStand extends Item {
         }
         return stack;
     }
-	private static ItemStack getItemData(ItemStack stack ,String stand_id ,int stage) {
+	public static ItemStack getItemData(ItemStack stack ,String stand_id ,int stage) {
 		setStandId(stack, stand_id);
 		setStandStage(stack, stage);
 		return stack;
@@ -114,6 +114,7 @@ public class ItemDiscStand extends Item {
 		tooltip.add(I18n.format("item.huajiage.disc.tooltip.2")+stage);
 
 	}
+	@SideOnly(Side.CLIENT)
 	@Override
 	public String getItemStackDisplayName(ItemStack stack) {
 		String stand = getStandId(stack);

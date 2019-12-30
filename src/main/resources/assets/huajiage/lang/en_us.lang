@@ -77,6 +77,11 @@ potion.huajiage.stand=§b§lStand Power
 key.category.huajiage=HUAJI Age
 key.huajiage.switch=Switch
 key.huajiage.stand_up=Stand Up
+
+stand.huajiage.name=Stand:
+stand.huajiage.stage=Stage:
+stand.huajiage.tip=Tip: Press %s to Stand up
+
 item.blance_helmet:changeMode=§ePush %s to change mode
 item.blance_helmet:unicode_tooltips.1.desc=The method of unsealing(Press Shift to see more)
 item.blance_helmet:unicode_tooltips.2.desc=Only the real stone(Lord Core) have the power to librete it

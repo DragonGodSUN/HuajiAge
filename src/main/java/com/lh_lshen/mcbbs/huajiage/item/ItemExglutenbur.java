@@ -129,6 +129,7 @@ public class ItemExglutenbur extends ItemSword {
 	            }
 			}
 		}
+		@SideOnly(Side.CLIENT)
 		@SubscribeEvent
 		public void onMouseDwheelInput(MouseEvent evt) {
 			 Minecraft mc = Minecraft.getMinecraft();

@@ -60,7 +60,7 @@ public class ItemRoadRoller extends Item {
 		road.shoot(playerIn, playerIn.rotationPitch, playerIn.rotationYaw, 1F,1F,0f);
 		float fn=MathHelper.sqrt(v1.x*v1.x+v1.y*v1.y+v1.z*v1.z);
 		road.posX+=v1.x/fn;
-		road.posY+=ConfigHuaji.Huaji.knifeHeight +0.1f +v1.y/fn;
+		road.posY+=ConfigHuaji.Stands.knifeHeight +0.1f +v1.y/fn;
 		road.posZ+=v1.z/fn;
 		road.setRotation(MathHelper.wrapDegrees(-playerIn.rotationYaw));
 		road.setPitch(playerIn.rotationPitch);
