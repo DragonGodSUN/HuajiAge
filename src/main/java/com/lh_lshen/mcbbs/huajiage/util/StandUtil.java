@@ -16,7 +16,7 @@ public class StandUtil {
 	{
 		Random random = new Random();
 		EnumStandtype stand = EnumStandtype.getType(stand_type);
-		System.out.println("wryyy");
+//		System.out.println("wryyy");
 		switch(stand)
 		{
 		case THE_WORLD :

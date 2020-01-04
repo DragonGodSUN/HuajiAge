@@ -4,7 +4,9 @@ import java.util.List;
 import java.util.Random;
 
 import com.lh_lshen.mcbbs.huajiage.capability.CapabilityStandHandler;
+import com.lh_lshen.mcbbs.huajiage.capability.StandHandler;
 import com.lh_lshen.mcbbs.huajiage.client.KeyLoader;
+import com.lh_lshen.mcbbs.huajiage.config.ConfigHuaji;
 import com.lh_lshen.mcbbs.huajiage.init.playsound.HuajiMovingSound;
 import com.lh_lshen.mcbbs.huajiage.init.playsound.HuajiSoundPlayer;
 import com.lh_lshen.mcbbs.huajiage.init.playsound.SoundLoader;
@@ -55,12 +57,32 @@ public class EventKeyInput {
 		}
 		if(KeyLoader.standUp.isPressed()) {
 			EntityPlayer player = Minecraft.getMinecraft().player;
-			String stand_type =player.getCapability(CapabilityStandHandler.STAND_TYPE, null).getStand();
+			StandHandler standHandler = player.getCapability(CapabilityStandHandler.STAND_TYPE, null);
+			String stand_type =standHandler.getStand();
+			EnumStandtype stand = EnumStandtype.getType(stand_type);
 			 if(!stand_type.equals(EnumStandtype.EMPTY)) {
 				for(int i = 0;i<3;i++) {
 				 player.world.playSound(player, player.getPosition(), SoundEvents.ENTITY_EXPERIENCE_ORB_PICKUP, SoundCategory.PLAYERS, 1f, 1f);;
 				}
-				StandUtil.standUpSound(player, stand_type);
+				if(ConfigHuaji.Stands.allowStandSound&&ConfigHuaji.Stands.allowStandMovingSound&&!player.isPotionActive(PotionLoader.potionStand)) 
+				{
+					StandUtil.standUpSound(player, stand_type);
+				}else if(ConfigHuaji.Stands.allowStandSound&&!player.isPotionActive(PotionLoader.potionStand))
+				{	
+					float random = new Random().nextFloat()*100;
+					switch(stand)
+					{
+					case THE_WORLD :
+						if(random>0) 
+							{
+								player.playSound(SoundLoader.STAND_THE_WORLD_HIT_1, 1f, 1f);
+							}else if(random>50) 
+							{
+								player.playSound(SoundLoader.STAND_THE_WORLD_HIT_2, 1f, 1f);
+							}
+							break;
+					}
+				}
 //				SPacketSoundEffect sound = new SPacketSoundEffect(Sound, categoryIn, xIn, yIn, zIn, volumeIn, pitchIn)
 				
 				Random random = new Random();

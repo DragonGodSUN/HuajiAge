@@ -57,7 +57,7 @@ public class ItemInfiniteCharm extends Item {
 	@Override
 	public String getItemStackDisplayName(ItemStack stack) {
 	if(NBTHelper.getTagCompoundSafe(stack).getBoolean("orga")) {
-		return 	I18n.translateToLocal("item.huajiage.orgaFlag.name");
+		return 	I18n.translateToLocal("item.huajiage.orgaFlagUnbroken.name");
 		}else {
 			return super.getItemStackDisplayName(stack);
 		}
@@ -82,17 +82,20 @@ public class ItemInfiniteCharm extends Item {
 					 (((EntityPlayer) entityIn).getItemStackFromSlot(EntityEquipmentSlot.LEGS).getItem() instanceof ItemOrgaArmorBase)&&(((EntityPlayer) entityIn).getItemStackFromSlot(EntityEquipmentSlot.FEET).getItem() instanceof ItemOrgaArmorBase)) {
 				if(!NBTHelper.getTagCompoundSafe(stack).getBoolean("orga")) { 
 				 NBTHelper.getTagCompoundSafe(stack).setBoolean("orga",true);
+				 NBTHelper.setEntityBoolean(entityIn, "huajiage.orga.suit", true);
 				 }
 			 }else {
 				 if(NBTHelper.getTagCompoundSafe(stack).getBoolean("orga")) {
 				 NBTHelper.getTagCompoundSafe(stack).setBoolean("orga",false);
-				 }
-			 }}
-			if(NBTHelper.getTagCompoundSafe(stack).getBoolean("orga")&&!NBTHelper.getEntityBoolean(entityIn, "huajiage.orga.suit")) {
-				 NBTHelper.setEntityBoolean(entityIn, "huajiage.orga.suit", true);
-			}else {
 				 NBTHelper.setEntityBoolean(entityIn,  "huajiage.orga.suit",false);
-			}
+				 }
+			 }
+//			 if(NBTHelper.getTagCompoundSafe(stack).getBoolean("orga")&&!NBTHelper.getEntityBoolean(entityIn, "huajiage.orga.suit")) {
+//				 NBTHelper.setEntityBoolean(entityIn, "huajiage.orga.suit", true);
+//			 }else {
+//				 NBTHelper.setEntityBoolean(entityIn,  "huajiage.orga.suit",false);
+//			 } 
+		 }
 	}
 	
 }

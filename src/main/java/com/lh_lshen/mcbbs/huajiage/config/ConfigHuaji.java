@@ -19,7 +19,7 @@ public class ConfigHuaji {
 	public static HuajiConfig Huaji=new HuajiConfig();
 	
 	@LangKey("config.huaji_age.stands_config")
-	@Name("Stands")
+	@Name("STAND")
 	public static StandConfig Stands=new StandConfig();
 
 	public static class HuajiConfig{
@@ -48,6 +48,14 @@ public class ConfigHuaji {
 		@Config.Comment("Need some tips to notice you how to use STANDs?")
 		@LangKey("config.huaji_age.huaji_config.stand.tip")
 		public boolean allowStandTip=true;
+		
+		@Config.Comment("Need the moving sound for you stand?")
+		@LangKey("config.huaji_age.huaji_config.stand.moving_sound")
+		public boolean allowStandMovingSound=true;
+		
+		@Config.Comment("Need the sound playing for you stand?")
+		@LangKey("config.huaji_age.huaji_config.stand.moving_sound")
+		public boolean allowStandSound=true;
 		
 		@Config.Comment("The flight height of the multi knife")
 		@LangKey("config.huaji_age.huaji_config.height_knife")

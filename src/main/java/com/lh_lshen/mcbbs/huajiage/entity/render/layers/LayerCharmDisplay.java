@@ -17,6 +17,7 @@ import net.minecraft.entity.player.EntityPlayer;
 import net.minecraft.init.Items;
 import net.minecraft.inventory.EntityEquipmentSlot;
 import net.minecraft.item.ItemStack;
+import net.minecraft.nbt.NBTTagCompound;
 import net.minecraft.util.EnumHandSide;
 import net.minecraftforge.fml.relauncher.Side;
 import net.minecraftforge.fml.relauncher.SideOnly;
@@ -30,9 +31,19 @@ public class LayerCharmDisplay implements  LayerRenderer<EntityLivingBase> {
 		if(entitylivingbaseIn instanceof AbstractClientPlayer) 
 			{
 				AbstractClientPlayer p=(AbstractClientPlayer) entitylivingbaseIn;
-	 			ItemStack item=new ItemStack(ItemLoader.infiniteCharm);
-	 			ItemStack item_flag=new ItemStack(ItemLoader.orgaFlag);
-	 			if(p.inventory.hasItemStack(item))
+	 			ItemStack item = new ItemStack(ItemLoader.infiniteCharm);
+	 			ItemStack item_flag = new ItemStack(ItemLoader.orgaFlag);
+	 			ItemStack off_item = p.getHeldItemOffhand();
+	 			ItemStack main_item = p.getHeldItemMainhand();
+	 			NBTTagCompound nbt_off = off_item.getTagCompound();
+	 			NBTTagCompound nbt_main = main_item.getTagCompound();
+	 			boolean flag = off_item.equals(item)&&!nbt_off.hasNoTags()&&nbt_off.hasKey("orga")&&nbt_off.getBoolean("orga") 
+ 									   || main_item.equals(item)&&!nbt_main.hasNoTags()&&nbt_main.hasKey("orga")&&nbt_main.getBoolean("orga");
+	 			if(flag) 
+		 			{
+		 				Minecraft.getMinecraft().getRenderItem().renderItem(item_flag, TransformType.HEAD);  
+		 			}
+	 			else if(p.inventory.hasItemStack(item)&&!main_item.equals(item)&&!off_item.equals(item))
 		 			{
 		 				if(NBTHelper.getEntityBoolean(p, "huajiage.orga.suit")) 
 			 				{
@@ -41,6 +52,10 @@ public class LayerCharmDisplay implements  LayerRenderer<EntityLivingBase> {
 			 				{
 			 					Minecraft.getMinecraft().getRenderItem().renderItem(item, TransformType.HEAD);  
 			 				}
+		 			}
+	 			else if(off_item.equals(item) || main_item.equals(item))
+		 			{
+		 				Minecraft.getMinecraft().getRenderItem().renderItem(item, TransformType.HEAD);  
 		 			}
 			 }
 	}

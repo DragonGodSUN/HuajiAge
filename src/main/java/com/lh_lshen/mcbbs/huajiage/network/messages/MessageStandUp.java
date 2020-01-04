@@ -41,7 +41,7 @@ public class MessageStandUp implements IMessage {
 //					MessageMovingSound moving_sound = new MessageMovingSound(player.getName());
 //					HuajiAgeNetWorkHandler.sendToNearby(player.world, player, moving_sound);
 					player.addPotionEffect(new PotionEffect(PotionLoader.potionStand,stand.getDuration()));
-					System.out.println(player.getName());
+//					System.out.println(player.getName());
 					}else {
 						player.removePotionEffect(PotionLoader.potionStand);;
 					}

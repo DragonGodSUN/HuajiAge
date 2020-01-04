@@ -33,11 +33,11 @@ import net.minecraftforge.fml.relauncher.Side;
 import net.minecraftforge.fml.relauncher.SideOnly;
 
 @SideOnly(Side.CLIENT)
-public class LayerTheWorld implements  LayerRenderer<EntityLivingBase> {
+public class LayerStand implements  LayerRenderer<EntityLivingBase> {
 	 protected final RenderLivingBase<?> livingEntityRenderer;
 	 private static  ModelStandBase model = null;
 	 private static  ResourceLocation tex = new ResourceLocation(HuajiAge.MODID, "textures/entity/entity_the_world.png");
-	    public LayerTheWorld(RenderLivingBase<?> livingEntityRendererIn)
+	    public LayerStand(RenderLivingBase<?> livingEntityRendererIn)
 	    {
 	        this.livingEntityRenderer = livingEntityRendererIn;
 	    }
@@ -65,7 +65,7 @@ public class LayerTheWorld implements  LayerRenderer<EntityLivingBase> {
 	 					
 	 					GlStateManager.pushMatrix();
 	 		            GlStateManager.translate(0.0F, -0.2F, -0.75F);
-	 		            model.setRotationAngles(limbSwing, limbSwingAmount, ageInTicks, netHeadYaw, headPitch, scale, entitylivingbaseIn, 1f ,1.5f);
+	 		            model.setRotationAngles(limbSwing, limbSwingAmount, ageInTicks, netHeadYaw, headPitch, scale, entitylivingbaseIn, stand.getDamage()/10 ,stand.getSpeed()*4/3);
 	 					model.render(entitylivingbaseIn, limbSwing, limbSwingAmount, ageInTicks, netHeadYaw, headPitch, scale);
 						GlStateManager.disableBlend();
 						GlStateManager.enableLighting();
