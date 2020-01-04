@@ -1,10 +1,10 @@
 package com.lh_lshen.mcbbs.huajiage.init.playsound;
 
-import com.lh_lshen.mcbbs.huajiage.HuajiAge;
+import com.lh_lshen.mcbbs.huajiage.potion.PotionLoader;
 
 import net.minecraft.client.audio.MovingSound;
 import net.minecraft.entity.Entity;
-import net.minecraft.util.ResourceLocation;
+import net.minecraft.entity.EntityLivingBase;
 import net.minecraft.util.SoundCategory;
 import net.minecraft.util.SoundEvent;
 import net.minecraftforge.fml.relauncher.Side;
@@ -15,11 +15,11 @@ import net.minecraftforge.fml.relauncher.SideOnly;
 public class HuajiMovingSound extends MovingSound {
     
     public final Entity ENTITY;
+//    private boolean isPlaying = true; 
 
     public HuajiMovingSound(Entity s_entity, SoundEvent sound, SoundCategory category) {
         super(sound, category);
         ENTITY = s_entity;
-        
         update();
     }
     
@@ -37,11 +37,20 @@ public class HuajiMovingSound extends MovingSound {
         this.donePlaying = true;
     }
 
-    @Override
+//    public boolean isPlaying() {
+//		return isPlaying;
+//	}
+//
+//	public void setPlaying(boolean isPlaying) {
+//		this.isPlaying = isPlaying;
+//	}
+
+	@Override
     public void update() {
         this.xPosF = (float) ENTITY.posX;
         this.yPosF = (float) ENTITY.posY;
         this.zPosF = (float) ENTITY.posZ;
+    	
     }
 
 }

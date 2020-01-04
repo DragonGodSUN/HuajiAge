@@ -197,6 +197,60 @@
         "stream": true
       }
     ]
+  },
+   "stand_the_world_hit_1": {
+    "category": "neutral",
+    "sounds": [
+      {
+        "name": "huajiage:stand_the_world_hit_1",
+        "stream": true
+      }
+    ]
+  },
+   "stand_the_world_hit_2": {
+    "category": "neutral",
+    "sounds": [
+      {
+        "name": "huajiage:stand_the_world_hit_2",
+        "stream": true
+      }
+    ]
+  },
+   "stand_star_platinum_hit_1": {
+    "category": "neutral",
+    "sounds": [
+      {
+        "name": "huajiage:stand_star_platinum_hit_1",
+        "stream": true
+      }
+    ]
+  },
+   "stand_star_platinum_hit_2": {
+    "category": "neutral",
+    "sounds": [
+      {
+        "name": "huajiage:stand_star_platinum_hit_2",
+        "stream": true
+      }
+    ]
+  },
+   "stand_star_platinum_hit_3": {
+    "category": "neutral",
+    "sounds": [
+      {
+        "name": "huajiage:stand_star_platinum_hit_3",
+        "stream": true
+      }
+    ]
+  },
+   "stand_star_platinum_hit_4": {
+    "category": "neutral",
+    "sounds": [
+      {
+        "name": "huajiage:stand_star_platinum_hit_4",
+        "stream": true
+      }
+    ]
   }
 
 }

@@ -35,7 +35,14 @@ public class NBTHelper {
 	public static void setEntityString(Entity entity,String key,String value) {
 		entity.getEntityData().setString(key, value);
 	}
-	
+//	public static boolean checkEntityNBT(Entity entity,String key) {
+//		boolean flag = false ;
+//		flag = entity.getEntityData().hasKey(key);
+//		return flag;
+//	}
+//	public static void removeEntityNBT(Entity entity,String key) {
+//		entity.getEntityData().removeTag(key);
+//	}
 //	*****************物品NBT调用*****************************
 	public static NBTTagCompound getTagCompoundSafe(ItemStack stack) {
 	    NBTTagCompound tagCompound = stack.getTagCompound();

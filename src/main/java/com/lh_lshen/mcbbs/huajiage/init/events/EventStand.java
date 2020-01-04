@@ -1,6 +1,7 @@
 package com.lh_lshen.mcbbs.huajiage.init.events;
 
 import java.util.List;
+import java.util.Random;
 
 import com.ibm.icu.impl.duration.impl.DataRecord.EUnitVariant;
 import com.lh_lshen.mcbbs.huajiage.HuajiAge;
@@ -11,10 +12,13 @@ import com.lh_lshen.mcbbs.huajiage.common.HuajiConstant;
 import com.lh_lshen.mcbbs.huajiage.config.ConfigHuaji;
 import com.lh_lshen.mcbbs.huajiage.entity.EntityRoadRoller;
 import com.lh_lshen.mcbbs.huajiage.init.playsound.HuajiSoundPlayer;
+import com.lh_lshen.mcbbs.huajiage.init.playsound.SoundLoader;
+import com.lh_lshen.mcbbs.huajiage.init.playsound.StandMovingSound;
 import com.lh_lshen.mcbbs.huajiage.item.ItemLoader;
 import com.lh_lshen.mcbbs.huajiage.network.messages.MessageParticleGenerator;
 import com.lh_lshen.mcbbs.huajiage.potion.PotionLoader;
 import com.lh_lshen.mcbbs.huajiage.util.EnumStandtype;
+import com.lh_lshen.mcbbs.huajiage.util.MotionHelper;
 import com.lh_lshen.mcbbs.huajiage.util.NBTHelper;
 import com.lh_lshen.mcbbs.huajiage.util.ServerUtil;
 
@@ -30,15 +34,18 @@ import net.minecraft.entity.projectile.EntityFireball;
 import net.minecraft.init.Blocks;
 import net.minecraft.init.SoundEvents;
 import net.minecraft.item.ItemStack;
+import net.minecraft.network.play.server.SPacketSoundEffect;
 import net.minecraft.potion.PotionEffect;
 import net.minecraft.util.DamageSource;
 import net.minecraft.util.EnumParticleTypes;
 import net.minecraft.util.ResourceLocation;
+import net.minecraft.util.SoundCategory;
 import net.minecraft.util.math.BlockPos;
 import net.minecraft.util.math.Vec3d;
 import net.minecraft.world.World;
 import net.minecraftforge.client.event.RenderHandEvent;
 import net.minecraftforge.event.entity.living.LivingEvent.LivingUpdateEvent;
+import net.minecraftforge.event.entity.living.LivingHurtEvent;
 import net.minecraftforge.event.entity.player.PlayerEvent;
 import net.minecraftforge.fml.common.Loader;
 import net.minecraftforge.fml.common.eventhandler.SubscribeEvent;
@@ -59,8 +66,6 @@ public class EventStand {
 
 		if (stack.getItem() != ItemLoader.roadRoller &&player.isPotionActive(PotionLoader.potionStand) && perspective == 0 && !f1)
 		{
-//			if (Loader.isModLoaded("realrender") || Loader.isModLoaded("rfpr"))
-//				return;
 			GlStateManager.pushMatrix();
 			GlStateManager.enableBlend();
 			EventStand.setLightmapDisabled(false);
@@ -85,11 +90,6 @@ public class EventStand {
 	  {
 		  EntityLivingBase eater =evt.getEntityLiving();
 			  if(!eater.isPotionActive(PotionLoader.potionStand)) {
-//				  if(eater instanceof EntityPlayer) {
-//					  if(NBTHelper.getEntityInteger(eater, HuajiConstant.STAND_TYPE) != 0) {
-//						  NBTHelper.setEntityInteger(eater, HuajiConstant.STAND_TYPE, 0);
-//					  }
-//				  }
 			  return;
 		  }
 		  if(eater.isPotionActive(PotionLoader.potionStand)) {
@@ -115,12 +115,29 @@ public class EventStand {
 			  }
 		  }
 	  }
+//	  @SubscribeEvent
+//	  public static void StandSoundPlay(LivingHurtEvent evt) {
+//		EntityLivingBase attacker = (EntityLivingBase) evt.getSource().getTrueSource();
+//		if(attacker != null) {
+//			if(attacker instanceof EntityPlayer) {
+//				EntityPlayer player = (EntityPlayer) attacker;
+//				String stand_type = player.getCapability(CapabilityStandHandler.STAND_TYPE, null).getStand();
+//					if(stand_type.equals(EnumStandtype.EMPTY)) {
+//						return;
+//					}
+//				}
+//			}
+//		  
+//	  }
+//	  
+//	  ================================Stand Settings==========================================================
+	  
 	  
 	  
 	  public static void standPower(EntityLivingBase entity) {
 			  if(!entity.isPotionActive(PotionLoader.potionStand)) {
 				  entity.addPotionEffect(new PotionEffect(PotionLoader.potionStand,60,0));
-				  HuajiSoundPlayer.playToNearbyClient(entity, SoundEvents.ENTITY_EXPERIENCE_ORB_PICKUP);
+				  HuajiSoundPlayer.playToNearbyClient(entity, SoundEvents.ENTITY_EXPERIENCE_ORB_PICKUP,0.5f);
 				  ServerUtil.sendPacketToNearbyPlayers(entity, new MessageParticleGenerator(entity.getPositionVector(), EnumParticleTypes.FIREWORKS_SPARK));
 			  }
 			  if(entity.isPotionActive(PotionLoader.potionStand)&&entity.getActivePotionEffect(PotionLoader.potionStand).getDuration()<20) {
@@ -128,6 +145,9 @@ public class EventStand {
 			  }
 			  
 	}
+	  
+	  
+	  
 	@SideOnly(Side.CLIENT)
 	private static void setLightmapDisabled(boolean disabled)
 	{
@@ -145,6 +165,8 @@ public class EventStand {
 		GlStateManager.setActiveTexture(OpenGlHelper.defaultTexUnit);
 	}
 	
+	
+	
     public static EnumStandtype getType(EntityLivingBase entity) {
     	   if (entity.hasCapability(CapabilityStandHandler.STAND_TYPE, null)) {
                StandHandler stand = entity.getCapability(CapabilityStandHandler.STAND_TYPE, null);
@@ -152,6 +174,8 @@ public class EventStand {
     	   }
     	return null;
     }
+    
+    
     
 	private static void standRender(EntityLivingBase entity) {
 		EnumStandtype type = getType(entity);
@@ -165,11 +189,18 @@ public class EventStand {
 			Minecraft.getMinecraft().getTextureManager().bindTexture(STAND_TEX);
 			OpenGlHelper.setLightmapTextureCoords(OpenGlHelper.lightmapTexUnit, 240f, 240f);
 			THE_WORLD_MODEL.setRotationAngles(0, 0, entity.ticksExisted, 0, 0, 1, entity ,0.5f,type.getSpeed());
-			THE_WORLD_MODEL.doHandRender(0, -1f, -0.75f, 1f,0.6f);
+			if(entity.getActivePotionEffect(PotionLoader.potionStand).getDuration()<40) {
+				THE_WORLD_MODEL.doHandRender(0, -1f, -0.75f, 1f,0.3f);
+			}else {
+				THE_WORLD_MODEL.doHandRender(0, -1f, -0.75f, 1f,0.6f);
+			}
 			break;
 		}
 		
 	}
+	
+	
+	
 	private static void doStandPower(EntityLivingBase eater) {
 		EnumStandtype type = getType(eater);
 		if(type == null) {
@@ -181,56 +212,50 @@ public class EventStand {
 		}
 		switch(type) {
 		case THE_WORLD:{
-			for(Entity i:entityCllection) {
-					  if(i instanceof IProjectile || i instanceof EntityFireball) {
-						  Vec3d eater_pos=eater.getPositionEyes(0);
-						  BlockPos target_pos=i.getPosition();
-						  Vec3d back = new Vec3d(target_pos.getX()-eater_pos.x, target_pos.getY()-eater_pos.y, target_pos.getZ()-eater_pos.z).normalize();
-						  if(!(i.motionX==0 && i.motionY==0 && i.motionZ==0)) {
-							  	  i.motionX=(type.getDamage()/10)*back.x;
-								  i.motionY=(type.getDamage()/10)*back.y;
-								  i.motionZ=(type.getDamage()/10)*back.z;
-							  }
-					  		}
-					  if(i instanceof EntityLivingBase) {
-						  EntityLivingBase target=(EntityLivingBase)i;
-							  if(target!=eater) {
-								  BlockPos eater_pos=eater.getPosition();
-								  BlockPos target_pos=target.getPosition();
-								  Vec3d back = new Vec3d(target_pos.getX()-eater_pos.getX(), target_pos.getY()-eater_pos.getY(), target_pos.getZ()-eater_pos.getZ()).normalize();
-								  if(eater instanceof EntityPlayer) {
-									  EntityPlayer player =(EntityPlayer) eater;
-									  if(NBTHelper.getEntityInteger(target, HuajiConstant.TIME_STOP)>0&&NBTHelper.getEntityInteger(target, HuajiConstant.DIO_HIT)<60) {
-										  NBTHelper.setEntityInteger(target, HuajiConstant.DIO_HIT, 60);
-									  }else {
-										  target.attackEntityFrom(DamageSource.causePlayerDamage(player), 10f);
+					for(Entity i:entityCllection) {
+							  if(i instanceof IProjectile || i instanceof EntityFireball) {
+								  Vec3d back = MotionHelper.getVectorEntityEye(eater, i);
+								  if(!(i.motionX==0 && i.motionY==0 && i.motionZ==0)) {
+									  	  i.motionX=(type.getDamage()/10)*back.x;
+										  i.motionY=(type.getDamage()/10)*back.y;
+										  i.motionZ=(type.getDamage()/10)*back.z;
 									  }
-									  if(target.ticksExisted%2==0) {
-										  HuajiSoundPlayer.playToNearbyClient(target, SoundEvents.ENTITY_GENERIC_EXPLODE);
-										  target.world.playEvent(2001, target.getPosition().add(0, target.getPositionEyes(0).y-target.getPosition().getY(), 0), Blocks.OBSIDIAN.getStateId(Blocks.OBSIDIAN.getStateFromMeta(0)));
-									  }
-								  }else {
-									  if(NBTHelper.getEntityInteger(target, HuajiConstant.TIME_STOP)>0&&NBTHelper.getEntityInteger(target, HuajiConstant.DIO_HIT)<60) {
-										  NBTHelper.setEntityInteger(target, HuajiConstant.DIO_HIT, 60);
-									  }else {
-										  target.attackEntityFrom(DamageSource.causeIndirectDamage(eater, eater), type.getDamage());
-									  }
-									  if(target.ticksExisted%2==0) {
-										  HuajiSoundPlayer.playToNearbyClient(target, SoundEvents.ENTITY_GENERIC_EXPLODE);
-										  target.world.playEvent(2001, target.getPosition().add(0, target.getPositionEyes(0).y-target.getPosition().getY(), 0), Blocks.OBSIDIAN.getStateId(Blocks.OBSIDIAN.getStateFromMeta(0)));
-									  }
-								  }
-								  target.motionX=back.x;
-								  target.motionY=back.y;
-								  target.motionZ=back.z;
-							  }
-					  }
-				  }
-				break;	
-			}
-		
-		}
-		
-	}
+								}
 
-}
+							  if(i instanceof EntityLivingBase) {
+								  EntityLivingBase target=(EntityLivingBase)i;
+									  if(target!=eater) {
+										  	Vec3d back = MotionHelper.getVectorEntity(eater, target);
+										  	if(NBTHelper.getEntityInteger(target, HuajiConstant.TIME_STOP)>0&&NBTHelper.getEntityInteger(target, HuajiConstant.DIO_HIT)<60) {
+												  NBTHelper.setEntityInteger(target, HuajiConstant.DIO_HIT, 60);
+											  }else {
+												  if(eater instanceof EntityPlayer) {
+													  EntityPlayer player =(EntityPlayer) eater;
+													  target.attackEntityFrom(DamageSource.causePlayerDamage(player), 10f);
+											  		}else {
+											  		  target.attackEntityFrom(DamageSource.causeIndirectDamage(eater, eater), type.getDamage());
+											  		}
+											  }
+										  if(eater.ticksExisted%3==0) {
+											  HuajiSoundPlayer.playToNearbyClient(target, SoundEvents.ENTITY_GENERIC_EXPLODE, 0.25f);
+										  }
+										  if(eater.ticksExisted%2==0) {
+										  eater.world.playEvent(2001, target.getPosition().add(0, target.getPositionEyes(target.ticksExisted).y-target.getPosition().getY(), 0), Blocks.OBSIDIAN.getStateId(Blocks.OBSIDIAN.getStateFromMeta(0)));
+										  }
+										  target.motionX=back.x;
+										  target.motionY=back.y;
+										  target.motionZ=back.z;
+														  }
+												  }
+											}
+						break;
+						}
+				}
+		}
+	
+	
+	
+		
+		
+	
+	}

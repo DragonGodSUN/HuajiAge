@@ -11,7 +11,7 @@ import net.minecraft.client.renderer.GlStateManager;
 import net.minecraft.entity.Entity;
 import net.minecraft.util.math.MathHelper;
 
-public class ModelTheWorld extends ModelBase
+public class ModelTheWorld extends ModelStandBase
 {
   //fields
     ModelRenderer Shape6;

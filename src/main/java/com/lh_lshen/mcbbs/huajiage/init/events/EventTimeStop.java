@@ -198,12 +198,12 @@ public class EventTimeStop {
 	    					i.getEntityData().setDouble("huajiage.time_stop.x", i.posX);
 	    					i.getEntityData().setDouble("huajiage.time_stop.y", i.posY);
 	    					i.getEntityData().setDouble("huajiage.time_stop.z", i.posZ);
-	    					   }
-	    					}
-	    				}
-	    			}
+						    							}
+						    					}
+					    				}
+				    			}
+			    		}
 	    		}
-    		}
      	}
 	 
 }

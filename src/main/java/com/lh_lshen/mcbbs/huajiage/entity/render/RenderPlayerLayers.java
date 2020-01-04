@@ -21,13 +21,8 @@ public class RenderPlayerLayers extends net.minecraft.client.renderer.entity.Ren
     private void addLayers()
     {
     	for (RenderPlayer playerRender : Minecraft.getMinecraft().getRenderManager().getSkinMap().values()) {
-//		if() {
-
-		        	playerRender.addLayer(new LayerCharmDisplay(playerRender));
+		        	playerRender.addLayer(new LayerCharmDisplay());
 		        	playerRender.addLayer(new LayerTheWorld(playerRender));  
-	        
-//			}
-			
     	}
 
     }

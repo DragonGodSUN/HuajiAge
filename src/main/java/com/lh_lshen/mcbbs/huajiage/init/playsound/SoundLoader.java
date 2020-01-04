@@ -46,6 +46,12 @@ public class SoundLoader {
 	public static final SoundEvent DIO_FLAG=registerSound("dio_flag");
 	public static final SoundEvent DIO_HIT=registerSound("dio_hit");
 	public static final SoundEvent NOISE_FURNACE=registerSound("noise_furnace");
+	public static final SoundEvent STAND_THE_WORLD_HIT_1=registerSound("stand_the_world_hit_1");
+	public static final SoundEvent STAND_THE_WORLD_HIT_2=registerSound("stand_the_world_hit_2");
+	public static final SoundEvent STAND_THE_STAR_PLATINUM_1=registerSound("stand_star_platinum_hit_1");
+	public static final SoundEvent STAND_THE_STAR_PLATINUM_2=registerSound("stand_star_platinum_hit_2");
+	public static final SoundEvent STAND_THE_STAR_PLATINUM_3=registerSound("stand_star_platinum_hit_3");
+	public static final SoundEvent STAND_THE_STAR_PLATINUM_4=registerSound("stand_star_platinum_hit_4");
 
 	@SubscribeEvent
 	public static void register(RegistryEvent.Register<SoundEvent> event) {

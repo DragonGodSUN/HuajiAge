@@ -20,6 +20,7 @@ public class ClientProxy extends CommonProxy {
 	        new ItemRenderLoader();
 	        new EntityRenderLoader();
 	        
+	        
 
 	       
 	    }

@@ -3,8 +3,10 @@ package com.lh_lshen.mcbbs.huajiage.network.messages;
 import java.util.UUID;
 
 import com.lh_lshen.mcbbs.huajiage.capability.CapabilityStandHandler;
+import com.lh_lshen.mcbbs.huajiage.init.events.EventStand;
 import com.lh_lshen.mcbbs.huajiage.item.ItemHeroBow;
 import com.lh_lshen.mcbbs.huajiage.item.ItemLoader;
+import com.lh_lshen.mcbbs.huajiage.network.HuajiAgeNetWorkHandler;
 import com.lh_lshen.mcbbs.huajiage.potion.PotionLoader;
 import com.lh_lshen.mcbbs.huajiage.util.EnumStandtype;
 
@@ -36,7 +38,10 @@ public class MessageStandUp implements IMessage {
 			player.mcServer.addScheduledTask(() -> {
 				if(!player.isPotionActive(PotionLoader.potionStand)) {
 					player.getFoodStats().setFoodLevel(player.getFoodStats().getFoodLevel()-1);
+//					MessageMovingSound moving_sound = new MessageMovingSound(player.getName());
+//					HuajiAgeNetWorkHandler.sendToNearby(player.world, player, moving_sound);
 					player.addPotionEffect(new PotionEffect(PotionLoader.potionStand,stand.getDuration()));
+					System.out.println(player.getName());
 					}else {
 						player.removePotionEffect(PotionLoader.potionStand);;
 					}

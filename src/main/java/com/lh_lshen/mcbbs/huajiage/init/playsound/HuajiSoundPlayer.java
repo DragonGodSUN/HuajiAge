@@ -40,19 +40,24 @@ public class HuajiSoundPlayer {
 	    public static void playMovingSoundClient(Entity target,SoundEvent sound, SoundCategory category, float volume) {
 	        playClient(new HuajiMovingSound(target, sound, category).setVolume(volume));
 	    }
+	 
+	    public static HuajiMovingSound getMovingSound(Entity target,SoundEvent sound, SoundCategory category, float volume) {
+		 HuajiMovingSound soundm =new HuajiMovingSound(target, sound, category); 
+		 return soundm.setVolume(volume);
+	    }
 	 @SideOnly(Side.CLIENT)
 	    public static void playClient(World world, double x, double y, double z, SoundEvent sound, SoundCategory category, float volume, float pitch) {
 	        world.playSound(x, y, z,sound,category, volume, pitch, true);
 	    }
     
 //    @SideOnly(Side.SERVER)
-    public static void playToClient(EntityLivingBase entity,SoundEvent sound) {
-    	IMessage msg=new MessagePlaySoundClient(entity.getPositionVector(), sound);
+    public static void playToClient(EntityLivingBase entity,SoundEvent sound,float volume) {
+    	IMessage msg=new MessagePlaySoundClient(entity.getPositionVector(), sound, volume);
         ServerUtil.sendPacketToPlayers(entity, msg);
     }
 //    @SideOnly(Side.SERVER)
-    public static void playToNearbyClient(EntityLivingBase entity,SoundEvent sound) {
-    	IMessage msg=new MessagePlaySoundClient(entity.getPositionVector(), sound);
+    public static void playToNearbyClient(EntityLivingBase entity,SoundEvent sound,float volume) {
+    	IMessage msg=new MessagePlaySoundClient(entity.getPositionVector(), sound, volume);
         ServerUtil.sendPacketToNearbyPlayers(entity, msg);
     }
      

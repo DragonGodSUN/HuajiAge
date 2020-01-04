@@ -6,6 +6,7 @@ import com.lh_lshen.mcbbs.huajiage.network.messages.MessageExglutenburMode;
 import com.lh_lshen.mcbbs.huajiage.network.messages.MessageKeyInput;
 import com.lh_lshen.mcbbs.huajiage.network.messages.MessageLeftClick;
 import com.lh_lshen.mcbbs.huajiage.network.messages.MessageLeftClickRoadRoller;
+import com.lh_lshen.mcbbs.huajiage.network.messages.MessageMovingSound;
 import com.lh_lshen.mcbbs.huajiage.network.messages.MessageOrgaRequiemClient;
 import com.lh_lshen.mcbbs.huajiage.network.messages.MessageOrgaShotHandlerOnClient;
 import com.lh_lshen.mcbbs.huajiage.network.messages.MessageParticleGenerator;
@@ -44,6 +45,7 @@ public final class  HuajiAgeNetWorkHandler {
 	    HANDLER.registerMessage(MessageDioHitClient.Handler.class,MessageDioHitClient.class, id++, Side.CLIENT);
 	    HANDLER.registerMessage(MessagePlaySoundClient.Handler.class,MessagePlaySoundClient.class, id++, Side.CLIENT);
 	    HANDLER.registerMessage(MessageParticleGenerator.Handler.class,MessageParticleGenerator.class, id++, Side.CLIENT);
+	    HANDLER.registerMessage(MessageMovingSound.Handler.class,MessageMovingSound.class, id++, Side.CLIENT);
 	    HANDLER.registerMessage(SyncStandMessage.Handler.class,SyncStandMessage.class, id++, Side.CLIENT);
 	    HANDLER.registerMessage(SyncStandSkillMessage.Handler.class,SyncStandSkillMessage.class, id++, Side.CLIENT);
 	}

@@ -17,11 +17,6 @@ import net.minecraftforge.fml.relauncher.Side;
 //The link :https://github.com/TheGreyGhost/MinecraftByExample
 public class MessageOrgaShotHandlerOnClient implements IMessageHandler<TargetOrgaShotEffectMessageToClient, IMessage>
 {
-	  /**
-	   * Called when a message is received of the appropriate type.
-	   * CALLED BY THE NETWORK THREAD, NOT THE CLIENT THREAD
-	   * @param message The message
-	   */
 	  public IMessage onMessage(final TargetOrgaShotEffectMessageToClient message, MessageContext ctx) {
 	    if (ctx.side != Side.CLIENT) {
 	      System.err.println("TargetEffectMessageToClient received on wrong side:" + ctx.side);
@@ -51,12 +46,10 @@ public class MessageOrgaShotHandlerOnClient implements IMessageHandler<TargetOrg
 	    final double HORIZONTAL_SPREAD = 2; 
 	    Vec3d targetCoordinates = message.getTargetCoordinates();
 	    for (int i = 0; i < NUMBER_OF_PARTICLES; ++i) {
-	     
 	      double spawnXpos = targetCoordinates.x + (2*random.nextDouble() - 1) * HORIZONTAL_SPREAD;
 	      double spawnYpos = targetCoordinates.y + (2*random.nextDouble() - 1) * HORIZONTAL_SPREAD;
 	      double spawnZpos = targetCoordinates.z + (2*random.nextDouble() - 1) * HORIZONTAL_SPREAD;
 	      worldClient.spawnParticle(EnumParticleTypes.SPELL_INSTANT, spawnXpos, spawnYpos, spawnZpos, 0, 0, 0);
-	      
 	    }
        worldClient.playSound(targetCoordinates.x , targetCoordinates.y,targetCoordinates.z,SoundLoader.ORGA_SHOT, SoundCategory.VOICE, 2f, 1f, true);
 	    return;

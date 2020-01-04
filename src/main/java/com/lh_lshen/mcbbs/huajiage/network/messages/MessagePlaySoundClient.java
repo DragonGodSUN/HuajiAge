@@ -21,11 +21,12 @@ import net.minecraftforge.fml.relauncher.Side;
 //The link :https://github.com/TheGreyGhost/MinecraftByExample
 public class MessagePlaySoundClient implements IMessage
 {
-	  public MessagePlaySoundClient(Vec3d i_targetCoordinates,SoundEvent sound)
+	  public MessagePlaySoundClient(Vec3d i_targetCoordinates,SoundEvent sound,float volume)
 	  {
 	    targetCoordinates = i_targetCoordinates;
 	    messageIsValid = true;
 	    this.sound=sound;
+	    this.volume = volume;
 	  }
 
 	  public Vec3d getTargetCoordinates() {
@@ -50,11 +51,12 @@ public class MessagePlaySoundClient implements IMessage
 	      double y = buf.readDouble();
 	      double z = buf.readDouble();
 	      SoundEvent s=ByteBufUtils.readRegistryEntry(buf, ForgeRegistries.SOUND_EVENTS);
+	      volume = buf.readFloat();
 	      targetCoordinates = new Vec3d(x, y, z);
-	      sound=s;
+	      sound = s;
 
 	    } catch (IndexOutOfBoundsException ioe) {
-	      System.err.println("Exception while reading TargetEffectMessageToClient: "+"wryyyyyyyyyyyyyyyyy" + ioe);
+	      System.err.println("Exception while reading : "+"wryyyyyyyyyyyyyyyyy" + ioe);
 	      return;
 	    }
 	    messageIsValid = true;
@@ -68,17 +70,13 @@ public class MessagePlaySoundClient implements IMessage
 	    buf.writeDouble(targetCoordinates.y);
 	    buf.writeDouble(targetCoordinates.z);
 	    ByteBufUtils.writeRegistryEntry(buf, sound);
+	    buf.writeFloat(volume);
 	  }
-
-	  @Override
-	  public String toString()
-	  {
-	    return "MessagePlaySoundClient[targetCoordinates=" + String.valueOf(targetCoordinates) +"flag="+String.valueOf(sound)+ "]";
-	  }
-
+	  
 		private Vec3d targetCoordinates;
 		private boolean messageIsValid;
 		private SoundEvent sound;
+		private float volume;
 		public static class Handler implements IMessageHandler<MessagePlaySoundClient, IMessage>
 		{
 			  public IMessage onMessage(final MessagePlaySoundClient message, MessageContext ctx) {
@@ -98,20 +96,15 @@ public class MessagePlaySoundClient implements IMessage
 			      public void run() {
 			        processMessage(worldClient, message);
 			      }
-			    });
-			    
+			      });
 			    return null;
 			  }
-		
 			  void processMessage(WorldClient worldClient, MessagePlaySoundClient message)
 			  {
-		
 			    Vec3d targetCoordinates = message.getTargetCoordinates();
 			    SoundEvent sounds=message.sound;
-			   
-			    worldClient.playSound(targetCoordinates.x , targetCoordinates.y,targetCoordinates.z,sounds, SoundCategory.PLAYERS, 1f, 1f, true);
-		       
+			    worldClient.playSound(targetCoordinates.x , targetCoordinates.y,targetCoordinates.z,sounds, SoundCategory.PLAYERS, message.volume, 1f, true);
 			    return;
-			  }
+			  		}
 			}
-		}
+	}

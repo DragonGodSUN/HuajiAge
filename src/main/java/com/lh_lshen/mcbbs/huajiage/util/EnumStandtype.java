@@ -1,5 +1,6 @@
 package com.lh_lshen.mcbbs.huajiage.util;
 
+import com.lh_lshen.mcbbs.huajiage.client.model.ModelStandBase;
 import com.lh_lshen.mcbbs.huajiage.client.model.ModelTheWorld;
 import com.lh_lshen.mcbbs.huajiage.common.HuajiConstant;
 
@@ -25,7 +26,7 @@ public enum EnumStandtype {
 	private float distance;
 	
 	
-	public ModelBase newModel() {
+	public ModelStandBase newModel() {
 		switch(name) {
 		case("the_world"):
 		return new ModelTheWorld();
