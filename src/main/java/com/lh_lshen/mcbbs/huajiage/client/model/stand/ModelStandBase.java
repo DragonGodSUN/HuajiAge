@@ -1,4 +1,4 @@
-package com.lh_lshen.mcbbs.huajiage.client.model;
+package com.lh_lshen.mcbbs.huajiage.client.model.stand;
 
 import net.minecraft.client.model.ModelBase;
 import net.minecraft.entity.Entity;

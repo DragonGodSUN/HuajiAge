@@ -33,6 +33,7 @@ import net.minecraftforge.fml.relauncher.SideOnly;
 public class EventStandOverlatRender {
 	    private static final ResourceLocation STAND = new ResourceLocation(HuajiAge.MODID, "textures/items/tarot.png");
 	    private static final ResourceLocation STAND_THE_WORLD = new ResourceLocation(HuajiAge.MODID, "textures/items/disc_the_world.png");
+	    private static final ResourceLocation STAND_STAR_PLATINUM = new ResourceLocation(HuajiAge.MODID, "textures/items/disc_star_platinum.png");
 	    @SideOnly(Side.CLIENT)
 	    @SubscribeEvent
 	    public static void onRenderOverlay(RenderGameOverlayEvent event) {
@@ -56,6 +57,10 @@ public class EventStandOverlatRender {
 	                switch(stand) {
 	                case THE_WORLD :Minecraft.getMinecraft().renderEngine.bindTexture(STAND_THE_WORLD);
 	                break;
+	                case STAR_PLATINUM :Minecraft.getMinecraft().renderEngine.bindTexture(STAND_STAR_PLATINUM);
+	                break;
+					default:
+						break;
 	                }
 	                Gui.drawModalRectWithCustomSizedTexture(0, 0, 0, 0, 16, 16, 16, 16);
 	                GlStateManager.popMatrix();

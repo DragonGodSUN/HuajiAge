@@ -37,6 +37,7 @@ import net.minecraftforge.fml.relauncher.SideOnly;
 public class ItemDiscStand extends Item {
 	private static final String DEFAULT_STAND_ID =EnumStandtype.EMPTY;
 	private static final String STAND_THE_WORLD ="the_world";
+	private static final String STAND_STAR_PLATINUM ="star_platinum";
 	public ItemDiscStand()
 	{
 		 super();
@@ -48,6 +49,7 @@ public class ItemDiscStand extends Item {
 					switch(getStandId(stack)) {
 					case DEFAULT_STAND_ID:return 0;
 					case STAND_THE_WORLD:return 1;
+					case STAND_STAR_PLATINUM:return 2;
 					}
 					return 0;
 				}

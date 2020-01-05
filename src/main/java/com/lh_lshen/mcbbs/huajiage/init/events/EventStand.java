@@ -5,7 +5,7 @@ import java.util.Random;
 
 import com.ibm.icu.impl.duration.impl.DataRecord.EUnitVariant;
 import com.lh_lshen.mcbbs.huajiage.HuajiAge;
-import com.lh_lshen.mcbbs.huajiage.client.model.ModelTheWorld;
+import com.lh_lshen.mcbbs.huajiage.client.model.stand.ModelTheWorld;
 import com.lh_lshen.mcbbs.huajiage.common.HuajiConstant;
 import com.lh_lshen.mcbbs.huajiage.config.ConfigHuaji;
 import com.lh_lshen.mcbbs.huajiage.entity.EntityRoadRoller;
@@ -82,14 +82,14 @@ public class EventStand {
 		}
 	}
 	 @SubscribeEvent
-	  public static void onTheWorldStand(LivingUpdateEvent evt)
+	  public static void onStand(LivingUpdateEvent evt)
 	  {
-		  EntityLivingBase eater =evt.getEntityLiving();
-			  if(!eater.isPotionActive(PotionLoader.potionStand)) {
+		  EntityLivingBase stand_owner =evt.getEntityLiving();
+			  if(!stand_owner.isPotionActive(PotionLoader.potionStand)) {
 			  return;
 		  }
-		  if(eater.isPotionActive(PotionLoader.potionStand)) {
-			  doStandPower(eater);
+		  if(stand_owner.isPotionActive(PotionLoader.potionStand)) {
+			  doStandPower(stand_owner);
 		  }
  	  }
 	  @SubscribeEvent
@@ -159,6 +159,7 @@ public class EventStand {
 			return;
 		}
 		switch(type) {
+		case STAR_PLATINUM:
 		case THE_WORLD:{
 					for(Entity i:entityCllection) {
 							  if(i instanceof IProjectile || i instanceof EntityFireball) {
@@ -179,7 +180,7 @@ public class EventStand {
 											  }else {
 												  if(eater instanceof EntityPlayer) {
 													  EntityPlayer player =(EntityPlayer) eater;
-													  target.attackEntityFrom(DamageSource.causePlayerDamage(player), 10f);
+													  target.attackEntityFrom(DamageSource.causePlayerDamage(player), type.getDamage());
 											  		}else {
 											  		  target.attackEntityFrom(DamageSource.causeIndirectDamage(eater, eater), type.getDamage());
 											  		}
@@ -198,6 +199,8 @@ public class EventStand {
 											}
 						break;
 						}
+		default:
+						break;
 				}
 		}
 	

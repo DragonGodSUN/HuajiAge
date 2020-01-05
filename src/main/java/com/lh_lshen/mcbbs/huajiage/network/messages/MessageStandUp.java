@@ -37,7 +37,7 @@ public class MessageStandUp implements IMessage {
         		return null;
 			player.mcServer.addScheduledTask(() -> {
 				if(!player.isPotionActive(PotionLoader.potionStand)) {
-					player.getFoodStats().setFoodLevel(player.getFoodStats().getFoodLevel()-1);
+					player.getFoodStats().setFoodLevel(player.getFoodStats().getFoodLevel()-((int)(stand.getDamage()/5)-1));
 //					MessageMovingSound moving_sound = new MessageMovingSound(player.getName());
 //					HuajiAgeNetWorkHandler.sendToNearby(player.world, player, moving_sound);
 					player.addPotionEffect(new PotionEffect(PotionLoader.potionStand,stand.getDuration()));

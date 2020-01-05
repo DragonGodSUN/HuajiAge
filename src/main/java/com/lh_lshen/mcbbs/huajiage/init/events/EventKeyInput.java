@@ -77,6 +77,7 @@ public class EventKeyInput {
 					switch(stand)
 					{
 					case THE_WORLD :
+					{
 						if(random<50) 
 							{
 								HuajiSoundPlayer.playToServer(player, SoundLoader.STAND_THE_WORLD_HIT_1, 1, 1);
@@ -88,6 +89,25 @@ public class EventKeyInput {
 //								player.world.playSound(player, player.getPosition(), SoundLoader.STAND_THE_WORLD_HIT_2, SoundCategory.PLAYERS, 1f, 1f);
 							}
 							break;
+					}
+					case STAR_PLATINUM :
+					{	if(random<25) 
+							{
+								HuajiSoundPlayer.playToServer(player, SoundLoader.STAND_THE_STAR_PLATINUM_1, 1, 1);
+							}else if(random<50) 
+							{
+								HuajiSoundPlayer.playToServer(player, SoundLoader.STAND_THE_STAR_PLATINUM_2, 1, 1);
+							}else if(random<75) 
+							{
+								HuajiSoundPlayer.playToServer(player, SoundLoader.STAND_THE_STAR_PLATINUM_3 ,1, 1);
+							}else if(random<100) 
+							{
+								HuajiSoundPlayer.playToServer(player, SoundLoader.STAND_THE_STAR_PLATINUM_4, 1, 1);
+							}
+							break;
+					}	
+					default:
+						break;
 					}
 				}
 			    final int NUMBER_OF_PARTICLES = 60;

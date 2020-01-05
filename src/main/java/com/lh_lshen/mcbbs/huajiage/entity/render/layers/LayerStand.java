@@ -4,8 +4,8 @@ import com.lh_lshen.mcbbs.huajiage.HuajiAge;
 import com.lh_lshen.mcbbs.huajiage.capability.CapabilityStandHandler;
 import com.lh_lshen.mcbbs.huajiage.capability.StandHandler;
 import com.lh_lshen.mcbbs.huajiage.client.model.ModelMuliKnife;
-import com.lh_lshen.mcbbs.huajiage.client.model.ModelStandBase;
-import com.lh_lshen.mcbbs.huajiage.client.model.ModelTheWorld;
+import com.lh_lshen.mcbbs.huajiage.client.model.stand.ModelStandBase;
+import com.lh_lshen.mcbbs.huajiage.client.model.stand.ModelTheWorld;
 import com.lh_lshen.mcbbs.huajiage.common.HuajiConstant;
 import com.lh_lshen.mcbbs.huajiage.item.ItemLoader;
 import com.lh_lshen.mcbbs.huajiage.potion.PotionLoader;
@@ -63,7 +63,7 @@ public class LayerStand implements  LayerRenderer<EntityLivingBase> {
 	 					
 	 					GlStateManager.pushMatrix();
 	 		            GlStateManager.translate(0.0F, -0.2F, -0.75F);
-	 		            model.setRotationAngles(limbSwing, limbSwingAmount, ageInTicks, netHeadYaw, headPitch, scale, entitylivingbaseIn, stand.getDamage()/10 ,stand.getSpeed()*4/3);
+	 		            model.setRotationAngles(limbSwing, limbSwingAmount, ageInTicks, netHeadYaw, headPitch, scale, entitylivingbaseIn, 1 ,stand.getSpeed()*4/3);
 	 					model.render(entitylivingbaseIn, limbSwing, limbSwingAmount, ageInTicks, netHeadYaw, headPitch, scale);
 						GlStateManager.disableBlend();
 						GlStateManager.enableLighting();

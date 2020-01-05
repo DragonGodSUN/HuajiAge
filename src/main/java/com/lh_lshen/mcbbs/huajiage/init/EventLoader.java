@@ -8,7 +8,7 @@ import javax.annotation.Nullable;
 
 import com.ibm.icu.impl.duration.impl.DataRecord.EUnitVariant;
 import com.lh_lshen.mcbbs.huajiage.HuajiAge;
-import com.lh_lshen.mcbbs.huajiage.client.model.ModelTheWorld;
+import com.lh_lshen.mcbbs.huajiage.client.model.stand.ModelTheWorld;
 import com.lh_lshen.mcbbs.huajiage.entity.EntitySecondFoil;
 import com.lh_lshen.mcbbs.huajiage.entity.render.layers.LayerStand;
 import com.lh_lshen.mcbbs.huajiage.init.events.EventKeyInput;
