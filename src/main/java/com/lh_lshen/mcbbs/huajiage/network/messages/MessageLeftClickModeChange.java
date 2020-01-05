@@ -12,7 +12,7 @@ import net.minecraftforge.fml.common.network.simpleimpl.IMessage;
 import net.minecraftforge.fml.common.network.simpleimpl.IMessageHandler;
 import net.minecraftforge.fml.common.network.simpleimpl.MessageContext;
 
-public class MessageLeftClick implements IMessage {
+public class MessageLeftClickModeChange implements IMessage {
     @Override
     public void toBytes(ByteBuf buf) {
 
@@ -23,9 +23,9 @@ public class MessageLeftClick implements IMessage {
 
     }
 
-    public static class Handler implements IMessageHandler<MessageLeftClick, IMessage> {
+    public static class Handler implements IMessageHandler<MessageLeftClickModeChange, IMessage> {
         @Override
-        public IMessage onMessage(MessageLeftClick message , MessageContext ctx) {
+        public IMessage onMessage(MessageLeftClickModeChange message , MessageContext ctx) {
         	EntityPlayerMP player = ctx.getServerHandler().player;
         	ItemStack itemstack=ctx.getServerHandler().player.getHeldItemMainhand();
         if(itemstack.getItem()==ItemLoader.heroBow) {

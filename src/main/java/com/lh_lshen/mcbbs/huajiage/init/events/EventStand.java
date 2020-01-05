@@ -5,8 +5,6 @@ import java.util.Random;
 
 import com.ibm.icu.impl.duration.impl.DataRecord.EUnitVariant;
 import com.lh_lshen.mcbbs.huajiage.HuajiAge;
-import com.lh_lshen.mcbbs.huajiage.capability.CapabilityStandHandler;
-import com.lh_lshen.mcbbs.huajiage.capability.StandHandler;
 import com.lh_lshen.mcbbs.huajiage.client.model.ModelTheWorld;
 import com.lh_lshen.mcbbs.huajiage.common.HuajiConstant;
 import com.lh_lshen.mcbbs.huajiage.config.ConfigHuaji;
@@ -15,12 +13,12 @@ import com.lh_lshen.mcbbs.huajiage.init.playsound.HuajiSoundPlayer;
 import com.lh_lshen.mcbbs.huajiage.init.playsound.SoundLoader;
 import com.lh_lshen.mcbbs.huajiage.init.playsound.StandMovingSound;
 import com.lh_lshen.mcbbs.huajiage.item.ItemLoader;
-import com.lh_lshen.mcbbs.huajiage.network.messages.MessageParticleGenerator;
 import com.lh_lshen.mcbbs.huajiage.potion.PotionLoader;
 import com.lh_lshen.mcbbs.huajiage.util.EnumStandtype;
 import com.lh_lshen.mcbbs.huajiage.util.MotionHelper;
 import com.lh_lshen.mcbbs.huajiage.util.NBTHelper;
-import com.lh_lshen.mcbbs.huajiage.util.ServerUtil;
+import com.lh_lshen.mcbbs.huajiage.util.StandClientUtil;
+import com.lh_lshen.mcbbs.huajiage.util.StandUtil;
 
 import net.minecraft.client.Minecraft;
 import net.minecraft.client.renderer.GlStateManager;
@@ -35,9 +33,7 @@ import net.minecraft.init.Blocks;
 import net.minecraft.init.SoundEvents;
 import net.minecraft.item.ItemStack;
 import net.minecraft.network.play.server.SPacketSoundEffect;
-import net.minecraft.potion.PotionEffect;
 import net.minecraft.util.DamageSource;
-import net.minecraft.util.EnumParticleTypes;
 import net.minecraft.util.ResourceLocation;
 import net.minecraft.util.SoundCategory;
 import net.minecraft.util.math.BlockPos;
@@ -70,7 +66,7 @@ public class EventStand {
 			GlStateManager.enableBlend();
 			EventStand.setLightmapDisabled(false);
 
-			standRender(player);
+			StandClientUtil.standRender(player);
 			
 			EventStand.setLightmapDisabled(true);
 
@@ -100,12 +96,12 @@ public class EventStand {
 	  public static void onBreaking(PlayerEvent.BreakSpeed evt)
 	  {
 		  if(ConfigHuaji.Stands.allowTheWorldDestory) {
-			  EnumStandtype type = getType(evt.getEntityLiving());
+			  EnumStandtype type = StandUtil.getType(evt.getEntityLiving());
 				if(type == null) {
 					return;
 				}
 			  if(NBTHelper.getEntityInteger(evt.getEntityLiving(), HuajiConstant.THE_WORLD)>0) {
-				EventStand.standPower(evt.getEntityLiving());
+				StandUtil.standPower(evt.getEntityLiving());
 			  }
 			  float op =evt.getOriginalSpeed();
 			  if(evt.getEntityPlayer().isPotionActive(PotionLoader.potionStand)) {
@@ -134,21 +130,7 @@ public class EventStand {
 	  
 	  
 	  
-	  public static void standPower(EntityLivingBase entity) {
-			  if(!entity.isPotionActive(PotionLoader.potionStand)) {
-				  entity.addPotionEffect(new PotionEffect(PotionLoader.potionStand,60,0));
-				  HuajiSoundPlayer.playToNearbyClient(entity, SoundEvents.ENTITY_EXPERIENCE_ORB_PICKUP,0.5f);
-				  ServerUtil.sendPacketToNearbyPlayers(entity, new MessageParticleGenerator(entity.getPositionVector(), EnumParticleTypes.FIREWORKS_SPARK));
-			  }
-			  if(entity.isPotionActive(PotionLoader.potionStand)&&entity.getActivePotionEffect(PotionLoader.potionStand).getDuration()<20) {
-				  entity.addPotionEffect(new PotionEffect(PotionLoader.potionStand,60,0));
-			  }
-			  
-	}
-	  
-	  
-	  
-	@SideOnly(Side.CLIENT)
+	  @SideOnly(Side.CLIENT)
 	private static void setLightmapDisabled(boolean disabled)
 	{
 		GlStateManager.setActiveTexture(OpenGlHelper.lightmapTexUnit);
@@ -164,45 +146,11 @@ public class EventStand {
 
 		GlStateManager.setActiveTexture(OpenGlHelper.defaultTexUnit);
 	}
-	
-	
-	
-    public static EnumStandtype getType(EntityLivingBase entity) {
-    	   if (entity.hasCapability(CapabilityStandHandler.STAND_TYPE, null)) {
-               StandHandler stand = entity.getCapability(CapabilityStandHandler.STAND_TYPE, null);
-        return EnumStandtype.getType(stand.getStand());
-    	   }
-    	return null;
-    }
-    
-    
-    
-	private static void standRender(EntityLivingBase entity) {
-		EnumStandtype type = getType(entity);
-		if(type == null) {
-			return;
-		}
-		ResourceLocation STAND_TEX = new ResourceLocation(HuajiAge.MODID,type.getTex());
-		switch(type) {
-		case THE_WORLD:
-			ModelTheWorld THE_WORLD_MODEL = (ModelTheWorld) type.newModel();
-			Minecraft.getMinecraft().getTextureManager().bindTexture(STAND_TEX);
-			OpenGlHelper.setLightmapTextureCoords(OpenGlHelper.lightmapTexUnit, 240f, 240f);
-			THE_WORLD_MODEL.setRotationAngles(0, 0, entity.ticksExisted, 0, 0, 1, entity ,0.5f,type.getSpeed());
-			if(entity.getActivePotionEffect(PotionLoader.potionStand).getDuration()<40) {
-				THE_WORLD_MODEL.doHandRender(0, -1f, -0.75f, 1f,0.3f);
-			}else {
-				THE_WORLD_MODEL.doHandRender(0, -1f, -0.75f, 1f,0.6f);
-			}
-			break;
-		}
-		
-	}
-	
-	
-	
+
+	  
+	  
 	private static void doStandPower(EntityLivingBase eater) {
-		EnumStandtype type = getType(eater);
+		EnumStandtype type = StandUtil.getType(eater);
 		if(type == null) {
 			return;
 		}

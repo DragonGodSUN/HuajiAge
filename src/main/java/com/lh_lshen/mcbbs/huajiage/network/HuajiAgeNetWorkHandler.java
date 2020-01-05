@@ -3,18 +3,17 @@ package com.lh_lshen.mcbbs.huajiage.network;
 import com.lh_lshen.mcbbs.huajiage.HuajiAge;
 import com.lh_lshen.mcbbs.huajiage.network.messages.MessageDioHitClient;
 import com.lh_lshen.mcbbs.huajiage.network.messages.MessageExglutenburMode;
-import com.lh_lshen.mcbbs.huajiage.network.messages.MessageKeyInput;
-import com.lh_lshen.mcbbs.huajiage.network.messages.MessageLeftClick;
+import com.lh_lshen.mcbbs.huajiage.network.messages.MessageHelmetModeChange;
+import com.lh_lshen.mcbbs.huajiage.network.messages.MessageLeftClickModeChange;
 import com.lh_lshen.mcbbs.huajiage.network.messages.MessageLeftClickRoadRoller;
 import com.lh_lshen.mcbbs.huajiage.network.messages.MessageMovingSound;
-import com.lh_lshen.mcbbs.huajiage.network.messages.MessageOrgaRequiemClient;
-import com.lh_lshen.mcbbs.huajiage.network.messages.MessageOrgaShotHandlerOnClient;
 import com.lh_lshen.mcbbs.huajiage.network.messages.MessageParticleGenerator;
 import com.lh_lshen.mcbbs.huajiage.network.messages.MessagePlaySoundClient;
+import com.lh_lshen.mcbbs.huajiage.network.messages.MessagePlaySoundToServer;
+import com.lh_lshen.mcbbs.huajiage.network.messages.MessageServerInterchange;
 import com.lh_lshen.mcbbs.huajiage.network.messages.MessageStandUp;
 import com.lh_lshen.mcbbs.huajiage.network.messages.SyncStandMessage;
 import com.lh_lshen.mcbbs.huajiage.network.messages.SyncStandSkillMessage;
-import com.lh_lshen.mcbbs.huajiage.network.messages.TargetOrgaShotEffectMessageToClient;
 
 import net.minecraft.entity.Entity;
 import net.minecraft.entity.player.EntityPlayer;
@@ -33,15 +32,15 @@ public final class  HuajiAgeNetWorkHandler {
 
     public static void init() {
 		int id = 0;
-		HANDLER.registerMessage(MessageLeftClick.Handler.class, MessageLeftClick.class, id++, Side.SERVER);
-		HANDLER.registerMessage(MessageKeyInput.Handler.class, MessageKeyInput.class, id++, Side.SERVER);
+		HANDLER.registerMessage(MessageServerInterchange.Handler.class, MessageServerInterchange.class, id++, Side.SERVER);
+		HANDLER.registerMessage(MessagePlaySoundToServer.Handler.class, MessagePlaySoundToServer.class, id++, Side.SERVER);
+		HANDLER.registerMessage(MessageLeftClickModeChange.Handler.class, MessageLeftClickModeChange.class, id++, Side.SERVER);
+		HANDLER.registerMessage(MessageHelmetModeChange.Handler.class, MessageHelmetModeChange.class, id++, Side.SERVER);
 		HANDLER.registerMessage(MessageStandUp.Handler.class, MessageStandUp.class, id++, Side.SERVER);
 		HANDLER.registerMessage(MessageLeftClickRoadRoller.Handler.class, MessageLeftClickRoadRoller.class, id++, Side.SERVER);
 		HANDLER.registerMessage(MessageExglutenburMode.Handler.class, MessageExglutenburMode.class, id++, Side.SERVER);
 	    
 		
-		HANDLER.registerMessage(MessageOrgaShotHandlerOnClient.class,TargetOrgaShotEffectMessageToClient.class, id++, Side.CLIENT);
-	    HANDLER.registerMessage(MessageOrgaRequiemClient.Handler.class,MessageOrgaRequiemClient.class, id++, Side.CLIENT);
 	    HANDLER.registerMessage(MessageDioHitClient.Handler.class,MessageDioHitClient.class, id++, Side.CLIENT);
 	    HANDLER.registerMessage(MessagePlaySoundClient.Handler.class,MessagePlaySoundClient.class, id++, Side.CLIENT);
 	    HANDLER.registerMessage(MessageParticleGenerator.Handler.class,MessageParticleGenerator.class, id++, Side.CLIENT);

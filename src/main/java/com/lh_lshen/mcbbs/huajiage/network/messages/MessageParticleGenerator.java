@@ -21,23 +21,21 @@ import net.minecraftforge.fml.relauncher.Side;
 //The link :https://github.com/TheGreyGhost/MinecraftByExample
 public class MessageParticleGenerator implements IMessage
 {
-	  public MessageParticleGenerator(Vec3d i_targetCoordinates,EnumParticleTypes particle)
+	  public MessageParticleGenerator(Vec3d i_targetCoordinates,EnumParticleTypes particle,int number,double horizontalSpread,int type)
 	  {
 	    targetCoordinates = i_targetCoordinates;
 	    messageIsValid = true;
 	    this.particleName = particle.getParticleName();
 	    this.particle =particle;
-	  }
-
-	  public Vec3d getTargetCoordinates() {
-	    return targetCoordinates;
+	    this.number = number;
+	    this.horizontalSpread = horizontalSpread;
+	    this.type = type;
 	  }
 
 	  public boolean isMessageValid() {
 	    return messageIsValid;
 	  }
 
-	  // for use by the message handler only.
 	  public MessageParticleGenerator()
 	  {
 	    messageIsValid = false;
@@ -53,9 +51,12 @@ public class MessageParticleGenerator implements IMessage
 	      targetCoordinates = new Vec3d(x, y, z);
 	      particleName = p;
 	      particle = EnumParticleTypes.getByName(p);
+	      number = buf.readInt();
+	      horizontalSpread = buf.readDouble();
+	      type = buf.readInt();
 
 	    } catch (IndexOutOfBoundsException ioe) {
-	      System.err.println("Exception while reading TargetEffectMessageToClient: " + ioe);
+	      System.err.println("Exception while reading Client: " + ioe);
 	      return;
 	    }
 	    messageIsValid = true;
@@ -69,28 +70,34 @@ public class MessageParticleGenerator implements IMessage
 	    buf.writeDouble(targetCoordinates.y);
 	    buf.writeDouble(targetCoordinates.z);
 	    ByteBufUtils.writeUTF8String(buf, particleName);
+	    buf.writeInt(number);
+	    buf.writeDouble(horizontalSpread);
+	    buf.writeInt(type);
 
 	  }
 
 	  @Override
 	  public String toString()
 	  {
-	    return "MessageDioHitClient[targetCoordinates=" + String.valueOf(targetCoordinates)+ "]";
+	    return "[" + String.valueOf(targetCoordinates)+ "]";
 	  }
 
 	  private Vec3d targetCoordinates;
 	  private boolean messageIsValid;
 	  private EnumParticleTypes particle;
 	  private String particleName;
-public static class Handler implements IMessageHandler<MessageParticleGenerator, IMessage>
-{
+	  private int number;
+	  private double horizontalSpread;
+	  private int type;
+	public static class Handler implements IMessageHandler<MessageParticleGenerator, IMessage>
+	{
 	  public IMessage onMessage(final MessageParticleGenerator message, MessageContext ctx) {
 	    if (ctx.side != Side.CLIENT) {
-	      System.err.println("MessageDioHitClient received on wrong side:" + ctx.side);
+	      System.err.println("MessageClient received on wrong side:" + ctx.side);
 	      return null;
 	    }
 	    if (!message.isMessageValid()) {
-	      System.err.println("MessageDioHitClient was invalid" + message.toString());
+	      System.err.println("MessageClient was invalid" + message.toString());
 	      return null;
 	    }
 	    Minecraft minecraft = Minecraft.getMinecraft();
@@ -106,15 +113,15 @@ public static class Handler implements IMessageHandler<MessageParticleGenerator,
 	  }
 	  void processMessage(WorldClient worldClient, MessageParticleGenerator message)
 	  {
-	    processEffectParticle(worldClient, message.particle, message.targetCoordinates, 1);
+	    processEffectParticle(worldClient, message.particle, message.targetCoordinates,message.number,message.horizontalSpread,message.type);
 	    return;
 	  }
-	  public static void processEffectParticle(WorldClient client,EnumParticleTypes particle ,Vec3d pos ,int type) {
+	  public static void processEffectParticle(WorldClient client,EnumParticleTypes particle ,Vec3d pos,int number,double horizontalSpread ,int type) {
 		switch(type) {
 			case 1:{
 			Random random = new Random();
-		    final int NUMBER_OF_PARTICLES = 60;
-		    final double HORIZONTAL_SPREAD = 3; 
+		    final int NUMBER_OF_PARTICLES = number;
+		    final double HORIZONTAL_SPREAD = horizontalSpread; 
 		    Vec3d targetCoordinates = pos;
 		    for (int i = 0; i < NUMBER_OF_PARTICLES; ++i) {
 		      double spawnXpos = targetCoordinates.x + (2*random.nextDouble() - 1) * HORIZONTAL_SPREAD;

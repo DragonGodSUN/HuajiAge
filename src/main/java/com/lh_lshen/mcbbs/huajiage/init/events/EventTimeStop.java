@@ -12,6 +12,7 @@ import com.lh_lshen.mcbbs.huajiage.potion.PotionLoader;
 import com.lh_lshen.mcbbs.huajiage.util.EnumStandtype;
 import com.lh_lshen.mcbbs.huajiage.util.NBTHelper;
 import com.lh_lshen.mcbbs.huajiage.util.ServerUtil;
+import com.lh_lshen.mcbbs.huajiage.util.StandUtil;
 
 import net.minecraft.entity.Entity;
 import net.minecraft.entity.EntityLivingBase;
@@ -99,7 +100,7 @@ public class EventTimeStop {
 		  player.heal(3f);
 		  if(player.getCapability(CapabilityStandHandler.STAND_TYPE, null).getStand().equals(EnumStandtype.THE_WORLD.getName()))
 		  {
-			  EventStand.standPower(player);
+			  StandUtil.standPower(player);
 		  }
  	      MessageDioHitClient msg1 = new MessageDioHitClient(targetPosition, false); 
  	      MessageDioHitClient msg2 =new MessageDioHitClient(targetPosition, true); 

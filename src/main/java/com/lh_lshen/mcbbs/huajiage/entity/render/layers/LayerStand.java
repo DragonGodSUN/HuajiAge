@@ -7,11 +7,11 @@ import com.lh_lshen.mcbbs.huajiage.client.model.ModelMuliKnife;
 import com.lh_lshen.mcbbs.huajiage.client.model.ModelStandBase;
 import com.lh_lshen.mcbbs.huajiage.client.model.ModelTheWorld;
 import com.lh_lshen.mcbbs.huajiage.common.HuajiConstant;
-import com.lh_lshen.mcbbs.huajiage.init.events.EventStand;
 import com.lh_lshen.mcbbs.huajiage.item.ItemLoader;
 import com.lh_lshen.mcbbs.huajiage.potion.PotionLoader;
 import com.lh_lshen.mcbbs.huajiage.util.EnumStandtype;
 import com.lh_lshen.mcbbs.huajiage.util.NBTHelper;
+import com.lh_lshen.mcbbs.huajiage.util.StandUtil;
 
 import net.minecraft.client.Minecraft;
 import net.minecraft.client.entity.AbstractClientPlayer;
@@ -44,15 +44,13 @@ public class LayerStand implements  LayerRenderer<EntityLivingBase> {
 	@Override
 	public void doRenderLayer(EntityLivingBase entitylivingbaseIn, float limbSwing, float limbSwingAmount,
 			float partialTicks, float ageInTicks, float netHeadYaw, float headPitch, float scale) {
-			    	EnumStandtype stand = EventStand.getType(entitylivingbaseIn);
-			    	if(stand == null ) {
-			    		return;
-			    	}else {
-			    		model = stand.newModel();
-			    		tex = new ResourceLocation(HuajiAge.MODID, stand.getTex());
-			    	}
+			    	EnumStandtype stand = StandUtil.getType(entitylivingbaseIn);
 			    	if( ! entitylivingbaseIn.isPotionActive(PotionLoader.potionStand)) {
 			    		return;
+			    	}
+			    	if(stand != null ) {
+			    		model = stand.newModel();
+			    		tex = new ResourceLocation(HuajiAge.MODID, stand.getTex());
 			    	}
 			    	if(model !=null) 
 			    	{

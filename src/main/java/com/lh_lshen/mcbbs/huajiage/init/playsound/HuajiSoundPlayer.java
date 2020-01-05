@@ -1,6 +1,8 @@
 package com.lh_lshen.mcbbs.huajiage.init.playsound;
 
+import com.lh_lshen.mcbbs.huajiage.network.HuajiAgeNetWorkHandler;
 import com.lh_lshen.mcbbs.huajiage.network.messages.MessagePlaySoundClient;
+import com.lh_lshen.mcbbs.huajiage.network.messages.MessagePlaySoundToServer;
 import com.lh_lshen.mcbbs.huajiage.util.ServerUtil;
 
 import net.minecraft.client.Minecraft;
@@ -50,15 +52,20 @@ public class HuajiSoundPlayer {
 	        world.playSound(x, y, z,sound,category, volume, pitch, true);
 	    }
     
-//    @SideOnly(Side.SERVER)
-    public static void playToClient(EntityLivingBase entity,SoundEvent sound,float volume) {
+
+	 public static void playToClient(EntityLivingBase entity,SoundEvent sound,float volume) {
     	IMessage msg=new MessagePlaySoundClient(entity.getPositionVector(), sound, volume);
         ServerUtil.sendPacketToPlayers(entity, msg);
     }
-//    @SideOnly(Side.SERVER)
+	 
     public static void playToNearbyClient(EntityLivingBase entity,SoundEvent sound,float volume) {
     	IMessage msg=new MessagePlaySoundClient(entity.getPositionVector(), sound, volume);
         ServerUtil.sendPacketToNearbyPlayers(entity, msg);
+    }
+    
+    public static void playToServer(EntityLivingBase entity,SoundEvent sound,float volume,int loop) {
+    	IMessage msg=new MessagePlaySoundToServer(entity.getPositionVector(), sound, volume, loop);
+        HuajiAgeNetWorkHandler.sendToServer(msg);
     }
      
   }

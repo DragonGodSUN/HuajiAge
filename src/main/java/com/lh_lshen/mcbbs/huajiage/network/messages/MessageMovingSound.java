@@ -5,6 +5,7 @@ import java.util.UUID;
 import com.lh_lshen.mcbbs.huajiage.capability.CapabilityStandHandler;
 import com.lh_lshen.mcbbs.huajiage.init.events.EventStand;
 import com.lh_lshen.mcbbs.huajiage.util.EnumStandtype;
+import com.lh_lshen.mcbbs.huajiage.util.StandClientUtil;
 import com.lh_lshen.mcbbs.huajiage.util.StandUtil;
 import com.mojang.util.UUIDTypeAdapter;
 
@@ -97,7 +98,7 @@ public static class Handler implements IMessageHandler<MessageMovingSound, IMess
        {
     	   return;
        }
-       StandUtil.standUpSound(player, stand_type);
+       StandClientUtil.standUpSound(player, stand_type);
        }
 	    return;
 	  }

@@ -12,7 +12,7 @@ import com.lh_lshen.mcbbs.huajiage.entity.EntityHeroArrow;
 import com.lh_lshen.mcbbs.huajiage.entity.EntitySecondFoil;
 import com.lh_lshen.mcbbs.huajiage.init.playsound.SoundLoader;
 import com.lh_lshen.mcbbs.huajiage.network.HuajiAgeNetWorkHandler;
-import com.lh_lshen.mcbbs.huajiage.network.messages.MessageLeftClick;
+import com.lh_lshen.mcbbs.huajiage.network.messages.MessageLeftClickModeChange;
 import com.lh_lshen.mcbbs.huajiage.potion.PotionLoader;
 import com.lh_lshen.mcbbs.huajiage.util.NBTHelper;
 
@@ -264,7 +264,7 @@ public void leftClick(PlayerInteractEvent.LeftClickEmpty evt) {
 		ItemStack itemstack=evt.getItemStack();
 		EntityPlayer player=evt.getEntityPlayer();
         if(player.isSneaking()) {
-	       HuajiAgeNetWorkHandler.sendToServer(new MessageLeftClick());
+	       HuajiAgeNetWorkHandler.sendToServer(new MessageLeftClickModeChange());
 	       if(!isOpen(itemstack)) {
 	         player.playSound(SoundEvents.ENTITY_ENDERDRAGON_GROWL, 3.0F, 1.0F);	
 	         player.sendMessage( new TextComponentTranslation("huajiage.stellawarning"));    

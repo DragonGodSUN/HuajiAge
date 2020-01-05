@@ -15,12 +15,15 @@ import com.lh_lshen.mcbbs.huajiage.item.ItemBlancedHelmet;
 import com.lh_lshen.mcbbs.huajiage.item.ItemLoader;
 import com.lh_lshen.mcbbs.huajiage.network.HuajiAgeNetWorkHandler;
 import com.lh_lshen.mcbbs.huajiage.network.messages.MessageExglutenburMode;
-import com.lh_lshen.mcbbs.huajiage.network.messages.MessageKeyInput;
+import com.lh_lshen.mcbbs.huajiage.network.messages.MessageHelmetModeChange;
 import com.lh_lshen.mcbbs.huajiage.network.messages.MessageParticleGenerator;
+import com.lh_lshen.mcbbs.huajiage.network.messages.MessagePlaySoundToServer;
+import com.lh_lshen.mcbbs.huajiage.network.messages.MessageServerInterchange;
 import com.lh_lshen.mcbbs.huajiage.network.messages.MessageStandUp;
 import com.lh_lshen.mcbbs.huajiage.potion.PotionLoader;
 import com.lh_lshen.mcbbs.huajiage.util.EnumStandtype;
 import com.lh_lshen.mcbbs.huajiage.util.ServerUtil;
+import com.lh_lshen.mcbbs.huajiage.util.StandClientUtil;
 import com.lh_lshen.mcbbs.huajiage.util.StandUtil;
 
 import net.minecraft.client.Minecraft;
@@ -52,7 +55,7 @@ public class EventKeyInput {
 		if(KeyLoader.modeSwitch.isPressed()) {
 		EntityPlayer player = Minecraft.getMinecraft().player;
 		if(player.getItemStackFromSlot(EntityEquipmentSlot.HEAD).getItem() instanceof ItemBlancedHelmet) {
-            HuajiAgeNetWorkHandler.sendToServer(new MessageKeyInput());
+            HuajiAgeNetWorkHandler.sendToServer(new MessageHelmetModeChange());
 	 			}
 		}
 		if(KeyLoader.standUp.isPressed()) {
@@ -61,41 +64,37 @@ public class EventKeyInput {
 			String stand_type =standHandler.getStand();
 			EnumStandtype stand = EnumStandtype.getType(stand_type);
 			 if(!stand_type.equals(EnumStandtype.EMPTY)) {
-				for(int i = 0;i<3;i++) {
-				 player.world.playSound(player, player.getPosition(), SoundEvents.ENTITY_EXPERIENCE_ORB_PICKUP, SoundCategory.PLAYERS, 1f, 1f);;
-				}
+				HuajiSoundPlayer.playToServer(player, SoundEvents.ENTITY_EXPERIENCE_ORB_PICKUP, 1, 3);
+//				for(int i = 0;i<3;i++) {
+//					player.world.playSound(player, player.getPosition(), SoundEvents.ENTITY_EXPERIENCE_ORB_PICKUP, SoundCategory.NEUTRAL, 1f, 1f);
+//				}
 				if(ConfigHuaji.Stands.allowStandSound&&ConfigHuaji.Stands.allowStandMovingSound&&!player.isPotionActive(PotionLoader.potionStand)) 
 				{
-					StandUtil.standUpSound(player, stand_type);
+					HuajiAgeNetWorkHandler.sendToServer(new MessageServerInterchange(2));
 				}else if(ConfigHuaji.Stands.allowStandSound&&!player.isPotionActive(PotionLoader.potionStand))
 				{	
 					float random = new Random().nextFloat()*100;
 					switch(stand)
 					{
 					case THE_WORLD :
-						if(random>0) 
+						if(random<50) 
 							{
-								player.playSound(SoundLoader.STAND_THE_WORLD_HIT_1, 1f, 1f);
-							}else if(random>50) 
+								HuajiSoundPlayer.playToServer(player, SoundLoader.STAND_THE_WORLD_HIT_1, 1, 1);
+//								player.world.playSound(player, player.getPosition(), SoundLoader.STAND_THE_WORLD_HIT_1, SoundCategory.PLAYERS, 1f, 1f);
+							}
+						if(random>50) 
 							{
-								player.playSound(SoundLoader.STAND_THE_WORLD_HIT_2, 1f, 1f);
+								HuajiSoundPlayer.playToServer(player, SoundLoader.STAND_THE_WORLD_HIT_2, 1, 1);
+//								player.world.playSound(player, player.getPosition(), SoundLoader.STAND_THE_WORLD_HIT_2, SoundCategory.PLAYERS, 1f, 1f);
 							}
 							break;
 					}
 				}
-//				SPacketSoundEffect sound = new SPacketSoundEffect(Sound, categoryIn, xIn, yIn, zIn, volumeIn, pitchIn)
-				
-				Random random = new Random();
 			    final int NUMBER_OF_PARTICLES = 60;
 			    final double HORIZONTAL_SPREAD = 3; 
 			    Vec3d targetCoordinates = player.getPositionVector();
-			    for (int i = 0; i < NUMBER_OF_PARTICLES; ++i) {
-			    double spawnXpos = targetCoordinates.x + (2*random.nextDouble() - 1) * HORIZONTAL_SPREAD;
-			    double spawnYpos = targetCoordinates.y + (2*random.nextDouble() - 1) * HORIZONTAL_SPREAD;
-			    double spawnZpos = targetCoordinates.z + (2*random.nextDouble() - 1) * HORIZONTAL_SPREAD;
-			      player.world.spawnParticle(EnumParticleTypes.FIREWORKS_SPARK, spawnXpos, spawnYpos, spawnZpos, 0, 0, 0);
-			    							}
 	            HuajiAgeNetWorkHandler.sendToServer(new MessageStandUp());
+	            HuajiAgeNetWorkHandler.sendToServer(new MessageServerInterchange(1));
 			 					}
 						}
 	  			}

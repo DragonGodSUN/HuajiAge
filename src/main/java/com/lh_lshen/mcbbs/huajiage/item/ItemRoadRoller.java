@@ -7,6 +7,8 @@ import javax.annotation.Nullable;
 
 import org.lwjgl.input.Keyboard;
 
+import com.lh_lshen.mcbbs.huajiage.capability.StandHandler;
+import com.lh_lshen.mcbbs.huajiage.common.HuajiConstant;
 import com.lh_lshen.mcbbs.huajiage.config.ConfigHuaji;
 import com.lh_lshen.mcbbs.huajiage.crativetab.CreativeTabLoader;
 import com.lh_lshen.mcbbs.huajiage.entity.EntityMultiKnife;
@@ -14,8 +16,9 @@ import com.lh_lshen.mcbbs.huajiage.entity.EntityRoadRoller;
 import com.lh_lshen.mcbbs.huajiage.init.playsound.SoundLoader;
 import com.lh_lshen.mcbbs.huajiage.network.HuajiAgeNetWorkHandler;
 import com.lh_lshen.mcbbs.huajiage.network.messages.MessageDioHitClient;
-import com.lh_lshen.mcbbs.huajiage.network.messages.MessageLeftClick;
+import com.lh_lshen.mcbbs.huajiage.network.messages.MessageLeftClickModeChange;
 import com.lh_lshen.mcbbs.huajiage.network.messages.MessageLeftClickRoadRoller;
+import com.lh_lshen.mcbbs.huajiage.util.NBTHelper;
 
 import net.minecraft.client.Minecraft;
 import net.minecraft.client.resources.I18n;
@@ -55,35 +58,33 @@ public class ItemRoadRoller extends Item {
 	public ActionResult<ItemStack> onItemRightClick(World worldIn, EntityPlayer playerIn, EnumHand handIn) {
 		 ItemStack itemstack = playerIn.getHeldItem(handIn);
 		if(!worldIn.isRemote) {
-		EntityRoadRoller road=new EntityRoadRoller(worldIn, playerIn);
-		Vec3d v1=playerIn.getLookVec();
-		road.shoot(playerIn, playerIn.rotationPitch, playerIn.rotationYaw, 1F,1F,0f);
-		float fn=MathHelper.sqrt(v1.x*v1.x+v1.y*v1.y+v1.z*v1.z);
-		road.posX+=v1.x/fn;
-		road.posY+=ConfigHuaji.Stands.knifeHeight +0.1f +v1.y/fn;
-		road.posZ+=v1.z/fn;
-		road.setRotation(MathHelper.wrapDegrees(-playerIn.rotationYaw));
-		road.setPitch(playerIn.rotationPitch);
-		road.setLife(512f);
-		if(!playerIn.isCreative()) {
-		itemstack.shrink(1);}
-		worldIn.spawnEntity(road);
+			EntityRoadRoller road=new EntityRoadRoller(worldIn, playerIn);
+			Vec3d v1=playerIn.getLookVec();
+			road.shoot(playerIn, playerIn.rotationPitch, playerIn.rotationYaw, 1F,1F,0f);
+			float fn=MathHelper.sqrt(v1.x*v1.x+v1.y*v1.y+v1.z*v1.z);
+			road.posX+=v1.x/fn;
+			road.posY+=0.1f +v1.y/fn;
+			road.posZ+=v1.z/fn;
+			road.setRotation(MathHelper.wrapDegrees(-playerIn.rotationYaw));
+			road.setPitch(playerIn.rotationPitch);
+			road.setLife(512f);
+			if(!playerIn.isCreative()) {
+			itemstack.shrink(1);}
+			worldIn.spawnEntity(road);
 		}
 		playerIn.playSound(SoundLoader.ROAD_ROLLER, 2f,1f);
-		playerIn.swingArm(handIn);
-//		 if (!worldIn.isRemote) {
-//	            playerIn.setActiveHand(handIn);
-//	        }
-//		
+		playerIn.swingArm(handIn);		
 		
 		return new ActionResult<ItemStack>(EnumActionResult.SUCCESS, itemstack);
 	}
+	
 	@SubscribeEvent
 	public void leftClick(PlayerInteractEvent.LeftClickEmpty evt) {
             EntityPlayer player = evt.getEntityPlayer();
             List<EntityRoadRoller> road=player.getEntityWorld().getEntitiesWithinAABB(EntityRoadRoller.class,player.getEntityBoundingBox().grow(10));
             boolean flag=false;
-            if(road!=null) {
+            if(road!=null)
+            {
             	for(EntityRoadRoller r:road) {
             		if(r.motionX==0&&r.motionY==0&&r.motionZ==0) {
             			flag=true;
@@ -91,27 +92,10 @@ public class ItemRoadRoller extends Item {
             			flag=false;
             		}
             	}
-            if(flag) {
-            HuajiAgeNetWorkHandler.sendToServer(new MessageLeftClickRoadRoller());
-//            Random random = new Random();
-//    	    final int NUMBER_OF_PARTICLES = 50;
-//    	    final double HORIZONTAL_SPREAD = 2; 
-//    	    Vec3d targetCoordinates = player.getPositionVector();
-//    	    for (int i = 0; i < NUMBER_OF_PARTICLES; ++i) {
-//    	      double spawnXpos = targetCoordinates.x + (2*random.nextDouble() - 1) * HORIZONTAL_SPREAD;
-//    	      double spawnYpos = targetCoordinates.y + (2*random.nextDouble() - 1) * HORIZONTAL_SPREAD;
-//    	      double spawnZpos = targetCoordinates.z + (2*random.nextDouble() - 1) * HORIZONTAL_SPREAD;
-//    	      player.getEntityWorld().spawnParticle(EnumParticleTypes.LAVA, spawnXpos, spawnYpos, spawnZpos, 0, 0, 0);
-//    	    }
-//    	    player.playSound(SoundLoader.DIO_HIT,1f, 1f);
-    	    
-        	          
-         }
-
-
-                }
-                
-            }
-		
+            if(flag) 
+	            {
+	            HuajiAgeNetWorkHandler.sendToServer(new MessageLeftClickRoadRoller());
+	            }
+            } }
 
 }

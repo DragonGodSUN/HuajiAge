@@ -118,11 +118,11 @@ public class EntityRoadRoller extends EntityThrowable {
 	        	          ServerUtil.sendPacketToPlayers((EntityPlayer) thrower, msg1);}
 	         	          thrower.getEntityData().setInteger("huajiage.dio_flag", 180);
 	         	          }
-	         if(thrower.getEntityData().getInteger("huajiage.dio_flag")<140&&thrower.getEntityData().getInteger("huajiage.dio_flag")>0) {   
-	        	 if(thrower instanceof EntityPlayer) {        
-	        	 ServerUtil.sendPacketToPlayers((EntityPlayer) thrower, msg2);
-	        	 }
-	         }
+	         	if(thrower.getEntityData().getInteger("huajiage.dio_flag")<140&&thrower.getEntityData().getInteger("huajiage.dio_flag")>0) {   
+	         		if(thrower instanceof EntityPlayer) {        
+	         			ServerUtil.sendPacketToPlayers((EntityPlayer) thrower, msg2);
+	         		}
+	         	}
 			setExtra(extra);
 			}
 		  }
@@ -155,40 +155,7 @@ public class EntityRoadRoller extends EntityThrowable {
 		     }
 		
 	}
-//   @Override
-//public void setEntityInvulnerable(boolean isInvulnerable) {
-//	isInvulnerable=false;
-//}
-   
-//    @Override
-//    public boolean attackEntityFrom(DamageSource source, float amount) {
-//    	if (!this.world.isRemote && !this.isDead)
-//        {
-//    		if (this.isEntityInvulnerable(source))
-//            {
-//                return false;
-//            }
-//            if (source instanceof EntityDamageSourceIndirect && source.getTrueSource() != null && this.isPassenger(source.getTrueSource()))
-//            {
-//                return false;
-//            }
-//            else
-//            {
-//                boolean flag = source.getTrueSource().equals(thrower);
-//                if (flag)
-//                {
-//                	 int a= getEntityData().getInteger("huajiage.dio_push");
-//                        getEntityData().setInteger("huajiage.dio_push",a+2);
-//                }
-//
-//                return true;
-//            }
-//        }
-//        else
-//        {
-//            return true;
-//        }
-//    }
+
 	@Override
 	protected float getGravityVelocity() {
 		if(motionX==0&&motionY==0&&motionZ==0) {

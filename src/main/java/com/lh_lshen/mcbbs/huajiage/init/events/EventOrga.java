@@ -6,8 +6,7 @@ import com.lh_lshen.mcbbs.huajiage.init.playsound.SoundLoader;
 import com.lh_lshen.mcbbs.huajiage.item.ItemLoader;
 import com.lh_lshen.mcbbs.huajiage.item.ItemOrgaArmorBase;
 import com.lh_lshen.mcbbs.huajiage.network.HuajiAgeNetWorkHandler;
-import com.lh_lshen.mcbbs.huajiage.network.messages.MessageOrgaRequiemClient;
-import com.lh_lshen.mcbbs.huajiage.network.messages.TargetOrgaShotEffectMessageToClient;
+import com.lh_lshen.mcbbs.huajiage.network.messages.MessageParticleGenerator;
 import com.lh_lshen.mcbbs.huajiage.potion.PotionLoader;
 import com.lh_lshen.mcbbs.huajiage.util.NBTHelper;
 
@@ -25,6 +24,7 @@ import net.minecraft.potion.PotionEffect;
 import net.minecraft.server.MinecraftServer;
 import net.minecraft.util.DamageSource;
 import net.minecraft.util.EntityDamageSource;
+import net.minecraft.util.EnumParticleTypes;
 import net.minecraft.util.math.Vec3d;
 import net.minecraft.util.text.TextComponentTranslation;
 import net.minecraftforge.event.entity.living.LivingDeathEvent;
@@ -156,23 +156,15 @@ public class EventOrga {
 					if(player.getHealth()<2) 
 						{		
 							Vec3d targetPosition = player.getPositionVector();  	 
-							int dimension = player.dimension;
-							MinecraftServer minecraftServer = player.getServer();
-							for (EntityPlayerMP player0 : minecraftServer.getPlayerList().getPlayers()) 
-							{
-							TargetOrgaShotEffectMessageToClient msg1 = new TargetOrgaShotEffectMessageToClient(targetPosition); 
-							MessageOrgaRequiemClient msg2 =new MessageOrgaRequiemClient(targetPosition);
-							if (dimension == player.dimension)
-								{
-					            if(!((EntityPlayer)player).inventory.hasItemStack(new ItemStack(ItemLoader.orgaRequiem))) 
-					            	{     
-						         	HuajiAgeNetWorkHandler.sendTo(player0, msg1);
-						         	}else 
-						         	{
-						         		HuajiAgeNetWorkHandler.sendTo(player0, msg2);
-									}
-								}
-							}
+							if(!((EntityPlayer)player).inventory.hasItemStack(new ItemStack(ItemLoader.orgaRequiem))) 
+				            	{  
+									HuajiSoundPlayer.playToNearbyClient(player, SoundLoader.ORGA_SHOT, 1f);
+									HuajiAgeNetWorkHandler.sendToNearby(player.world, player, new MessageParticleGenerator(targetPosition, EnumParticleTypes.SPELL_INSTANT, 150, 2, 1));
+				            	}else 
+				            	{
+									HuajiAgeNetWorkHandler.sendToNearby(player.world, player, new MessageParticleGenerator(targetPosition, EnumParticleTypes.FIREWORKS_SPARK, 200, 2, 1));
+				            	}
+
 							if(!((EntityLivingBase)attacker).isPotionActive(PotionLoader.potionOrgaTarget)) 
 								{
 									((EntityLivingBase)attacker).addPotionEffect(new PotionEffect(PotionLoader.potionOrgaTarget,100));  

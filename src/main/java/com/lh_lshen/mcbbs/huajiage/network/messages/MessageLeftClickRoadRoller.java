@@ -2,9 +2,11 @@ package com.lh_lshen.mcbbs.huajiage.network.messages;
 
 import java.util.List;
 
+import com.lh_lshen.mcbbs.huajiage.common.HuajiConstant;
 import com.lh_lshen.mcbbs.huajiage.entity.EntityRoadRoller;
 import com.lh_lshen.mcbbs.huajiage.item.ItemHeroBow;
 import com.lh_lshen.mcbbs.huajiage.item.ItemLoader;
+import com.lh_lshen.mcbbs.huajiage.util.NBTHelper;
 
 import io.netty.buffer.ByteBuf;
 import net.minecraft.entity.Entity;
@@ -31,10 +33,11 @@ public class MessageLeftClickRoadRoller implements IMessage {
         	List<EntityRoadRoller> road=player.getEntityWorld().getEntitiesWithinAABB(EntityRoadRoller.class,player.getEntityBoundingBox().grow(10));
 			player.mcServer.addScheduledTask(() -> {
 			if(road!=null) {
-        	for(EntityRoadRoller i:road) {
-        	    int a= i.getEntityData().getInteger("huajiage.dio_push");
-                i.getEntityData().setInteger("huajiage.dio_push",a+2);
-        	      }}
+			if(NBTHelper.getEntityBoolean(player, HuajiConstant.THE_WORLD)) {
+	        	for(EntityRoadRoller i:road) {
+	        	    int a= i.getEntityData().getInteger("huajiage.dio_push");
+	                i.getEntityData().setInteger("huajiage.dio_push",a+2);
+	        	      }}}
 			});
 			return null;
         }
