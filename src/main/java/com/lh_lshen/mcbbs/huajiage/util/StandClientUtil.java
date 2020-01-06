@@ -45,7 +45,10 @@ public class StandClientUtil {
 			if(!player.isPotionActive(PotionLoader.potionStand))
 				{
 				sound_hit.setVolume(1f);
+				System.out.println("before play");
 				Minecraft.getMinecraft().getSoundHandler().playSound(sound_hit);
+				System.out.println("after play");
+
 				back_hits.setVolume(0.5f);
 				back_hits.setBackSound(0.5f);
 				back_hits.setLoop();
@@ -59,26 +62,28 @@ public class StandClientUtil {
 			}
 		case STAR_PLATINUM :
 		{
-			StandMovingSound sound_hit = new StandMovingSound(player, SoundLoader.STAND_THE_STAR_PLATINUM_1, SoundCategory.NEUTRAL);
+			StandMovingSound sound_hit = new StandMovingSound(player, SoundLoader.STAND_STAR_PLATINUM_1, SoundCategory.NEUTRAL);
 			StandMovingSound back_hits = new StandMovingSound(player, SoundEvents.ENTITY_PLAYER_ATTACK_SWEEP, SoundCategory.NEUTRAL);
 			StandMovingSound back_hits_double = new StandMovingSound(player, SoundEvents.ENTITY_PLAYER_ATTACK_STRONG, SoundCategory.NEUTRAL);
 			if(random.nextDouble()<0.25) 
 				{
-				sound_hit.setSound( SoundLoader.STAND_THE_STAR_PLATINUM_1);
+				sound_hit.setSound( SoundLoader.STAND_STAR_PLATINUM_1);
 				}else if(random.nextDouble()<0.5) 
 				{
-					sound_hit.setSound( SoundLoader.STAND_THE_STAR_PLATINUM_2);
+					sound_hit.setSound( SoundLoader.STAND_STAR_PLATINUM_2);
 				}else if(random.nextDouble()<0.75)
 				{
-					sound_hit.setSound( SoundLoader.STAND_THE_STAR_PLATINUM_3);
+					sound_hit.setSound( SoundLoader.STAND_STAR_PLATINUM_3);
 				}else if(random.nextDouble()<1)
 				{
-					sound_hit.setSound( SoundLoader.STAND_THE_STAR_PLATINUM_4);
+					sound_hit.setSound( SoundLoader.STAND_STAR_PLATINUM_4);
 				}
 			if(!player.isPotionActive(PotionLoader.potionStand))
 				{
 				sound_hit.setVolume(1f);
+				System.out.println("before play");
 				Minecraft.getMinecraft().getSoundHandler().playSound(sound_hit);
+				System.out.println("after play");
 				back_hits.setVolume(0.5f);
 				back_hits.setBackSound(0.5f);
 				back_hits.setLoop();
@@ -100,9 +105,7 @@ public class StandClientUtil {
 	
     public static void standRender(EntityLivingBase entity) {
 		EnumStandtype type = StandUtil.getType(entity);
-		if(type == null) {
-			return;
-		}
+		if(type != null) {
 		ResourceLocation STAND_TEX = new ResourceLocation(HuajiAge.MODID,type.getTex());
 		switch(type) {
 		case THE_WORLD:
@@ -129,6 +132,7 @@ public class StandClientUtil {
 //			break;
 		default:
 			break;
+			}
 		}
 		
 	}

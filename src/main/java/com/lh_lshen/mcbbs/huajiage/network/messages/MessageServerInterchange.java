@@ -43,7 +43,7 @@ public class MessageServerInterchange implements IMessage {
 				HuajiAgeNetWorkHandler.sendToNearby(player.world, player, new MessageParticleGenerator(player.getPositionVector(), EnumParticleTypes.FIREWORKS_SPARK, 60, 3, 1));
 			break;
 			case 2:
-				HuajiAgeNetWorkHandler.sendToNearby(player.world, player, new MessageMovingSound(player.getName()));
+				HuajiAgeNetWorkHandler.sendToNearby(player.world, player.getPosition(), new MessageMovingSound(player.getName()));
 			break;
 			}
 			}) ;

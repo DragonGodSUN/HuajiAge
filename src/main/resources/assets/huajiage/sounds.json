@@ -251,6 +251,24 @@
         "stream": true
       }
     ]
+  },
+   "stand_star_platinum_hit_5": {
+    "category": "neutral",
+    "sounds": [
+      {
+        "name": "huajiage:stand_star_platinum_hit_5",
+        "stream": true
+      }
+    ]
+  },
+   "star_platinum_the_world_1": {
+    "category": "neutral",
+    "sounds": [
+      {
+        "name": "huajiage:star_platinum_the_world_1",
+        "stream": true
+      }
+    ]
   }
 
 }

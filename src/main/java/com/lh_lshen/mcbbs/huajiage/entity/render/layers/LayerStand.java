@@ -36,6 +36,7 @@ import net.minecraftforge.fml.relauncher.SideOnly;
 public class LayerStand implements  LayerRenderer<EntityLivingBase> {
 	 protected final RenderLivingBase<?> livingEntityRenderer;
 	 private static  ModelStandBase model = null;
+	 private static final ModelStandBase MODEL_THE_WORLD =new ModelTheWorld(); 
 	 private static  ResourceLocation tex = new ResourceLocation(HuajiAge.MODID, "textures/entity/entity_the_world.png");
 	    public LayerStand(RenderLivingBase<?> livingEntityRendererIn)
 	    {
@@ -44,13 +45,17 @@ public class LayerStand implements  LayerRenderer<EntityLivingBase> {
 	@Override
 	public void doRenderLayer(EntityLivingBase entitylivingbaseIn, float limbSwing, float limbSwingAmount,
 			float partialTicks, float ageInTicks, float netHeadYaw, float headPitch, float scale) {
-			    	EnumStandtype stand = StandUtil.getType(entitylivingbaseIn);
+			    	String type = entitylivingbaseIn.getCapability(CapabilityStandHandler.STAND_TYPE, null).getStand();
+			    	EnumStandtype stand = EnumStandtype.getType(type);
 			    	if( ! entitylivingbaseIn.isPotionActive(PotionLoader.potionStand)) {
 			    		return;
 			    	}
-			    	if(stand != null ) {
-			    		model = stand.newModel();
-			    		tex = new ResourceLocation(HuajiAge.MODID, stand.getTex());
+			    	if(type != null && ! type.equals(EnumStandtype.EMPTY) ) {
+			    		model = MODEL_THE_WORLD;
+			    		if(type!=EnumStandtype.THE_WORLD.getName()) {
+				    		model = stand.newModel();
+				    		tex = new ResourceLocation(HuajiAge.MODID, stand.getTex());
+			    		}
 			    	}
 			    	if(model !=null) 
 			    	{

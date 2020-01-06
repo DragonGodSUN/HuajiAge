@@ -92,14 +92,13 @@ public static class Handler implements IMessageHandler<MessageMovingSound, IMess
 	  {
        EntityPlayer player = worldClient.getPlayerEntityByName(entityId);
        if(player !=null) 
-       {
-       String stand_type =player.getCapability(CapabilityStandHandler.STAND_TYPE, null).getStand();
-       if(stand_type.equals(EnumStandtype.EMPTY)) 
-       {
-    	   return;
-       }
-       StandClientUtil.standUpSound(player, stand_type);
-       }
+	       {
+	       String stand_type =player.getCapability(CapabilityStandHandler.STAND_TYPE, null).getStand();
+	       if(!stand_type.equals(EnumStandtype.EMPTY)) 
+		       {
+		       StandClientUtil.standUpSound(player, stand_type);
+		       }
+	       }
 	    return;
 	  }
 	}

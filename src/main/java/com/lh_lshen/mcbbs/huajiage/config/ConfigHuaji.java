@@ -19,7 +19,7 @@ public class ConfigHuaji {
 	public static HuajiConfig Huaji=new HuajiConfig();
 	
 	@LangKey("config.huaji_age.stands_config")
-	@Name("STAND")
+	@Name("Stands")
 	public static StandConfig Stands=new StandConfig();
 
 	public static class HuajiConfig{

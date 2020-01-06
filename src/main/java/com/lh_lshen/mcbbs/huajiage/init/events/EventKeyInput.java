@@ -50,7 +50,7 @@ import net.minecraftforge.fml.relauncher.SideOnly;
 public class EventKeyInput {
 	@SideOnly(Side.CLIENT)
 	@SubscribeEvent
-	public static void keyInput(InputEvent.KeyInputEvent evt) {
+	public static void modeSwitch(InputEvent.KeyInputEvent evt) {
 
 		if(KeyLoader.modeSwitch.isPressed()) {
 		EntityPlayer player = Minecraft.getMinecraft().player;
@@ -58,19 +58,25 @@ public class EventKeyInput {
             HuajiAgeNetWorkHandler.sendToServer(new MessageHelmetModeChange());
 	 			}
 		}
+	}
+	
+	
+	@SideOnly(Side.CLIENT)
+	@SubscribeEvent
+	public static void standUp(InputEvent.KeyInputEvent evt) {
 		if(KeyLoader.standUp.isPressed()) {
 			EntityPlayer player = Minecraft.getMinecraft().player;
 			StandHandler standHandler = player.getCapability(CapabilityStandHandler.STAND_TYPE, null);
 			String stand_type =standHandler.getStand();
 			EnumStandtype stand = EnumStandtype.getType(stand_type);
+			
 			 if(!stand_type.equals(EnumStandtype.EMPTY)) {
-				HuajiSoundPlayer.playToServer(player, SoundEvents.ENTITY_EXPERIENCE_ORB_PICKUP, 1, 3);
-//				for(int i = 0;i<3;i++) {
-//					player.world.playSound(player, player.getPosition(), SoundEvents.ENTITY_EXPERIENCE_ORB_PICKUP, SoundCategory.NEUTRAL, 1f, 1f);
-//				}
+				 HuajiSoundPlayer.playToServer(player, SoundEvents.ENTITY_EXPERIENCE_ORB_PICKUP, 1f, 3);
+
 				if(ConfigHuaji.Stands.allowStandSound&&ConfigHuaji.Stands.allowStandMovingSound&&!player.isPotionActive(PotionLoader.potionStand)) 
 				{
 					HuajiAgeNetWorkHandler.sendToServer(new MessageServerInterchange(2));
+					
 				}else if(ConfigHuaji.Stands.allowStandSound&&!player.isPotionActive(PotionLoader.potionStand))
 				{	
 					float random = new Random().nextFloat()*100;
@@ -81,28 +87,26 @@ public class EventKeyInput {
 						if(random<50) 
 							{
 								HuajiSoundPlayer.playToServer(player, SoundLoader.STAND_THE_WORLD_HIT_1, 1, 1);
-//								player.world.playSound(player, player.getPosition(), SoundLoader.STAND_THE_WORLD_HIT_1, SoundCategory.PLAYERS, 1f, 1f);
 							}
 						if(random>50) 
 							{
 								HuajiSoundPlayer.playToServer(player, SoundLoader.STAND_THE_WORLD_HIT_2, 1, 1);
-//								player.world.playSound(player, player.getPosition(), SoundLoader.STAND_THE_WORLD_HIT_2, SoundCategory.PLAYERS, 1f, 1f);
 							}
 							break;
 					}
 					case STAR_PLATINUM :
 					{	if(random<25) 
 							{
-								HuajiSoundPlayer.playToServer(player, SoundLoader.STAND_THE_STAR_PLATINUM_1, 1, 1);
+								HuajiSoundPlayer.playToServer(player, SoundLoader.STAND_STAR_PLATINUM_1, 1, 1);
 							}else if(random<50) 
 							{
-								HuajiSoundPlayer.playToServer(player, SoundLoader.STAND_THE_STAR_PLATINUM_2, 1, 1);
+								HuajiSoundPlayer.playToServer(player, SoundLoader.STAND_STAR_PLATINUM_2, 1, 1);
 							}else if(random<75) 
 							{
-								HuajiSoundPlayer.playToServer(player, SoundLoader.STAND_THE_STAR_PLATINUM_3 ,1, 1);
+								HuajiSoundPlayer.playToServer(player, SoundLoader.STAND_STAR_PLATINUM_3 ,1, 1);
 							}else if(random<100) 
 							{
-								HuajiSoundPlayer.playToServer(player, SoundLoader.STAND_THE_STAR_PLATINUM_4, 1, 1);
+								HuajiSoundPlayer.playToServer(player, SoundLoader.STAND_STAR_PLATINUM_4, 1, 1);
 							}
 							break;
 					}	

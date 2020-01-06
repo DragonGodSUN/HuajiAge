@@ -9,6 +9,7 @@ import com.lh_lshen.mcbbs.huajiage.item.ItemLoader;
 import com.lh_lshen.mcbbs.huajiage.network.HuajiAgeNetWorkHandler;
 import com.lh_lshen.mcbbs.huajiage.potion.PotionLoader;
 import com.lh_lshen.mcbbs.huajiage.util.EnumStandtype;
+import com.lh_lshen.mcbbs.huajiage.util.ServerUtil;
 
 import io.netty.buffer.ByteBuf;
 import net.minecraft.entity.player.EntityPlayerMP;
@@ -19,6 +20,8 @@ import net.minecraftforge.fml.common.network.simpleimpl.IMessageHandler;
 import net.minecraftforge.fml.common.network.simpleimpl.MessageContext;
 
 public class MessageStandUp implements IMessage {
+	public MessageStandUp() {
+	}
     @Override
     public void toBytes(ByteBuf buf) {
     }
@@ -26,7 +29,7 @@ public class MessageStandUp implements IMessage {
     @Override
     public void fromBytes(ByteBuf buf) {
     }
-
+    
     public static class Handler implements IMessageHandler<MessageStandUp, IMessage> {
         @Override
         public IMessage onMessage(MessageStandUp message , MessageContext ctx) {
@@ -38,8 +41,6 @@ public class MessageStandUp implements IMessage {
 			player.mcServer.addScheduledTask(() -> {
 				if(!player.isPotionActive(PotionLoader.potionStand)) {
 					player.getFoodStats().setFoodLevel(player.getFoodStats().getFoodLevel()-((int)(stand.getDamage()/5)-1));
-//					MessageMovingSound moving_sound = new MessageMovingSound(player.getName());
-//					HuajiAgeNetWorkHandler.sendToNearby(player.world, player, moving_sound);
 					player.addPotionEffect(new PotionEffect(PotionLoader.potionStand,stand.getDuration()));
 //					System.out.println(player.getName());
 					}else {

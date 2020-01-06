@@ -65,6 +65,8 @@ public class ItemLootTableTest extends Item {
 			return "Time Stop ---Passerby";
 		case 4:
 			return "Stand Power!!!";
+		case 5:
+			return "Time Stop ---Jostar";
 		}
 	    return null;
 	}
@@ -76,7 +78,7 @@ public class ItemLootTableTest extends Item {
 		StandHandler stand = playerIn.getCapability(CapabilityStandHandler.STAND_TYPE, null);
 		if(playerIn.isSneaking()) {
 			int mode=getmode(stack);
-			if(mode<4) {
+			if(mode<5) {
 			modeSwitch(stack, mode+1);
 			}else {
 			modeSwitch(stack,0);	
@@ -151,7 +153,16 @@ public class ItemLootTableTest extends Item {
 	        break;
 			}
 		}
-		    }
+		case 5:{
+			playerIn.getEntityData().setInteger("huajiage.the_world",5*20);
+			playerIn.addPotionEffect(new PotionEffect(MobEffects.NIGHT_VISION,5*20,0));
+	    	playerIn.addPotionEffect(new PotionEffect(MobEffects.STRENGTH,5*20,2));
+	    	playerIn.addPotionEffect(new PotionEffect(MobEffects.SPEED,5*20,1));
+	        playerIn.sendMessage(new TextComponentTranslation("message.huajiage.the_world_star"));
+        	playerIn.playSound(SoundLoader.STAR_PLATINUM_THE_WORLD_1, 5f,1f);
+	        break;
+				}
+			}
 		  }
 		}
 		return new ActionResult<>(EnumActionResult.SUCCESS, playerIn.getHeldItem(hand));

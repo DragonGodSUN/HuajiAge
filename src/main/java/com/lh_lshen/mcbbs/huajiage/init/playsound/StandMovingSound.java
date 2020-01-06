@@ -37,8 +37,6 @@ public class StandMovingSound extends HuajiMovingSound {
         		setVolume(0f);
         		if(ticks>=5){
         			this.stop();
-//        			System.out.println("stoped!!!");
-//        			System.out.println(""+ticks);
         		}
         	}else {
         		if(backSound>0) {

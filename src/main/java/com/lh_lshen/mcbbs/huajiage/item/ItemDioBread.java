@@ -5,6 +5,7 @@ import java.util.List;
 import org.lwjgl.input.Keyboard;
 import org.lwjgl.opengl.GL11;
 
+import com.ibm.icu.impl.duration.impl.DataRecord.EUnitVariant;
 import com.lh_lshen.mcbbs.huajiage.capability.CapabilityStandHandler;
 import com.lh_lshen.mcbbs.huajiage.capability.StandHandler;
 import com.lh_lshen.mcbbs.huajiage.common.HuajiConstant;
@@ -59,16 +60,21 @@ public class ItemDioBread extends ItemFood{
 	@Override
     public void onFoodEaten(ItemStack stack, World worldIn, EntityPlayer player)
     {
+		StandHandler standHandler = player.getCapability(CapabilityStandHandler.STAND_TYPE, null);
+		EnumStandtype stand =EnumStandtype.getType(standHandler.getStand());
         if (!worldIn.isRemote)
         {
-//        	StandHandler stand = player.getCapability(CapabilityStandHandler.STAND_TYPE, null);
         	double rand=Math.random()*100;
         	player.addPotionEffect(new PotionEffect(MobEffects.NIGHT_VISION,9*20,0));
         	player.addPotionEffect(new PotionEffect(MobEffects.STRENGTH,9*20,4));
         	player.addPotionEffect(new PotionEffect(MobEffects.SPEED,9*20,6));
         	player.addPotionEffect(new PotionEffect(MobEffects.JUMP_BOOST,9*20,4));
         	player.addPotionEffect(new PotionEffect(MobEffects.REGENERATION,9*20,2));
+        	 if(!stand.equals(EnumStandtype.STAR_PLATINUM)) {
             player.sendMessage(new TextComponentTranslation("message.huajiage.the_world"));
+            }else {
+            player.sendMessage(new TextComponentTranslation("message.huajiage.the_world_star"));
+            }
             player.heal(5f);
 //            NBTHelper.setEntityInteger(player, HuajiConstant.STAND_TYPE, 21);
 //            stand.setStand(EnumStandtype.THE_WORLD.getName());
@@ -78,15 +84,19 @@ public class ItemDioBread extends ItemFood{
             }
 
         }
-        double rand0=Math.random()*100;
-        if(rand0<25) { 	
-        	player.playSound(SoundLoader.THE_WORLD, 5f,1f);
-        }else if(rand0<50){
-        	player.playSound(SoundLoader.THE_WORLD_1, 5f,1f);
-        }else if(rand0<75){
-        	player.playSound(SoundLoader.THE_WORLD_2, 5f,1f);
+        if(!stand.equals(EnumStandtype.STAR_PLATINUM)) {
+	        double rand0=Math.random()*100;
+	        if(rand0<25) { 	
+	        	player.playSound(SoundLoader.THE_WORLD, 5f,1f);
+	        }else if(rand0<50){
+	        	player.playSound(SoundLoader.THE_WORLD_1, 5f,1f);
+	        }else if(rand0<75){
+	        	player.playSound(SoundLoader.THE_WORLD_2, 5f,1f);
+	        }else {
+	        	player.playSound(SoundLoader.THE_WORLD_3, 5f,1f);
+	        }
         }else {
-        	player.playSound(SoundLoader.THE_WORLD_3, 5f,1f);
+        	player.playSound(SoundLoader.STAR_PLATINUM_THE_WORLD_1, 5f,1f);
         }
         super.onFoodEaten(stack, worldIn, player);
     }
