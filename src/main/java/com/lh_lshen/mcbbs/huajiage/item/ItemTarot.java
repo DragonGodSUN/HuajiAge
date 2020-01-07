@@ -3,7 +3,7 @@ package com.lh_lshen.mcbbs.huajiage.item;
 import java.util.List;
 
 import com.lh_lshen.mcbbs.huajiage.capability.CapabilityStandHandler;
-import com.lh_lshen.mcbbs.huajiage.capability.CapabilityStandSkillHandler;
+import com.lh_lshen.mcbbs.huajiage.capability.CapabilityStandStageHandler;
 import com.lh_lshen.mcbbs.huajiage.capability.StandHandler;
 import com.lh_lshen.mcbbs.huajiage.common.HuajiConstant;
 import com.lh_lshen.mcbbs.huajiage.crativetab.CreativeTabLoader;
@@ -60,14 +60,14 @@ public class ItemTarot extends Item {
 	public ActionResult<ItemStack> onItemRightClick(World worldIn, EntityPlayer playerIn, EnumHand handIn) {
 		ItemStack stack = playerIn.getHeldItem(handIn);
 		String stand = playerIn.getCapability(CapabilityStandHandler.STAND_TYPE, null).getStand();
-		int stage = playerIn.getCapability(CapabilityStandSkillHandler.STAND_SKILL, null).getStage();
+		int stage = playerIn.getCapability(CapabilityStandStageHandler.STAND_STAGE, null).getStage();
 		boolean flag = NBTHelper.getTagCompoundSafe(stack).getString(NBT.STAND_NAME.getName()).equals(DEFAULT_STAND_ID);
 		
 		if(playerIn.isSneaking()) {
 			if(flag && !stand.equals(DEFAULT_STAND_ID)) {
 				setStandTag(playerIn, stack, stand, stage);
 				playerIn.getCapability(CapabilityStandHandler.STAND_TYPE, null).setStand(DEFAULT_STAND_ID);
-				playerIn.getCapability(CapabilityStandSkillHandler.STAND_SKILL, null).setStage(0);
+				playerIn.getCapability(CapabilityStandStageHandler.STAND_STAGE, null).setStage(0);
 				if(worldIn.isRemote) {
 				playerIn.playSound(SoundEvents.ITEM_BOTTLE_FILL_DRAGONBREATH, 1f, 1f);
 				playerIn.sendMessage(new TextComponentString(I18n.format(EnumStandtype.getDisplayName(stand))+I18n.format("message.huajiage.tarot.stand.store")));
@@ -78,7 +78,7 @@ public class ItemTarot extends Item {
 			int stageTag = NBTHelper.getTagCompoundSafe(stack).getInteger(NBT.STAND_STAGE.getName());
 			if(stand.equals(DEFAULT_STAND_ID)&&!standTag.equals(DEFAULT_STAND_ID)) {
 			playerIn.getCapability(CapabilityStandHandler.STAND_TYPE, null).setStand(standTag);
-			playerIn.getCapability(CapabilityStandSkillHandler.STAND_SKILL, null).setStage(stageTag);
+			playerIn.getCapability(CapabilityStandStageHandler.STAND_STAGE, null).setStage(stageTag);
 			playerIn.playSound(SoundEvents.BLOCK_GLASS_BREAK, 1f, 1f);
 			playerIn.playSound(SoundEvents.UI_TOAST_CHALLENGE_COMPLETE, 1f, 1f);
 			setStandTag(playerIn, stack, DEFAULT_STAND_ID, 0);

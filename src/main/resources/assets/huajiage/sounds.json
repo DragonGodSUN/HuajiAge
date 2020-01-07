@@ -269,6 +269,15 @@
         "stream": true
       }
     ]
+  },
+   "stand_star_platinum_repeat_1": {
+    "category": "neutral",
+    "sounds": [
+      {
+        "name": "huajiage:stand_star_platinum_repeat_1",
+        "stream": true
+      }
+    ]
   }
 
 }

@@ -73,9 +73,15 @@ public class EventKeyInput {
 			 if(!stand_type.equals(EnumStandtype.EMPTY)) {
 				 HuajiSoundPlayer.playToServer(player, SoundEvents.ENTITY_EXPERIENCE_ORB_PICKUP, 1f, 3);
 
+				 final int NUMBER_OF_PARTICLES = 60;
+				 final double HORIZONTAL_SPREAD = 3; 
+				 Vec3d targetCoordinates = player.getPositionVector();
+				 HuajiAgeNetWorkHandler.sendToServer(new MessageServerInterchange(1));
+				 
 				if(ConfigHuaji.Stands.allowStandSound&&ConfigHuaji.Stands.allowStandMovingSound&&!player.isPotionActive(PotionLoader.potionStand)) 
 				{
-					HuajiAgeNetWorkHandler.sendToServer(new MessageServerInterchange(2));
+//					HuajiAgeNetWorkHandler.sendToServer(new MessageServerInterchange(2));
+					StandClientUtil.standUpSound(player, stand_type);
 					
 				}else if(ConfigHuaji.Stands.allowStandSound&&!player.isPotionActive(PotionLoader.potionStand))
 				{	
@@ -114,11 +120,7 @@ public class EventKeyInput {
 						break;
 					}
 				}
-			    final int NUMBER_OF_PARTICLES = 60;
-			    final double HORIZONTAL_SPREAD = 3; 
-			    Vec3d targetCoordinates = player.getPositionVector();
-	            HuajiAgeNetWorkHandler.sendToServer(new MessageStandUp());
-	            HuajiAgeNetWorkHandler.sendToServer(new MessageServerInterchange(1));
+				HuajiAgeNetWorkHandler.sendToServer(new MessageStandUp());
 			 					}
 						}
 	  			}

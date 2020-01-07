@@ -35,9 +35,11 @@ import net.minecraft.entity.player.EntityPlayer;
 import net.minecraft.entity.player.EntityPlayerMP;
 import net.minecraft.entity.projectile.EntityFireball;
 import net.minecraft.init.Blocks;
+import net.minecraft.init.MobEffects;
 import net.minecraft.init.SoundEvents;
 import net.minecraft.item.ItemStack;
 import net.minecraft.network.play.server.SPacketSoundEffect;
+import net.minecraft.potion.PotionEffect;
 import net.minecraft.util.DamageSource;
 import net.minecraft.util.ResourceLocation;
 import net.minecraft.util.SoundCategory;
@@ -232,18 +234,20 @@ public class EventStand {
 						  		continue;
 						  		
 						  	}else if(MotionHelper.getAABBSize(i.getEntityBoundingBox())>2){
-						  	  if(eater.getEntityData().getInteger(HuajiConstant.THE_WORLD)<=0) 
-						  	  {
-						  		  i.motionX+=(type.getDamage()/500)*back.x;
-								  i.motionY+=(type.getDamage()/150)*back.y;
-								  i.motionZ+=(type.getDamage()/500)*back.z;
-					  	       }
+//						  	  if(eater.getEntityData().getInteger(HuajiConstant.THE_WORLD)<=0) 
+//						  	  {
+//						  		  i.motionX+=(type.getDamage()/500)*back.x;
+//								  i.motionY+=(type.getDamage()/150)*back.y;
+//								  i.motionZ+=(type.getDamage()/500)*back.z;
+//					  	       }
+						  		eater.addPotionEffect(new PotionEffect(MobEffects.RESISTANCE,50,5));
+						  		continue;
 						  	}else {
-								  if(eater.getEntityData().getInteger(HuajiConstant.THE_WORLD)<=0) {
+//								  if(eater.getEntityData().getInteger(HuajiConstant.THE_WORLD)<=0) {
 								  	  i.motionX=(type.getDamage()/10)*back.x;
 									  i.motionY=(type.getDamage()/10)*back.y;
 									  i.motionZ=(type.getDamage()/10)*back.z;
-								  }
+//								  }
 						  	}	
 						}
 						break;

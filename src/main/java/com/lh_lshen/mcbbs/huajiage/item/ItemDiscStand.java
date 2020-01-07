@@ -7,9 +7,9 @@ import javax.annotation.Nullable;
 
 import com.ibm.icu.util.BytesTrie.Result;
 import com.lh_lshen.mcbbs.huajiage.capability.CapabilityStandHandler;
-import com.lh_lshen.mcbbs.huajiage.capability.CapabilityStandSkillHandler;
+import com.lh_lshen.mcbbs.huajiage.capability.CapabilityStandStageHandler;
 import com.lh_lshen.mcbbs.huajiage.capability.StandHandler;
-import com.lh_lshen.mcbbs.huajiage.capability.StandSkillHandler;
+import com.lh_lshen.mcbbs.huajiage.capability.StandStageHandler;
 import com.lh_lshen.mcbbs.huajiage.crativetab.CreativeTabLoader;
 import com.lh_lshen.mcbbs.huajiage.util.EnumStandtype;
 import com.lh_lshen.mcbbs.huajiage.util.NBTHelper;
@@ -125,7 +125,7 @@ public class ItemDiscStand extends Item {
 	@Override
 	public ActionResult<ItemStack> onItemRightClick(World worldIn, EntityPlayer playerIn, EnumHand handIn) {
 		StandHandler stand = playerIn.getCapability(CapabilityStandHandler.STAND_TYPE, null);
-		StandSkillHandler skill = playerIn.getCapability(CapabilityStandSkillHandler.STAND_SKILL, null);
+		StandStageHandler skill = playerIn.getCapability(CapabilityStandStageHandler.STAND_STAGE, null);
 		String type = stand.getStand();
 		int stage = skill.getStage();
 		String standTag = NBTHelper.getTagCompoundSafe(playerIn.getHeldItem(handIn)).getString(NBT.STAND_ID.getName());

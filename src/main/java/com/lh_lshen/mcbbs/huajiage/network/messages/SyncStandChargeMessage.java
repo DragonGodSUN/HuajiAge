@@ -1,9 +1,11 @@
 package com.lh_lshen.mcbbs.huajiage.network.messages;
 
+import com.lh_lshen.mcbbs.huajiage.capability.CapabilityStandChargeHandler;
 import com.lh_lshen.mcbbs.huajiage.capability.CapabilityStandHandler;
-import com.lh_lshen.mcbbs.huajiage.capability.CapabilityStandSkillHandler;
+import com.lh_lshen.mcbbs.huajiage.capability.CapabilityStandStageHandler;
+import com.lh_lshen.mcbbs.huajiage.capability.StandChargeHandler;
 import com.lh_lshen.mcbbs.huajiage.capability.StandHandler;
-import com.lh_lshen.mcbbs.huajiage.capability.StandSkillHandler;
+import com.lh_lshen.mcbbs.huajiage.capability.StandStageHandler;
 
 import io.netty.buffer.ByteBuf;
 import net.minecraft.client.Minecraft;
@@ -15,43 +17,43 @@ import net.minecraftforge.fml.common.network.simpleimpl.MessageContext;
 import net.minecraftforge.fml.relauncher.Side;
 import net.minecraftforge.fml.relauncher.SideOnly;
 
-public class SyncStandSkillMessage implements IMessage {
-    private int stage;
+public class SyncStandChargeMessage implements IMessage {
+    private int chage;
 
-    public SyncStandSkillMessage() {
+    public SyncStandChargeMessage() {
     	
     }
-    public SyncStandSkillMessage(int stage) {
-        this.stage = stage;
+    public SyncStandChargeMessage(int value) {
+        this.chage = value;
     }
 
     @Override
     public void fromBytes(ByteBuf buf) {
-        this.stage = buf.readInt();
+        this.chage = buf.readInt();
     }
 
     @Override
     public void toBytes(ByteBuf buf) {
-        buf.writeInt(stage);
+        buf.writeInt(chage);
     }
 
-    public int getStage() {
-        return stage;
+    public int getChargeValue() {
+        return chage;
     }
 
-    public static class Handler implements IMessageHandler<SyncStandSkillMessage, IMessage> {
+    public static class Handler implements IMessageHandler<SyncStandChargeMessage, IMessage> {
         @Override
         @SideOnly(Side.CLIENT)
-        public IMessage onMessage(SyncStandSkillMessage message, MessageContext ctx) {
+        public IMessage onMessage(SyncStandChargeMessage message, MessageContext ctx) {
             if (ctx.side == Side.CLIENT) {
                 Minecraft.getMinecraft().addScheduledTask(() -> {
                     EntityPlayer player = Minecraft.getMinecraft().player;
                     if (player == null) {
                         return;
                     }
-                    StandSkillHandler state = player.getCapability(CapabilityStandSkillHandler.STAND_SKILL, null);
-                    if (state != null) {
-                        state.setStage(message.getStage());
+                    StandChargeHandler charge = player.getCapability(CapabilityStandChargeHandler.STAND_CHARGE, null);
+                    if (charge != null) {
+                        charge.setChargeValue(message.getChargeValue());
                     }
                 });
             }

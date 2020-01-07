@@ -118,7 +118,7 @@ message.huaji.orga.hero.shot=§bKeep going now!Rider!
 messege.huaji.blancedHelmet.open=%s is plug-in
 messege.huaji.blancedHelmet.failed=Maybe ether is the key?
 message.huajiage.the_world=§eThe World!!! Time Stop !
-message.huajiage.the_world_star=§5Star Platinum-§eThe World!!!
+message.huajiage.the_world_star=§5§lStar Platinum-§b§lThe World!!!
 message.huajiage.poly_huaji=Stacks:
 message.huajiage.patchouli_missing=[{"text":"[ HUAJI Age II]:","color":"yellow","bold":true},{"text":"In order to get the best game experience please INSTILL ","color":"aqua","bold":false},{"text":"Patchouli Mod","color":"green","underlined":true,"bold":true,"clickEvent":{"action":"open_url","value":"https://www.curseforge.com/minecraft/mc-mods/patchouli"},"hoverEvent":{"action":"show_text","value":"https://www.curseforge.com/minecraft/mc-mods/patchouli"}},{"text":"to elicit the HUAJI Tutorial","color":"aqua","bold":false}]
 message.huajiage.tarot.stand.store= is stored
@@ -130,11 +130,16 @@ gui.huajiage.poly.pool=Item Pool
 gui.huajiage.poly.energy=Energy
 gui.jei.category.huajiage.poly.pool=%s Point 
 
-config.huaji_age.huaji_config=§eHuaji Age
+config.huaji_age.huaji_config=§eHuaji Age Settings
 config.huaji_age.huaji_config.hero_explode=The Terrain destruction of the big explosion created by the big hero's bow
 config.huaji_age.huaji_config.the_world=Can THE WORLD stop the time of players?
 config.huaji_age.huaji_config.height_knife=The flight height of the multi knife
 config.huaji_age.huaji_config.orga_suit=Dose The Infinite Charm Change mode when dress Orga suit?
+config.huaji_age.stands_config=STAND Settings
+config.huaji_age.huaji_config.stand.tip=Stand Tip
+config.huaji_age.huaji_config.stand.moving_sound=Need the moving sound for you stand?
+config.huaji_age.huaji_config.stand_HUD_x=Stand HUD -x
+config.huaji_age.huaji_config.stand_HUD_y=Stand HUD -y
 
 stand.huajiage.empty=Empty
 stand.huajiage.the_world=§e§lThe World

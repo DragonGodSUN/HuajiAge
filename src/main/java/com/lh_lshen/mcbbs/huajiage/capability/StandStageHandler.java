@@ -7,8 +7,8 @@ import com.lh_lshen.mcbbs.huajiage.util.EnumStandtype;
 import net.minecraft.util.EnumParticleTypes;
 import net.minecraft.util.math.MathHelper;
 
-public class StandSkillHandler {
-	 static StandSkillHandler.Factory FACTORY = new StandSkillHandler.Factory();
+public class StandStageHandler {
+	 static StandStageHandler.Factory FACTORY = new StandStageHandler.Factory();
 	    private int stage = 0;
 	    private boolean dirty;
 	    
@@ -33,10 +33,10 @@ public class StandSkillHandler {
 	        this.dirty = dirty;
 	    }
 
-	    private static class Factory implements Callable<StandSkillHandler> {
+	    private static class Factory implements Callable<StandStageHandler> {
 	        @Override
-	        public StandSkillHandler call() {
-	            return new StandSkillHandler();
+	        public StandStageHandler call() {
+	            return new StandStageHandler();
 	        }
 	    }
 }

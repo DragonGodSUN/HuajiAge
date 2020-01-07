@@ -54,6 +54,7 @@ public class SoundLoader {
 	public static final SoundEvent STAND_STAR_PLATINUM_4=registerSound("stand_star_platinum_hit_4");
 	public static final SoundEvent STAND_STAR_PLATINUM_5=registerSound("stand_star_platinum_hit_5");
 	public static final SoundEvent STAR_PLATINUM_THE_WORLD_1=registerSound("star_platinum_the_world_1");
+	public static final SoundEvent STAND_STAR_PLATINUM_REPEAT_1=registerSound("stand_star_platinum_repeat_1");
 	@SubscribeEvent
 	public static void register(RegistryEvent.Register<SoundEvent> event) {
 		for(SoundEvent sound:SOUND_LIST){

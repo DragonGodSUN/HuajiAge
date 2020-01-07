@@ -25,7 +25,7 @@ import net.minecraft.util.ResourceLocation;
 import net.minecraft.util.SoundCategory;
 import net.minecraftforge.fml.relauncher.Side;
 import net.minecraftforge.fml.relauncher.SideOnly;
-@SideOnly(Side.CLIENT)
+//@SideOnly(Side.CLIENT)
 public class StandClientUtil {
 	public static void standUpSound(EntityPlayer player ,String stand_type ) 
 	{
@@ -40,31 +40,37 @@ public class StandClientUtil {
 			StandMovingSound back_hits_double = new StandMovingSound(player, SoundEvents.ENTITY_PLAYER_ATTACK_STRONG, SoundCategory.NEUTRAL);
 			if(random.nextDouble()>0.5) 
 				{
+					sound_hit.setSound( SoundLoader.STAND_THE_WORLD_HIT_1);
+				}else {
 					sound_hit.setSound( SoundLoader.STAND_THE_WORLD_HIT_2);
 				}
-			if(!player.isPotionActive(PotionLoader.potionStand))
-				{
+//			if(!player.isPotionActive(PotionLoader.potionStand))
+//				{
+//		if(sound_hit.getSound()!=null) {
+			System.out.println("before play");
 				sound_hit.setVolume(1f);
-				System.out.println("before play");
 				Minecraft.getMinecraft().getSoundHandler().playSound(sound_hit);
-				System.out.println("after play");
 
 				back_hits.setVolume(0.5f);
 				back_hits.setBackSound(0.5f);
 				back_hits.setLoop();
 				Minecraft.getMinecraft().getSoundHandler().playSound(back_hits);
+				
 				back_hits_double.setVolume(0.7f);
 				back_hits_double.setBackSound(0.5f);
 				back_hits_double.setLoop();
+				
 				Minecraft.getMinecraft().getSoundHandler().playSound(back_hits_double);
-				}
+			System.out.println("after play");
+//			}
+//				}
 				break;
 			}
 		case STAR_PLATINUM :
 		{
 			StandMovingSound sound_hit = new StandMovingSound(player, SoundLoader.STAND_STAR_PLATINUM_1, SoundCategory.NEUTRAL);
-			StandMovingSound back_hits = new StandMovingSound(player, SoundEvents.ENTITY_PLAYER_ATTACK_SWEEP, SoundCategory.NEUTRAL);
-			StandMovingSound back_hits_double = new StandMovingSound(player, SoundEvents.ENTITY_PLAYER_ATTACK_STRONG, SoundCategory.NEUTRAL);
+			StandMovingSound back_hits = new StandMovingSound(player, SoundEvents.BLOCK_STONE_HIT, SoundCategory.NEUTRAL);
+			StandMovingSound back = new StandMovingSound(player, SoundEvents.ENTITY_PLAYER_ATTACK_STRONG, SoundCategory.NEUTRAL);
 			if(random.nextDouble()<0.25) 
 				{
 				sound_hit.setSound( SoundLoader.STAND_STAR_PLATINUM_1);
@@ -74,29 +80,35 @@ public class StandClientUtil {
 				}else if(random.nextDouble()<0.75)
 				{
 					sound_hit.setSound( SoundLoader.STAND_STAR_PLATINUM_3);
-				}else if(random.nextDouble()<1)
+				}else
 				{
 					sound_hit.setSound( SoundLoader.STAND_STAR_PLATINUM_4);
 				}
-			if(!player.isPotionActive(PotionLoader.potionStand))
-				{
+//			if(!player.isPotionActive(PotionLoader.potionStand))
+//				{
+//		if(sound_hit.getSound()!=null) {
+			System.out.println("before play");
 				sound_hit.setVolume(1f);
-				System.out.println("before play");
 				Minecraft.getMinecraft().getSoundHandler().playSound(sound_hit);
-				System.out.println("after play");
-				back_hits.setVolume(0.5f);
-				back_hits.setBackSound(0.5f);
+				
+				back_hits.setVolume(0.6f);
+				back_hits.setBackSound(0.6f);
 				back_hits.setLoop();
 				Minecraft.getMinecraft().getSoundHandler().playSound(back_hits);
-				back_hits_double.setVolume(0.7f);
-				back_hits_double.setBackSound(0.8f);
-				back_hits_double.setLoop();
-				Minecraft.getMinecraft().getSoundHandler().playSound(back_hits_double);
-				}
+				
+				back.setVolume(0.7f);
+				back.setBackSound(0.8f);
+				back.setLoop();
+				
+				Minecraft.getMinecraft().getSoundHandler().playSound(back);
+			System.out.println("after play");
+//		}
+//				}
 				break;
 			}
 				
 		default:
+//			System.out.println();
 				break;
 			}
 		

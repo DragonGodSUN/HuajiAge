@@ -2,10 +2,13 @@ package com.lh_lshen.mcbbs.huajiage.network.messages;
 
 import java.util.UUID;
 
+import com.lh_lshen.mcbbs.huajiage.capability.CapabilityStandHandler;
 import com.lh_lshen.mcbbs.huajiage.item.ItemBlancedHelmet;
 import com.lh_lshen.mcbbs.huajiage.item.ItemHeroBow;
 import com.lh_lshen.mcbbs.huajiage.item.ItemLoader;
 import com.lh_lshen.mcbbs.huajiage.network.HuajiAgeNetWorkHandler;
+import com.lh_lshen.mcbbs.huajiage.util.EnumStandtype;
+import com.lh_lshen.mcbbs.huajiage.util.StandClientUtil;
 
 import io.netty.buffer.ByteBuf;
 import net.minecraft.entity.player.EntityPlayerMP;
@@ -43,7 +46,10 @@ public class MessageServerInterchange implements IMessage {
 				HuajiAgeNetWorkHandler.sendToNearby(player.world, player, new MessageParticleGenerator(player.getPositionVector(), EnumParticleTypes.FIREWORKS_SPARK, 60, 3, 1));
 			break;
 			case 2:
-				HuajiAgeNetWorkHandler.sendToNearby(player.world, player.getPosition(), new MessageMovingSound(player.getName()));
+				String stand_type = player.getCapability(CapabilityStandHandler.STAND_TYPE, null).getStand();
+				if(stand_type!=null&&!stand_type.equals(EnumStandtype.EMPTY)) {
+					HuajiAgeNetWorkHandler.sendToNearby(player.world, player.getPosition(), new MessageMovingSound(player.getName(),stand_type));
+				}
 			break;
 			}
 			}) ;

@@ -131,13 +131,18 @@ gui.huajiage.poly.pool=聚合池
 gui.huajiage.poly.energy=能源-RF
 gui.jei.category.huajiage.poly.pool=%s 聚合值
 
-config.huaji_age.huaji_config=§e滑稽纪元
+config.huaji_age.huaji_config=§e滑稽纪元基础设定
 config.huaji_age.huaji_config.hero_explode=是否允许大英雄破坏地形
 config.huaji_age.huaji_config.road_roller_explosion=是否允许压路机破坏地形
 config.huaji_age.huaji_config.the_world=是否允许咋瓦鲁多暂停玩家时间？
 config.huaji_age.huaji_config.height_knife=小刀的飞行高度
 config.huaji_age.huaji_config.orga_suit=当装备起奥尔加套装时是否允许无限耐久护身符装换形态
 config.huaji_age.huaji_config.the_world.blocks=是否允许替身摧毁方块？
+config.huaji_age.stands_config=替身设定
+config.huaji_age.huaji_config.stand.tip=是否需要替身快捷键的提示
+config.huaji_age.huaji_config.stand.moving_sound=是否需要替身的移动音效（暂时只有本人可听见）
+config.huaji_age.huaji_config.stand_HUD_x=替身显示框-x轴位置
+config.huaji_age.huaji_config.stand_HUD_y=替身显示框-y轴位置
 
 stand.huajiage.empty=缺失
 stand.huajiage.the_world=§e§lThe World-世界

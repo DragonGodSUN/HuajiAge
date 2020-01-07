@@ -6,6 +6,7 @@ import com.lh_lshen.mcbbs.huajiage.capability.CapabilityStandHandler;
 import com.lh_lshen.mcbbs.huajiage.common.HuajiConstant;
 import com.lh_lshen.mcbbs.huajiage.config.ConfigHuaji;
 import com.lh_lshen.mcbbs.huajiage.init.playsound.HuajiSoundPlayer;
+import com.lh_lshen.mcbbs.huajiage.init.playsound.SoundLoader;
 import com.lh_lshen.mcbbs.huajiage.network.messages.MessageDioHitClient;
 import com.lh_lshen.mcbbs.huajiage.network.messages.MessageParticleGenerator;
 import com.lh_lshen.mcbbs.huajiage.potion.PotionLoader;
@@ -18,9 +19,11 @@ import net.minecraft.entity.Entity;
 import net.minecraft.entity.EntityLivingBase;
 import net.minecraft.entity.IProjectile;
 import net.minecraft.entity.item.EntityItem;
+import net.minecraft.entity.item.EntityTNTPrimed;
 import net.minecraft.entity.player.EntityPlayer;
 import net.minecraft.entity.player.EntityPlayerMP;
 import net.minecraft.entity.projectile.EntityFireball;
+import net.minecraft.entity.projectile.EntityShulkerBullet;
 import net.minecraft.entity.projectile.ProjectileHelper;
 import net.minecraft.init.Blocks;
 import net.minecraft.init.MobEffects;
@@ -98,18 +101,26 @@ public class EventTimeStop {
 	  Vec3d targetPosition = player.getPositionVector();
 	  if(NBTHelper.getEntityInteger(player,HuajiConstant.THE_WORLD)>0) {
 		  player.heal(3f);
-		  if(player.getCapability(CapabilityStandHandler.STAND_TYPE, null).getStand().equals(EnumStandtype.THE_WORLD.getName()))
+		  boolean star =false ;
+		  if(player.getCapability(CapabilityStandHandler.STAND_TYPE, null).getStand().equals(EnumStandtype.STAR_PLATINUM.getName()))
 		  {
-			  StandUtil.standPower(player);
+			  star = true;
 		  }
- 	      MessageDioHitClient msg1 = new MessageDioHitClient(targetPosition, false); 
- 	      MessageDioHitClient msg2 =new MessageDioHitClient(targetPosition, true); 
-         if(NBTHelper.getEntityInteger(player,HuajiConstant.DIO_FLAG)==0) {     
-        	          ServerUtil.sendPacketToPlayers(player, msg1);
-         	          player.getEntityData().setInteger(HuajiConstant.DIO_FLAG, 180);
-         	          }
-         if(NBTHelper.getEntityInteger(player,HuajiConstant.DIO_FLAG)<140&&NBTHelper.getEntityInteger(player,HuajiConstant.DIO_FLAG)>0) {   
-        	          ServerUtil.sendPacketToPlayers(player, msg2);
+		  StandUtil.standPower(player);
+		  if(!star) {
+	 	      MessageDioHitClient msg1 = new MessageDioHitClient(targetPosition, false); 
+	 	      MessageDioHitClient msg2 =new MessageDioHitClient(targetPosition, true); 
+	         if(NBTHelper.getEntityInteger(player,HuajiConstant.DIO_FLAG)==0) {     
+	        	          ServerUtil.sendPacketToPlayers(player, msg1);
+	         	          player.getEntityData().setInteger(HuajiConstant.DIO_FLAG, 180);
+	         	          }
+	         if(NBTHelper.getEntityInteger(player,HuajiConstant.DIO_FLAG)<140&&NBTHelper.getEntityInteger(player,HuajiConstant.DIO_FLAG)>0) {   
+	        	          ServerUtil.sendPacketToPlayers(player, msg2);
+	         }
+         }else {
+        	 MessageParticleGenerator pacticle = new MessageParticleGenerator(targetPosition, EnumParticleTypes.FIREWORKS_SPARK, 60, 5, 1);
+        	 ServerUtil.sendPacketToNearbyPlayers(player,pacticle);
+        	 HuajiSoundPlayer.playToNearbyClient(player, SoundLoader.STAND_STAR_PLATINUM_REPEAT_1, 1f);
          }
           if(hit instanceof EntityLivingBase) {  
              ((EntityLivingBase) hit).getEntityData().setInteger(HuajiConstant.DIO_HIT, 120);
@@ -134,71 +145,52 @@ public class EventTimeStop {
     		if(arrows!=null) {
     			for(Entity i:arrows) {
     				
-    				if(i instanceof IProjectile) {
+    				if(i instanceof IProjectile || i instanceof EntityFireball || i instanceof EntityTNTPrimed || i instanceof EntityShulkerBullet) {
     					if(i.getEntityData().getInteger(HuajiConstant.TIME_STOP)==0) {
-    					i.getEntityData().setDouble("huajiage.v_x", i.motionX);
-    					i.getEntityData().setDouble("huajiage.v_y", i.motionY);
-    					i.getEntityData().setDouble("huajiage.v_z", i.motionZ);
+    					setMotionTag(i);
     					i.getEntityData().setInteger(HuajiConstant.TIME_STOP,t);
-    					}
-    					
-    					if(t>1&&!(i.updateBlocked)) {
-    					i.motionX=0;
-    					i.motionY=0;
-    					i.motionZ=0;}
-    					if(t==1) {
-    						i.motionX=i.getEntityData().getDouble("huajiage.v_x");
-        					i.motionY=i.getEntityData().getDouble("huajiage.v_y");
-        					i.motionZ=i.getEntityData().getDouble("huajiage.v_z");
-    					}
-    				}
-    				if(i instanceof EntityFireball) {
-    					if(i.getEntityData().getInteger(HuajiConstant.TIME_STOP)==0) {
-    					i.getEntityData().setDouble("huajiage.v_x", i.motionX);
-    					i.getEntityData().setDouble("huajiage.v_y", i.motionY);
-    					i.getEntityData().setDouble("huajiage.v_z", i.motionZ);
-    					i.getEntityData().setInteger(HuajiConstant.TIME_STOP,t);
-    					i.updateBlocked=true;
     					}
     					
     					if(t>1) {
     					i.motionX=0;
     					i.motionY=0;
-    					i.motionZ=0;}
+    					i.motionZ=0;
+    					if(!(i instanceof IProjectile)) {
+	    						i.updateBlocked =true;
+	    					}
+    					}
     					if(t==1) {
-    						i.motionX=i.getEntityData().getDouble("huajiage.v_x");
-        					i.motionY=i.getEntityData().getDouble("huajiage.v_y");
-        					i.motionZ=i.getEntityData().getDouble("huajiage.v_z");
-        					i.updateBlocked=false;
+    						triggerMotion(i);
+						if(!(i instanceof IProjectile)) {
+    							i.updateBlocked =false;
+    						}
     					}
     				}
+    				
     				if(i instanceof EntityItem) {
     					if(i.getEntityData().getInteger(HuajiConstant.TIME_STOP)==0) {
-    						Vec3d v=((EntityItem)i).getPositionVector();
-    						i.getEntityData().setDouble("huajiage.v_x", i.motionX);
-        					i.getEntityData().setDouble("huajiage.v_y", i.motionY);
-        					i.getEntityData().setDouble("huajiage.v_z", i.motionZ);
+
+    						setMotionTag(i);
     						i.getEntityData().setInteger(HuajiConstant.TIME_STOP,t);
     					}
     					if(t>1) {
         					i.motionX=0;
         					i.motionY=0;
         					i.motionZ=0;
+        					i.rotationYaw = 0;
         					i.setNoGravity(true);}
         					if(t==1) {
-        						i.motionX=(( EntityItem)i).getEntityData().getDouble("huajiage.v_x");
-            					i.motionY=(( EntityItem)i).getEntityData().getDouble("huajiage.v_y");
-            					i.motionZ=(( EntityItem)i).getEntityData().getDouble("huajiage.v_z");
+        						triggerMotion(i);
+        						(( EntityItem)i).rotationYaw=0;
             					i.setNoGravity(false);
         					}
     				}
+    				
 	    				if(i instanceof EntityLivingBase) {
 	    					if(i!=eater&&i.getEntityData().getInteger(HuajiConstant.TIME_STOP)==0) {
 	    					i.getEntityData().setInteger(HuajiConstant.TIME_STOP, t);
 	    					if(i instanceof EntityPlayer) {
-	    					i.getEntityData().setDouble("huajiage.time_stop.x", i.posX);
-	    					i.getEntityData().setDouble("huajiage.time_stop.y", i.posY);
-	    					i.getEntityData().setDouble("huajiage.time_stop.z", i.posZ);
+	    					setPosTag(i);
 						    							}
 						    					}
 					    				}
@@ -206,5 +198,22 @@ public class EventTimeStop {
 			    		}
 	    		}
      	}
+  
+  
+  	private static void setPosTag(Entity entity) {
+		NBTHelper.setEntityDouble(entity, "huajiage.time_stop.x", entity.posX);
+		NBTHelper.setEntityDouble(entity, "huajiage.time_stop.y", entity.posY);
+		NBTHelper.setEntityDouble(entity, "huajiage.time_stop.z", entity.posZ);
+	}
+  	private static void setMotionTag(Entity entity) {
+		NBTHelper.setEntityDouble(entity, "huajiage.v_x", entity.motionX);
+		NBTHelper.setEntityDouble(entity, "huajiage.v_y", entity.motionY);
+		NBTHelper.setEntityDouble(entity, "huajiage.v_z", entity.motionZ);
+	}
+  	private static void triggerMotion(Entity entity) {
+  		entity.motionX=entity.getEntityData().getDouble("huajiage.v_x");
+		entity.motionY=entity.getEntityData().getDouble("huajiage.v_y");
+		entity.motionZ=entity.getEntityData().getDouble("huajiage.v_z");
+	}
 	 
 }

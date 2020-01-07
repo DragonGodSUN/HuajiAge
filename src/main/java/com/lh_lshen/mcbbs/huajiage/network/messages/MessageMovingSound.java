@@ -26,10 +26,11 @@ import net.minecraftforge.fml.relauncher.Side;
 //The link :https://github.com/TheGreyGhost/MinecraftByExample
 public class MessageMovingSound implements IMessage
 {
-	  public MessageMovingSound(String playerName)
+	  public MessageMovingSound(String playerName,String stand_tpye)
 	  {
 	    messageIsValid = true;
 	    this.entityId = playerName;
+	    this.stand = stand_tpye;
 	  }
 
 	  public boolean isMessageValid() {
@@ -44,6 +45,7 @@ public class MessageMovingSound implements IMessage
 	  {
 	    try {
 	    	entityId = ByteBufUtils.readUTF8String(buf);
+	    	stand = ByteBufUtils.readUTF8String(buf);
 	    	
 	    } catch (IndexOutOfBoundsException ioe) {
 	      System.err.println(ioe);
@@ -57,14 +59,20 @@ public class MessageMovingSound implements IMessage
 	  {
 	    if (!messageIsValid) return;
 	    ByteBufUtils.writeUTF8String(buf, entityId);
+	    ByteBufUtils.writeUTF8String(buf, stand);
 	  }
 	  
 	  public String getEntityId() {
 		return entityId;
 	}
+	  
+	  public String getStandId() {
+			return stand;
+		}
 
 	private boolean messageIsValid;
   	private String entityId;
+  	private String stand;
 	  
 public static class Handler implements IMessageHandler<MessageMovingSound, IMessage>
 {
@@ -79,25 +87,30 @@ public static class Handler implements IMessageHandler<MessageMovingSound, IMess
 	    }
 	    Minecraft minecraft = Minecraft.getMinecraft();
 	    final WorldClient worldClient = minecraft.world;
-	    String id = message.getEntityId();
+	    String playerId = message.getEntityId();
+	    String standId = message.getStandId();
 	    minecraft.addScheduledTask(new Runnable()
 	    {
 	    	public void run() {
-	        processMessage(worldClient, id);
+	        processMessage(worldClient, playerId,standId);
 	      }
 	    });
 	    return null;
 	  }
-	  void processMessage(WorldClient worldClient,String entityId)
+	  void processMessage(WorldClient worldClient,String entityId,String standType)
 	  {
        EntityPlayer player = worldClient.getPlayerEntityByName(entityId);
        if(player !=null) 
 	       {
-	       String stand_type =player.getCapability(CapabilityStandHandler.STAND_TYPE, null).getStand();
-	       if(!stand_type.equals(EnumStandtype.EMPTY)) 
+//	       String stand_type =player.getCapability(CapabilityStandHandler.STAND_TYPE, null).getStand();
+	       if(!standType.equals(EnumStandtype.EMPTY)) 
 		       {
-		       StandClientUtil.standUpSound(player, stand_type);
+		       StandClientUtil.standUpSound(player, standType);
+		       }else {
+		    	   System.out.println("null stand");
 		       }
+	       }else {
+	    	   System.out.println("null player");
 	       }
 	    return;
 	  }

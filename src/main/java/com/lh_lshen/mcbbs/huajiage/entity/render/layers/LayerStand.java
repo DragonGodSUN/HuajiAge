@@ -50,6 +50,9 @@ public class LayerStand implements  LayerRenderer<EntityLivingBase> {
 			    	if( ! entitylivingbaseIn.isPotionActive(PotionLoader.potionStand)) {
 			    		return;
 			    	}
+			    	if(type.equals(EnumStandtype.EMPTY)) {
+			    		return;
+			    	}
 			    	if(type != null && ! type.equals(EnumStandtype.EMPTY) ) {
 			    		model = MODEL_THE_WORLD;
 			    		if(type!=EnumStandtype.THE_WORLD.getName()) {

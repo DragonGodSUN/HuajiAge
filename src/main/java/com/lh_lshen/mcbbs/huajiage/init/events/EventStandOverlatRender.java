@@ -4,9 +4,9 @@ import org.lwjgl.input.Keyboard;
 
 import com.lh_lshen.mcbbs.huajiage.HuajiAge;
 import com.lh_lshen.mcbbs.huajiage.capability.CapabilityStandHandler;
-import com.lh_lshen.mcbbs.huajiage.capability.CapabilityStandSkillHandler;
+import com.lh_lshen.mcbbs.huajiage.capability.CapabilityStandStageHandler;
 import com.lh_lshen.mcbbs.huajiage.capability.StandHandler;
-import com.lh_lshen.mcbbs.huajiage.capability.StandSkillHandler;
+import com.lh_lshen.mcbbs.huajiage.capability.StandStageHandler;
 import com.lh_lshen.mcbbs.huajiage.client.ItemRenderLoader;
 import com.lh_lshen.mcbbs.huajiage.client.KeyLoader;
 import com.lh_lshen.mcbbs.huajiage.config.ConfigHuaji;
@@ -39,7 +39,7 @@ public class EventStandOverlatRender {
 	    public static void onRenderOverlay(RenderGameOverlayEvent event) {
 	        if (event.getType() == RenderGameOverlayEvent.ElementType.HOTBAR) {
 	            StandHandler standHandler = Minecraft.getMinecraft().player.getCapability(CapabilityStandHandler.STAND_TYPE, null);
-	            StandSkillHandler standSkillHandler = Minecraft.getMinecraft().player.getCapability(CapabilityStandSkillHandler.STAND_SKILL, null);
+	            StandStageHandler standSkillHandler = Minecraft.getMinecraft().player.getCapability(CapabilityStandStageHandler.STAND_STAGE, null);
 	            ItemStack disc = ItemDiscStand.getItemData(new ItemStack(ItemLoader.disc),standHandler.getStand(), standSkillHandler.getStage());
 	            EnumStandtype stand = EnumStandtype.getType(standHandler.getStand());
 	            if(stand == null) {

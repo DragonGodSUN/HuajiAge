@@ -11,6 +11,8 @@ public class StandMovingSound extends HuajiMovingSound {
 
 	private float backSound;  
 	private int ticks;
+	private int delay;
+	private int delayTicks;
 	public StandMovingSound(Entity s_entity, SoundEvent sound, SoundCategory category) {
 		super(s_entity, sound, category);
 	}
@@ -24,6 +26,7 @@ public class StandMovingSound extends HuajiMovingSound {
 	public void setBackSound(float backSound) {
 		this.backSound = backSound;
 	}
+
 	
 	@Override
     public void update() {
@@ -32,17 +35,23 @@ public class StandMovingSound extends HuajiMovingSound {
         this.zPosF = (float) ENTITY.posZ;
         if(ENTITY instanceof EntityLivingBase) {
         	EntityLivingBase entity = (EntityLivingBase) ENTITY;
+        	this. ticks++;
         	if(!entity.isPotionActive(PotionLoader.potionStand)) {
-        		this. ticks++;
         		setVolume(0f);
-        		if(ticks>=5){
+        		if(ticks>=10){
+//        			System.out.println("sound stop:"+ticks);
         			this.stop();
         		}
         	}else {
         		if(backSound>0) {
-        		setVolume(backSound);
+	        		if(delayTicks<delay) {
+	        			setVolume(0f);
+	        			this.delayTicks++;
+		        		}else {
+		        			setVolume(backSound);
+		        		}
         		}else {
-        		setVolume(1f);
+        			setVolume(1f);
         		}
         	}
         }
