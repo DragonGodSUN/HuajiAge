@@ -3,6 +3,7 @@ package com.lh_lshen.mcbbs.huajiage.network.messages;
 import java.util.UUID;
 
 import com.lh_lshen.mcbbs.huajiage.capability.CapabilityStandHandler;
+import com.lh_lshen.mcbbs.huajiage.capability.StandHandler;
 import com.lh_lshen.mcbbs.huajiage.init.events.EventStand;
 import com.lh_lshen.mcbbs.huajiage.item.ItemHeroBow;
 import com.lh_lshen.mcbbs.huajiage.item.ItemLoader;
@@ -34,18 +35,20 @@ public class MessageStandUp implements IMessage {
         @Override
         public IMessage onMessage(MessageStandUp message , MessageContext ctx) {
         	EntityPlayerMP player = ctx.getServerHandler().player;
-        	String standType = player.getCapability(CapabilityStandHandler.STAND_TYPE, null).getStand();
+        	StandHandler standHandler = player.getCapability(CapabilityStandHandler.STAND_TYPE, null);
+        	String standType = standHandler.getStand();
         	EnumStandtype stand = EnumStandtype.getType(standType);
         	if(stand==null)
         		return null;
 			player.mcServer.addScheduledTask(() -> {
 				if(!player.isPotionActive(PotionLoader.potionStand)) {
 					player.getFoodStats().setFoodLevel(player.getFoodStats().getFoodLevel()-((int)(stand.getDamage()/5)-1));
-					player.addPotionEffect(new PotionEffect(PotionLoader.potionStand,stand.getDuration()));
+					player.addPotionEffect(new PotionEffect(PotionLoader.potionStand,stand.getDuration(),stand.getId()));
 //					System.out.println(player.getName());
 					}else {
-						player.removePotionEffect(PotionLoader.potionStand);;
+						player.removePotionEffect(PotionLoader.potionStand);
 					}
+				standHandler.setDirty(true);
 			});
 			return null;
         }

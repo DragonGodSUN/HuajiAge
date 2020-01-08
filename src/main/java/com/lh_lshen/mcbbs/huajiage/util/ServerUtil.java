@@ -32,6 +32,7 @@ public class ServerUtil {
 			HuajiAgeNetWorkHandler.sendToNearby(entity.world, pos, msg);
 		}catch(Exception e) {e.printStackTrace();}
 	}
+	
 	  public static SoundEvent getRegisteredSoundEvent(String id)
 	    {
 	        SoundEvent soundevent = SoundEvent.REGISTRY.getObject(new ResourceLocation(id));
@@ -45,4 +46,5 @@ public class ServerUtil {
 	            return soundevent;
 	        }
 	    }
+	  
   }

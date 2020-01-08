@@ -118,7 +118,7 @@ public class StandClientUtil {
     public static void standRender(EntityLivingBase entity) {
 		EnumStandtype type = StandUtil.getType(entity);
 		if(type != null) {
-		ResourceLocation STAND_TEX = new ResourceLocation(HuajiAge.MODID,type.getTex());
+		ResourceLocation STAND_TEX = new ResourceLocation(HuajiAge.MODID,type.getTexPath());
 		switch(type) {
 		case THE_WORLD:
 		case STAR_PLATINUM:

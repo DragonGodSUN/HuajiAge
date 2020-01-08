@@ -1,10 +1,12 @@
 package com.lh_lshen.mcbbs.huajiage.item;
 
 import java.util.List;
+import java.util.UUID;
 
 import com.lh_lshen.mcbbs.huajiage.capability.CapabilityStandHandler;
 import com.lh_lshen.mcbbs.huajiage.capability.StandHandler;
 import com.lh_lshen.mcbbs.huajiage.common.HuajiConstant;
+import com.lh_lshen.mcbbs.huajiage.data.StandUserWorldSavedData;
 import com.lh_lshen.mcbbs.huajiage.init.LootTablesLoader;
 import com.lh_lshen.mcbbs.huajiage.init.events.EventStand;
 import com.lh_lshen.mcbbs.huajiage.init.events.EventTimeStop;
@@ -13,6 +15,7 @@ import com.lh_lshen.mcbbs.huajiage.potion.PotionLoader;
 import com.lh_lshen.mcbbs.huajiage.util.EnumStandtype;
 import com.lh_lshen.mcbbs.huajiage.util.NBTHelper;
 
+import net.minecraft.client.resources.I18n;
 import net.minecraft.entity.EntityLivingBase;
 import net.minecraft.entity.player.EntityPlayer;
 import net.minecraft.init.MobEffects;
@@ -25,6 +28,7 @@ import net.minecraft.util.EnumActionResult;
 import net.minecraft.util.EnumHand;
 import net.minecraft.util.text.TextComponentString;
 import net.minecraft.util.text.TextComponentTranslation;
+import net.minecraft.util.text.TextFormatting;
 import net.minecraft.world.World;
 import net.minecraft.world.WorldServer;
 import net.minecraft.world.storage.loot.LootContext;
@@ -40,11 +44,6 @@ public class ItemLootTableTest extends Item {
 		return true;
 	}
 	private NBTTagCompound getTagCompoundSafe(ItemStack stack) {
-//	    NBTTagCompound tagCompound = stack.getTagCompound();
-//	    if (tagCompound == null) {
-//	        tagCompound = new NBTTagCompound();
-//	        stack.setTagCompound(tagCompound);
-//	    }
 	    return NBTHelper.getTagCompoundSafe(stack);
 	}
 	private void modeSwitch(ItemStack stack,int i) {
@@ -67,6 +66,10 @@ public class ItemLootTableTest extends Item {
 			return "Stand Power!!!";
 		case 5:
 			return "Time Stop ---Jostar";
+		case 6:
+			return "The list of Stand Users";
+		case 7:
+			return "Clear up the list of Stand Users";
 		}
 	    return null;
 	}
@@ -78,7 +81,7 @@ public class ItemLootTableTest extends Item {
 		StandHandler stand = playerIn.getCapability(CapabilityStandHandler.STAND_TYPE, null);
 		if(playerIn.isSneaking()) {
 			int mode=getmode(stack);
-			if(mode<5) {
+			if(mode<7) {
 			modeSwitch(stack, mode+1);
 			}else {
 			modeSwitch(stack,0);	
@@ -105,15 +108,16 @@ public class ItemLootTableTest extends Item {
 
 				playerIn.sendMessage(new TextComponentTranslation("message.huajiage:player_received_loot.no_loot"));
 		      }
-       
-		   }
+			playerIn.sendMessage(new TextComponentString("standUsers:"+StandUserWorldSavedData.getGlobal(worldIn).size()));
+			playerIn.sendMessage(new TextComponentString("standUsers:"+StandUserWorldSavedData.getGlobal(worldIn).getPlayers()));
+			playerIn.sendMessage(new TextComponentString("myStand:"+StandUserWorldSavedData.getGlobal(worldIn).getPlayerStand(playerIn)));
+			}
 			break;
 		}
 		case 1:{playerIn.playSound(SoundLoader.ORGA_FLOWER, 2f, 1f); break;}
 		case 2:{
 		if(!playerIn.world.isRemote) {
-//		NBTHelper.setEntityInteger(playerIn, HuajiConstant.STAND_TYPE, 21);
-//		stand.setStand(EnumStandtype.THE_WORLD.getName());
+
 		playerIn.getEntityData().setInteger("huajiage.the_world",9*20);
     	playerIn.addPotionEffect(new PotionEffect(MobEffects.NIGHT_VISION,9*20,0));
     	playerIn.addPotionEffect(new PotionEffect(MobEffects.STRENGTH,9*20,4));
@@ -146,8 +150,6 @@ public class ItemLootTableTest extends Item {
 		}
 		case 4:{
 			if(!playerIn.world.isRemote) {
-//			EventStand.standPower(playerIn);
-//			NBTHelper.setEntityInteger(playerIn, HuajiConstant.STAND_TYPE, 21);
 			stand.setStand(EnumStandtype.THE_WORLD.getName());
 			playerIn.addPotionEffect(new PotionEffect(PotionLoader.potionStand,EnumStandtype.THE_WORLD.getDuration()));
 	        break;
@@ -160,6 +162,26 @@ public class ItemLootTableTest extends Item {
 	    	playerIn.addPotionEffect(new PotionEffect(MobEffects.SPEED,5*20,1));
 	        playerIn.sendMessage(new TextComponentTranslation("message.huajiage.the_world_star"));
         	playerIn.playSound(SoundLoader.STAR_PLATINUM_THE_WORLD_1, 5f,1f);
+	        break;
+				}
+		case 6:{
+			StandUserWorldSavedData data = StandUserWorldSavedData.getGlobal(worldIn);
+			for(UUID uuid : data.getPlayersByUUID()){
+				EntityPlayer player = worldIn.getPlayerEntityByUUID(uuid);
+				if(player!=null&&worldIn.isRemote) {
+					playerIn.sendMessage(new TextComponentString(TextFormatting.GOLD+"================"));
+					playerIn.sendMessage(new TextComponentString(TextFormatting.AQUA+"Stand User: "+player.getName()));
+					playerIn.sendMessage(new TextComponentString(TextFormatting.DARK_AQUA+"Stand User: "
+					+I18n.format(EnumStandtype.getLocalName(player.getCapability(CapabilityStandHandler.STAND_TYPE, null).getStand()))));
+					playerIn.sendMessage(new TextComponentString(TextFormatting.GOLD+"================"));
+				}
+			}
+	        break;
+				}
+		case 7:{
+			StandUserWorldSavedData data = StandUserWorldSavedData.getGlobal(worldIn);
+			data.clear();
+			playerIn.sendMessage(new TextComponentString("The Message of Stand Users is cleared"));
 	        break;
 				}
 			}

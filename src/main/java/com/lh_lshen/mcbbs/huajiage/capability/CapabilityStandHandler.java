@@ -23,20 +23,13 @@ public class CapabilityStandHandler implements ICapabilitySerializable<NBTBase> 
         CapabilityManager.INSTANCE.register(StandHandler.class, new Capability.IStorage<StandHandler>() {
             @Override
             public void readNBT(Capability<StandHandler> capability, StandHandler instance, EnumFacing side, NBTBase nbt) {
-//            	NBTTagList list = (NBTTagList) nbt;
-//            	String stand = list.getStringTagAt(0);
-//            	int stage = list.getIntAt(1);
-//            	instance.setStand(stand);
-//                instance.setStage(stage);
+
             	instance.setStand(((NBTTagString)nbt).getString());
             }
 
             @Override
             public NBTBase writeNBT(Capability<StandHandler> capability, StandHandler instance, EnumFacing side) {
-//            	NBTTagList list = new NBTTagList();
-//            	list.appendTag(new NBTTagString(instance.getStand()));
-//            	list.appendTag(new NBTTagInt(instance.getStage()));
-//                return list;
+
             	return new NBTTagString(instance.getStand());
             }
         }, StandHandler.FACTORY);

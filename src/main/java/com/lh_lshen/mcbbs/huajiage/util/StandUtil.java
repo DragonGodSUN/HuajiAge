@@ -1,11 +1,13 @@
 package com.lh_lshen.mcbbs.huajiage.util;
 
 import java.util.Random;
+import java.util.UUID;
 
 import com.lh_lshen.mcbbs.huajiage.HuajiAge;
 import com.lh_lshen.mcbbs.huajiage.capability.CapabilityStandHandler;
 import com.lh_lshen.mcbbs.huajiage.capability.StandHandler;
 import com.lh_lshen.mcbbs.huajiage.client.model.stand.ModelTheWorld;
+import com.lh_lshen.mcbbs.huajiage.data.StandUserWorldSavedData;
 import com.lh_lshen.mcbbs.huajiage.init.playsound.HuajiSoundPlayer;
 import com.lh_lshen.mcbbs.huajiage.init.playsound.SoundLoader;
 import com.lh_lshen.mcbbs.huajiage.init.playsound.StandMovingSound;
@@ -42,5 +44,25 @@ public class StandUtil {
 			  }
 			  
 	}
+	
+	public static void setStandData(EntityPlayer player, EnumStandtype stand) {
+		if(stand.getName()!=null) 
+			{
+				StandUtil.setStandData(player, stand.getName());
+			 }
+	}
+	
+	public static void setStandData(EntityPlayer player, String stand) {
+		UUID uuid = player.getUniqueID();
+		StandUserWorldSavedData data = StandUserWorldSavedData.getGlobal(player.world);
+		data.add(stand, uuid);
+	}
+	
+	public static void removeStandData(EntityPlayer player) {
+		UUID uuid = player.getUniqueID();
+		StandUserWorldSavedData data = StandUserWorldSavedData.getGlobal(player.world);
+		data.remove(uuid);;
+	}
+	
 	
 }

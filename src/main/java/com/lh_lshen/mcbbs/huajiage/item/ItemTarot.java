@@ -10,6 +10,7 @@ import com.lh_lshen.mcbbs.huajiage.crativetab.CreativeTabLoader;
 import com.lh_lshen.mcbbs.huajiage.potion.PotionLoader;
 import com.lh_lshen.mcbbs.huajiage.util.EnumStandtype;
 import com.lh_lshen.mcbbs.huajiage.util.NBTHelper;
+import com.lh_lshen.mcbbs.huajiage.util.StandUtil;
 
 import net.minecraft.client.resources.I18n;
 import net.minecraft.client.util.ITooltipFlag;
@@ -46,7 +47,7 @@ public class ItemTarot extends Item {
 		super.addInformation(stack, worldIn, tooltip, flagIn);
 		String stand=NBTHelper.getTagCompoundSafe(stack).getString(NBT.STAND_NAME.getName());
 		int stage=NBTHelper.getTagCompoundSafe(stack).getInteger(NBT.STAND_STAGE.getName());
-		tooltip.add(I18n.format("item.tarot:tooltips.1") +I18n.format(EnumStandtype.getDisplayName(stand)));
+		tooltip.add(I18n.format("item.tarot:tooltips.1") +I18n.format(EnumStandtype.getLocalName(stand)));
 		tooltip.add(I18n.format("item.tarot:tooltips.2") +stage);
 	}
 	@Override
@@ -68,9 +69,10 @@ public class ItemTarot extends Item {
 				setStandTag(playerIn, stack, stand, stage);
 				playerIn.getCapability(CapabilityStandHandler.STAND_TYPE, null).setStand(DEFAULT_STAND_ID);
 				playerIn.getCapability(CapabilityStandStageHandler.STAND_STAGE, null).setStage(0);
+				StandUtil.removeStandData(playerIn);
 				if(worldIn.isRemote) {
 				playerIn.playSound(SoundEvents.ITEM_BOTTLE_FILL_DRAGONBREATH, 1f, 1f);
-				playerIn.sendMessage(new TextComponentString(I18n.format(EnumStandtype.getDisplayName(stand))+I18n.format("message.huajiage.tarot.stand.store")));
+				playerIn.sendMessage(new TextComponentString(I18n.format(EnumStandtype.getLocalName(stand))+I18n.format("message.huajiage.tarot.stand.store")));
 				}
 			}
 		}else {
@@ -82,6 +84,7 @@ public class ItemTarot extends Item {
 			playerIn.playSound(SoundEvents.BLOCK_GLASS_BREAK, 1f, 1f);
 			playerIn.playSound(SoundEvents.UI_TOAST_CHALLENGE_COMPLETE, 1f, 1f);
 			setStandTag(playerIn, stack, DEFAULT_STAND_ID, 0);
+			StandUtil.setStandData(playerIn, standTag);
 			}else {
 				if(worldIn.isRemote) {
 					if(!stand.equals(DEFAULT_STAND_ID)) {

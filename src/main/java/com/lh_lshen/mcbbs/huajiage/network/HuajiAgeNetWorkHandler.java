@@ -15,6 +15,7 @@ import com.lh_lshen.mcbbs.huajiage.network.messages.MessageStandUp;
 import com.lh_lshen.mcbbs.huajiage.network.messages.SyncStandChargeMessage;
 import com.lh_lshen.mcbbs.huajiage.network.messages.SyncStandMessage;
 import com.lh_lshen.mcbbs.huajiage.network.messages.SyncStandStageMessage;
+import com.lh_lshen.mcbbs.huajiage.network.messages.SyncStandUserMessage;
 
 import net.minecraft.entity.Entity;
 import net.minecraft.entity.player.EntityPlayer;
@@ -49,6 +50,7 @@ public final class  HuajiAgeNetWorkHandler {
 	    HANDLER.registerMessage(SyncStandMessage.Handler.class,SyncStandMessage.class, id++, Side.CLIENT);
 	    HANDLER.registerMessage(SyncStandStageMessage.Handler.class,SyncStandStageMessage.class, id++, Side.CLIENT);
 	    HANDLER.registerMessage(SyncStandChargeMessage.Handler.class,SyncStandChargeMessage.class, id++, Side.CLIENT);
+	    HANDLER.registerMessage(SyncStandUserMessage.Handler.class,SyncStandUserMessage.class, id++, Side.CLIENT);
 	}
     /**
 	 * Send message to all within 64 blocks that have this chunk loaded

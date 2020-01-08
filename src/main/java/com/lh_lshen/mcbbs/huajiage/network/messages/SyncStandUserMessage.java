@@ -1,7 +1,10 @@
 package com.lh_lshen.mcbbs.huajiage.network.messages;
 
+import java.util.UUID;
+
 import com.lh_lshen.mcbbs.huajiage.capability.CapabilityStandHandler;
 import com.lh_lshen.mcbbs.huajiage.capability.StandHandler;
+import com.lh_lshen.mcbbs.huajiage.entity.render.layers.LayerStand;
 
 import io.netty.buffer.ByteBuf;
 import net.minecraft.client.Minecraft;
@@ -13,43 +16,55 @@ import net.minecraftforge.fml.common.network.simpleimpl.MessageContext;
 import net.minecraftforge.fml.relauncher.Side;
 import net.minecraftforge.fml.relauncher.SideOnly;
 
-public class SyncStandMessage implements IMessage {
+public class SyncStandUserMessage implements IMessage {
     private String stand;
+    private String name;
 
-    public SyncStandMessage() {
+    public SyncStandUserMessage() {
     }
 
-    public SyncStandMessage(String power) {
-        this.stand = power;
+    public SyncStandUserMessage(String stand,String name) {
+        this.stand = stand;
+        this.name = name;
     }
 
     @Override
     public void fromBytes(ByteBuf buf) {
         this.stand = ByteBufUtils.readUTF8String(buf);
+        this.name = ByteBufUtils.readUTF8String(buf);
     }
 
     @Override
     public void toBytes(ByteBuf buf) {
-        ByteBufUtils.writeUTF8String(buf, stand);;
+        ByteBufUtils.writeUTF8String(buf, stand);
+        ByteBufUtils.writeUTF8String(buf, name);
     }
 
     public String getStand() {
         return stand;
     }
+    
+    public String getName() {
+        return name;
+    }
 
-    public static class Handler implements IMessageHandler<SyncStandMessage, IMessage> {
+    public static class Handler implements IMessageHandler<SyncStandUserMessage, IMessage> {
         @Override
         @SideOnly(Side.CLIENT)
-        public IMessage onMessage(SyncStandMessage message, MessageContext ctx) {
+        public IMessage onMessage(SyncStandUserMessage message, MessageContext ctx) {
             if (ctx.side == Side.CLIENT) {
                 Minecraft.getMinecraft().addScheduledTask(() -> {
-                    EntityPlayer player = Minecraft.getMinecraft().player;
+                    EntityPlayer player = Minecraft.getMinecraft().world.getPlayerEntityByName(message.name);
                     if (player == null) {
+                    	System.out.println("null player");
                         return;
                     }
                     StandHandler stand = player.getCapability(CapabilityStandHandler.STAND_TYPE, null);
                     if (stand != null) {
+//                    	System.out.println("wryyyyyy!"+stand.getStand()+"--"+message.name);
                         stand.setStand(message.getStand());
+                    }else {
+                    	System.out.println("null stand");
                     }
                 });
             }

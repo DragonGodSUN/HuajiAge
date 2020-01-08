@@ -7,6 +7,7 @@ import com.lh_lshen.mcbbs.huajiage.client.model.ModelMuliKnife;
 import com.lh_lshen.mcbbs.huajiage.client.model.stand.ModelStandBase;
 import com.lh_lshen.mcbbs.huajiage.client.model.stand.ModelTheWorld;
 import com.lh_lshen.mcbbs.huajiage.common.HuajiConstant;
+import com.lh_lshen.mcbbs.huajiage.data.StandUserWorldSavedData;
 import com.lh_lshen.mcbbs.huajiage.item.ItemLoader;
 import com.lh_lshen.mcbbs.huajiage.potion.PotionLoader;
 import com.lh_lshen.mcbbs.huajiage.util.EnumStandtype;
@@ -27,6 +28,8 @@ import net.minecraft.entity.EntityLivingBase;
 import net.minecraft.entity.player.EntityPlayer;
 import net.minecraft.init.Items;
 import net.minecraft.item.ItemStack;
+import net.minecraft.potion.PotionEffect;
+import net.minecraft.util.EnumFacing;
 import net.minecraft.util.EnumHandSide;
 import net.minecraft.util.ResourceLocation;
 import net.minecraftforge.fml.relauncher.Side;
@@ -37,30 +40,40 @@ public class LayerStand implements  LayerRenderer<EntityLivingBase> {
 	 protected final RenderLivingBase<?> livingEntityRenderer;
 	 private static  ModelStandBase model = null;
 	 private static final ModelStandBase MODEL_THE_WORLD =new ModelTheWorld(); 
-	 private static  ResourceLocation tex = new ResourceLocation(HuajiAge.MODID, "textures/entity/entity_the_world.png");
-	    public LayerStand(RenderLivingBase<?> livingEntityRendererIn)
+	 private static ResourceLocation tex = null;
+	 private static final ResourceLocation TEXTRUE_THE_WORLD = new ResourceLocation(HuajiAge.MODID, EnumStandtype.THE_WORLD.getTexPath());
+	 public LayerStand(RenderLivingBase<?> livingEntityRendererIn)
 	    {
 	        this.livingEntityRenderer = livingEntityRendererIn;
 	    }
 	@Override
 	public void doRenderLayer(EntityLivingBase entitylivingbaseIn, float limbSwing, float limbSwingAmount,
 			float partialTicks, float ageInTicks, float netHeadYaw, float headPitch, float scale) {
-			    	String type = entitylivingbaseIn.getCapability(CapabilityStandHandler.STAND_TYPE, null).getStand();
-			    	EnumStandtype stand = EnumStandtype.getType(type);
-			    	if( ! entitylivingbaseIn.isPotionActive(PotionLoader.potionStand)) {
-			    		return;
-			    	}
-			    	if(type.equals(EnumStandtype.EMPTY)) {
-			    		return;
-			    	}
-			    	if(type != null && ! type.equals(EnumStandtype.EMPTY) ) {
-			    		model = MODEL_THE_WORLD;
+				EnumStandtype stand = null;
+				if( ! entitylivingbaseIn.isPotionActive(PotionLoader.potionStand)) {
+					return;
+				}else {
+					PotionEffect potion = entitylivingbaseIn.getActivePotionEffect(PotionLoader.potionStand);
+					stand = EnumStandtype.getTypeById(potion.getAmplifier());
+				}
+				
+				String type = stand != null?stand.getName():EnumStandtype.EMPTY;
+				
+					if(stand ==null || type == null || type.equals(EnumStandtype.EMPTY) ){
+						return;
+					}
+					
+			    	if(stand!=null ) {
 			    		if(type!=EnumStandtype.THE_WORLD.getName()) {
 				    		model = stand.newModel();
-				    		tex = new ResourceLocation(HuajiAge.MODID, stand.getTex());
+				    		tex = stand.getTex();
+			    		}else {
+			    			model = MODEL_THE_WORLD;
+			    			tex =TEXTRUE_THE_WORLD;
 			    		}
 			    	}
-			    	if(model !=null) 
+			    	
+			    	if(stand != null&&model  != null&&tex != null) 
 			    	{
 	 					GlStateManager.color(1.0F, 1.0F, 1.0F, 1.0F);
 	 		            GlStateManager.enableBlend();
@@ -83,5 +96,6 @@ public class LayerStand implements  LayerRenderer<EntityLivingBase> {
 		
 		return false;
 	}
+
 
 }

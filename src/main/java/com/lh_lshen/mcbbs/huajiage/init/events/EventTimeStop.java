@@ -54,23 +54,21 @@ public class EventTimeStop {
     		target.getEntityData().setInteger(HuajiConstant.TIME_STOP,NBTHelper.getEntityInteger(target,HuajiConstant.TIME_STOP)-1);
     	if(target instanceof EntityPlayer) {
     		if(ConfigHuaji.Stands.allowTimeStopPlayer&&NBTHelper.getEntityInteger(target,HuajiConstant.THE_WORLD)<=0) {
-    			int t=NBTHelper.getEntityInteger(target,HuajiConstant.TIME_STOP);
-//    			if(!target.isPotionActive(MobEffects.SLOWNESS)||target.getActivePotionEffect(MobEffects.SLOWNESS).getAmplifier()<9) {
-//   			    target.addPotionEffect(new PotionEffect(MobEffects.SLOWNESS,t,9));
+			int t=NBTHelper.getEntityInteger(target,HuajiConstant.TIME_STOP);
     		double tx=target.getEntityData().getDouble("huajiage.time_stop.x");
     		double ty=target.getEntityData().getDouble("huajiage.time_stop.y");
     		double tz=target.getEntityData().getDouble("huajiage.time_stop.z");
     		Vec3d pos=new Vec3d(tx, ty, tz);
     			if(((EntityPlayer)target).getPositionVector()!=pos) 
     			{
-    				{((EntityPlayer)target).setPositionAndUpdate(tx,ty,tz);}
-    				}
-    			if(!target.isPotionActive(MobEffects.BLINDNESS)) {
-    			target.addPotionEffect(new PotionEffect(MobEffects.BLINDNESS,t));}
-//    			}
+    				((EntityPlayer)target).setPositionAndUpdate(tx,ty,tz);
+				}
+    			if(!target.isPotionActive(MobEffects.BLINDNESS)&&t>=HuajiConstant.THE_WORLD_TIME-10) 
+    			{
+    				target.addPotionEffect(new PotionEffect(MobEffects.BLINDNESS,HuajiConstant.THE_WORLD_TIME));
+    			}
     										}
-    							}
-    		else {
+			}else {
     		evt.setCanceled(true);
     		}
     	}

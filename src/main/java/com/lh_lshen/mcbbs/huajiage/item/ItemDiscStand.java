@@ -2,15 +2,14 @@ package com.lh_lshen.mcbbs.huajiage.item;
 
 
 import java.util.List;
+import java.util.UUID;
 
-import javax.annotation.Nullable;
-
-import com.ibm.icu.util.BytesTrie.Result;
 import com.lh_lshen.mcbbs.huajiage.capability.CapabilityStandHandler;
 import com.lh_lshen.mcbbs.huajiage.capability.CapabilityStandStageHandler;
 import com.lh_lshen.mcbbs.huajiage.capability.StandHandler;
 import com.lh_lshen.mcbbs.huajiage.capability.StandStageHandler;
 import com.lh_lshen.mcbbs.huajiage.crativetab.CreativeTabLoader;
+import com.lh_lshen.mcbbs.huajiage.data.StandUserWorldSavedData;
 import com.lh_lshen.mcbbs.huajiage.util.EnumStandtype;
 import com.lh_lshen.mcbbs.huajiage.util.NBTHelper;
 
@@ -29,8 +28,8 @@ import net.minecraft.util.EnumActionResult;
 import net.minecraft.util.EnumHand;
 import net.minecraft.util.NonNullList;
 import net.minecraft.util.ResourceLocation;
+import net.minecraft.util.text.TextComponentString;
 import net.minecraft.world.World;
-import net.minecraftforge.common.capabilities.Capability;
 import net.minecraftforge.fml.relauncher.Side;
 import net.minecraftforge.fml.relauncher.SideOnly;
 
@@ -112,7 +111,7 @@ public class ItemDiscStand extends Item {
 		super.addInformation(stack, worldIn, tooltip, flagIn);
 		String stand = getStandId(stack);
 		int stage = getStandStage(stack);
-		tooltip.add(I18n.format("item.huajiage.disc.tooltip.1")+I18n.format(EnumStandtype.getDisplayName(stand)));
+		tooltip.add(I18n.format("item.huajiage.disc.tooltip.1")+I18n.format(EnumStandtype.getLocalName(stand)));
 		tooltip.add(I18n.format("item.huajiage.disc.tooltip.2")+stage);
 
 	}
@@ -120,7 +119,7 @@ public class ItemDiscStand extends Item {
 	@Override
 	public String getItemStackDisplayName(ItemStack stack) {
 		String stand = getStandId(stack);
-		return super.getItemStackDisplayName(stack)+I18n.format(EnumStandtype.getDisplayName(stand));
+		return super.getItemStackDisplayName(stack)+I18n.format(EnumStandtype.getLocalName(stand));
 	}
 	@Override
 	public ActionResult<ItemStack> onItemRightClick(World worldIn, EntityPlayer playerIn, EnumHand handIn) {
@@ -129,13 +128,18 @@ public class ItemDiscStand extends Item {
 		String type = stand.getStand();
 		int stage = skill.getStage();
 		String standTag = NBTHelper.getTagCompoundSafe(playerIn.getHeldItem(handIn)).getString(NBT.STAND_ID.getName());
-		int skillTag = NBTHelper.getTagCompoundSafe(playerIn.getHeldItem(handIn)).getInteger(NBT.STAND_STAGE.getName());
+		int stageTag = NBTHelper.getTagCompoundSafe(playerIn.getHeldItem(handIn)).getInteger(NBT.STAND_STAGE.getName());
 		if(!standTag.equals(DEFAULT_STAND_ID)) {
 				stand.setStand(standTag);
 				playerIn.getHeldItem(handIn).shrink(1);
+				 UUID uuid = playerIn.getUniqueID();
+				 StandUserWorldSavedData.getGlobal(worldIn).add(standTag, uuid);
 			if(!type.equals(DEFAULT_STAND_ID)) {
-				if(!worldIn.isRemote)
+				if(!worldIn.isRemote) {
 				playerIn.dropItem(getItemData(new ItemStack(ItemLoader.disc),type,stage),true);
+				StandUserWorldSavedData data =  StandUserWorldSavedData.getGlobal(worldIn);
+				playerIn.sendMessage(new TextComponentString("stand-->"+data.getPlayerStand(playerIn)));
+				}
 			}
 				playerIn.playSound(SoundEvents.BLOCK_COMPARATOR_CLICK, 1f, 1f);
 		}

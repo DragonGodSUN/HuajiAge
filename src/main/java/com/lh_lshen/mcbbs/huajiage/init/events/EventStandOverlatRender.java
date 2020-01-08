@@ -65,7 +65,7 @@ public class EventStandOverlatRender {
 	                Gui.drawModalRectWithCustomSizedTexture(0, 0, 0, 0, 16, 16, 16, 16);
 	                GlStateManager.popMatrix();
 	                Minecraft.getMinecraft().fontRenderer.drawString( TextFormatting.BOLD+I18n.format("stand.huajiage.name"), 8+ x,  2 + 16 + y, 0xffffff, true);
-	                Minecraft.getMinecraft().fontRenderer.drawString( TextFormatting.BOLD+I18n.format(EnumStandtype.getDisplayName(standHandler.getStand())), 13+ x,  10 + 16 + y, 0xffffff, true);
+	                Minecraft.getMinecraft().fontRenderer.drawString( TextFormatting.BOLD+I18n.format(EnumStandtype.getLocalName(standHandler.getStand())), 13+ x,  10 + 16 + y, 0xffffff, true);
 	                Minecraft.getMinecraft().fontRenderer.drawString( TextFormatting.BOLD+I18n.format("stand.huajiage.stage")+"  "+standSkillHandler.getStage(), 8+ x,  20 + 16 + y, 0xffffff, true);
 	               if(ConfigHuaji.Stands.allowStandTip) {
 	                Minecraft.getMinecraft().fontRenderer.drawString( TextFormatting.BOLD+I18n.format("stand.huajiage.tip",KeyLoader.standUp.getKeyModifier()+"+"+Keyboard.getKeyName(KeyLoader.standUp.getKeyCode())), 5,0, 0xffffff, true);

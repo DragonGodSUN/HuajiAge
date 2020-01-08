@@ -1,5 +1,7 @@
 package com.lh_lshen.mcbbs.huajiage.init.events;
 
+import java.util.List;
+
 import com.lh_lshen.mcbbs.huajiage.HuajiAge;
 import com.lh_lshen.mcbbs.huajiage.capability.CapabilityStandChargeHandler;
 import com.lh_lshen.mcbbs.huajiage.capability.CapabilityStandHandler;
@@ -11,6 +13,9 @@ import com.lh_lshen.mcbbs.huajiage.network.HuajiAgeNetWorkHandler;
 import com.lh_lshen.mcbbs.huajiage.network.messages.SyncStandChargeMessage;
 import com.lh_lshen.mcbbs.huajiage.network.messages.SyncStandMessage;
 import com.lh_lshen.mcbbs.huajiage.network.messages.SyncStandStageMessage;
+import com.lh_lshen.mcbbs.huajiage.network.messages.SyncStandUserMessage;
+import com.lh_lshen.mcbbs.huajiage.util.EnumStandtype;
+import com.lh_lshen.mcbbs.huajiage.util.StandUtil;
 
 import net.minecraft.entity.Entity;
 import net.minecraft.entity.player.EntityPlayer;
@@ -49,10 +54,15 @@ public class EventPlayerCapability {
     public static void onPlayerClone(PlayerEvent.Clone event) {
         EntityPlayer player = event.getEntityPlayer();
 
-        StandHandler num = player.getCapability(CapabilityStandHandler.STAND_TYPE, null);
-        StandHandler oldNum = event.getOriginal().getCapability(CapabilityStandHandler.STAND_TYPE, null);
-        if (num != null && oldNum != null) {
-            num.setStand(oldNum.getStand());
+        StandHandler stand = player.getCapability(CapabilityStandHandler.STAND_TYPE, null);
+        StandHandler oldStand = event.getOriginal().getCapability(CapabilityStandHandler.STAND_TYPE, null);
+        if (stand != null && oldStand != null) {
+            stand.setStand(oldStand.getStand());
+        }
+        
+        String oldData = oldStand.getStand();
+        if (oldData != null&&!oldData.equals(EnumStandtype.EMPTY)) {
+            StandUtil.setStandData(player, oldData);
         }
         
         StandStageHandler stage = player.getCapability(CapabilityStandStageHandler.STAND_STAGE, null);
@@ -101,4 +111,5 @@ public class EventPlayerCapability {
 
         }
     }
+
 }
