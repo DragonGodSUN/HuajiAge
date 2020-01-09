@@ -47,6 +47,12 @@ public class HuajiSoundPlayer {
 		 HuajiMovingSound soundm =new HuajiMovingSound(target, sound, category); 
 		 return soundm.setVolume(volume);
 	    }
+	    
+//	    public static HuajiMovingSound getStandSound(Entity target,SoundEvent sound, SoundCategory category, float volume) {
+//			 StandMovingSound soundm =new StandMovingSound(target, sound, category); 
+//			 return soundm.setVolume(volume);
+//		    }
+	    
 	 @SideOnly(Side.CLIENT)
 	    public static void playClient(World world, double x, double y, double z, SoundEvent sound, SoundCategory category, float volume, float pitch) {
 	        world.playSound(x, y, z,sound,category, volume, pitch, true);

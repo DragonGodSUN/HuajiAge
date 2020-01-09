@@ -1,4 +1,4 @@
-package com.lh_lshen.mcbbs.huajiage.network.messages;
+package com.lh_lshen.mcbbs.huajiage.stand.messages;
 
 import java.util.Random;
 

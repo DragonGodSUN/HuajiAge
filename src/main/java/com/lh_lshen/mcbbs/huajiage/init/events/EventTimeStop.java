@@ -2,18 +2,19 @@ package com.lh_lshen.mcbbs.huajiage.init.events;
 
 import java.util.List;
 
+import com.lh_lshen.mcbbs.huajiage.HuajiAge;
 import com.lh_lshen.mcbbs.huajiage.capability.CapabilityStandHandler;
 import com.lh_lshen.mcbbs.huajiage.common.HuajiConstant;
 import com.lh_lshen.mcbbs.huajiage.config.ConfigHuaji;
 import com.lh_lshen.mcbbs.huajiage.init.playsound.HuajiSoundPlayer;
 import com.lh_lshen.mcbbs.huajiage.init.playsound.SoundLoader;
-import com.lh_lshen.mcbbs.huajiage.network.messages.MessageDioHitClient;
 import com.lh_lshen.mcbbs.huajiage.network.messages.MessageParticleGenerator;
-import com.lh_lshen.mcbbs.huajiage.potion.PotionLoader;
-import com.lh_lshen.mcbbs.huajiage.util.EnumStandtype;
+import com.lh_lshen.mcbbs.huajiage.stand.EnumStandtype;
+import com.lh_lshen.mcbbs.huajiage.stand.StandUtil;
+import com.lh_lshen.mcbbs.huajiage.stand.messages.MessageDioHitClient;
+import com.lh_lshen.mcbbs.huajiage.stand.skills.TimeStopHelper;
 import com.lh_lshen.mcbbs.huajiage.util.NBTHelper;
 import com.lh_lshen.mcbbs.huajiage.util.ServerUtil;
-import com.lh_lshen.mcbbs.huajiage.util.StandUtil;
 
 import net.minecraft.entity.Entity;
 import net.minecraft.entity.EntityLivingBase;
@@ -21,26 +22,22 @@ import net.minecraft.entity.IProjectile;
 import net.minecraft.entity.item.EntityItem;
 import net.minecraft.entity.item.EntityTNTPrimed;
 import net.minecraft.entity.player.EntityPlayer;
-import net.minecraft.entity.player.EntityPlayerMP;
 import net.minecraft.entity.projectile.EntityFireball;
 import net.minecraft.entity.projectile.EntityShulkerBullet;
-import net.minecraft.entity.projectile.ProjectileHelper;
-import net.minecraft.init.Blocks;
 import net.minecraft.init.MobEffects;
-import net.minecraft.init.SoundEvents;
 import net.minecraft.potion.PotionEffect;
 import net.minecraft.util.DamageSource;
 import net.minecraft.util.EntityDamageSource;
 import net.minecraft.util.EnumParticleTypes;
-import net.minecraft.util.math.BlockPos;
-import net.minecraft.util.math.MathHelper;
 import net.minecraft.util.math.Vec3d;
-import net.minecraftforge.event.entity.ProjectileImpactEvent.Fireball;
+import net.minecraft.world.EnumSkyBlock;
+import net.minecraft.world.World;
 import net.minecraftforge.event.entity.living.LivingEvent.LivingUpdateEvent;
 import net.minecraftforge.event.entity.player.AttackEntityEvent;
-import net.minecraftforge.event.entity.player.PlayerEvent;
+import net.minecraftforge.fml.common.Mod;
 import net.minecraftforge.fml.common.eventhandler.SubscribeEvent;
 
+@Mod.EventBusSubscriber(modid = HuajiAge.MODID)
 public class EventTimeStop {
 	 @SubscribeEvent
      public static void onTimeStop(LivingUpdateEvent evt)
@@ -109,11 +106,11 @@ public class EventTimeStop {
 	 	      MessageDioHitClient msg1 = new MessageDioHitClient(targetPosition, false); 
 	 	      MessageDioHitClient msg2 =new MessageDioHitClient(targetPosition, true); 
 	         if(NBTHelper.getEntityInteger(player,HuajiConstant.DIO_FLAG)==0) {     
-	        	          ServerUtil.sendPacketToPlayers(player, msg1);
+	        	          ServerUtil.sendPacketToPlayersStand(player, msg1);
 	         	          player.getEntityData().setInteger(HuajiConstant.DIO_FLAG, 180);
 	         	          }
 	         if(NBTHelper.getEntityInteger(player,HuajiConstant.DIO_FLAG)<140&&NBTHelper.getEntityInteger(player,HuajiConstant.DIO_FLAG)>0) {   
-	        	          ServerUtil.sendPacketToPlayers(player, msg2);
+	        	          ServerUtil.sendPacketToPlayersStand(player, msg2);
 	         }
          }else {
         	 MessageParticleGenerator pacticle = new MessageParticleGenerator(targetPosition, EnumParticleTypes.FIREWORKS_SPARK, 60, 5, 1);
@@ -139,7 +136,8 @@ public class EventTimeStop {
     	if(eater.getEntityData().getInteger(HuajiConstant.THE_WORLD)>0) {
     		int t=eater.getEntityData().getInteger(HuajiConstant.THE_WORLD);
     		eater.getEntityData().setInteger(HuajiConstant.THE_WORLD, t-1);
-    		List<Entity> arrows=eater.getEntityWorld().getEntitiesWithinAABB(Entity.class,eater.getEntityBoundingBox().grow(100,100,100));
+    		int range=(int) eater.getEntityData().getDouble(HuajiConstant.TIME_STOP_RANGE);
+    		List<Entity> arrows=range>0?TimeStopHelper.getTagetsInRange(eater, range):TimeStopHelper.getTagetsInRange(eater, 100);
     		if(arrows!=null) {
     			for(Entity i:arrows) {
     				
@@ -196,6 +194,7 @@ public class EventTimeStop {
 			    		}
 	    		}
      	}
+  
   
   
   	private static void setPosTag(Entity entity) {

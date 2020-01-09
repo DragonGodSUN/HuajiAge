@@ -9,8 +9,9 @@ import com.lh_lshen.mcbbs.huajiage.network.messages.MessageParticleGenerator;
 import com.lh_lshen.mcbbs.huajiage.network.messages.MessagePlaySoundClient;
 import com.lh_lshen.mcbbs.huajiage.network.messages.MessagePlaySoundToServer;
 import com.lh_lshen.mcbbs.huajiage.network.messages.MessageServerInterchange;
-import com.lh_lshen.mcbbs.huajiage.network.messages.PacketGuiShortOverride;
 import com.lh_lshen.mcbbs.huajiage.stand.messages.MessageDioHitClient;
+import com.lh_lshen.mcbbs.huajiage.stand.messages.MessageDoTimeStopClient;
+import com.lh_lshen.mcbbs.huajiage.stand.messages.MessageDoTimeStopServer;
 import com.lh_lshen.mcbbs.huajiage.stand.messages.MessageLeftClickRoadRoller;
 import com.lh_lshen.mcbbs.huajiage.stand.messages.MessagePerfromSkill;
 import com.lh_lshen.mcbbs.huajiage.stand.messages.MessageStandUp;
@@ -30,23 +31,23 @@ import net.minecraftforge.fml.common.network.simpleimpl.IMessage;
 import net.minecraftforge.fml.common.network.simpleimpl.SimpleNetworkWrapper;
 import net.minecraftforge.fml.relauncher.Side;
 
-public final class  HuajiAgeNetWorkHandler {
+public final class  StandNetWorkHandler {
 
-	public static final SimpleNetworkWrapper HANDLER = new SimpleNetworkWrapper(HuajiAge.MODID);
+	public static final SimpleNetworkWrapper HANDLER = new SimpleNetworkWrapper(HuajiAge.MODID+"STAND");
 
     public static void init() {
 		int id = 0;
-		HANDLER.registerMessage(MessageServerInterchange.Handler.class, MessageServerInterchange.class, id++, Side.SERVER);
-		HANDLER.registerMessage(MessagePlaySoundToServer.Handler.class, MessagePlaySoundToServer.class, id++, Side.SERVER);
-		HANDLER.registerMessage(MessageLeftClickModeChange.Handler.class, MessageLeftClickModeChange.class, id++, Side.SERVER);
-		HANDLER.registerMessage(MessageHelmetModeChange.Handler.class, MessageHelmetModeChange.class, id++, Side.SERVER);
-		HANDLER.registerMessage(MessageExglutenburMode.Handler.class, MessageExglutenburMode.class, id++, Side.SERVER);
-	    
+		HANDLER.registerMessage(MessageStandUp.Handler.class, MessageStandUp.class, id++, Side.SERVER);
+		HANDLER.registerMessage(MessageLeftClickRoadRoller.Handler.class, MessageLeftClickRoadRoller.class, id++, Side.SERVER);
+		HANDLER.registerMessage(MessagePerfromSkill.Handler.class, MessagePerfromSkill.class, id++, Side.SERVER);
+		HANDLER.registerMessage(MessageDoTimeStopServer.Handler.class, MessageDoTimeStopServer.class, id++, Side.SERVER);
 		
-	    HANDLER.registerMessage(MessagePlaySoundClient.Handler.class,MessagePlaySoundClient.class, id++, Side.CLIENT);
-	    HANDLER.registerMessage(MessageParticleGenerator.Handler.class,MessageParticleGenerator.class, id++, Side.CLIENT);
-	    HANDLER.registerMessage(MessageMovingSound.Handler.class,MessageMovingSound.class, id++, Side.CLIENT);
-	    HANDLER.registerMessage(PacketGuiShortOverride.class,PacketGuiShortOverride.class, id++, Side.CLIENT);
+	    HANDLER.registerMessage(MessageDioHitClient.Handler.class,MessageDioHitClient.class, id++, Side.CLIENT);
+	    HANDLER.registerMessage(MessageDoTimeStopClient.Handler.class,MessageDoTimeStopClient.class, id++, Side.CLIENT);
+	    HANDLER.registerMessage(SyncStandMessage.Handler.class,SyncStandMessage.class, id++, Side.CLIENT);
+	    HANDLER.registerMessage(SyncStandStageMessage.Handler.class,SyncStandStageMessage.class, id++, Side.CLIENT);
+	    HANDLER.registerMessage(SyncStandChargeMessage.Handler.class,SyncStandChargeMessage.class, id++, Side.CLIENT);
+	    HANDLER.registerMessage(SyncStandUserMessage.Handler.class,SyncStandUserMessage.class, id++, Side.CLIENT);
 	}
     /**
 	 * Send message to all within 64 blocks that have this chunk loaded
@@ -79,7 +80,7 @@ public final class  HuajiAgeNetWorkHandler {
 		HANDLER.sendToServer(msg);
 	}
 
-	private HuajiAgeNetWorkHandler() {}
+	private StandNetWorkHandler() {}
 
 }
 

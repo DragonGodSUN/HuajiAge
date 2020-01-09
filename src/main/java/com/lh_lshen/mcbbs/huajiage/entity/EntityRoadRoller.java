@@ -9,10 +9,10 @@ import com.lh_lshen.mcbbs.huajiage.common.HuajiConstant;
 import com.lh_lshen.mcbbs.huajiage.config.ConfigHuaji;
 import com.lh_lshen.mcbbs.huajiage.init.playsound.HuajiSoundPlayer;
 import com.lh_lshen.mcbbs.huajiage.init.playsound.SoundLoader;
-import com.lh_lshen.mcbbs.huajiage.network.messages.MessageDioHitClient;
 import com.lh_lshen.mcbbs.huajiage.network.messages.MessageParticleGenerator;
 import com.lh_lshen.mcbbs.huajiage.potion.PotionLoader;
-import com.lh_lshen.mcbbs.huajiage.util.EnumStandtype;
+import com.lh_lshen.mcbbs.huajiage.stand.EnumStandtype;
+import com.lh_lshen.mcbbs.huajiage.stand.messages.MessageDioHitClient;
 import com.lh_lshen.mcbbs.huajiage.util.NBTHelper;
 import com.lh_lshen.mcbbs.huajiage.util.ServerUtil;
 
@@ -85,7 +85,7 @@ public class EntityRoadRoller extends EntityThrowable {
 		cmp.setFloat(TAG_ROTATION, getRotation());
 		cmp.setFloat(TAG_PITCH, getPitch());
 		cmp.setFloat(TAG_LIFE, getLife());
-		cmp.setFloat(TAG_EXTRA, getLife());
+		cmp.setFloat(TAG_EXTRA, getExtra());
 
         
 	}
@@ -102,7 +102,7 @@ public class EntityRoadRoller extends EntityThrowable {
 		setRotation(cmp.getFloat(TAG_ROTATION));
 		setPitch(cmp.getFloat(TAG_PITCH));
 		setLife(cmp.getFloat(TAG_LIFE));
-		setLife(cmp.getFloat(TAG_EXTRA));
+		setExtra(cmp.getFloat(TAG_EXTRA));
 		
 	}
 	@Override
@@ -138,12 +138,12 @@ public class EntityRoadRoller extends EntityThrowable {
          	     MessageDioHitClient msg2 = new MessageDioHitClient(targetPosition, true ); 
      	     if(thrower.getEntityData().getInteger("huajiage.dio_flag")==0&&!isStar) {  
 	        	 if(thrower instanceof EntityPlayer) {
-	        	          ServerUtil.sendPacketToNearbyPlayers((EntityPlayer) thrower, msg1);}
+	        	          ServerUtil.sendPacketToNearbyPlayersStand((EntityPlayer) thrower, msg1);}
 	         	          thrower.getEntityData().setInteger("huajiage.dio_flag", 180);
 	         	          }
 	         	if(thrower.getEntityData().getInteger("huajiage.dio_flag")<140&&!isStar&&thrower.getEntityData().getInteger("huajiage.dio_flag")>0) {   
 	         		if(thrower instanceof EntityPlayer) {        
-	         			ServerUtil.sendPacketToNearbyPlayers((EntityPlayer) thrower, msg2);
+	         			ServerUtil.sendPacketToNearbyPlayersStand((EntityPlayer) thrower, msg2);
 	         		}
 	         	}
 	         	if(isStar) {

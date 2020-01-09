@@ -1,4 +1,4 @@
-package com.lh_lshen.mcbbs.huajiage.util;
+package com.lh_lshen.mcbbs.huajiage.stand;
 
 import java.util.Random;
 
@@ -8,6 +8,7 @@ import com.lh_lshen.mcbbs.huajiage.capability.StandHandler;
 import com.lh_lshen.mcbbs.huajiage.client.model.stand.ModelStandBase;
 import com.lh_lshen.mcbbs.huajiage.client.model.stand.ModelStarPlatinum;
 import com.lh_lshen.mcbbs.huajiage.client.model.stand.ModelTheWorld;
+import com.lh_lshen.mcbbs.huajiage.init.playsound.HuajiMovingSound;
 import com.lh_lshen.mcbbs.huajiage.init.playsound.HuajiSoundPlayer;
 import com.lh_lshen.mcbbs.huajiage.init.playsound.SoundLoader;
 import com.lh_lshen.mcbbs.huajiage.init.playsound.StandMovingSound;
@@ -16,6 +17,7 @@ import com.lh_lshen.mcbbs.huajiage.potion.PotionLoader;
 
 import net.minecraft.client.Minecraft;
 import net.minecraft.client.renderer.OpenGlHelper;
+import net.minecraft.entity.Entity;
 import net.minecraft.entity.EntityLivingBase;
 import net.minecraft.entity.player.EntityPlayer;
 import net.minecraft.init.SoundEvents;
@@ -25,9 +27,9 @@ import net.minecraft.util.ResourceLocation;
 import net.minecraft.util.SoundCategory;
 import net.minecraftforge.fml.relauncher.Side;
 import net.minecraftforge.fml.relauncher.SideOnly;
-//@SideOnly(Side.CLIENT)
 public class StandClientUtil {
-	public static void standUpSound(EntityPlayer player ,String stand_type ) 
+//	@SideOnly(Side.CLIENT)
+	public static void standUpSound(Minecraft mc ,Entity user ,String stand_type ) 
 	{
 		Random random = new Random();
 		EnumStandtype stand = EnumStandtype.getType(stand_type);
@@ -35,73 +37,63 @@ public class StandClientUtil {
 		{
 		case THE_WORLD :
 		{
-			StandMovingSound sound_hit = new StandMovingSound(player, SoundLoader.STAND_THE_WORLD_HIT_1, SoundCategory.NEUTRAL);
-			StandMovingSound back_hits = new StandMovingSound(player, SoundEvents.ENTITY_PLAYER_ATTACK_SWEEP, SoundCategory.NEUTRAL);
-			StandMovingSound back_hits_double = new StandMovingSound(player, SoundEvents.ENTITY_PLAYER_ATTACK_STRONG, SoundCategory.NEUTRAL);
+//			StandMovingSound sound_hit = new StandMovingSound(user, SoundLoader.STAND_THE_WORLD_HIT_1, SoundCategory.NEUTRAL);
+//			StandMovingSound back_hits = new StandMovingSound(user, SoundEvents.ENTITY_PLAYER_ATTACK_SWEEP, SoundCategory.NEUTRAL);
 			if(random.nextDouble()>0.5) 
 				{
-					sound_hit.setSound( SoundLoader.STAND_THE_WORLD_HIT_1);
+				mc.getSoundHandler().playSound(HuajiSoundPlayer.getMovingSound(user,  SoundLoader.STAND_THE_WORLD_HIT_1, SoundCategory.NEUTRAL, 1f));
 				}else {
-					sound_hit.setSound( SoundLoader.STAND_THE_WORLD_HIT_2);
+				mc.getSoundHandler().playSound(HuajiSoundPlayer.getMovingSound(user,  SoundLoader.STAND_THE_WORLD_HIT_2, SoundCategory.NEUTRAL, 1f));
 				}
+				HuajiMovingSound back_hits_double = new HuajiMovingSound(user, SoundEvents.ENTITY_PLAYER_ATTACK_STRONG, SoundCategory.NEUTRAL);
+				back_hits_double.setVolume(0.7f);
+				back_hits_double.setLoop();
+				mc.getSoundHandler().playSound(back_hits_double);
 //			if(!player.isPotionActive(PotionLoader.potionStand))
 //				{
 //		if(sound_hit.getSound()!=null) {
-			System.out.println("before play");
-				sound_hit.setVolume(1f);
-				Minecraft.getMinecraft().getSoundHandler().playSound(sound_hit);
+//				sound_hit.setVolume(1f);
+//				Minecraft.getMinecraft().getSoundHandler().playSound(sound_hit);
 
-				back_hits.setVolume(0.5f);
-				back_hits.setBackSound(0.5f);
-				back_hits.setLoop();
-				Minecraft.getMinecraft().getSoundHandler().playSound(back_hits);
+//				back_hits.setVolume(0.5f);
+//				back_hits.setBackSound(0.5f);
+//				back_hits.setLoop();
+//				Minecraft.getMinecraft().getSoundHandler().playSound(back_hits);
 				
-				back_hits_double.setVolume(0.7f);
-				back_hits_double.setBackSound(0.5f);
-				back_hits_double.setLoop();
-				
-				Minecraft.getMinecraft().getSoundHandler().playSound(back_hits_double);
-			System.out.println("after play");
 //			}
 //				}
 				break;
 			}
 		case STAR_PLATINUM :
 		{
-			StandMovingSound sound_hit = new StandMovingSound(player, SoundLoader.STAND_STAR_PLATINUM_1, SoundCategory.NEUTRAL);
-			StandMovingSound back_hits = new StandMovingSound(player, SoundEvents.BLOCK_STONE_HIT, SoundCategory.NEUTRAL);
-			StandMovingSound back = new StandMovingSound(player, SoundEvents.ENTITY_PLAYER_ATTACK_STRONG, SoundCategory.NEUTRAL);
+//			StandMovingSound sound_hit = new StandMovingSound(user, SoundLoader.STAND_STAR_PLATINUM_1, SoundCategory.NEUTRAL);
+//			StandMovingSound back_hits = new StandMovingSound(user, SoundEvents.BLOCK_STONE_HIT, SoundCategory.NEUTRAL);
 			if(random.nextDouble()<0.25) 
 				{
-				sound_hit.setSound( SoundLoader.STAND_STAR_PLATINUM_1);
+				mc.getSoundHandler().playSound(HuajiSoundPlayer.getMovingSound(user,  SoundLoader.STAND_STAR_PLATINUM_1, SoundCategory.NEUTRAL, 1f));
 				}else if(random.nextDouble()<0.5) 
 				{
-					sound_hit.setSound( SoundLoader.STAND_STAR_PLATINUM_2);
+				mc.getSoundHandler().playSound(HuajiSoundPlayer.getMovingSound(user,  SoundLoader.STAND_STAR_PLATINUM_2, SoundCategory.NEUTRAL, 1f));
 				}else if(random.nextDouble()<0.75)
 				{
-					sound_hit.setSound( SoundLoader.STAND_STAR_PLATINUM_3);
+				mc.getSoundHandler().playSound(HuajiSoundPlayer.getMovingSound(user,  SoundLoader.STAND_STAR_PLATINUM_3, SoundCategory.NEUTRAL, 1f));
 				}else
 				{
-					sound_hit.setSound( SoundLoader.STAND_STAR_PLATINUM_4);
+					Minecraft.getMinecraft().getSoundHandler().playSound(HuajiSoundPlayer.getMovingSound(user,  SoundLoader.STAND_STAR_PLATINUM_4, SoundCategory.NEUTRAL, 1f));
 				}
+				HuajiMovingSound back = new HuajiMovingSound(user, SoundEvents.ENTITY_PLAYER_ATTACK_STRONG, SoundCategory.NEUTRAL);
+				back.setVolume(0.7f);
+				back.setLoop();
+				mc.getSoundHandler().playSound(back);
 //			if(!player.isPotionActive(PotionLoader.potionStand))
 //				{
 //		if(sound_hit.getSound()!=null) {
-			System.out.println("before play");
-				sound_hit.setVolume(1f);
-				Minecraft.getMinecraft().getSoundHandler().playSound(sound_hit);
 				
-				back_hits.setVolume(0.6f);
-				back_hits.setBackSound(0.6f);
-				back_hits.setLoop();
-				Minecraft.getMinecraft().getSoundHandler().playSound(back_hits);
+//				back_hits.setVolume(0.6f);
+//				back_hits.setBackSound(0.6f);
+//				back_hits.setLoop();
+//				Minecraft.getMinecraft().getSoundHandler().playSound(back_hits);
 				
-				back.setVolume(0.7f);
-				back.setBackSound(0.8f);
-				back.setLoop();
-				
-				Minecraft.getMinecraft().getSoundHandler().playSound(back);
-			System.out.println("after play");
 //		}
 //				}
 				break;

@@ -2,7 +2,7 @@ package com.lh_lshen.mcbbs.huajiage.capability;
 
 import java.util.concurrent.Callable;
 
-import com.lh_lshen.mcbbs.huajiage.util.EnumStandtype;
+import com.lh_lshen.mcbbs.huajiage.stand.EnumStandtype;
 
 import net.minecraft.util.EnumParticleTypes;
 import net.minecraft.util.math.MathHelper;
@@ -10,7 +10,7 @@ import net.minecraft.util.math.MathHelper;
 public class StandChargeHandler {
 	 static StandChargeHandler.Factory FACTORY = new StandChargeHandler.Factory();
 	    private int charge = 0;
-	    private int max = 5000;
+	    private int max = 5000*20;
 	    private boolean dirty;
 	    
 	    public void setChargeValue(int value) {
@@ -30,14 +30,24 @@ public class StandChargeHandler {
 	    public int getMaxValue() {
 			return max;
 		}
-
+	    
+	    
 	    public boolean canBeCharge() {
-			return this.charge<=max;
+			return this.charge<max;
 		}
 	    
-	    public void charge() {
+	    public boolean canBeCost(int cost) {
+			return this.charge-cost>0;
+		}
+	    
+	    public void charge(int efficiency) {
+	    	int result = charge +efficiency;
 	    	if(canBeCharge()) {
-			this.charge++;
+	    		if(result<=max) {
+				this.charge += efficiency;
+				}else {
+					setChargeValue(max);
+				}
 			markDirty();
 			}
 		}
@@ -45,6 +55,16 @@ public class StandChargeHandler {
 	    public void clear() {
 			setChargeValue(0);
 		}
+	    
+	    public void cost(int cost) {
+	    	int orgin = charge;
+	    	int left = orgin - cost;
+	    	if( left>0 ) {
+	 			setChargeValue(left);
+	 			}else {
+	 				clear();
+	 			}
+	 		}
 	    
 		public void markDirty() {
 	        dirty = true;

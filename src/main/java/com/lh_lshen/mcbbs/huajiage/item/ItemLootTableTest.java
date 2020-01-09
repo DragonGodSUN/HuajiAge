@@ -5,6 +5,7 @@ import java.util.UUID;
 
 import com.lh_lshen.mcbbs.huajiage.capability.CapabilityStandHandler;
 import com.lh_lshen.mcbbs.huajiage.capability.StandHandler;
+import com.lh_lshen.mcbbs.huajiage.capability.StandStageHandler;
 import com.lh_lshen.mcbbs.huajiage.common.HuajiConstant;
 import com.lh_lshen.mcbbs.huajiage.data.StandUserWorldSavedData;
 import com.lh_lshen.mcbbs.huajiage.init.LootTablesLoader;
@@ -12,7 +13,8 @@ import com.lh_lshen.mcbbs.huajiage.init.events.EventStand;
 import com.lh_lshen.mcbbs.huajiage.init.events.EventTimeStop;
 import com.lh_lshen.mcbbs.huajiage.init.playsound.SoundLoader;
 import com.lh_lshen.mcbbs.huajiage.potion.PotionLoader;
-import com.lh_lshen.mcbbs.huajiage.util.EnumStandtype;
+import com.lh_lshen.mcbbs.huajiage.stand.EnumStandtype;
+import com.lh_lshen.mcbbs.huajiage.stand.StandUtil;
 import com.lh_lshen.mcbbs.huajiage.util.NBTHelper;
 
 import net.minecraft.client.resources.I18n;
@@ -78,7 +80,9 @@ public class ItemLootTableTest extends Item {
 	public ActionResult<ItemStack> onItemRightClick(final World worldIn, final EntityPlayer playerIn, final EnumHand hand) {
 		ItemStack stack=playerIn.getHeldItemMainhand();
 		if(stack.getItem()==ItemLoader.loottest) {
-		StandHandler stand = playerIn.getCapability(CapabilityStandHandler.STAND_TYPE, null);
+		StandHandler standHandler = playerIn.getCapability(CapabilityStandHandler.STAND_TYPE, null);
+		StandStageHandler stageHandler = StandUtil.getStandStageHandler(playerIn);
+		int stage = stageHandler.getStage();
 		if(playerIn.isSneaking()) {
 			int mode=getmode(stack);
 			if(mode<7) {
@@ -139,21 +143,22 @@ public class ItemLootTableTest extends Item {
 		      }
 		case 3:{
 		if(!playerIn.world.isRemote) {
-		stand.setStand(EnumStandtype.EMPTY);
+		standHandler.setStand(EnumStandtype.EMPTY);
+		stageHandler.setStage(0);
 		playerIn.getEntityData().setInteger("huajiage.time_stop",9*20);
 		playerIn.getEntityData().setDouble("huajiage.time_stop.x", playerIn.posX);
 		playerIn.getEntityData().setDouble("huajiage.time_stop.y", playerIn.posY);
 		playerIn.getEntityData().setDouble("huajiage.time_stop.z", playerIn.posZ);
         playerIn.sendMessage(new TextComponentTranslation("message.huajiage.the_world"));
-        break;
 		   }
+		break;
 		}
 		case 4:{
 			if(!playerIn.world.isRemote) {
-			stand.setStand(EnumStandtype.THE_WORLD.getName());
+			standHandler.setStand(EnumStandtype.THE_WORLD.getName());
 			playerIn.addPotionEffect(new PotionEffect(PotionLoader.potionStand,EnumStandtype.THE_WORLD.getDuration()));
-	        break;
 			}
+			break;
 		}
 		case 5:{
 			playerIn.getEntityData().setInteger("huajiage.the_world",5*20);
@@ -162,6 +167,7 @@ public class ItemLootTableTest extends Item {
 	    	playerIn.addPotionEffect(new PotionEffect(MobEffects.SPEED,5*20,1));
 	        playerIn.sendMessage(new TextComponentTranslation("message.huajiage.the_world_star"));
         	playerIn.playSound(SoundLoader.STAR_PLATINUM_THE_WORLD_1, 5f,1f);
+        	stageHandler.setStage(1);
 	        break;
 				}
 		case 6:{

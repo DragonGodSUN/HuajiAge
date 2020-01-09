@@ -6,6 +6,8 @@ import com.lh_lshen.mcbbs.huajiage.entity.render.RenderMultiKnife;
 import com.lh_lshen.mcbbs.huajiage.entity.render.RenderPlayerLayers;
 import com.lh_lshen.mcbbs.huajiage.entity.render.RenderRoadRoller;
 import com.lh_lshen.mcbbs.huajiage.entity.render.RenderSecondFoil;
+import com.lh_lshen.mcbbs.huajiage.entity.render.RenderStandBase;
+import com.lh_lshen.mcbbs.huajiage.stand.entity.EntityStandBase;
 
 import net.minecraft.client.renderer.entity.Render;
 import net.minecraft.client.renderer.entity.RenderArmorStand;
@@ -31,7 +33,7 @@ public class EntityLoader {
 	        registerEntity((new ResourceLocation(HuajiAge.MODID, "HeroArrow")), EntityHeroArrow.class, "HeroArrow", 80, 3, true);
 	        registerEntity((new ResourceLocation(HuajiAge.MODID, "MuliKnife")), EntityMultiKnife.class, "MuliKnife", 80, 3, true);
 	        registerEntity((new ResourceLocation(HuajiAge.MODID, "RoadRoller")), EntityRoadRoller.class, "RoadRoller", 80, 3, true);
-	        
+	        registerEntity((new ResourceLocation(HuajiAge.MODID, "StandBase")), EntityStandBase.class, "StandBase", 80, 3, true);
 	    }
 
 	    private static void registerEntity(ResourceLocation nameg,Class<? extends Entity> entityClass, String name, int trackingRange,
@@ -48,6 +50,7 @@ public class EntityLoader {
 	    	RenderingRegistry.registerEntityRenderingHandler(EntityHeroArrow.class, manage -> new RenderHeroArrow(manage));
 	    	RenderingRegistry.registerEntityRenderingHandler(EntityMultiKnife.class, manage -> new RenderMultiKnife(manage));
 	    	RenderingRegistry.registerEntityRenderingHandler(EntityRoadRoller.class, manage -> new RenderRoadRoller(manage));
+	    	RenderingRegistry.registerEntityRenderingHandler(EntityStandBase.class, manage -> new RenderStandBase(manage));
 	    
 	    }
 }

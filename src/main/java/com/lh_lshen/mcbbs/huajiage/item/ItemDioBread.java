@@ -14,8 +14,8 @@ import com.lh_lshen.mcbbs.huajiage.crativetab.CreativeTabLoader;
 import com.lh_lshen.mcbbs.huajiage.entity.EntityRoadRoller;
 import com.lh_lshen.mcbbs.huajiage.init.playsound.SoundLoader;
 import com.lh_lshen.mcbbs.huajiage.network.HuajiAgeNetWorkHandler;
-import com.lh_lshen.mcbbs.huajiage.network.messages.MessageDioHitClient;
-import com.lh_lshen.mcbbs.huajiage.util.EnumStandtype;
+import com.lh_lshen.mcbbs.huajiage.stand.EnumStandtype;
+import com.lh_lshen.mcbbs.huajiage.stand.messages.MessageDioHitClient;
 import com.lh_lshen.mcbbs.huajiage.util.NBTHelper;
 import com.lh_lshen.mcbbs.huajiage.util.ServerUtil;
 
@@ -76,8 +76,7 @@ public class ItemDioBread extends ItemFood{
             player.sendMessage(new TextComponentTranslation("message.huajiage.the_world_star"));
             }
             player.heal(5f);
-//            NBTHelper.setEntityInteger(player, HuajiConstant.STAND_TYPE, 21);
-//            stand.setStand(EnumStandtype.THE_WORLD.getName());
+
             player.getEntityData().setInteger(HuajiConstant.THE_WORLD, HuajiConstant.THE_WORLD_TIME);
             if(rand<30d) {
             	player.inventory.addItemStackToInventory(new ItemStack(ItemLoader.roadRoller));

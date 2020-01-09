@@ -7,8 +7,8 @@ import com.lh_lshen.mcbbs.huajiage.item.ItemBlancedHelmet;
 import com.lh_lshen.mcbbs.huajiage.item.ItemHeroBow;
 import com.lh_lshen.mcbbs.huajiage.item.ItemLoader;
 import com.lh_lshen.mcbbs.huajiage.network.HuajiAgeNetWorkHandler;
-import com.lh_lshen.mcbbs.huajiage.util.EnumStandtype;
-import com.lh_lshen.mcbbs.huajiage.util.StandClientUtil;
+import com.lh_lshen.mcbbs.huajiage.stand.EnumStandtype;
+import com.lh_lshen.mcbbs.huajiage.stand.StandClientUtil;
 
 import io.netty.buffer.ByteBuf;
 import net.minecraft.entity.player.EntityPlayerMP;

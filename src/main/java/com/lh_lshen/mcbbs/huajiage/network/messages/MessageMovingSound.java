@@ -4,9 +4,9 @@ import java.util.UUID;
 
 import com.lh_lshen.mcbbs.huajiage.capability.CapabilityStandHandler;
 import com.lh_lshen.mcbbs.huajiage.init.events.EventStand;
-import com.lh_lshen.mcbbs.huajiage.util.EnumStandtype;
-import com.lh_lshen.mcbbs.huajiage.util.StandClientUtil;
-import com.lh_lshen.mcbbs.huajiage.util.StandUtil;
+import com.lh_lshen.mcbbs.huajiage.stand.EnumStandtype;
+import com.lh_lshen.mcbbs.huajiage.stand.StandClientUtil;
+import com.lh_lshen.mcbbs.huajiage.stand.StandUtil;
 import com.mojang.util.UUIDTypeAdapter;
 
 import io.netty.buffer.ByteBuf;
@@ -105,7 +105,7 @@ public static class Handler implements IMessageHandler<MessageMovingSound, IMess
 //	       String stand_type =player.getCapability(CapabilityStandHandler.STAND_TYPE, null).getStand();
 	       if(!standType.equals(EnumStandtype.EMPTY)) 
 		       {
-		       StandClientUtil.standUpSound(player, standType);
+		       StandClientUtil.standUpSound(Minecraft.getMinecraft(),player, standType);
 		       }else {
 		    	   System.out.println("null stand");
 		       }

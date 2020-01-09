@@ -1,9 +1,7 @@
-package com.lh_lshen.mcbbs.huajiage.network.messages;
+package com.lh_lshen.mcbbs.huajiage.stand.messages;
 
 import com.lh_lshen.mcbbs.huajiage.capability.CapabilityStandHandler;
-import com.lh_lshen.mcbbs.huajiage.capability.CapabilityStandStageHandler;
 import com.lh_lshen.mcbbs.huajiage.capability.StandHandler;
-import com.lh_lshen.mcbbs.huajiage.capability.StandStageHandler;
 
 import io.netty.buffer.ByteBuf;
 import net.minecraft.client.Minecraft;
@@ -15,43 +13,43 @@ import net.minecraftforge.fml.common.network.simpleimpl.MessageContext;
 import net.minecraftforge.fml.relauncher.Side;
 import net.minecraftforge.fml.relauncher.SideOnly;
 
-public class SyncStandStageMessage implements IMessage {
-    private int stage;
+public class SyncStandMessage implements IMessage {
+    private String stand;
 
-    public SyncStandStageMessage() {
-    	
+    public SyncStandMessage() {
     }
-    public SyncStandStageMessage(int stage) {
-        this.stage = stage;
+
+    public SyncStandMessage(String power) {
+        this.stand = power;
     }
 
     @Override
     public void fromBytes(ByteBuf buf) {
-        this.stage = buf.readInt();
+        this.stand = ByteBufUtils.readUTF8String(buf);
     }
 
     @Override
     public void toBytes(ByteBuf buf) {
-        buf.writeInt(stage);
+        ByteBufUtils.writeUTF8String(buf, stand);;
     }
 
-    public int getStage() {
-        return stage;
+    public String getStand() {
+        return stand;
     }
 
-    public static class Handler implements IMessageHandler<SyncStandStageMessage, IMessage> {
+    public static class Handler implements IMessageHandler<SyncStandMessage, IMessage> {
         @Override
         @SideOnly(Side.CLIENT)
-        public IMessage onMessage(SyncStandStageMessage message, MessageContext ctx) {
+        public IMessage onMessage(SyncStandMessage message, MessageContext ctx) {
             if (ctx.side == Side.CLIENT) {
                 Minecraft.getMinecraft().addScheduledTask(() -> {
                     EntityPlayer player = Minecraft.getMinecraft().player;
                     if (player == null) {
                         return;
                     }
-                    StandStageHandler state = player.getCapability(CapabilityStandStageHandler.STAND_STAGE, null);
-                    if (state != null) {
-                        state.setStage(message.getStage());
+                    StandHandler stand = player.getCapability(CapabilityStandHandler.STAND_TYPE, null);
+                    if (stand != null) {
+                        stand.setStand(message.getStand());
                     }
                 });
             }

@@ -19,12 +19,12 @@ import com.lh_lshen.mcbbs.huajiage.network.messages.MessageHelmetModeChange;
 import com.lh_lshen.mcbbs.huajiage.network.messages.MessageParticleGenerator;
 import com.lh_lshen.mcbbs.huajiage.network.messages.MessagePlaySoundToServer;
 import com.lh_lshen.mcbbs.huajiage.network.messages.MessageServerInterchange;
-import com.lh_lshen.mcbbs.huajiage.network.messages.MessageStandUp;
 import com.lh_lshen.mcbbs.huajiage.potion.PotionLoader;
-import com.lh_lshen.mcbbs.huajiage.util.EnumStandtype;
+import com.lh_lshen.mcbbs.huajiage.stand.EnumStandtype;
+import com.lh_lshen.mcbbs.huajiage.stand.StandClientUtil;
+import com.lh_lshen.mcbbs.huajiage.stand.StandUtil;
+import com.lh_lshen.mcbbs.huajiage.stand.messages.MessageStandUp;
 import com.lh_lshen.mcbbs.huajiage.util.ServerUtil;
-import com.lh_lshen.mcbbs.huajiage.util.StandClientUtil;
-import com.lh_lshen.mcbbs.huajiage.util.StandUtil;
 
 import net.minecraft.client.Minecraft;
 import net.minecraft.client.audio.ISound;
@@ -52,76 +52,14 @@ public class EventKeyInput {
 	@SubscribeEvent
 	public static void modeSwitch(InputEvent.KeyInputEvent evt) {
 
-		if(KeyLoader.modeSwitch.isPressed()) {
+		if(KeyLoader.modeSwitch.isPressed()) 
+		{
 		EntityPlayer player = Minecraft.getMinecraft().player;
-		if(player.getItemStackFromSlot(EntityEquipmentSlot.HEAD).getItem() instanceof ItemBlancedHelmet) {
-            HuajiAgeNetWorkHandler.sendToServer(new MessageHelmetModeChange());
-	 			}
+		if(player.getItemStackFromSlot(EntityEquipmentSlot.HEAD).getItem() instanceof ItemBlancedHelmet)
+			{
+	        	HuajiAgeNetWorkHandler.sendToServer(new MessageHelmetModeChange());
+			}
 		}
+		
 	}
-	
-	
-	@SideOnly(Side.CLIENT)
-	@SubscribeEvent
-	public static void standUp(InputEvent.KeyInputEvent evt) {
-		if(KeyLoader.standUp.isPressed()) {
-			EntityPlayer player = Minecraft.getMinecraft().player;
-			StandHandler standHandler = player.getCapability(CapabilityStandHandler.STAND_TYPE, null);
-			String stand_type =standHandler.getStand();
-			EnumStandtype stand = EnumStandtype.getType(stand_type);
-			
-			 if(!stand_type.equals(EnumStandtype.EMPTY)) {
-				 HuajiSoundPlayer.playToServer(player, SoundEvents.ENTITY_EXPERIENCE_ORB_PICKUP, 1f, 3);
-
-				 final int NUMBER_OF_PARTICLES = 60;
-				 final double HORIZONTAL_SPREAD = 3; 
-				 Vec3d targetCoordinates = player.getPositionVector();
-				 HuajiAgeNetWorkHandler.sendToServer(new MessageServerInterchange(1));
-				 
-				if(ConfigHuaji.Stands.allowStandSound&&ConfigHuaji.Stands.allowStandMovingSound&&!player.isPotionActive(PotionLoader.potionStand)) 
-				{
-//					HuajiAgeNetWorkHandler.sendToServer(new MessageServerInterchange(2));
-					StandClientUtil.standUpSound(player, stand_type);
-					
-				}else if(ConfigHuaji.Stands.allowStandSound&&!player.isPotionActive(PotionLoader.potionStand))
-				{	
-					float random = new Random().nextFloat()*100;
-					switch(stand)
-					{
-					case THE_WORLD :
-					{
-						if(random<50) 
-							{
-								HuajiSoundPlayer.playToServer(player, SoundLoader.STAND_THE_WORLD_HIT_1, 1, 1);
-							}
-						if(random>50) 
-							{
-								HuajiSoundPlayer.playToServer(player, SoundLoader.STAND_THE_WORLD_HIT_2, 1, 1);
-							}
-							break;
-					}
-					case STAR_PLATINUM :
-					{	if(random<25) 
-							{
-								HuajiSoundPlayer.playToServer(player, SoundLoader.STAND_STAR_PLATINUM_1, 1, 1);
-							}else if(random<50) 
-							{
-								HuajiSoundPlayer.playToServer(player, SoundLoader.STAND_STAR_PLATINUM_2, 1, 1);
-							}else if(random<75) 
-							{
-								HuajiSoundPlayer.playToServer(player, SoundLoader.STAND_STAR_PLATINUM_3 ,1, 1);
-							}else if(random<100) 
-							{
-								HuajiSoundPlayer.playToServer(player, SoundLoader.STAND_STAR_PLATINUM_4, 1, 1);
-							}
-							break;
-					}	
-					default:
-						break;
-					}
-				}
-				HuajiAgeNetWorkHandler.sendToServer(new MessageStandUp());
-			 					}
-						}
-	  			}
-	}
+}

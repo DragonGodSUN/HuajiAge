@@ -53,6 +53,7 @@ public class ItemLoader {
 	public static Item huajiStarPoly=new ItemHuajiStarPoly();
 	public static Item tarot=new ItemTarot();
 	public static Item disc=new ItemDiscStand();
+	public static Item singularity=new ItemSingularity();
 	public static ItemFood eggRice = new ItemEggRice();
 	public static ItemFood eggRiceU = new ItemEggRiceU();
     public static ItemArmor huajiHelmet = new ItemHuajiArmor.Helmet();
@@ -114,6 +115,7 @@ public class ItemLoader {
         register(lordCore,"lordCore","lord_core");
         register(tarot,"tarot","tarot");
         register(disc,"disc","disc");
+        register(singularity,"singularity","singularity");
     }
 
     @SideOnly(Side.CLIENT)
@@ -165,6 +167,7 @@ public class ItemLoader {
         registerRender(huajiStarPoly);
         registerRender(tarot);
         registerRender(disc);
+        registerRender(singularity);
     }
     public void init(FMLInitializationEvent event)
     {

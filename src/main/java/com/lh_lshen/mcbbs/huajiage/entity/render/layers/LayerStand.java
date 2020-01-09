@@ -5,14 +5,15 @@ import com.lh_lshen.mcbbs.huajiage.capability.CapabilityStandHandler;
 import com.lh_lshen.mcbbs.huajiage.capability.StandHandler;
 import com.lh_lshen.mcbbs.huajiage.client.model.ModelMuliKnife;
 import com.lh_lshen.mcbbs.huajiage.client.model.stand.ModelStandBase;
+import com.lh_lshen.mcbbs.huajiage.client.model.stand.ModelStarPlatinum;
 import com.lh_lshen.mcbbs.huajiage.client.model.stand.ModelTheWorld;
 import com.lh_lshen.mcbbs.huajiage.common.HuajiConstant;
 import com.lh_lshen.mcbbs.huajiage.data.StandUserWorldSavedData;
 import com.lh_lshen.mcbbs.huajiage.item.ItemLoader;
 import com.lh_lshen.mcbbs.huajiage.potion.PotionLoader;
-import com.lh_lshen.mcbbs.huajiage.util.EnumStandtype;
+import com.lh_lshen.mcbbs.huajiage.stand.EnumStandtype;
+import com.lh_lshen.mcbbs.huajiage.stand.StandUtil;
 import com.lh_lshen.mcbbs.huajiage.util.NBTHelper;
-import com.lh_lshen.mcbbs.huajiage.util.StandUtil;
 
 import net.minecraft.client.Minecraft;
 import net.minecraft.client.entity.AbstractClientPlayer;
@@ -39,9 +40,11 @@ import net.minecraftforge.fml.relauncher.SideOnly;
 public class LayerStand implements  LayerRenderer<EntityLivingBase> {
 	 protected final RenderLivingBase<?> livingEntityRenderer;
 	 private static  ModelStandBase model = null;
-	 private static final ModelStandBase MODEL_THE_WORLD =new ModelTheWorld(); 
 	 private static ResourceLocation tex = null;
+	 private static final ModelStandBase MODEL_THE_WORLD =new ModelTheWorld(); 
+	 private static final ModelStandBase MODEL_STAR_PLATINUM =new ModelStarPlatinum(); 
 	 private static final ResourceLocation TEXTRUE_THE_WORLD = new ResourceLocation(HuajiAge.MODID, EnumStandtype.THE_WORLD.getTexPath());
+	 private static final ResourceLocation TEXTRUE_STAR_PLATINUM = new ResourceLocation(HuajiAge.MODID, EnumStandtype.STAR_PLATINUM.getTexPath());
 	 public LayerStand(RenderLivingBase<?> livingEntityRendererIn)
 	    {
 	        this.livingEntityRenderer = livingEntityRendererIn;
@@ -64,13 +67,18 @@ public class LayerStand implements  LayerRenderer<EntityLivingBase> {
 					}
 					
 			    	if(stand!=null ) {
-			    		if(type!=EnumStandtype.THE_WORLD.getName()) {
-				    		model = stand.newModel();
-				    		tex = stand.getTex();
-			    		}else {
-			    			model = MODEL_THE_WORLD;
-			    			tex =TEXTRUE_THE_WORLD;
-			    		}
+//			    		if(type!=EnumStandtype.THE_WORLD.getName()) {
+			    			switch(stand) {
+			    			case THE_WORLD :
+			    				model = MODEL_THE_WORLD;
+			    				tex =TEXTRUE_THE_WORLD;
+			    				break;
+			    			case STAR_PLATINUM :
+					    		model = MODEL_STAR_PLATINUM;
+					    		tex = TEXTRUE_STAR_PLATINUM;
+					    		break;
+			    			}
+
 			    	}
 			    	
 			    	if(stand != null&&model  != null&&tex != null) 

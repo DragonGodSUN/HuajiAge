@@ -1,4 +1,4 @@
-package com.lh_lshen.mcbbs.huajiage.util;
+package com.lh_lshen.mcbbs.huajiage.stand;
 
 import com.lh_lshen.mcbbs.huajiage.HuajiAge;
 import com.lh_lshen.mcbbs.huajiage.client.model.stand.ModelStandBase;
@@ -13,15 +13,16 @@ import net.minecraft.util.text.ITextComponent;
 import net.minecraft.util.text.TextComponentTranslation;
 
 public enum EnumStandtype {
-	THE_WORLD("the_world",1.2f,10f,200,2f,21),
-	STAR_PLATINUM("star_platinum",1.5f,15f,250,2f,17);
+	THE_WORLD("the_world",1.2f,10f,200,2f,60000,21),
+	STAR_PLATINUM("star_platinum",1.5f,15f,250,2f,50000,17);
 //	,STAR_PLATINUM("star_platinum");
-	private EnumStandtype(String name ,float speed ,float damage ,int duration ,float distance,int id) {
+	private EnumStandtype(String name ,float speed ,float damage ,int duration ,float distance ,int cost,int id) {
 		this.name=name;
 		this.speed=speed;
 		this.damage=damage;
 		this.duration=duration;
 		this.distance=distance;
+		this.cost=cost;
 		this.id = id;
 		
 	}
@@ -31,6 +32,7 @@ public enum EnumStandtype {
 	private float damage;
 	private int duration;
 	private float distance;
+	private int cost;
 	private int id;
 	
 	
@@ -58,6 +60,10 @@ public enum EnumStandtype {
 
 	public float getDistance() {
 		return distance;
+	}
+
+	public int getCost() {
+		return cost;
 	}
 
 	public String getName() {

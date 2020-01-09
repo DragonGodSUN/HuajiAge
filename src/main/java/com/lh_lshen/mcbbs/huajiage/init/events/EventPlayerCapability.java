@@ -10,12 +10,13 @@ import com.lh_lshen.mcbbs.huajiage.capability.StandChargeHandler;
 import com.lh_lshen.mcbbs.huajiage.capability.StandHandler;
 import com.lh_lshen.mcbbs.huajiage.capability.StandStageHandler;
 import com.lh_lshen.mcbbs.huajiage.network.HuajiAgeNetWorkHandler;
-import com.lh_lshen.mcbbs.huajiage.network.messages.SyncStandChargeMessage;
-import com.lh_lshen.mcbbs.huajiage.network.messages.SyncStandMessage;
-import com.lh_lshen.mcbbs.huajiage.network.messages.SyncStandStageMessage;
-import com.lh_lshen.mcbbs.huajiage.network.messages.SyncStandUserMessage;
-import com.lh_lshen.mcbbs.huajiage.util.EnumStandtype;
-import com.lh_lshen.mcbbs.huajiage.util.StandUtil;
+import com.lh_lshen.mcbbs.huajiage.network.StandNetWorkHandler;
+import com.lh_lshen.mcbbs.huajiage.stand.EnumStandtype;
+import com.lh_lshen.mcbbs.huajiage.stand.StandUtil;
+import com.lh_lshen.mcbbs.huajiage.stand.messages.SyncStandChargeMessage;
+import com.lh_lshen.mcbbs.huajiage.stand.messages.SyncStandMessage;
+import com.lh_lshen.mcbbs.huajiage.stand.messages.SyncStandStageMessage;
+import com.lh_lshen.mcbbs.huajiage.stand.messages.SyncStandUserMessage;
 
 import net.minecraft.entity.Entity;
 import net.minecraft.entity.player.EntityPlayer;
@@ -75,6 +76,7 @@ public class EventPlayerCapability {
         StandChargeHandler oldcharge = event.getOriginal().getCapability(CapabilityStandChargeHandler.STAND_CHARGE, null);
         if (charge != null && oldcharge != null) {
         	charge.setChargeValue(oldcharge.getChargeValue());
+        	charge.setMaxValue(oldcharge.getMaxValue());
         }
     }
     
@@ -90,21 +92,21 @@ public class EventPlayerCapability {
             if (player.hasCapability(CapabilityStandHandler.STAND_TYPE, null)) {
                 StandHandler stand = player.getCapability(CapabilityStandHandler.STAND_TYPE, null);
                 if (stand != null && stand.isDirty()) {
-                    HuajiAgeNetWorkHandler.HANDLER.sendTo(new SyncStandMessage(stand.getStand()), (EntityPlayerMP) player);
+                    StandNetWorkHandler.HANDLER.sendTo(new SyncStandMessage(stand.getStand()), (EntityPlayerMP) player);
                     stand.setDirty(false);
                 }
             }
             if (player.hasCapability(CapabilityStandStageHandler.STAND_STAGE, null)) {
             	StandStageHandler stage = player.getCapability(CapabilityStandStageHandler.STAND_STAGE, null);
                 if (stage != null && stage.isDirty()) {
-                    HuajiAgeNetWorkHandler.HANDLER.sendTo(new SyncStandStageMessage(stage.getStage()), (EntityPlayerMP) player);
+                	StandNetWorkHandler.HANDLER.sendTo(new SyncStandStageMessage(stage.getStage()), (EntityPlayerMP) player);
                     stage.setDirty(false);
                 }
             }
             if (player.hasCapability(CapabilityStandChargeHandler.STAND_CHARGE, null)) {
             	StandChargeHandler charge = player.getCapability(CapabilityStandChargeHandler.STAND_CHARGE, null);
                 if (charge != null && charge.isDirty()) {
-                    HuajiAgeNetWorkHandler.HANDLER.sendTo(new SyncStandChargeMessage(charge.getChargeValue()), (EntityPlayerMP) player);
+                	StandNetWorkHandler.HANDLER.sendTo(new SyncStandChargeMessage(charge.getChargeValue(),charge.getMaxValue()), (EntityPlayerMP) player);
                     charge.setDirty(false);
                 }
             }

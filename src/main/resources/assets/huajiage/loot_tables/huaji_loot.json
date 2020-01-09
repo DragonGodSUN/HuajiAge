@@ -39,9 +39,12 @@
                             "count": 1
                         },
                         {
-                            "function": "set_nbt",
-                            "tag":
-                            "{StandId:the_world}"
+                            "function": "huajiage:set_nbts_random",
+                            "number":2,
+                            "tag1":
+                            "{StandId:the_world}",
+                             "tag2":
+                            "{StandId:star_platinum}"
                             
                         },
                         {

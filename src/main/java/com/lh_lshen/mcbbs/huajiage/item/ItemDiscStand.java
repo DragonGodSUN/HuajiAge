@@ -10,7 +10,7 @@ import com.lh_lshen.mcbbs.huajiage.capability.StandHandler;
 import com.lh_lshen.mcbbs.huajiage.capability.StandStageHandler;
 import com.lh_lshen.mcbbs.huajiage.crativetab.CreativeTabLoader;
 import com.lh_lshen.mcbbs.huajiage.data.StandUserWorldSavedData;
-import com.lh_lshen.mcbbs.huajiage.util.EnumStandtype;
+import com.lh_lshen.mcbbs.huajiage.stand.EnumStandtype;
 import com.lh_lshen.mcbbs.huajiage.util.NBTHelper;
 
 import net.minecraft.client.resources.I18n;
@@ -123,14 +123,15 @@ public class ItemDiscStand extends Item {
 	}
 	@Override
 	public ActionResult<ItemStack> onItemRightClick(World worldIn, EntityPlayer playerIn, EnumHand handIn) {
-		StandHandler stand = playerIn.getCapability(CapabilityStandHandler.STAND_TYPE, null);
-		StandStageHandler skill = playerIn.getCapability(CapabilityStandStageHandler.STAND_STAGE, null);
-		String type = stand.getStand();
-		int stage = skill.getStage();
+		StandHandler standHandler = playerIn.getCapability(CapabilityStandHandler.STAND_TYPE, null);
+		StandStageHandler stageHandler = playerIn.getCapability(CapabilityStandStageHandler.STAND_STAGE, null);
+		String type = standHandler.getStand();
+		int stage = stageHandler.getStage();
 		String standTag = NBTHelper.getTagCompoundSafe(playerIn.getHeldItem(handIn)).getString(NBT.STAND_ID.getName());
 		int stageTag = NBTHelper.getTagCompoundSafe(playerIn.getHeldItem(handIn)).getInteger(NBT.STAND_STAGE.getName());
 		if(!standTag.equals(DEFAULT_STAND_ID)) {
-				stand.setStand(standTag);
+				standHandler.setStand(standTag);
+				stageHandler.setStage(stageTag);
 				playerIn.getHeldItem(handIn).shrink(1);
 				 UUID uuid = playerIn.getUniqueID();
 				 StandUserWorldSavedData.getGlobal(worldIn).add(standTag, uuid);

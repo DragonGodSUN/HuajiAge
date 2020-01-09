@@ -65,6 +65,7 @@ item.huajiage.loot.name=§lLOOT STICK
 item.huajiage.lordCore.name=§3§lLord Core
 item.huajiage.tarot.name=Fate Tarot 
 item.huajiage.disc.name=§oDisc  
+item.huajiage.singularity.name=§lThe Singularity 
 
 potion.huaji=HUAJI
 potion.huaji.five=Five-fold Power
@@ -81,6 +82,9 @@ key.huajiage.stand_up=Stand Up
 stand.huajiage.name=Stand:
 stand.huajiage.stage=Stage:
 stand.huajiage.tip=Tip: Press %s to Stand up
+stand.huajiage.tip.skill=     Press %s to use Skill
+stand.huajiage.tip.cost=Skill Cost:  §b§l%s
+stand.huajiage.mp=Stand Energy:
 
 item.blance_helmet:changeMode=§ePush %s to change mode
 item.blance_helmet:unicode_tooltips.1.desc=The method of unsealing(Press Shift to see more)
@@ -123,6 +127,9 @@ message.huajiage.poly_huaji=Stacks:
 message.huajiage.patchouli_missing=[{"text":"[ HUAJI Age II]:","color":"yellow","bold":true},{"text":"In order to get the best game experience please INSTILL ","color":"aqua","bold":false},{"text":"Patchouli Mod","color":"green","underlined":true,"bold":true,"clickEvent":{"action":"open_url","value":"https://www.curseforge.com/minecraft/mc-mods/patchouli"},"hoverEvent":{"action":"show_text","value":"https://www.curseforge.com/minecraft/mc-mods/patchouli"}},{"text":"to elicit the HUAJI Tutorial","color":"aqua","bold":false}]
 message.huajiage.tarot.stand.store= is stored
 message.huajiage.tarot.stand.fail_load=You may already have a STAND , if you want to change it , please find a empty tarot card to unload it.  
+message.huajiage.stand_skill.cost_lack=§eYour points for stand skill is not enough
+message.huajiage.singularity=§eIt's is the Fate,for everyone
+
 
 gui.huajiage.poly.cook=Process
 gui.huajiage.poly.fuel=Fuel Point

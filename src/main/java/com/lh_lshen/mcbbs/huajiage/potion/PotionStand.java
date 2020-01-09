@@ -4,8 +4,8 @@ import java.util.UUID;
 
 import com.lh_lshen.mcbbs.huajiage.HuajiAge;
 import com.lh_lshen.mcbbs.huajiage.capability.CapabilityStandHandler;
-import com.lh_lshen.mcbbs.huajiage.util.EnumStandtype;
-import com.lh_lshen.mcbbs.huajiage.util.StandUtil;
+import com.lh_lshen.mcbbs.huajiage.stand.EnumStandtype;
+import com.lh_lshen.mcbbs.huajiage.stand.StandUtil;
 
 import net.minecraft.client.Minecraft;
 import net.minecraft.client.gui.Gui;

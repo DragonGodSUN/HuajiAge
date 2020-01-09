@@ -1,4 +1,4 @@
-package com.lh_lshen.mcbbs.huajiage.network.messages;
+package com.lh_lshen.mcbbs.huajiage.stand.messages;
 
 import java.util.UUID;
 
@@ -61,7 +61,6 @@ public class SyncStandUserMessage implements IMessage {
                     }
                     StandHandler stand = player.getCapability(CapabilityStandHandler.STAND_TYPE, null);
                     if (stand != null) {
-//                    	System.out.println("wryyyyyy!"+stand.getStand()+"--"+message.name);
                         stand.setStand(message.getStand());
                     }else {
                     	System.out.println("null stand");

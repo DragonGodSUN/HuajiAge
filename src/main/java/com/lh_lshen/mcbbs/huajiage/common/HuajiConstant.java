@@ -1,14 +1,16 @@
 package com.lh_lshen.mcbbs.huajiage.common;
 
 import com.lh_lshen.mcbbs.huajiage.HuajiAge;
-import com.lh_lshen.mcbbs.huajiage.util.EnumStandtype;
+import com.lh_lshen.mcbbs.huajiage.stand.EnumStandtype;
 
 import net.minecraft.init.SoundEvents;
 
 public  class HuajiConstant {
 //	Dio Bread
 	public static final String TIME_STOP=HuajiAge.MODID+"."+"time_stop";
+	public static final String TIME_STOP_RANGE=HuajiAge.MODID+"."+"time_stop_range";
 	public static final String THE_WORLD=HuajiAge.MODID+"."+"the_world";
+	public static final String THE_WORLD_RECORD=HuajiAge.MODID+"."+"the_world_record";
 	public static final String DIO_FLAG=HuajiAge.MODID+"."+"dio_flag";
 	public static final String DIO_HIT=HuajiAge.MODID+"."+"dio_hit";
 	public static final String DIO_HIT_EXTRA=HuajiAge.MODID+"."+"dio_hit_extra";
@@ -34,5 +36,8 @@ public  class HuajiConstant {
 	public static final String REQUIEM_BACK=HuajiAge.MODID+"."+"requiem.back";
 	public static final String REQUIEM_DAMAGE=HuajiAge.MODID+"."+"requiem.hit";
 	public static final String DIO_ATTACK=HuajiAge.MODID+"."+"dio.hit";
+	
+//	Stand Events
+	public static final String SINGULARITY=HuajiAge.MODID+"."+"singularity";
 	
 }

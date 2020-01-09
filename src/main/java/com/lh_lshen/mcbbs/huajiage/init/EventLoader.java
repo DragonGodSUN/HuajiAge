@@ -19,9 +19,10 @@ import com.lh_lshen.mcbbs.huajiage.init.events.EventStand;
 import com.lh_lshen.mcbbs.huajiage.init.events.EventStandOverlatRender;
 import com.lh_lshen.mcbbs.huajiage.init.events.EventTimeStop;
 import com.lh_lshen.mcbbs.huajiage.item.ItemLoader;
-import com.lh_lshen.mcbbs.huajiage.network.messages.SyncStandMessage;
 import com.lh_lshen.mcbbs.huajiage.potion.PotionLoader;
 import com.lh_lshen.mcbbs.huajiage.potion.PotionStand;
+import com.lh_lshen.mcbbs.huajiage.stand.messages.SyncStandMessage;
+import com.lh_lshen.mcbbs.huajiage.stand.skill.EventPlayerCharge;
 import com.lh_lshen.mcbbs.huajiage.util.NBTHelper;
 
 import net.minecraft.block.Block;
@@ -67,12 +68,13 @@ public class EventLoader {
 	        MinecraftForge.EVENT_BUS.register(EventKeyInput.class);
 	        MinecraftForge.EVENT_BUS.register(EventRequiem.class);
 	        MinecraftForge.EVENT_BUS.register(EventOrga.class);
-	        MinecraftForge.EVENT_BUS.register(EventTimeStop.class);
-	        MinecraftForge.EVENT_BUS.register(EventStand.class);
-	        MinecraftForge.EVENT_BUS.register(EventPlayerCapability.class);
+//	        MinecraftForge.EVENT_BUS.register(EventTimeStop.class);
+//	        MinecraftForge.EVENT_BUS.register(EventStand.class);
 	        MinecraftForge.EVENT_BUS.register(EventStandOverlatRender.class);
+//	        MinecraftForge.EVENT_BUS.register(EventPlayerCapability.class);
 	        
-	        
+//	        MinecraftForge.EVENT_BUS.register(Event.class);
+//	        MinecraftForge.EVENT_BUS.register(EventPlayerCharge.class);
 	        EventLoader.EVENT_BUS.register(this);
 	    }
 

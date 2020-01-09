@@ -1,11 +1,15 @@
-package com.lh_lshen.mcbbs.huajiage.util;
+package com.lh_lshen.mcbbs.huajiage.stand;
 
 import java.util.Random;
 import java.util.UUID;
 
 import com.lh_lshen.mcbbs.huajiage.HuajiAge;
+import com.lh_lshen.mcbbs.huajiage.capability.CapabilityStandChargeHandler;
 import com.lh_lshen.mcbbs.huajiage.capability.CapabilityStandHandler;
+import com.lh_lshen.mcbbs.huajiage.capability.CapabilityStandStageHandler;
+import com.lh_lshen.mcbbs.huajiage.capability.StandChargeHandler;
 import com.lh_lshen.mcbbs.huajiage.capability.StandHandler;
+import com.lh_lshen.mcbbs.huajiage.capability.StandStageHandler;
 import com.lh_lshen.mcbbs.huajiage.client.model.stand.ModelTheWorld;
 import com.lh_lshen.mcbbs.huajiage.data.StandUserWorldSavedData;
 import com.lh_lshen.mcbbs.huajiage.init.playsound.HuajiSoundPlayer;
@@ -13,6 +17,7 @@ import com.lh_lshen.mcbbs.huajiage.init.playsound.SoundLoader;
 import com.lh_lshen.mcbbs.huajiage.init.playsound.StandMovingSound;
 import com.lh_lshen.mcbbs.huajiage.network.messages.MessageParticleGenerator;
 import com.lh_lshen.mcbbs.huajiage.potion.PotionLoader;
+import com.lh_lshen.mcbbs.huajiage.util.ServerUtil;
 
 import net.minecraft.client.Minecraft;
 import net.minecraft.client.renderer.OpenGlHelper;
@@ -33,6 +38,45 @@ public class StandUtil {
 		return null;
 	}
 
+	public static StandChargeHandler getChargeHandler(EntityLivingBase entity) {
+		   if (entity.hasCapability(CapabilityStandChargeHandler.STAND_CHARGE, null)) {
+			   StandChargeHandler charge = entity.getCapability(CapabilityStandChargeHandler.STAND_CHARGE,null);
+	    return charge;
+		   }
+		return null;
+	}
+	
+	public static int getCharge(EntityLivingBase entity,StandChargeHandler charge) {
+		if(null != charge) {
+			return charge.getChargeValue();
+		}
+		return 0;
+	}
+	
+	public static int getChargeMax(EntityLivingBase entity,StandChargeHandler charge) {
+		if(null != charge) {
+			return charge.getMaxValue();
+		}
+		return 3000;
+	}
+	
+	public static StandStageHandler getStandStageHandler(EntityLivingBase entity) {
+		   if (entity.hasCapability(CapabilityStandStageHandler.STAND_STAGE, null)) {
+			   StandStageHandler stage = entity.getCapability(CapabilityStandStageHandler.STAND_STAGE,null);
+	    return stage;
+		   }
+		return null;
+	}
+	
+	public static int getStandStage(EntityLivingBase entity) {
+	    StandStageHandler stageHandler = StandUtil.getStandStageHandler(entity);
+	    if(stageHandler!=null) {
+		int stage = stageHandler.getStage();
+		return stage;
+		}
+	    return 0;
+	}
+	
 	public static void standPower(EntityLivingBase entity) {
 			  if(!entity.isPotionActive(PotionLoader.potionStand)) {
 				  entity.addPotionEffect(new PotionEffect(PotionLoader.potionStand,60,0));

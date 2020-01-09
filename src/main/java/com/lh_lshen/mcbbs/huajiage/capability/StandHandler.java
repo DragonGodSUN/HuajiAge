@@ -2,7 +2,7 @@ package com.lh_lshen.mcbbs.huajiage.capability;
 
 import java.util.concurrent.Callable;
 
-import com.lh_lshen.mcbbs.huajiage.util.EnumStandtype;
+import com.lh_lshen.mcbbs.huajiage.stand.EnumStandtype;
 
 import net.minecraft.util.EnumParticleTypes;
 import net.minecraft.util.math.MathHelper;

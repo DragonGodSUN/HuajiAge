@@ -50,6 +50,9 @@ public class HuajiMovingSound extends MovingSound {
         this.xPosF = (float) ENTITY.posX;
         this.yPosF = (float) ENTITY.posY;
         this.zPosF = (float) ENTITY.posZ;
+        if(ENTITY.isDead) {
+        	this.stop();
+        }
     	
     }
 
