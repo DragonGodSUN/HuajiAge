@@ -51,7 +51,7 @@ public class MessageStandUp implements IMessage {
         		return null;
 			player.mcServer.addScheduledTask(() -> {
 				if(!player.isPotionActive(PotionLoader.potionStand)) {
-					player.getFoodStats().setFoodLevel(player.getFoodStats().getFoodLevel()-((int)(stand.getDamage()/5)-1));
+					player.getFoodStats().setFoodLevel(player.getFoodStats().getFoodLevel()-((int)(stand.getDamage()/5)*2-1));
 					player.addPotionEffect(new PotionEffect(PotionLoader.potionStand,stand.getDuration(),stand.getId()));
 					if(message.isMoving) {
 							EntityStandBase standBase = new EntityStandBase(player.world, player, stand);

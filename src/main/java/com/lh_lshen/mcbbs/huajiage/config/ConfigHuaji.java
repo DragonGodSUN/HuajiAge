@@ -49,6 +49,10 @@ public class ConfigHuaji {
 		@LangKey("config.huaji_age.huaji_config.stand.tip")
 		public boolean allowStandTip=true;
 		
+		@Config.Comment("Need some tips to notice you when you lost STANDs?")
+		@LangKey("config.huaji_age.huaji_config.stand.tip.lost")
+		public boolean allowStandLostTip=true;
+		
 		@Config.Comment("Need the moving sound for you stand?")
 		@LangKey("config.huaji_age.huaji_config.stand.moving_sound")
 		public boolean allowStandMovingSound=true;

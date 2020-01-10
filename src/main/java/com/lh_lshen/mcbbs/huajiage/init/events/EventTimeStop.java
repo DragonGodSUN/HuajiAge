@@ -60,9 +60,9 @@ public class EventTimeStop {
     			{
     				((EntityPlayer)target).setPositionAndUpdate(tx,ty,tz);
 				}
-    			if(!target.isPotionActive(MobEffects.BLINDNESS)&&t>=HuajiConstant.THE_WORLD_TIME-10) 
+    			if(!target.isPotionActive(MobEffects.BLINDNESS)) 
     			{
-    				target.addPotionEffect(new PotionEffect(MobEffects.BLINDNESS,HuajiConstant.THE_WORLD_TIME));
+    				target.addPotionEffect(new PotionEffect(MobEffects.BLINDNESS,t));
     			}
     										}
 			}else {

@@ -9,6 +9,7 @@ import com.lh_lshen.mcbbs.huajiage.capability.CapabilityStandStageHandler;
 import com.lh_lshen.mcbbs.huajiage.capability.StandChargeHandler;
 import com.lh_lshen.mcbbs.huajiage.capability.StandHandler;
 import com.lh_lshen.mcbbs.huajiage.capability.StandStageHandler;
+import com.lh_lshen.mcbbs.huajiage.config.ConfigHuaji;
 import com.lh_lshen.mcbbs.huajiage.network.HuajiAgeNetWorkHandler;
 import com.lh_lshen.mcbbs.huajiage.network.StandNetWorkHandler;
 import com.lh_lshen.mcbbs.huajiage.stand.EnumStandtype;
@@ -22,7 +23,9 @@ import net.minecraft.entity.Entity;
 import net.minecraft.entity.player.EntityPlayer;
 import net.minecraft.entity.player.EntityPlayerMP;
 import net.minecraft.util.ResourceLocation;
+import net.minecraft.util.text.TextComponentTranslation;
 import net.minecraftforge.event.AttachCapabilitiesEvent;
+import net.minecraftforge.event.entity.EntityTravelToDimensionEvent;
 import net.minecraftforge.event.entity.player.PlayerEvent;
 import net.minecraftforge.fml.common.Mod;
 import net.minecraftforge.fml.common.eventhandler.SubscribeEvent;
@@ -57,14 +60,14 @@ public class EventPlayerCapability {
 
         StandHandler stand = player.getCapability(CapabilityStandHandler.STAND_TYPE, null);
         StandHandler oldStand = event.getOriginal().getCapability(CapabilityStandHandler.STAND_TYPE, null);
-        if (stand != null && oldStand != null) {
-            stand.setStand(oldStand.getStand());
+        if (stand != null && oldStand != null ) {
+        	stand.setStand(oldStand.getStand());
         }
         
-        String oldData = oldStand.getStand();
-        if (oldData != null&&!oldData.equals(EnumStandtype.EMPTY)) {
-            StandUtil.setStandData(player, oldData);
-        }
+//        String oldData = oldStand.getStand();
+//        if (oldData != null&&!oldData.equals(EnumStandtype.EMPTY)) {
+//            StandUtil.setStandData(player, oldData);
+//        }
         
         StandStageHandler stage = player.getCapability(CapabilityStandStageHandler.STAND_STAGE, null);
         StandStageHandler oldstage = event.getOriginal().getCapability(CapabilityStandStageHandler.STAND_STAGE, null);
@@ -74,12 +77,21 @@ public class EventPlayerCapability {
         
         StandChargeHandler charge = player.getCapability(CapabilityStandChargeHandler.STAND_CHARGE, null);
         StandChargeHandler oldcharge = event.getOriginal().getCapability(CapabilityStandChargeHandler.STAND_CHARGE, null);
-        if (charge != null && oldcharge != null) {
+        if (charge != null && oldcharge !=null) {
         	charge.setChargeValue(oldcharge.getChargeValue());
-        	charge.setMaxValue(oldcharge.getMaxValue());
         }
     }
-    
+    @SubscribeEvent
+    public static void travelToDimension(EntityTravelToDimensionEvent evt) {
+    	Entity entity = evt.getEntity();
+		if(entity instanceof EntityPlayer) {
+		EntityPlayer player = (EntityPlayer) entity;
+		EnumStandtype stand = StandUtil.getType(player);
+			if(stand != null && ConfigHuaji.Stands.allowStandLostTip) {
+				player.sendMessage(new TextComponentTranslation("message.huajiage.stand.lost"));
+			}
+		}
+	}
     
 
     /**

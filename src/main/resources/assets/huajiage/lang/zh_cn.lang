@@ -22,7 +22,8 @@ death.attack.huajiage.stella=%s化为了天空中的一颗流星
 death.attack.huajiage.KeDaiJinLa=%s感到非常带劲
 death.attack.huajiage.requiem.back=%s被反伤致死
 death.attack.huajiage.requiem.hit=%s被替身木大致死
-death.attack.huajiage.dio.hit=%s在时停中被木大致死
+death.attack.huajiage.dio.hit=%s在时停中被连打暴击致死
+death.attack.huajiage.singularity=%s被压缩成了一个无穷小的点
 
 huajiage.burstout=§e·真名解放
 huajiage.stellawarning=§e警告：真名解放状态下可能会造成不可挽回的后果，请不要轻易将此状态下的弓弦拉满！！！
@@ -54,8 +55,8 @@ key.huajiage.stand_up=放出或收回替身
 
 stand.huajiage.name=替身：
 stand.huajiage.stage=阶段：
-stand.huajiage.tip=提示：按下%s键以放出或收回替身
-stand.huajiage.tip.skill=     按下%s键释放技能
+stand.huajiage.tip=按下%s键以放出或收回替身
+stand.huajiage.tip.skill=按下%s键释放技能
 stand.huajiage.tip.cost=技能消耗:   §b§l%s
 stand.huajiage.mp=精神力：
 
@@ -85,6 +86,7 @@ item.huajiage.loot.name=§l卖鱼强
 item.huajiage.lordCore.name=§3§l挂者核心
 item.huajiage.huajiStarPoly.name=§o§l多重叠加态滑稽之星
 item.huajiage.singularity.name=§l特异点
+item.singularity.tooltip.warning=§e警告！！！你最好穿上最好的装备来抵御特异点的作用！必须确保在效果结束前的存活！死者是无法抵达新世界的！！！
 
 
 item.blance_helmet:unicode_tooltips.1.desc=释放力量的唯一方法§b（按住Shift以查看更多）
@@ -130,6 +132,8 @@ message.huajiage.tarot.stand.store=§f替身数据已储存
 message.huajiage.tarot.stand.fail_load=§e您可能已经拥有了一个替身，如果您想更换替身，请找一张空的塔罗牌卸载
 message.huajiage.stand_skill.cost_lack=§e抱歉，您的精神力还不足以引发替身技能
 message.huajiage.singularity=§e究极的特异点，你能到达新世界吗？
+message.huajiage.stand.lost=§b如果你发现你的替身在你穿越维度的时候跑路了，不要担心，只要退出再登录，让你的替身去吃个饭，你的替身就回来了(Capability机制的锅，作者也是无能为力)
+
 
 gui.huajiage.poly.cook=§l进程
 gui.huajiage.poly.fuel=§6黄金精神
@@ -149,6 +153,7 @@ config.huaji_age.huaji_config.stand.tip=是否需要替身快捷键的提示
 config.huaji_age.huaji_config.stand.moving_sound=是否需要替身的移动音效
 config.huaji_age.huaji_config.stand_HUD_x=替身显示框-x轴位置
 config.huaji_age.huaji_config.stand_HUD_y=替身显示框-y轴位置
+config.huaji_age.huaji_config.stand.tip.lost=替身丢失提醒
 
 stand.huajiage.empty=缺失
 stand.huajiage.the_world=§e§lThe World-世界

@@ -1,5 +1,7 @@
 package com.lh_lshen.mcbbs.huajiage.item;
 
+import java.util.List;
+
 import com.google.common.util.concurrent.CycleDetectingLockFactory.Policies;
 import com.lh_lshen.mcbbs.huajiage.HuajiAge;
 import com.lh_lshen.mcbbs.huajiage.common.HuajiConstant;
@@ -14,6 +16,7 @@ import com.lh_lshen.mcbbs.huajiage.util.NBTHelper;
 import net.minecraft.client.Minecraft;
 import net.minecraft.client.audio.MusicTicker;
 import net.minecraft.client.resources.I18n;
+import net.minecraft.client.util.ITooltipFlag;
 import net.minecraft.entity.player.EntityPlayer;
 import net.minecraft.init.MobEffects;
 import net.minecraft.init.SoundEvents;
@@ -55,15 +58,20 @@ public class ItemSingularity extends Item {
 			if(!worldIn.isRemote) {
 			playerIn.inventory.getCurrentItem().shrink(1);
 			playerIn.addPotionEffect(new PotionEffect(MobEffects.BLINDNESS,200));
-			playerIn.addPotionEffect(new PotionEffect(MobEffects.WITHER, 200,2));
-			playerIn.addPotionEffect(new PotionEffect(MobEffects.POISON, 200,2));
+			playerIn.addPotionEffect(new PotionEffect(MobEffects.WITHER, 200,9));
+			playerIn.addPotionEffect(new PotionEffect(MobEffects.POISON, 200,9));
 			playerIn.addPotionEffect(new PotionEffect(MobEffects.SLOWNESS, 200,5));
-			playerIn.addPotionEffect(new PotionEffect(MobEffects.HUNGER, 200,5));
+			playerIn.addPotionEffect(new PotionEffect(MobEffects.HUNGER, 200,9));
 			NBTHelper.setEntityInteger(playerIn, HuajiConstant.SINGULARITY, 200);
 				}
 			}
 		
 		return new ActionResult(EnumActionResult.SUCCESS,playerIn.getHeldItem(handIn));
+	}
+	@Override
+	public void addInformation(ItemStack stack, World worldIn, List<String> tooltip, ITooltipFlag flagIn) {
+		super.addInformation(stack, worldIn, tooltip, flagIn);
+		tooltip.add(I18n.format("item.singularity.tooltip.warning"));
 	}
 
 }

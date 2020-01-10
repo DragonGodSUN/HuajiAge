@@ -1,0 +1,45 @@
+{
+	"sortnum": 8,
+    "name": "STAND",
+    "icon": "huajiage:tarot",
+    "category": "items_category",
+    "pages": [
+        {
+            "type": "text",
+            "text": "STAND Power！！！$(li)$(3)$(l)(Development is not complete, please look forward to more functions)"
+        },
+		{
+			"type": "spotlight",
+			"item": "huajiage:disc",
+			"title":"Disc",
+			"text":"One way to get a STAND comes from the ability of father pucci, the BOSS in the sixth installment of JoJo's Bizarre Adventure,white snake.$(li)Right - click to get the STAND information in the disc."
+	    },
+		{
+			"type": "spotlight",
+			"item": "huajiage:tarot",
+			"title":"Tarot",
+			"text":"A means by which players can store avatars on their own, based on the tarot CARDS used for the divination of Avdol in the third episode of JoJo's Bizarre Adventure$(li)Right - click to get the STAND, stealth - right - click to remove STAND.$(li)It is currently only available from the chests of Ender City and the Desert Temple."
+	    },
+		{
+			"type": "spotlight",
+			"item": "huajiage:singularity",
+			"title":"Singularity",
+			"text":"The object of an evolutionary STAND, the point at which the universe condensed after it ended in acceleration, comes from the Father Pucci's principle of the circle.$(li)Right - click to enter the final trial, reaching the new world after the avatar completes evolution."
+	    },
+		{
+            "type": "text",
+			"title":"STAND Ability",
+            "text": "Evolved to awaken, expending mental energy to release."
+        },
+		{
+            "type": "text",
+            "text": "More functions are still in development, stay tuned."
+        },
+		{
+			"type": "crafting",
+			"recipe":"huajiage:tarot",
+			"recipe2":"huajiage:singularity"
+	    }
+		
+    ]
+}

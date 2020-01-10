@@ -1,5 +1,7 @@
 package com.lh_lshen.mcbbs.huajiage.stand.messages;
 
+import com.lh_lshen.mcbbs.huajiage.stand.EnumStandtype;
+import com.lh_lshen.mcbbs.huajiage.stand.StandUtil;
 import com.lh_lshen.mcbbs.huajiage.stand.skills.TimeStopHelper;
 
 import io.netty.buffer.ByteBuf;
@@ -41,15 +43,22 @@ public static class Handler implements IMessageHandler<MessageDoTimeStopClient, 
 	    Minecraft minecraft = Minecraft.getMinecraft();
 	    final WorldClient worldClient = minecraft.world;
 	    EntityPlayer player = worldClient.getPlayerEntityByName(message.playerName);
+	    EnumStandtype stand = StandUtil.getType(player);
 	    minecraft.addScheduledTask(()->{ 
 	    	if(player!=null) {
+	    		if(stand!=null) {
+	    			this.processStandClient(player, stand);
+		    	}
 	    	this.processClient(player);
 	    	}
 	    });
 	    return null;
 	  }
+	  public void processStandClient(EntityPlayer player,EnumStandtype stand) {
+		  TimeStopHelper.doTimeStopClient(player, stand);
+	  }
 	  public void processClient(EntityPlayer player) {
-		  TimeStopHelper.doTimeStopClient(player);
+		  
 	  }
 	}
 }

@@ -28,7 +28,8 @@ death.attack.huajiage.stella=%s become the stella in the sky
 death.attack.huajiage.KeDaiJinLa=%s feels good
 death.attack.huajiage.requiem.back=%s was killed by %s
 death.attack.huajiage.requiem.hit=%s was been killed by Golden Experience Requiem
-death.attack.huajiage.dio.hit=%s was kill by THE WORLD
+death.attack.huajiage.dio.hit=%s was killed in a second
+death.attack.huajiage.singularity=%s was squeezed to a point
 
 
 item.huajiage.orgaRequiem.name=§9Orga Requiem
@@ -81,8 +82,8 @@ key.huajiage.stand_up=Stand Up
 
 stand.huajiage.name=Stand:
 stand.huajiage.stage=Stage:
-stand.huajiage.tip=Tip: Press %s to Stand up
-stand.huajiage.tip.skill=     Press %s to use Skill
+stand.huajiage.tip=Press %s to Stand up
+stand.huajiage.tip.skill=Press %s to use Skill
 stand.huajiage.tip.cost=Skill Cost:  §b§l%s
 stand.huajiage.mp=Stand Energy:
 
@@ -114,6 +115,8 @@ item.tarot:tooltips.1=Stand Name:
 item.tarot:tooltips.2=Stage: 
 item.huajiage.disc.tooltip.1=Stand: 
 item.huajiage.disc.tooltip.2=Stage: 
+item.singularity.tooltip.warning=§eWarning !!!You must prepare your beat equipment to protect yourself,once you died before the end of the effect, you will regret to make this!
+
 
 huajiage.orga.1=§b To celebrate! The birth of the most powerful king of Mars---Orga Izka
 messege.huaji.blancedHelmet.active=§lFrom now on it's called %s §lSquare！
@@ -129,6 +132,7 @@ message.huajiage.tarot.stand.store= is stored
 message.huajiage.tarot.stand.fail_load=You may already have a STAND , if you want to change it , please find a empty tarot card to unload it.  
 message.huajiage.stand_skill.cost_lack=§eYour points for stand skill is not enough
 message.huajiage.singularity=§eIt's is the Fate,for everyone
+message.huajiage.stand.lost=§bIf you found that your STAND lost when you travel to a dimension.Don't worry!Just log out and log in again,the problem is solved.
 
 
 gui.huajiage.poly.cook=Process
@@ -147,6 +151,7 @@ config.huaji_age.huaji_config.stand.tip=Stand Tip
 config.huaji_age.huaji_config.stand.moving_sound=Need the moving sound for you stand?
 config.huaji_age.huaji_config.stand_HUD_x=Stand HUD -x
 config.huaji_age.huaji_config.stand_HUD_y=Stand HUD -y
+config.huaji_age.huaji_config.stand.tip.lost=Stand Lost Notice
 
 stand.huajiage.empty=Empty
 stand.huajiage.the_world=§e§lThe World

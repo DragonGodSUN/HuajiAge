@@ -115,6 +115,9 @@ public class EventStand {
 		  int t = NBTHelper.getEntityInteger(stand_owner, HuajiConstant.SINGULARITY);
 		  if(t>0) {
 			  NBTHelper.setEntityInteger(stand_owner, HuajiConstant.SINGULARITY, t-1);
+			  if(stand_owner.ticksExisted%10==0) {
+			  stand_owner.attackEntityFrom(new DamageSource(HuajiConstant.SINGULARITY_ATTACK), 18);
+			  }
 			  if(stand_owner.getHealth()<=0) {
 				  return;
 			  }
@@ -126,8 +129,10 @@ public class EventStand {
 			  ServerUtil.sendPacketToNearbyPlayers(stand_owner, new MessageParticleGenerator(stand_owner.getPositionVector(), EnumParticleTypes.FIREWORKS_SPARK, 120, 3, 1));
 		  }
 		  if(t==1) {
-			  stand_owner.setHealth(0f);
-			  stand_owner.setDead();
+			  stand_owner.attackEntityFrom(DamageSource.OUT_OF_WORLD, 999999);
+			  if(stand_owner instanceof EntityPlayer&&((EntityPlayer)stand_owner).isCreative()) {
+				  stand_owner.setDead();
+			  }
 		  }
 	  }
 	 

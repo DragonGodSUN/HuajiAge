@@ -1,0 +1,45 @@
+{
+	"sortnum": 8,
+    "name": "替身",
+    "icon": "huajiage:tarot",
+    "category": "items_category",
+    "pages": [
+        {
+            "type": "text",
+            "text": "Stand Power！！！$(li)$(3)$(l)（开发未完全，更多功能尽请期待）"
+        },
+		{
+			"type": "spotlight",
+			"item": "huajiage:disc",
+			"title":"Disc",
+			"text":"获取特定替身的一种手段，出自“JOJO的奇妙冒险”中第六部BOSS普奇神父“白蛇”的能力$(li)右击以获取碟中替身信息。$(li)当前仅能从末地城和沙漠神殿的宝箱中获取。"
+	    },
+		{
+			"type": "spotlight",
+			"item": "huajiage:tarot",
+			"title":"塔罗牌",
+			"text":"玩家自主存储替身的一种手段，原型出自“JOJO的奇妙冒险”中第三部阿布德尔的占卜用的塔罗牌$(li)右击以获得其中储存替身，潜行加右击以卸下替身。"
+	    },
+		{
+			"type": "spotlight",
+			"item": "huajiage:singularity",
+			"title":"特异点",
+			"text":"进化替身的物品，宇宙在加速中终结后缩聚成的一点，出自神父提出的“圆环之理”（小圆：？？？）$(li)右击以进入最终的试炼，达到新世界后替身完成进化。"
+	    },
+		{
+            "type": "text",
+			"title":"替身能力",
+            "text": "进化后觉醒，消耗精神力以释放。"
+        },
+		{
+            "type": "text",
+            "text": "更多功能尚在开发中，敬请期待。"
+        },
+		{
+			"type": "crafting",
+			"recipe":"huajiage:tarot",
+			"recipe2":"huajiage:singularity"
+	    }
+		
+    ]
+}

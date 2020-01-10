@@ -61,17 +61,16 @@ public class TimeStopHelper {
             }
 		}
 	
-	public static void doTimeStopClient(EntityLivingBase entity) {
-		StandHandler standHandler = entity.getCapability(CapabilityStandHandler.STAND_TYPE, null);
-		EnumStandtype stand =EnumStandtype.getType(standHandler.getStand());
+	public static void doTimeStopClient(EntityLivingBase entity,EnumStandtype stand) {
+//		StandHandler standHandler = entity.getCapability(CapabilityStandHandler.STAND_TYPE, null);
+//		EnumStandtype stand =EnumStandtype.getType(standHandler.getStand());
 		double rand=Math.random()*100;
-        if(!stand.equals(EnumStandtype.STAR_PLATINUM)) {
-	        double rand0=Math.random()*100;
-	        if(rand0<25) { 	
+        if(!stand.getName().equals(EnumStandtype.STAR_PLATINUM.getName())) {
+	        if(rand<25) { 	
 	        	entity.playSound(SoundLoader.THE_WORLD, 5f,1f);
-	        }else if(rand0<50){
+	        }else if(rand<50){
 	        	entity.playSound(SoundLoader.THE_WORLD_1, 5f,1f);
-	        }else if(rand0<75){
+	        }else if(rand<75){
 	        	entity.playSound(SoundLoader.THE_WORLD_2, 5f,1f);
 	        }else {
 	        	entity.playSound(SoundLoader.THE_WORLD_3, 5f,1f);
