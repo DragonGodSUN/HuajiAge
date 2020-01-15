@@ -5,6 +5,10 @@ import java.util.Random;
 
 import com.ibm.icu.impl.duration.impl.DataRecord.EUnitVariant;
 import com.lh_lshen.mcbbs.huajiage.HuajiAge;
+import com.lh_lshen.mcbbs.huajiage.capability.CapabilityLoader;
+import com.lh_lshen.mcbbs.huajiage.capability.CapabilityStandHandler;
+import com.lh_lshen.mcbbs.huajiage.capability.IExposedData;
+import com.lh_lshen.mcbbs.huajiage.capability.StandHandler;
 import com.lh_lshen.mcbbs.huajiage.capability.StandStageHandler;
 import com.lh_lshen.mcbbs.huajiage.client.model.stand.ModelTheWorld;
 import com.lh_lshen.mcbbs.huajiage.common.HuajiConstant;
@@ -19,6 +23,7 @@ import com.lh_lshen.mcbbs.huajiage.potion.PotionLoader;
 import com.lh_lshen.mcbbs.huajiage.stand.EnumStandtype;
 import com.lh_lshen.mcbbs.huajiage.stand.StandClientUtil;
 import com.lh_lshen.mcbbs.huajiage.stand.StandUtil;
+import com.lh_lshen.mcbbs.huajiage.stand.messages.SyncExposedStandDataMessage;
 import com.lh_lshen.mcbbs.huajiage.util.MotionHelper;
 import com.lh_lshen.mcbbs.huajiage.util.NBTHelper;
 import com.lh_lshen.mcbbs.huajiage.util.ServerUtil;
@@ -135,6 +140,27 @@ public class EventStand {
 			  }
 		  }
 	  }
+	 
+	 @SubscribeEvent
+	  public static void standPotion(LivingUpdateEvent evt)
+	  {
+		 EntityLivingBase stand_owner =evt.getEntityLiving();
+		 StandHandler standHandler = stand_owner.getCapability(CapabilityStandHandler.STAND_TYPE, null);
+		 IExposedData data = stand_owner.getCapability(CapabilityLoader.EXPOSED_DATA, null);
+		 if(data!=null) {
+			 if(stand_owner.isPotionActive(PotionLoader.potionStand)&&stand_owner.getActivePotionEffect(PotionLoader.potionStand).getDuration()>5) {
+				 if(!data.isTriggered()) {
+					 ServerUtil.sendPacketToNearbyPlayersStand(stand_owner, new SyncExposedStandDataMessage(data.getStand(),true, stand_owner.getName()));
+					 }
+				 }
+			 if(!stand_owner.isPotionActive(PotionLoader.potionStand) || stand_owner.isPotionActive(PotionLoader.potionStand)&&stand_owner.getActivePotionEffect(PotionLoader.potionStand).getDuration()<=5) {
+				 if(data.isTriggered()) {
+					 ServerUtil.sendPacketToNearbyPlayersStand(stand_owner, new SyncExposedStandDataMessage(data.getStand(),false, stand_owner.getName()));
+				 }
+			 }
+		 }
+		 
+	  	}
 	 
 	  @SubscribeEvent
 	  public static void onBreaking(PlayerEvent.BreakSpeed evt)

@@ -2,7 +2,9 @@ package com.lh_lshen.mcbbs.huajiage.stand.messages;
 
 import java.util.UUID;
 
+import com.lh_lshen.mcbbs.huajiage.capability.CapabilityLoader;
 import com.lh_lshen.mcbbs.huajiage.capability.CapabilityStandHandler;
+import com.lh_lshen.mcbbs.huajiage.capability.IExposedData;
 import com.lh_lshen.mcbbs.huajiage.capability.StandHandler;
 import com.lh_lshen.mcbbs.huajiage.init.events.EventStand;
 import com.lh_lshen.mcbbs.huajiage.item.ItemHeroBow;
@@ -50,12 +52,15 @@ public class MessageStandUp implements IMessage {
         	StandHandler standHandler = player.getCapability(CapabilityStandHandler.STAND_TYPE, null);
         	String standType = standHandler.getStand();
         	EnumStandtype stand = EnumStandtype.getType(standType);
+        	IExposedData data = player.getCapability(CapabilityLoader.EXPOSED_DATA, null);
         	if(stand==null)
         		return null;
             	FMLCommonHandler.instance().getWorldThread(ctx.netHandler).addScheduledTask(() ->{
 				if(!player.isPotionActive(PotionLoader.potionStand)) {
 					player.getFoodStats().setFoodLevel(player.getFoodStats().getFoodLevel()-((int)(stand.getDamage()/5)*2-1));
 					player.addPotionEffect(new PotionEffect(PotionLoader.potionStand,stand.getDuration(),stand.getId()));
+					data.setStand(standType);
+					data.setTrigger(true);
 					if(message.isMoving) {
 							EntityStandBase standBase = new EntityStandBase(player.world, player, stand);
 							standBase.setUser(player.getUniqueID().toString());
@@ -67,7 +72,6 @@ public class MessageStandUp implements IMessage {
 					}else {
 						player.removePotionEffect(PotionLoader.potionStand);
 					}
-				standHandler.setDirty(true);
             		});
             	}
 			return null;

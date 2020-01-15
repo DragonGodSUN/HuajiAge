@@ -1,6 +1,7 @@
 package com.lh_lshen.mcbbs.huajiage.entity.render.layers;
 
 import com.lh_lshen.mcbbs.huajiage.HuajiAge;
+import com.lh_lshen.mcbbs.huajiage.capability.CapabilityLoader;
 import com.lh_lshen.mcbbs.huajiage.capability.CapabilityStandHandler;
 import com.lh_lshen.mcbbs.huajiage.capability.StandHandler;
 import com.lh_lshen.mcbbs.huajiage.client.model.ModelMuliKnife;
@@ -52,17 +53,12 @@ public class LayerStand implements  LayerRenderer<EntityLivingBase> {
 	@Override
 	public void doRenderLayer(EntityLivingBase entitylivingbaseIn, float limbSwing, float limbSwingAmount,
 			float partialTicks, float ageInTicks, float netHeadYaw, float headPitch, float scale) {
-				EnumStandtype stand = StandUtil.getType(entitylivingbaseIn);
-				
-				if( ! entitylivingbaseIn.isPotionActive(PotionLoader.potionStand)) {
-					return;
-				}
+				String ex_stand = entitylivingbaseIn.getCapability(CapabilityLoader.EXPOSED_DATA, null).getStand();
+				boolean istrigger = entitylivingbaseIn.getCapability(CapabilityLoader.EXPOSED_DATA, null).isTriggered();
+				EnumStandtype stand = EnumStandtype.getType(ex_stand);
+//				boolean potion = entitylivingbaseIn.isPotionActive(PotionLoader.potionStand);
 				
 				String type = stand != null?stand.getName():EnumStandtype.EMPTY;
-				
-				if(stand ==null || type == null || type.equals(EnumStandtype.EMPTY) ){
-					return;
-				}
 					
 //			    	if(stand!=null ) {
 ////			    		if(type!=EnumStandtype.THE_WORLD.getName()) {
@@ -79,12 +75,12 @@ public class LayerStand implements  LayerRenderer<EntityLivingBase> {
 //
 //			    	}
 			    	
-			    	if(stand != null&&!type.equals(EnumStandtype.EMPTY)&&entitylivingbaseIn.isPotionActive(PotionLoader.potionStand)) 
+			    	if(stand != null&&!type.equals(EnumStandtype.EMPTY)&& istrigger) 
 			    	{
 	 					GlStateManager.color(1.0F, 1.0F, 1.0F, 1.0F);
 	 		            GlStateManager.enableBlend();
 	 		            GlStateManager.disableLighting();
-	 		            GlStateManager.blendFunc(GlStateManager.SourceFactor.ONE, GlStateManager.DestFactor.ZERO);
+//	 		            GlStateManager.blendFunc(GlStateManager.SourceFactor.ONE, GlStateManager.DestFactor.ZERO);
 	 					if(type.equals(EnumStandtype.THE_WORLD.getName())) {
 	 		            livingEntityRenderer.bindTexture(TEXTRUE_THE_WORLD);
 	 		            }else {

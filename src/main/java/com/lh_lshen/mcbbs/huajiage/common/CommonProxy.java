@@ -1,7 +1,7 @@
 package com.lh_lshen.mcbbs.huajiage.common;
 
 import com.lh_lshen.mcbbs.huajiage.block.BlockLoader;
-import com.lh_lshen.mcbbs.huajiage.capability.CapabilitityLoader;
+import com.lh_lshen.mcbbs.huajiage.capability.CapabilityLoader;
 import com.lh_lshen.mcbbs.huajiage.capability.CapabilityStandChargeHandler;
 import com.lh_lshen.mcbbs.huajiage.capability.CapabilityStandHandler;
 import com.lh_lshen.mcbbs.huajiage.capability.CapabilityStandStageHandler;
@@ -51,7 +51,7 @@ public class CommonProxy
     	 new EntityLoader();
     	 new TileEntityLoader(event);
     	 new GuiLoader(event);
-    	 new CapabilitityLoader(event);
+    	 new CapabilityLoader(event);
     	 
     	 MinecraftForge.EVENT_BUS.register(PotionLoader.class);
     	 MinecraftForge.EVENT_BUS.register(SoundLoader.class);
