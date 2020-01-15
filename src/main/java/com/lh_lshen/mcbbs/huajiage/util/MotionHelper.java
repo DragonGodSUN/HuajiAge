@@ -29,9 +29,9 @@ public class MotionHelper {
 		return a*b*c;
 	}
 	public static double getDegreeXZ(Vec3d v1 , Vec3d v2) {
-		Vec3d vec1 = v1.addVector(0, -v1.y, 0).normalize();
-		Vec3d vec2 = v2.addVector(0, -v2.y, 0).normalize();
-		double cos =( vec1.x*vec2.x + vec1.z*vec2.z)/(vec1.lengthVector()*vec2.lengthVector()); 
+		Vec3d vec1 = v1.add(0, -v1.y, 0).normalize();
+		Vec3d vec2 = v2.add(0, -v2.y, 0).normalize();
+		double cos =( vec1.x*vec2.x + vec1.z*vec2.z)/(vec1.length()*vec2.length()); 
 		double degree =Math.round(Math.toDegrees(Math.acos(cos))) ;
 		
 		return degree;

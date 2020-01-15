@@ -1,11 +1,11 @@
 ﻿
 item.huajiage.huaji.name=滑稽
 itemGroup.huaji=滑稽纪元
-tile.oreHuaji.name=充斥着滑稽之力的石头
-tile.huajiStarBlock.name=§b滑稽之星压缩块
-tile.huajiStarBlockSky.name=§e空域之星压缩块
-tile.huajiBlender.name=滚筒式滑稽之力混合仪
-tile.huajiPolyFurnace.name=§e§l滑稽§d§l终极熔炼炉
+tile.huajiage.oreHuaji.name=充斥着滑稽之力的石头
+tile.huajiage.huajiStarBlock.name=§b滑稽之星压缩块
+tile.huajiage.huajiStarBlockSky.name=§e空域之星压缩块
+tile.huajiage.huajiBlender.name=滚筒式滑稽之力混合仪
+tile.huajiage.huajiPolyFurnace.name=§e§l滑稽§d§l终极熔炼炉
 
 item.huajiage.huajiFragment.name=蕴含着滑稽之力的碎片
 item.huajiage.expendedView.name=§0二维碎片

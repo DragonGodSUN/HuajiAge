@@ -7,7 +7,7 @@ import com.lh_lshen.mcbbs.huajiage.stand.EnumStandtype;
 import net.minecraft.util.EnumParticleTypes;
 import net.minecraft.util.math.MathHelper;
 
-public class StandChargeHandler {
+public class StandChargeHandler  {
 	 static StandChargeHandler.Factory FACTORY = new StandChargeHandler.Factory();
 	    private int charge = 0;
 	    private int max = 5000*20;

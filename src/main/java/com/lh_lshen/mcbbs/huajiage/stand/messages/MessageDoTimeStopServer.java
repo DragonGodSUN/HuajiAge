@@ -13,10 +13,12 @@ import com.lh_lshen.mcbbs.huajiage.util.ServerUtil;
 import io.netty.buffer.ByteBuf;
 import net.minecraft.entity.player.EntityPlayerMP;
 import net.minecraft.item.ItemStack;
+import net.minecraftforge.fml.common.FMLCommonHandler;
 import net.minecraftforge.fml.common.network.ByteBufUtils;
 import net.minecraftforge.fml.common.network.simpleimpl.IMessage;
 import net.minecraftforge.fml.common.network.simpleimpl.IMessageHandler;
 import net.minecraftforge.fml.common.network.simpleimpl.MessageContext;
+import net.minecraftforge.fml.relauncher.Side;
 
 public class MessageDoTimeStopServer implements IMessage {
 	private boolean isDio;
@@ -43,11 +45,13 @@ public class MessageDoTimeStopServer implements IMessage {
     public static class Handler implements IMessageHandler<MessageDoTimeStopServer, IMessage> {
         @Override
         public IMessage onMessage(MessageDoTimeStopServer message , MessageContext ctx) {
-        	EntityPlayerMP player = ctx.getServerHandler().player;
-			player.mcServer.addScheduledTask(() ->{
+    	if (ctx.side == Side.SERVER) {
+        	FMLCommonHandler.instance().getWorldThread(ctx.netHandler).addScheduledTask(() ->{
+        		EntityPlayerMP player = ctx.getServerHandler().player;
 				TimeStopHelper.doTimeStopServer(player, message.isDio?9:5);
 				ServerUtil.sendPacketToNearbyPlayersStand(player, new MessageDoTimeStopClient(player));
-			});
+				});
+        	}
 			return null;
         }
     }

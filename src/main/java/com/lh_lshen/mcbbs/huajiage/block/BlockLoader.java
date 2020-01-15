@@ -1,5 +1,6 @@
 package com.lh_lshen.mcbbs.huajiage.block;
 
+import com.lh_lshen.mcbbs.huajiage.HuajiAge;
 import com.lh_lshen.mcbbs.huajiage.crativetab.CreativeTabLoader;
 
 import net.minecraft.block.Block;
@@ -53,7 +54,7 @@ public class BlockLoader {
 
 	    private static void register(Block block, String name1,String name2)
 	    {
-	    	block.setUnlocalizedName(name1);
+	    	block.setTranslationKey(HuajiAge.MODID+"."+name1);
 	    	block.setRegistryName(name2);
 	    	ForgeRegistries.ITEMS.register(new ItemBlock(block).setRegistryName(block.getRegistryName()));
 	        ForgeRegistries.BLOCKS.register(block);

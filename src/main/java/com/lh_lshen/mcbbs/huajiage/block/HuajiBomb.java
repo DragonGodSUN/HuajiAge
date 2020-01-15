@@ -37,14 +37,16 @@ public class HuajiBomb extends BlockTNT {
             }
         }
     } 
-	@Override
-	public void onBlockDestroyedByExplosion(World worldIn, BlockPos pos, Explosion explosionIn)
-    {
-        if (!worldIn.isRemote)
-        {
-            EntityFireworkRocket entity = new EntityFireworkRocket(worldIn);
-            entity.setFire(1);
-            worldIn.spawnEntity(entity);
-        }
-    }
+	
+	
+//	@Override
+//	public void onBlockExploded(World world, BlockPos pos, Explosion explosion) {
+//		super.onBlockExploded(world, pos, explosion);
+//		if (!world.isRemote)
+//        {
+//            EntityFireworkRocket entity = new EntityFireworkRocket(world);
+//            entity.setFire(1);
+//            world.spawnEntity(entity);
+//        }
+//	}
 }

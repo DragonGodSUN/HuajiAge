@@ -122,7 +122,7 @@ public class HuajiPolyfurnace extends BlockContainer {
 	    @Override
 	    public IBlockState getStateFromMeta(int meta)
 	    {
-	        EnumFacing facing = EnumFacing.getHorizontal(meta & 3);
+	        EnumFacing facing = EnumFacing.byHorizontalIndex(meta & 3);
 //	        Integer burning = Integer.valueOf(meta&4);
 	        Boolean burning = Boolean.valueOf((meta & 4) != 0);
 	        return this.getDefaultState().withProperty(FACING, facing).withProperty(BURNING, burning);

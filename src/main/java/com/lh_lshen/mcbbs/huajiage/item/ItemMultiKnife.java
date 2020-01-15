@@ -142,7 +142,7 @@ public class ItemMultiKnife extends Item {
 	@Override
 	@SideOnly(Side.CLIENT)
 	public String getItemStackDisplayName(ItemStack stack) {
-		return getLight(stack)?I18n.format(this.getUnlocalizedName()+".shiny.name"):super.getItemStackDisplayName(stack);
+		return getLight(stack)?I18n.format(this.getTranslationKey()+".shiny.name"):super.getItemStackDisplayName(stack);
 	}
 // @Override
 //public EnumAction getItemUseAction(ItemStack stack) {

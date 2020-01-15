@@ -15,10 +15,12 @@ import net.minecraft.entity.player.EntityPlayerMP;
 import net.minecraft.inventory.EntityEquipmentSlot;
 import net.minecraft.item.ItemStack;
 import net.minecraft.util.EnumParticleTypes;
+import net.minecraftforge.fml.common.FMLCommonHandler;
 import net.minecraftforge.fml.common.network.ByteBufUtils;
 import net.minecraftforge.fml.common.network.simpleimpl.IMessage;
 import net.minecraftforge.fml.common.network.simpleimpl.IMessageHandler;
 import net.minecraftforge.fml.common.network.simpleimpl.MessageContext;
+import net.minecraftforge.fml.relauncher.Side;
 
 public class MessageServerInterchange implements IMessage {
 	public MessageServerInterchange() {
@@ -39,8 +41,9 @@ public class MessageServerInterchange implements IMessage {
     public static class Handler implements IMessageHandler<MessageServerInterchange, IMessage> {
         @Override
         public IMessage onMessage(MessageServerInterchange message , MessageContext ctx) {
+        	if (ctx.side == Side.SERVER) {
         	EntityPlayerMP player = ctx.getServerHandler().player;
-			player.mcServer.addScheduledTask(()->{
+        	FMLCommonHandler.instance().getWorldThread(ctx.netHandler).addScheduledTask(() ->{
 			switch(message.type) {
 			case 1:
 				HuajiAgeNetWorkHandler.sendToNearby(player.world, player, new MessageParticleGenerator(player.getPositionVector(), EnumParticleTypes.FIREWORKS_SPARK, 60, 3, 1));
@@ -52,7 +55,8 @@ public class MessageServerInterchange implements IMessage {
 				}
 			break;
 			}
-			}) ;
+            		}) ;
+            	}
 			return null;
         }
     }

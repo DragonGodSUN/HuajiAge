@@ -17,9 +17,11 @@ import io.netty.buffer.ByteBuf;
 import net.minecraft.entity.player.EntityPlayerMP;
 import net.minecraft.item.ItemStack;
 import net.minecraft.potion.PotionEffect;
+import net.minecraftforge.fml.common.FMLCommonHandler;
 import net.minecraftforge.fml.common.network.simpleimpl.IMessage;
 import net.minecraftforge.fml.common.network.simpleimpl.IMessageHandler;
 import net.minecraftforge.fml.common.network.simpleimpl.MessageContext;
+import net.minecraftforge.fml.relauncher.Side;
 
 public class MessageStandUp implements IMessage {
 	private boolean isMoving;
@@ -43,13 +45,14 @@ public class MessageStandUp implements IMessage {
     public static class Handler implements IMessageHandler<MessageStandUp, IMessage> {
         @Override
         public IMessage onMessage(MessageStandUp message , MessageContext ctx) {
+        	if (ctx.side == Side.SERVER) {
         	EntityPlayerMP player = ctx.getServerHandler().player;
         	StandHandler standHandler = player.getCapability(CapabilityStandHandler.STAND_TYPE, null);
         	String standType = standHandler.getStand();
         	EnumStandtype stand = EnumStandtype.getType(standType);
         	if(stand==null)
         		return null;
-			player.mcServer.addScheduledTask(() -> {
+            	FMLCommonHandler.instance().getWorldThread(ctx.netHandler).addScheduledTask(() ->{
 				if(!player.isPotionActive(PotionLoader.potionStand)) {
 					player.getFoodStats().setFoodLevel(player.getFoodStats().getFoodLevel()-((int)(stand.getDamage()/5)*2-1));
 					player.addPotionEffect(new PotionEffect(PotionLoader.potionStand,stand.getDuration(),stand.getId()));
@@ -65,7 +68,8 @@ public class MessageStandUp implements IMessage {
 						player.removePotionEffect(PotionLoader.potionStand);
 					}
 				standHandler.setDirty(true);
-			});
+            		});
+            	}
 			return null;
         }
     }

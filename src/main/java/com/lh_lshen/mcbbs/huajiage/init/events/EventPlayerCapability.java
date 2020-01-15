@@ -79,6 +79,7 @@ public class EventPlayerCapability {
         StandChargeHandler oldcharge = event.getOriginal().getCapability(CapabilityStandChargeHandler.STAND_CHARGE, null);
         if (charge != null && oldcharge !=null) {
         	charge.setChargeValue(oldcharge.getChargeValue());
+        	charge.setMaxValue(oldcharge.getMaxValue());
         }
     }
     @SubscribeEvent
@@ -87,6 +88,14 @@ public class EventPlayerCapability {
 		if(entity instanceof EntityPlayer) {
 		EntityPlayer player = (EntityPlayer) entity;
 		EnumStandtype stand = StandUtil.getType(player);
+			if(stand != null) {
+				StandHandler standHandler = player.getCapability(CapabilityStandHandler.STAND_TYPE, null);
+				StandStageHandler StageHandler = player.getCapability(CapabilityStandStageHandler.STAND_STAGE, null);
+				StandChargeHandler chargeHandler = player.getCapability(CapabilityStandChargeHandler.STAND_CHARGE, null);
+				standHandler.setDirty(true);
+				StageHandler.setDirty(true);
+				chargeHandler.setDirty(true);
+			}
 			if(stand != null && ConfigHuaji.Stands.allowStandLostTip) {
 				player.sendMessage(new TextComponentTranslation("message.huajiage.stand.lost"));
 			}

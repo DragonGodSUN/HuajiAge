@@ -175,7 +175,7 @@ public class ItemLoader {
     }
     private static void register(Item item ,String name1,String name2)
     {
-    	item.setUnlocalizedName(HuajiAge.MODID+"."+name1);
+    	item.setTranslationKey(HuajiAge.MODID+"."+name1);
     	item.setRegistryName(name2);
     	ForgeRegistries.ITEMS.register(item);
     }

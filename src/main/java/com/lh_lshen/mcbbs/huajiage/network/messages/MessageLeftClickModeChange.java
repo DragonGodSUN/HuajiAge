@@ -8,9 +8,11 @@ import com.lh_lshen.mcbbs.huajiage.item.ItemLoader;
 import io.netty.buffer.ByteBuf;
 import net.minecraft.entity.player.EntityPlayerMP;
 import net.minecraft.item.ItemStack;
+import net.minecraftforge.fml.common.FMLCommonHandler;
 import net.minecraftforge.fml.common.network.simpleimpl.IMessage;
 import net.minecraftforge.fml.common.network.simpleimpl.IMessageHandler;
 import net.minecraftforge.fml.common.network.simpleimpl.MessageContext;
+import net.minecraftforge.fml.relauncher.Side;
 
 public class MessageLeftClickModeChange implements IMessage {
     @Override
@@ -26,11 +28,13 @@ public class MessageLeftClickModeChange implements IMessage {
     public static class Handler implements IMessageHandler<MessageLeftClickModeChange, IMessage> {
         @Override
         public IMessage onMessage(MessageLeftClickModeChange message , MessageContext ctx) {
-        	EntityPlayerMP player = ctx.getServerHandler().player;
-        	ItemStack itemstack=ctx.getServerHandler().player.getHeldItemMainhand();
+        	if (ctx.side == Side.SERVER) {
+    	EntityPlayerMP player = ctx.getServerHandler().player;
+    	ItemStack itemstack=ctx.getServerHandler().player.getHeldItemMainhand();
         if(itemstack.getItem()==ItemLoader.heroBow) {
-			player.mcServer.addScheduledTask(() -> ((ItemHeroBow) ItemLoader.heroBow).ModeChange(itemstack, player));
+            	FMLCommonHandler.instance().getWorldThread(ctx.netHandler).addScheduledTask(() -> ((ItemHeroBow) ItemLoader.heroBow).ModeChange(itemstack, player));
 					}
+    		}
 			return null;
         }
     }

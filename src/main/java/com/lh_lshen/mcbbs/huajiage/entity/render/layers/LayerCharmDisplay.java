@@ -37,8 +37,8 @@ public class LayerCharmDisplay implements  LayerRenderer<EntityLivingBase> {
 	 			ItemStack main_item = p.getHeldItemMainhand();
 	 			NBTTagCompound nbt_off = off_item.getTagCompound();
 	 			NBTTagCompound nbt_main = main_item.getTagCompound();
-	 			boolean flag = off_item.equals(item)&&!nbt_off.hasNoTags()&&nbt_off.hasKey("orga")&&nbt_off.getBoolean("orga") 
- 									   || main_item.equals(item)&&!nbt_main.hasNoTags()&&nbt_main.hasKey("orga")&&nbt_main.getBoolean("orga");
+	 			boolean flag = off_item.equals(item)&&!nbt_off.isEmpty()&&nbt_off.hasKey("orga")&&nbt_off.getBoolean("orga") 
+ 									   || main_item.equals(item)&&!nbt_main.isEmpty()&&nbt_main.hasKey("orga")&&nbt_main.getBoolean("orga");
 	 			if(flag) 
 		 			{
 		 				Minecraft.getMinecraft().getRenderItem().renderItem(item_flag, TransformType.HEAD);  

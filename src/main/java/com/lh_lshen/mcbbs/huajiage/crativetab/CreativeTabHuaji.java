@@ -13,10 +13,9 @@ public class CreativeTabHuaji extends CreativeTabs{
 	        super("huaji");
 	    }
 
-	    @Override
-	    public ItemStack getTabIconItem()
-	    {
-	        return new ItemStack(ItemLoader.huaji);
-	    }
+		@Override
+		public ItemStack createIcon() {
+			return new ItemStack(ItemLoader.huaji);
+		}
 	
 }

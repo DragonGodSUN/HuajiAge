@@ -1,6 +1,7 @@
 package com.lh_lshen.mcbbs.huajiage.common;
 
 import com.lh_lshen.mcbbs.huajiage.block.BlockLoader;
+import com.lh_lshen.mcbbs.huajiage.capability.CapabilitityLoader;
 import com.lh_lshen.mcbbs.huajiage.capability.CapabilityStandChargeHandler;
 import com.lh_lshen.mcbbs.huajiage.capability.CapabilityStandHandler;
 import com.lh_lshen.mcbbs.huajiage.capability.CapabilityStandStageHandler;
@@ -50,11 +51,13 @@ public class CommonProxy
     	 new EntityLoader();
     	 new TileEntityLoader(event);
     	 new GuiLoader(event);
+    	 new CapabilitityLoader(event);
     	 
     	 MinecraftForge.EVENT_BUS.register(PotionLoader.class);
     	 MinecraftForge.EVENT_BUS.register(SoundLoader.class);
     	 HuajiAgeNetWorkHandler.init();
     	 StandNetWorkHandler.init();
+    	
     	 
 
     }
@@ -63,9 +66,6 @@ public class CommonProxy
     {
        LootTablesLoader.registerLootTables();
        LootFunctionManager.registerFunction(new LootNBTFuntion.Serializer());
-       CapabilityStandHandler.register();
-       CapabilityStandStageHandler.register();
-       CapabilityStandChargeHandler.register();
     	new CraftingLoader();
     	new EventLoader();
         new OreGenEventHandler();

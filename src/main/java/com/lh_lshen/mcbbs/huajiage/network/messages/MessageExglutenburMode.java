@@ -39,16 +39,18 @@ public class MessageExglutenburMode implements IMessage {
     public static class Handler implements IMessageHandler<MessageExglutenburMode, IMessage> {
         @Override
         public IMessage onMessage(MessageExglutenburMode message , MessageContext ctx) {
+        	if(ctx.side ==Side.SERVER) {
     		EntityPlayerMP player = ctx.getServerHandler().player;
     		ItemStack itemstack = player.getHeldItemMainhand();
     		if(itemstack.getItem()==ItemLoader.exglutenbur) {
-    		player.mcServer.addScheduledTask(() -> {
+			FMLCommonHandler.instance().getWorldThread(ctx.netHandler).addScheduledTask(() ->{
 	        	ItemExglutenbur item =(ItemExglutenbur) ItemLoader.exglutenbur;
 	            int index = item.flavor(itemstack) + 4 + (message.next ? 1 : -1);
 	            index %= 4;
 	            item.setFlavor(itemstack,index);
 //	            ((ItemExglutenbur) ItemLoader.exglutenbur).ModeChange(itemstack,player);
-        		});
+        			});
+    			}
     		}
 			return null;
         }

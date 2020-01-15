@@ -10,9 +10,11 @@ import io.netty.buffer.ByteBuf;
 import net.minecraft.entity.player.EntityPlayerMP;
 import net.minecraft.inventory.EntityEquipmentSlot;
 import net.minecraft.item.ItemStack;
+import net.minecraftforge.fml.common.FMLCommonHandler;
 import net.minecraftforge.fml.common.network.simpleimpl.IMessage;
 import net.minecraftforge.fml.common.network.simpleimpl.IMessageHandler;
 import net.minecraftforge.fml.common.network.simpleimpl.MessageContext;
+import net.minecraftforge.fml.relauncher.Side;
 
 public class MessageHelmetModeChange implements IMessage {
     @Override
@@ -28,9 +30,12 @@ public class MessageHelmetModeChange implements IMessage {
     public static class Handler implements IMessageHandler<MessageHelmetModeChange, IMessage> {
         @Override
         public IMessage onMessage(MessageHelmetModeChange message , MessageContext ctx) {
+        	if (ctx.side == Side.SERVER) {
         	EntityPlayerMP player = ctx.getServerHandler().player;
         	ItemStack itemstack_head=ctx.getServerHandler().player.getItemStackFromSlot(EntityEquipmentSlot.HEAD);
-			player.mcServer.addScheduledTask(() -> ((ItemBlancedHelmet) ItemLoader.blanceHelmet).ModeChange(itemstack_head, player));
+            	FMLCommonHandler.instance().getWorldThread(ctx.netHandler).addScheduledTask(() ->
+            	((ItemBlancedHelmet) ItemLoader.blanceHelmet).ModeChange(itemstack_head, player));
+        		}
 			return null;
         }
     }

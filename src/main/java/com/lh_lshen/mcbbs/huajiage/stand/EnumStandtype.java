@@ -14,7 +14,7 @@ import net.minecraft.util.text.TextComponentTranslation;
 
 public enum EnumStandtype {
 	THE_WORLD("the_world",1.2f,10f,200,2f,60000,21),
-	STAR_PLATINUM("star_platinum",1.5f,15f,250,2f,50000,17);
+	STAR_PLATINUM("star_platinum",1.5f,15f,225,2f,50000,17);
 //	,STAR_PLATINUM("star_platinum");
 	private EnumStandtype(String name ,float speed ,float damage ,int duration ,float distance ,int cost,int id) {
 		this.name=name;

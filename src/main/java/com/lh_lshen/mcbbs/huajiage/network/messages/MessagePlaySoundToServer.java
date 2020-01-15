@@ -14,6 +14,7 @@ import net.minecraft.util.SoundCategory;
 import net.minecraft.util.SoundEvent;
 import net.minecraft.util.math.Vec3d;
 import net.minecraft.world.World;
+import net.minecraftforge.fml.common.FMLCommonHandler;
 import net.minecraftforge.fml.common.network.ByteBufUtils;
 import net.minecraftforge.fml.common.network.simpleimpl.IMessage;
 import net.minecraftforge.fml.common.network.simpleimpl.IMessageHandler;
@@ -81,10 +82,10 @@ public class MessagePlaySoundToServer implements IMessage
 		public static class Handler implements IMessageHandler<MessagePlaySoundToServer, IMessage>
 		{
 			  public IMessage onMessage(final MessagePlaySoundToServer message, MessageContext ctx) {
+			  if (ctx.side == Side.SERVER) {
 			    EntityPlayerMP player = ctx.getServerHandler().player;
 			    World world = player.world;
-			    player.mcServer.addScheduledTask(()->
-			    {
+	        	FMLCommonHandler.instance().getWorldThread(ctx.netHandler).addScheduledTask(() ->{
 			    Vec3d targetCoordinates = message.targetCoordinates;
 			    SoundEvent sounds=message.sound;
 			    float volume = message.volume;
@@ -93,7 +94,8 @@ public class MessagePlaySoundToServer implements IMessage
 			    }
 //			    world.playSound(targetCoordinates.x , targetCoordinates.y,targetCoordinates.z,sounds, SoundCategory.PLAYERS, message.volume, 1f, true);
 			    return;
-			      });
+			      		});
+	        		}
 			    return null;
 			  }
 		  } 

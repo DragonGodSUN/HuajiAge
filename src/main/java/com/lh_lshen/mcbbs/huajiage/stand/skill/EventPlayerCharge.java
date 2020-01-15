@@ -29,13 +29,15 @@ public class EventPlayerCharge {
 					chargeHandler.charge(5);
 					if(null != stand ) 
 					{
+//						if(chargeHandler.getMaxValue()!=stand.getDuration()*50) {
+//							chargeHandler.setMaxValue(stand.getDuration()*50);
+//						}
 						StandHandler standHandler = player.getCapability(CapabilityStandHandler.STAND_TYPE, null);
 						switch(stand)
 						{
 						case THE_WORLD:
 							{
 							chargeHandler.charge(55);
-
 								break;
 							}
 						case STAR_PLATINUM:
