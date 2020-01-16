@@ -2,6 +2,9 @@ package com.lh_lshen.mcbbs.huajiage.stand.entity;
 
 import java.util.UUID;
 
+import com.lh_lshen.mcbbs.huajiage.capability.CapabilityExposedData;
+import com.lh_lshen.mcbbs.huajiage.capability.CapabilityLoader;
+import com.lh_lshen.mcbbs.huajiage.capability.IExposedData;
 import com.lh_lshen.mcbbs.huajiage.init.playsound.StandMovingSound;
 import com.lh_lshen.mcbbs.huajiage.potion.PotionLoader;
 import com.lh_lshen.mcbbs.huajiage.stand.EnumStandtype;
@@ -76,16 +79,21 @@ public class EntityStandBase extends Entity implements IEntityAdditionalSpawnDat
 	public void onUpdate() {
 		super.onUpdate();
 		EntityLivingBase user = getUser();
-		if(user !=null) {
-		this.posX = user.posX;
-		this.posY = user.posY;
-		this.posZ = user.posZ;
-		}else {
-			System.out.println("Oh My God!!!");
-		}
-		if(user==null||!user.isPotionActive(PotionLoader.potionStand)) {
+		
+		if( user==null || user.isDead ) {
 			this.setDead();
 		}
+		
+		if(user !=null) {
+			IExposedData data = user.getCapability(CapabilityLoader.EXPOSED_DATA, null);
+			if(data == null || !data.isTriggered()) {
+				this.setDead();
+			}
+			this.posX = user.posX;
+			this.posY = user.posY;
+			this.posZ = user.posZ;
+		}
+		
 	}
 	
 	@Override

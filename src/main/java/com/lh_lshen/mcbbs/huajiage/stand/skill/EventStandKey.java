@@ -117,7 +117,7 @@ public class EventStandKey {
 				switch(stand) {
 				case THE_WORLD:{
 					boolean flag = charge.canBeCost(cost);
-					MessagePerfromSkill msg = new MessagePerfromSkill(cost,0,50,HuajiConstant.THE_WORLD_TIME,StandSkillType.TIME_STOP);
+					MessagePerfromSkill msg = new MessagePerfromSkill(cost,0,120,HuajiConstant.THE_WORLD_TIME,StandSkillType.TIME_STOP);
 					StandNetWorkHandler.sendToServer(msg);
 					if(flag){
 					StandNetWorkHandler.sendToServer(new MessageDoTimeStopServer(true));

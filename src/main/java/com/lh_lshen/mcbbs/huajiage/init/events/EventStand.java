@@ -18,6 +18,7 @@ import com.lh_lshen.mcbbs.huajiage.init.playsound.HuajiSoundPlayer;
 import com.lh_lshen.mcbbs.huajiage.init.playsound.SoundLoader;
 import com.lh_lshen.mcbbs.huajiage.init.playsound.StandMovingSound;
 import com.lh_lshen.mcbbs.huajiage.item.ItemLoader;
+import com.lh_lshen.mcbbs.huajiage.network.StandNetWorkHandler;
 import com.lh_lshen.mcbbs.huajiage.network.messages.MessageParticleGenerator;
 import com.lh_lshen.mcbbs.huajiage.potion.PotionLoader;
 import com.lh_lshen.mcbbs.huajiage.stand.EnumStandtype;
@@ -145,19 +146,21 @@ public class EventStand {
 	  public static void standPotion(LivingUpdateEvent evt)
 	  {
 		 EntityLivingBase stand_owner =evt.getEntityLiving();
-		 StandHandler standHandler = stand_owner.getCapability(CapabilityStandHandler.STAND_TYPE, null);
 		 IExposedData data = stand_owner.getCapability(CapabilityLoader.EXPOSED_DATA, null);
-		 if(data!=null) {
-			 if(stand_owner.isPotionActive(PotionLoader.potionStand)&&stand_owner.getActivePotionEffect(PotionLoader.potionStand).getDuration()>5) {
-				 if(!data.isTriggered()) {
-					 ServerUtil.sendPacketToNearbyPlayersStand(stand_owner, new SyncExposedStandDataMessage(data.getStand(),true, stand_owner.getName()));
+		 if(data!=null && !data.getStand().equals(EnumStandtype.EMPTY)) {
+			 boolean flag = data.isTriggered();
+
+			 if(stand_owner.isPotionActive(PotionLoader.potionStand)&&stand_owner.getActivePotionEffect(PotionLoader.potionStand).getDuration()<=5) {
+				 if(flag) {
+					 stand_owner.addPotionEffect(new PotionEffect(MobEffects.SLOWNESS , 5*20, 1 ));
+					 stand_owner.addPotionEffect(new PotionEffect(MobEffects.HUNGER , 5*20 , ConfigHuaji.Stands.allowStandPunish? 24 : 49 ));
+					 if(ConfigHuaji.Stands.allowStandPunish) {
+					 stand_owner.addPotionEffect(new PotionEffect(MobEffects.WITHER , 5*20 , 1 ));
 					 }
-				 }
-			 if(!stand_owner.isPotionActive(PotionLoader.potionStand) || stand_owner.isPotionActive(PotionLoader.potionStand)&&stand_owner.getActivePotionEffect(PotionLoader.potionStand).getDuration()<=5) {
-				 if(data.isTriggered()) {
-					 ServerUtil.sendPacketToNearbyPlayersStand(stand_owner, new SyncExposedStandDataMessage(data.getStand(),false, stand_owner.getName()));
+					 stand_owner.addPotionEffect(new PotionEffect(PotionLoader.potionStand , 5*20 , 100 ));
 				 }
 			 }
+
 		 }
 		 
 	  	}

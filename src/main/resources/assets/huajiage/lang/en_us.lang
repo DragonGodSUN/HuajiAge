@@ -152,6 +152,7 @@ config.huaji_age.huaji_config.stand.moving_sound=Need the moving sound for you s
 config.huaji_age.huaji_config.stand_HUD_x=Stand HUD -x
 config.huaji_age.huaji_config.stand_HUD_y=Stand HUD -y
 config.huaji_age.huaji_config.stand.tip.lost=Stand Lost Notice
+config.huaji_age.huaji_config.stand.punish.out_time=Punish for stand users(Out of Time)
 
 stand.huajiage.empty=Empty
 stand.huajiage.the_world=§e§lThe World

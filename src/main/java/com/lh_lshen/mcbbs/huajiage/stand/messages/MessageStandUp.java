@@ -53,24 +53,26 @@ public class MessageStandUp implements IMessage {
         	String standType = standHandler.getStand();
         	EnumStandtype stand = EnumStandtype.getType(standType);
         	IExposedData data = player.getCapability(CapabilityLoader.EXPOSED_DATA, null);
-        	if(stand==null)
+        	if(stand==null || data==null)
         		return null;
             	FMLCommonHandler.instance().getWorldThread(ctx.netHandler).addScheduledTask(() ->{
-				if(!player.isPotionActive(PotionLoader.potionStand)) {
+				if(!data.isTriggered()) {
 					player.getFoodStats().setFoodLevel(player.getFoodStats().getFoodLevel()-((int)(stand.getDamage()/5)*2-1));
 					player.addPotionEffect(new PotionEffect(PotionLoader.potionStand,stand.getDuration(),stand.getId()));
 					data.setStand(standType);
 					data.setTrigger(true);
+//					 ServerUtil.sendPacketToNearbyPlayersStand(player, new SyncExposedStandDataMessage(standType, true, player.getName()));
 					if(message.isMoving) {
-							EntityStandBase standBase = new EntityStandBase(player.world, player, stand);
+							EntityStandBase standBase = new EntityStandBase(player.world, player, EnumStandtype.getType(data.getStand()));
 							standBase.setUser(player.getUniqueID().toString());
 							standBase.setUserName(player.getName());
 							standBase.setPosition(player.posX, player.posY, player.posZ);
-							standBase.setType(standType);
+							standBase.setType(data.getStand());
 							player.world.spawnEntity(standBase);
 						}
 					}else {
 						player.removePotionEffect(PotionLoader.potionStand);
+						data.setTrigger(false);
 					}
             		});
             	}

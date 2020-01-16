@@ -56,6 +56,7 @@ public class EventPlayerCapability {
             event.addCapability(STAND_TYPE, new CapabilityStandHandler());
             event.addCapability(STAND_STAGE, new CapabilityStandStageHandler());
             event.addCapability(STAND_CHARGE, new CapabilityStandChargeHandler());
+            
             ICapabilitySerializable<NBTTagCompound> provider = new CapabilityExposedData.ProviderPlayer();
             event.addCapability(EXPOSED_DATA, provider);
         }
@@ -67,24 +68,22 @@ public class EventPlayerCapability {
     @SubscribeEvent
     public static void onPlayerClone(PlayerEvent.Clone event) {
         EntityPlayer player = event.getEntityPlayer();
-
+//     Stand Type~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
         StandHandler stand = player.getCapability(CapabilityStandHandler.STAND_TYPE, null);
         StandHandler oldStand = event.getOriginal().getCapability(CapabilityStandHandler.STAND_TYPE, null);
         if (stand != null && oldStand != null ) {
         	stand.setStand(oldStand.getStand());
         }
         
-//        String oldData = oldStand.getStand();
-//        if (oldData != null&&!oldData.equals(EnumStandtype.EMPTY)) {
-//            StandUtil.setStandData(player, oldData);
-//        }
-        
+    
+//     Stand Stage~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
         StandStageHandler stage = player.getCapability(CapabilityStandStageHandler.STAND_STAGE, null);
         StandStageHandler oldstage = event.getOriginal().getCapability(CapabilityStandStageHandler.STAND_STAGE, null);
         if (stage != null && oldstage != null) {
         	stage.setStage(oldstage.getStage());
         }
         
+//     Stand Charge~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
         StandChargeHandler charge = player.getCapability(CapabilityStandChargeHandler.STAND_CHARGE, null);
         StandChargeHandler oldcharge = event.getOriginal().getCapability(CapabilityStandChargeHandler.STAND_CHARGE, null);
         if (charge != null && oldcharge !=null) {
@@ -92,16 +91,22 @@ public class EventPlayerCapability {
         	charge.setMaxValue(oldcharge.getMaxValue());
         }
         
-        Capability<IExposedData> capability = CapabilityLoader.EXPOSED_DATA;
-        IStorage<IExposedData> storage = capability.getStorage();
-
-        if (event.getOriginal().hasCapability(capability, null) && event.getEntityPlayer().hasCapability(capability, null))
-        {
-            NBTBase nbt = storage.writeNBT(capability, event.getOriginal().getCapability(capability, null), null);
-            storage.readNBT(capability, event.getEntityPlayer().getCapability(capability, null), null, nbt);
+//     Stand Expose~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
+        if(!event.isWasDeath()) {
+        	Capability<IExposedData> capability = CapabilityLoader.EXPOSED_DATA;
+        	IStorage<IExposedData> storage = capability.getStorage();
+	        if (event.getOriginal().hasCapability(capability, null) && event.getEntityPlayer().hasCapability(capability, null))
+	        {
+	            NBTBase nbt = storage.writeNBT(capability, event.getOriginal().getCapability(capability, null), null);
+	            storage.readNBT(capability, event.getEntityPlayer().getCapability(capability, null), null, nbt);
+	        }
         }
         
     }
+    
+    /**
+     * 玩家跨越维度时的属性通知
+     */
     @SubscribeEvent
     public static void travelToDimension(EntityTravelToDimensionEvent evt) {
     	Entity entity = evt.getEntity();
@@ -110,11 +115,15 @@ public class EventPlayerCapability {
 		EnumStandtype stand = StandUtil.getType(player);
 			if(stand != null) {
 				StandHandler standHandler = player.getCapability(CapabilityStandHandler.STAND_TYPE, null);
-				StandStageHandler StageHandler = player.getCapability(CapabilityStandStageHandler.STAND_STAGE, null);
+				StandStageHandler stageHandler = player.getCapability(CapabilityStandStageHandler.STAND_STAGE, null);
 				StandChargeHandler chargeHandler = player.getCapability(CapabilityStandChargeHandler.STAND_CHARGE, null);
-				standHandler.setDirty(true);
-				StageHandler.setDirty(true);
-				chargeHandler.setDirty(true);
+				IExposedData data = player.getCapability(CapabilityLoader.EXPOSED_DATA, null);
+				
+				if(standHandler!=null) standHandler.setDirty(true);
+				if(stageHandler!=null) stageHandler.setDirty(true);
+				if(chargeHandler!=null) chargeHandler.setDirty(true);
+				if(data!=null) data.setDirty(true);
+				
 			}
 			if(stand != null && ConfigHuaji.Stands.allowStandLostTip) {
 				player.sendMessage(new TextComponentTranslation("message.huajiage.stand.lost"));

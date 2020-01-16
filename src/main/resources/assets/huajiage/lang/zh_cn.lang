@@ -154,6 +154,7 @@ config.huaji_age.huaji_config.stand.moving_sound=是否需要替身的移动音�
 config.huaji_age.huaji_config.stand_HUD_x=替身显示框-x轴位置
 config.huaji_age.huaji_config.stand_HUD_y=替身显示框-y轴位置
 config.huaji_age.huaji_config.stand.tip.lost=替身丢失提醒
+config.huaji_age.huaji_config.stand.punish.out_time=使用替身超时的惩罚
 
 stand.huajiage.empty=缺失
 stand.huajiage.the_world=§e§lThe World-世界

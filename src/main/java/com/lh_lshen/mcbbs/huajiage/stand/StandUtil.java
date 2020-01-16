@@ -84,8 +84,8 @@ public class StandUtil {
 			  if(!entity.isPotionActive(PotionLoader.potionStand)) {
 				  IExposedData data = entity.getCapability(CapabilityLoader.EXPOSED_DATA, null);
 				  StandHandler standHandler = entity.getCapability(CapabilityStandHandler.STAND_TYPE, null);
-				  data.setStand(standHandler.getStand());
-				  data.setTrigger(true);
+//				  data.setStand(standHandler.getStand());
+//				  data.setTrigger(true);
 				  entity.addPotionEffect(new PotionEffect(PotionLoader.potionStand,60,0));
 				  HuajiSoundPlayer.playToNearbyClient(entity, SoundEvents.ENTITY_EXPERIENCE_ORB_PICKUP,0.5f);
 				  ServerUtil.sendPacketToNearbyPlayers(entity, new MessageParticleGenerator(entity.getPositionVector(), EnumParticleTypes.FIREWORKS_SPARK,60,3,1));

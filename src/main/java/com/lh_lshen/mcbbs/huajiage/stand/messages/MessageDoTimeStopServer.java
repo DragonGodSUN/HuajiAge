@@ -2,6 +2,7 @@ package com.lh_lshen.mcbbs.huajiage.stand.messages;
 
 import java.util.UUID;
 
+import com.lh_lshen.mcbbs.huajiage.capability.CapabilityStandHandler;
 import com.lh_lshen.mcbbs.huajiage.item.ItemHeroBow;
 import com.lh_lshen.mcbbs.huajiage.item.ItemLoader;
 import com.lh_lshen.mcbbs.huajiage.stand.EnumStandtype;
@@ -48,8 +49,12 @@ public class MessageDoTimeStopServer implements IMessage {
     	if (ctx.side == Side.SERVER) {
         	FMLCommonHandler.instance().getWorldThread(ctx.netHandler).addScheduledTask(() ->{
         		EntityPlayerMP player = ctx.getServerHandler().player;
+        		String stand = player.getCapability(CapabilityStandHandler.STAND_TYPE, null).getStand();
 				TimeStopHelper.doTimeStopServer(player, message.isDio?9:5);
-				ServerUtil.sendPacketToNearbyPlayersStand(player, new MessageDoTimeStopClient(player));
+				if(!stand.equals(EnumStandtype.EMPTY))
+				{
+					ServerUtil.sendPacketToNearbyPlayersStand(player, new MessageDoTimeStopClient(player,stand));
+				}
 				});
         	}
 			return null;

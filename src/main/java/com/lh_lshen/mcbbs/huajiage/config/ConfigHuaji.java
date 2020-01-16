@@ -45,6 +45,10 @@ public class ConfigHuaji {
 		@LangKey("config.huaji_age.huaji_config.the_world.blocks")
 		public boolean allowTheWorldDestory=true;
 		
+		@Config.Comment("To punish the stand users who out of time")
+		@LangKey("config.huaji_age.huaji_config.stand.punish.out_time")
+		public boolean allowStandPunish=false;
+		
 		@Config.Comment("Need some tips to notice you how to use STANDs?")
 		@LangKey("config.huaji_age.huaji_config.stand.tip")
 		public boolean allowStandTip=true;
