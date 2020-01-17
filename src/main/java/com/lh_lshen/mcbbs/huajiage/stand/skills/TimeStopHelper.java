@@ -2,7 +2,6 @@ package com.lh_lshen.mcbbs.huajiage.stand.skills;
 
 import java.util.List;
 
-import com.lh_lshen.mcbbs.huajiage.HuajiAge;
 import com.lh_lshen.mcbbs.huajiage.capability.CapabilityStandHandler;
 import com.lh_lshen.mcbbs.huajiage.capability.StandHandler;
 import com.lh_lshen.mcbbs.huajiage.common.HuajiConstant;
@@ -11,15 +10,15 @@ import com.lh_lshen.mcbbs.huajiage.item.ItemLoader;
 import com.lh_lshen.mcbbs.huajiage.stand.EnumStandtype;
 import com.lh_lshen.mcbbs.huajiage.util.NBTHelper;
 
+import net.minecraft.client.multiplayer.WorldClient;
 import net.minecraft.entity.Entity;
 import net.minecraft.entity.EntityLivingBase;
 import net.minecraft.entity.player.EntityPlayer;
-import net.minecraft.entity.player.EntityPlayerMP;
 import net.minecraft.init.MobEffects;
 import net.minecraft.item.ItemStack;
 import net.minecraft.potion.PotionEffect;
-import net.minecraft.util.text.TextComponentTranslation;
-import net.minecraftforge.fml.common.Mod;
+import net.minecraft.util.SoundCategory;
+import net.minecraft.util.math.Vec3d;
 
 public class TimeStopHelper {
 
@@ -61,22 +60,22 @@ public class TimeStopHelper {
             }
 		}
 	
-	public static void doTimeStopClient(EntityLivingBase entity,EnumStandtype stand) {
+	public static void doTimeStopClient(WorldClient world, Vec3d pos ,EnumStandtype stand) {
 //		StandHandler standHandler = entity.getCapability(CapabilityStandHandler.STAND_TYPE, null);
 //		EnumStandtype stand =EnumStandtype.getType(standHandler.getStand());
 		double rand=Math.random()*100;
         if(!stand.getName().equals(EnumStandtype.STAR_PLATINUM.getName())) {
 	        if(rand<25) { 	
-	        	entity.playSound(SoundLoader.THE_WORLD, 5f,1f);
+	            world.playSound(pos.x, pos.y, pos.z, SoundLoader.THE_WORLD, SoundCategory.PLAYERS, 5f,1f, true);
 	        }else if(rand<50){
-	        	entity.playSound(SoundLoader.THE_WORLD_1, 5f,1f);
+	        	world.playSound(pos.x, pos.y, pos.z, SoundLoader.THE_WORLD_1, SoundCategory.PLAYERS, 5f,1f, true);
 	        }else if(rand<75){
-	        	entity.playSound(SoundLoader.THE_WORLD_2, 5f,1f);
+	        	world.playSound(pos.x, pos.y, pos.z, SoundLoader.THE_WORLD_2, SoundCategory.PLAYERS, 5f,1f, true);
 	        }else {
-	        	entity.playSound(SoundLoader.THE_WORLD_3, 5f,1f);
+	        	world.playSound(pos.x, pos.y, pos.z, SoundLoader.THE_WORLD_3, SoundCategory.PLAYERS, 5f,1f, true);
 	        }
         }else {
-        	entity.playSound(SoundLoader.STAR_PLATINUM_THE_WORLD_1, 5f,1f);
+        	world.playSound(pos.x, pos.y, pos.z, SoundLoader.STAR_PLATINUM_THE_WORLD_1, SoundCategory.PLAYERS, 5f,1f, true);
         }
 	}
 	

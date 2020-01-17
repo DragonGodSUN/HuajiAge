@@ -8,6 +8,7 @@ import io.netty.buffer.ByteBuf;
 import net.minecraft.client.Minecraft;
 import net.minecraft.client.multiplayer.WorldClient;
 import net.minecraft.entity.player.EntityPlayer;
+import net.minecraft.util.math.Vec3d;
 import net.minecraftforge.fml.common.network.ByteBufUtils;
 import net.minecraftforge.fml.common.network.simpleimpl.IMessage;
 import net.minecraftforge.fml.common.network.simpleimpl.IMessageHandler;
@@ -23,6 +24,7 @@ public class MessageDoTimeStopClient implements IMessage
 	  public MessageDoTimeStopClient(EntityPlayer player , String standName)
 	  {
 		  this.playerName = player.getName();
+		  this.pos = player.getPositionVector();
 		  this.standName = standName;
 	  }
 
@@ -31,6 +33,12 @@ public class MessageDoTimeStopClient implements IMessage
 	  {
 		  this.playerName = ByteBufUtils.readUTF8String(buf);
 		  this.standName = ByteBufUtils.readUTF8String(buf);
+		  double x = buf.readDouble();
+		  double y = buf.readDouble();
+		  double z = buf.readDouble();
+		  
+		  this.pos = new Vec3d(x, y, z);
+		  
 	  }
 
 	  @Override
@@ -38,9 +46,13 @@ public class MessageDoTimeStopClient implements IMessage
 	  {
 		  ByteBufUtils.writeUTF8String(buf, playerName);
 		  ByteBufUtils.writeUTF8String(buf, standName);
+		  buf.writeDouble(pos.x);
+		  buf.writeDouble(pos.y);
+		  buf.writeDouble(pos.z);
 	  }
 
 	  private String playerName;
+	  private Vec3d pos;
 	  private String standName;
 public static class Handler implements IMessageHandler<MessageDoTimeStopClient, IMessage>
 {
@@ -49,11 +61,12 @@ public static class Handler implements IMessageHandler<MessageDoTimeStopClient, 
 	    Minecraft minecraft = Minecraft.getMinecraft();
 	    final WorldClient worldClient = minecraft.world;
 	    EntityPlayer player = worldClient.getPlayerEntityByName(message.playerName);
+	    Vec3d pos = message.pos;
 	    EnumStandtype stand = EnumStandtype.getType(message.standName);
 	    minecraft.addScheduledTask(()->{ 
 	    	if(player!=null) {
 	    		if(stand!=null) {
-	    			this.processStandClient(player, stand);
+	    			this.processStandClient(worldClient , pos , stand);
 		    		}
 	    	this.processClient(player);
 	    		}
@@ -61,8 +74,8 @@ public static class Handler implements IMessageHandler<MessageDoTimeStopClient, 
 	  	}
 	    return null;
 	  }
-	  public void processStandClient(EntityPlayer player,EnumStandtype stand) {
-		  TimeStopHelper.doTimeStopClient(player, stand);
+	  public void processStandClient(WorldClient world , Vec3d pos ,EnumStandtype stand) {
+		  TimeStopHelper.doTimeStopClient(world, pos, stand);
 	  }
 	  public void processClient(EntityPlayer player) {
 		  

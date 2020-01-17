@@ -62,15 +62,21 @@ public class SyncExposedStandDataMessage implements IMessage {
             if (ctx.side == Side.CLIENT) {
                 Minecraft.getMinecraft().addScheduledTask(() -> {
                     EntityPlayer player = Minecraft.getMinecraft().world.getPlayerEntityByName(message.getStandUser());
-//                    EntityPlayer user = Minecraft.getMinecraft().player;
-//                    EnumStandtype stand = StandUtil.getType(user);
-                    if (player == null) {
+                    EntityPlayer user = Minecraft.getMinecraft().player;
+                    EnumStandtype stand = StandUtil.getType(user);
+                    NBTTagCompound nbt = message.nbt;
+                    if (player == null ) {
                         return;
                     }else {
                     IExposedData data = player.getCapability(CapabilityLoader.EXPOSED_DATA, null);
                     if (data != null ) {
                     	 IStorage<IExposedData> storage = CapabilityLoader.EXPOSED_DATA.getStorage();
-                    	 storage.readNBT(CapabilityLoader.EXPOSED_DATA, data, null, message.nbt);
+	                    	 if(stand!=null) {
+	                    	 storage.readNBT(CapabilityLoader.EXPOSED_DATA, data, null, nbt);
+	                    	 }else {
+                    		 nbt.setBoolean("stand_put", false);
+                    		 storage.readNBT(CapabilityLoader.EXPOSED_DATA, data, null, nbt);
+	                    	 }
                     	}
                     }
                 });
