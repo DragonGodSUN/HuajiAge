@@ -2,6 +2,7 @@
 item.huajiage.huaji.name=滑稽
 itemGroup.huaji=滑稽纪元
 tile.huajiage.oreHuaji.name=充斥着滑稽之力的石头
+tile.huajiage.huajiBomb.name=§6滑稽炸弹
 tile.huajiage.huajiStarBlock.name=§b滑稽之星压缩块
 tile.huajiage.huajiStarBlockSky.name=§e空域之星压缩块
 tile.huajiage.huajiBlender.name=滚筒式滑稽之力混合仪
@@ -86,7 +87,7 @@ item.huajiage.loot.name=§l卖鱼强
 item.huajiage.lordCore.name=§3§l挂者核心
 item.huajiage.huajiStarPoly.name=§o§l多重叠加态滑稽之星
 item.huajiage.singularity.name=§l特异点
-item.singularity.tooltip.warning=§e警告！！！你最好穿上最好的装备来抵御特异点的作用！必须确保在效果结束前的存活！死者是无法抵达新世界的！！！
+item.singularity.tooltip.warning=警告！！！你最好穿上最好的装备来抵御特异点的作用！必须确保在效果结束前的存活！死者是无法抵达新世界的！！！
 
 
 item.blance_helmet:unicode_tooltips.1.desc=释放力量的唯一方法§b（按住Shift以查看更多）
@@ -165,7 +166,6 @@ patchouil.huajiage.book.landing=在这个宇宙中，存在着一种名为滑稽
 
 *****************************************下方为一代翻译***************************************************
 item.huaJiCry.name=我哭了
-tile.huajiBomb.name=§6滑稽炸弹
 item.huajiAxe.name=§b滑稽斧头
 tile.look.name=§b我就看着你挖
 item.huaJi_fly.name=§b你咋不上天呢？

@@ -6,11 +6,8 @@ import com.lh_lshen.mcbbs.huajiage.client.model.stand.ModelStarPlatinum;
 import com.lh_lshen.mcbbs.huajiage.client.model.stand.ModelTheWorld;
 import com.lh_lshen.mcbbs.huajiage.common.HuajiConstant;
 
-import net.minecraft.client.model.ModelBase;
 import net.minecraft.client.resources.I18n;
 import net.minecraft.util.ResourceLocation;
-import net.minecraft.util.text.ITextComponent;
-import net.minecraft.util.text.TextComponentTranslation;
 
 public enum EnumStandtype {
 	THE_WORLD("the_world",1.2f,10f,200,2f,60000,21),

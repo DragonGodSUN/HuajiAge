@@ -2,38 +2,30 @@ package com.lh_lshen.mcbbs.huajiage.item;
 
 import java.util.List;
 
-import com.google.common.util.concurrent.CycleDetectingLockFactory.Policies;
-import com.lh_lshen.mcbbs.huajiage.HuajiAge;
 import com.lh_lshen.mcbbs.huajiage.common.HuajiConstant;
 import com.lh_lshen.mcbbs.huajiage.crativetab.CreativeTabLoader;
 import com.lh_lshen.mcbbs.huajiage.init.playsound.HuajiSoundPlayer;
 import com.lh_lshen.mcbbs.huajiage.init.playsound.SoundLoader;
-import com.lh_lshen.mcbbs.huajiage.potion.PotionLoader;
 import com.lh_lshen.mcbbs.huajiage.stand.EnumStandtype;
 import com.lh_lshen.mcbbs.huajiage.stand.StandUtil;
 import com.lh_lshen.mcbbs.huajiage.util.NBTHelper;
 
-import net.minecraft.client.Minecraft;
-import net.minecraft.client.audio.MusicTicker;
 import net.minecraft.client.resources.I18n;
 import net.minecraft.client.util.ITooltipFlag;
 import net.minecraft.entity.player.EntityPlayer;
 import net.minecraft.init.MobEffects;
-import net.minecraft.init.SoundEvents;
-import net.minecraft.inventory.EntityEquipmentSlot;
 import net.minecraft.item.Item;
 import net.minecraft.item.ItemStack;
-import net.minecraft.potion.Potion;
 import net.minecraft.potion.PotionEffect;
 import net.minecraft.util.ActionResult;
 import net.minecraft.util.EnumActionResult;
 import net.minecraft.util.EnumHand;
-import net.minecraft.util.SoundCategory;
-import net.minecraft.util.SoundEvent;
 import net.minecraft.util.text.TextComponentString;
 import net.minecraft.world.World;
 
+
 public class ItemSingularity extends Item {
+	
 	public ItemSingularity()
 	{
 		 super();
@@ -66,12 +58,13 @@ public class ItemSingularity extends Item {
 				}
 			}
 		
-		return new ActionResult(EnumActionResult.SUCCESS,playerIn.getHeldItem(handIn));
+		return new ActionResult<ItemStack>(EnumActionResult.SUCCESS,playerIn.getHeldItem(handIn));
 	}
 	@Override
 	public void addInformation(ItemStack stack, World worldIn, List<String> tooltip, ITooltipFlag flagIn) {
 		super.addInformation(stack, worldIn, tooltip, flagIn);
-		tooltip.add(I18n.format("item.singularity.tooltip.warning"));
+
 	}
+	
 
 }

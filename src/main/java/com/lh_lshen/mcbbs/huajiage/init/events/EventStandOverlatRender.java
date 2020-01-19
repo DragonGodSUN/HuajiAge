@@ -34,7 +34,7 @@ import net.minecraftforge.fml.relauncher.SideOnly;
 
 //@Mod.EventBusSubscriber(modid = HuajiAge.MODID, value = Side.CLIENT)
 public class EventStandOverlatRender {
-	    private static final ResourceLocation STAND = new ResourceLocation(HuajiAge.MODID, "textures/items/tarot.png");
+//	    private static final ResourceLocation STAND = new ResourceLocation(HuajiAge.MODID, "textures/items/tarot.png");
 	    private static final ResourceLocation STAND_THE_WORLD = new ResourceLocation(HuajiAge.MODID, "textures/items/disc_the_world.png");
 	    private static final ResourceLocation STAND_STAR_PLATINUM = new ResourceLocation(HuajiAge.MODID, "textures/items/disc_star_platinum.png");
 	    @SideOnly(Side.CLIENT)
@@ -46,7 +46,7 @@ public class EventStandOverlatRender {
 	            StandStageHandler standStageHandler = player.getCapability(CapabilityStandStageHandler.STAND_STAGE, null);
 	            int stage = standStageHandler.getStage();
 	            
-	            ItemStack disc = ItemDiscStand.getItemData(new ItemStack(ItemLoader.disc),standHandler.getStand(), standStageHandler.getStage());
+//	            ItemStack disc = ItemDiscStand.getItemData(new ItemStack(ItemLoader.disc),standHandler.getStand(), standStageHandler.getStage());
 	            EnumStandtype stand = EnumStandtype.getType(standHandler.getStand());
 	            StandChargeHandler chargeHandler = StandUtil.getChargeHandler(player);
 	            int charge = chargeHandler.getChargeValue();

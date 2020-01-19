@@ -1,0 +1,15 @@
+package com.lh_lshen.mcbbs.huajiage.init;
+
+import com.lh_lshen.mcbbs.huajiage.init.events.EventStandOverlatRender;
+import com.lh_lshen.mcbbs.huajiage.init.events.EventToolTip;
+
+import net.minecraftforge.common.MinecraftForge;
+
+public class EventClientLoader {
+	
+	public EventClientLoader() {
+		MinecraftForge.EVENT_BUS.register(EventToolTip.class);
+		 MinecraftForge.EVENT_BUS.register(EventStandOverlatRender.class);
+	}
+
+}

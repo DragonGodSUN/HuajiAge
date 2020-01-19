@@ -1,10 +1,12 @@
 item.huajiage.huaji.name=HUAJI
 itemGroup.huaji=HUAJI Age II:Infinite Galaxy
-tile.oreHuaji.name=HUAJI Ore
-tile.huajiStarBlock.name=HUAJI Star Block
-tile.huajiStarBlockSky.name=Airspace Star Block
-tile.huajiBlender.name=HUAJI Blender
-tile.huajiPolyFurnace.name=HUAJI Polyfurnace
+
+tile.huajiage.huajiage.huajiBomb.name=HUAJI bomb
+tile.huajiage.oreHuaji.name=HUAJI Ore
+tile.huajiage.huajiStarBlock.name=HUAJI Star Block
+tile.huajiage.huajiStarBlockSky.name=Airspace Star Block
+tile.huajiage.huajiBlender.name=HUAJI Blender
+tile.huajiage.huajiPolyFurnace.name=HUAJI Polyfurnace
 
 
 item.huajiage.huajiFragment.name=HUAJI Fragment
@@ -115,7 +117,7 @@ item.tarot:tooltips.1=Stand Name:
 item.tarot:tooltips.2=Stage: 
 item.huajiage.disc.tooltip.1=Stand: 
 item.huajiage.disc.tooltip.2=Stage: 
-item.singularity.tooltip.warning=§eWarning !!!You must prepare your beat equipment to protect yourself,once you died before the end of the effect, you will regret to make this!
+item.singularity.tooltip.warning=Warning !!!You must prepare your beat equipment to protect yourself,once you died before the end of the effect, you will regret to make this!
 
 
 huajiage.orga.1=§b To celebrate! The birth of the most powerful king of Mars---Orga Izka
@@ -164,7 +166,6 @@ patchouil.huajiage.book.landing=HUAJI,means comical or funny things,is making up
 
 
 item.huaJiCry.name=I'm crying
-tile.huajiBomb.name=HUAJI bomb
 tile.huajiAntimatterBomb.name=huaji antimatter bomb
 item.huajiAxe.name=huaji axe
 tile.look.name=look
