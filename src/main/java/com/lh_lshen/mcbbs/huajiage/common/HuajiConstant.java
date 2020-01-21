@@ -35,8 +35,8 @@ public  class HuajiConstant {
 	public static final String HOPE_FLOWER=HuajiAge.MODID+"."+"hope_flower";
 	public static final String REQUIEM_BACK=HuajiAge.MODID+"."+"requiem.back";
 	public static final String REQUIEM_DAMAGE=HuajiAge.MODID+"."+"requiem.hit";
-	public static final String DIO_ATTACK=HuajiAge.MODID+"."+"dio.hit";
-	public static final String SINGULARITY_ATTACK=HuajiAge.MODID+"."+"singularity";
+	public static final String DIO_DAMAGE=HuajiAge.MODID+"."+"dio.hit";
+	public static final String SINGULARITY_DAMAGE=HuajiAge.MODID+"."+"singularity";
 	
 //	Stand Events
 	public static final String SINGULARITY=HuajiAge.MODID+"."+"singularity";

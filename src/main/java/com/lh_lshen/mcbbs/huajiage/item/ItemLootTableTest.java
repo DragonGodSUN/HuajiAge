@@ -68,10 +68,10 @@ public class ItemLootTableTest extends Item {
 			return "Stand Power!!!";
 		case 5:
 			return "Time Stop ---Jostar";
-		case 6:
-			return "The list of Stand Users";
-		case 7:
-			return "Clear up the list of Stand Users";
+//		case 6:
+//			return "The list of Stand Users";
+//		case 7:
+//			return "Clear up the list of Stand Users";
 		}
 	    return null;
 	}
@@ -85,7 +85,7 @@ public class ItemLootTableTest extends Item {
 		int stage = stageHandler.getStage();
 		if(playerIn.isSneaking()) {
 			int mode=getmode(stack);
-			if(mode<7) {
+			if(mode<5) {
 			modeSwitch(stack, mode+1);
 			}else {
 			modeSwitch(stack,0);	
@@ -170,37 +170,33 @@ public class ItemLootTableTest extends Item {
         	stageHandler.setStage(1);
 	        break;
 				}
-		case 6:{
-			StandUserWorldSavedData data = StandUserWorldSavedData.getGlobal(worldIn);
-			for(UUID uuid : data.getPlayersByUUID()){
-				EntityPlayer player = worldIn.getPlayerEntityByUUID(uuid);
-				if(player!=null&&worldIn.isRemote) {
-					playerIn.sendMessage(new TextComponentString(TextFormatting.GOLD+"================"));
-					playerIn.sendMessage(new TextComponentString(TextFormatting.AQUA+"Stand User: "+player.getName()));
-					playerIn.sendMessage(new TextComponentString(TextFormatting.DARK_AQUA+"Stand User: "
-					+I18n.format(EnumStandtype.getLocalName(player.getCapability(CapabilityStandHandler.STAND_TYPE, null).getStand()))));
-					playerIn.sendMessage(new TextComponentString(TextFormatting.GOLD+"================"));
-				}
-			}
-	        break;
-				}
-		case 7:{
-			StandUserWorldSavedData data = StandUserWorldSavedData.getGlobal(worldIn);
-			data.clear();
-			playerIn.sendMessage(new TextComponentString("The Message of Stand Users is cleared"));
-	        break;
-				}
+//		case 6:{
+//			StandUserWorldSavedData data = StandUserWorldSavedData.getGlobal(worldIn);
+//			for(UUID uuid : data.getPlayersByUUID()){
+//				EntityPlayer player = worldIn.getPlayerEntityByUUID(uuid);
+//				if(player!=null&&worldIn.isRemote) {
+//					playerIn.sendMessage(new TextComponentString(TextFormatting.GOLD+"================"));
+//					playerIn.sendMessage(new TextComponentString(TextFormatting.AQUA+"Stand User: "+player.getName()));
+//					playerIn.sendMessage(new TextComponentString(TextFormatting.DARK_AQUA+"Stand User: "
+//					+I18n.format(EnumStandtype.getLocalName(player.getCapability(CapabilityStandHandler.STAND_TYPE, null).getStand()))));
+//					playerIn.sendMessage(new TextComponentString(TextFormatting.GOLD+"================"));
+//				}
+//			}
+//	        break;
+//				}
+//		case 7:{
+//			StandUserWorldSavedData data = StandUserWorldSavedData.getGlobal(worldIn);
+//			data.clear();
+//			playerIn.sendMessage(new TextComponentString("The Message of Stand Users is cleared"));
+//	        break;
+//				}
 			}
 		  }
 		}
 		return new ActionResult<>(EnumActionResult.SUCCESS, playerIn.getHeldItem(hand));
 
 	}
-	@Override
-	public boolean hitEntity(ItemStack stack, EntityLivingBase target, EntityLivingBase attacker) {
-		
-		return super.hitEntity(stack, target, attacker);
-	}
+
 }
 	
 	

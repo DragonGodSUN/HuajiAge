@@ -243,7 +243,7 @@ public class TileEntityHuajiPolyfurnace extends TileEntityMachineEnergy implemen
 	}
    @Override
    public ITextComponent getDisplayName() {
-	return hasCustomName()?new TextComponentString(costomname):new TextComponentTranslation(this.getName()+".name");
+	return hasCustomName()?new TextComponentString(costomname):new TextComponentTranslation(this.getName());
     }
 	@Override
 	public boolean hasCustomName() {

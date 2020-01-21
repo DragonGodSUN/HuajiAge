@@ -1,5 +1,6 @@
 package com.lh_lshen.mcbbs.huajiage.init;
 
+import com.lh_lshen.mcbbs.huajiage.init.events.EventKeyInput;
 import com.lh_lshen.mcbbs.huajiage.init.events.EventStandOverlatRender;
 import com.lh_lshen.mcbbs.huajiage.init.events.EventToolTip;
 
@@ -9,6 +10,7 @@ public class EventClientLoader {
 	
 	public EventClientLoader() {
 		MinecraftForge.EVENT_BUS.register(EventToolTip.class);
+		MinecraftForge.EVENT_BUS.register(EventKeyInput.class);
 		 MinecraftForge.EVENT_BUS.register(EventStandOverlatRender.class);
 	}
 

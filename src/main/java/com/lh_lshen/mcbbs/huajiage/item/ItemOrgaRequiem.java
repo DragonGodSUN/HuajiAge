@@ -85,8 +85,14 @@ public class ItemOrgaRequiem extends Item {
 			player.addPotionEffect(new PotionEffect(PotionLoader.potionRequiemTarget,60));
 	                    }
 		       		}
-				}
-			}
+		}
+	else {
+		if(player.isPotionActive(PotionLoader.potionFlowerHope)) 
+			{
+				player.removePotionEffect(PotionLoader.potionFlowerHope);
+			}		
+		}
+	}
 
 	@Override
 	public void addInformation(ItemStack stack, World worldIn, List<String> tooltip, ITooltipFlag flagIn) {

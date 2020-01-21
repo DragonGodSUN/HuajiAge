@@ -75,9 +75,9 @@ public class EventTimeStop {
         		if(target.ticksExisted%10==0) {
         			EntityPlayer p=target.getEntityWorld().getClosestPlayerToEntity(target, 100);
         			if(p!=null&&p!=target) {
-        				target.attackEntityFrom(new EntityDamageSource(HuajiConstant.DIO_ATTACK, p), NBTHelper.getEntityInteger(target,HuajiConstant.DIO_HIT_EXTRA)+10);
+        				target.attackEntityFrom(new EntityDamageSource(HuajiConstant.DIO_DAMAGE, p), NBTHelper.getEntityInteger(target,HuajiConstant.DIO_HIT_EXTRA)+10);
                       }else {
-                    	target.attackEntityFrom(new DamageSource(HuajiConstant.DIO_ATTACK), NBTHelper.getEntityInteger(target,HuajiConstant.DIO_HIT_EXTRA)+10);
+                    	target.attackEntityFrom(new DamageSource(HuajiConstant.DIO_DAMAGE), NBTHelper.getEntityInteger(target,HuajiConstant.DIO_HIT_EXTRA)+10);
                       }
         		}
         	}else {

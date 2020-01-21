@@ -62,6 +62,7 @@ stand.huajiage.tip.cost=技能消耗:   §b§l%s
 stand.huajiage.mp=精神力：
 
 
+item.huajiage.secondFoil.name=§e二向箔
 item.huajiage.ether.name=§4以太粒子·伪
 item.huajiage.etherCircumfluxBoard.name=以太中子环流板
 item.huajiage.redstoneDruse.name=红石晶簇
@@ -164,7 +165,7 @@ stand.huajiage.star_platinum=§5§lStar Platinum-白金之星
 patchouil.huajiage.book.name=§e§lJO§6级宝典
 patchouil.huajiage.book.landing=在这个宇宙中，存在着一种名为滑稽的奇特之物，它们无处不在，并构成了千千万万的事物，据说，持有滑稽的星辉之力，便可得到传说中鬼畜先辈的无上之力
 
-*****************************************下方为一代翻译***************************************************
+*****************************************下方为未启用的一代翻译******************************************
 item.huaJiCry.name=我哭了
 item.huajiAxe.name=§b滑稽斧头
 tile.look.name=§b我就看着你挖
@@ -210,7 +211,6 @@ item.waterPaper.name=§b水贴
 death.attack.diamond=%s被钻石砸死
 enchantment.burning=§4火烧屁股
 entity.huaji.WaterPaperChicken.name=水贴滑鸡
-item.secondFoil.name=§e二向箔
 tile.huajiAntimatterBomb.name=§e滑稽微型反物质炸弹
 item.antimatter.name=§9反物质
 achievement.huaji.Begin=稽源

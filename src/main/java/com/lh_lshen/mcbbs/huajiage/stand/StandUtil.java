@@ -82,10 +82,8 @@ public class StandUtil {
 	
 	public static void standPower(EntityLivingBase entity) {
 			  if(!entity.isPotionActive(PotionLoader.potionStand)) {
-				  IExposedData data = entity.getCapability(CapabilityLoader.EXPOSED_DATA, null);
 				  StandHandler standHandler = entity.getCapability(CapabilityStandHandler.STAND_TYPE, null);
-//				  data.setStand(standHandler.getStand());
-//				  data.setTrigger(true);
+
 				  entity.addPotionEffect(new PotionEffect(PotionLoader.potionStand,60,0));
 				  HuajiSoundPlayer.playToNearbyClient(entity, SoundEvents.ENTITY_EXPERIENCE_ORB_PICKUP,0.5f);
 				  ServerUtil.sendPacketToNearbyPlayers(entity, new MessageParticleGenerator(entity.getPositionVector(), EnumParticleTypes.FIREWORKS_SPARK,60,3,1));
@@ -96,24 +94,24 @@ public class StandUtil {
 			  
 	}
 	
-	public static void setStandData(EntityPlayer player, EnumStandtype stand) {
-		if(stand.getName()!=null) 
-			{
-				StandUtil.setStandData(player, stand.getName());
-			 }
-	}
+//	public static void setStandData(EntityPlayer player, EnumStandtype stand) {
+//		if(stand.getName()!=null) 
+//			{
+//				StandUtil.setStandData(player, stand.getName());
+//			 }
+//	}
 	
-	public static void setStandData(EntityPlayer player, String stand) {
-		UUID uuid = player.getUniqueID();
-		StandUserWorldSavedData data = StandUserWorldSavedData.getGlobal(player.world);
-		data.add(stand, uuid);
-	}
-	
-	public static void removeStandData(EntityPlayer player) {
-		UUID uuid = player.getUniqueID();
-		StandUserWorldSavedData data = StandUserWorldSavedData.getGlobal(player.world);
-		data.remove(uuid);;
-	}
+//	public static void setStandData(EntityPlayer player, String stand) {
+//		UUID uuid = player.getUniqueID();
+//		StandUserWorldSavedData data = StandUserWorldSavedData.getGlobal(player.world);
+//		data.add(stand, uuid);
+//	}
+//	
+//	public static void removeStandData(EntityPlayer player) {
+//		UUID uuid = player.getUniqueID();
+//		StandUserWorldSavedData data = StandUserWorldSavedData.getGlobal(player.world);
+//		data.remove(uuid);;
+//	}
 	
 	
 }

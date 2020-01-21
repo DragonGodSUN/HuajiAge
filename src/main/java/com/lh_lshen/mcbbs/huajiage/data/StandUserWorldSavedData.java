@@ -12,7 +12,11 @@ import net.minecraft.nbt.NBTTagCompound;
 import net.minecraft.nbt.NBTTagList;
 import net.minecraft.world.World;
 import net.minecraft.world.storage.WorldSavedData;
-
+/**
+ * Unused data
+ * @author MogikSkyFire
+ *
+ */
 public class StandUserWorldSavedData extends WorldSavedData{
 	private HashMap<UUID,String> stands =new HashMap<UUID,String>() ;
 	private List<UUID> players = new ArrayList<UUID>();

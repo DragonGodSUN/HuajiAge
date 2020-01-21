@@ -28,9 +28,9 @@ public class EventLoader {
 	  public EventLoader()
 	    {
 	        MinecraftForge.EVENT_BUS.register(this);
-	        MinecraftForge.EVENT_BUS.register(EventKeyInput.class);
 	        MinecraftForge.EVENT_BUS.register(EventRequiem.class);
 	        MinecraftForge.EVENT_BUS.register(EventOrga.class);
+//	        MinecraftForge.EVENT_BUS.register(EventKeyInput.class);
 //	        MinecraftForge.EVENT_BUS.register(EventTimeStop.class);
 //	        MinecraftForge.EVENT_BUS.register(EventStand.class);
 //	        MinecraftForge.EVENT_BUS.register(EventStandOverlatRender.class);

@@ -79,61 +79,8 @@ public void detectAndSendChanges() {
 	          }
 	        }
 		 }
-//		if(this.ItemPool != this.tilientity.getField(1)) { 
-//			 if ((this.tilientity.getField(1) > Short.MAX_VALUE ||
-//		              this.tilientity.getField(1) < Short.MIN_VALUE)
-//		              && listener instanceof EntityPlayerMP) {
-//		            //minecraft truncates int into short
-//		            HuajiAgeNetWorkHandler.sendTo(
-//		                ((EntityPlayerMP) listener), new PacketGuiShortOverride(1, this.tilientity.getField(1)));
-//		          }else {
-//			listener.sendWindowProperty(this,1, this.tilientity.getField(1));}
-//			 }
-//		if(this.currentBurnTime != this.tilientity.getField(2)) {
-//			if ((this.tilientity.getField(2) > Short.MAX_VALUE ||
-//		              this.tilientity.getField(2) < Short.MIN_VALUE)
-//		              && listener instanceof EntityPlayerMP) {
-//		            //minecraft truncates int into short
-//		            HuajiAgeNetWorkHandler.sendTo(
-//		                ((EntityPlayerMP) listener), new PacketGuiShortOverride(2, this.tilientity.getField(2)));
-//		          }else {
-//			listener.sendWindowProperty(this,2, this.tilientity.getField(2));}
-//			}
-//		if(this.cookTime != this.tilientity.getField(3)) {
-//			if ((this.tilientity.getField(3) > Short.MAX_VALUE ||
-//		              this.tilientity.getField(3) < Short.MIN_VALUE)
-//		              && listener instanceof EntityPlayerMP) {
-//		            //minecraft truncates int into short
-//		            HuajiAgeNetWorkHandler.sendTo(
-//		                ((EntityPlayerMP) listener), new PacketGuiShortOverride(3, this.tilientity.getField(3)));
-//		          }else {
-//			listener.sendWindowProperty(this,3, this.tilientity.getField(3));}
-//			}
-//		if(this.totalCookTime != this.tilientity.getField(4)) {
-//			if ((this.tilientity.getField(4) > Short.MAX_VALUE ||
-//		              this.tilientity.getField(4) < Short.MIN_VALUE)
-//		              && listener instanceof EntityPlayerMP) {
-//		            //minecraft truncates int into short
-//		            HuajiAgeNetWorkHandler.sendTo(
-//		                ((EntityPlayerMP) listener), new PacketGuiShortOverride(4, this.tilientity.getField(4)));
-//		          }else {
-//			listener.sendWindowProperty(this,4, this.tilientity.getField(4));}
-//			}
 	}
 	
-//	this.burnTime=this.tilientity.getField(1);
-
-//	 for (IContainerListener i : this.listeners)
-//     {
-//		 if(this.ItemPool != this.tilientity.getPool())        i.sendWindowProperty(this, 1, this.ItemPool);
-//		 if(this.burnTime != this.tilientity.getField(2))      i.sendWindowProperty(this, 2, this.currentBurnTime);
-//		 if(this.cookTime != this.tilientity.getField(3))      i.sendWindowProperty(this, 3, this.cookTime);
-//		 if(this.totalCookTime != this.tilientity.getField(4)) i.sendWindowProperty(this, 4, this.totalCookTime);
-//     }	
-//		this.ItemPool=this.tilientity.getPool();
-//		this.currentBurnTime=this.tilientity.getBurnTime();
-//		this.cookTime=this.tilientity.getField(3);
-//		this.totalCookTime=this.tilientity.getField(4); 
 		for(int j=0;j<tileMap.length;j++) {
 			tileMap[j]=this.tilientity.getField(j+1);
 		}

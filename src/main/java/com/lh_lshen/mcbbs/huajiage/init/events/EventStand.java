@@ -122,7 +122,7 @@ public class EventStand {
 		  if(t>0) {
 			  NBTHelper.setEntityInteger(stand_owner, HuajiConstant.SINGULARITY, t-1);
 			  if(stand_owner.ticksExisted%10==0) {
-			  stand_owner.attackEntityFrom(new DamageSource(HuajiConstant.SINGULARITY_ATTACK), 18);
+			  stand_owner.attackEntityFrom(new DamageSource(HuajiConstant.SINGULARITY_DAMAGE), 18);
 			  }
 			  if(stand_owner.getHealth()<=0) {
 				  return;
@@ -268,9 +268,9 @@ public class EventStand {
 										  HuajiSoundPlayer.playToNearbyClient(target, SoundEvents.ENTITY_GENERIC_EXPLODE, 0.25f);
 										  if(type.getName().equals(EnumStandtype.THE_WORLD.getName())) {
 											  HuajiSoundPlayer.playToNearbyClient(target, SoundLoader.DIO_HIT, 0.75f);
-											  if(NBTHelper.getEntityInteger(target, HuajiConstant.DIO_ATTACK)<120) 
+											  if(NBTHelper.getEntityInteger(target, HuajiConstant.DIO_HIT)<120) 
 											  {
-											  NBTHelper.setEntityInteger(target, HuajiConstant.DIO_ATTACK, 120);
+											  NBTHelper.setEntityInteger(target, HuajiConstant.DIO_HIT, 120);
 											  }
 										  }else {
 											  HuajiSoundPlayer.playToNearbyClient(target, SoundLoader.STAND_STAR_PLATINUM_5, 0.3f);

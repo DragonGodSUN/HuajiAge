@@ -133,13 +133,13 @@ public class ItemDiscStand extends Item {
 				standHandler.setStand(standTag);
 				stageHandler.setStage(stageTag);
 				playerIn.getHeldItem(handIn).shrink(1);
-				 UUID uuid = playerIn.getUniqueID();
-				 StandUserWorldSavedData.getGlobal(worldIn).add(standTag, uuid);
+//				 UUID uuid = playerIn.getUniqueID();
+//				 StandUserWorldSavedData.getGlobal(worldIn).add(standTag, uuid);
 			if(!type.equals(DEFAULT_STAND_ID)) {
 				if(!worldIn.isRemote) {
 				playerIn.dropItem(getItemData(new ItemStack(ItemLoader.disc),type,stage),true);
-				StandUserWorldSavedData data =  StandUserWorldSavedData.getGlobal(worldIn);
-				playerIn.sendMessage(new TextComponentString("stand-->"+data.getPlayerStand(playerIn)));
+//				StandUserWorldSavedData data =  StandUserWorldSavedData.getGlobal(worldIn);
+//				playerIn.sendMessage(new TextComponentString("stand-->"+data.getPlayerStand(playerIn)));
 				}
 			}
 				playerIn.playSound(SoundEvents.BLOCK_COMPARATOR_CLICK, 1f, 1f);

@@ -567,7 +567,7 @@ public  class TileEntityHuajiBlender extends TileEntity implements IInventory, I
   @Nullable
   @Override
   public ITextComponent getDisplayName() {
-		return this.hasCustomName() ? new TextComponentString(this.getName()) : new TextComponentTranslation(this.getName());
+		return new TextComponentTranslation(this.getName());
 	}
 
 	// Fields are used to send non-inventory information from the server to interested clients

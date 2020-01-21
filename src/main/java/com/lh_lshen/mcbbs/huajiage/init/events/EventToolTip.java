@@ -22,7 +22,7 @@ public class EventToolTip {
 	private static int tick = 0;
 	private static int curColor = 0;
 	
-	private static TextFormatting[] colors = {TextFormatting.RED,TextFormatting.GOLD,TextFormatting.YELLOW,TextFormatting.GREEN,TextFormatting.BLUE,TextFormatting.DARK_PURPLE };
+	private static TextFormatting[] colors = {TextFormatting.RED,TextFormatting.GOLD,TextFormatting.YELLOW,TextFormatting.GREEN,TextFormatting.BLUE,TextFormatting.AQUA };
 
 	@SubscribeEvent
 	public static void onSingularityTooltip(ItemTooltipEvent event) {
