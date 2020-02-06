@@ -96,7 +96,7 @@ public class CapabilityExposedData {
 	         private IStorage<IExposedData> storage = CapabilityLoader.EXPOSED_DATA.getStorage();
 			@Override
 			public boolean hasCapability(Capability<?> capability, EnumFacing facing) {
-				 return capability.equals(CapabilityLoader.EXPOSED_DATA);
+				 return capability == CapabilityLoader.EXPOSED_DATA;
 			}
 	
 			@Override
