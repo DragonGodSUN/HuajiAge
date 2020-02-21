@@ -53,6 +53,7 @@ potion.huajiage.stand=§b§lStand Power
 key.category.huajiage=滑稽纪元
 key.huajiage.switch=转换模式
 key.huajiage.stand_up=放出或收回替身
+key.huajiage.stand_skill=使用替身技能
 
 stand.huajiage.name=替身：
 stand.huajiage.stage=阶段：
@@ -135,6 +136,13 @@ message.huajiage.tarot.stand.fail_load=§e您可能已经拥有了一个替身�
 message.huajiage.stand_skill.cost_lack=§e抱歉，您的精神力还不足以引发替身技能
 message.huajiage.singularity=§e究极的特异点，你能到达新世界吗？
 message.huajiage.stand.lost=§b如果你发现你的替身在你穿越维度的时候跑路了，不要担心，只要退出再登录，让你的替身去吃个饭，你的替身就回来了(Capability机制的锅，作者也是无能为力)
+
+message.huajiage.exglutenbur.crispy=§6香香的口味
+message.huajiage.exglutenbur.spicy=§4辣辣的感觉
+message.huajiage.exglutenbur.lime=§l让你吃到真正的石灰
+message.huajiage.exglutenbur.hit=§e§l可带劲啦！！！
+
+message.huajiage.orga.shoot.start=§4啊——！！！[砰！砰！砰！]
 
 
 gui.huajiage.poly.cook=§l进程

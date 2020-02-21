@@ -11,7 +11,7 @@ public class EventClientLoader {
 	public EventClientLoader() {
 		MinecraftForge.EVENT_BUS.register(EventToolTip.class);
 		MinecraftForge.EVENT_BUS.register(EventKeyInput.class);
-		 MinecraftForge.EVENT_BUS.register(EventStandOverlatRender.class);
+		MinecraftForge.EVENT_BUS.register(EventStandOverlatRender.class);
 	}
 
 }

@@ -155,17 +155,22 @@ public class EventOrga {
 					}    		
 					if(player.getHealth()<2) 
 						{		
-							Vec3d targetPosition = player.getPositionVector();  	 
+							Vec3d targetPosition = player.getPositionVector(); 
+							boolean potionActive = ((EntityLivingBase)attacker).isPotionActive(PotionLoader.potionOrgaTarget);
 							if(!((EntityPlayer)player).inventory.hasItemStack(new ItemStack(ItemLoader.orgaRequiem))) 
 				            	{  
 									HuajiSoundPlayer.playToNearbyClient(player, SoundLoader.ORGA_SHOT, 1f);
-									HuajiAgeNetWorkHandler.sendToNearby(player.world, player, new MessageParticleGenerator(targetPosition, EnumParticleTypes.SPELL_INSTANT, 150, 2, 1));
+								if(!potionActive)	
+									{
+										HuajiAgeNetWorkHandler.sendToNearby(player.world, player, new MessageParticleGenerator(targetPosition, EnumParticleTypes.SPELL_INSTANT, 150, 2, 1));
+										player.sendMessage(new TextComponentTranslation("message.huajiage.orga.shoot.start"));
+									}
 				            	}else 
 				            	{
 									HuajiAgeNetWorkHandler.sendToNearby(player.world, player, new MessageParticleGenerator(targetPosition, EnumParticleTypes.FIREWORKS_SPARK, 200, 2, 1));
 				            	}
 
-							if(!((EntityLivingBase)attacker).isPotionActive(PotionLoader.potionOrgaTarget)) 
+							if(!potionActive) 
 								{
 									((EntityLivingBase)attacker).addPotionEffect(new PotionEffect(PotionLoader.potionOrgaTarget,100));  
 								}

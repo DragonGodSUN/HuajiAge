@@ -62,8 +62,7 @@ public class ItemOrgaHair extends ItemOrgaArmorBase {
 	@Nonnull
 	@Override
 	public final String getArmorTexture(ItemStack stack, Entity entity, EntityEquipmentSlot slot, String type) {
-        Entity player = entity;
-        World world = entity.world;
+
 			return HuajiAge.MODID+":textures/models/armor/orga.png";
 	}
 	
