@@ -1,8 +1,10 @@
 package com.lh_lshen.mcbbs.huajiage.client;
 
+import com.lh_lshen.mcbbs.huajiage.HuajiAge;
 import com.lh_lshen.mcbbs.huajiage.common.CommonProxy;
 import com.lh_lshen.mcbbs.huajiage.init.EventClientLoader;
 
+import net.minecraftforge.client.model.obj.OBJLoader;
 import net.minecraftforge.fml.common.event.FMLInitializationEvent;
 import net.minecraftforge.fml.common.event.FMLPostInitializationEvent;
 import net.minecraftforge.fml.common.event.FMLPreInitializationEvent;
@@ -15,7 +17,7 @@ public class ClientProxy extends CommonProxy {
 	        super.preInit(event);
 	        new ItemRenderLoader();
 	        new EntityRenderLoader();
-	        
+	        OBJLoader.INSTANCE.addDomain(HuajiAge.MODID);
 	        
 
 	       

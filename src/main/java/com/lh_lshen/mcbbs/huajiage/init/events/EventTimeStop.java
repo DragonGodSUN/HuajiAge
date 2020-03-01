@@ -11,8 +11,8 @@ import com.lh_lshen.mcbbs.huajiage.init.playsound.SoundLoader;
 import com.lh_lshen.mcbbs.huajiage.network.messages.MessageParticleGenerator;
 import com.lh_lshen.mcbbs.huajiage.stand.EnumStandtype;
 import com.lh_lshen.mcbbs.huajiage.stand.StandUtil;
+import com.lh_lshen.mcbbs.huajiage.stand.helper.skill.TimeStopHelper;
 import com.lh_lshen.mcbbs.huajiage.stand.messages.MessageDioHitClient;
-import com.lh_lshen.mcbbs.huajiage.stand.skills.TimeStopHelper;
 import com.lh_lshen.mcbbs.huajiage.util.NBTHelper;
 import com.lh_lshen.mcbbs.huajiage.util.ServerUtil;
 

@@ -37,8 +37,6 @@ public class StandClientUtil {
 		{
 		case THE_WORLD :
 		{
-//			StandMovingSound sound_hit = new StandMovingSound(user, SoundLoader.STAND_THE_WORLD_HIT_1, SoundCategory.NEUTRAL);
-//			StandMovingSound back_hits = new StandMovingSound(user, SoundEvents.ENTITY_PLAYER_ATTACK_SWEEP, SoundCategory.NEUTRAL);
 			if(random.nextDouble()>0.5) 
 				{
 				mc.getSoundHandler().playSound(HuajiSoundPlayer.getMovingSound(user,  SoundLoader.STAND_THE_WORLD_HIT_1, SoundCategory.NEUTRAL, 1f));
@@ -49,25 +47,10 @@ public class StandClientUtil {
 				back_hits_double.setVolume(0.7f);
 				back_hits_double.setLoop();
 				mc.getSoundHandler().playSound(back_hits_double);
-//			if(!player.isPotionActive(PotionLoader.potionStand))
-//				{
-//		if(sound_hit.getSound()!=null) {
-//				sound_hit.setVolume(1f);
-//				Minecraft.getMinecraft().getSoundHandler().playSound(sound_hit);
-
-//				back_hits.setVolume(0.5f);
-//				back_hits.setBackSound(0.5f);
-//				back_hits.setLoop();
-//				Minecraft.getMinecraft().getSoundHandler().playSound(back_hits);
-				
-//			}
-//				}
 				break;
 			}
 		case STAR_PLATINUM :
 		{
-//			StandMovingSound sound_hit = new StandMovingSound(user, SoundLoader.STAND_STAR_PLATINUM_1, SoundCategory.NEUTRAL);
-//			StandMovingSound back_hits = new StandMovingSound(user, SoundEvents.BLOCK_STONE_HIT, SoundCategory.NEUTRAL);
 			if(random.nextDouble()<0.25) 
 				{
 				mc.getSoundHandler().playSound(HuajiSoundPlayer.getMovingSound(user,  SoundLoader.STAND_STAR_PLATINUM_1, SoundCategory.NEUTRAL, 1f));
@@ -85,27 +68,24 @@ public class StandClientUtil {
 				back.setVolume(0.7f);
 				back.setLoop();
 				mc.getSoundHandler().playSound(back);
-//			if(!player.isPotionActive(PotionLoader.potionStand))
-//				{
-//		if(sound_hit.getSound()!=null) {
-				
-//				back_hits.setVolume(0.6f);
-//				back_hits.setBackSound(0.6f);
-//				back_hits.setLoop();
-//				Minecraft.getMinecraft().getSoundHandler().playSound(back_hits);
-				
-//		}
-//				}
 				break;
 			}
 				
 		default:
-//			System.out.println();
 				break;
+				
 			}
 		
 		}
-
+	public static ModelStandBase getModel(String name) {
+		switch(name) {
+		case("the_world"):
+		return new ModelTheWorld();
+		case("star_platinum"):
+		return new ModelStarPlatinum();
+		}
+		return new ModelTheWorld();
+	}
 	
     public static void standRender(EntityLivingBase entity) {
 		EnumStandtype type = StandUtil.getType(entity);
@@ -114,7 +94,7 @@ public class StandClientUtil {
 		switch(type) {
 		case THE_WORLD:
 		case STAR_PLATINUM:
-			ModelStandBase model = (ModelStandBase) type.newModel();
+			ModelStandBase model = getModel(type.getName());
 			Minecraft.getMinecraft().getTextureManager().bindTexture(STAND_TEX);
 			OpenGlHelper.setLightmapTextureCoords(OpenGlHelper.lightmapTexUnit, 240f, 240f);
 			model.setRotationAngles(0, 0, entity.ticksExisted, 0, 0, 1, entity ,0.5f,type.getSpeed());
@@ -124,16 +104,6 @@ public class StandClientUtil {
 				model.doHandRender(0, -1f, -0.75f, 1f,0.6f);
 			}
 			break;
-//			ModelStarPlatinum STAR_PLATINUM = (ModelStarPlatinum) type.newModel();
-//			Minecraft.getMinecraft().getTextureManager().bindTexture(STAND_TEX);
-//			OpenGlHelper.setLightmapTextureCoords(OpenGlHelper.lightmapTexUnit, 240f, 240f);
-//			STAR_PLATINUM.setRotationAngles(0, 0, entity.ticksExisted, 0, 0, 1, entity ,0.5f,type.getSpeed());
-//			if(entity.getActivePotionEffect(PotionLoader.potionStand).getDuration()<40) {
-//				STAR_PLATINUM.doHandRender(0, -1f, -0.75f, 1f,0.3f);
-//			}else {
-//				STAR_PLATINUM.doHandRender(0, -1f, -0.75f, 1f,0.6f);
-//			}
-//			break;
 		default:
 			break;
 			}

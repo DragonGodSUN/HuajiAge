@@ -4,6 +4,7 @@ import javax.annotation.Nullable;
 
 import com.google.common.collect.HashMultimap;
 import com.google.common.collect.Multimap;
+import com.lh_lshen.mcbbs.huajiage.common.CommonProxy;
 import com.lh_lshen.mcbbs.huajiage.common.HuajiConstant;
 import com.lh_lshen.mcbbs.huajiage.crativetab.CreativeTabLoader;
 import com.lh_lshen.mcbbs.huajiage.init.playsound.HuajiSoundPlayer;
@@ -12,7 +13,6 @@ import com.lh_lshen.mcbbs.huajiage.network.HuajiAgeNetWorkHandler;
 import com.lh_lshen.mcbbs.huajiage.network.messages.MessageExglutenburMode;
 import com.lh_lshen.mcbbs.huajiage.util.NBTHelper;
 
-import net.minecraft.block.Block;
 import net.minecraft.client.Minecraft;
 import net.minecraft.client.entity.EntityPlayerSP;
 import net.minecraft.entity.Entity;
@@ -36,7 +36,6 @@ import net.minecraft.util.EnumActionResult;
 import net.minecraft.util.EnumHand;
 import net.minecraft.util.ResourceLocation;
 import net.minecraft.util.SoundCategory;
-import net.minecraft.util.text.TextComponentTranslation;
 import net.minecraft.world.World;
 import net.minecraftforge.client.event.MouseEvent;
 import net.minecraftforge.common.MinecraftForge;
@@ -48,6 +47,7 @@ import net.minecraftforge.fml.relauncher.SideOnly;
 
 public class ItemExglutenbur extends ItemSword {
 	 public static final Item.ToolMaterial Gluten = EnumHelper.addToolMaterial("gluten", 3,5400, 25.0F,17.0F, 30);
+	 private float attackDamage;
 	 int vi =0;
 	 protected float attackSpeed = -2.4F;
 	 protected int damage = 7;
@@ -105,13 +105,12 @@ public class ItemExglutenbur extends ItemSword {
 		        target.playSound(SoundEvents.BLOCK_FIRE_EXTINGUISH, 1f, 1f);
 		        target.addPotionEffect(new PotionEffect(MobEffects.WEAKNESS,60,2));
 		        target.addPotionEffect(new PotionEffect(MobEffects.SLOWNESS,60,9));
-		        target.world.playEvent(2001, target.getPosition(), Block.getStateId(Blocks.OBSIDIAN.getDefaultState()));
+		        target.world.playEvent(2001, target.getPosition(), Blocks.OBSIDIAN.getStateId(Blocks.OBSIDIAN.getStateFromMeta(0)));
 		  double r=Math.random();
 		  if(r<0.3d) {
 			  stack.damageItem(50, attacker);
 			  target.attackEntityFrom(new DamageSource(HuajiConstant.KDJL), 50f);
 			  target.playSound(SoundLoader.EXGLUTENBUR_HIT, 1f, 1f);
-			  attacker.sendMessage(new TextComponentTranslation("message.huajiage.exglutenbur.hit"));
 		  }
 		        
 		     break;
@@ -137,19 +136,14 @@ public class ItemExglutenbur extends ItemSword {
 	         EntityPlayerSP player = mc.player;
 	         boolean flag=evt.getDwheel() < 0;
 	         if (player.isSneaking()&&mc.inGameHasFocus && evt.getDwheel() != 0 && player.getHeldItemMainhand().getItem() == ItemLoader.exglutenbur) {
+	             HuajiAgeNetWorkHandler.sendToServer(new MessageExglutenburMode(flag));
 				 switch(flavor(player.getHeldItemMainhand())) {
 				 case 0: {
 					 if(flag) {
-					 player.sendMessage(new TextComponentTranslation("message.huajiage.exglutenbur.crispy"));
-//					 player.connection.sendPacket(new SPacketSoundEffect(SoundEvents.ENTITY_EXPERIENCE_ORB_PICKUP, SoundCategory.PLAYERS, player.posX, player.posY, player.posZ, 1f, 1f));
-					 HuajiSoundPlayer.playMovingSoundClient(player, SoundEvents.ENTITY_EXPERIENCE_ORB_PICKUP, SoundCategory.PLAYERS, 1f);
 					 HuajiSoundPlayer.playMovingSoundClient(player, SoundLoader.EXGLUTENBUR_1, SoundCategory.PLAYERS, 1f);
 //			    	 player.playSound(SoundLoader.EXGLUTENBUR_1, 1f, 1f);
 					 }
 					 else {
-					 player.sendMessage(new TextComponentTranslation("message.huajiage.exglutenbur.lime"));
-//					 player.connection.sendPacket(new SPacketSoundEffect(SoundEvents.ENTITY_EXPERIENCE_ORB_PICKUP, SoundCategory.PLAYERS, player.posX, player.posY, player.posZ, 1f, 1f));
-					 HuajiSoundPlayer.playMovingSoundClient(player, SoundEvents.ENTITY_PLAYER_HURT_ON_FIRE, SoundCategory.PLAYERS, 1f);
 					 HuajiSoundPlayer.playMovingSoundClient(player, SoundLoader.EXGLUTENBUR_3, SoundCategory.PLAYERS, 1f);
 //					 player.playSound(SoundLoader.EXGLUTENBUR_3, 1f, 1f);	 
 					 }
@@ -157,43 +151,30 @@ public class ItemExglutenbur extends ItemSword {
 			              }
 				 case 1:{
 					 if(flag) {
-						 player.sendMessage(new TextComponentTranslation("message.huajiage.exglutenbur.spicy"));
-//						 player.connection.sendPacket(new SPacketSoundEffect(SoundEvents.ENTITY_EXPERIENCE_ORB_PICKUP, SoundCategory.PLAYERS, player.posX, player.posY, player.posZ, 1f, 1f));
-						 HuajiSoundPlayer.playMovingSoundClient(player, SoundEvents.ENTITY_EXPERIENCE_ORB_PICKUP, SoundCategory.PLAYERS, 1f);
 						 HuajiSoundPlayer.playMovingSoundClient(player, SoundLoader.EXGLUTENBUR_2, SoundCategory.PLAYERS, 1f);
- //				    	 player.playSound(SoundLoader.EXGLUTENBUR_2, 1f, 1f);
+//				    	 player.playSound(SoundLoader.EXGLUTENBUR_2, 1f, 1f);
 						 }
 			    	 break;
 			             } 
 				 case 2:{
 					 if(flag) {
-						 player.sendMessage(new TextComponentTranslation("message.huajiage.exglutenbur.lime"));
-						 HuajiSoundPlayer.playMovingSoundClient(player, SoundEvents.ENTITY_PLAYER_HURT_ON_FIRE, SoundCategory.PLAYERS, 1f);
 						 HuajiSoundPlayer.playMovingSoundClient(player, SoundLoader.EXGLUTENBUR_3, SoundCategory.PLAYERS, 1f);
-//						 HuajiSoundPlayer.playMovingSoundClient(player, SoundLoader.EXGLUTENBUR_3, SoundCategory.PLAYERS, 1f);
 //				    	 player.playSound(SoundLoader.EXGLUTENBUR_3, 1f, 1f);
 				    	 }
 						 else {
-						 player.sendMessage(new TextComponentTranslation("message.huajiage.exglutenbur.crispy"));
-						 HuajiSoundPlayer.playMovingSoundClient(player, SoundEvents.ENTITY_EXPERIENCE_ORB_PICKUP, SoundCategory.PLAYERS, 1f);
 						 HuajiSoundPlayer.playMovingSoundClient(player, SoundLoader.EXGLUTENBUR_1, SoundCategory.PLAYERS, 1f);
-//						 HuajiSoundPlayer.playMovingSoundClient(player, SoundLoader.EXGLUTENBUR_1, SoundCategory.PLAYERS, 1f);
 //						 player.playSound(SoundLoader.EXGLUTENBUR_1, 1f, 1f);	 
 						 }
 			    	 break;
 			             }
 				 case 3:{
 					 if(!flag) {
-						 player.sendMessage(new TextComponentTranslation("message.huajiage.exglutenbur.spicy"));
-						 HuajiSoundPlayer.playMovingSoundClient(player, SoundEvents.ENTITY_EXPERIENCE_ORB_PICKUP, SoundCategory.PLAYERS, 1f);
 						 HuajiSoundPlayer.playMovingSoundClient(player, SoundLoader.EXGLUTENBUR_2, SoundCategory.PLAYERS, 1f);
-//						 HuajiSoundPlayer.playMovingSoundClient(player, SoundLoader.EXGLUTENBUR_2, SoundCategory.PLAYERS, 1f);
 //						 player.playSound(SoundLoader.EXGLUTENBUR_2, 1f, 1f);	 
 						 }
 			    	 break;
 			             }
 			       }
-				 HuajiAgeNetWorkHandler.sendToServer(new MessageExglutenburMode(flag));
 	             evt.setCanceled(true);
 	         }
 		}
@@ -301,32 +282,24 @@ public class ItemExglutenbur extends ItemSword {
 					 break;
 				     } 
 		     }
-			    }else 
-			    {
-			    	
-				 switch(flavor(stack)) {
-				 case 0: {
-			    	 playerIn.playSound(SoundLoader.EXGLUTENBUR_1, 1f, 1f);
-					 playerIn.sendMessage(new TextComponentTranslation("message.huajiage.exglutenbur.crispy"));
-					 playerIn.playSound(SoundEvents.ENTITY_EXPERIENCE_ORB_PICKUP, 1f, 1f);
-			    	 break;
-			              }
-				 case 1:{
-			    	 playerIn.playSound(SoundLoader.EXGLUTENBUR_2, 1f, 1f);
-					 playerIn.sendMessage(new TextComponentTranslation("message.huajiage.exglutenbur.spicy"));
-					 playerIn.playSound(SoundEvents.ENTITY_EXPERIENCE_ORB_PICKUP, 1f, 1f);
-			    	 break;
-			             } 
-				 case 2:{
-	 		    	 playerIn.playSound(SoundLoader.EXGLUTENBUR_3, 1f, 1f);
-					 playerIn.sendMessage(new TextComponentTranslation("message.huajiage.exglutenbur.lime"));
-					 playerIn.playSound(SoundEvents.ENTITY_PLAYER_HURT_ON_FIRE, 1f, 1f);
-			    	 break;
-			             }
-				       }
+			    }
+			 
+			 switch(flavor(stack)) {
+			 case 0: {
+		    	 playerIn.playSound(SoundLoader.EXGLUTENBUR_1, 1f, 1f);
+		    	 break;
+		              }
+			 case 1:{
+		    	 playerIn.playSound(SoundLoader.EXGLUTENBUR_2, 1f, 1f);
+		    	 break;
+		             } 
+			 case 2:{
+		    	 playerIn.playSound(SoundLoader.EXGLUTENBUR_3, 1f, 1f);
+		    	 break;
+		             }
+			       }
 			   }
-			 }
-			    return new ActionResult<ItemStack>(EnumActionResult.SUCCESS, stack);
+			    return new ActionResult(EnumActionResult.SUCCESS, stack);
 			}
 
 //	public void ModeChange(ItemStack stack,EntityPlayer playerIn) {

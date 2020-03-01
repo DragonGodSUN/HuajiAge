@@ -1,4 +1,4 @@
-package com.lh_lshen.mcbbs.huajiage.stand.skills;
+package com.lh_lshen.mcbbs.huajiage.stand.helper.skill;
 
 import java.util.List;
 
@@ -61,8 +61,6 @@ public class TimeStopHelper {
 		}
 	
 	public static void doTimeStopClient(WorldClient world, Vec3d pos ,EnumStandtype stand) {
-//		StandHandler standHandler = entity.getCapability(CapabilityStandHandler.STAND_TYPE, null);
-//		EnumStandtype stand =EnumStandtype.getType(standHandler.getStand());
 		double rand=Math.random()*100;
         if(!stand.getName().equals(EnumStandtype.STAR_PLATINUM.getName())) {
 	        if(rand<25) { 	

@@ -157,7 +157,7 @@ if(isOpen(itemStack)) {
 		}
 		if (Keyboard.isKeyDown(Keyboard.KEY_LSHIFT) || Keyboard.isKeyDown(Keyboard.KEY_RSHIFT))
 		{	
-		tooltip.add(getTagCompoundSafe(stack).hasKey("active")?(""+TextFormatting.BOLD+I18n.format("item.blance_helmet:changeMode",KeyLoader.modeSwitch.getKeyModifier()+"+"+Keyboard.getKeyName(KeyLoader.modeSwitch.getKeyCode()>=0?KeyLoader.modeSwitch.getKeyCode():KeyLoader.modeSwitch.getKeyCodeDefault()))):(I18n.format("item.blance_helmet:unicode_tooltips.2.desc")));}
+		tooltip.add(getTagCompoundSafe(stack).hasKey("active")?(""+TextFormatting.BOLD+I18n.format("item.blance_helmet:changeMode",KeyLoader.modeSwitch.getKeyModifier()+"+"+Keyboard.getKeyName(KeyLoader.modeSwitch.getKeyCode()))):(I18n.format("item.blance_helmet:unicode_tooltips.2.desc")));}
 		else {
 		tooltip.add( I18n.format("item.blance_helmet:unicode_tooltips.1.desc"));}
 		tooltip.add("" + TextFormatting.YELLOW +I18n.format("item.blance_helmet:unicode_tooltips.3.desc"));

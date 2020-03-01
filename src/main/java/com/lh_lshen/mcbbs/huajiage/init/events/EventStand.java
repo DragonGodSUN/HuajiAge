@@ -111,7 +111,10 @@ public class EventStand {
 			  return;
 		  }
 		  if(stand_owner.isPotionActive(PotionLoader.potionStand)) {
-			  doStandPower(stand_owner);
+			  EnumStandtype type = StandUtil.getType(stand_owner);
+			  if(type != null) {
+			  type.getStandPower().doStandPower(stand_owner);
+			  }
 		  }
  	  }
 	 @SubscribeEvent
@@ -199,137 +202,24 @@ public class EventStand {
 //		  
 //	  }
 //	  
-//	  ================================Stand Settings==========================================================
+//	  ================================Tools==========================================================
 	  
-	  
-	  
-	  @SideOnly(Side.CLIENT)
-	private static void setLightmapDisabled(boolean disabled)
-	{
-		GlStateManager.setActiveTexture(OpenGlHelper.lightmapTexUnit);
-
-		if (disabled)
+	  	@SideOnly(Side.CLIENT)
+		private static void setLightmapDisabled(boolean disabled)
 		{
-			GlStateManager.disableTexture2D();
-		}
-		else
-		{
-			GlStateManager.enableTexture2D();
+			GlStateManager.setActiveTexture(OpenGlHelper.lightmapTexUnit);
+	
+			if (disabled)
+			{
+				GlStateManager.disableTexture2D();
+			}
+			else
+			{
+				GlStateManager.enableTexture2D();
+			}
+	
+			GlStateManager.setActiveTexture(OpenGlHelper.defaultTexUnit);
 		}
 
-		GlStateManager.setActiveTexture(OpenGlHelper.defaultTexUnit);
-	}
-
-	  
-	  
-	private static void doStandPower(EntityLivingBase user) {
-		EnumStandtype type = StandUtil.getType(user);
-		if(type == null) {
-			return;
-		}
-		List<Entity> entityCllection = user.getEntityWorld().getEntitiesWithinAABB(Entity.class, user.getEntityBoundingBox().grow(type.getDistance()));
-		if(entityCllection.size()<=0) {
-			return;
-		}
-		int stage = StandUtil.getStandStage(user);
-		switch(type) {
-		case STAR_PLATINUM:
-		case THE_WORLD:{
-					for(Entity i:entityCllection) {
-
-							Vec3d back = MotionHelper.getVectorEntityEye(user, i);
-							boolean flag_player = false;
-							boolean flag_degree = MotionHelper.getDegreeXZ(user.getLookVec(),MotionHelper.getVectorEntityEye(user, i))>(type.getName().equals(EnumStandtype.STAR_PLATINUM.getName())?120:90);
-							
-							if(flag_degree) {
-								continue;
-							}
-							
-							if(user instanceof EntityPlayer) {
-								flag_player=true;
-							}
-							
-							
-							  if(i instanceof EntityLivingBase) {
-								  EntityLivingBase target=(EntityLivingBase)i;
-								  
-								  if(target instanceof EntityDragon) {
-									  EntityDragon dragon =(EntityDragon)target;
-									  if(user instanceof EntityPlayer) {
-									  dragon.attackEntityFromPart(dragon.dragonPartBody, DamageSource.causePlayerDamage((EntityPlayer) user), type.getDamage()*type.getSpeed());
-									  }else {
-									  dragon.attackEntityFromPart(dragon.dragonPartBody, DamageSource.ANVIL, type.getDamage()*type.getSpeed());  
-									  }
-								  }
-								  
-								  if(target!=user) {
-									  float random = new Random().nextFloat()*100;
-									  if(random<20&&target.hurtTime <= 0&&stage>0) {
-										  HuajiSoundPlayer.playToNearbyClient(target, SoundEvents.ENTITY_GENERIC_EXPLODE, 0.25f);
-										  if(type.getName().equals(EnumStandtype.THE_WORLD.getName())) {
-											  HuajiSoundPlayer.playToNearbyClient(target, SoundLoader.DIO_HIT, 0.75f);
-											  if(NBTHelper.getEntityInteger(target, HuajiConstant.DIO_HIT)<120) 
-											  {
-											  NBTHelper.setEntityInteger(target, HuajiConstant.DIO_HIT, 120);
-											  }
-										  }else {
-											  HuajiSoundPlayer.playToNearbyClient(target, SoundLoader.STAND_STAR_PLATINUM_5, 0.3f);
-											 target.attackEntityFrom(flag_player? DamageSource.causePlayerDamage((EntityPlayer) user):DamageSource.ANVIL,
-													 type.getDamage()*10);
-										  }
-									  }
-									  
-									  	if(NBTHelper.getEntityInteger(target, HuajiConstant.TIME_STOP)>0&&NBTHelper.getEntityInteger(target, HuajiConstant.DIO_HIT)<60) {
-											  NBTHelper.setEntityInteger(target, HuajiConstant.DIO_HIT, 60);
-										  }else {
-											  float health = target.getHealth();
-											  if(flag_player) {
-												  EntityPlayer player =(EntityPlayer) user;
-												  target.attackEntityFrom(DamageSource.causePlayerDamage(player), type.getDamage());
-										  		}else {
-										  		  target.attackEntityFrom(DamageSource.ANVIL, type.getDamage());
-										  		}
-										  }
-									  	
-										  
-									  if(user.ticksExisted%2==0) {
-									  user.world.playEvent(2001, target.getPosition().add(0, target.getPositionEyes(target.ticksExisted).y-target.getPosition().getY(), 0), Blocks.OBSIDIAN.getStateId(Blocks.OBSIDIAN.getStateFromMeta(0)));
-									  }
-									  
-									  target.motionX=back.x;
-									  target.motionY=back.y;
-									  target.motionZ=back.z;
-													  }
-								  
-						  	}else if(i instanceof EntityItem || i instanceof EntityXPOrb ){
-						  		
-						  		continue;
-						  		
-						  	}else if(MotionHelper.getAABBSize(i.getEntityBoundingBox())>2){
-//						  	  if(eater.getEntityData().getInteger(HuajiConstant.THE_WORLD)<=0) 
-//						  	  {
-//						  		  i.motionX+=(type.getDamage()/500)*back.x;
-//								  i.motionY+=(type.getDamage()/150)*back.y;
-//								  i.motionZ+=(type.getDamage()/500)*back.z;
-//					  	       }
-						  		user.addPotionEffect(new PotionEffect(MobEffects.RESISTANCE,50,5));
-						  		continue;
-						  	}else {
-								  	  i.motionX=(type.getDamage()/10)*back.x;
-									  i.motionY=(type.getDamage()/10)*back.y;
-									  i.motionZ=(type.getDamage()/10)*back.z;
-						  	}	
-						}
-						break;
-		}
-		default:
-			break;
-				}
-		}
-	
-	
-	
-		
-		
 	
 	}

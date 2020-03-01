@@ -2,7 +2,7 @@ package com.lh_lshen.mcbbs.huajiage.stand.messages;
 
 import com.lh_lshen.mcbbs.huajiage.stand.EnumStandtype;
 import com.lh_lshen.mcbbs.huajiage.stand.StandUtil;
-import com.lh_lshen.mcbbs.huajiage.stand.skills.TimeStopHelper;
+import com.lh_lshen.mcbbs.huajiage.stand.helper.skill.TimeStopHelper;
 
 import io.netty.buffer.ByteBuf;
 import net.minecraft.client.Minecraft;

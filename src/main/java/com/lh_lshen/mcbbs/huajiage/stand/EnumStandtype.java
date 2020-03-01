@@ -5,6 +5,9 @@ import com.lh_lshen.mcbbs.huajiage.client.model.stand.ModelStandBase;
 import com.lh_lshen.mcbbs.huajiage.client.model.stand.ModelStarPlatinum;
 import com.lh_lshen.mcbbs.huajiage.client.model.stand.ModelTheWorld;
 import com.lh_lshen.mcbbs.huajiage.common.HuajiConstant;
+import com.lh_lshen.mcbbs.huajiage.stand.helper.instance.IStandPower;
+import com.lh_lshen.mcbbs.huajiage.stand.helper.instance.StandStarPlatinum;
+import com.lh_lshen.mcbbs.huajiage.stand.helper.instance.StandTheWorld;
 
 import net.minecraft.client.resources.I18n;
 import net.minecraft.util.ResourceLocation;
@@ -33,14 +36,14 @@ public enum EnumStandtype {
 	private int id;
 	
 	
-	public ModelStandBase newModel() {
+	public IStandPower getStandPower() {
 		switch(name) {
 		case("the_world"):
-		return new ModelTheWorld();
+		return new StandTheWorld();
 		case("star_platinum"):
-		return new ModelStarPlatinum();
+			return new StandStarPlatinum();
 		}
-		return new ModelTheWorld();
+		return null;
 	}
 	
 	public float getSpeed() {

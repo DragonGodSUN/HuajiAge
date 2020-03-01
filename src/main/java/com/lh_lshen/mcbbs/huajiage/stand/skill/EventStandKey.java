@@ -19,10 +19,10 @@ import com.lh_lshen.mcbbs.huajiage.stand.EnumStandtype;
 import com.lh_lshen.mcbbs.huajiage.stand.StandClientUtil;
 import com.lh_lshen.mcbbs.huajiage.stand.StandUtil;
 import com.lh_lshen.mcbbs.huajiage.stand.entity.EntityStandBase;
+import com.lh_lshen.mcbbs.huajiage.stand.helper.skill.TimeStopHelper;
 import com.lh_lshen.mcbbs.huajiage.stand.messages.MessageDoTimeStopServer;
 import com.lh_lshen.mcbbs.huajiage.stand.messages.MessagePerfromSkill;
 import com.lh_lshen.mcbbs.huajiage.stand.messages.MessageStandUp;
-import com.lh_lshen.mcbbs.huajiage.stand.skills.TimeStopHelper;
 import com.lh_lshen.mcbbs.huajiage.util.ServerUtil;
 
 import net.minecraft.client.Minecraft;
@@ -114,32 +114,10 @@ public class EventStandKey {
 			StandChargeHandler charge = StandUtil.getChargeHandler(player);
 			if(null != stand) {
 				int cost = stand.getCost();
-				switch(stand) {
-				case THE_WORLD:{
-					boolean flag = charge.canBeCost(cost);
-					MessagePerfromSkill msg = new MessagePerfromSkill(cost,0,120,HuajiConstant.THE_WORLD_TIME,StandSkillType.TIME_STOP);
-					StandNetWorkHandler.sendToServer(msg);
-					if(flag){
-					StandNetWorkHandler.sendToServer(new MessageDoTimeStopServer(true));
-//					TimeStopHelper.doTimeStopClient(player);
-					player.sendMessage(new TextComponentTranslation("message.huajiage.the_world"));
-					}
-					break;
-				}
-				case STAR_PLATINUM:{
-					boolean flag = charge.canBeCost(cost);
-					MessagePerfromSkill msg = new MessagePerfromSkill(cost,0,50,5*20,StandSkillType.TIME_STOP);
-					StandNetWorkHandler.sendToServer(msg);
-					if(flag) {
-					StandNetWorkHandler.sendToServer(new MessageDoTimeStopServer(false));
-//					TimeStopHelper.doTimeStopClient(player);
-					player.sendMessage(new TextComponentTranslation("message.huajiage.the_world_star"));
-					}
-					break;
-				}
-				default:
-					break;
-					}
+				boolean flag = charge.canBeCost(cost);
+				
+				stand.getStandPower().doStandCapability(player, flag);
+
 				}
 			}
 		}

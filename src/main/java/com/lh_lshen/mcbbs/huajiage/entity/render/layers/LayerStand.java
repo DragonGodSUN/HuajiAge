@@ -13,6 +13,7 @@ import com.lh_lshen.mcbbs.huajiage.data.StandUserWorldSavedData;
 import com.lh_lshen.mcbbs.huajiage.item.ItemLoader;
 import com.lh_lshen.mcbbs.huajiage.potion.PotionLoader;
 import com.lh_lshen.mcbbs.huajiage.stand.EnumStandtype;
+import com.lh_lshen.mcbbs.huajiage.stand.StandClientUtil;
 import com.lh_lshen.mcbbs.huajiage.stand.StandUtil;
 import com.lh_lshen.mcbbs.huajiage.util.NBTHelper;
 
@@ -59,23 +60,9 @@ public class LayerStand implements  LayerRenderer<EntityLivingBase> {
 //				boolean potion = entitylivingbaseIn.isPotionActive(PotionLoader.potionStand);
 				
 				String type = stand != null?stand.getName():EnumStandtype.EMPTY;
-					
-//			    	if(stand!=null ) {
-////			    		if(type!=EnumStandtype.THE_WORLD.getName()) {
-//			    			switch(stand) {
-//			    			case THE_WORLD :
-//			    				model = MODEL_THE_WORLD;
-//			    				tex =TEXTRUE_THE_WORLD;
-//			    				break;
-//			    			case STAR_PLATINUM :
-//					    		model = MODEL_STAR_PLATINUM;
-//					    		tex = TEXTRUE_STAR_PLATINUM;
-//					    		break;
-//			    			}
-//
-//			    	}
+				ModelStandBase model =  stand != null?StandClientUtil.getModel(type) : null;	
 			    	
-			    	if(stand != null&&!type.equals(EnumStandtype.EMPTY)&& istrigger) 
+			    	if(model != null&&!type.equals(EnumStandtype.EMPTY)&& istrigger) 
 			    	{
 	 					GlStateManager.color(1.0F, 1.0F, 1.0F, 1.0F);
 	 		            GlStateManager.enableBlend();
@@ -90,13 +77,16 @@ public class LayerStand implements  LayerRenderer<EntityLivingBase> {
 	 					
 	 					GlStateManager.pushMatrix();
 	 		            GlStateManager.translate(0.0F, -0.2F, -0.75F);
-	 		           if(type.equals(EnumStandtype.THE_WORLD.getName())) {
- 		        	   MODEL_THE_WORLD.setRotationAngles(limbSwing, limbSwingAmount, ageInTicks, netHeadYaw, headPitch, scale, entitylivingbaseIn, 1 ,stand.getSpeed()*4/3);
-	 		           MODEL_THE_WORLD.render(entitylivingbaseIn, limbSwing, limbSwingAmount, ageInTicks, netHeadYaw, headPitch, scale);
-	 		           }else {
- 		        	   MODEL_STAR_PLATINUM.setRotationAngles(limbSwing, limbSwingAmount, ageInTicks, netHeadYaw, headPitch, scale, entitylivingbaseIn, 1 ,stand.getSpeed()*4/3);
- 		        	   MODEL_STAR_PLATINUM.render(entitylivingbaseIn, limbSwing, limbSwingAmount, ageInTicks, netHeadYaw, headPitch, scale);
-	 		           }
+	 		            
+	 		            model.setRotationAngles(limbSwing, limbSwingAmount, ageInTicks, netHeadYaw, headPitch, scale, entitylivingbaseIn, 1 ,stand.getSpeed()*4/3);
+	 		            model.render(entitylivingbaseIn, limbSwing, limbSwingAmount, ageInTicks, netHeadYaw, headPitch, scale);
+//	 		           if(type.equals(EnumStandtype.THE_WORLD.getName())) {
+// 		        	   MODEL_THE_WORLD.setRotationAngles(limbSwing, limbSwingAmount, ageInTicks, netHeadYaw, headPitch, scale, entitylivingbaseIn, 1 ,stand.getSpeed()*4/3);
+//	 		           MODEL_THE_WORLD.render(entitylivingbaseIn, limbSwing, limbSwingAmount, ageInTicks, netHeadYaw, headPitch, scale);
+//	 		           }else {
+// 		        	   MODEL_STAR_PLATINUM.setRotationAngles(limbSwing, limbSwingAmount, ageInTicks, netHeadYaw, headPitch, scale, entitylivingbaseIn, 1 ,stand.getSpeed()*4/3);
+// 		        	   MODEL_STAR_PLATINUM.render(entitylivingbaseIn, limbSwing, limbSwingAmount, ageInTicks, netHeadYaw, headPitch, scale);
+//	 		           }
 	 					GlStateManager.disableBlend();
 						GlStateManager.enableLighting();
 			            GlStateManager.popMatrix();

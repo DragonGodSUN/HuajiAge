@@ -31,7 +31,6 @@ import net.minecraftforge.common.capabilities.Capability;
 import net.minecraftforge.common.capabilities.Capability.IStorage;
 import net.minecraftforge.common.capabilities.ICapabilitySerializable;
 import net.minecraftforge.event.AttachCapabilitiesEvent;
-import net.minecraftforge.event.entity.EntityJoinWorldEvent;
 import net.minecraftforge.event.entity.EntityTravelToDimensionEvent;
 import net.minecraftforge.event.entity.player.PlayerEvent;
 import net.minecraftforge.fml.common.Mod;
@@ -177,22 +176,5 @@ public class EventPlayerCapability {
             
         }
     }
-    
-    
-    @SubscribeEvent
-    public void onEntityJoinWorld(EntityJoinWorldEvent event)
-    {
-        if (!event.getWorld().isRemote && event.getEntity() instanceof EntityPlayer)
-        {
-            EntityPlayerMP player = (EntityPlayerMP) event.getEntity();
-            if (player.hasCapability(CapabilityLoader.EXPOSED_DATA, null))
-            {
-            	 IExposedData data = player.getCapability(CapabilityLoader.EXPOSED_DATA, null);
-            	ServerUtil.sendPacketToNearbyPlayersStand(player, new SyncExposedStandDataMessage(data.getStand(), data.isTriggered(), player.getName()));
-        	}
-            
-        }
-        
-    }
-    
+
 }
