@@ -109,7 +109,7 @@ public class ItemExglutenbur extends ItemSword {
 		  double r=Math.random();
 		  if(r<0.3d) {
 			  stack.damageItem(50, attacker);
-			  target.attackEntityFrom(new DamageSource(HuajiConstant.KDJL), 50f);
+			  target.attackEntityFrom(new DamageSource(HuajiConstant.DamageSource.KDJL), 50f);
 			  target.playSound(SoundLoader.EXGLUTENBUR_HIT, 1f, 1f);
 		  }
 		        

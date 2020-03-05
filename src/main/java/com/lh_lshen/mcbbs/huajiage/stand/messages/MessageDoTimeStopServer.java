@@ -5,10 +5,10 @@ import java.util.UUID;
 import com.lh_lshen.mcbbs.huajiage.capability.CapabilityStandHandler;
 import com.lh_lshen.mcbbs.huajiage.item.ItemHeroBow;
 import com.lh_lshen.mcbbs.huajiage.item.ItemLoader;
+import com.lh_lshen.mcbbs.huajiage.stand.EnumStandSkillType;
 import com.lh_lshen.mcbbs.huajiage.stand.EnumStandtype;
 import com.lh_lshen.mcbbs.huajiage.stand.StandUtil;
 import com.lh_lshen.mcbbs.huajiage.stand.helper.skill.TimeStopHelper;
-import com.lh_lshen.mcbbs.huajiage.stand.skill.StandSkillType;
 import com.lh_lshen.mcbbs.huajiage.util.ServerUtil;
 
 import io.netty.buffer.ByteBuf;

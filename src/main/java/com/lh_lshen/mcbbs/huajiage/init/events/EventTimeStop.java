@@ -41,15 +41,15 @@ public class EventTimeStop {
      public static void onTimeStop(LivingUpdateEvent evt)
      {
 		 EntityLivingBase target =evt.getEntityLiving(); 
-		  if(NBTHelper.getEntityInteger(target,HuajiConstant.TIME_STOP)<=0&&NBTHelper.getEntityInteger(target,HuajiConstant.DIO_HIT)<=0&&NBTHelper.getEntityInteger(target,HuajiConstant.DIO_FLAG)<=0) 
+		  if(NBTHelper.getEntityInteger(target,HuajiConstant.Tags.TIME_STOP)<=0&&NBTHelper.getEntityInteger(target,HuajiConstant.Tags.DIO_HIT)<=0&&NBTHelper.getEntityInteger(target,HuajiConstant.Tags.DIO_FLAG)<=0) 
 		  {
 			  return;
 		  }
-    	if(NBTHelper.getEntityInteger(target,HuajiConstant.TIME_STOP)>0) {	
-    		target.getEntityData().setInteger(HuajiConstant.TIME_STOP,NBTHelper.getEntityInteger(target,HuajiConstant.TIME_STOP)-1);
+    	if(NBTHelper.getEntityInteger(target,HuajiConstant.Tags.TIME_STOP)>0) {	
+    		target.getEntityData().setInteger(HuajiConstant.Tags.TIME_STOP,NBTHelper.getEntityInteger(target,HuajiConstant.Tags.TIME_STOP)-1);
     	if(target instanceof EntityPlayer) {
-    		if(ConfigHuaji.Stands.allowTimeStopPlayer&&NBTHelper.getEntityInteger(target,HuajiConstant.THE_WORLD)<=0) {
-			int t=NBTHelper.getEntityInteger(target,HuajiConstant.TIME_STOP);
+    		if(ConfigHuaji.Stands.allowTimeStopPlayer&&NBTHelper.getEntityInteger(target,HuajiConstant.Tags.THE_WORLD)<=0) {
+			int t=NBTHelper.getEntityInteger(target,HuajiConstant.Tags.TIME_STOP);
     		double tx=target.getEntityData().getDouble("huajiage.time_stop.x");
     		double ty=target.getEntityData().getDouble("huajiage.time_stop.y");
     		double tz=target.getEntityData().getDouble("huajiage.time_stop.z");
@@ -67,21 +67,21 @@ public class EventTimeStop {
     		evt.setCanceled(true);
     		}
     	}
-    		if(NBTHelper.getEntityInteger(target,HuajiConstant.DIO_FLAG)>0) {	
-        		target.getEntityData().setInteger(HuajiConstant.DIO_FLAG,NBTHelper.getEntityInteger(target,HuajiConstant.DIO_FLAG)-1);
+    		if(NBTHelper.getEntityInteger(target,HuajiConstant.Tags.DIO_FLAG)>0) {	
+        		target.getEntityData().setInteger(HuajiConstant.Tags.DIO_FLAG,NBTHelper.getEntityInteger(target,HuajiConstant.Tags.DIO_FLAG)-1);
         		}
-    		if(NBTHelper.getEntityInteger(target,HuajiConstant.TIME_STOP)==0&&NBTHelper.getEntityInteger(target,HuajiConstant.DIO_HIT)>0) {	
-        		target.getEntityData().setInteger(HuajiConstant.DIO_HIT,NBTHelper.getEntityInteger(target,HuajiConstant.DIO_HIT)-1);
+    		if(NBTHelper.getEntityInteger(target,HuajiConstant.Tags.TIME_STOP)==0&&NBTHelper.getEntityInteger(target,HuajiConstant.Tags.DIO_HIT)>0) {	
+        		target.getEntityData().setInteger(HuajiConstant.Tags.DIO_HIT,NBTHelper.getEntityInteger(target,HuajiConstant.Tags.DIO_HIT)-1);
         		if(target.ticksExisted%10==0) {
         			EntityPlayer p=target.getEntityWorld().getClosestPlayerToEntity(target, 100);
         			if(p!=null&&p!=target) {
-        				target.attackEntityFrom(new EntityDamageSource(HuajiConstant.DIO_DAMAGE, p), NBTHelper.getEntityInteger(target,HuajiConstant.DIO_HIT_EXTRA)+10);
+        				target.attackEntityFrom(new EntityDamageSource(HuajiConstant.DamageSource.DIO_DAMAGE, p), NBTHelper.getEntityInteger(target,HuajiConstant.Tags.DIO_HIT_EXTRA)+10);
                       }else {
-                    	target.attackEntityFrom(new DamageSource(HuajiConstant.DIO_DAMAGE), NBTHelper.getEntityInteger(target,HuajiConstant.DIO_HIT_EXTRA)+10);
+                    	target.attackEntityFrom(new DamageSource(HuajiConstant.DamageSource.DIO_DAMAGE), NBTHelper.getEntityInteger(target,HuajiConstant.Tags.DIO_HIT_EXTRA)+10);
                       }
         		}
         	}else {
-        		 target.getEntityData().setInteger(HuajiConstant.DIO_HIT_EXTRA,0);
+        		 target.getEntityData().setInteger(HuajiConstant.Tags.DIO_HIT_EXTRA,0);
         	}
     		
 
@@ -92,7 +92,7 @@ public class EventTimeStop {
 	  EntityPlayer player = evt.getEntityPlayer();
 	  Entity hit =evt.getTarget();
 	  Vec3d targetPosition = player.getPositionVector();
-	  if(NBTHelper.getEntityInteger(player,HuajiConstant.THE_WORLD)>0) {
+	  if(NBTHelper.getEntityInteger(player,HuajiConstant.Tags.THE_WORLD)>0) {
 		  player.heal(3f);
 		  boolean star =false ;
 		  if(player.getCapability(CapabilityStandHandler.STAND_TYPE, null).getStand().equals(EnumStandtype.STAR_PLATINUM.getName()))
@@ -103,11 +103,11 @@ public class EventTimeStop {
 		  if(!star) {
 	 	      MessageDioHitClient msg1 = new MessageDioHitClient(targetPosition, false); 
 	 	      MessageDioHitClient msg2 =new MessageDioHitClient(targetPosition, true); 
-	         if(NBTHelper.getEntityInteger(player,HuajiConstant.DIO_FLAG)==0) {     
+	         if(NBTHelper.getEntityInteger(player,HuajiConstant.Tags.DIO_FLAG)==0) {     
 	        	          ServerUtil.sendPacketToPlayersStand(player, msg1);
-	         	          player.getEntityData().setInteger(HuajiConstant.DIO_FLAG, 180);
+	         	          player.getEntityData().setInteger(HuajiConstant.Tags.DIO_FLAG, 180);
 	         	          }
-	         if(NBTHelper.getEntityInteger(player,HuajiConstant.DIO_FLAG)<140&&NBTHelper.getEntityInteger(player,HuajiConstant.DIO_FLAG)>0) {   
+	         if(NBTHelper.getEntityInteger(player,HuajiConstant.Tags.DIO_FLAG)<140&&NBTHelper.getEntityInteger(player,HuajiConstant.Tags.DIO_FLAG)>0) {   
 	        	          ServerUtil.sendPacketToPlayersStand(player, msg2);
 	         }
          }else {
@@ -116,9 +116,9 @@ public class EventTimeStop {
         	 HuajiSoundPlayer.playToNearbyClient(player, SoundLoader.STAND_STAR_PLATINUM_REPEAT_1, 1f);
          }
           if(hit instanceof EntityLivingBase) {  
-             ((EntityLivingBase) hit).getEntityData().setInteger(HuajiConstant.DIO_HIT, 120);
-            int a= NBTHelper.getEntityInteger(((EntityLivingBase) hit),HuajiConstant.DIO_HIT_EXTRA);
-            ((EntityLivingBase) hit).getEntityData().setInteger(HuajiConstant.DIO_HIT_EXTRA,a+2);
+             ((EntityLivingBase) hit).getEntityData().setInteger(HuajiConstant.Tags.DIO_HIT, 120);
+            int a= NBTHelper.getEntityInteger(((EntityLivingBase) hit),HuajiConstant.Tags.DIO_HIT_EXTRA);
+            ((EntityLivingBase) hit).getEntityData().setInteger(HuajiConstant.Tags.DIO_HIT_EXTRA,a+2);
                }
           evt.setCanceled(true);
             }
@@ -128,21 +128,21 @@ public class EventTimeStop {
      public static void onTheWorld(LivingUpdateEvent evt)
      {
 	  EntityLivingBase eater =evt.getEntityLiving(); 
-//	  if(eater.getEntityData().getInteger(HuajiConstant.THE_WORLD)<=0) {
+//	  if(eater.getEntityData().getInteger(HuajiConstant.Tags.THE_WORLD)<=0) {
 //		  return;
 //	  }
-    	if(eater.getEntityData().getInteger(HuajiConstant.THE_WORLD)>0) {
-    		int t=eater.getEntityData().getInteger(HuajiConstant.THE_WORLD);
-    		eater.getEntityData().setInteger(HuajiConstant.THE_WORLD, t-1);
-    		int range=(int) eater.getEntityData().getDouble(HuajiConstant.TIME_STOP_RANGE);
+    	if(eater.getEntityData().getInteger(HuajiConstant.Tags.THE_WORLD)>0) {
+    		int t=eater.getEntityData().getInteger(HuajiConstant.Tags.THE_WORLD);
+    		eater.getEntityData().setInteger(HuajiConstant.Tags.THE_WORLD, t-1);
+    		int range=(int) eater.getEntityData().getDouble(HuajiConstant.Tags.TIME_STOP_RANGE);
     		List<Entity> arrows=range>0?TimeStopHelper.getTagetsInRange(eater, range):TimeStopHelper.getTagetsInRange(eater, 100);
     		if(arrows!=null) {
     			for(Entity i:arrows) {
     				
     				if(i instanceof IProjectile || i instanceof EntityFireball || i instanceof EntityTNTPrimed || i instanceof EntityShulkerBullet) {
-    					if(i.getEntityData().getInteger(HuajiConstant.TIME_STOP)==0) {
+    					if(i.getEntityData().getInteger(HuajiConstant.Tags.TIME_STOP)==0) {
     					setMotionTag(i);
-    					i.getEntityData().setInteger(HuajiConstant.TIME_STOP,t);
+    					i.getEntityData().setInteger(HuajiConstant.Tags.TIME_STOP,t);
     					}
     					
     					if(t>1) {
@@ -162,10 +162,10 @@ public class EventTimeStop {
     				}
     				
     				if(i instanceof EntityItem) {
-    					if(i.getEntityData().getInteger(HuajiConstant.TIME_STOP)==0) {
+    					if(i.getEntityData().getInteger(HuajiConstant.Tags.TIME_STOP)==0) {
 
     						setMotionTag(i);
-    						i.getEntityData().setInteger(HuajiConstant.TIME_STOP,t);
+    						i.getEntityData().setInteger(HuajiConstant.Tags.TIME_STOP,t);
     					}
     					if(t>1) {
         					i.motionX=0;
@@ -181,8 +181,8 @@ public class EventTimeStop {
     				}
     				
 	    				if(i instanceof EntityLivingBase) {
-	    					if(i!=eater&&i.getEntityData().getInteger(HuajiConstant.TIME_STOP)==0) {
-	    					i.getEntityData().setInteger(HuajiConstant.TIME_STOP, t);
+	    					if(i!=eater&&i.getEntityData().getInteger(HuajiConstant.Tags.TIME_STOP)==0) {
+	    					i.getEntityData().setInteger(HuajiConstant.Tags.TIME_STOP, t);
 	    					if(i instanceof EntityPlayer) {
 	    					setPosTag(i);
 						    							}

@@ -185,5 +185,11 @@ public class ItemLoader {
         ModelResourceLocation model = new ModelResourceLocation(item.getRegistryName(), "inventory");
         ModelLoader.setCustomModelResourceLocation(item, 0, model);
     }
+    @SideOnly(Side.CLIENT)
+    private static void registerRender(Item item,int meta)
+    {
+        ModelResourceLocation model = new ModelResourceLocation(item.getRegistryName(), "inventory");
+        ModelLoader.setCustomModelResourceLocation(item, meta, model);
+    }
 
 }

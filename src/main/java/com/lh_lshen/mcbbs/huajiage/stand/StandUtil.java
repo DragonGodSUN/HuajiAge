@@ -1,36 +1,22 @@
 package com.lh_lshen.mcbbs.huajiage.stand;
 
-import java.util.Random;
-import java.util.UUID;
-
-import com.lh_lshen.mcbbs.huajiage.HuajiAge;
-import com.lh_lshen.mcbbs.huajiage.capability.CapabilityExposedData;
-import com.lh_lshen.mcbbs.huajiage.capability.CapabilityLoader;
+import com.lh_lshen.mcbbs.huajiage.capability.CapabilityStandBuffHandler;
 import com.lh_lshen.mcbbs.huajiage.capability.CapabilityStandChargeHandler;
 import com.lh_lshen.mcbbs.huajiage.capability.CapabilityStandHandler;
 import com.lh_lshen.mcbbs.huajiage.capability.CapabilityStandStageHandler;
-import com.lh_lshen.mcbbs.huajiage.capability.IExposedData;
+import com.lh_lshen.mcbbs.huajiage.capability.StandBuffHandler;
 import com.lh_lshen.mcbbs.huajiage.capability.StandChargeHandler;
 import com.lh_lshen.mcbbs.huajiage.capability.StandHandler;
 import com.lh_lshen.mcbbs.huajiage.capability.StandStageHandler;
-import com.lh_lshen.mcbbs.huajiage.client.model.stand.ModelTheWorld;
-import com.lh_lshen.mcbbs.huajiage.data.StandUserWorldSavedData;
 import com.lh_lshen.mcbbs.huajiage.init.playsound.HuajiSoundPlayer;
-import com.lh_lshen.mcbbs.huajiage.init.playsound.SoundLoader;
-import com.lh_lshen.mcbbs.huajiage.init.playsound.StandMovingSound;
 import com.lh_lshen.mcbbs.huajiage.network.messages.MessageParticleGenerator;
 import com.lh_lshen.mcbbs.huajiage.potion.PotionLoader;
 import com.lh_lshen.mcbbs.huajiage.util.ServerUtil;
 
-import net.minecraft.client.Minecraft;
-import net.minecraft.client.renderer.OpenGlHelper;
 import net.minecraft.entity.EntityLivingBase;
-import net.minecraft.entity.player.EntityPlayer;
 import net.minecraft.init.SoundEvents;
 import net.minecraft.potion.PotionEffect;
 import net.minecraft.util.EnumParticleTypes;
-import net.minecraft.util.ResourceLocation;
-import net.minecraft.util.SoundCategory;
 
 public class StandUtil {
 	public static EnumStandtype getType(EntityLivingBase entity) {
@@ -71,11 +57,28 @@ public class StandUtil {
 		return null;
 	}
 	
+	public static StandBuffHandler getStandBuffHandler(EntityLivingBase entity) {
+		   if (entity.hasCapability(CapabilityStandBuffHandler.STAND_BUFF, null)) {
+			   StandBuffHandler buff = entity.getCapability(CapabilityStandBuffHandler.STAND_BUFF,null);
+	    return buff;
+		   }
+		return null;
+	}
+	
 	public static int getStandStage(EntityLivingBase entity) {
 	    StandStageHandler stageHandler = StandUtil.getStandStageHandler(entity);
 	    if(stageHandler!=null) {
 		int stage = stageHandler.getStage();
 		return stage;
+		}
+	    return 0;
+	}
+	
+	public static int getStandBuffTime(EntityLivingBase entity) {
+	    StandBuffHandler BuffHandler = StandUtil.getStandBuffHandler(entity);
+	    if(BuffHandler!=null && BuffHandler.getTime()>0) {
+		int ticks = BuffHandler.getTime();
+		return ticks;
 		}
 	    return 0;
 	}
@@ -93,6 +96,15 @@ public class StandUtil {
 			  }
 			  
 	}
+	
+//	public static class StandTypeHelper {
+//		public static StandSkillType getStandSkillType(EntityLivingBase entity) {
+//			
+//			
+//			return null;
+//		}
+		
+//	}
 	
 //	public static void setStandData(EntityPlayer player, EnumStandtype stand) {
 //		if(stand.getName()!=null) 

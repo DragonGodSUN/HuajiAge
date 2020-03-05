@@ -13,17 +13,20 @@ import net.minecraft.client.resources.I18n;
 import net.minecraft.util.ResourceLocation;
 
 public enum EnumStandtype {
-	THE_WORLD("the_world",1.2f,10f,200,2f,60000,21),
-	STAR_PLATINUM("star_platinum",1.5f,15f,225,2f,50000,17);
+	THE_WORLD("the_world",1.2f,10f,200,2f,60000,new StandTheWorld(),"textures/entity/entity_the_world.png",HuajiConstant.StandType.STAND_THE_WORLD),
+	STAR_PLATINUM("star_platinum",1.5f,15f,225,2f,50000,new StandStarPlatinum(),"textures/entity/entity_star_platinum.png",HuajiConstant.StandType.STAND_STAR_PLATINUM);
 //	,STAR_PLATINUM("star_platinum");
-	private EnumStandtype(String name ,float speed ,float damage ,int duration ,float distance ,int cost,int id) {
+	private EnumStandtype(String name ,float speed ,float damage ,int duration ,float distance ,int cost,
+			IStandPower power,String texPath,String localName) {
 		this.name=name;
 		this.speed=speed;
 		this.damage=damage;
 		this.duration=duration;
 		this.distance=distance;
 		this.cost=cost;
-		this.id = id;
+		this.power = power;
+		this.texPath = texPath;
+		this.localName = localName;
 		
 	}
 	public static final String EMPTY = "empty";
@@ -33,17 +36,13 @@ public enum EnumStandtype {
 	private int duration;
 	private float distance;
 	private int cost;
-	private int id;
+	private IStandPower power;
+	private String texPath;
+	private String localName;
 	
 	
 	public IStandPower getStandPower() {
-		switch(name) {
-		case("the_world"):
-		return new StandTheWorld();
-		case("star_platinum"):
-			return new StandStarPlatinum();
-		}
-		return null;
+		return power;
 	}
 	
 	public float getSpeed() {
@@ -70,55 +69,37 @@ public enum EnumStandtype {
 		return name;
 	}
 	
-	public int getId() {
-		return id;
-	}
-	
 	public String getTexPath() {
-		switch(name) {
-		case("the_world"):
-		return "textures/entity/entity_the_world.png";
-		case("star_platinum"):
-			return "textures/entity/entity_star_platinum.png";
-		}
-		return "textures/entity/entity_the_world.png";
+		return texPath;
 	}
 	
 	public ResourceLocation getTex() {
 		return new ResourceLocation(HuajiAge.MODID, getTexPath());
 	}
 
-	public static String getLocalName(String name) {
-		switch(name){
-		case "the_world":
-			return HuajiConstant.STAND_THE_WORLD;
-		case "star_platinum":
-			return HuajiConstant.STAND_STAR_PLATINUM;
-		}
-		return HuajiConstant.STAND_EMPTY;
+	public String getLocalName() {
+		return localName;
 	}
 	
-	public static String getDisplayName(String name,boolean isLoacal) {
-		return isLoacal? I18n.format(getLocalName(name)):getLocalName(name);
+	public static String getLocalName(String name) {
+		for(EnumStandtype type : values()) {
+    		if(name.equals(type.getName())) {
+    			return type.getLocalName();
+    		}
+    	}
+		return HuajiConstant.StandType.STAND_EMPTY;
+	}
+	
+	public static String getDisplayName(String name,boolean isLocal) {
+		return isLocal? I18n.format(getLocalName(name)):getLocalName(name);
 	}
 	
     public static EnumStandtype getType(String string) {
-        switch(string) {
-        case "the_world":
-            return THE_WORLD;
-        case "star_platinum":
-            return STAR_PLATINUM;
-        }
-        return null;
-    }
-    
-    public static EnumStandtype getTypeById(int id) {
-        switch(id) {
-        case 21:
-            return THE_WORLD;
-        case 17:
-            return STAR_PLATINUM;
-        }
+    	for(EnumStandtype type : values()) {
+    		if(string.equals(type.getName())) {
+    			return type;
+    		}
+    	}
         return null;
     }
     

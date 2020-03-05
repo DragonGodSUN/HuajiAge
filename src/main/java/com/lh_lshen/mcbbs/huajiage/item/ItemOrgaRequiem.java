@@ -57,8 +57,8 @@ public class ItemOrgaRequiem extends Item {
 		EntityPlayer player =((EntityPlayer)entityIn);
 		this.update(stack, player);
 		if(!player.world.isRemote) {
-			if(!NBTHelper.getEntityString(player, HuajiConstant.REQUIEM_OWNER).equals(getTagCompoundSafe(stack).getString("owner"))&&player.ticksExisted%40==0) 
-			{NBTHelper.setEntityString(player, HuajiConstant.REQUIEM_OWNER,getTagCompoundSafe(stack).getString("owner"));}
+			if(!NBTHelper.getEntityString(player, HuajiConstant.Tags.REQUIEM_OWNER).equals(getTagCompoundSafe(stack).getString("owner"))&&player.ticksExisted%40==0) 
+			{NBTHelper.setEntityString(player, HuajiConstant.Tags.REQUIEM_OWNER,getTagCompoundSafe(stack).getString("owner"));}
 		     }    
 		}
 	}

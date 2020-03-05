@@ -17,6 +17,7 @@ public class CapabilityLoader {
 		 CapabilityStandHandler.register();
     	 CapabilityStandStageHandler.register();
     	 CapabilityStandChargeHandler.register();
+    	 CapabilityStandBuffHandler.register();
     }
 
 }

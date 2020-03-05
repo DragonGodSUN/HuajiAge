@@ -7,11 +7,11 @@ import com.lh_lshen.mcbbs.huajiage.common.HuajiConstant;
 import com.lh_lshen.mcbbs.huajiage.init.playsound.HuajiSoundPlayer;
 import com.lh_lshen.mcbbs.huajiage.init.playsound.SoundLoader;
 import com.lh_lshen.mcbbs.huajiage.network.StandNetWorkHandler;
+import com.lh_lshen.mcbbs.huajiage.stand.EnumStandSkillType;
 import com.lh_lshen.mcbbs.huajiage.stand.EnumStandtype;
 import com.lh_lshen.mcbbs.huajiage.stand.StandUtil;
 import com.lh_lshen.mcbbs.huajiage.stand.messages.MessageDoTimeStopServer;
 import com.lh_lshen.mcbbs.huajiage.stand.messages.MessagePerfromSkill;
-import com.lh_lshen.mcbbs.huajiage.stand.skill.StandSkillType;
 import com.lh_lshen.mcbbs.huajiage.util.MotionHelper;
 import com.lh_lshen.mcbbs.huajiage.util.NBTHelper;
 
@@ -78,8 +78,8 @@ public class StandStarPlatinum implements IStandPower {
 									 type.getDamage()*10);
 						  }
 						  
-						  	if(NBTHelper.getEntityInteger(target, HuajiConstant.TIME_STOP)>0&&NBTHelper.getEntityInteger(target, HuajiConstant.DIO_HIT)<60) {
-								  NBTHelper.setEntityInteger(target, HuajiConstant.DIO_HIT, 60);
+						  	if(NBTHelper.getEntityInteger(target, HuajiConstant.Tags.TIME_STOP)>0&&NBTHelper.getEntityInteger(target, HuajiConstant.Tags.DIO_HIT)<60) {
+								  NBTHelper.setEntityInteger(target, HuajiConstant.Tags.DIO_HIT, 60);
 							  }else {
 								  float health = target.getHealth();
 								  if(flag_player) {
@@ -119,7 +119,7 @@ public class StandStarPlatinum implements IStandPower {
 
 	@Override
 	public void doStandCapability(EntityLivingBase user ,boolean flag) {
-		MessagePerfromSkill msg = new MessagePerfromSkill(EnumStandtype.STAR_PLATINUM.getCost(),0,50,5*20,StandSkillType.TIME_STOP);
+		MessagePerfromSkill msg = new MessagePerfromSkill(EnumStandtype.STAR_PLATINUM.getCost(),0,50,5*20,EnumStandSkillType.TIME_STOP);
 		StandNetWorkHandler.sendToServer(msg);
 		if(flag){
 			StandNetWorkHandler.sendToServer(new MessageDoTimeStopServer(false));

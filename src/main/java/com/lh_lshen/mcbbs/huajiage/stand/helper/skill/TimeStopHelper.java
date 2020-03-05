@@ -2,7 +2,9 @@ package com.lh_lshen.mcbbs.huajiage.stand.helper.skill;
 
 import java.util.List;
 
+import com.lh_lshen.mcbbs.huajiage.capability.CapabilityStandBuffHandler;
 import com.lh_lshen.mcbbs.huajiage.capability.CapabilityStandHandler;
+import com.lh_lshen.mcbbs.huajiage.capability.StandBuffHandler;
 import com.lh_lshen.mcbbs.huajiage.capability.StandHandler;
 import com.lh_lshen.mcbbs.huajiage.common.HuajiConstant;
 import com.lh_lshen.mcbbs.huajiage.init.playsound.SoundLoader;
@@ -28,11 +30,15 @@ public class TimeStopHelper {
 	}
 	
 	public static void setTimeStop(Entity entity ,int ticks) {
-		NBTHelper.setEntityInteger(entity, HuajiConstant.THE_WORLD, ticks);
+		NBTHelper.setEntityInteger(entity, HuajiConstant.Tags.THE_WORLD, ticks);
+		if( entity instanceof EntityPlayer) {
+			StandBuffHandler buff = entity.getCapability(CapabilityStandBuffHandler.STAND_BUFF, null);
+			buff.setTime(ticks);
+		}
 	}
 	
 	public static void setEntityTimeStopRange(Entity entity ,double distance) {
-		NBTHelper.setEntityDouble(entity, HuajiConstant.TIME_STOP_RANGE, distance);
+		NBTHelper.setEntityDouble(entity, HuajiConstant.Tags.TIME_STOP_RANGE, distance);
 	}
 	
 	public static void doTimeStopServer(EntityLivingBase entity,int time) {

@@ -25,26 +25,26 @@ public class EventRequiem {
 	Entity hit =evt.getTarget();
 		if (player.getHeldItemMainhand().isEmpty()&&player.isPotionActive(PotionLoader.potionRequiem)&&hit instanceof EntityLivingBase) {
 		player.playSound(SoundLoader.ORGA_REQUIEM_HIT, 1f, 1f);
-		((EntityLivingBase) hit).attackEntityFrom(new EntityDamageSource(HuajiConstant.REQUIEM_DAMAGE,player),5f);
-		((EntityLivingBase) hit).getEntityData().setInteger(HuajiConstant.REQUIEM, 60);
+		((EntityLivingBase) hit).attackEntityFrom(new EntityDamageSource(HuajiConstant.DamageSource.REQUIEM_DAMAGE,player),5f);
+		((EntityLivingBase) hit).getEntityData().setInteger(HuajiConstant.Tags.REQUIEM, 60);
 		}
 	}
   @SubscribeEvent
 	public static void requiemTarget(LivingUpdateEvent evt){
 	EntityLivingBase target=evt.getEntityLiving();
 	EntityPlayer player=target.world.getClosestPlayerToEntity(target, 100);
-		if(target.getEntityData().getInteger(HuajiConstant.REQUIEM)<=0) {
+		if(target.getEntityData().getInteger(HuajiConstant.Tags.REQUIEM)<=0) {
 		return;
 		}
-		if(target.getEntityData().getInteger(HuajiConstant.REQUIEM)>0) {
-		target.getEntityData().setInteger(HuajiConstant.REQUIEM, target.getEntityData().getInteger(HuajiConstant.REQUIEM) - 1);
+		if(target.getEntityData().getInteger(HuajiConstant.Tags.REQUIEM)>0) {
+		target.getEntityData().setInteger(HuajiConstant.Tags.REQUIEM, target.getEntityData().getInteger(HuajiConstant.Tags.REQUIEM) - 1);
 			if(!(target instanceof EntityPlayer)) {
 				if(target.ticksExisted %5==0) {
-				target.attackEntityFrom(new EntityDamageSource(HuajiConstant.REQUIEM_DAMAGE,player),12f);
+				target.attackEntityFrom(new EntityDamageSource(HuajiConstant.DamageSource.REQUIEM_DAMAGE,player),12f);
 				}
 			}else {
 				if(target.ticksExisted %10==0) {
-				target.attackEntityFrom(new DamageSource(HuajiConstant.REQUIEM_DAMAGE),12f);
+				target.attackEntityFrom(new DamageSource(HuajiConstant.DamageSource.REQUIEM_DAMAGE),12f);
 				}
 			}
 		}
@@ -78,12 +78,12 @@ public class EventRequiem {
 	if(target.isPotionActive(PotionLoader.potionRequiemTarget)) {
 		if(!(target instanceof EntityPlayer)&&!target.isPotionActive(PotionLoader.potionFlowerHope)&&!target.isPotionActive(PotionLoader.potionRequiem)) {
 			if(target.ticksExisted %5==0) {
-				target.attackEntityFrom(new EntityDamageSource(HuajiConstant.REQUIEM_DAMAGE,player),12f);
+				target.attackEntityFrom(new EntityDamageSource(HuajiConstant.DamageSource.REQUIEM_DAMAGE,player),12f);
 				}
 			}
 			else {
 			if(target.ticksExisted %10==0) {
-				target.attackEntityFrom(new DamageSource(HuajiConstant.REQUIEM_DAMAGE),12f);
+				target.attackEntityFrom(new DamageSource(HuajiConstant.DamageSource.REQUIEM_DAMAGE),12f);
 				}	
 			}			
 		}	

@@ -1,21 +1,19 @@
-package com.lh_lshen.mcbbs.huajiage.stand.skill;
+package com.lh_lshen.mcbbs.huajiage.stand;
 
-import com.lh_lshen.mcbbs.huajiage.stand.EnumStandtype;
-
-public enum StandSkillType {
+public enum EnumStandSkillType {
 		TIME_STOP("time_stop"),
 		SHOOT("shoot"),
 		HIT("hit"),
 		AUTO("auto"),
 		MAGIC("magic");
 	private String id;
-	private StandSkillType(String id) {
+	private EnumStandSkillType(String id) {
 		this.id=id;
 	}
 	public String getId() {
 		return id;
 	}
-	public static StandSkillType getTypeWithStringId(String id) {
+	public static EnumStandSkillType getTypeWithStringId(String id) {
 		switch(id) {
 		case("time_stop"):return TIME_STOP;
 		case("shoot"):return SHOOT;
@@ -25,7 +23,7 @@ public enum StandSkillType {
 		}
 		return null;
 	}
-    public static StandSkillType getTypeWithIndex(int index) {
+    public static EnumStandSkillType getTypeWithIndex(int index) {
     	if (index < 0 || index >= values().length) {
             return TIME_STOP;
         }

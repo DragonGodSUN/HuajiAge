@@ -5,10 +5,10 @@ import java.util.UUID;
 import com.lh_lshen.mcbbs.huajiage.capability.StandChargeHandler;
 import com.lh_lshen.mcbbs.huajiage.item.ItemHeroBow;
 import com.lh_lshen.mcbbs.huajiage.item.ItemLoader;
+import com.lh_lshen.mcbbs.huajiage.stand.EnumStandSkillType;
 import com.lh_lshen.mcbbs.huajiage.stand.EnumStandtype;
 import com.lh_lshen.mcbbs.huajiage.stand.StandUtil;
 import com.lh_lshen.mcbbs.huajiage.stand.helper.skill.TimeStopHelper;
-import com.lh_lshen.mcbbs.huajiage.stand.skill.StandSkillType;
 import com.lh_lshen.mcbbs.huajiage.util.ServerUtil;
 
 import io.netty.buffer.ByteBuf;
@@ -31,7 +31,7 @@ public class MessagePerfromSkill implements IMessage {
 	private String typeId;
 	public MessagePerfromSkill() {
 	}
-	public MessagePerfromSkill(int cost,float damage,float distance,int duration,StandSkillType type) {
+	public MessagePerfromSkill(int cost,float damage,float distance,int duration,EnumStandSkillType type) {
 		this.cost=cost;
 		this.damage=damage;
 		this.distance=distance;
@@ -67,7 +67,7 @@ public class MessagePerfromSkill implements IMessage {
 				if(null==stand) {
 					return;
 				}else {
-					StandSkillType skill = StandSkillType.getTypeWithStringId(message.typeId);
+					EnumStandSkillType skill = EnumStandSkillType.getTypeWithStringId(message.typeId);
 					switch(skill) {
 					case TIME_STOP:
 					{

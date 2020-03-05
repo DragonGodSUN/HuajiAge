@@ -16,6 +16,7 @@ import com.lh_lshen.mcbbs.huajiage.stand.messages.MessageLeftClickRoadRoller;
 import com.lh_lshen.mcbbs.huajiage.stand.messages.MessagePerfromSkill;
 import com.lh_lshen.mcbbs.huajiage.stand.messages.MessageStandUp;
 import com.lh_lshen.mcbbs.huajiage.stand.messages.SyncExposedStandDataMessage;
+import com.lh_lshen.mcbbs.huajiage.stand.messages.SyncStandBuffMessage;
 import com.lh_lshen.mcbbs.huajiage.stand.messages.SyncStandChargeMessage;
 import com.lh_lshen.mcbbs.huajiage.stand.messages.SyncStandMessage;
 import com.lh_lshen.mcbbs.huajiage.stand.messages.SyncStandStageMessage;
@@ -48,6 +49,7 @@ public final class  StandNetWorkHandler {
 	    HANDLER.registerMessage(SyncStandMessage.Handler.class,SyncStandMessage.class, id++, Side.CLIENT);
 	    HANDLER.registerMessage(SyncStandStageMessage.Handler.class,SyncStandStageMessage.class, id++, Side.CLIENT);
 	    HANDLER.registerMessage(SyncStandChargeMessage.Handler.class,SyncStandChargeMessage.class, id++, Side.CLIENT);
+	    HANDLER.registerMessage(SyncStandBuffMessage.Handler.class,SyncStandBuffMessage.class, id++, Side.CLIENT);
 	    HANDLER.registerMessage(SyncExposedStandDataMessage.Handler.class,SyncExposedStandDataMessage.class, id++, Side.CLIENT);
 	    HANDLER.registerMessage(SyncStandUserMessage.Handler.class,SyncStandUserMessage.class, id++, Side.CLIENT);
 	}

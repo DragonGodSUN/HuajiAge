@@ -3,10 +3,12 @@ package com.lh_lshen.mcbbs.huajiage.init.events;
 import com.lh_lshen.mcbbs.huajiage.HuajiAge;
 import com.lh_lshen.mcbbs.huajiage.capability.CapabilityExposedData;
 import com.lh_lshen.mcbbs.huajiage.capability.CapabilityLoader;
+import com.lh_lshen.mcbbs.huajiage.capability.CapabilityStandBuffHandler;
 import com.lh_lshen.mcbbs.huajiage.capability.CapabilityStandChargeHandler;
 import com.lh_lshen.mcbbs.huajiage.capability.CapabilityStandHandler;
 import com.lh_lshen.mcbbs.huajiage.capability.CapabilityStandStageHandler;
 import com.lh_lshen.mcbbs.huajiage.capability.IExposedData;
+import com.lh_lshen.mcbbs.huajiage.capability.StandBuffHandler;
 import com.lh_lshen.mcbbs.huajiage.capability.StandChargeHandler;
 import com.lh_lshen.mcbbs.huajiage.capability.StandHandler;
 import com.lh_lshen.mcbbs.huajiage.capability.StandStageHandler;
@@ -15,6 +17,7 @@ import com.lh_lshen.mcbbs.huajiage.network.StandNetWorkHandler;
 import com.lh_lshen.mcbbs.huajiage.stand.EnumStandtype;
 import com.lh_lshen.mcbbs.huajiage.stand.StandUtil;
 import com.lh_lshen.mcbbs.huajiage.stand.messages.SyncExposedStandDataMessage;
+import com.lh_lshen.mcbbs.huajiage.stand.messages.SyncStandBuffMessage;
 import com.lh_lshen.mcbbs.huajiage.stand.messages.SyncStandChargeMessage;
 import com.lh_lshen.mcbbs.huajiage.stand.messages.SyncStandMessage;
 import com.lh_lshen.mcbbs.huajiage.stand.messages.SyncStandStageMessage;
@@ -44,6 +47,7 @@ public class EventPlayerCapability {
     private static final ResourceLocation STAND_TYPE = new ResourceLocation(HuajiAge.MODID, "stand");
     private static final ResourceLocation STAND_STAGE = new ResourceLocation(HuajiAge.MODID, "stage");
     private static final ResourceLocation STAND_CHARGE = new ResourceLocation(HuajiAge.MODID, "charge");
+    private static final ResourceLocation STAND_BUFF = new ResourceLocation(HuajiAge.MODID, "buff");
     
     private static final ResourceLocation EXPOSED_DATA = new ResourceLocation(HuajiAge.MODID, "expose_data");
     
@@ -56,6 +60,7 @@ public class EventPlayerCapability {
             event.addCapability(STAND_TYPE, new CapabilityStandHandler());
             event.addCapability(STAND_STAGE, new CapabilityStandStageHandler());
             event.addCapability(STAND_CHARGE, new CapabilityStandChargeHandler());
+            event.addCapability(STAND_BUFF, new CapabilityStandBuffHandler());
             
             ICapabilitySerializable<NBTTagCompound> provider = new CapabilityExposedData.ProviderPlayer();
             event.addCapability(EXPOSED_DATA, provider);
@@ -91,6 +96,13 @@ public class EventPlayerCapability {
         	charge.setMaxValue(oldcharge.getMaxValue());
         }
         
+//      Stand Buff~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
+        StandBuffHandler buff = player.getCapability(CapabilityStandBuffHandler.STAND_BUFF, null);
+        StandBuffHandler oldbuff = event.getOriginal().getCapability(CapabilityStandBuffHandler.STAND_BUFF, null);
+        if (buff != null && oldbuff !=null) {
+        	buff.setTime(oldbuff.getTime());
+        }
+        
 //     Stand Expose~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
         if(!event.isWasDeath()) {
         	Capability<IExposedData> capability = CapabilityLoader.EXPOSED_DATA;
@@ -117,11 +129,13 @@ public class EventPlayerCapability {
 				StandHandler standHandler = player.getCapability(CapabilityStandHandler.STAND_TYPE, null);
 				StandStageHandler stageHandler = player.getCapability(CapabilityStandStageHandler.STAND_STAGE, null);
 				StandChargeHandler chargeHandler = player.getCapability(CapabilityStandChargeHandler.STAND_CHARGE, null);
+				StandBuffHandler buffHandler = player.getCapability(CapabilityStandBuffHandler.STAND_BUFF, null);
 				IExposedData data = player.getCapability(CapabilityLoader.EXPOSED_DATA, null);
 				
 				if(standHandler!=null) standHandler.setDirty(true);
 				if(stageHandler!=null) stageHandler.setDirty(true);
 				if(chargeHandler!=null) chargeHandler.setDirty(true);
+				if(buffHandler!=null)buffHandler.setDirty(true);
 				if(data!=null) data.setDirty(true);
 				
 			}
@@ -161,6 +175,14 @@ public class EventPlayerCapability {
                 if (charge != null && charge.isDirty()) {
                 	StandNetWorkHandler.HANDLER.sendTo(new SyncStandChargeMessage(charge.getChargeValue(),charge.getMaxValue()), (EntityPlayerMP) player);
                     charge.setDirty(false);
+                }
+            }
+            
+            if (player.hasCapability(CapabilityStandBuffHandler.STAND_BUFF, null)) {
+            	StandBuffHandler buff = player.getCapability(CapabilityStandBuffHandler.STAND_BUFF, null);
+                if (buff != null && buff.isDirty()) {
+                	StandNetWorkHandler.HANDLER.sendTo(new SyncStandBuffMessage(buff.getTime()),(EntityPlayerMP) player);
+                	buff.setDirty(false);
                 }
             }
             

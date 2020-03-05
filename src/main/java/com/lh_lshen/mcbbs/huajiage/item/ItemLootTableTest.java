@@ -15,6 +15,7 @@ import com.lh_lshen.mcbbs.huajiage.init.playsound.SoundLoader;
 import com.lh_lshen.mcbbs.huajiage.potion.PotionLoader;
 import com.lh_lshen.mcbbs.huajiage.stand.EnumStandtype;
 import com.lh_lshen.mcbbs.huajiage.stand.StandUtil;
+import com.lh_lshen.mcbbs.huajiage.stand.helper.skill.TimeStopHelper;
 import com.lh_lshen.mcbbs.huajiage.util.NBTHelper;
 
 import net.minecraft.client.resources.I18n;
@@ -122,7 +123,8 @@ public class ItemLootTableTest extends Item {
 		case 2:{
 		if(!playerIn.world.isRemote) {
 
-		playerIn.getEntityData().setInteger("huajiage.the_world",9*20);
+//		playerIn.getEntityData().setInteger("huajiage.the_world",9*20);
+		TimeStopHelper.setTimeStop(playerIn, HuajiConstant.Tags.THE_WORLD_TIME);
     	playerIn.addPotionEffect(new PotionEffect(MobEffects.NIGHT_VISION,9*20,0));
     	playerIn.addPotionEffect(new PotionEffect(MobEffects.STRENGTH,9*20,4));
     	playerIn.addPotionEffect(new PotionEffect(MobEffects.SPEED,9*20,6));
@@ -161,7 +163,7 @@ public class ItemLootTableTest extends Item {
 			break;
 		}
 		case 5:{
-			playerIn.getEntityData().setInteger("huajiage.the_world",5*20);
+			TimeStopHelper.setTimeStop(playerIn, 5*20);
 			playerIn.addPotionEffect(new PotionEffect(MobEffects.NIGHT_VISION,5*20,0));
 	    	playerIn.addPotionEffect(new PotionEffect(MobEffects.STRENGTH,5*20,2));
 	    	playerIn.addPotionEffect(new PotionEffect(MobEffects.SPEED,5*20,1));

@@ -54,7 +54,8 @@ public class LayerStand implements  LayerRenderer<EntityLivingBase> {
 	@Override
 	public void doRenderLayer(EntityLivingBase entitylivingbaseIn, float limbSwing, float limbSwingAmount,
 			float partialTicks, float ageInTicks, float netHeadYaw, float headPitch, float scale) {
-				String ex_stand = entitylivingbaseIn.getCapability(CapabilityLoader.EXPOSED_DATA, null).getStand();
+		
+         		String ex_stand = entitylivingbaseIn.getCapability(CapabilityLoader.EXPOSED_DATA, null).getStand();
 				boolean istrigger = entitylivingbaseIn.getCapability(CapabilityLoader.EXPOSED_DATA, null).isTriggered();
 				EnumStandtype stand = EnumStandtype.getType(ex_stand);
 //				boolean potion = entitylivingbaseIn.isPotionActive(PotionLoader.potionStand);
@@ -92,6 +93,7 @@ public class LayerStand implements  LayerRenderer<EntityLivingBase> {
 			            GlStateManager.popMatrix();
 			    	}
 	}
+	
 	@Override
 	public boolean shouldCombineTextures() {
 		

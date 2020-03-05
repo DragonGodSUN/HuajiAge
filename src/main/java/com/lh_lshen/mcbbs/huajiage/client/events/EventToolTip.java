@@ -1,4 +1,4 @@
-package com.lh_lshen.mcbbs.huajiage.init.events;
+package com.lh_lshen.mcbbs.huajiage.client.events;
 
 import java.util.List;
 

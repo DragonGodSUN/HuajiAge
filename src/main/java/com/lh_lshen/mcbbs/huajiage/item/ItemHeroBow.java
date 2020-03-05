@@ -152,7 +152,7 @@ public void onPlayerStoppedUsing(ItemStack stack, World worldIn, EntityLivingBas
                     entityarrow.shoot(entityplayer, entityplayer.rotationPitch, entityplayer.rotationYaw, 1F, f * 6.0F, 1.0F);
           
                     worldIn.spawnEntity(entityarrow);
-                    entityplayer.attackEntityFrom(new DamageSource(HuajiConstant.STELLA).setDamageIsAbsolute(),entityplayer.getMaxHealth()*5);
+                    entityplayer.attackEntityFrom(new DamageSource(HuajiConstant.DamageSource.STELLA).setDamageIsAbsolute(),entityplayer.getMaxHealth()*5);
                           }
                     else {
                     	entityplayer.sendMessage(new TextComponentTranslation("message.huaji.orga.hero.shot"));

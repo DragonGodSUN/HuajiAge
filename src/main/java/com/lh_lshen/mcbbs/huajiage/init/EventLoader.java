@@ -1,7 +1,7 @@
 package com.lh_lshen.mcbbs.huajiage.init;
 
+import com.lh_lshen.mcbbs.huajiage.client.events.EventKeyInput;
 import com.lh_lshen.mcbbs.huajiage.entity.EntitySecondFoil;
-import com.lh_lshen.mcbbs.huajiage.init.events.EventKeyInput;
 import com.lh_lshen.mcbbs.huajiage.init.events.EventOrga;
 import com.lh_lshen.mcbbs.huajiage.init.events.EventRequiem;
 import com.lh_lshen.mcbbs.huajiage.potion.PotionLoader;

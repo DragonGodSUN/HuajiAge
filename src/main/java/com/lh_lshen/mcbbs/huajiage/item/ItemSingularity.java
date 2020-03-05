@@ -54,7 +54,7 @@ public class ItemSingularity extends Item {
 			playerIn.addPotionEffect(new PotionEffect(MobEffects.POISON, 200,9));
 			playerIn.addPotionEffect(new PotionEffect(MobEffects.SLOWNESS, 200,5));
 			playerIn.addPotionEffect(new PotionEffect(MobEffects.HUNGER, 200,9));
-			NBTHelper.setEntityInteger(playerIn, HuajiConstant.SINGULARITY, 200);
+			NBTHelper.setEntityInteger(playerIn, HuajiConstant.Tags.SINGULARITY, 200);
 				}
 			}
 		

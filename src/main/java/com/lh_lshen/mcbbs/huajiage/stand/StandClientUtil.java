@@ -8,6 +8,7 @@ import com.lh_lshen.mcbbs.huajiage.capability.StandHandler;
 import com.lh_lshen.mcbbs.huajiage.client.model.stand.ModelStandBase;
 import com.lh_lshen.mcbbs.huajiage.client.model.stand.ModelStarPlatinum;
 import com.lh_lshen.mcbbs.huajiage.client.model.stand.ModelTheWorld;
+import com.lh_lshen.mcbbs.huajiage.common.HuajiConstant;
 import com.lh_lshen.mcbbs.huajiage.init.playsound.HuajiMovingSound;
 import com.lh_lshen.mcbbs.huajiage.init.playsound.HuajiSoundPlayer;
 import com.lh_lshen.mcbbs.huajiage.init.playsound.SoundLoader;
@@ -80,9 +81,9 @@ public class StandClientUtil {
 	public static ModelStandBase getModel(String name) {
 		switch(name) {
 		case("the_world"):
-		return new ModelTheWorld();
+		return HuajiConstant.StandModels.STAND_THE_WORLD;
 		case("star_platinum"):
-		return new ModelStarPlatinum();
+		return HuajiConstant.StandModels.STAND_STAR_PLATINUM;
 		}
 		return new ModelTheWorld();
 	}

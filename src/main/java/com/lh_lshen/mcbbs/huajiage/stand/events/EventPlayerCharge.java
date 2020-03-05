@@ -1,4 +1,4 @@
-package com.lh_lshen.mcbbs.huajiage.stand.skill;
+package com.lh_lshen.mcbbs.huajiage.stand.events;
 
 import com.lh_lshen.mcbbs.huajiage.HuajiAge;
 import com.lh_lshen.mcbbs.huajiage.capability.CapabilityStandChargeHandler;

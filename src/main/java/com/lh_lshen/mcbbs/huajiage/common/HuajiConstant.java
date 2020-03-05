@@ -1,33 +1,43 @@
 package com.lh_lshen.mcbbs.huajiage.common;
 
 import com.lh_lshen.mcbbs.huajiage.HuajiAge;
+import com.lh_lshen.mcbbs.huajiage.client.model.stand.ModelStandBase;
+import com.lh_lshen.mcbbs.huajiage.client.model.stand.ModelStarPlatinum;
+import com.lh_lshen.mcbbs.huajiage.client.model.stand.ModelTheWorld;
 import com.lh_lshen.mcbbs.huajiage.stand.EnumStandtype;
 
 import net.minecraft.init.SoundEvents;
 
 public  class HuajiConstant {
+	public  class Tags{
+//	Stand Events
+		public static final String SINGULARITY=HuajiAge.MODID+"."+"singularity";
 //	Dio Bread
-	public static final String TIME_STOP=HuajiAge.MODID+"."+"time_stop";
-	public static final String TIME_STOP_RANGE=HuajiAge.MODID+"."+"time_stop_range";
-	public static final String THE_WORLD=HuajiAge.MODID+"."+"the_world";
-	public static final String THE_WORLD_RECORD=HuajiAge.MODID+"."+"the_world_record";
-	public static final String DIO_FLAG=HuajiAge.MODID+"."+"dio_flag";
-	public static final String DIO_HIT=HuajiAge.MODID+"."+"dio_hit";
-	public static final String DIO_HIT_EXTRA=HuajiAge.MODID+"."+"dio_hit_extra";
-	
-	public static final int THE_WORLD_TIME=9*20;
+		public static final String TIME_STOP=HuajiAge.MODID+"."+"time_stop";
+		public static final String TIME_STOP_RANGE=HuajiAge.MODID+"."+"time_stop_range";
+		public static final String THE_WORLD=HuajiAge.MODID+"."+"the_world";
+		public static final String THE_WORLD_RECORD=HuajiAge.MODID+"."+"the_world_record";
+		public static final String DIO_FLAG=HuajiAge.MODID+"."+"dio_flag";
+		public static final String DIO_HIT=HuajiAge.MODID+"."+"dio_hit";
+		public static final String DIO_HIT_EXTRA=HuajiAge.MODID+"."+"dio_hit_extra";
+		
+		public static final int THE_WORLD_TIME=9*20;
+		
+//	Requiem
+		public static final String REQUIEM=HuajiAge.MODID+"."+"requiem";
+		public static final String REQUIEM_OWNER=HuajiAge.MODID+"."+"requiem_owner";
+	}
 	
 //	Stand type
-	public static final String STAND_TYPE=HuajiAge.MODID+"."+"stand_type";
-	public static final String STAND_THE_WORLD="stand"+"."+HuajiAge.MODID+"."+EnumStandtype.THE_WORLD.getName();
-	public static final String STAND_STAR_PLATINUM="stand"+"."+HuajiAge.MODID+"."+EnumStandtype.STAR_PLATINUM.getName();
-	public static final String STAND_EMPTY="stand"+"."+HuajiAge.MODID+"."+EnumStandtype.EMPTY;
-	
-//	Requiem
-	public static final String REQUIEM=HuajiAge.MODID+"."+"requiem";
-	public static final String REQUIEM_OWNER=HuajiAge.MODID+"."+"requiem_owner";
+	public class StandType{
+		public static final String STAND_TYPE=HuajiAge.MODID+"."+"stand_type";
+		public static final String STAND_THE_WORLD="stand"+"."+HuajiAge.MODID+"."+"the_world";
+		public static final String STAND_STAR_PLATINUM="stand"+"."+HuajiAge.MODID+"."+"star_platinum";
+		public static final String STAND_EMPTY="stand"+"."+HuajiAge.MODID+"."+EnumStandtype.EMPTY;
+	}
 	
 //	DamageSource
+	public class DamageSource{
 	public static final String SECOND=HuajiAge.MODID+"."+"second";
 	public static final String STELLA=HuajiAge.MODID+"."+"stella";
 	public static final String KDJL=HuajiAge.MODID+"."+"KeDaiJinLa";
@@ -37,8 +47,15 @@ public  class HuajiConstant {
 	public static final String REQUIEM_DAMAGE=HuajiAge.MODID+"."+"requiem.hit";
 	public static final String DIO_DAMAGE=HuajiAge.MODID+"."+"dio.hit";
 	public static final String SINGULARITY_DAMAGE=HuajiAge.MODID+"."+"singularity";
+	}
 	
-//	Stand Events
-	public static final String SINGULARITY=HuajiAge.MODID+"."+"singularity";
-	
+ 
+	public static class StandModels {
+		public final static ModelStandBase STAND_THE_WORLD = new ModelTheWorld();
+		public final static ModelStandBase STAND_STAR_PLATINUM = new ModelStarPlatinum();
+		
+		public final static String THE_WORLD_TEX_PATH = "textures/entity/entity_the_world.png";
+		public final static String STAR_PLATINUM_TEX_PATH = "textures/entity/entity_star_platinum.png";
+		
+	}
 }

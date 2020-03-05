@@ -8,6 +8,7 @@ import com.lh_lshen.mcbbs.huajiage.HuajiAge;
 import com.lh_lshen.mcbbs.huajiage.capability.CapabilityLoader;
 import com.lh_lshen.mcbbs.huajiage.capability.CapabilityStandHandler;
 import com.lh_lshen.mcbbs.huajiage.capability.IExposedData;
+import com.lh_lshen.mcbbs.huajiage.capability.StandBuffHandler;
 import com.lh_lshen.mcbbs.huajiage.capability.StandHandler;
 import com.lh_lshen.mcbbs.huajiage.capability.StandStageHandler;
 import com.lh_lshen.mcbbs.huajiage.client.model.stand.ModelTheWorld;
@@ -121,11 +122,11 @@ public class EventStand {
 	  public static void standUpgrade(LivingUpdateEvent evt)
 	  {
 		  EntityLivingBase stand_owner =evt.getEntityLiving();
-		  int t = NBTHelper.getEntityInteger(stand_owner, HuajiConstant.SINGULARITY);
+		  int t = NBTHelper.getEntityInteger(stand_owner, HuajiConstant.Tags.SINGULARITY);
 		  if(t>0) {
-			  NBTHelper.setEntityInteger(stand_owner, HuajiConstant.SINGULARITY, t-1);
+			  NBTHelper.setEntityInteger(stand_owner, HuajiConstant.Tags.SINGULARITY, t-1);
 			  if(stand_owner.ticksExisted%10==0) {
-			  stand_owner.attackEntityFrom(new DamageSource(HuajiConstant.SINGULARITY_DAMAGE), 18);
+			  stand_owner.attackEntityFrom(new DamageSource(HuajiConstant.DamageSource.SINGULARITY_DAMAGE), 18);
 			  }
 			  if(stand_owner.getHealth()<=0) {
 				  return;
@@ -176,7 +177,7 @@ public class EventStand {
 				if(type == null) {
 					return;
 				}
-			  if(NBTHelper.getEntityInteger(evt.getEntityLiving(), HuajiConstant.THE_WORLD)>0) {
+			  if(NBTHelper.getEntityInteger(evt.getEntityLiving(), HuajiConstant.Tags.THE_WORLD)>0) {
 				StandUtil.standPower(evt.getEntityLiving());
 			  }
 			  float op =evt.getOriginalSpeed();
@@ -187,6 +188,20 @@ public class EventStand {
 			  }
 		  }
 	  }
+	  
+	  @SubscribeEvent
+	  public static void StandBuff(LivingUpdateEvent evt) {
+		  EntityLivingBase entity = evt.getEntityLiving();
+		  if(entity instanceof EntityPlayer) {
+		  StandBuffHandler buff = StandUtil.getStandBuffHandler(entity);
+		  if(buff.getTime()>0) {
+		  buff.decreace();
+		  }else {
+			  return;
+		  }
+	  }
+	}
+	  
 //	  @SubscribeEvent
 //	  public static void StandSoundPlay(LivingHurtEvent evt) {
 //		EntityLivingBase attacker = (EntityLivingBase) evt.getSource().getTrueSource();

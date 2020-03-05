@@ -82,7 +82,7 @@ public class ItemRoadRoller extends Item {
 	@SubscribeEvent
 	public void leftClick(PlayerInteractEvent.LeftClickEmpty evt) {
             EntityPlayer player = evt.getEntityPlayer();
-            List<EntityRoadRoller> road=player.getEntityWorld().getEntitiesWithinAABB(EntityRoadRoller.class,player.getEntityBoundingBox().grow(10));
+            List<EntityRoadRoller> road=player.getEntityWorld().getEntitiesWithinAABB(EntityRoadRoller.class,player.getEntityBoundingBox().grow(20));
             boolean flag=false;
             if(road!=null)
             {
