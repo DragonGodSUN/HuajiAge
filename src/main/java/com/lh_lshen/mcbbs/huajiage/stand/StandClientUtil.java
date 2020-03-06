@@ -81,9 +81,9 @@ public class StandClientUtil {
 	public static ModelStandBase getModel(String name) {
 		switch(name) {
 		case("the_world"):
-		return HuajiConstant.StandModels.STAND_THE_WORLD;
+		return new ModelTheWorld();
 		case("star_platinum"):
-		return HuajiConstant.StandModels.STAND_STAR_PLATINUM;
+		return new ModelStarPlatinum();
 		}
 		return new ModelTheWorld();
 	}

@@ -9,4 +9,5 @@ public abstract class ModelStandBase extends ModelBase {
 	          float rotatePitch, float scale, Entity entity ,float power ,float speed) ;
 	
 	public abstract void doHandRender(float x ,float y ,float z ,float scale ,float alpha) ;
+	
 }

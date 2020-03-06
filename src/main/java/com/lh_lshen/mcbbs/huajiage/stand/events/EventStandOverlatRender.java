@@ -74,8 +74,8 @@ public class EventStandOverlatRender {
 	                int y = (int) (ConfigHuaji.Stands.StandHUDy * Minecraft.getMinecraft().displayHeight/2);
 	                GlStateManager.pushMatrix();
 	                GlStateManager.enableBlend();
-	                GlStateManager.translate(x, y, 0);
 	                GlStateManager.scale(1.5, 1.5, 1.5);
+	                GlStateManager.translate(x, y, 0);
 //	                Minecraft.getMinecraft().player.getCooldownTracker().getCooldown(disc.getItem(), Minecraft.getMinecraft().getRenderPartialTicks());
 	                switch(stand) {
 	                case THE_WORLD :Minecraft.getMinecraft().renderEngine.bindTexture(STAND_THE_WORLD);

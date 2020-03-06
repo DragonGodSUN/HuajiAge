@@ -15,6 +15,7 @@ import com.lh_lshen.mcbbs.huajiage.potion.PotionLoader;
 import com.lh_lshen.mcbbs.huajiage.stand.EnumStandtype;
 import com.lh_lshen.mcbbs.huajiage.stand.StandClientUtil;
 import com.lh_lshen.mcbbs.huajiage.stand.StandUtil;
+import com.lh_lshen.mcbbs.huajiage.stand.helper.instance.IStandPower;
 import com.lh_lshen.mcbbs.huajiage.util.NBTHelper;
 
 import net.minecraft.client.Minecraft;
@@ -58,6 +59,8 @@ public class LayerStand implements  LayerRenderer<EntityLivingBase> {
          		String ex_stand = entitylivingbaseIn.getCapability(CapabilityLoader.EXPOSED_DATA, null).getStand();
 				boolean istrigger = entitylivingbaseIn.getCapability(CapabilityLoader.EXPOSED_DATA, null).isTriggered();
 				EnumStandtype stand = EnumStandtype.getType(ex_stand);
+				IStandPower stand_power = stand!=null?stand.getStandPower():null;
+				int stage = StandUtil.getStandStage(entitylivingbaseIn);
 //				boolean potion = entitylivingbaseIn.isPotionActive(PotionLoader.potionStand);
 				
 				String type = stand != null?stand.getName():EnumStandtype.EMPTY;
@@ -81,6 +84,10 @@ public class LayerStand implements  LayerRenderer<EntityLivingBase> {
 	 		            
 	 		            model.setRotationAngles(limbSwing, limbSwingAmount, ageInTicks, netHeadYaw, headPitch, scale, entitylivingbaseIn, 1 ,stand.getSpeed()*4/3);
 	 		            model.render(entitylivingbaseIn, limbSwing, limbSwingAmount, ageInTicks, netHeadYaw, headPitch, scale);
+	 		            if(stage>0&&stand_power!=null) {
+	 		            stand_power.extraEffects(entitylivingbaseIn, limbSwing, limbSwingAmount, partialTicks, ageInTicks, netHeadYaw, headPitch, scale);
+	 		            }
+ //	 		            model.doHandRender(0, 0, 0, scale*2, 0.5f);
 //	 		           if(type.equals(EnumStandtype.THE_WORLD.getName())) {
 // 		        	   MODEL_THE_WORLD.setRotationAngles(limbSwing, limbSwingAmount, ageInTicks, netHeadYaw, headPitch, scale, entitylivingbaseIn, 1 ,stand.getSpeed()*4/3);
 //	 		           MODEL_THE_WORLD.render(entitylivingbaseIn, limbSwing, limbSwingAmount, ageInTicks, netHeadYaw, headPitch, scale);

@@ -65,6 +65,14 @@ public class ConfigHuaji {
 		@LangKey("config.huaji_age.huaji_config.stand.moving_sound")
 		public boolean allowStandSound=true;
 		
+		@Config.Comment("Need the mask of time stop?")
+		@LangKey("config.huaji_age.huaji_config.stand.mask_time_stop")
+		public boolean allowMaskTimeStop=true;
+		
+		@Config.Comment("Use the noise version mask of time stop?")
+		@LangKey("config.huaji_age.huaji_config.stand.mask_time_stop_noise")
+		public boolean useMinecraftMask=true;
+		
 		@Config.Comment("The flight height of the multi knife")
 		@LangKey("config.huaji_age.huaji_config.height_knife")
 		@RangeDouble(min = 0, max = 0.5f)
@@ -79,6 +87,12 @@ public class ConfigHuaji {
 		@LangKey("config.huaji_age.huaji_config.stand_HUD_y")
 		@RangeDouble(min = 0, max = 1.0f)
 		public double StandHUDy = 0.7f;
+		
+		@Config.Comment("The scale of effect icon of time stop")
+		@LangKey("config.huaji_age.huaji_config.icon_time_stop")
+		@RangeDouble(min = 0, max = 5.0)
+		public double TimeStopScale = 1.0;
+		
 		
 	}
 	 @Mod.EventBusSubscriber(modid = HuajiAge.MODID)

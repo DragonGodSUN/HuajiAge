@@ -305,21 +305,20 @@ public class ModelStarPlatinum extends ModelStandBase
 	  handr5.rotateAngleY = MathHelper.cos(speed*rotateFloat+(float)(1.5*Math.PI/3) )* 1.6F * power;
 	}
 
-@Override
-public void doHandRender(float x, float y, float z, float scale, float alpha) {
-	GlStateManager.translate(x, y, z);
-  	GlStateManager.color(1.0F, 1.0F, 1.0F, alpha);
-  	handl1.render(scale);
-    handl2.render(scale);
-    handl3.render(scale);
-    handl4.render(scale);
-    handl5.render(scale);
-    handr1.render(scale);
-    handr2.render(scale);
-    handr3.render(scale);
-    handr4.render(scale);
-    handr5.render(scale);
-
-}
-
+	@Override
+	public void doHandRender(float x, float y, float z, float scale, float alpha) {
+		GlStateManager.translate(x, y, z);
+	  	GlStateManager.color(1.0F, 1.0F, 1.0F, alpha);
+	  	handl1.render(scale);
+	    handl2.render(scale);
+	    handl3.render(scale);
+	    handl4.render(scale);
+	    handl5.render(scale);
+	    handr1.render(scale);
+	    handr2.render(scale);
+	    handr3.render(scale);
+	    handr4.render(scale);
+	    handr5.render(scale);
+	
+	}
 }

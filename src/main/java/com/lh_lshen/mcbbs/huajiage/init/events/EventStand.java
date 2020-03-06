@@ -156,12 +156,12 @@ public class EventStand {
 
 			 if(stand_owner.isPotionActive(PotionLoader.potionStand)&&stand_owner.getActivePotionEffect(PotionLoader.potionStand).getDuration()<=5) {
 				 if(flag) {
+					 stand_owner.addPotionEffect(new PotionEffect(PotionLoader.potionStand , 5*20  ));
 					 stand_owner.addPotionEffect(new PotionEffect(MobEffects.SLOWNESS , 5*20, 1 ));
 					 stand_owner.addPotionEffect(new PotionEffect(MobEffects.HUNGER , 5*20 , ConfigHuaji.Stands.allowStandPunish? 24 : 49 ));
 					 if(ConfigHuaji.Stands.allowStandPunish) {
 					 stand_owner.addPotionEffect(new PotionEffect(MobEffects.WITHER , 5*20 , 1 ));
 					 }
-					 stand_owner.addPotionEffect(new PotionEffect(PotionLoader.potionStand , 5*20 , 100 ));
 				 }
 			 }
 

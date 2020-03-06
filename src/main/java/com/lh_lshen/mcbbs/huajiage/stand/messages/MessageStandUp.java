@@ -58,7 +58,7 @@ public class MessageStandUp implements IMessage {
             	FMLCommonHandler.instance().getWorldThread(ctx.netHandler).addScheduledTask(() ->{
 				if(!data.isTriggered()) {
 					player.getFoodStats().setFoodLevel(player.getFoodStats().getFoodLevel()-((int)(stand.getDamage()/5)*2-1));
-					player.addPotionEffect(new PotionEffect(PotionLoader.potionStand,stand.getDuration(),200));
+					player.addPotionEffect(new PotionEffect(PotionLoader.potionStand,stand.getDuration()));
 					data.setStand(standType);
 					data.setTrigger(true);
 //					 ServerUtil.sendPacketToNearbyPlayersStand(player, new SyncExposedStandDataMessage(standType, true, player.getName()));

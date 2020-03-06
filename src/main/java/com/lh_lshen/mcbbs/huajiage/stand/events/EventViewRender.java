@@ -2,11 +2,17 @@ package com.lh_lshen.mcbbs.huajiage.stand.events;
 
 import com.lh_lshen.mcbbs.huajiage.HuajiAge;
 import com.lh_lshen.mcbbs.huajiage.capability.CapabilityLoader;
+import com.lh_lshen.mcbbs.huajiage.common.HuajiConstant;
+import com.lh_lshen.mcbbs.huajiage.config.ConfigHuaji;
+import com.lh_lshen.mcbbs.huajiage.config.ConfigHuaji.HuajiConfig;
 import com.lh_lshen.mcbbs.huajiage.potion.PotionLoader;
 import com.lh_lshen.mcbbs.huajiage.stand.StandUtil;
 
 import net.minecraft.client.Minecraft;
+import net.minecraft.client.gui.Gui;
+import net.minecraft.client.gui.GuiIngame;
 import net.minecraft.client.gui.ScaledResolution;
+import net.minecraft.client.main.GameConfiguration.GameInformation;
 import net.minecraft.client.renderer.BufferBuilder;
 import net.minecraft.client.renderer.EntityRenderer;
 import net.minecraft.client.renderer.GlStateManager;
@@ -27,6 +33,7 @@ import net.minecraftforge.fml.common.Mod;
 import net.minecraftforge.fml.common.eventhandler.SubscribeEvent;
 import net.minecraftforge.fml.relauncher.Side;
 import net.minecraftforge.fml.relauncher.SideOnly;
+import scala.tools.nsc.doc.model.Public;
 
 @SideOnly(Side.CLIENT)
 @Mod.EventBusSubscriber(modid = HuajiAge.MODID, value = Side.CLIENT)
@@ -68,29 +75,50 @@ public class EventViewRender {
 	    public static void TimeStopRender4(RenderGameOverlayEvent event) {
 		 	Minecraft mc = Minecraft.getMinecraft();
 		 	boolean flag =  StandUtil.getStandBuffTime(mc.player)>0 ;
-	        if (event.getType() == RenderGameOverlayEvent.ElementType.VIGNETTE && flag ) {
-	        	ScaledResolution scaledRes = new ScaledResolution(mc);
-    			GlStateManager.enableBlend();
-    			GlStateManager.enableDepth();;
-    			GlStateManager.depthMask(false);
-    			 GlStateManager.tryBlendFuncSeparate(GlStateManager.SourceFactor.ZERO, GlStateManager.DestFactor.ONE_MINUS_SRC_COLOR, GlStateManager.SourceFactor.ONE, GlStateManager.DestFactor.ZERO);
-	             GlStateManager.color(0.25F, 0.25F, 0.25F, 1.0F);
-//	             GlStateManager.disableAlpha();
-	             mc.getTextureManager().bindTexture(new ResourceLocation(HuajiAge.MODID+":"+"textures/misc/time_stop_view.png"));
-	             Tessellator tessellator = Tessellator.getInstance();
-	             BufferBuilder bufferbuilder = tessellator.getBuffer();
-	             bufferbuilder.begin(7, DefaultVertexFormats.POSITION_TEX);
-	             bufferbuilder.pos(0.0D, (double)scaledRes.getScaledHeight(), -90.0D).tex(0.0D, 1.0D).endVertex();
-	             bufferbuilder.pos((double)scaledRes.getScaledWidth(), (double)scaledRes.getScaledHeight(), -90.0D).tex(1.0D, 1.0D).endVertex();
-	             bufferbuilder.pos((double)scaledRes.getScaledWidth(), 0.0D, -90.0D).tex(1.0D, 0.0D).endVertex();
-	             bufferbuilder.pos(0.0D, 0.0D, -90.0D).tex(0.0D, 0.0D).endVertex();
-	             tessellator.draw();
-	             GlStateManager.depthMask(true);
-//	             GlStateManager.enableDepth();
-//	             GlStateManager.enableAlpha();
-	             GlStateManager.color(1.0F, 1.0F, 1.0F, 1.0F);
-	             GlStateManager.tryBlendFuncSeparate(GlStateManager.SourceFactor.SRC_ALPHA, GlStateManager.DestFactor.ONE_MINUS_SRC_ALPHA, GlStateManager.SourceFactor.ONE, GlStateManager.DestFactor.ZERO);
+		 	ScaledResolution scaledRes = new ScaledResolution(mc);
+	        if (event.getType() == RenderGameOverlayEvent.ElementType.VIGNETTE  && ConfigHuaji.Stands.allowMaskTimeStop && flag ) {
+        	double scale =ConfigHuaji.Stands.TimeStopScale;
+//        	GlStateManager.enableBlend();
+        	renderView(mc,"textures/misc/time_stop_view.png");
+        	renderElement(mc, "textures/misc/gear_1.png", 0, 0, (float)(0.25f*scale), (float)(0.25f*scale));
+        	renderElement(mc, "textures/misc/gear_2.png", (int)(scaledRes.getScaledWidth()*4/scale)-512,  (int)(scaledRes.getScaledHeight()*4/scale)-512, (float)(0.25f*scale), (float)(0.25f*scale));
+//	        GlStateManager.disableBlend();
 	        }
+	        
         }
-	
+	 
+	 public static void renderView(Minecraft mc , String tex) {
+	 	ScaledResolution scaledRes = new ScaledResolution(mc);
+		GlStateManager.enableDepth();
+		GlStateManager.depthMask(false);
+		GlStateManager.tryBlendFuncSeparate(GlStateManager.SourceFactor.ZERO, GlStateManager.DestFactor.ONE_MINUS_SRC_COLOR, GlStateManager.SourceFactor.ONE, GlStateManager.DestFactor.ZERO);
+		GlStateManager.color(0.25F, 0.25F, 0.25F, 1.0F);
+		mc.getTextureManager().bindTexture(new ResourceLocation(ConfigHuaji.Stands.useMinecraftMask?HuajiAge.MODID+":"+tex:"textures/misc/vignette.png"));
+		Tessellator tessellator = Tessellator.getInstance();
+		BufferBuilder bufferbuilder = tessellator.getBuffer();
+		bufferbuilder.begin(7, DefaultVertexFormats.POSITION_TEX);
+		bufferbuilder.pos(0.0D, (double)scaledRes.getScaledHeight(), -90.0D).tex(0.0D, 1.0D).endVertex();
+		bufferbuilder.pos((double)scaledRes.getScaledWidth(), (double)scaledRes.getScaledHeight(), -90.0D).tex(1.0D, 1.0D).endVertex();
+		bufferbuilder.pos((double)scaledRes.getScaledWidth(), 0.0D, -90.0D).tex(1.0D, 0.0D).endVertex();
+      	bufferbuilder.pos(0.0D, 0.0D, -90.0D).tex(0.0D, 0.0D).endVertex();
+      	tessellator.draw();
+      	GlStateManager.depthMask(true);
+      	GlStateManager.color(1.0F, 1.0F, 1.0F, 1.0F);
+      	GlStateManager.tryBlendFuncSeparate(GlStateManager.SourceFactor.SRC_ALPHA, GlStateManager.DestFactor.ONE_MINUS_SRC_ALPHA, GlStateManager.SourceFactor.ONE, GlStateManager.DestFactor.ZERO);
+	 }
+	 public static void renderElement(Minecraft mc , String tex , int x , int y ,float scaleX ,float scaleY) {
+		 GlStateManager.pushMatrix();
+         GlStateManager.disableDepth();
+         GlStateManager.tryBlendFuncSeparate(GlStateManager.SourceFactor.ZERO, GlStateManager.DestFactor.ONE_MINUS_SRC_COLOR, GlStateManager.SourceFactor.ONE, GlStateManager.DestFactor.ZERO);
+         GlStateManager.color(0.3F, 0.3F, 0.3F, 1.0F);
+         mc.getTextureManager().bindTexture(new ResourceLocation(HuajiAge.MODID+":"+tex));
+         GlStateManager.scale(scaleX, scaleY, 0);
+         GlStateManager.translate(x, y, 0);
+         Gui.drawModalRectWithCustomSizedTexture(0, 0, 0, 0, 512, 512, 512, 512);
+         GlStateManager.scale(1.0f, 1.0f, 1.0f);
+         GlStateManager.enableDepth();
+         GlStateManager.color(1.0F, 1.0F, 1.0F, 1.0F);
+       	GlStateManager.tryBlendFuncSeparate(GlStateManager.SourceFactor.SRC_ALPHA, GlStateManager.DestFactor.ONE_MINUS_SRC_ALPHA, GlStateManager.SourceFactor.ONE, GlStateManager.DestFactor.ZERO);
+       	GlStateManager.popMatrix();
+	 }
 }

@@ -3,12 +3,14 @@ package com.lh_lshen.mcbbs.huajiage.stand.helper.instance;
 import java.util.List;
 import java.util.Random;
 
+import com.lh_lshen.mcbbs.huajiage.client.model.stand.ModelStandBase;
 import com.lh_lshen.mcbbs.huajiage.common.HuajiConstant;
 import com.lh_lshen.mcbbs.huajiage.init.playsound.HuajiSoundPlayer;
 import com.lh_lshen.mcbbs.huajiage.init.playsound.SoundLoader;
 import com.lh_lshen.mcbbs.huajiage.network.StandNetWorkHandler;
 import com.lh_lshen.mcbbs.huajiage.stand.EnumStandSkillType;
 import com.lh_lshen.mcbbs.huajiage.stand.EnumStandtype;
+import com.lh_lshen.mcbbs.huajiage.stand.StandClientUtil;
 import com.lh_lshen.mcbbs.huajiage.stand.StandUtil;
 import com.lh_lshen.mcbbs.huajiage.stand.messages.MessageDoTimeStopServer;
 import com.lh_lshen.mcbbs.huajiage.stand.messages.MessagePerfromSkill;
@@ -34,14 +36,14 @@ public class StandStarPlatinum implements IStandPower {
 	@Override
 	public void doStandPower(EntityLivingBase user) {
 		EnumStandtype type = StandUtil.getType(user);
+		int stage = StandUtil.getStandStage(user);
 		if(type == null) {
 			return;
 		}
-		List<Entity> entityCllection = user.getEntityWorld().getEntitiesWithinAABB(Entity.class, user.getEntityBoundingBox().grow(type.getDistance()));
+		List<Entity> entityCllection = user.getEntityWorld().getEntitiesWithinAABB(Entity.class, user.getEntityBoundingBox().grow(stage>0?type.getDistance():type.getDistance()+1f));
 		if(entityCllection.size()<=0) {
 			return;
 		}
-		int stage = StandUtil.getStandStage(user);
 		for(Entity i:entityCllection) {
 
 				Vec3d back = MotionHelper.getVectorEntityEye(user, i);
@@ -128,5 +130,19 @@ public class StandStarPlatinum implements IStandPower {
 				}
 			}
 	}
+
+	@Override
+	public void extraEffects(EntityLivingBase user, float limbSwing, float limbSwingAmount,
+			float partialTicks, float ageInTicks, float netHeadYaw, float headPitch, float scale) {
+			EnumStandtype type = StandUtil.getType(user);
+			ModelStandBase model = StandClientUtil.getModel(type.getName());
+			if(type != null) {
+			model.setRotationAngles(limbSwing, limbSwingAmount, ageInTicks, netHeadYaw, headPitch, scale, user, 1 ,type.getSpeed());
+			model.doHandRender(0, 0, 0,(float)(scale*1.5), 0.5f);
+			}
+	}
+
+
+	
 
 }
