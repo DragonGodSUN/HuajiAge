@@ -82,7 +82,8 @@ public class LayerStand implements  LayerRenderer<EntityLivingBase> {
 	 					GlStateManager.pushMatrix();
 	 		            GlStateManager.translate(0.0F, -0.2F, -0.75F);
 	 		            
-	 		            model.setRotationAngles(limbSwing, limbSwingAmount, ageInTicks, netHeadYaw, headPitch, scale, entitylivingbaseIn, 1 ,stand.getSpeed()*4/3);
+	 		            model.setRotationAngles(limbSwing, limbSwingAmount, ageInTicks, netHeadYaw, headPitch, scale, entitylivingbaseIn, 1f ,stand.getSpeed()*4/3);
+	 		            model.setPunch(limbSwing, limbSwingAmount,  ageInTicks, netHeadYaw, headPitch, scale, entitylivingbaseIn, 0.3f ,stand.getSpeed()*4/3);
 	 		            model.render(entitylivingbaseIn, limbSwing, limbSwingAmount, ageInTicks, netHeadYaw, headPitch, scale);
 	 		            if(stage>0&&stand_power!=null) {
 	 		            stand_power.extraEffects(entitylivingbaseIn, limbSwing, limbSwingAmount, partialTicks, ageInTicks, netHeadYaw, headPitch, scale);

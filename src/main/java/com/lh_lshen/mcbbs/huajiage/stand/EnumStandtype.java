@@ -13,8 +13,8 @@ import net.minecraft.client.resources.I18n;
 import net.minecraft.util.ResourceLocation;
 
 public enum EnumStandtype {
-	THE_WORLD("the_world",1.2f,10f,200,2.5f,60000,new StandTheWorld(),"textures/entity/entity_the_world.png",HuajiConstant.StandType.STAND_THE_WORLD),
-	STAR_PLATINUM("star_platinum",1.5f,15f,225,2.5f,50000,new StandStarPlatinum(),"textures/entity/entity_star_platinum.png",HuajiConstant.StandType.STAND_STAR_PLATINUM);
+	THE_WORLD("the_world",1.2f,10f,200,2f,60000,new StandTheWorld(),"textures/entity/entity_the_world.png",HuajiConstant.StandType.STAND_THE_WORLD),
+	STAR_PLATINUM("star_platinum",1.5f,15f,225,2f,50000,new StandStarPlatinum(),"textures/entity/entity_star_platinum.png",HuajiConstant.StandType.STAND_STAR_PLATINUM);
 //	,STAR_PLATINUM("star_platinum");
 	private EnumStandtype(String name ,float speed ,float damage ,int duration ,float distance ,int cost,
 			IStandPower power,String texPath,String localName) {

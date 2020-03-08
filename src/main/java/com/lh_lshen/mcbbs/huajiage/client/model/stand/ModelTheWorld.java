@@ -5,241 +5,271 @@
 // - ZeuX
 package com.lh_lshen.mcbbs.huajiage.client.model.stand;
 
+import net.minecraft.client.Minecraft;
 import net.minecraft.client.model.ModelBase;
+import net.minecraft.client.model.ModelBox;
 import net.minecraft.client.model.ModelRenderer;
 import net.minecraft.client.renderer.GlStateManager;
 import net.minecraft.entity.Entity;
+import net.minecraft.entity.EntityLivingBase;
 import net.minecraft.util.math.MathHelper;
 
 public class ModelTheWorld extends ModelStandBase
 {
   //fields
-    ModelRenderer Shape6;
-    ModelRenderer Shape7;
-    ModelRenderer head;
-    ModelRenderer Shape1;
-    ModelRenderer Shape2;
-    ModelRenderer Shape3;
-    ModelRenderer Shape4;
-    ModelRenderer Shape5;
-    ModelRenderer body;
-    ModelRenderer bodydown;
-    ModelRenderer Shape8;
-    ModelRenderer Shape9;
-    ModelRenderer Shape10;
-    ModelRenderer Shape11;
-    ModelRenderer shape12;
-    ModelRenderer Shape13;
-    ModelRenderer Shape14;
-    ModelRenderer back1;
-    ModelRenderer back2;
-    ModelRenderer leftleg;
-    ModelRenderer legdownl;
-    ModelRenderer rightleg;
-    ModelRenderer legdownr;
-    ModelRenderer rightarm;
-    ModelRenderer leftarm;
-    public ModelRenderer handl1;
-    public ModelRenderer handl2;
-    public ModelRenderer handl3;
-    public ModelRenderer handl4;
-    public ModelRenderer handl5;
-    public ModelRenderer handr1;
-    public ModelRenderer handr2;
-    public ModelRenderer handr3;
-    public ModelRenderer handr4;
-    public ModelRenderer handr5;
+	private final ModelRenderer head;
+	private final ModelRenderer Shape1;
+	private final ModelRenderer Shape2;
+	private final ModelRenderer Shape3;
+	private final ModelRenderer Shape4;
+	private final ModelRenderer Shape5;
+	private final ModelRenderer Shape6;
+	private final ModelRenderer Shape7;
+	private final ModelRenderer body;
+	private final ModelRenderer bodydown;
+	private final ModelRenderer Shape8;
+	private final ModelRenderer Shape9;
+	private final ModelRenderer Shape10;
+	private final ModelRenderer Shape11;
+	private final ModelRenderer Shape12;
+	private final ModelRenderer Shape13;
+	private final ModelRenderer Shape14;
+	private final ModelRenderer back1;
+	private final ModelRenderer back2;
+	private final ModelRenderer rightarm;
+	private final ModelRenderer leftarm;
+	private final ModelRenderer leftleg;
+	private final ModelRenderer legdownl;
+	private final ModelRenderer rightleg;
+	private final ModelRenderer legdownr;
+	private final ModelRenderer left_hands;
+	private final ModelRenderer handl1;
+	private final ModelRenderer handl2;
+	private final ModelRenderer handl3;
+	private final ModelRenderer handl4;
+	private final ModelRenderer handl5;
+	private final ModelRenderer right_hands;
+	private final ModelRenderer handr1;
+	private final ModelRenderer handr2;
+	private final ModelRenderer handr3;
+	private final ModelRenderer handr4;
+	private final ModelRenderer handr5;
   
   public ModelTheWorld()
   {
     textureWidth = 64;
     textureHeight = 128;
     
-      Shape6 = new ModelRenderer(this, 0, 30);
-      Shape6.addBox(-1F, 0F, -5F, 2, 1, 1);
-      Shape6.setRotationPoint(0F, 0F, 0F);
-      Shape6.setTextureSize(64, 128);
-      setRotation(Shape6, 0F, 0F, 0.7853982F);
-      Shape7 = new ModelRenderer(this, 0, 30);
-      Shape7.addBox(0F, -1F, -5F, 1, 1, 1);
-      Shape7.setRotationPoint(0F, 0F, 0F);
-      Shape7.setTextureSize(64, 128);
-      setRotation(Shape7, 0F, 0F, 0.7853982F);
-      head = new ModelRenderer(this, 0, 0);
-      head.addBox(-3.5F, -6F, -4F, 7, 6, 8);
-      head.setRotationPoint(0F, 0F, 0F);
-      head.setTextureSize(64, 128);
-      setRotation(head, 0F, 0F, 0F);
-      Shape1 = new ModelRenderer(this, 0, 35);
-      Shape1.addBox(-4.5F, -8F, -1F, 9, 3, 9);
-      Shape1.setRotationPoint(0F, 0F, 0F);
-      Shape1.setTextureSize(64, 128);
-      setRotation(Shape1, 0.4014257F, 0F, 0F);
-      Shape2 = new ModelRenderer(this, 0, 49);
-      Shape2.addBox(-4.5F, -7.2F, -3F, 9, 4, 8);
-      Shape2.setRotationPoint(0F, 0F, 0F);
-      Shape2.setTextureSize(64, 128);
-      setRotation(Shape2, 0.0523599F, 0F, 0F);
-      Shape3 = new ModelRenderer(this, 0, 63);
-      Shape3.addBox(2.8F, -7F, -3F, 3, 4, 6);
-      Shape3.setRotationPoint(0F, 0F, 0F);
-      Shape3.setTextureSize(64, 128);
-      setRotation(Shape3, 0F, 1.099557F, 0F);
-      Shape4 = new ModelRenderer(this, 0, 63);
-      Shape4.mirror = true;
-      Shape4.addBox(-5.8F, -7F, -3F, 3, 4, 6);
-      Shape4.setRotationPoint(0F, 0F, 0F);
-      Shape4.setTextureSize(64, 128);
-      setRotation(Shape4, 0F, -1.099557F, 0F);
-      Shape5 = new ModelRenderer(this, 0, 75);
-      Shape5.addBox(-4.5F, -4F, 1F, 9, 2, 4);
-      Shape5.setRotationPoint(0F, 0F, 0F);
-      Shape5.setTextureSize(64, 128);
-      setRotation(Shape5, -0.1504955F, 0F, 0F);
-      body = new ModelRenderer(this, 16, 16);
-      body.addBox(-4F, 0F, -2F, 8, 7, 4);
-      body.setRotationPoint(0F, 0F, 0F);
-      body.setTextureSize(64, 128);
-      setRotation(body, 0.0872665F, 0F, 0F);
-      bodydown = new ModelRenderer(this, 19, 66);
-      bodydown.addBox(-3.5F, 7F, -2F, 7, 4, 4);
-      bodydown.setRotationPoint(0F, 0F, 0F);
-      bodydown.setTextureSize(64, 128);
-      setRotation(bodydown, 0.0872665F, 0F, 0F);
-      Shape8 = new ModelRenderer(this, 37, 30);
-      Shape8.addBox(1F, -1F, -3F, 2, 11, 6);
-      Shape8.setRotationPoint(0F, 0F, 0F);
-      Shape8.setTextureSize(64, 128);
-      setRotation(Shape8, 0.0872665F, 0F, 0F);
-      Shape9 = new ModelRenderer(this, 37, 30);
-      Shape9.mirror = true;
-      Shape9.addBox(-3F, -1F, -3F, 2, 11, 6);
-      Shape9.setRotationPoint(0F, 0F, 0F);
-      Shape9.setTextureSize(64, 128);
-      setRotation(Shape9, 0.0872665F, 0F, 0F);
-      Shape10 = new ModelRenderer(this, 35, 49);
-      Shape10.addBox(-3.5F, 0.2F, -2.5F, 7, 4, 1);
-      Shape10.setRotationPoint(0F, 0F, 0F);
-      Shape10.setTextureSize(64, 128);
-      setRotation(Shape10, 0.0872665F, 0F, 0F);
-      Shape11 = new ModelRenderer(this, 35, 56);
-      Shape11.addBox(-1.5F, 4.2F, 0F, 3, 3, 1);
-      Shape11.setRotationPoint(0F, 0F, -2.3F);
-      Shape11.setTextureSize(64, 128);
-      setRotation(Shape11, 0.0872665F, 0F, 0F);
-      shape12 = new ModelRenderer(this, 16, 82);
-      shape12.addBox(-4F, 10F, -3.5F, 8, 2, 7);
-      shape12.setRotationPoint(0F, 0F, 0F);
-      shape12.setTextureSize(64, 128);
-      setRotation(shape12, 0.0872665F, 0F, 0F);
-      Shape13 = new ModelRenderer(this, 0, 30);
-      Shape13.addBox(7F, 8F, -3.5F, 2, 1, 1);
-      Shape13.setRotationPoint(0F, 0F, 0F);
-      Shape13.setTextureSize(64, 128);
-      setRotation(Shape13, 0.0872665F, 0F, 0.7853982F);
-      Shape14 = new ModelRenderer(this, 0, 30);
-      Shape14.addBox(8F, 7F, -3.5F, 1, 1, 1);
-      Shape14.setRotationPoint(0F, 0F, 0F);
-      Shape14.setTextureSize(64, 128);
-      setRotation(Shape14, 0.0872665F, 0F, 0.7853982F);
-      back1 = new ModelRenderer(this, 0, 83);
-      back1.addBox(0.5F, 0F, 3F, 2, 7, 2);
-      back1.setRotationPoint(0F, 0F, 0F);
-      back1.setTextureSize(64, 128);
-      setRotation(back1, 0.0872665F, 0F, 0F);
-      back2 = new ModelRenderer(this, 0, 83);
-      back2.mirror = true;
-      back2.addBox(-2.5F, 0F, 3F, 2, 7, 2);
-      back2.setRotationPoint(0F, 0F, 0F);
-      back2.setTextureSize(64, 128);
-      setRotation(back2, 0.0872665F, 0F, 0F);
-      leftleg = new ModelRenderer(this, 21, 100);
-      leftleg.addBox(-2F, 0F, -3F, 5, 7, 5);
-      leftleg.setRotationPoint(2F, 11F, 0F);
-      leftleg.setTextureSize(64, 128);
-      setRotation(leftleg, -0.6981317F, -0.4363323F, -0.4712389F);
-      legdownl = new ModelRenderer(this, 0, 100);
-      legdownl.addBox(-0.5F, 3.5F, -5F, 5, 9, 5);
-      legdownl.setRotationPoint(2F, 11F, 0F);
-      legdownl.setTextureSize(64, 128);
-      setRotation(legdownl, 0.1652315F, -0.1745329F, -0.1745329F);
-      rightleg = new ModelRenderer(this, 21, 100);
-      rightleg.mirror = true;
-      rightleg.addBox(-3F, 0F, -3F, 5, 7, 5);
-      rightleg.setRotationPoint(-2F, 11F, 0F);
-      rightleg.setTextureSize(64, 128);
-      setRotation(rightleg, -0.6981317F, 0.4363323F, 0.4712389F);
-      legdownr = new ModelRenderer(this, 0, 100);
-      legdownr.addBox(-4.5F, 3.5F, -5F, 5, 9, 5);
-      legdownr.setRotationPoint(-2F, 11F, 0F);
-      legdownr.setTextureSize(64, 128);
-      setRotation(legdownr, 0.1652315F, 0.1745329F, 0.1745329F);
-      rightarm = new ModelRenderer(this, 40, 16);
-      rightarm.mirror = true;
-      rightarm.addBox(-3F, -2F, -2F, 4, 4, 5);
-      rightarm.setRotationPoint(-5F, 2F, 0F);
-      rightarm.setTextureSize(64, 128);
-      setRotation(rightarm, 0.5235988F, 0F, 0F);
-      leftarm = new ModelRenderer(this, 40, 16);
-      leftarm.addBox(-1F, -2F, -2F, 4, 4, 5);
-      leftarm.setRotationPoint(5F, 2F, 0F);
-      leftarm.setTextureSize(64, 128);
-      setRotation(leftarm, 0.5235988F, 0F, 0F);
-      handl1 = new ModelRenderer(this, 48, 4);
-      handl1.addBox(-1F, 4F, -1F, 4, 8, 4);
-      handl1.setRotationPoint(5F, 2F, 0F);
-      handl1.setTextureSize(64, 128);
-      setRotation(handl1, -1.570796F, 0F, 0F);
-      handl2 = new ModelRenderer(this, 48, 4);
-      handl2.addBox(6F, 9F, -3F, 4, 8, 4);
-      handl2.setRotationPoint(0F, 0F, 0F);
-      handl2.setTextureSize(64, 128);
-      setRotation(handl2, -1.570796F, 0F, 0F);
-      handl3 = new ModelRenderer(this, 48, 4);
-      handl3.addBox(13F, -5F, 4F, 4, 8, 4);
-      handl3.setRotationPoint(0F, 0F, 0F);
-      handl3.setTextureSize(64, 128);
-      setRotation(handl3, -1.570796F, 0F, 0F);
-      handl4 = new ModelRenderer(this, 48, 4);
-      handl4.addBox(12F, -2F, -1F, 4, 8, 4);
-      handl4.setRotationPoint(0F, 0F, 0F);
-      handl4.setTextureSize(64, 128);
-      setRotation(handl4, -1.570796F, 0F, 0F);
-      handl5 = new ModelRenderer(this, 48, 4);
-      handl5.addBox(8F, 6F, 3F, 4, 8, 4);
-      handl5.setRotationPoint(0F, 0F, 0F);
-      handl5.setTextureSize(64, 128);
-      setRotation(handl5, -1.570796F, 0F, 0F);
-      handr1 = new ModelRenderer(this, 48, 4);
-      handr1.mirror = true;
-      handr1.addBox(-15F, 7F, -3F, 4, 8, 4);
-      handr1.setRotationPoint(5F, 2F, 0F);
-      handr1.setTextureSize(64, 128);
-      setRotation(handr1, -1.570796F, 0F, 0F);
-      handr2 = new ModelRenderer(this, 48, 4);
-      handr2.mirror = true;
-      handr2.addBox(-15F, 0F, -3F, 4, 8, 4);
-      handr2.setRotationPoint(0F, 0F, 0F);
-      handr2.setTextureSize(64, 128);
-      setRotation(handr2, -1.570796F, 0F, 0F);
-      handr3 = new ModelRenderer(this, 48, 4);
-      handr3.mirror = true; 
-      handr3.addBox(-9F, -8F, 3F, 4, 8, 4);
-      handr3.setRotationPoint(0F, 0F, 0F);
-      handr3.setTextureSize(64, 128);
-      setRotation(handr3, -1.570796F, 0F, 0F);
-      handr4 = new ModelRenderer(this, 48, 4);
-      handr4.mirror = true;
-      handr4.addBox(-16F, 7F, 2F, 4, 8, 4);
-      handr4.setRotationPoint(0F, 0F, 0F);
-      handr4.setTextureSize(64, 128);
-      setRotation(handr4, -1.570796F, 0F, 0F);
-      handr5 = new ModelRenderer(this, 48, 4);
-      handr5.mirror = true;
-      handr5.addBox(-11F, 0F, 4F, 4, 8, 4);
-      handr5.setRotationPoint(0F, 0F, 0F);
-      handr5.setTextureSize(64, 128);
-      setRotation(handr5, -1.570796F, 0F, 0F);
+    head = new ModelRenderer(this);
+	head.setRotationPoint(0.0F, 0.0F, 0.0F);
+	head.cubeList.add(new ModelBox(head, 0, 0, -3.5F, -6.0F, -4.0F, 7, 6, 8, 0.0F, false));
+
+	Shape1 = new ModelRenderer(this);
+	Shape1.setRotationPoint(0.0F, 0.0F, 0.0F);
+	setRotation(Shape1, 0.4014F, 0.0F, 0.0F);
+	head.addChild(Shape1);
+	Shape1.cubeList.add(new ModelBox(Shape1, 0, 35, -4.5F, -8.0F, -1.0F, 9, 3, 9, 0.0F, false));
+
+	Shape2 = new ModelRenderer(this);
+	Shape2.setRotationPoint(0.0F, 0.0F, 0.0F);
+	setRotation(Shape2, 0.0524F, 0.0F, 0.0F);
+	head.addChild(Shape2);
+	Shape2.cubeList.add(new ModelBox(Shape2, 0, 49, -4.5F, -7.2F, -3.0F, 9, 4, 8, 0.0F, false));
+
+	Shape3 = new ModelRenderer(this);
+	Shape3.setRotationPoint(0.0F, 0.0F, 0.0F);
+	setRotation(Shape3, 0.0F, 1.0996F, 0.0F);
+	head.addChild(Shape3);
+	Shape3.cubeList.add(new ModelBox(Shape3, 0, 63, 2.8F, -7.0F, -3.0F, 3, 4, 6, 0.0F, false));
+
+	Shape4 = new ModelRenderer(this);
+	Shape4.setRotationPoint(0.0F, 0.0F, 0.0F);
+	setRotation(Shape4, 0.0F, -1.0996F, 0.0F);
+	head.addChild(Shape4);
+	Shape4.cubeList.add(new ModelBox(Shape4, 0, 63, -5.8F, -7.0F, -3.0F, 3, 4, 6, 0.0F, true));
+
+	Shape5 = new ModelRenderer(this);
+	Shape5.setRotationPoint(0.0F, 0.0F, 0.0F);
+	setRotation(Shape5, -0.1505F, 0.0F, 0.0F);
+	head.addChild(Shape5);
+	Shape5.cubeList.add(new ModelBox(Shape5, 0, 75, -4.5F, -4.0F, 1.0F, 9, 2, 4, 0.0F, false));
+
+	Shape6 = new ModelRenderer(this);
+	Shape6.setRotationPoint(0.0F, 0.0F, 0.0F);
+	setRotation(Shape6, 0.0F, 0.0F, 0.7854F);
+	head.addChild(Shape6);
+	Shape6.cubeList.add(new ModelBox(Shape6, 0, 30, -1.0F, 0.0F, -5.0F, 2, 1, 1, 0.0F, false));
+
+	Shape7 = new ModelRenderer(this);
+	Shape7.setRotationPoint(0.0F, 0.0F, 0.0F);
+	setRotation(Shape7, 0.0F, 0.0F, 0.7854F);
+	head.addChild(Shape7);
+	Shape7.cubeList.add(new ModelBox(Shape7, 0, 30, 0.0F, -1.0F, -5.0F, 1, 1, 1, 0.0F, false));
+
+	body = new ModelRenderer(this);
+	body.setRotationPoint(0.0F, 0.0F, 0.0F);
+	setRotation(body, 0.0873F, 0.0F, 0.0F);
+	body.cubeList.add(new ModelBox(body, 16, 16, -4.0F, 0.0F, -2.0F, 8, 7, 4, 0.0F, false));
+
+	bodydown = new ModelRenderer(this);
+	bodydown.setRotationPoint(0.0F, 0.0F, 0.0F);
+	setRotation(bodydown, 0.0873F, 0.0F, 0.0F);
+	body.addChild(bodydown);
+	bodydown.cubeList.add(new ModelBox(bodydown, 19, 66, -3.5F, 7.0F, -2.0F, 7, 4, 4, 0.0F, false));
+
+	Shape8 = new ModelRenderer(this);
+	Shape8.setRotationPoint(0.0F, 0.0F, 0.0F);
+	setRotation(Shape8, 0.0873F, 0.0F, 0.0F);
+	body.addChild(Shape8);
+	Shape8.cubeList.add(new ModelBox(Shape8, 37, 30, 1.0F, -1.0F, -3.0F, 2, 11, 6, 0.0F, false));
+
+	Shape9 = new ModelRenderer(this);
+	Shape9.setRotationPoint(0.0F, 0.0F, 0.0F);
+	setRotation(Shape9, 0.0873F, 0.0F, 0.0F);
+	body.addChild(Shape9);
+	Shape9.cubeList.add(new ModelBox(Shape9, 37, 30, -3.0F, -1.0F, -3.0F, 2, 11, 6, 0.0F, true));
+
+	Shape10 = new ModelRenderer(this);
+	Shape10.setRotationPoint(0.0F, 0.0F, 0.0F);
+	setRotation(Shape10, 0.0873F, 0.0F, 0.0F);
+	body.addChild(Shape10);
+	Shape10.cubeList.add(new ModelBox(Shape10, 35, 49, -3.5F, 0.2F, -2.5F, 7, 4, 1, 0.0F, false));
+
+	Shape11 = new ModelRenderer(this);
+	Shape11.setRotationPoint(0.0F, 0.0F, -2.3F);
+	setRotation(Shape11, 0.0873F, 0.0F, 0.0F);
+	body.addChild(Shape11);
+	Shape11.cubeList.add(new ModelBox(Shape11, 35, 56, -1.5F, 4.2F, 0.0F, 3, 3, 1, 0.0F, false));
+
+	Shape12 = new ModelRenderer(this);
+	Shape12.setRotationPoint(0.0F, 0.0F, 0.0F);
+	setRotation(Shape12, 0.0873F, 0.0F, 0.0F);
+	body.addChild(Shape12);
+	Shape12.cubeList.add(new ModelBox(Shape12, 16, 82, -4.0F, 10.0F, -3.5F, 8, 2, 7, 0.0F, false));
+
+	Shape13 = new ModelRenderer(this);
+	Shape13.setRotationPoint(0.0F, 0.0F, 0.0F);
+	setRotation(Shape13, 0.0873F, 0.0F, 0.7854F);
+	body.addChild(Shape13);
+	Shape13.cubeList.add(new ModelBox(Shape13, 0, 30, 7.0F, 8.0F, -3.5F, 2, 1, 1, 0.0F, false));
+
+	Shape14 = new ModelRenderer(this);
+	Shape14.setRotationPoint(0.0F, 0.0F, 0.0F);
+	setRotation(Shape14, 0.0873F, 0.0F, 0.7854F);
+	body.addChild(Shape14);
+	Shape14.cubeList.add(new ModelBox(Shape14, 0, 30, 8.0F, 7.0F, -3.5F, 1, 1, 1, 0.0F, false));
+
+	back1 = new ModelRenderer(this);
+	back1.setRotationPoint(0.0F, 0.0F, 0.0F);
+	setRotation(back1, 0.0873F, 0.0F, 0.0F);
+	body.addChild(back1);
+	back1.cubeList.add(new ModelBox(back1, 0, 83, 0.5F, 0.0F, 3.0F, 2, 7, 2, 0.0F, false));
+
+	back2 = new ModelRenderer(this);
+	back2.setRotationPoint(0.0F, 0.0F, 0.0F);
+	setRotation(back2, 0.0873F, 0.0F, 0.0F);
+	body.addChild(back2);
+	back2.cubeList.add(new ModelBox(back2, 0, 83, -2.5F, 0.0F, 3.0F, 2, 7, 2, 0.0F, true));
+
+	rightarm = new ModelRenderer(this);
+	rightarm.setRotationPoint(-5.0F, 2.0F, 0.0F);
+	setRotation(rightarm, 0.5236F, 0.0F, 0.0F);
+	body.addChild(rightarm);
+	rightarm.cubeList.add(new ModelBox(rightarm, 40, 16, -3.0F, -2.0F, -2.0F, 4, 4, 5, 0.0F, true));
+
+	leftarm = new ModelRenderer(this);
+	leftarm.setRotationPoint(5.0F, 2.0F, 0.0F);
+	setRotation(leftarm, 0.5236F, 0.0F, 0.0F);
+	body.addChild(leftarm);
+	leftarm.cubeList.add(new ModelBox(leftarm, 40, 16, -1.0F, -2.0F, -2.0F, 4, 4, 5, 0.0F, false));
+
+	leftleg = new ModelRenderer(this);
+	leftleg.setRotationPoint(2.0F, 11.0F, 0.0F);
+	setRotation(leftleg, -0.6981F, -0.4363F, -0.4712F);
+	leftleg.cubeList.add(new ModelBox(leftleg, 21, 100, -2.0F, 0.0F, -3.0F, 5, 7, 5, 0.0F, false));
+
+	legdownl = new ModelRenderer(this);
+	legdownl.setRotationPoint(1.1276F, 4.9224F, 4.6341F);
+	setRotation(legdownl, 1.2124F, 0.0F, 0.2618F);
+	leftleg.addChild(legdownl);
+	legdownl.cubeList.add(new ModelBox(legdownl, 0, 100, -2.2773F, -3.4722F, -4.5434F, 5, 9, 5, 0.0F, false));
+
+	rightleg = new ModelRenderer(this);
+	rightleg.setRotationPoint(-2.0F, 11.0F, 0.0F);
+	setRotation(rightleg, -0.6981F, 0.4363F, 0.4712F);
+	rightleg.cubeList.add(new ModelBox(rightleg, 21, 100, -3.0F, 0.0F, -3.0F, 5, 7, 5, 0.0F, true));
+
+	legdownr = new ModelRenderer(this);
+	legdownr.setRotationPoint(-0.0181F, 7.2866F, 3.8689F);
+	setRotation(legdownr, 1.2124F, -0.0873F, -0.3491F);
+	rightleg.addChild(legdownr);
+	legdownr.cubeList.add(new ModelBox(legdownr, 0, 100, -2.5F, -4.5F, -2.5F, 5, 9, 5, 0.0F, false));
+
+	left_hands = new ModelRenderer(this);
+	left_hands.setRotationPoint(0.0F, 5.0F, 2.0F);
+
+	handl1 = new ModelRenderer(this);
+	handl1.setRotationPoint(8.0F, 2.0F, 0.0F);
+	setRotation(handl1, -1.5708F, 0.0F, 0.0F);
+	left_hands.addChild(handl1);
+	handl1.cubeList.add(new ModelBox(handl1, 48, 4, 4.0F, 1.0F, -11.0F, 4, 8, 4, 0.0F, false));
+
+	handl2 = new ModelRenderer(this);
+	handl2.setRotationPoint(3.0F, 0.0F, 0.0F);
+	setRotation(handl2, -1.5708F, 0.0F, 0.0F);
+	left_hands.addChild(handl2);
+	handl2.cubeList.add(new ModelBox(handl2, 48, 4, 14.0F, 8.0F, -6.0F, 4, 8, 4, 0.0F, false));
+
+	handl3 = new ModelRenderer(this);
+	handl3.setRotationPoint(3.0F, 0.0F, 0.0F);
+	setRotation(handl3, -1.5708F, 0.0F, 0.0F);
+	left_hands.addChild(handl3);
+	handl3.cubeList.add(new ModelBox(handl3, 48, 4, 8.0F, -6.0F, -5.0F, 4, 8, 4, 0.0F, false));
+
+	handl4 = new ModelRenderer(this);
+	handl4.setRotationPoint(3.0F, 0.0F, 0.0F);
+	setRotation(handl4, -1.5708F, 0.0F, 0.0F);
+	left_hands.addChild(handl4);
+	handl4.cubeList.add(new ModelBox(handl4, 48, 4, 10.0F, 5.0F, 1.0F, 4, 8, 4, 0.0F, false));
+
+	handl5 = new ModelRenderer(this);
+	handl5.setRotationPoint(3.0F, 0.0F, 0.0F);
+	setRotation(handl5, -1.5708F, 0.0F, 0.0F);
+	left_hands.addChild(handl5);
+	handl5.cubeList.add(new ModelBox(handl5, 48, 4, 12.0F, 1.0F, -2.0F, 4, 8, 4, 0.0F, false));
+
+	right_hands = new ModelRenderer(this);
+	right_hands.setRotationPoint(0.0F, 5.0F, 2.0F);
+
+	handr1 = new ModelRenderer(this);
+	handr1.setRotationPoint(3.0F, 2.0F, 0.0F);
+	setRotation(handr1, -1.5708F, 0.0F, 0.0F);
+	right_hands.addChild(handr1);
+	handr1.cubeList.add(new ModelBox(handr1, 48, 4, -19.0F, 3.0F, -1.0F, 4, 8, 4, 0.0F, true));
+
+	handr2 = new ModelRenderer(this);
+	handr2.setRotationPoint(-2.0F, 0.0F, 0.0F);
+	setRotation(handr2, -1.5708F, 0.0F, 0.0F);
+	right_hands.addChild(handr2);
+	handr2.cubeList.add(new ModelBox(handr2, 48, 4, -13.0F, -1.0F, -9.0F, 4, 8, 4, 0.0F, true));
+
+	handr3 = new ModelRenderer(this);
+	handr3.setRotationPoint(-2.0F, 0.0F, 0.0F);
+	setRotation(handr3, -1.5708F, 0.0F, 0.0F);
+	right_hands.addChild(handr3);
+	handr3.cubeList.add(new ModelBox(handr3, 48, 4, -13.0F, -6.0F, -3.0F, 4, 8, 4, 0.0F, true));
+
+	handr4 = new ModelRenderer(this);
+	handr4.setRotationPoint(-2.0F, 0.0F, 0.0F);
+	setRotation(handr4, -1.5708F, 0.0F, 0.0F);
+	right_hands.addChild(handr4);
+	handr4.cubeList.add(new ModelBox(handr4, 48, 4, -19.0F, 8.0F, -3.0F, 4, 8, 4, 0.0F, true));
+
+	handr5 = new ModelRenderer(this);
+	handr5.setRotationPoint(-2.0F, 0.0F, 0.0F);
+	setRotation(handr5, -1.5708F, 0.0F, 0.0F);
+	right_hands.addChild(handr5);
+	handr5.cubeList.add(new ModelBox(handr5, 48, 4, -17.0F, 3.0F, -6.0F, 4, 8, 4, 0.0F, true));
   }
   
   
@@ -247,42 +277,21 @@ public class ModelTheWorld extends ModelStandBase
   public void render(Entity entityIn, float limbSwing, float limbSwingAmount, float ageInTicks, float netHeadYaw,
 		float headPitch, float scale) {
     setRotationAngles( limbSwing, limbSwingAmount, ageInTicks, headPitch,netHeadYaw, scale, entityIn);
-    Shape6.render(scale);
-    Shape7.render(scale);
+    float off = (float) (MathHelper.cos((float) (0.1*ageInTicks))*0.1);
+    head.offsetY = off;
+    body.offsetY = off;
+    leftleg.offsetY = off;
+    rightleg.offsetY = off;
+    
+    head.rotateAngleX = headPitch * 0.017453292F;
+    head.rotateAngleY = netHeadYaw * 0.017453292F;
+    
     head.render(scale);
-    Shape1.render(scale);
-    Shape2.render(scale);
-    Shape3.render(scale);
-    Shape4.render(scale);
-    Shape5.render(scale);
     body.render(scale);
-    bodydown.render(scale);
-    Shape8.render(scale);
-    Shape9.render(scale);
-    Shape10.render(scale);
-    Shape11.render(scale);
-    shape12.render(scale);
-    Shape13.render(scale);
-    Shape14.render(scale);
-    back1.render(scale);
-    back2.render(scale);
     leftleg.render(scale);
-    legdownl.render(scale);
     rightleg.render(scale);
-    legdownr.render(scale);
-    rightarm.render(scale);
-    leftarm.render(scale);
-	    handl1.render(scale);
-	    handl2.render(scale);
-	    handl3.render(scale);
-	    handl4.render(scale);
-	    handl5.render(scale);
-	    handr1.render(scale);
-	    handr2.render(scale);
-	    handr3.render(scale);
-	    handr4.render(scale);
-	    handr5.render(scale);
-    super.render(entityIn, limbSwing, limbSwingAmount, ageInTicks, netHeadYaw, headPitch, scale);
+    left_hands.render(scale);
+    right_hands.render(scale);
   }
   
   private void setRotation(ModelRenderer model, float x, float y, float z)
@@ -291,7 +300,6 @@ public class ModelTheWorld extends ModelStandBase
     model.rotateAngleY = y;
     model.rotateAngleZ = z;
   }
-  
   public void setRotationAngles(float limbSwing, float limbSwingAmount, float rotateFloat, float rotateYaw,
           float rotatePitch, float scale, Entity entity ,float power ,float speed)
   {
@@ -306,20 +314,40 @@ public class ModelTheWorld extends ModelStandBase
     handr3.rotateAngleY = MathHelper.cos(speed*rotateFloat+(float)(8*Math.PI/3)) * 1.4F * power;
     handr4.rotateAngleY = MathHelper.cos(speed*rotateFloat+(float)(10*Math.PI/3)) * 1.5F * power;
     handr5.rotateAngleY = MathHelper.cos(speed*rotateFloat+(float)(1.5*Math.PI/3) )* 1.6F * power;
+    
+    left_hands.rotateAngleX = rotatePitch * 0.017453292F;
+    left_hands.rotateAngleY = rotateYaw * 0.017453292F;
+    right_hands.rotateAngleX = rotatePitch * 0.017453292F;
+    right_hands.rotateAngleY = rotateYaw * 0.017453292F;
+  }
+  public void setPunch(float limbSwing, float limbSwingAmount, float rotateFloat, float rotateYaw,
+          float rotatePitch, float scale, Entity entity ,float power ,float speed)
+  {
+    super.setRotationAngles(limbSwing, limbSwingAmount, rotateFloat, rotateYaw, rotatePitch, scale, entity);
+    float r = (float) Math.random();
+    float offysin = MathHelper.sin(r*speed*rotateFloat)  * power-0.25f;
+    float offycos = MathHelper.cos(r *speed*rotateFloat)  * power-0.25f;
+    handl1.offsetZ =offysin;
+    handl2.offsetZ = offycos;
+    handl3.offsetZ = offysin;
+    handl4.offsetZ = offycos;
+    handl5.offsetZ = offysin;
+    handr1.offsetZ = offycos;
+    handr2.offsetZ = offysin;
+    handr3.offsetZ = offycos;
+    handr4.offsetZ = offysin;
+    handr5.offsetZ = offycos;
+    float offxl =r* MathHelper.sin(r*speed*rotateFloat)  * power+0.2f;
+    float offxr =r* MathHelper.sin(r*speed*rotateFloat)  * power-0.2f;
+    left_hands.offsetX = offxl;
+    right_hands.offsetX = offxr;
+    
   }
   public void doHandRender(float x ,float y ,float z ,float scale ,float alpha) {
 	  	GlStateManager.translate(x, y, z);
 	  	GlStateManager.color(1.0F, 1.0F, 1.0F, alpha);
-	  	handl1.render(scale);
-	    handl2.render(scale);
-	    handl3.render(scale);
-	    handl4.render(scale);
-	    handl5.render(scale);
-	    handr1.render(scale);
-	    handr2.render(scale);
-	    handr3.render(scale);
-	    handr4.render(scale);
-	    handr5.render(scale);
+	  	left_hands.render(scale);
+	  	right_hands.render(scale);
   }
 
 

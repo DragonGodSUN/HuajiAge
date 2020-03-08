@@ -40,7 +40,7 @@ public class StandStarPlatinum implements IStandPower {
 		if(type == null) {
 			return;
 		}
-		List<Entity> entityCllection = user.getEntityWorld().getEntitiesWithinAABB(Entity.class, user.getEntityBoundingBox().grow(stage>0?type.getDistance():type.getDistance()+1f));
+		List<Entity> entityCllection = user.getEntityWorld().getEntitiesWithinAABB(Entity.class, user.getEntityBoundingBox().grow(stage>0?type.getDistance()+1f:type.getDistance()));
 		if(entityCllection.size()<=0) {
 			return;
 		}
@@ -138,7 +138,7 @@ public class StandStarPlatinum implements IStandPower {
 			ModelStandBase model = StandClientUtil.getModel(type.getName());
 			if(type != null) {
 			model.setRotationAngles(limbSwing, limbSwingAmount, ageInTicks, netHeadYaw, headPitch, scale, user, 1 ,type.getSpeed());
-			model.doHandRender(0, 0, 0,(float)(scale*1.5), 0.5f);
+			model.doHandRender(0, 0, 0,(float)(scale*1.3), 0.5f);
 			}
 	}
 

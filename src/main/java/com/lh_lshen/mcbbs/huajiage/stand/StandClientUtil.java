@@ -98,7 +98,7 @@ public class StandClientUtil {
 			ModelStandBase model = getModel(type.getName());
 			Minecraft.getMinecraft().getTextureManager().bindTexture(STAND_TEX);
 			OpenGlHelper.setLightmapTextureCoords(OpenGlHelper.lightmapTexUnit, 240f, 240f);
-			model.setRotationAngles(0, 0, entity.ticksExisted, 0, 0, 1, entity ,0.5f,type.getSpeed());
+			model.setRotationAngles(0, 0, entity.ticksExisted, 0, -1, 1, entity ,0.5f,(float) (type.getSpeed()*1.5));
 			if(entity.getActivePotionEffect(PotionLoader.potionStand).getDuration()<40) {
 				model.doHandRender(0, -1f, -0.75f, 1f,0.3f);
 			}else {

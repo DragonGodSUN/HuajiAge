@@ -40,7 +40,7 @@ public class StandTheWorld implements IStandPower {
 		if(type == null) {
 			return;
 		}
-		List<Entity> entityCllection = user.getEntityWorld().getEntitiesWithinAABB(Entity.class, user.getEntityBoundingBox().grow(stage>0?type.getDistance():type.getDistance()+1f));
+		List<Entity> entityCllection = user.getEntityWorld().getEntitiesWithinAABB(Entity.class, user.getEntityBoundingBox().grow(stage>0?type.getDistance()+1f:type.getDistance()));
 		if(entityCllection.size()<=0) {
 			return;
 		}
