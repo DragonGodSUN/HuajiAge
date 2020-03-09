@@ -1,11 +1,9 @@
 package com.lh_lshen.mcbbs.huajiage.stand;
 
 import com.lh_lshen.mcbbs.huajiage.HuajiAge;
-import com.lh_lshen.mcbbs.huajiage.client.model.stand.ModelStandBase;
-import com.lh_lshen.mcbbs.huajiage.client.model.stand.ModelStarPlatinum;
-import com.lh_lshen.mcbbs.huajiage.client.model.stand.ModelTheWorld;
 import com.lh_lshen.mcbbs.huajiage.common.HuajiConstant;
 import com.lh_lshen.mcbbs.huajiage.stand.helper.instance.IStandPower;
+import com.lh_lshen.mcbbs.huajiage.stand.helper.instance.StandHieropantGreen;
 import com.lh_lshen.mcbbs.huajiage.stand.helper.instance.StandStarPlatinum;
 import com.lh_lshen.mcbbs.huajiage.stand.helper.instance.StandTheWorld;
 
@@ -14,8 +12,9 @@ import net.minecraft.util.ResourceLocation;
 
 public enum EnumStandtype {
 	THE_WORLD("the_world",1.2f,10f,200,2f,60000,new StandTheWorld(),"textures/entity/entity_the_world.png",HuajiConstant.StandType.STAND_THE_WORLD),
-	STAR_PLATINUM("star_platinum",1.5f,15f,225,2f,50000,new StandStarPlatinum(),"textures/entity/entity_star_platinum.png",HuajiConstant.StandType.STAND_STAR_PLATINUM);
-//	,STAR_PLATINUM("star_platinum");
+	STAR_PLATINUM("star_platinum",1.5f,15f,275,2f,50000,new StandStarPlatinum(),"textures/entity/entity_star_platinum.png",HuajiConstant.StandType.STAND_STAR_PLATINUM),
+	HIEROPHANT_GREEN("hierophant_green",1.0f,5f,200,20f,70000,new StandHieropantGreen(),"textures/entity/entity_hierophant_green.png",HuajiConstant.StandType.STAND_HIEROPANT_GREEN);
+	
 	private EnumStandtype(String name ,float speed ,float damage ,int duration ,float distance ,int cost,
 			IStandPower power,String texPath,String localName) {
 		this.name=name;

@@ -7,6 +7,7 @@ import com.lh_lshen.mcbbs.huajiage.client.model.stand.ModelTheWorld;
 import com.lh_lshen.mcbbs.huajiage.stand.EnumStandtype;
 
 import net.minecraft.init.SoundEvents;
+import net.minecraft.util.ResourceLocation;
 
 public  class HuajiConstant {
 	public  class Tags{
@@ -33,7 +34,15 @@ public  class HuajiConstant {
 		public static final String STAND_TYPE=HuajiAge.MODID+"."+"stand_type";
 		public static final String STAND_THE_WORLD="stand"+"."+HuajiAge.MODID+"."+"the_world";
 		public static final String STAND_STAR_PLATINUM="stand"+"."+HuajiAge.MODID+"."+"star_platinum";
+		public static final String STAND_HIEROPANT_GREEN="stand"+"."+HuajiAge.MODID+"."+"hieropant_green";
 		public static final String STAND_EMPTY="stand"+"."+HuajiAge.MODID+"."+EnumStandtype.EMPTY;
+	}
+	
+	public static class StandTex{
+		public static final ResourceLocation TEXTRUE_THE_WORLD = new ResourceLocation(HuajiAge.MODID, EnumStandtype.THE_WORLD.getTexPath());
+		public static final ResourceLocation TEXTRUE_STAR_PLATINUM = new ResourceLocation(HuajiAge.MODID, EnumStandtype.STAR_PLATINUM.getTexPath());
+		public static final ResourceLocation TEXTRUE_HIEROPANT_GREEN = new ResourceLocation(HuajiAge.MODID, EnumStandtype.HIEROPHANT_GREEN.getTexPath());
+	
 	}
 	
 //	DamageSource

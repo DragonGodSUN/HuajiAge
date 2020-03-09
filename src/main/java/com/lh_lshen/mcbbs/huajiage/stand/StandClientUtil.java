@@ -5,6 +5,7 @@ import java.util.Random;
 import com.lh_lshen.mcbbs.huajiage.HuajiAge;
 import com.lh_lshen.mcbbs.huajiage.capability.CapabilityStandHandler;
 import com.lh_lshen.mcbbs.huajiage.capability.StandHandler;
+import com.lh_lshen.mcbbs.huajiage.client.model.stand.ModelHierophantGreen;
 import com.lh_lshen.mcbbs.huajiage.client.model.stand.ModelStandBase;
 import com.lh_lshen.mcbbs.huajiage.client.model.stand.ModelStarPlatinum;
 import com.lh_lshen.mcbbs.huajiage.client.model.stand.ModelTheWorld;
@@ -84,8 +85,22 @@ public class StandClientUtil {
 		return new ModelTheWorld();
 		case("star_platinum"):
 		return new ModelStarPlatinum();
+		case("hierophant_green"):
+		return new ModelHierophantGreen();
 		}
 		return new ModelTheWorld();
+	}
+	
+	public static ResourceLocation getTex(String name) {
+		switch(name) {
+		case("the_world"):
+		return HuajiConstant.StandTex.TEXTRUE_THE_WORLD;
+		case("star_platinum"):
+		return HuajiConstant.StandTex.TEXTRUE_STAR_PLATINUM;
+		case("hierophant_green"):
+		return HuajiConstant.StandTex.TEXTRUE_HIEROPANT_GREEN;
+		}
+		return HuajiConstant.StandTex.TEXTRUE_THE_WORLD;
 	}
 	
     public static void standRender(EntityLivingBase entity) {

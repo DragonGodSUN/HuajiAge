@@ -353,4 +353,9 @@ public class ModelStarPlatinum extends ModelStandBase
 	    right_hands.offsetX = offxr;
 	    
 	  }
+
+	@Override
+	public void setPostion() {
+		GlStateManager.translate(0.0F, -0.2F, -0.75F);		
+	}
 }

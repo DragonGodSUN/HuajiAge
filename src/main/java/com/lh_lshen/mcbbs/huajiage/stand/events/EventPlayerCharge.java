@@ -33,22 +33,23 @@ public class EventPlayerCharge {
 //							chargeHandler.setMaxValue(stand.getDuration()*50);
 //						}
 						StandHandler standHandler = player.getCapability(CapabilityStandHandler.STAND_TYPE, null);
-						switch(stand)
-						{
-						case THE_WORLD:
-							{
-							chargeHandler.charge(55);
-								break;
-							}
-						case STAR_PLATINUM:
-							{
-								chargeHandler.charge(75);
-
-								break;
-							}
-						default:
-							break;
-						}
+						int mp = (int)(stand.getDuration()/5) + 15;
+//						switch(stand)
+//						{
+//						case THE_WORLD:
+//							{
+//							chargeHandler.charge(55);
+//								break;
+//							}
+//						case STAR_PLATINUM:
+//							{
+//								chargeHandler.charge(75);
+//
+//								break;
+//							}
+//						default:
+//							break;
+//						}
 					}
 					
 			}

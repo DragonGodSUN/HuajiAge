@@ -44,10 +44,11 @@ public class LayerStand implements  LayerRenderer<EntityLivingBase> {
 	 protected final RenderLivingBase<?> livingEntityRenderer;
 //	 private static  ModelStandBase model = null;
 //	 private static ResourceLocation tex = null;
-	 private static final ModelStandBase MODEL_THE_WORLD =new ModelTheWorld(); 
-	 private static final ModelStandBase MODEL_STAR_PLATINUM =new ModelStarPlatinum(); 
+//	 private static final ModelStandBase MODEL_THE_WORLD =new ModelTheWorld(); 
+//	 private static final ModelStandBase MODEL_STAR_PLATINUM =new ModelStarPlatinum(); 
 	 private static final ResourceLocation TEXTRUE_THE_WORLD = new ResourceLocation(HuajiAge.MODID, EnumStandtype.THE_WORLD.getTexPath());
 	 private static final ResourceLocation TEXTRUE_STAR_PLATINUM = new ResourceLocation(HuajiAge.MODID, EnumStandtype.STAR_PLATINUM.getTexPath());
+	 
 	 public LayerStand(RenderLivingBase<?> livingEntityRendererIn)
 	    {
 	        this.livingEntityRenderer = livingEntityRendererIn;
@@ -58,7 +59,7 @@ public class LayerStand implements  LayerRenderer<EntityLivingBase> {
 		
          		String ex_stand = entitylivingbaseIn.getCapability(CapabilityLoader.EXPOSED_DATA, null).getStand();
 				boolean istrigger = entitylivingbaseIn.getCapability(CapabilityLoader.EXPOSED_DATA, null).isTriggered();
-				EnumStandtype stand = EnumStandtype.getType(ex_stand);
+				EnumStandtype stand = EnumStandtype.getType(ex_stand); 
 				IStandPower stand_power = stand!=null?stand.getStandPower():null;
 				int stage = StandUtil.getStandStage(entitylivingbaseIn);
 //				boolean potion = entitylivingbaseIn.isPotionActive(PotionLoader.potionStand);
@@ -72,16 +73,20 @@ public class LayerStand implements  LayerRenderer<EntityLivingBase> {
 	 		            GlStateManager.enableBlend();
 	 		            GlStateManager.disableLighting();
 //	 		            GlStateManager.blendFunc(GlStateManager.SourceFactor.ONE, GlStateManager.DestFactor.ZERO);
-	 					if(type.equals(EnumStandtype.THE_WORLD.getName())) {
-	 		            livingEntityRenderer.bindTexture(TEXTRUE_THE_WORLD);
-	 		            }else {
- 		            	livingEntityRenderer.bindTexture(TEXTRUE_STAR_PLATINUM);
+//	 					if(type.equals(EnumStandtype.THE_WORLD.getName())) {
+//	 		            livingEntityRenderer.bindTexture(TEXTRUE_THE_WORLD);
+//	 		            }else {
+// 		            	livingEntityRenderer.bindTexture(TEXTRUE_STAR_PLATINUM);
+//	 		            }
+	 		            ResourceLocation texture = StandClientUtil.getTex(stand.getName());
+	 		            if(texture!=null) {
+	 		            livingEntityRenderer.bindTexture(texture);
 	 		            }
 	 					OpenGlHelper.setLightmapTextureCoords(OpenGlHelper.lightmapTexUnit, 240f, 240f);
 	 					
 	 					GlStateManager.pushMatrix();
-	 		            GlStateManager.translate(0.0F, -0.2F, -0.75F);
-	 		            
+//	 		            GlStateManager.translate(0.0F, -0.2F, -0.75F);
+	 					model.setPostion();
 	 		            model.setRotationAngles(limbSwing, limbSwingAmount, ageInTicks, netHeadYaw, headPitch, scale, entitylivingbaseIn, 1f ,stand.getSpeed()*4/3);
 	 		            model.setPunch(limbSwing, limbSwingAmount,  ageInTicks, netHeadYaw, headPitch, scale, entitylivingbaseIn, 0.3f ,stand.getSpeed()*4/3);
 	 		            model.render(entitylivingbaseIn, limbSwing, limbSwingAmount, ageInTicks, netHeadYaw, headPitch, scale);
