@@ -1,6 +1,7 @@
 package com.lh_lshen.mcbbs.huajiage.util;
 
 import net.minecraft.entity.Entity;
+import net.minecraft.entity.EntityLivingBase;
 import net.minecraft.util.math.AxisAlignedBB;
 import net.minecraft.util.math.BlockPos;
 import net.minecraft.util.math.MathHelper;
@@ -36,4 +37,36 @@ public class MotionHelper {
 		
 		return degree;
 	}
+	public static Vec3d getVecPlus(Vec3d v1 , Vec3d v2 ,double l1 , double l2 ) {
+		
+		return new Vec3d(l1*v1.x+l2*v2.x , l1*v1.y+l2*v2.y , l1*v1.z+l2*v2.z);
+		
+	}
+	
+	public static Vec3d getVecPlus(Vec3d v1 , Vec3d v2 ,Vec3d v3,double l1 , double l2 , double l3) {
+			
+			return new Vec3d(l1*v1.x+l2*v2.x+l3*v3.x , l1*v1.y+l2*v2.y+l3*v3.y , l1*v1.z+l2*v2.z+l3*v3.z);
+			
+		}
+	
+	public static Vec3d getPostionRelative2D(Entity entity , float l1 , float l2 ) {
+		float yaw = entity.rotationYaw;
+		if(entity instanceof EntityLivingBase) {
+			yaw = ((EntityLivingBase)entity).renderYawOffset;
+		}
+		Vec3d forward = getVectorForRotation(0, yaw);
+		Vec3d vertical = getVectorForRotation(0,yaw + 90);
+
+		return getVecPlus(forward, forward ,l1 ,l2);
+		
+	}
+	
+	public static Vec3d getVectorForRotation(float pitch, float yaw)
+    {
+        float f = MathHelper.cos(-yaw * 0.017453292F - (float)Math.PI);
+        float f1 = MathHelper.sin(-yaw * 0.017453292F - (float)Math.PI);
+        float f2 = -MathHelper.cos(-pitch * 0.017453292F);
+        float f3 = MathHelper.sin(-pitch * 0.017453292F);
+        return new Vec3d((double)(f1 * f2), (double)f3, (double)(f * f2));
+    }
 }

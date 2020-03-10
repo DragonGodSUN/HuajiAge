@@ -1,14 +1,26 @@
 package com.lh_lshen.mcbbs.huajiage.client.model.stand;
 
+import java.util.Random;
+
+import com.lh_lshen.mcbbs.huajiage.util.MotionHelper;
+
 import net.minecraft.client.model.ModelBase;
 import net.minecraft.client.model.ModelBox;
 import net.minecraft.client.model.ModelRenderer;
 import net.minecraft.client.renderer.GlStateManager;
+import net.minecraft.client.renderer.block.model.ItemCameraTransforms.TransformType;
 import net.minecraft.entity.Entity;
+import net.minecraft.entity.EntityLivingBase;
+import net.minecraft.entity.player.EntityPlayer;
+import net.minecraft.util.EnumParticleTypes;
+import net.minecraft.util.Rotation;
 import net.minecraft.util.math.MathHelper;
+import net.minecraft.util.math.Vec2f;
+import net.minecraft.util.math.Vec3d;
 
 public class ModelHierophantGreen extends ModelStandBase {
 	private final ModelRenderer head;
+	private final ModelRenderer hat;
 	private final ModelRenderer hat_part_3;
 	private final ModelRenderer body;
 	private final ModelRenderer Shape1;
@@ -46,16 +58,20 @@ public class ModelHierophantGreen extends ModelStandBase {
 		head = new ModelRenderer(this);
 		head.setRotationPoint(0.0F, 0.0F, -1.0F);
 		head.cubeList.add(new ModelBox(head, 0, 0, -3.0F, -5.8F, -2.0F, 6, 6, 6, 0.0F, false));
-		head.cubeList.add(new ModelBox(head, 28, 0, -4.0F, -4.0F, 1.0F, 1, 2, 2, 0.0F, false));
-		head.cubeList.add(new ModelBox(head, 28, 0, 3.0F, -4.0F, 1.0F, 1, 2, 2, 0.0F, false));
-		head.cubeList.add(new ModelBox(head, 28, 5, -1.5F, -6.5F, -1.5F, 3, 1, 3, 0.0F, false));
-		head.cubeList.add(new ModelBox(head, 35, 114, -3.5F, -6.0F, -2.5F, 7, 7, 7, 0.0F, false));
+
+		hat = new ModelRenderer(this);
+		hat.setRotationPoint(0.0F, 24.0F, 1.0F);
+		head.addChild(hat);
+		hat.cubeList.add(new ModelBox(hat, 35, 114, -3.5F, -30.0F, -3.5F, 7, 7, 7, 0.0F, false));
+		hat.cubeList.add(new ModelBox(hat, 28, 0, -4.0F, -28.0F, 0.0F, 1, 2, 2, 0.0F, false));
+		hat.cubeList.add(new ModelBox(hat, 28, 0, 3.0F, -28.0F, 0.0F, 1, 2, 2, 0.0F, true));
+		hat.cubeList.add(new ModelBox(hat, 28, 5, -1.5F, -30.5F, -2.5F, 3, 1, 3, 0.0F, false));
 
 		hat_part_3 = new ModelRenderer(this);
-		hat_part_3.setRotationPoint(2.0F, -3.0F, -4.0F);
+		hat_part_3.setRotationPoint(2.0F, -27.0F, -5.0F);
 		setRotationAngle(hat_part_3, -0.1745F, 0.0F, 0.0F);
-		head.addChild(hat_part_3);
-		hat_part_3.cubeList.add(new ModelBox(hat_part_3, 56, 107, -3.5F, 0.5F, 1.5F, 3, 3, 2, 0.0F, false));
+		hat.addChild(hat_part_3);
+		hat_part_3.cubeList.add(new ModelBox(hat_part_3, 54, 107, -3.5F, 0.5F, 1.5F, 3, 3, 2, 0.0F, false));
 
 		body = new ModelRenderer(this);
 		body.setRotationPoint(0.0F, 0.0F, 0.0F);
@@ -64,7 +80,6 @@ public class ModelHierophantGreen extends ModelStandBase {
 
 		Shape1 = new ModelRenderer(this);
 		Shape1.setRotationPoint(0.0F, 0.0F, -2.3F);
-		setRotationAngle(Shape1, 0.0F, 0.0F, 0.0F);
 		body.addChild(Shape1);
 		Shape1.cubeList.add(new ModelBox(Shape1, 35, 56, -1.5F, 4.0F, 0.0F, 3, 3, 1, 0.0F, false));
 
@@ -84,7 +99,7 @@ public class ModelHierophantGreen extends ModelStandBase {
 		crotch.setRotationPoint(0.0F, 0.0F, 0.0F);
 		setRotationAngle(crotch, 0.0349F, 0.0F, 0.0F);
 		body.addChild(crotch);
-		crotch.cubeList.add(new ModelBox(crotch, 16, 82, -4.0F, 7.0655F, -2.8764F, 8, 2, 6, 0.0F, false));
+		crotch.cubeList.add(new ModelBox(crotch, 16, 82, -4.0F, 7.5F, -2.8764F, 8, 2, 6, 0.0F, false));
 
 		part1 = new ModelRenderer(this);
 		part1.setRotationPoint(0.0F, -0.5208F, -2.9544F);
@@ -147,7 +162,7 @@ public class ModelHierophantGreen extends ModelStandBase {
 		part5.setRotationPoint(1.9052F, 4.7968F, 2.3473F);
 		setRotationAngle(part5, 0.0F, 0.0F, 0.5236F);
 		body.addChild(part5);
-		part5.cubeList.add(new ModelBox(part5, 48, 79, -1.5F, -1.0F, -3.5473F, 4, 2, 4, 0.0F, false));
+		part5.cubeList.add(new ModelBox(part5, 48, 79, -1.5F, -1.0F, -3.5473F, 4, 2, 4, 0.0F, true));
 
 		part6 = new ModelRenderer(this);
 		part6.setRotationPoint(0.0F, -1.9696F, 0.3472F);
@@ -211,16 +226,17 @@ public class ModelHierophantGreen extends ModelStandBase {
 		legdownr.cubeList.add(new ModelBox(legdownr, 0, 100, -1.5F, -4.5F, -2.5F, 4, 9, 5, 0.0F, true));
 
 		extra = new ModelRenderer(this);
-		extra.setRotationPoint(-0.5F, 4.5F, -6.5F);
-		setRotationAngle(extra, 0.4363F, 0.0F, 0.4363F);
-		extra.cubeList.add(new ModelBox(extra, 0, 36, -5.4063F, -0.6944F, 0.2277F, 10, 3, 3, 0.0F, false));
-		extra.cubeList.add(new ModelBox(extra, 0, 44, -4.8289F, 0.4842F, 1.2F, 10, 1, 1, 0.0F, false));
+		extra.setRotationPoint(-0.6176F, 4.3949F, -4.7861F);
+		setRotationAngle(extra, 0.4363F, 0.0F, 0.349F);
+		extra.cubeList.add(new ModelBox(extra, 0, 36, -5.2887F, -1.5893F, -1.4862F, 10, 3, 3, 0.0F, false));
+		extra.cubeList.add(new ModelBox(extra, 0, 44, -4.7113F, -0.4107F, -0.5139F, 10, 1, 1, 0.0F, false));
 	}
 
 	@Override
 	public void render(Entity entityIn, float limbSwing, float limbSwingAmount, float ageInTicks, float netHeadYaw,
 			float headPitch, float scale) {
 		float off = (float) (MathHelper.cos((float) (0.1*ageInTicks))*0.1);
+
 		 head.offsetY = off;
 		 body.offsetY = off;
 		 leftleg.offsetY = off;
@@ -231,6 +247,9 @@ public class ModelHierophantGreen extends ModelStandBase {
 		    
 	    head.rotateAngleX = headPitch * 0.017453292F;
 	    head.rotateAngleY = netHeadYaw * 0.017453292F;
+	    
+	    extra.rotateAngleX = ageInTicks*2;
+//	    extra.rotateAngleY = ageInTicks*3;
 		
 		head.render(scale);
 		body.render(scale);
@@ -239,13 +258,24 @@ public class ModelHierophantGreen extends ModelStandBase {
 		leftleg.render(scale);
 		rightleg.render(scale);
 		extra.render(scale);
+		
+		float rf1 = MathHelper.nextFloat(new Random(), -1, 1);
+		float rf2 = MathHelper.nextFloat(new Random(), -1, 1);
+		float rf3 = MathHelper.nextFloat(new Random(), -1, 1);
+		Vec3d vec = new Vec3d(rf1, rf2, rf3);
+//		Vec3d forward = getVectorForRotation(0,((EntityLivingBase)entityIn).renderYawOffset);
+//		Vec3d vertical = getVectorForRotation(0,((EntityLivingBase)entityIn).renderYawOffset + 90);
+		Vec3d shoot = MotionHelper.getPostionRelative2D(entityIn, -0.3f, -0.5f);
+		for(int i=0;i<3;i++) {
+			entityIn.world.spawnParticle(EnumParticleTypes.WATER_SPLASH, entityIn.posX+shoot.x+rf2/5, entityIn.posY+2f+rf3/5, entityIn.posZ+shoot.z+rf1/5,
+					rf1/2, rf2/2, rf3/2);
+		}
 	}
 	public void setRotationAngle(ModelRenderer modelRenderer, float x, float y, float z) {
 		modelRenderer.rotateAngleX = x;
 		modelRenderer.rotateAngleY = y;
 		modelRenderer.rotateAngleZ = z;
 	}
-
 	@Override
 	public void setRotationAngles(float limbSwing, float limbSwingAmount, float rotateFloat, float rotateYaw,
 			float rotatePitch, float scale, Entity entity, float power, float speed) {
@@ -267,4 +297,28 @@ public class ModelHierophantGreen extends ModelStandBase {
 	public void setPostion() {
 		GlStateManager.translate(0.5F, -1.0F, 0.75F);		
 	}
+//	 protected final Vec3d getVectorForRotation(float pitch, float yaw)
+//	    {
+//	        float f = MathHelper.cos(-yaw * 0.017453292F - (float)Math.PI);
+//	        float f1 = MathHelper.sin(-yaw * 0.017453292F - (float)Math.PI);
+//	        float f2 = -MathHelper.cos(-pitch * 0.017453292F);
+//	        float f3 = MathHelper.sin(-pitch * 0.017453292F);
+//	        return new Vec3d((double)(f1 * f2), (double)f3, (double)(f * f2));
+//	    }
+//	 protected float interpolateRotation(float prevYawOffset, float yawOffset, float partialTicks)
+//	    {
+//	        float f;
+//
+//	        for (f = yawOffset - prevYawOffset; f < -180.0F; f += 360.0F)
+//	        {
+//	            ;
+//	        }
+//
+//	        while (f >= 180.0F)
+//	        {
+//	            f -= 360.0F;
+//	        }
+//
+//	        return prevYawOffset + partialTicks * f;
+//	    }
 }
