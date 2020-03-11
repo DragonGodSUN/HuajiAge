@@ -1,24 +1,16 @@
 package com.lh_lshen.mcbbs.huajiage.entity;
 
 import com.lh_lshen.mcbbs.huajiage.HuajiAge;
+import com.lh_lshen.mcbbs.huajiage.entity.render.RenderEmeraldBullet;
 import com.lh_lshen.mcbbs.huajiage.entity.render.RenderHeroArrow;
 import com.lh_lshen.mcbbs.huajiage.entity.render.RenderMultiKnife;
-import com.lh_lshen.mcbbs.huajiage.entity.render.RenderPlayerLayers;
 import com.lh_lshen.mcbbs.huajiage.entity.render.RenderRoadRoller;
 import com.lh_lshen.mcbbs.huajiage.entity.render.RenderSecondFoil;
 import com.lh_lshen.mcbbs.huajiage.entity.render.RenderStandBase;
 import com.lh_lshen.mcbbs.huajiage.stand.entity.EntityStandBase;
 
-import net.minecraft.client.renderer.entity.Render;
-import net.minecraft.client.renderer.entity.RenderArmorStand;
-import net.minecraft.client.renderer.entity.RenderArrow;
-import net.minecraft.client.renderer.entity.layers.LayerHeldItem;
 import net.minecraft.entity.Entity;
-import net.minecraft.entity.player.EntityPlayer;
-import net.minecraft.entity.projectile.EntityArrow;
 import net.minecraft.util.ResourceLocation;
-import net.minecraftforge.fml.client.FMLClientHandler;
-import net.minecraftforge.fml.client.registry.IRenderFactory;
 import net.minecraftforge.fml.client.registry.RenderingRegistry;
 import net.minecraftforge.fml.common.registry.EntityRegistry;
 import net.minecraftforge.fml.relauncher.Side;
@@ -34,6 +26,7 @@ public class EntityLoader {
 	        registerEntity((new ResourceLocation(HuajiAge.MODID, "MuliKnife")), EntityMultiKnife.class, "MuliKnife", 80, 3, true);
 	        registerEntity((new ResourceLocation(HuajiAge.MODID, "RoadRoller")), EntityRoadRoller.class, "RoadRoller", 80, 3, true);
 	        registerEntity((new ResourceLocation(HuajiAge.MODID, "StandBase")), EntityStandBase.class, "StandBase", 80, 3, true);
+	        registerEntity((new ResourceLocation(HuajiAge.MODID, "EmeraldBullet")), EntityStandBase.class, "EmeraldBullet", 80, 3, true);
 	    }
 
 	    private static void registerEntity(ResourceLocation nameg,Class<? extends Entity> entityClass, String name, int trackingRange,
@@ -51,6 +44,7 @@ public class EntityLoader {
 	    	RenderingRegistry.registerEntityRenderingHandler(EntityMultiKnife.class, manage -> new RenderMultiKnife(manage));
 	    	RenderingRegistry.registerEntityRenderingHandler(EntityRoadRoller.class, manage -> new RenderRoadRoller(manage));
 	    	RenderingRegistry.registerEntityRenderingHandler(EntityStandBase.class, manage -> new RenderStandBase(manage));
+	    	RenderingRegistry.registerEntityRenderingHandler(EntityEmeraldBullet.class, manage -> new RenderEmeraldBullet(manage));
 	    
 	    }
 }

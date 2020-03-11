@@ -17,8 +17,8 @@ public class MotionHelper {
 	}
 	public static Vec3d getVectorEntityEye(Entity source , Entity target) {
 		  Vec3d eater_pos=source.getPositionEyes(0);
-		  BlockPos target_pos=target.getPosition();
-		  Vec3d vec = new Vec3d(target_pos.getX()-eater_pos.x, target_pos.getY()-eater_pos.y, target_pos.getZ()-eater_pos.z).normalize();
+		  Vec3d target_pos=target.getPositionEyes(0);
+		  Vec3d vec = new Vec3d(target_pos.x-eater_pos.x, target_pos.y-eater_pos.y, target_pos.z-eater_pos.z).normalize();
 		  return vec;
 	}
 	
@@ -37,6 +37,25 @@ public class MotionHelper {
 		
 		return degree;
 	}
+	
+	public static double getDegreeXY(Vec3d v1 , Vec3d v2) {
+		Vec3d vec1 = v1.add(0, 0, -v1.z).normalize();
+		Vec3d vec2 = v2.add(0, 0, -v2.z).normalize();
+		double cos =( vec1.x*vec2.x + vec1.y*vec2.y)/(vec1.length()*vec2.length()); 
+		double degree =Math.round(Math.toDegrees(Math.acos(cos))) ;
+		
+		return degree;
+	}
+	
+	public static double getDegreeZY(Vec3d v1 , Vec3d v2) {
+		Vec3d vec1 = v1.add(-v1.x, 0, 0).normalize();
+		Vec3d vec2 = v2.add(-v2.x, 0, 0).normalize();
+		double cos =( vec1.z*vec2.z + vec1.y*vec2.y)/(vec1.length()*vec2.length()); 
+		double degree =Math.round(Math.toDegrees(Math.acos(cos))) ;
+		
+		return degree;
+	}
+	
 	public static Vec3d getVecPlus(Vec3d v1 , Vec3d v2 ,double l1 , double l2 ) {
 		
 		return new Vec3d(l1*v1.x+l2*v2.x , l1*v1.y+l2*v2.y , l1*v1.z+l2*v2.z);
