@@ -18,6 +18,12 @@
                 "stand": 2
             },
             "model": "huajiage:item/disc_star_platinum"
+        },
+        {
+            "predicate": {
+                "stand": 3
+            },
+            "model": "huajiage:item/disc_hierophant_green"
         }
     ]
 }

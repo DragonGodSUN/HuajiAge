@@ -21,28 +21,28 @@ import net.minecraft.world.World;
 import net.minecraftforge.fml.relauncher.Side;
 import net.minecraftforge.fml.relauncher.SideOnly;
 
-public class ParticleHuaji extends Particle
+public class ParticleHuajiSplash extends Particle
 {
-	public static final ParticleHuaji.Factory FACTORY = new ParticleHuaji.Factory();
+	public static final ParticleHuajiSplash.Factory FACTORY = new ParticleHuajiSplash.Factory();
     private static final ResourceLocation TEXTURE = new ResourceLocation(HuajiAge.MODID, "textures/particle/huaji.png");
     float particleScaleOverTime;
 
-    protected ParticleHuaji(World worldIn, double p_i1211_2_, double p_i1211_4_, double p_i1211_6_, double p_i1211_8_, double p_i1211_10_, double p_i1211_12_)
-    {
-        this(worldIn, p_i1211_2_, p_i1211_4_, p_i1211_6_, p_i1211_8_, p_i1211_10_, p_i1211_12_, 2.0F);
-    }
-
-    protected ParticleHuaji(World worldIn, double xCoordIn, double yCoordIn, double zCoordIn, double p_i46354_8_, double p_i46354_10_, double p_i46354_12_, float scale)
-    {
+    public ParticleHuajiSplash(World worldIn, double xCoordIn, double yCoordIn, double zCoordIn, double xSpeedIn,
+			double ySpeedIn, double zSpeedIn) {
         super(worldIn, xCoordIn, yCoordIn, zCoordIn, 0.0D, 0.0D, 0.0D);
-        this.motionX *= 0.009999999776482582D;
-        this.motionY *= 0.009999999776482582D;
-        this.motionZ *= 0.009999999776482582D;
-        this.motionY += 0.1D;
-        this.particleScale *= 0.75F;
-        this.particleScale *= scale;
-        this.particleScaleOverTime = this.particleScale;
-        this.particleMaxAge = 16;
+        this.motionX *= 0.30000001192092896D;
+        this.motionY = Math.random() * 0.20000000298023224D + 0.10000000149011612D;
+        this.motionZ *= 0.30000001192092896D;
+        this.particleRed = 1.0F;
+        this.particleGreen = 1.0F;
+        this.particleBlue = 1.0F;
+//        this.setParticleTextureIndex(19);
+        this.setSize(0.01F, 0.01F);
+        this.particleMaxAge = (int)(8.0D / (Math.random() * 0.8D + 0.2D));
+        this.particleGravity = 0.0F;
+        this.motionX = xSpeedIn;
+        this.motionY = ySpeedIn;
+        this.motionZ = zSpeedIn;
 //        Minecraft.getMinecraft().getTextureManager().bindTexture(TEXTURE);
     }
     @Override
@@ -62,7 +62,7 @@ public class ParticleHuaji extends Particle
       GlStateManager.enableBlend();
       GlStateManager.blendFunc(GlStateManager.SourceFactor.SRC_ALPHA, GlStateManager.DestFactor.ONE_MINUS_SRC_ALPHA);
       OpenGlHelper.setLightmapTextureCoords(OpenGlHelper.lightmapTexUnit, 240f, 240f);
-
+      
       buffer.begin(GL11.GL_QUADS, DefaultVertexFormats.POSITION_TEX);
       float x = (float) (this.prevPosX + (this.posX - this.prevPosX) * (double) partialTicks - interpPosX);
       float y = (float) (this.prevPosY + (this.posY - this.prevPosY) * (double) partialTicks - interpPosY);
@@ -73,6 +73,7 @@ public class ParticleHuaji extends Particle
       buffer.pos((double) (x + rotationX * 0.1F - rotationXY * 0.1F), (double) (y - rotationZ * 0.1F), (double) (z + rotationYZ * 0.1F - rotationXZ * 0.1F)).tex(0, 1).endVertex();
 
       Tessellator.getInstance().draw();
+      GlStateManager.color(1.0f, 1.0f, 1.0f, 0.5f);
       GlStateManager.disableBlend();
       GlStateManager.enableLighting();
       GlStateManager.popMatrix();
@@ -80,32 +81,23 @@ public class ParticleHuaji extends Particle
 
     public void onUpdate()
     {
-        this.prevPosX = this.posX;
-        this.prevPosY = this.posY;
-        this.prevPosZ = this.posZ;
+    	 this.prevPosX = this.posX;
+         this.prevPosY = this.posY;
+         this.prevPosZ = this.posZ;
+         this.motionY -= (double)this.particleGravity;
+         this.move(this.motionX, this.motionY, this.motionZ);
+         this.motionX *= 0.9800000190734863D;
+         this.motionY *= 0.9800000190734863D;
+         this.motionZ *= 0.9800000190734863D;
+         int i = 60 - this.particleMaxAge;
+         float f = (float)i * 0.001F;
+         this.setSize(f, f);
+//         this.setParticleTextureIndex(19 + i % 4);
 
-        if (this.particleAge++ >= this.particleMaxAge)
-        {
-            this.setExpired();
-        }
-
-        this.move(this.motionX, this.motionY, this.motionZ);
-
-        if (this.posY == this.prevPosY)
-        {
-            this.motionX *= 1.1D;
-            this.motionZ *= 1.1D;
-        }
-
-        this.motionX *= 0.8600000143051147D;
-        this.motionY *= 0.8600000143051147D;
-        this.motionZ *= 0.8600000143051147D;
-
-        if (this.onGround)
-        {
-            this.motionX *= 0.699999988079071D;
-            this.motionZ *= 0.699999988079071D;
-        }
+         if (this.particleMaxAge-- <= 0)
+         {
+             this.setExpired();
+         }
     }
 
 
@@ -114,7 +106,7 @@ public class ParticleHuaji extends Particle
         {
             public Particle createParticle(int particleID, World worldIn, double xCoordIn, double yCoordIn, double zCoordIn, double xSpeedIn, double ySpeedIn, double zSpeedIn, int... p_178902_15_)
             {
-                return new ParticleHuaji(worldIn, xCoordIn, yCoordIn, zCoordIn, xSpeedIn, ySpeedIn, zSpeedIn);
+                return new ParticleHuajiSplash(worldIn, xCoordIn, yCoordIn, zCoordIn, xSpeedIn, ySpeedIn, zSpeedIn);
             }
         }
 

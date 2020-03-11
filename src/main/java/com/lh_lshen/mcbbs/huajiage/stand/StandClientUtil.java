@@ -107,18 +107,23 @@ public class StandClientUtil {
 		EnumStandtype type = StandUtil.getType(entity);
 		if(type != null) {
 		ResourceLocation STAND_TEX = new ResourceLocation(HuajiAge.MODID,type.getTexPath());
+		ModelStandBase model = getModel(type.getName());
+		Minecraft.getMinecraft().getTextureManager().bindTexture(STAND_TEX);
 		switch(type) {
 		case THE_WORLD:
 		case STAR_PLATINUM:
-			ModelStandBase model = getModel(type.getName());
-			Minecraft.getMinecraft().getTextureManager().bindTexture(STAND_TEX);
 			OpenGlHelper.setLightmapTextureCoords(OpenGlHelper.lightmapTexUnit, 240f, 240f);
 			model.setRotationAngles(0, 0, entity.ticksExisted, 0, -1, 1, entity ,0.5f,(float) (type.getSpeed()*1.5));
 			if(entity.getActivePotionEffect(PotionLoader.potionStand).getDuration()<40) {
+				model.effect(entity, 0, 0, entity.ticksExisted, 0, 0, 1f);
 				model.doHandRender(0, -1f, -0.75f, 1f,0.3f);
 			}else {
+				model.effect(entity, 0, 0, entity.ticksExisted, 0, 0, 1f);
 				model.doHandRender(0, -1f, -0.75f, 1f,0.6f);
 			}
+			break;
+		 case HIEROPHANT_GREEN:
+			 model.effect(entity, 0, 0, entity.ticksExisted, 0, 0, 1f);
 			break;
 		default:
 			break;

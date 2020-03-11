@@ -161,6 +161,7 @@ config.huaji_age.huaji_config.stand.punish.out_time=使用替身超时的惩罚
 stand.huajiage.empty=缺失
 stand.huajiage.the_world=§e§lThe World-世界
 stand.huajiage.star_platinum=§5§lStar Platinum-白金之星
+stand.huajiage.hierophant_green=§a§lHierophant Green-绿之法皇
 
 patchouil.huajiage.book.name=§e§lJO§6级宝典
 patchouil.huajiage.book.landing=在这个宇宙中，存在着一种名为滑稽的奇特之物，它们无处不在，并构成了千千万万的事物，据说，持有滑稽的星辉之力，便可得到传说中鬼畜先辈的无上之力

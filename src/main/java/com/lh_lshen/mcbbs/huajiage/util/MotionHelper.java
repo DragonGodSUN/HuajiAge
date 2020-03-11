@@ -49,7 +49,7 @@ public class MotionHelper {
 			
 		}
 	
-	public static Vec3d getPostionRelative2D(Entity entity , float l1 , float l2 ) {
+	public static Vec3d getPostionRelative2D(Entity entity , float x , float z ) {
 		float yaw = entity.rotationYaw;
 		if(entity instanceof EntityLivingBase) {
 			yaw = ((EntityLivingBase)entity).renderYawOffset;
@@ -57,7 +57,7 @@ public class MotionHelper {
 		Vec3d forward = getVectorForRotation(0, yaw);
 		Vec3d vertical = getVectorForRotation(0,yaw + 90);
 
-		return getVecPlus(forward, forward ,l1 ,l2);
+		return getVecPlus(vertical, forward ,x ,z);
 		
 	}
 	

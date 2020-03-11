@@ -2,8 +2,11 @@ package com.lh_lshen.mcbbs.huajiage.client.model.stand;
 
 import java.util.Random;
 
+import com.lh_lshen.mcbbs.huajiage.config.ConfigHuaji;
+import com.lh_lshen.mcbbs.huajiage.particle.EnumHuajiPraticle;
 import com.lh_lshen.mcbbs.huajiage.util.MotionHelper;
 
+import net.minecraft.client.Minecraft;
 import net.minecraft.client.model.ModelBase;
 import net.minecraft.client.model.ModelBox;
 import net.minecraft.client.model.ModelRenderer;
@@ -259,17 +262,8 @@ public class ModelHierophantGreen extends ModelStandBase {
 		rightleg.render(scale);
 		extra.render(scale);
 		
-		float rf1 = MathHelper.nextFloat(new Random(), -1, 1);
-		float rf2 = MathHelper.nextFloat(new Random(), -1, 1);
-		float rf3 = MathHelper.nextFloat(new Random(), -1, 1);
-		Vec3d vec = new Vec3d(rf1, rf2, rf3);
-//		Vec3d forward = getVectorForRotation(0,((EntityLivingBase)entityIn).renderYawOffset);
-//		Vec3d vertical = getVectorForRotation(0,((EntityLivingBase)entityIn).renderYawOffset + 90);
-		Vec3d shoot = MotionHelper.getPostionRelative2D(entityIn, -0.3f, -0.5f);
-		for(int i=0;i<3;i++) {
-			entityIn.world.spawnParticle(EnumParticleTypes.WATER_SPLASH, entityIn.posX+shoot.x+rf2/5, entityIn.posY+2f+rf3/5, entityIn.posZ+shoot.z+rf1/5,
-					rf1/2, rf2/2, rf3/2);
-		}
+		
+		
 	}
 	public void setRotationAngle(ModelRenderer modelRenderer, float x, float y, float z) {
 		modelRenderer.rotateAngleX = x;
@@ -283,9 +277,9 @@ public class ModelHierophantGreen extends ModelStandBase {
 	}
 
 	@Override
-	public void setPunch(float limbSwing, float limbSwingAmount, float rotateFloat, float rotateYaw, float rotatePitch,
+	public void setPunch(float limbSwing, float limbSwingAmount, float ticks, float rotateYaw, float rotatePitch,
 			float scale, Entity entity, float power, float speed) {
-			
+		
 	}
 
 	@Override
@@ -297,28 +291,35 @@ public class ModelHierophantGreen extends ModelStandBase {
 	public void setPostion() {
 		GlStateManager.translate(0.5F, -1.0F, 0.75F);		
 	}
-//	 protected final Vec3d getVectorForRotation(float pitch, float yaw)
-//	    {
-//	        float f = MathHelper.cos(-yaw * 0.017453292F - (float)Math.PI);
-//	        float f1 = MathHelper.sin(-yaw * 0.017453292F - (float)Math.PI);
-//	        float f2 = -MathHelper.cos(-pitch * 0.017453292F);
-//	        float f3 = MathHelper.sin(-pitch * 0.017453292F);
-//	        return new Vec3d((double)(f1 * f2), (double)f3, (double)(f * f2));
-//	    }
-//	 protected float interpolateRotation(float prevYawOffset, float yawOffset, float partialTicks)
-//	    {
-//	        float f;
-//
-//	        for (f = yawOffset - prevYawOffset; f < -180.0F; f += 360.0F)
-//	        {
-//	            ;
-//	        }
-//
-//	        while (f >= 180.0F)
-//	        {
-//	            f -= 360.0F;
-//	        }
-//
-//	        return prevYawOffset + partialTicks * f;
-//	    }
+
+	@Override
+	public void effect(Entity entityIn, float limbSwing, float limbSwingAmount, float ageInTicks, float netHeadYaw,
+			float headPitch, float scale) {
+		float rf1 = MathHelper.nextFloat(new Random(), -1, 1);
+		float rf2 = MathHelper.nextFloat(new Random(), -1, 1);
+		float rf3 = MathHelper.nextFloat(new Random(), -1, 1);
+		Vec3d vec = new Vec3d(rf1, rf2, rf3);
+		Vec3d shootPoint = MotionHelper.getPostionRelative2D(entityIn, -0.55f, -0.6f);
+		Vec3d forward = entityIn.getLookVec();
+		for(int i=0;i<3;i++) {
+			Minecraft.getMinecraft().effectRenderer.spawnEffectParticle(ConfigHuaji.Stands.useHuajiSplash?
+					EnumHuajiPraticle.HUAJISPLASH.getId():EnumHuajiPraticle.EMERALD_SPLAH.getId(), 
+					entityIn.posX+shootPoint.x+rf2/5, entityIn.posY+2.2f+rf3/5, entityIn.posZ+shootPoint.z+rf1/5,
+					forward.x/2 + rf1/5,forward.y/2 + rf2/5,forward.z/2 + rf3/5);
+		}
+		if(rf1>0.9) {
+			Minecraft.getMinecraft().effectRenderer.spawnEffectParticle(EnumParticleTypes.EXPLOSION_NORMAL.getParticleID(), 
+					entityIn.posX+shootPoint.x+rf2/5, entityIn.posY+2.2f+rf3/5, entityIn.posZ+shootPoint.z+rf1/5,
+					forward.x/2 + rf1/5,forward.y/2 + rf2/5,forward.z/2 + rf3/5);
+		}
+	}
+
+	@Override
+	public void extraEffect(Entity entityIn, float limbSwing, float limbSwingAmount,
+			float ageInTicks, float netHeadYaw,float headPitch, float scale) {
+		
+	}
+
+	
+
 }

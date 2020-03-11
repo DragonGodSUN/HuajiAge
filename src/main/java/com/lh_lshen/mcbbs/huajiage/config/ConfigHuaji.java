@@ -73,6 +73,10 @@ public class ConfigHuaji {
 		@LangKey("config.huaji_age.huaji_config.stand.mask_time_stop_noise")
 		public boolean useMinecraftMask=true;
 		
+		@Config.Comment("Use the HUAJI splash replace the image of emerald splash?")
+		@LangKey("config.huaji_age.huaji_config.stand.huaji_splash")
+		public boolean useHuajiSplash=false;
+		
 		@Config.Comment("The flight height of the multi knife")
 		@LangKey("config.huaji_age.huaji_config.height_knife")
 		@RangeDouble(min = 0, max = 0.5f)

@@ -10,6 +10,4 @@ public interface IStandPower {
 	
 	void doStandCapability(EntityLivingBase user ,boolean flag);
 	
-	void extraEffects(EntityLivingBase user ,float limbSwing, float limbSwingAmount,
-			float partialTicks, float ageInTicks, float netHeadYaw, float headPitch, float scale);
 }

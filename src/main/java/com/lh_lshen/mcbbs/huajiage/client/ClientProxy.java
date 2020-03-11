@@ -3,6 +3,7 @@ package com.lh_lshen.mcbbs.huajiage.client;
 import com.lh_lshen.mcbbs.huajiage.HuajiAge;
 import com.lh_lshen.mcbbs.huajiage.common.CommonProxy;
 import com.lh_lshen.mcbbs.huajiage.init.EventClientLoader;
+import com.lh_lshen.mcbbs.huajiage.particle.ParticleLoader;
 
 import net.minecraftforge.client.model.obj.OBJLoader;
 import net.minecraftforge.fml.common.event.FMLInitializationEvent;
@@ -28,6 +29,7 @@ public class ClientProxy extends CommonProxy {
 	    {
 	        super.init(event);
 	        new EventClientLoader();
+	        new ParticleLoader();
 	        new KeyLoader();
 	        new LayerRenderLoader();
 	       

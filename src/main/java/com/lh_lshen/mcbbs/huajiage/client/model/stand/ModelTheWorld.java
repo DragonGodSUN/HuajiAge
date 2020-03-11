@@ -5,6 +5,8 @@
 // - ZeuX
 package com.lh_lshen.mcbbs.huajiage.client.model.stand;
 
+import com.lh_lshen.mcbbs.huajiage.stand.EnumStandtype;
+
 import net.minecraft.client.Minecraft;
 import net.minecraft.client.model.ModelBase;
 import net.minecraft.client.model.ModelBox;
@@ -343,6 +345,7 @@ public class ModelTheWorld extends ModelStandBase
     right_hands.offsetX = offxr;
     
   }
+  
   public void doHandRender(float x ,float y ,float z ,float scale ,float alpha) {
 	  	GlStateManager.translate(x, y, z);
 	  	GlStateManager.color(1.0F, 1.0F, 1.0F, alpha);
@@ -354,6 +357,23 @@ public class ModelTheWorld extends ModelStandBase
 @Override
 public void setPostion() {
 	GlStateManager.translate(0.0F, -0.2F, -0.75F);	
+}
+
+@Override
+public void effect(Entity entityIn, float limbSwing, float limbSwingAmount, float ageInTicks, float netHeadYaw,
+		float headPitch, float scale) {
+	// TODO Auto-generated method stub
+	
+}
+
+
+@Override
+public void extraEffect(Entity entityIn, float limbSwing, float limbSwingAmount,
+		float ageInTicks, float netHeadYaw, float headPitch, float scale) {
+	ModelStandBase model = new ModelTheWorld();
+	model.setRotationAngles(limbSwing, limbSwingAmount, ageInTicks, netHeadYaw, headPitch, scale, entityIn, 1 ,EnumStandtype.THE_WORLD.getSpeed());
+	model.doHandRender(0, 0, 0,(float)(scale*1.3), 0.5f);
+	
 }
 
 

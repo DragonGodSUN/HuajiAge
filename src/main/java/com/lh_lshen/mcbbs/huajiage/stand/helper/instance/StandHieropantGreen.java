@@ -136,15 +136,4 @@ public class StandHieropantGreen implements IStandPower {
 			}
 	}
 
-	@Override
-	public void extraEffects(EntityLivingBase user  , float limbSwing, float limbSwingAmount,
-			float partialTicks, float ageInTicks, float netHeadYaw, float headPitch, float scale) {
-			EnumStandtype type = StandUtil.getType(user);
-			ModelStandBase model = StandClientUtil.getModel(type.getName());
-			if(type != null) {
-			model.setRotationAngles(limbSwing, limbSwingAmount, ageInTicks, netHeadYaw, headPitch, scale, user, 1 ,type.getSpeed());
-			model.doHandRender(0, 0, 0,(float)(scale*1.3), 0.5f);
-		}
-	}
-
 }
