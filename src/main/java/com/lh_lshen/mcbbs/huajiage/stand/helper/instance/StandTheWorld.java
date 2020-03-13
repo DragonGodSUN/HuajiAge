@@ -4,7 +4,7 @@ import java.util.List;
 import java.util.Random;
 
 import com.lh_lshen.mcbbs.huajiage.client.model.stand.ModelStandBase;
-import com.lh_lshen.mcbbs.huajiage.common.HuajiConstant;
+import com.lh_lshen.mcbbs.huajiage.init.HuajiConstant;
 import com.lh_lshen.mcbbs.huajiage.init.playsound.HuajiSoundPlayer;
 import com.lh_lshen.mcbbs.huajiage.init.playsound.SoundLoader;
 import com.lh_lshen.mcbbs.huajiage.network.StandNetWorkHandler;
@@ -12,11 +12,15 @@ import com.lh_lshen.mcbbs.huajiage.stand.EnumStandSkillType;
 import com.lh_lshen.mcbbs.huajiage.stand.EnumStandtype;
 import com.lh_lshen.mcbbs.huajiage.stand.StandClientUtil;
 import com.lh_lshen.mcbbs.huajiage.stand.StandUtil;
-import com.lh_lshen.mcbbs.huajiage.stand.messages.MessageDoTimeStopServer;
+import com.lh_lshen.mcbbs.huajiage.stand.helper.skill.TimeStopHelper;
+import com.lh_lshen.mcbbs.huajiage.stand.messages.MessageDoStandCapabilityServer;
+import com.lh_lshen.mcbbs.huajiage.stand.messages.MessageDoStandPowerClient;
 import com.lh_lshen.mcbbs.huajiage.stand.messages.MessagePerfromSkill;
 import com.lh_lshen.mcbbs.huajiage.util.MotionHelper;
 import com.lh_lshen.mcbbs.huajiage.util.NBTHelper;
+import com.lh_lshen.mcbbs.huajiage.util.ServerUtil;
 
+import net.minecraft.client.multiplayer.WorldClient;
 import net.minecraft.entity.Entity;
 import net.minecraft.entity.EntityLivingBase;
 import net.minecraft.entity.boss.EntityDragon;
@@ -125,15 +129,19 @@ public class StandTheWorld implements IStandPower {
 	}
 
 	@Override
-	public void doStandCapability(EntityLivingBase user ,boolean flag) {
-		MessagePerfromSkill msg = new MessagePerfromSkill(EnumStandtype.THE_WORLD.getCost(),0,120,HuajiConstant.Tags.THE_WORLD_TIME,EnumStandSkillType.TIME_STOP);
-		StandNetWorkHandler.sendToServer(msg);
-		if(flag){
-			StandNetWorkHandler.sendToServer(new MessageDoTimeStopServer(true));
-				if(user instanceof EntityPlayer) {
-					user.sendMessage(new TextComponentTranslation("message.huajiage.the_world"));
-				}
-			}
+	public void doStandCapability(EntityLivingBase user) {
+		TimeStopHelper.setEntityTimeStopRange(user,120);
+		TimeStopHelper.setTimeStop(user, HuajiConstant.Tags.THE_WORLD_TIME);
+		TimeStopHelper.extraEffects(user, 9*20);
+		if(user instanceof EntityPlayer) {
+		ServerUtil.sendPacketToNearbyPlayersStand(user, new MessageDoStandPowerClient((EntityPlayer) user,EnumStandtype.THE_WORLD.getName()));
+		}
 	}
+	
+	@Override
+	public void doStandCapabilityClient(WorldClient world, EntityLivingBase user) {
+		TimeStopHelper.doTimeStopClient(world, user.getPositionVector(), EnumStandtype.THE_WORLD);
+	}
+
 
 }

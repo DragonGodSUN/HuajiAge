@@ -31,17 +31,15 @@ public class RenderEmeraldBullet extends Render<EntityEmeraldBullet>
 	    public void doRender(EntityEmeraldBullet entity, double x, double y, double z, float entityYaw, float partialTicks)
 	    {
 		super.doRender(entity, x, y, z, entityYaw, partialTicks);
-		float r = (float) Math.random()*360;
 		GlStateManager.pushMatrix();
 		GlStateManager.enableRescaleNormal();
 		GlStateManager.disableLighting();
 		GlStateManager.color(1F, 1F, 1F, 1F);
 		GlStateManager.translate(x, y, z);
 		GlStateManager.rotate(entity.getRotation(), 0F, 1F, 0F);
-		GlStateManager.rotate(90F, 1F, 0F, 0F);
 		GlStateManager.rotate(entity.getPitch(), 1F, 0F, 0F);
-		GlStateManager.rotate(r, 0F, 1F, 0F);
-//		Minecraft.getMinecraft().renderEngine.bindTexture(MULI_KNIFE);
+		GlStateManager.rotate(90F, 1F, 0F, 0F);
+		GlStateManager.rotate(entity.getRotationRandom(), 1F, 0F, 0F);
 		MODEL_N.render(entity, 0, 0, entity.ticksExisted, entityYaw, entity.rotationPitch, 0.3f);
 		
 		GlStateManager.color(1F, 1F, 1F);

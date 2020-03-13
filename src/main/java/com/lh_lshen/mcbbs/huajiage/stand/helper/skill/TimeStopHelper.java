@@ -6,7 +6,7 @@ import com.lh_lshen.mcbbs.huajiage.capability.CapabilityStandBuffHandler;
 import com.lh_lshen.mcbbs.huajiage.capability.CapabilityStandHandler;
 import com.lh_lshen.mcbbs.huajiage.capability.StandBuffHandler;
 import com.lh_lshen.mcbbs.huajiage.capability.StandHandler;
-import com.lh_lshen.mcbbs.huajiage.common.HuajiConstant;
+import com.lh_lshen.mcbbs.huajiage.init.HuajiConstant;
 import com.lh_lshen.mcbbs.huajiage.init.playsound.SoundLoader;
 import com.lh_lshen.mcbbs.huajiage.item.ItemLoader;
 import com.lh_lshen.mcbbs.huajiage.stand.EnumStandtype;
@@ -41,7 +41,7 @@ public class TimeStopHelper {
 		NBTHelper.setEntityDouble(entity, HuajiConstant.Tags.TIME_STOP_RANGE, distance);
 	}
 	
-	public static void doTimeStopServer(EntityLivingBase entity,int time) {
+	public static void extraEffects(EntityLivingBase entity,int time) {
 		StandHandler standHandler = entity.getCapability(CapabilityStandHandler.STAND_TYPE, null);
 		EnumStandtype stand =EnumStandtype.getType(standHandler.getStand());
 			if(null ==stand) {

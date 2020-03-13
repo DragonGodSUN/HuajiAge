@@ -39,7 +39,7 @@ public class ItemDiscStand extends Item {
 	public ItemDiscStand()
 	{
 		 super();
-		  this.setCreativeTab(CreativeTabLoader.tabhuaji);
+		  this.setCreativeTab(CreativeTabLoader.tabJo);
 		  this.addPropertyOverride(new ResourceLocation("stand"), new IItemPropertyGetter()
 	        {
 				@Override
@@ -103,6 +103,7 @@ public class ItemDiscStand extends Item {
             for (EnumStandtype stand : EnumStandtype.values()) {
             	String type = stand.getName();
             	items.add(getItemData(new ItemStack(this),type,0));
+            	items.add(getItemData(new ItemStack(this),type,1));
             	}
         	}	
 		}

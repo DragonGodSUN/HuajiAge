@@ -2,8 +2,8 @@ package com.lh_lshen.mcbbs.huajiage.stand.messages;
 
 import java.util.List;
 
-import com.lh_lshen.mcbbs.huajiage.common.HuajiConstant;
 import com.lh_lshen.mcbbs.huajiage.entity.EntityRoadRoller;
+import com.lh_lshen.mcbbs.huajiage.init.HuajiConstant;
 import com.lh_lshen.mcbbs.huajiage.item.ItemHeroBow;
 import com.lh_lshen.mcbbs.huajiage.item.ItemLoader;
 import com.lh_lshen.mcbbs.huajiage.util.NBTHelper;

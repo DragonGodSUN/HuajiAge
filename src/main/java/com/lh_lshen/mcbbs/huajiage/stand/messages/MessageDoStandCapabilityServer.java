@@ -8,6 +8,7 @@ import com.lh_lshen.mcbbs.huajiage.item.ItemLoader;
 import com.lh_lshen.mcbbs.huajiage.stand.EnumStandSkillType;
 import com.lh_lshen.mcbbs.huajiage.stand.EnumStandtype;
 import com.lh_lshen.mcbbs.huajiage.stand.StandUtil;
+import com.lh_lshen.mcbbs.huajiage.stand.helper.instance.IStandPower;
 import com.lh_lshen.mcbbs.huajiage.stand.helper.skill.TimeStopHelper;
 import com.lh_lshen.mcbbs.huajiage.util.ServerUtil;
 
@@ -21,39 +22,32 @@ import net.minecraftforge.fml.common.network.simpleimpl.IMessageHandler;
 import net.minecraftforge.fml.common.network.simpleimpl.MessageContext;
 import net.minecraftforge.fml.relauncher.Side;
 
-public class MessageDoTimeStopServer implements IMessage {
-	private boolean isDio;
+public class MessageDoStandCapabilityServer implements IMessage {
 
-	public MessageDoTimeStopServer() {
-	}
-	
-	public MessageDoTimeStopServer(boolean isDio) {
-		this.isDio = isDio;
+	public MessageDoStandCapabilityServer() {
 	}
 
     @Override
     public void toBytes(ByteBuf buf) {
-    	buf.writeBoolean(isDio);
 
     }
 
     @Override
     public void fromBytes(ByteBuf buf) {
-    	this.isDio=buf.readBoolean();
 
     }
 
-    public static class Handler implements IMessageHandler<MessageDoTimeStopServer, IMessage> {
+    public static class Handler implements IMessageHandler<MessageDoStandCapabilityServer, IMessage> {
         @Override
-        public IMessage onMessage(MessageDoTimeStopServer message , MessageContext ctx) {
+        public IMessage onMessage(MessageDoStandCapabilityServer message , MessageContext ctx) {
     	if (ctx.side == Side.SERVER) {
         	FMLCommonHandler.instance().getWorldThread(ctx.netHandler).addScheduledTask(() ->{
         		EntityPlayerMP player = ctx.getServerHandler().player;
         		String stand = player.getCapability(CapabilityStandHandler.STAND_TYPE, null).getStand();
-				TimeStopHelper.doTimeStopServer(player, message.isDio?9:5);
 				if(!stand.equals(EnumStandtype.EMPTY))
 				{
-					ServerUtil.sendPacketToNearbyPlayersStand(player, new MessageDoTimeStopClient(player,stand));
+					IStandPower power = EnumStandtype.getType(stand).getStandPower();
+					power.doStandCapability(player);
 				}
 				});
         	}

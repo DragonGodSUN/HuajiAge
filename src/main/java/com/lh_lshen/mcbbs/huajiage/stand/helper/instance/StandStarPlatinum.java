@@ -4,7 +4,7 @@ import java.util.List;
 import java.util.Random;
 
 import com.lh_lshen.mcbbs.huajiage.client.model.stand.ModelStandBase;
-import com.lh_lshen.mcbbs.huajiage.common.HuajiConstant;
+import com.lh_lshen.mcbbs.huajiage.init.HuajiConstant;
 import com.lh_lshen.mcbbs.huajiage.init.playsound.HuajiSoundPlayer;
 import com.lh_lshen.mcbbs.huajiage.init.playsound.SoundLoader;
 import com.lh_lshen.mcbbs.huajiage.network.StandNetWorkHandler;
@@ -12,11 +12,15 @@ import com.lh_lshen.mcbbs.huajiage.stand.EnumStandSkillType;
 import com.lh_lshen.mcbbs.huajiage.stand.EnumStandtype;
 import com.lh_lshen.mcbbs.huajiage.stand.StandClientUtil;
 import com.lh_lshen.mcbbs.huajiage.stand.StandUtil;
-import com.lh_lshen.mcbbs.huajiage.stand.messages.MessageDoTimeStopServer;
+import com.lh_lshen.mcbbs.huajiage.stand.helper.skill.TimeStopHelper;
+import com.lh_lshen.mcbbs.huajiage.stand.messages.MessageDoStandCapabilityServer;
+import com.lh_lshen.mcbbs.huajiage.stand.messages.MessageDoStandPowerClient;
 import com.lh_lshen.mcbbs.huajiage.stand.messages.MessagePerfromSkill;
 import com.lh_lshen.mcbbs.huajiage.util.MotionHelper;
 import com.lh_lshen.mcbbs.huajiage.util.NBTHelper;
+import com.lh_lshen.mcbbs.huajiage.util.ServerUtil;
 
+import net.minecraft.client.multiplayer.WorldClient;
 import net.minecraft.entity.Entity;
 import net.minecraft.entity.EntityLivingBase;
 import net.minecraft.entity.boss.EntityDragon;
@@ -120,29 +124,19 @@ public class StandStarPlatinum implements IStandPower {
 	}
 
 	@Override
-	public void doStandCapability(EntityLivingBase user ,boolean flag) {
-		MessagePerfromSkill msg = new MessagePerfromSkill(EnumStandtype.STAR_PLATINUM.getCost(),0,50,5*20,EnumStandSkillType.TIME_STOP);
-		StandNetWorkHandler.sendToServer(msg);
-		if(flag){
-			StandNetWorkHandler.sendToServer(new MessageDoTimeStopServer(false));
-				if(user instanceof EntityPlayer) {
-					user.sendMessage(new TextComponentTranslation("message.huajiage.the_world_star"));
-				}
-			}
+	public void doStandCapability(EntityLivingBase user) {
+		TimeStopHelper.setEntityTimeStopRange(user,120);
+		TimeStopHelper.setTimeStop(user, 5*20);
+		TimeStopHelper.extraEffects(user, 5*20);
+		if(user instanceof EntityPlayer) {
+		ServerUtil.sendPacketToNearbyPlayersStand(user, new MessageDoStandPowerClient((EntityPlayer) user,EnumStandtype.STAR_PLATINUM.getName()));
+		}
 	}
 
-//	@Override
-//	public void extraEffects(EntityLivingBase user, float limbSwing, float limbSwingAmount,
-//			float partialTicks, float ageInTicks, float netHeadYaw, float headPitch, float scale) {
-//			EnumStandtype type = StandUtil.getType(user);
-//			ModelStandBase model = StandClientUtil.getModel(type.getName());
-//			if(type != null) {
-//			model.setRotationAngles(limbSwing, limbSwingAmount, ageInTicks, netHeadYaw, headPitch, scale, user, 1 ,type.getSpeed());
-//			model.doHandRender(0, 0, 0,(float)(scale*1.3), 0.5f);
-//			}
-//	}
+	@Override
+	public void doStandCapabilityClient(WorldClient world, EntityLivingBase user) {
+		TimeStopHelper.doTimeStopClient(world, user.getPositionVector(), EnumStandtype.STAR_PLATINUM);
+	}
 
-
-	
 
 }

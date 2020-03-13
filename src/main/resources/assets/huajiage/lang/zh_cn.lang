@@ -1,6 +1,7 @@
 ﻿
 item.huajiage.huaji.name=滑稽
-itemGroup.huaji=滑稽纪元
+itemGroup.huajiage.huaji=滑稽纪元
+itemGroup.huajiage.jo=JO梗奇点
 tile.huajiage.oreHuaji.name=充斥着滑稽之力的石头
 tile.huajiage.huajiBomb.name=§6滑稽炸弹
 tile.huajiage.huajiStarBlock.name=§b滑稽之星压缩块
@@ -15,6 +16,7 @@ item.huajiage.huajiStarSky.name=§b空域之星
 item.huajiage.huajiStarUniverse.name=§e无尽之星
 item.huajiage.eggRice.name=§e真香蛋炒饭
 item.huajiage.eggRiceU.name=§d奥义·§e真香蛋炒饭
+item.huajiage.arrowStand.name=§d觉醒之箭
 
 death.attack.huajiage.hope_flower= %s死于世界线收束
 death.attack.huajiage.orga.shot=%s被团长乱枪打死
@@ -135,6 +137,8 @@ message.huajiage.tarot.stand.fail_load=§e您可能已经拥有了一个替身�
 message.huajiage.stand_skill.cost_lack=§e抱歉，您的精神力还不足以引发替身技能
 message.huajiage.singularity=§e究极的特异点，你能到达新世界吗？
 message.huajiage.stand.lost=§b如果你发现你的替身在你穿越维度的时候跑路了，不要担心，只要退出再登录，让你的替身去吃个饭，你的替身就回来了(Capability机制的锅，作者也是无能为力)
+mesage.huajiage.stand.gain=§b恭喜你获得替身：
+mesage.huajiage.stand.fail=替身反噬了你——看来你是个非酋
 
 
 gui.huajiage.poly.cook=§l进程
@@ -157,11 +161,20 @@ config.huaji_age.huaji_config.stand_HUD_x=替身显示框-x轴位置
 config.huaji_age.huaji_config.stand_HUD_y=替身显示框-y轴位置
 config.huaji_age.huaji_config.stand.tip.lost=替身丢失提醒
 config.huaji_age.huaji_config.stand.punish.out_time=使用替身超时的惩罚
+config.huaji_age.huaji_config.stand.weak_up_fail=替身觉醒失败概率
+config.huaji_age.huaji_config.stand.mask_time_stop_noise=采用时停时的噪纹遮罩
+config.huaji_age.huaji_config.icon_time_stop=启用时停时的齿轮标志
+config.huaji_age.huaji_config.stand.huaji_splash=用滑稽粒子代替绿宝石水花
+
 
 stand.huajiage.empty=缺失
 stand.huajiage.the_world=§e§lThe World-世界
 stand.huajiage.star_platinum=§5§lStar Platinum-白金之星
 stand.huajiage.hierophant_green=§a§lHierophant Green-绿之法皇
+
+stand.huajiage.skill.the_world.start=§e§l咋瓦鲁多 ! ! ! 时间停止吧 !
+stand.huajiage.skill.star_platinum.start=§5§l食堂泼辣酱——§b§l咋瓦鲁多 ! 
+stand.huajiage.skill.hierophant_green.start=§a§l接招吧!半径20米的绿宝石水花!!!
 
 patchouil.huajiage.book.name=§e§lJO§6级宝典
 patchouil.huajiage.book.landing=在这个宇宙中，存在着一种名为滑稽的奇特之物，它们无处不在，并构成了千千万万的事物，据说，持有滑稽的星辉之力，便可得到传说中鬼畜先辈的无上之力

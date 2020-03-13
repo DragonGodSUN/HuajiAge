@@ -6,8 +6,9 @@ import java.util.UUID;
 import com.lh_lshen.mcbbs.huajiage.capability.CapabilityStandHandler;
 import com.lh_lshen.mcbbs.huajiage.capability.StandHandler;
 import com.lh_lshen.mcbbs.huajiage.capability.StandStageHandler;
-import com.lh_lshen.mcbbs.huajiage.common.HuajiConstant;
 import com.lh_lshen.mcbbs.huajiage.data.StandUserWorldSavedData;
+import com.lh_lshen.mcbbs.huajiage.entity.EntityEmeraldBullet;
+import com.lh_lshen.mcbbs.huajiage.init.HuajiConstant;
 import com.lh_lshen.mcbbs.huajiage.init.LootTablesLoader;
 import com.lh_lshen.mcbbs.huajiage.init.events.EventStand;
 import com.lh_lshen.mcbbs.huajiage.init.events.EventTimeStop;
@@ -15,6 +16,7 @@ import com.lh_lshen.mcbbs.huajiage.init.playsound.SoundLoader;
 import com.lh_lshen.mcbbs.huajiage.potion.PotionLoader;
 import com.lh_lshen.mcbbs.huajiage.stand.EnumStandtype;
 import com.lh_lshen.mcbbs.huajiage.stand.StandUtil;
+import com.lh_lshen.mcbbs.huajiage.stand.helper.instance.StandHieropantGreen;
 import com.lh_lshen.mcbbs.huajiage.stand.helper.skill.TimeStopHelper;
 import com.lh_lshen.mcbbs.huajiage.util.NBTHelper;
 
@@ -99,7 +101,9 @@ public class ItemLootTableTest extends Item {
 		switch (getmode(stack)){
 		case 0:{
 			if (!worldIn.isRemote) {
-			final LootTable lootTable = worldIn.getLootTableManager().getLootTableFromLocation(LootTablesLoader.LOOT_TABLE_HUAJI);
+			StandHieropantGreen stand = new StandHieropantGreen();
+			stand.doStandCapability(playerIn);
+			final LootTable lootTable = worldIn.getLootTableManager().getLootTableFromLocation(LootTablesLoader.LOOT_TABLE_STAND_TEMPLE);
 			final LootContext lootContext = new LootContext.Builder((WorldServer) worldIn).withPlayer(playerIn).build();
 
 			final List<ItemStack> itemStacks = lootTable.generateLootForPools(itemRand, lootContext);
@@ -113,9 +117,6 @@ public class ItemLootTableTest extends Item {
 
 				playerIn.sendMessage(new TextComponentTranslation("message.huajiage:player_received_loot.no_loot"));
 		      }
-			playerIn.sendMessage(new TextComponentString("standUsers:"+StandUserWorldSavedData.getGlobal(worldIn).size()));
-			playerIn.sendMessage(new TextComponentString("standUsers:"+StandUserWorldSavedData.getGlobal(worldIn).getPlayers()));
-			playerIn.sendMessage(new TextComponentString("myStand:"+StandUserWorldSavedData.getGlobal(worldIn).getPlayerStand(playerIn)));
 			}
 			break;
 		}

@@ -1,6 +1,6 @@
 item.huajiage.huaji.name=HUAJI
-itemGroup.huaji=HUAJI Age II:Infinite Galaxy
-
+itemGroup.huajiage.huaji=HUAJI Age:Infinite Galaxy
+itemGroup.huajiage.jo=JOstack
 tile.huajiage.huajiage.huajiBomb.name=HUAJI bomb
 tile.huajiage.oreHuaji.name=HUAJI Ore
 tile.huajiage.huajiStarBlock.name=HUAJI Star Block
@@ -22,6 +22,7 @@ item.huajiage.huajiStarUniverse.name=Infinite Universe Star
 item.huajiage.eggRice.name=Fried Rice With Eggs
 item.huajiage.eggRiceU.name=Fried Ultimate Rice With Eggs
 item.huajiage.huajiStarPoly.name=§o§lMultiple superposition state HUAJI star
+item.huajiage.arrowStand.name=§dArrow for Stand
 
 
 death.attack.huajiage.hope_flower=%s was dead of world line converge
@@ -136,7 +137,8 @@ message.huajiage.tarot.stand.fail_load=You may already have a STAND , if you wan
 message.huajiage.stand_skill.cost_lack=§eYour points for stand skill is not enough
 message.huajiage.singularity=§eIt's is the Fate,for everyone
 message.huajiage.stand.lost=§bIf you found that your STAND lost when you travel to a dimension.Don't worry!Just log out and log in again,the problem is solved.
-
+mesage.huajiage.stand.fail=Your Stand attack yourself---you have a bad luck
+mesage.huajiage.stand.gain=Your Stand :
 
 gui.huajiage.poly.cook=Process
 gui.huajiage.poly.fuel=Fuel Point
@@ -156,11 +158,19 @@ config.huaji_age.huaji_config.stand_HUD_x=Stand HUD -x
 config.huaji_age.huaji_config.stand_HUD_y=Stand HUD -y
 config.huaji_age.huaji_config.stand.tip.lost=Stand Lost Notice
 config.huaji_age.huaji_config.stand.punish.out_time=Punish for stand users(Out of Time)
+config.huaji_age.huaji_config.stand.weak_up_fail=The possibility of Stand weak up fail 
+config.huaji_age.huaji_config.stand.mask_time_stop_noise=Noise mask in time stop
+config.huaji_age.huaji_config.icon_time_stop=The icon display in time stop
+config.huaji_age.huaji_config.stand.huaji_splash=Use HUAJI particle to replace the emerald splash
 
 stand.huajiage.empty=Empty
 stand.huajiage.the_world=§e§lThe World
 stand.huajiage.star_platinum=§5§lStar Platinum
 stand.huajiage.hierophant_green=§a§lHierophant Green
+
+stand.huajiage.skill.the_world.start=§e§lThe World!!!
+stand.huajiage.skill.star_platinum.start=§5§lStar Platinum!The World!!! 
+stand.huajiage.skill.hierophant_green.start=§a§lTake that! Emerald splash with a radius of 20 meters!!!
 
 patchouil.huajiage.book.name=§e§lHUAJI§6Book
 patchouil.huajiage.book.landing=HUAJI,means comical or funny things,is making up awkwardly or funnily for hilarious festivals. In this universe, there is a peculiar thing named HUAJI, which is ubiquitous and constitutes thousands of things. It is said that holding the funny starlight power can obtain the supreme power of the legendary HUAJI ancestor.

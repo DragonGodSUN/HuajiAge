@@ -26,7 +26,7 @@ public class EntityLoader {
 	        registerEntity((new ResourceLocation(HuajiAge.MODID, "MuliKnife")), EntityMultiKnife.class, "MuliKnife", 80, 3, true);
 	        registerEntity((new ResourceLocation(HuajiAge.MODID, "RoadRoller")), EntityRoadRoller.class, "RoadRoller", 80, 3, true);
 	        registerEntity((new ResourceLocation(HuajiAge.MODID, "StandBase")), EntityStandBase.class, "StandBase", 80, 3, true);
-	        registerEntity((new ResourceLocation(HuajiAge.MODID, "EmeraldBullet")), EntityStandBase.class, "EmeraldBullet", 80, 3, true);
+	        registerEntity((new ResourceLocation(HuajiAge.MODID, "EmeraldBullet")), EntityEmeraldBullet.class, "EmeraldBullet", 80, 3, true);
 	    }
 
 	    private static void registerEntity(ResourceLocation nameg,Class<? extends Entity> entityClass, String name, int trackingRange,

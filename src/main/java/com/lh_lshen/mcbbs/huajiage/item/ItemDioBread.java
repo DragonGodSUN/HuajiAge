@@ -8,10 +8,10 @@ import org.lwjgl.opengl.GL11;
 import com.ibm.icu.impl.duration.impl.DataRecord.EUnitVariant;
 import com.lh_lshen.mcbbs.huajiage.capability.CapabilityStandHandler;
 import com.lh_lshen.mcbbs.huajiage.capability.StandHandler;
-import com.lh_lshen.mcbbs.huajiage.common.HuajiConstant;
 import com.lh_lshen.mcbbs.huajiage.config.ConfigHuaji;
 import com.lh_lshen.mcbbs.huajiage.crativetab.CreativeTabLoader;
 import com.lh_lshen.mcbbs.huajiage.entity.EntityRoadRoller;
+import com.lh_lshen.mcbbs.huajiage.init.HuajiConstant;
 import com.lh_lshen.mcbbs.huajiage.init.playsound.SoundLoader;
 import com.lh_lshen.mcbbs.huajiage.network.HuajiAgeNetWorkHandler;
 import com.lh_lshen.mcbbs.huajiage.stand.EnumStandtype;
@@ -56,7 +56,7 @@ public class ItemDioBread extends ItemFood{
 	public ItemDioBread() {
 		super(12, 2f, false);
 		setAlwaysEdible();
-		setCreativeTab(CreativeTabLoader.tabhuaji);
+		setCreativeTab(CreativeTabLoader.tabJo);
 	}
 	@Override
     public void onFoodEaten(ItemStack stack, World worldIn, EntityPlayer player)

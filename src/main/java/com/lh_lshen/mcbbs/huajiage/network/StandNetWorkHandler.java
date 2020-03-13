@@ -10,8 +10,8 @@ import com.lh_lshen.mcbbs.huajiage.network.messages.MessagePlaySoundClient;
 import com.lh_lshen.mcbbs.huajiage.network.messages.MessagePlaySoundToServer;
 import com.lh_lshen.mcbbs.huajiage.network.messages.MessageServerInterchange;
 import com.lh_lshen.mcbbs.huajiage.stand.messages.MessageDioHitClient;
-import com.lh_lshen.mcbbs.huajiage.stand.messages.MessageDoTimeStopClient;
-import com.lh_lshen.mcbbs.huajiage.stand.messages.MessageDoTimeStopServer;
+import com.lh_lshen.mcbbs.huajiage.stand.messages.MessageDoStandPowerClient;
+import com.lh_lshen.mcbbs.huajiage.stand.messages.MessageDoStandCapabilityServer;
 import com.lh_lshen.mcbbs.huajiage.stand.messages.MessageLeftClickRoadRoller;
 import com.lh_lshen.mcbbs.huajiage.stand.messages.MessagePerfromSkill;
 import com.lh_lshen.mcbbs.huajiage.stand.messages.MessageStandUp;
@@ -42,10 +42,10 @@ public final class  StandNetWorkHandler {
 		HANDLER.registerMessage(MessageStandUp.Handler.class, MessageStandUp.class, id++, Side.SERVER);
 		HANDLER.registerMessage(MessageLeftClickRoadRoller.Handler.class, MessageLeftClickRoadRoller.class, id++, Side.SERVER);
 		HANDLER.registerMessage(MessagePerfromSkill.Handler.class, MessagePerfromSkill.class, id++, Side.SERVER);
-		HANDLER.registerMessage(MessageDoTimeStopServer.Handler.class, MessageDoTimeStopServer.class, id++, Side.SERVER);
+		HANDLER.registerMessage(MessageDoStandCapabilityServer.Handler.class, MessageDoStandCapabilityServer.class, id++, Side.SERVER);
 		
 	    HANDLER.registerMessage(MessageDioHitClient.Handler.class,MessageDioHitClient.class, id++, Side.CLIENT);
-	    HANDLER.registerMessage(MessageDoTimeStopClient.Handler.class,MessageDoTimeStopClient.class, id++, Side.CLIENT);
+	    HANDLER.registerMessage(MessageDoStandPowerClient.Handler.class,MessageDoStandPowerClient.class, id++, Side.CLIENT);
 	    HANDLER.registerMessage(SyncStandMessage.Handler.class,SyncStandMessage.class, id++, Side.CLIENT);
 	    HANDLER.registerMessage(SyncStandStageMessage.Handler.class,SyncStandStageMessage.class, id++, Side.CLIENT);
 	    HANDLER.registerMessage(SyncStandChargeMessage.Handler.class,SyncStandChargeMessage.class, id++, Side.CLIENT);

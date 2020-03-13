@@ -2,9 +2,9 @@ package com.lh_lshen.mcbbs.huajiage.stand.events;
 
 import com.lh_lshen.mcbbs.huajiage.HuajiAge;
 import com.lh_lshen.mcbbs.huajiage.capability.CapabilityLoader;
-import com.lh_lshen.mcbbs.huajiage.common.HuajiConstant;
 import com.lh_lshen.mcbbs.huajiage.config.ConfigHuaji;
 import com.lh_lshen.mcbbs.huajiage.config.ConfigHuaji.HuajiConfig;
+import com.lh_lshen.mcbbs.huajiage.init.HuajiConstant;
 import com.lh_lshen.mcbbs.huajiage.potion.PotionLoader;
 import com.lh_lshen.mcbbs.huajiage.stand.StandUtil;
 
@@ -93,7 +93,7 @@ public class EventViewRender {
 		GlStateManager.depthMask(false);
 		GlStateManager.tryBlendFuncSeparate(GlStateManager.SourceFactor.ZERO, GlStateManager.DestFactor.ONE_MINUS_SRC_COLOR, GlStateManager.SourceFactor.ONE, GlStateManager.DestFactor.ZERO);
 		GlStateManager.color(0.25F, 0.25F, 0.25F, 1.0F);
-		mc.getTextureManager().bindTexture(new ResourceLocation(ConfigHuaji.Stands.useMinecraftMask?HuajiAge.MODID+":"+tex:"textures/misc/vignette.png"));
+		mc.getTextureManager().bindTexture(new ResourceLocation(ConfigHuaji.Stands.useTimeStopNoiseMask?HuajiAge.MODID+":"+tex:"textures/misc/vignette.png"));
 		Tessellator tessellator = Tessellator.getInstance();
 		BufferBuilder bufferbuilder = tessellator.getBuffer();
 		bufferbuilder.begin(7, DefaultVertexFormats.POSITION_TEX);

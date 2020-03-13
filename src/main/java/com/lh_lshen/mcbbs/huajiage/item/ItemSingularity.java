@@ -2,8 +2,8 @@ package com.lh_lshen.mcbbs.huajiage.item;
 
 import java.util.List;
 
-import com.lh_lshen.mcbbs.huajiage.common.HuajiConstant;
 import com.lh_lshen.mcbbs.huajiage.crativetab.CreativeTabLoader;
+import com.lh_lshen.mcbbs.huajiage.init.HuajiConstant;
 import com.lh_lshen.mcbbs.huajiage.init.playsound.HuajiSoundPlayer;
 import com.lh_lshen.mcbbs.huajiage.init.playsound.SoundLoader;
 import com.lh_lshen.mcbbs.huajiage.stand.EnumStandtype;
@@ -30,7 +30,7 @@ public class ItemSingularity extends Item {
 	{
 		 super();
 		  this.setMaxStackSize(1);
-		  this.setCreativeTab(CreativeTabLoader.tabhuaji);
+		  this.setCreativeTab(CreativeTabLoader.tabJo);
 	}
 	@Override
 	public ActionResult<ItemStack> onItemRightClick(World worldIn, EntityPlayer playerIn, EnumHand handIn) {

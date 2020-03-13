@@ -5,8 +5,8 @@ import java.util.List;
 import com.lh_lshen.mcbbs.huajiage.capability.CapabilityStandHandler;
 import com.lh_lshen.mcbbs.huajiage.capability.CapabilityStandStageHandler;
 import com.lh_lshen.mcbbs.huajiage.capability.StandHandler;
-import com.lh_lshen.mcbbs.huajiage.common.HuajiConstant;
 import com.lh_lshen.mcbbs.huajiage.crativetab.CreativeTabLoader;
+import com.lh_lshen.mcbbs.huajiage.init.HuajiConstant;
 import com.lh_lshen.mcbbs.huajiage.potion.PotionLoader;
 import com.lh_lshen.mcbbs.huajiage.stand.EnumStandtype;
 import com.lh_lshen.mcbbs.huajiage.stand.StandUtil;
@@ -39,7 +39,7 @@ public class ItemTarot extends Item {
 	public ItemTarot()
 	{
 		 super();
-		  this.setCreativeTab(CreativeTabLoader.tabhuaji);
+		  this.setCreativeTab(CreativeTabLoader.tabJo);
 		  
 	}
 	@Override

@@ -71,7 +71,7 @@ public class ConfigHuaji {
 		
 		@Config.Comment("Use the noise version mask of time stop?")
 		@LangKey("config.huaji_age.huaji_config.stand.mask_time_stop_noise")
-		public boolean useMinecraftMask=true;
+		public boolean useTimeStopNoiseMask=true;
 		
 		@Config.Comment("Use the HUAJI splash replace the image of emerald splash?")
 		@LangKey("config.huaji_age.huaji_config.stand.huaji_splash")
@@ -79,8 +79,13 @@ public class ConfigHuaji {
 		
 		@Config.Comment("The flight height of the multi knife")
 		@LangKey("config.huaji_age.huaji_config.height_knife")
-		@RangeDouble(min = 0, max = 0.5f)
+		@RangeDouble(min = -0.5f, max = 0.5f)
 		public double knifeHeight = -0.25f;
+		
+		@Config.Comment("The chance for weak up stand fail")
+		@LangKey("config.huaji_age.huaji_config.stand.weak_up_fail")
+		@RangeDouble(min =0, max =1)
+		public double chanceStandFail = 0.3;
 		
 		@Config.Comment("The X position of Stand on HUD")
 		@LangKey("config.huaji_age.huaji_config.stand_HUD_x")

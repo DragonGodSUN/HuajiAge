@@ -35,11 +35,10 @@ public class ModelEmeraldBullet extends ModelBase
   @Override
   public void render(Entity entityIn, float limbSwing, float limbSwingAmount, float ageInTicks, float netHeadYaw,
 		float headPitch, float scale) {
-    setRotationAngles( limbSwing, limbSwingAmount, ageInTicks, headPitch,netHeadYaw, scale);
-	super.render(entityIn, limbSwing, limbSwingAmount, ageInTicks, netHeadYaw, headPitch, scale);
-	 ItemStack item=new ItemStack(Items.EMERALD);
-//	 IBakedModel ibakedmodel = Minecraft.getMinecraft().getRenderItem().getItemModelWithOverrides(item, (World)null, (EntityLivingBase)null);
-	 Minecraft.getMinecraft().getRenderItem().renderItem(item, TransformType.GROUND);
+	  ItemStack item=new ItemStack(Items.EMERALD);
+	  Minecraft.getMinecraft().getRenderItem().renderItem(item, TransformType.GROUND);
+	  setRotationAngles( limbSwing, limbSwingAmount, ageInTicks, headPitch,netHeadYaw, scale);
+	  super.render(entityIn, limbSwing, limbSwingAmount, ageInTicks, netHeadYaw, headPitch, scale);
   }
  
   

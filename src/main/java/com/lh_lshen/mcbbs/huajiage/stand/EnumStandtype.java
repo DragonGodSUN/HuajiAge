@@ -1,7 +1,7 @@
 package com.lh_lshen.mcbbs.huajiage.stand;
 
 import com.lh_lshen.mcbbs.huajiage.HuajiAge;
-import com.lh_lshen.mcbbs.huajiage.common.HuajiConstant;
+import com.lh_lshen.mcbbs.huajiage.init.HuajiConstant;
 import com.lh_lshen.mcbbs.huajiage.stand.helper.instance.IStandPower;
 import com.lh_lshen.mcbbs.huajiage.stand.helper.instance.StandHieropantGreen;
 import com.lh_lshen.mcbbs.huajiage.stand.helper.instance.StandStarPlatinum;
@@ -103,10 +103,11 @@ public enum EnumStandtype {
     }
     
     public static EnumStandtype getTypeWithIndex(int index) {
-    	if (index < 0 || index >= values().length) {
-            return THE_WORLD;
-        }
-        return values()[index];
+    	int id = index;
+    	if(id>=0 && id<EnumStandtype.getLength() || id>=EnumStandtype.getLength()) {
+        return values()[id%EnumStandtype.getLength()];
+    	}
+    	return null;
     }
 
     public static int getLength() {

@@ -43,7 +43,7 @@ public class ItemMultiKnife extends Item {
 	public ItemMultiKnife()
 	{
 		 super();
-		  this.setCreativeTab(CreativeTabLoader.tabhuaji);
+		  this.setCreativeTab(CreativeTabLoader.tabJo);
 		  this.setMaxStackSize(1);
 		  this.setMaxDamage(900);
 		  this.addPropertyOverride(new ResourceLocation(NBT.IS_LIGHT.getName()), new IItemPropertyGetter()

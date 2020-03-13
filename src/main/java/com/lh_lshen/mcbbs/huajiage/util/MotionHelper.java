@@ -21,7 +21,10 @@ public class MotionHelper {
 		  Vec3d vec = new Vec3d(target_pos.x-eater_pos.x, target_pos.y-eater_pos.y, target_pos.z-eater_pos.z).normalize();
 		  return vec;
 	}
-	
+	public static Vec3d getVector(Vec3d source_pos , Vec3d target_pos) {
+		  Vec3d vec = new Vec3d(target_pos.x-source_pos.x, target_pos.y-source_pos.y, target_pos.z-source_pos.z).normalize();
+		  return vec;
+	}
 	public static float getAABBSize(AxisAlignedBB box) {
 		float a =MathHelper.abs( (float) (box.maxX-box.minX));
 		float b =MathHelper.abs( (float) (box.maxY-box.minY));

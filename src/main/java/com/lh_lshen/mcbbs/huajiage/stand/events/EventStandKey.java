@@ -7,8 +7,8 @@ import com.lh_lshen.mcbbs.huajiage.capability.CapabilityStandHandler;
 import com.lh_lshen.mcbbs.huajiage.capability.StandChargeHandler;
 import com.lh_lshen.mcbbs.huajiage.capability.StandHandler;
 import com.lh_lshen.mcbbs.huajiage.client.KeyLoader;
-import com.lh_lshen.mcbbs.huajiage.common.HuajiConstant;
 import com.lh_lshen.mcbbs.huajiage.config.ConfigHuaji;
+import com.lh_lshen.mcbbs.huajiage.init.HuajiConstant;
 import com.lh_lshen.mcbbs.huajiage.init.playsound.HuajiSoundPlayer;
 import com.lh_lshen.mcbbs.huajiage.init.playsound.SoundLoader;
 import com.lh_lshen.mcbbs.huajiage.network.HuajiAgeNetWorkHandler;
@@ -20,7 +20,7 @@ import com.lh_lshen.mcbbs.huajiage.stand.StandClientUtil;
 import com.lh_lshen.mcbbs.huajiage.stand.StandUtil;
 import com.lh_lshen.mcbbs.huajiage.stand.entity.EntityStandBase;
 import com.lh_lshen.mcbbs.huajiage.stand.helper.skill.TimeStopHelper;
-import com.lh_lshen.mcbbs.huajiage.stand.messages.MessageDoTimeStopServer;
+import com.lh_lshen.mcbbs.huajiage.stand.messages.MessageDoStandCapabilityServer;
 import com.lh_lshen.mcbbs.huajiage.stand.messages.MessagePerfromSkill;
 import com.lh_lshen.mcbbs.huajiage.stand.messages.MessageStandUp;
 import com.lh_lshen.mcbbs.huajiage.util.ServerUtil;
@@ -115,9 +115,13 @@ public class EventStandKey {
 			if(null != stand) {
 				int cost = stand.getCost();
 				boolean flag = charge.canBeCost(cost);
+				MessagePerfromSkill msg = new MessagePerfromSkill(stand.getCost());
+				StandNetWorkHandler.sendToServer(msg);
+				if(flag){
+					StandNetWorkHandler.sendToServer(new MessageDoStandCapabilityServer());
+					player.sendMessage(new TextComponentTranslation("stand.huajiage.skill"+"."+stand.getName()+"."+"start"));
+					}
 				
-				stand.getStandPower().doStandCapability(player, flag);
-
 				}
 			}
 		}

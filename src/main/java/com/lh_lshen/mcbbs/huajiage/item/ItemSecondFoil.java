@@ -6,11 +6,11 @@ import java.util.List;
 import org.apache.logging.log4j.core.config.builder.api.Component;
 
 import com.google.common.base.Predicate;
-import com.lh_lshen.mcbbs.huajiage.common.HuajiConstant;
 import com.lh_lshen.mcbbs.huajiage.crativetab.CreativeTabLoader;
 import com.lh_lshen.mcbbs.huajiage.entity.EntityMultiKnife;
 import com.lh_lshen.mcbbs.huajiage.entity.EntitySecondFoil;
 import com.lh_lshen.mcbbs.huajiage.init.EventLoader;
+import com.lh_lshen.mcbbs.huajiage.init.HuajiConstant;
 
 import net.minecraft.client.Minecraft;
 import net.minecraft.creativetab.CreativeTabs;

@@ -1,0 +1,25 @@
+{
+    "type": "minecraft:crafting_shaped",
+  "pattern": [
+    "AAB",
+    "AC ",
+    "B D"
+  ],
+  "key": {
+    "A": {
+      "item": "huajiage:neutron_star_fragment"
+    },
+    "B": {
+      "item": "huajiage:ether"
+    },
+    "C": {
+      "item": "huajiage:tarot"
+    },
+    "D": {
+      "item": "huajiage:hope_flower"
+    }
+  },
+  "result": {
+    "item": "huajiage:arrow_stand"
+  }
+}

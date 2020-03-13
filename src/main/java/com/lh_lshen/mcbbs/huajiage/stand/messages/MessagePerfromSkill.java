@@ -25,35 +25,22 @@ import net.minecraftforge.fml.relauncher.Side;
 
 public class MessagePerfromSkill implements IMessage {
 	private int cost;
-	private float damage;
-	private float distance;
-	private int duration;
-	private String typeId;
 	public MessagePerfromSkill() {
 	}
-	public MessagePerfromSkill(int cost,float damage,float distance,int duration,EnumStandSkillType type) {
+	public MessagePerfromSkill(int cost) {
 		this.cost=cost;
-		this.damage=damage;
-		this.distance=distance;
-		this.duration=duration;
-		this.typeId=type.getId();
+
 	}
     @Override
     public void toBytes(ByteBuf buf) {
     	buf.writeInt(cost);
-    	buf.writeFloat(damage);
-    	buf.writeFloat(distance);
-    	buf.writeInt(duration);
-    	ByteBufUtils.writeUTF8String(buf, typeId);
+
     }
 
     @Override
     public void fromBytes(ByteBuf buf) {
     	this.cost=buf.readInt();
-    	this.damage=buf.readFloat();
-    	this.distance=buf.readFloat();
-    	this.duration=buf.readInt();
-    	this.typeId=ByteBufUtils.readUTF8String(buf);
+
     }
 
     public static class Handler implements IMessageHandler<MessagePerfromSkill, IMessage> {
@@ -67,26 +54,13 @@ public class MessagePerfromSkill implements IMessage {
 				if(null==stand) {
 					return;
 				}else {
-					EnumStandSkillType skill = EnumStandSkillType.getTypeWithStringId(message.typeId);
-					switch(skill) {
-					case TIME_STOP:
-					{
-						boolean flag = charge.canBeCost(message.cost);
-						if(flag) {
-						TimeStopHelper.setEntityTimeStopRange(player, message.distance);
-						TimeStopHelper.setTimeStop(player, message.duration);
-						charge.cost(message.cost);
-						}else {
-							player.sendMessage(new TextComponentTranslation("message.huajiage.stand_skill.cost_lack"));
-						}
-						break;
+					boolean flag = charge.canBeCost(message.cost);
+					if(flag) {
+					charge.cost(message.cost);
+					}else {
+						player.sendMessage(new TextComponentTranslation("message.huajiage.stand_skill.cost_lack"));
 					}
-					default:
-						break;
-					}
-					
 				}
-				
             		});
             	}
 			return null;

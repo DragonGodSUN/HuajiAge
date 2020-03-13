@@ -26,33 +26,19 @@ public class EventPlayerCharge {
 			EnumStandtype stand = StandUtil.getType(player);
 			if(player.hasCapability(CapabilityStandChargeHandler.STAND_CHARGE, null)) {
 				StandChargeHandler chargeHandler = player.getCapability(CapabilityStandChargeHandler.STAND_CHARGE, null);
-					chargeHandler.charge(5);
-					if(null != stand ) 
+				if(null != stand ) 
 					{
-//						if(chargeHandler.getMaxValue()!=stand.getDuration()*50) {
-//							chargeHandler.setMaxValue(stand.getDuration()*50);
-//						}
 						StandHandler standHandler = player.getCapability(CapabilityStandHandler.STAND_TYPE, null);
-						int mp = (int)(stand.getDuration()/5) + 15;
-//						switch(stand)
-//						{
-//						case THE_WORLD:
-//							{
-//							chargeHandler.charge(55);
-//								break;
-//							}
-//						case STAR_PLATINUM:
-//							{
-//								chargeHandler.charge(75);
-//
-//								break;
-//							}
-//						default:
-//							break;
-//						}
+						int mp = (int)(stand.getDuration()/5) + 20;
+						chargeHandler.charge(mp);
+					}else {
+						chargeHandler.charge(5);
 					}
 					
+				}
+			
 			}
-		}
+		
 	}
+	
 }

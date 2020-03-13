@@ -1,4 +1,4 @@
-package com.lh_lshen.mcbbs.huajiage.common;
+package com.lh_lshen.mcbbs.huajiage.init;
 
 import com.lh_lshen.mcbbs.huajiage.HuajiAge;
 import com.lh_lshen.mcbbs.huajiage.client.model.stand.ModelStandBase;

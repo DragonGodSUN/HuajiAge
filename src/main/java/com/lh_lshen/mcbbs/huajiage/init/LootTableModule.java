@@ -36,6 +36,11 @@ public class LootTableModule {
 		if (event.getName().equals(LootTableList.CHESTS_DESERT_PYRAMID)) {
 			LootTableModule.addPool(LootTablesLoader.LOOT_TABLE_STAND_DESERT, event);
 		}
+		
+		if (event.getName().equals(LootTableList.CHESTS_JUNGLE_TEMPLE)) {
+			LootTableModule.addPool(LootTablesLoader.LOOT_TABLE_STAND_TEMPLE, event);
+		}
+		
 	}
 	public static void addPool(ResourceLocation table ,LootTableLoadEvent event) {
 		final String name = table.toString();

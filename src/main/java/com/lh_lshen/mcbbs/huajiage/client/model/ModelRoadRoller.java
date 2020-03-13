@@ -30,8 +30,6 @@ public void render(Entity entityIn, float limbSwing, float limbSwingAmount, floa
 	  ItemStack item=new ItemStack(ItemLoader.roadRoller);
 	  Minecraft.getMinecraft().getRenderItem().renderItem(item, TransformType.GROUND);
     setRotationAngles( limbSwing, limbSwingAmount, ageInTicks, headPitch,netHeadYaw, scale);
-
-	
 	super.render(entityIn, limbSwing, limbSwingAmount, ageInTicks, netHeadYaw, headPitch, scale);
 }
  

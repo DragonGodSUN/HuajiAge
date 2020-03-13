@@ -7,16 +7,16 @@ import net.minecraft.creativetab.CreativeTabs;
 import net.minecraft.item.Item;
 import net.minecraft.item.ItemStack;
 
-public class CreativeTabHuaji extends CreativeTabs{
+public class CreativeTabJO extends CreativeTabs{
  
-	public CreativeTabHuaji()
+	public CreativeTabJO()
 	    {
-	        super(HuajiAge.MODID+"."+"huaji");
+	        super(HuajiAge.MODID+"."+"jo");
 	    }
 
 		@Override
 		public ItemStack createIcon() {
-			return new ItemStack(ItemLoader.huaji);
+			return new ItemStack(ItemLoader.tarot);
 		}
 	
 }
