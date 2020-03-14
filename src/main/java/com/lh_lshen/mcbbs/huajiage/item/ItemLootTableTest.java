@@ -24,6 +24,7 @@ import net.minecraft.client.resources.I18n;
 import net.minecraft.entity.EntityLivingBase;
 import net.minecraft.entity.player.EntityPlayer;
 import net.minecraft.init.MobEffects;
+import net.minecraft.init.SoundEvents;
 import net.minecraft.item.Item;
 import net.minecraft.item.ItemStack;
 import net.minecraft.nbt.NBTTagCompound;
@@ -100,9 +101,11 @@ public class ItemLootTableTest extends Item {
 		if(!playerIn.isSneaking()) {
 		switch (getmode(stack)){
 		case 0:{
+			playerIn.playSound(SoundLoader.STAND_HIEROPHANT_GREEN_EMERALD_SPLASH, 5f, 1f);
 			if (!worldIn.isRemote) {
 			StandHieropantGreen stand = new StandHieropantGreen();
 			stand.doStandCapability(playerIn);
+			
 			final LootTable lootTable = worldIn.getLootTableManager().getLootTableFromLocation(LootTablesLoader.LOOT_TABLE_STAND_TEMPLE);
 			final LootContext lootContext = new LootContext.Builder((WorldServer) worldIn).withPlayer(playerIn).build();
 

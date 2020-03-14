@@ -19,6 +19,7 @@ import com.lh_lshen.mcbbs.huajiage.util.ServerUtil;
 import net.minecraft.entity.Entity;
 import net.minecraft.entity.EntityLivingBase;
 import net.minecraft.entity.IProjectile;
+import net.minecraft.entity.boss.EntityDragon;
 import net.minecraft.entity.item.EntityItem;
 import net.minecraft.entity.item.EntityTNTPrimed;
 import net.minecraft.entity.player.EntityPlayer;
@@ -75,7 +76,7 @@ public class EventTimeStop {
         		if(target.ticksExisted%10==0) {
         			EntityPlayer p=target.getEntityWorld().getClosestPlayerToEntity(target, 100);
         			if(p!=null&&p!=target) {
-        				target.attackEntityFrom(new EntityDamageSource(HuajiConstant.DamageSource.DIO_DAMAGE, p), NBTHelper.getEntityInteger(target,HuajiConstant.Tags.DIO_HIT_EXTRA)+10);
+        				target.attackEntityFrom(new EntityDamageSource(HuajiConstant.DamageSource.DIO_DAMAGE, p).setIsThornsDamage(), NBTHelper.getEntityInteger(target,HuajiConstant.Tags.DIO_HIT_EXTRA)+10);
                       }else {
                     	target.attackEntityFrom(new DamageSource(HuajiConstant.DamageSource.DIO_DAMAGE), NBTHelper.getEntityInteger(target,HuajiConstant.Tags.DIO_HIT_EXTRA)+10);
                       }
@@ -115,10 +116,10 @@ public class EventTimeStop {
         	 ServerUtil.sendPacketToNearbyPlayers(player,pacticle);
         	 HuajiSoundPlayer.playToNearbyClient(player, SoundLoader.STAND_STAR_PLATINUM_REPEAT_1, 1f);
          }
-          if(hit instanceof EntityLivingBase) {  
-             ((EntityLivingBase) hit).getEntityData().setInteger(HuajiConstant.Tags.DIO_HIT, 120);
-            int a= NBTHelper.getEntityInteger(((EntityLivingBase) hit),HuajiConstant.Tags.DIO_HIT_EXTRA);
-            ((EntityLivingBase) hit).getEntityData().setInteger(HuajiConstant.Tags.DIO_HIT_EXTRA,a+2);
+          if(hit instanceof EntityLivingBase ) {  
+              hit.getEntityData().setInteger(HuajiConstant.Tags.DIO_HIT, 120);
+              int a= NBTHelper.getEntityInteger(hit,HuajiConstant.Tags.DIO_HIT_EXTRA);
+        	  hit.getEntityData().setInteger(HuajiConstant.Tags.DIO_HIT_EXTRA,a+2);
                }
           evt.setCanceled(true);
             }

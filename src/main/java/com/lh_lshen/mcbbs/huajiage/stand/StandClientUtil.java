@@ -1,5 +1,6 @@
 package com.lh_lshen.mcbbs.huajiage.stand;
 
+import java.util.List;
 import java.util.Random;
 
 import com.lh_lshen.mcbbs.huajiage.HuajiAge;
@@ -13,6 +14,7 @@ import com.lh_lshen.mcbbs.huajiage.init.HuajiConstant;
 import com.lh_lshen.mcbbs.huajiage.init.playsound.HuajiMovingSound;
 import com.lh_lshen.mcbbs.huajiage.init.playsound.HuajiSoundPlayer;
 import com.lh_lshen.mcbbs.huajiage.init.playsound.SoundLoader;
+import com.lh_lshen.mcbbs.huajiage.init.playsound.SoundStand;
 import com.lh_lshen.mcbbs.huajiage.init.playsound.StandMovingSound;
 import com.lh_lshen.mcbbs.huajiage.network.messages.MessageParticleGenerator;
 import com.lh_lshen.mcbbs.huajiage.potion.PotionLoader;
@@ -27,6 +29,8 @@ import net.minecraft.potion.PotionEffect;
 import net.minecraft.util.EnumParticleTypes;
 import net.minecraft.util.ResourceLocation;
 import net.minecraft.util.SoundCategory;
+import net.minecraft.util.SoundEvent;
+import net.minecraft.util.math.MathHelper;
 import net.minecraftforge.fml.relauncher.Side;
 import net.minecraftforge.fml.relauncher.SideOnly;
 public class StandClientUtil {
@@ -39,11 +43,12 @@ public class StandClientUtil {
 		{
 		case THE_WORLD :
 		{
-			if(random.nextDouble()>0.5) 
-				{
-				mc.getSoundHandler().playSound(HuajiSoundPlayer.getMovingSound(user,  SoundLoader.STAND_THE_WORLD_HIT_1, SoundCategory.NEUTRAL, 1f));
-				}else {
-				mc.getSoundHandler().playSound(HuajiSoundPlayer.getMovingSound(user,  SoundLoader.STAND_THE_WORLD_HIT_2, SoundCategory.NEUTRAL, 1f));
+			List<SoundEvent> sounds = SoundStand.WORLD_SOUND_LIST;
+			int size = sounds.size();
+			int index = (int) MathHelper.nextFloat(new Random(), 0, size);
+			if(index<size) {
+				SoundEvent sound = sounds.get(index);
+				mc.getSoundHandler().playSound(HuajiSoundPlayer.getMovingSound(user, sound, SoundCategory.NEUTRAL, 1f));
 				}
 				HuajiMovingSound back_hits_double = new HuajiMovingSound(user, SoundEvents.ENTITY_PLAYER_ATTACK_STRONG, SoundCategory.NEUTRAL);
 				back_hits_double.setVolume(0.7f);
@@ -53,18 +58,12 @@ public class StandClientUtil {
 			}
 		case STAR_PLATINUM :
 		{
-			if(random.nextDouble()<0.25) 
-				{
-				mc.getSoundHandler().playSound(HuajiSoundPlayer.getMovingSound(user,  SoundLoader.STAND_STAR_PLATINUM_1, SoundCategory.NEUTRAL, 1f));
-				}else if(random.nextDouble()<0.5) 
-				{
-				mc.getSoundHandler().playSound(HuajiSoundPlayer.getMovingSound(user,  SoundLoader.STAND_STAR_PLATINUM_2, SoundCategory.NEUTRAL, 1f));
-				}else if(random.nextDouble()<0.75)
-				{
-				mc.getSoundHandler().playSound(HuajiSoundPlayer.getMovingSound(user,  SoundLoader.STAND_STAR_PLATINUM_3, SoundCategory.NEUTRAL, 1f));
-				}else
-				{
-					Minecraft.getMinecraft().getSoundHandler().playSound(HuajiSoundPlayer.getMovingSound(user,  SoundLoader.STAND_STAR_PLATINUM_4, SoundCategory.NEUTRAL, 1f));
+			List<SoundEvent> sounds = SoundStand.STAR_SOUND_LIST;
+			int size = sounds.size();
+			int index = (int) MathHelper.nextFloat(new Random(), 0, size);
+			if(index<size) {
+					SoundEvent sound = sounds.get(index);
+					Minecraft.getMinecraft().getSoundHandler().playSound(HuajiSoundPlayer.getMovingSound(user, sound, SoundCategory.NEUTRAL, 1f));
 				}
 				HuajiMovingSound back = new HuajiMovingSound(user, SoundEvents.ENTITY_PLAYER_ATTACK_STRONG, SoundCategory.NEUTRAL);
 				back.setVolume(0.7f);
@@ -72,7 +71,21 @@ public class StandClientUtil {
 				mc.getSoundHandler().playSound(back);
 				break;
 			}
-				
+		case HIEROPHANT_GREEN :
+			{
+				List<SoundEvent> sounds = SoundStand.HIEROPANT_SOUND_LIST;
+				int size = sounds.size();
+				int index = (int) MathHelper.nextFloat(new Random(), 0, size);
+				if(index<size) {
+					SoundEvent sound = sounds.get(index);
+					mc.getSoundHandler().playSound(HuajiSoundPlayer.getMovingSound(user, sound, SoundCategory.NEUTRAL, 1f));
+					HuajiMovingSound hits = new HuajiMovingSound(user, SoundEvents.WEATHER_RAIN, SoundCategory.NEUTRAL);
+					hits.setVolume(1.0f);
+					hits.setLoop();
+					mc.getSoundHandler().playSound(hits);
+				}
+				break;
+			}	
 		default:
 				break;
 				

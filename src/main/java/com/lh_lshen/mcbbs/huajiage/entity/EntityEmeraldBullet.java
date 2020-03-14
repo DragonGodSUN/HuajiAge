@@ -5,9 +5,11 @@ import java.util.Random;
 
 import javax.annotation.Nonnull;
 
+import com.lh_lshen.mcbbs.huajiage.DamageSource.DamageEmeraldSplash;
 import com.lh_lshen.mcbbs.huajiage.particle.EnumHuajiPraticle;
 import com.lh_lshen.mcbbs.huajiage.util.NBTHelper;
 
+import ibxm.Player;
 import net.minecraft.block.Block;
 import net.minecraft.block.material.Material;
 import net.minecraft.block.state.IBlockState;
@@ -15,6 +17,7 @@ import net.minecraft.client.Minecraft;
 import net.minecraft.entity.Entity;
 import net.minecraft.entity.EntityLivingBase;
 import net.minecraft.entity.boss.EntityDragon;
+import net.minecraft.entity.player.EntityPlayer;
 import net.minecraft.entity.projectile.EntityThrowable;
 import net.minecraft.init.SoundEvents;
 import net.minecraft.nbt.NBTTagCompound;
@@ -160,25 +163,24 @@ public class EntityEmeraldBullet extends EntityThrowable{
 	}
 	@Override
 	protected void onImpact(RayTraceResult result) {
-		List<Entity> knife=this.world.getEntitiesInAABBexcluding(this,this.getEntityBoundingBox().grow(3),null);
-		int extra=knife.size();
-		if(result.entityHit!=null) {
-			if(result.entityHit!=thrower) {
-				if(!world.isRemote) {
-					if(result.entityHit instanceof EntityLivingBase) {
-						result.entityHit.attackEntityFrom(DamageSource.causeThrownDamage(this, this.getThrower()), getDamage()*(1+extra));
-						}
-					if(!(result.entityHit instanceof EntityEmeraldBullet)) {
+		List<Entity> group=this.world.getEntitiesInAABBexcluding(this,this.getEntityBoundingBox().grow(2),null);
+		int extra=group.size();
+		if(result.typeOfHit == RayTraceResult.Type.ENTITY) {
+			if(result.entityHit!=null&&result.entityHit!=thrower) {
+				if(!this.world.isRemote) {
+				if(!(result.entityHit instanceof EntityEmeraldBullet)) {
+					result.entityHit.attackEntityFrom(new DamageEmeraldSplash(this, getThrower()), getDamage()*(1+extra));
 					this.setDead();
 					this.world.createExplosion(this,posX, posY, posZ, 0.5f, false);
-						}
 					}
+				}
 				this.playSound(SoundEvents.BLOCK_GLASS_BREAK, 1.0F, 1f);
 				}
 			}
-		if(result.typeOfHit ==result.typeOfHit.BLOCK)
+		if(result.typeOfHit ==RayTraceResult.Type.BLOCK)
 		{
-			if(world.getBlockState(result.getBlockPos()).getCollisionBoundingBox(world, result.getBlockPos())!=Block.NULL_AABB)
+			IBlockState state =world.getBlockState(result.getBlockPos());
+			if(state.getCollisionBoundingBox(world, result.getBlockPos()) != null)
 			{
 			this.setDead();
 			this.playSound(SoundEvents.BLOCK_GLASS_BREAK, 1.0F, 1f);

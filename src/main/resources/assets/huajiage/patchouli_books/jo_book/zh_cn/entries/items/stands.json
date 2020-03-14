@@ -12,7 +12,19 @@
 			"type": "spotlight",
 			"item": "huajiage:disc",
 			"title":"Disc",
-			"text":"获取特定替身的一种手段，出自“JOJO的奇妙冒险”中第六部BOSS普奇神父“白蛇”的能力$(li)右击以获取碟中替身信息。$(li)当前仅能从末地城和沙漠神殿的宝箱中获取。"
+			"text":"获取特定替身的一种手段，出自“JOJO的奇妙冒险”中第六部BOSS普奇神父“白蛇”的能力$(li)右击以获取碟中替身信息。$(li)当前仅能从末地城、丛林神庙以及沙漠神殿的宝箱中获取。"
+	    },
+		{
+			"type": "spotlight",
+			"item": "huajiage:arrow_stand",
+			"title":"箭",
+			"text":"获取特定替身的主要手段，绝大部分替身使者的替身获取方式$(li)右击刺向自身以获取替身。$(li)默认有30%概率失败，遭到替身反噬，可通过配置文件调节。"
+	    },
+		{
+			"type": "spotlight",
+			"item": "huajiage:arrow_requiem",
+			"title":"虫箭",
+			"text":"替身进化镇魂曲的手段，出自第五部《黄金之风》$(li)右击刺向自身以获取镇魂曲。$(li)当前尚无替身可用，被隔壁片场的奥尔加借去使用了"
 	    },
 		{
 			"type": "spotlight",
@@ -38,7 +50,12 @@
 		{
 			"type": "crafting",
 			"recipe":"huajiage:tarot",
-			"recipe2":"huajiage:singularity"
+			"recipe2":"huajiage:arrow_stand"
+	    },
+		{
+			"type": "crafting",
+			"recipe":"huajiage:singularity"
+			
 	    }
 		
     ]

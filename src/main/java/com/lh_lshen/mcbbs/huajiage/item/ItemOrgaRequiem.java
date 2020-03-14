@@ -37,7 +37,7 @@ public class ItemOrgaRequiem extends Item {
 	public ItemOrgaRequiem()
 	{
 		 super();
-		  this.setCreativeTab(CreativeTabLoader.tabhuaji);
+		  this.setCreativeTab(CreativeTabLoader.tabJo);
 		  this.setMaxStackSize(1);
 	}
 

@@ -278,6 +278,33 @@
         "stream": true
       }
     ]
+  },
+   "stand_hierophant_green_shoot_1": {
+    "category": "neutral",
+    "sounds": [
+      {
+        "name": "huajiage:stand_hierophant_green_shoot_1",
+        "stream": true
+      }
+    ]
+  },
+    "stand_hierophant_green_shoot_2": {
+    "category": "neutral",
+    "sounds": [
+      {
+        "name": "huajiage:stand_hierophant_green_shoot_2",
+        "stream": true
+      }
+    ]
+  },
+   "stand_hierophant_green_emerald_splash": {
+    "category": "neutral",
+    "sounds": [
+      {
+        "name": "huajiage:stand_hierophant_green_emerald_splash",
+        "stream": true
+      }
+    ]
   }
 
 }

@@ -40,6 +40,7 @@ public class ItemTarot extends Item {
 	{
 		 super();
 		  this.setCreativeTab(CreativeTabLoader.tabJo);
+		  this.maxStackSize=1;
 		  
 	}
 	@Override

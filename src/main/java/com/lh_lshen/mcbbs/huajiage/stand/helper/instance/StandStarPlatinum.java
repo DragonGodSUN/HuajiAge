@@ -62,18 +62,17 @@ public class StandStarPlatinum implements IStandPower {
 					flag_player=true;
 				}
 				
+				if(i instanceof EntityDragon) {
+					EntityDragon dragon =(EntityDragon)i;
+					if(flag_player) {
+						dragon.attackEntityFromPart(dragon.dragonPartBody, DamageSource.causePlayerDamage((EntityPlayer) user), stage>0?type.getDamage()*3f:type.getDamage()*1.5f);
+					}else {
+						dragon.attackEntityFromPart(dragon.dragonPartBody, DamageSource.ANVIL, type.getDamage()*type.getSpeed());  
+					}
+				}
 				
 				  if(i instanceof EntityLivingBase) {
 					  EntityLivingBase target=(EntityLivingBase)i;
-					  
-					  if(target instanceof EntityDragon) {
-						  EntityDragon dragon =(EntityDragon)target;
-						  if(user instanceof EntityPlayer) {
-						  dragon.attackEntityFromPart(dragon.dragonPartBody, DamageSource.causePlayerDamage((EntityPlayer) user), type.getDamage()*type.getSpeed());
-						  }else {
-						  dragon.attackEntityFromPart(dragon.dragonPartBody, DamageSource.ANVIL, type.getDamage()*type.getSpeed());  
-						  }
-					  }
 					  
 					  if(target!=user) {
 						  float random = new Random().nextFloat()*100;
@@ -127,7 +126,7 @@ public class StandStarPlatinum implements IStandPower {
 	public void doStandCapability(EntityLivingBase user) {
 		TimeStopHelper.setEntityTimeStopRange(user,120);
 		TimeStopHelper.setTimeStop(user, 5*20);
-		TimeStopHelper.extraEffects(user, 5*20);
+		TimeStopHelper.extraEffects(user, 5);
 		if(user instanceof EntityPlayer) {
 		ServerUtil.sendPacketToNearbyPlayersStand(user, new MessageDoStandPowerClient((EntityPlayer) user,EnumStandtype.STAR_PLATINUM.getName()));
 		}

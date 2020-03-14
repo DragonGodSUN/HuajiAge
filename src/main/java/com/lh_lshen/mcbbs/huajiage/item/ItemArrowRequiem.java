@@ -28,7 +28,7 @@ public class ItemArrowRequiem extends Item {
 	{
 		 super();
 		  this.setMaxStackSize(1);
-		  this.setCreativeTab(CreativeTabLoader.tabhuaji);
+		  this.setCreativeTab(CreativeTabLoader.tabJo);
 	}
 	@Override
 	public ActionResult<ItemStack> onItemRightClick(World worldIn, EntityPlayer playerIn, EnumHand handIn) {

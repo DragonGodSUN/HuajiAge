@@ -22,6 +22,18 @@
 	    },
 		{
 			"type": "spotlight",
+			"item": "huajiage:arrow_stand",
+			"title":"Arrow",
+			"text":"The main path for getting the Stand.$(li)Right click to use$(li)In default case , there is a probability of 30% lead to fail , and you can change it in the config file."
+	    },
+		{
+			"type": "spotlight",
+			"item": "huajiage:arrow_requiem",
+			"title":"Arrow for requiem",
+			"text":"The means of evolution from stand to requiem.$(li)Right click to get requiem$(li)Currently there is no classical requiem available, but it can be used on Olga."
+	    },
+		{
+			"type": "spotlight",
 			"item": "huajiage:singularity",
 			"title":"Singularity",
 			"text":"The object of an evolutionary STAND, the point at which the universe condensed after it ended in acceleration, comes from the Father Pucci's principle of the circle.$(li)Right - click to enter the final trial, reaching the new world after the avatar completes evolution."
@@ -38,7 +50,11 @@
 		{
 			"type": "crafting",
 			"recipe":"huajiage:tarot",
-			"recipe2":"huajiage:singularity"
+			"recipe2":"huajiage:arrow_stand"
+	    },
+		{
+			"type": "crafting",
+			"recipe":"huajiage:singularity",
 	    }
 		
     ]

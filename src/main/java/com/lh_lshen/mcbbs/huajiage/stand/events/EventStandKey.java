@@ -93,7 +93,13 @@ public class EventStandKey {
 								HuajiSoundPlayer.playToServer(player, SoundLoader.STAND_STAR_PLATINUM_4, 1, 1);
 							}
 							break;
+							
 					}	
+					case HIEROPHANT_GREEN :
+					{	
+							HuajiSoundPlayer.playToServer(player, SoundLoader.STAND_HIEROPHANT_GREEN_SHOOT_1, 1, 1);
+							break;
+					}
 					default:
 						break;
 					}

@@ -9,15 +9,18 @@ import com.lh_lshen.mcbbs.huajiage.entity.EntityEmeraldBullet;
 import com.lh_lshen.mcbbs.huajiage.init.HuajiConstant;
 import com.lh_lshen.mcbbs.huajiage.init.playsound.HuajiSoundPlayer;
 import com.lh_lshen.mcbbs.huajiage.init.playsound.SoundLoader;
+import com.lh_lshen.mcbbs.huajiage.init.playsound.SoundStand;
 import com.lh_lshen.mcbbs.huajiage.network.StandNetWorkHandler;
 import com.lh_lshen.mcbbs.huajiage.stand.EnumStandSkillType;
 import com.lh_lshen.mcbbs.huajiage.stand.EnumStandtype;
 import com.lh_lshen.mcbbs.huajiage.stand.StandClientUtil;
 import com.lh_lshen.mcbbs.huajiage.stand.StandUtil;
 import com.lh_lshen.mcbbs.huajiage.stand.messages.MessageDoStandCapabilityServer;
+import com.lh_lshen.mcbbs.huajiage.stand.messages.MessageDoStandPowerClient;
 import com.lh_lshen.mcbbs.huajiage.stand.messages.MessagePerfromSkill;
 import com.lh_lshen.mcbbs.huajiage.util.MotionHelper;
 import com.lh_lshen.mcbbs.huajiage.util.NBTHelper;
+import com.lh_lshen.mcbbs.huajiage.util.ServerUtil;
 
 import net.minecraft.block.state.IBlockState;
 import net.minecraft.client.multiplayer.WorldClient;
@@ -32,6 +35,8 @@ import net.minecraft.init.MobEffects;
 import net.minecraft.init.SoundEvents;
 import net.minecraft.potion.PotionEffect;
 import net.minecraft.util.DamageSource;
+import net.minecraft.util.SoundCategory;
+import net.minecraft.util.SoundEvent;
 import net.minecraft.util.math.BlockPos;
 import net.minecraft.util.math.MathHelper;
 import net.minecraft.util.math.Vec3d;
@@ -92,16 +97,17 @@ public class StandHieropantGreen implements IStandPower {
 		if(dist!=null){
 			doEmeraldSlash(dist, user);
 		}
+		
+		if(user instanceof EntityPlayer) {
+			ServerUtil.sendPacketToNearbyPlayersStand(user, new MessageDoStandPowerClient((EntityPlayer) user,EnumStandtype.HIEROPHANT_GREEN.getName()));
+			}
 	}
 
 	@Override
 	public void doStandCapabilityClient(WorldClient world, EntityLivingBase user) {
-		
-	}
+
+			world.playSound(user.getPositionVector().x,user.getPositionVector().y,user.getPositionVector().z, SoundLoader.STAND_HIEROPHANT_GREEN_EMERALD_SPLASH, SoundCategory.PLAYERS, 5f, 1f,true);
 	
-	private boolean isBlocked(World world,BlockPos pos) {
-		IBlockState block = world.getBlockState(pos);
-		return block.getBlock().isAir(block, world, pos);
 	}
 
 	private void doEmeraldSlash(Vec3d dist , EntityLivingBase user) {

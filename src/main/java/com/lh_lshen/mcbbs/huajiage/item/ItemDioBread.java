@@ -71,7 +71,7 @@ public class ItemDioBread extends ItemFood{
         	player.addPotionEffect(new PotionEffect(MobEffects.SPEED,9*20,6));
         	player.addPotionEffect(new PotionEffect(MobEffects.JUMP_BOOST,9*20,4));
         	player.addPotionEffect(new PotionEffect(MobEffects.REGENERATION,9*20,2));
-        	 if(!stand.equals(EnumStandtype.STAR_PLATINUM)) {
+        	 if(stand==null || !stand.equals(EnumStandtype.STAR_PLATINUM)) {
             player.sendMessage(new TextComponentTranslation("message.huajiage.the_world"));
             }else {
             player.sendMessage(new TextComponentTranslation("message.huajiage.the_world_star"));
@@ -84,7 +84,7 @@ public class ItemDioBread extends ItemFood{
             }
 
         }
-        if(!stand.equals(EnumStandtype.STAR_PLATINUM)) {
+        if(stand==null || !stand.equals(EnumStandtype.STAR_PLATINUM)) {
 	        double rand0=Math.random()*100;
 	        if(rand0<25) { 	
 	        	player.playSound(SoundLoader.THE_WORLD, 5f,1f);

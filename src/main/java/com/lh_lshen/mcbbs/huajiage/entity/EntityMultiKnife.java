@@ -140,6 +140,10 @@ public class EntityMultiKnife extends EntityThrowable{
 								world.playSound(posX, posY, posZ, SoundEvents.ENTITY_FIREWORK_LARGE_BLAST, SoundCategory.BLOCKS, 0.5f, 0.5f, true);
 							}
 						result.entityHit.attackEntityFrom(DamageSource.causeThrownDamage(this, this.getThrower()), 5f+getExtra());
+							if(result.entityHit instanceof EntityDragon) {
+								EntityDragon dragon = (EntityDragon) result.entityHit;
+								dragon.attackEntityFromPart(dragon.dragonPartHead, DamageSource.causeExplosionDamage(thrower), 5f+getExtra());
+							}
 						}
 					this.setDead();
 					}
