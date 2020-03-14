@@ -49,7 +49,7 @@ public class EventStandOverlatRender {
 //	    private static final ResourceLocation STAND = new ResourceLocation(HuajiAge.MODID, "textures/items/tarot.png");
 	    private static final ResourceLocation STAND_THE_WORLD = new ResourceLocation(HuajiAge.MODID, "textures/items/disc_the_world.png");
 	    private static final ResourceLocation STAND_STAR_PLATINUM = new ResourceLocation(HuajiAge.MODID, "textures/items/disc_star_platinum.png");
-	    
+	    private static final ResourceLocation STAND_HIEROPANT_GREEN = new ResourceLocation(HuajiAge.MODID, "textures/items/disc_hierophant_green.png");
 	    
 	    @SideOnly(Side.CLIENT)
 	    @SubscribeEvent
@@ -74,18 +74,21 @@ public class EventStandOverlatRender {
 	                int y = (int) (ConfigHuaji.Stands.StandHUDy * Minecraft.getMinecraft().displayHeight/2);
 	                GlStateManager.pushMatrix();
 	                GlStateManager.enableBlend();
-	                GlStateManager.scale(1.5, 1.5, 1.5);
 	                GlStateManager.translate(x, y, 0);
+	                GlStateManager.scale(1.5, 1.5, 1.5);
 //	                Minecraft.getMinecraft().player.getCooldownTracker().getCooldown(disc.getItem(), Minecraft.getMinecraft().getRenderPartialTicks());
 	                switch(stand) {
 	                case THE_WORLD :Minecraft.getMinecraft().renderEngine.bindTexture(STAND_THE_WORLD);
 	                break;
 	                case STAR_PLATINUM :Minecraft.getMinecraft().renderEngine.bindTexture(STAND_STAR_PLATINUM);
 	                break;
-					default:
+	                case HIEROPHANT_GREEN :Minecraft.getMinecraft().renderEngine.bindTexture(STAND_HIEROPANT_GREEN);
+	                break;
+					default:Minecraft.getMinecraft().renderEngine.bindTexture(STAND_THE_WORLD);
 						break;
 	                }
 	                Gui.drawModalRectWithCustomSizedTexture(0, 0, 0, 0, 16, 16, 16, 16);
+	                GlStateManager.disableBlend();
 	                GlStateManager.popMatrix();
 	                Minecraft.getMinecraft().fontRenderer.drawString( TextFormatting.BOLD+I18n.format("stand.huajiage.name"), 8+ x,  2 + 16 + y, 0xffffff, true);
 	                Minecraft.getMinecraft().fontRenderer.drawString( TextFormatting.BOLD+I18n.format(EnumStandtype.getLocalName(standHandler.getStand())), 13+ x,  10 + 16 + y, 0xffffff, true);
