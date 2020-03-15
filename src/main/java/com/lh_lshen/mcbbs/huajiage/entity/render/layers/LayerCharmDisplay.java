@@ -2,6 +2,7 @@ package com.lh_lshen.mcbbs.huajiage.entity.render.layers;
 
 import com.lh_lshen.mcbbs.huajiage.capability.CapabilityStandHandler;
 import com.lh_lshen.mcbbs.huajiage.item.ItemLoader;
+import com.lh_lshen.mcbbs.huajiage.potion.PotionLoader;
 import com.lh_lshen.mcbbs.huajiage.util.NBTHelper;
 
 import net.minecraft.client.Minecraft;

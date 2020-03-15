@@ -31,6 +31,10 @@ public class ConfigHuaji {
 		@LangKey("config.huaji_age.huaji_config.orga_suit")
 		public boolean orgaSuit=true;
 		
+		@Config.Comment("Use the music of orga flower?")
+		@LangKey("config.huaji_age.huaji_config.orga.flower")
+		public boolean useOrgaFlower=false;
+		
 	}
 	public static class StandConfig{
 		@Config.Comment("The Terrain destruction of the big explosion created by road roller")

@@ -21,6 +21,7 @@ import net.minecraft.util.EnumActionResult;
 import net.minecraft.util.EnumHand;
 import net.minecraft.util.SoundCategory;
 import net.minecraft.util.SoundEvent;
+import net.minecraft.util.text.TextComponentTranslation;
 import net.minecraft.world.World;
 
 public class ItemArrowRequiem extends Item {
@@ -38,8 +39,9 @@ public class ItemArrowRequiem extends Item {
 		playerIn.getItemStackFromSlot(EntityEquipmentSlot.FEET).getItem() instanceof ItemOrgaArmorBase) {
 	    if(worldIn.isRemote) {
 	     Minecraft.getMinecraft().getSoundHandler().stopSounds();
-		 HuajiSoundPlayer.playMusic(SoundLoader.ORGA_REQUIEM_1);}
-	   
+		 HuajiSoundPlayer.playMusic(SoundLoader.ORGA_REQUIEM_1);
+    	 playerIn.sendMessage(new TextComponentTranslation("message.huaji.orga.awake.1"));
+	    }
 			if(!worldIn.isRemote) {
 			playerIn.inventory.getCurrentItem().shrink(1);;
 			playerIn.dropItem(ItemLoader.orgaRequiem, 1).setPickupDelay(120);

@@ -63,7 +63,7 @@ public class ItemLootTableTest extends Item {
 		case 0:
 			return "Loot Table Test";
 		case 1:
-			return "The Hope Flower";
+			return "Emerald Splash";
 		case 2:
 			return "Time Stop ---Dio";
 		case 3:
@@ -101,10 +101,7 @@ public class ItemLootTableTest extends Item {
 		if(!playerIn.isSneaking()) {
 		switch (getmode(stack)){
 		case 0:{
-			playerIn.playSound(SoundLoader.STAND_HIEROPHANT_GREEN_EMERALD_SPLASH, 5f, 1f);
 			if (!worldIn.isRemote) {
-			StandHieropantGreen stand = new StandHieropantGreen();
-			stand.doStandCapability(playerIn);
 			
 			final LootTable lootTable = worldIn.getLootTableManager().getLootTableFromLocation(LootTablesLoader.LOOT_TABLE_STAND_TEMPLE);
 			final LootContext lootContext = new LootContext.Builder((WorldServer) worldIn).withPlayer(playerIn).build();
@@ -123,7 +120,12 @@ public class ItemLootTableTest extends Item {
 			}
 			break;
 		}
-		case 1:{playerIn.playSound(SoundLoader.ORGA_FLOWER, 2f, 1f); break;}
+		case 1:{
+			playerIn.playSound(SoundLoader.STAND_HIEROPHANT_GREEN_EMERALD_SPLASH, 5f, 1f);
+			StandHieropantGreen stand = new StandHieropantGreen();
+			stand.doStandCapability(playerIn);
+//			playerIn.playSound(SoundLoader.ORGA_FLOWER, 2f, 1f);
+		break;}
 		case 2:{
 		if(!playerIn.world.isRemote) {
 

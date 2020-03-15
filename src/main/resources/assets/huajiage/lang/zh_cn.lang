@@ -128,6 +128,10 @@ message.huajiage:player_received_loot.no_loot=今天也是非气满满的一天�
 message.huajiage.the_world=§e咋瓦鲁多！！！时间停止吧！  
 message.huajiage.poly_huaji=叠加事项： 
 message.huaji.orga.shot=§e什么嘛，我的枪法还蛮准的嘛!
+message.huaji.orga.awake.1=§2团长，你在干什么呀！团长！
+message.huaji.orga.awake.2=§4道路已经打开，接下来只要不断前进就行！§lRide On！
+message.huaji.orga.requiem.bgm.1=§6§l全部木大——Ride On！
+message.huaji.orga.requiem.bgm.2=§6得得得得得得得得得，得得得得得得得得得，得得得得得得得得得，得得得得得！(BGM)
 message.huaji.orga.hero.shot=§b加把劲吧骑士！
 messege.huaji.blancedHelmet.open=§e§l我%s§e§l没有开挂！！！
 messege.huaji.blancedHelmet.failed=§4或许你还没有集齐挂逼之力？
@@ -314,6 +318,30 @@ info.huaji.ballxp=§6放入滑稽升华台以升华
 item.lightingStoneOpen.name=§6闪电护身符（已开启）
 item.leavesSword.name=§2无双的大葱
 tile.headBlock.name=§e抢人头神器
+
+===============================奥尔加小剧场===========================================
+message.huajiage.orga.sing.1=§4什么啊……我的枪法还挺准的
+message.huajiage.orga.sing.2=§2团长……啊
+message.huajiage.orga.sing.3=§4你怎么发出那种声音，Ride on
+message.huajiage.orga.sing.4=§2因为……因为……
+message.huajiage.orga.sing.5=§4我是铁华团团长奥尔加一直卡daze，几颗子弹不要紧的
+message.huajiage.orga.sing.6=§2怎么会，竟然会为了我这种人……
+message.huajiage.orga.sing.7=§4保护团员是我的使命
+message.huajiage.orga.sing.8=§2但是……
+message.huajiage.orga.sing.9=§4够了，你们走！大家在……等着你们……而且，三明，我终于明白了，我们根本不需要最终的落脚处，只要不断前进就行了。只要不停止，道路就会不断延伸
+message.huajiage.orga.sing.8=（回忆杀）
+message.huajiage.orga.sing.9=§9你要是道歉，我可饶不了你
+message.huajiage.orga.sing.10=§4是啊，我明白
+message.huajiage.orga.sing.11=（BGM:希——望——之——花）
+message.huajiage.orga.sing.12= §4因为我不会停下的，只要你们不要停下来，那前面就一定有我
+message.huajiage.orga.sing.13=（世界名画）
+message.huajiage.orga.sing.14=§4达卡啦呦，不要停下来啊……
+message.huajiage.orga.sing.15=§9奥尔加？（无关心）
+message.huajiage.orga.sing.16=（女人唱歌男人死）
+message.huajiage.orga.sing.17=（合影）
+message.huajiage.orga.sing.18=（空条承太郎之帽）
+
+==================================================================================
 
 
 #Info

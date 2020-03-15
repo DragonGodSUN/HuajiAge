@@ -2,6 +2,7 @@ package com.lh_lshen.mcbbs.huajiage.item;
 
 import java.time.format.TextStyle;
 import java.util.List;
+import java.util.Random;
 import java.util.UUID;
 
 import org.lwjgl.input.Keyboard;
@@ -28,8 +29,11 @@ import net.minecraft.item.ItemStack;
 import net.minecraft.nbt.NBTTagCompound;
 import net.minecraft.potion.PotionEffect;
 import net.minecraft.util.DamageSource;
+import net.minecraft.util.EnumParticleTypes;
 import net.minecraft.util.SoundEvent;
+import net.minecraft.util.math.MathHelper;
 import net.minecraft.util.text.TextComponentString;
+import net.minecraft.util.text.TextComponentTranslation;
 import net.minecraft.util.text.TextFormatting;
 import net.minecraft.world.World;
 
@@ -67,11 +71,16 @@ public class ItemOrgaRequiem extends Item {
 			return;
 		boolean owner = true;
 		if(!getTagCompoundSafe(stack).hasKey("owner")) {
+			if(player.world.isRemote) {
+			double r1 = MathHelper.nextDouble(new Random(), -2, 2);
+			double r2 = MathHelper.nextDouble(new Random(), -2, 2);
+			double r3 = MathHelper.nextDouble(new Random(), -2, 2);
+			Minecraft.getMinecraft().getSoundHandler().stopSounds();
+			HuajiSoundPlayer.playMusic(SoundLoader.ORGA_REQUIEM_2);
+			player.sendMessage(new TextComponentTranslation("message.huaji.orga.awake.2"));
+			}
 			getTagCompoundSafe(stack).setString("owner", player.getUniqueID().toString());
 			getTagCompoundSafe(stack).setString("owner_name", player.getName());
-			if(player.world.isRemote) {
-			Minecraft.getMinecraft().getSoundHandler().stopSounds();
-			HuajiSoundPlayer.playMusic(SoundLoader.ORGA_REQUIEM_2);}
 			player.addPotionEffect(new PotionEffect(MobEffects.SPEED,100,2));
 		} else if (!getTagCompoundSafe(stack).getString("owner").equals(player.getUniqueID().toString())) {
 			owner = false;

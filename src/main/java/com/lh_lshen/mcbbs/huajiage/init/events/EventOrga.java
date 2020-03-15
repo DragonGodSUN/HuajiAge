@@ -1,5 +1,6 @@
 package com.lh_lshen.mcbbs.huajiage.init.events;
 
+import com.lh_lshen.mcbbs.huajiage.config.ConfigHuaji;
 import com.lh_lshen.mcbbs.huajiage.init.HuajiConstant;
 import com.lh_lshen.mcbbs.huajiage.init.playsound.HuajiSoundPlayer;
 import com.lh_lshen.mcbbs.huajiage.init.playsound.SoundLoader;
@@ -16,6 +17,7 @@ import net.minecraft.entity.EntityLivingBase;
 import net.minecraft.entity.player.EntityPlayer;
 import net.minecraft.entity.player.EntityPlayerMP;
 import net.minecraft.init.MobEffects;
+import net.minecraft.init.SoundEvents;
 import net.minecraft.inventory.EntityEquipmentSlot;
 import net.minecraft.item.Item;
 import net.minecraft.item.ItemBucketMilk;
@@ -58,11 +60,25 @@ public class EventOrga {
 				entity.removePotionEffect(PotionLoader.potionFlowerHope);
 				entity.removePotionEffect(MobEffects.SLOWNESS);
 			}
-	 
-		if(entity.isPotionActive(PotionLoader.potionFlowerHope)&&entity.getActivePotionEffect(PotionLoader.potionFlowerHope).getDuration()==112*20-10)
+	
+		
+		if(entity.isPotionActive(PotionLoader.potionFlowerHope)&&entity.getActivePotionEffect(PotionLoader.potionFlowerHope).getDuration()==112*20-10 ||
+				!ConfigHuaji.Huaji.useOrgaFlower&&entity.isPotionActive(PotionLoader.potionFlowerHope)&&entity.getActivePotionEffect(PotionLoader.potionFlowerHope).getDuration()==80*20-10 )
 			{
+			if(ConfigHuaji.Huaji.useOrgaFlower) {
 				entity.playSound(SoundLoader.ORGA_FLOWER,5f,1f);
 				entity.addPotionEffect(new PotionEffect(MobEffects.SLOWNESS,112*20,5));
+				}else {
+				entity.addPotionEffect(new PotionEffect(MobEffects.SLOWNESS,80*20,5));
+				}
+			}
+		
+		if(!ConfigHuaji.Huaji.useOrgaFlower&&entity.isPotionActive(PotionLoader.potionFlowerHope)&&entity.getActivePotionEffect(PotionLoader.potionFlowerHope).getDuration()<80*20-10 )
+			{
+				if(entity.getActivePotionEffect(PotionLoader.potionFlowerHope).getDuration()%80==0) {
+					if(entity.world.isRemote)
+					entity.playSound(SoundEvents.UI_BUTTON_CLICK, 1f, 1f);
+				}
 			}
 	 
 		 if(entity.isPotionActive(PotionLoader.potionFlowerHope)&&entity.getActivePotionEffect(PotionLoader.potionFlowerHope).getDuration()==52*20)
@@ -77,6 +93,8 @@ public class EventOrga {
 			    {
 				    Minecraft.getMinecraft().getSoundHandler().stopSounds();
 				    HuajiSoundPlayer .playMusic(SoundLoader.ORGA_REQUIEM_GOLD);
+				    entity.sendMessage(new TextComponentTranslation("message.huaji.orga.requiem.bgm.1"));
+				    entity.sendMessage(new TextComponentTranslation("message.huaji.orga.requiem.bgm.2"));
 			    }
 		 }
 		if(entity.isPotionActive(PotionLoader.potionFlowerHope)&&entity.getActivePotionEffect(PotionLoader.potionFlowerHope).getDuration()<10) 
@@ -126,7 +144,7 @@ public class EventOrga {
 							}
 							else 
 							{
-								player.addPotionEffect(new PotionEffect(PotionLoader.potionFlowerHope,112*20+100));
+								player.addPotionEffect(new PotionEffect(PotionLoader.potionFlowerHope,ConfigHuaji.Huaji.useOrgaFlower?112*20+100:80*20+100));
 							}
 					}
 				  if(player.isPotionActive(PotionLoader.potionFlowerHope)&&player.getActivePotionEffect(PotionLoader.potionFlowerHope).getDuration()>=10||!player.isPotionActive(PotionLoader.potionFlowerHope))
