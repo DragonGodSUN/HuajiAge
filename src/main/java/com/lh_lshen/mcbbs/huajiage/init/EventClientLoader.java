@@ -15,7 +15,7 @@ public class EventClientLoader {
 //		MinecraftForge.EVENT_BUS.register(ParticleLoader.class);
 		MinecraftForge.EVENT_BUS.register(EventKeyInput.class);
 //		MinecraftForge.EVENT_BUS.register(EventStandOverlatRender.class);
-		MinecraftForge.EVENT_BUS.register(EventViewRender.class);
+//		MinecraftForge.EVENT_BUS.register(EventViewRender.class);
 	}
 
 }
