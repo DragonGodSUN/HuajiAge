@@ -69,6 +69,10 @@ public class ConfigHuaji {
 		@LangKey("config.huaji_age.huaji_config.stand.moving_sound")
 		public boolean allowStandSound=true;
 		
+		@Config.Comment("Need the fog of time stop?")
+		@LangKey("config.huaji_age.huaji_config.stand.fog_time_stop")
+		public boolean allowFogTimeStop=true;
+		
 		@Config.Comment("Need the mask of time stop?")
 		@LangKey("config.huaji_age.huaji_config.stand.mask_time_stop")
 		public boolean allowMaskTimeStop=true;

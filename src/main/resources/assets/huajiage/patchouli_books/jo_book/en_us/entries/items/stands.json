@@ -30,7 +30,7 @@
 			"type": "spotlight",
 			"item": "huajiage:arrow_requiem",
 			"title":"Arrow for requiem",
-			"text":"The means of evolution from stand to requiem.$(li)Right click to get requiem$(li)Currently there is no classical requiem available, but it can be used on Olga."
+			"text":"The means of evolution from stand to requiem.$(li)Right click to get requiem$(li)Currently there is no classical requiem available, but it can be used on Orga."
 	    },
 		{
 			"type": "spotlight",
@@ -54,7 +54,7 @@
 	    },
 		{
 			"type": "crafting",
-			"recipe":"huajiage:singularity",
+			"recipe":"huajiage:singularity"
 	    }
 		
     ]

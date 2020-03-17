@@ -126,6 +126,10 @@ huajiage.orga.1=§b To celebrate! The birth of the most powerful king of Mars---
 messege.huaji.blancedHelmet.active=§lFrom now on it's called %s §lSquare！
 message.huaji.orga.shot=Oh,pretty shot.
 message.huaji.orga.hero.shot=§bKeep going now!Rider!
+message.huaji.orga.awake.1=§2Colonel, what are you doing? Colonel!
+message.huaji.orga.awake.2=§4The way is open. Keep going!§lRide On！
+message.huaji.orga.requiem.bgm.1=§6§lAll useless!Ride On！
+message.huaji.orga.requiem.bgm.2=§6(BGM)
 messege.huaji.blancedHelmet.open=%s is plug-in
 messege.huaji.blancedHelmet.failed=Maybe ether is the key?
 message.huajiage.the_world=§eThe World!!! Time Stop !
@@ -161,6 +165,7 @@ config.huaji_age.huaji_config.stand.punish.out_time=Punish for stand users(Out o
 config.huaji_age.huaji_config.stand.weak_up_fail=The possibility of Stand weak up fail 
 config.huaji_age.huaji_config.stand.mask_time_stop_noise=Noise mask in time stop
 config.huaji_age.huaji_config.icon_time_stop=The icon display in time stop
+config.huaji_age.huaji_config.stand.fog_time_stop=The fog in the time stop
 config.huaji_age.huaji_config.stand.huaji_splash=Use HUAJI particle to replace the emerald splash
 
 stand.huajiage.empty=Empty
@@ -176,7 +181,29 @@ patchouil.huajiage.book.name=§e§lHUAJI§6Book
 patchouil.huajiage.book.landing=HUAJI,means comical or funny things,is making up awkwardly or funnily for hilarious festivals. In this universe, there is a peculiar thing named HUAJI, which is ubiquitous and constitutes thousands of things. It is said that holding the funny starlight power can obtain the supreme power of the legendary HUAJI ancestor.
 
 
+===============================Orga===========================================
+message.huajiage.orga.sing.1=§4What...... I'm a pretty good marksman
+message.huajiage.orga.sing.2=§2Head of... ah
+message.huajiage.orga.sing.3=§4Why are you making that noise, Ride on
+message.huajiage.orga.sing.4=§2Because... Because...
+message.huajiage.orga.sing.5=§4I'm Orga Izka, head of the iron Chinese regiment. A few bullets won't hurt
+message.huajiage.orga.sing.6=§2How, for someone like me...
+message.huajiage.orga.sing.7=§4It's my job to protect the members
+message.huajiage.orga.sing.8=§2But...
+message.huajiage.orga.sing.9=§4That's it! You guys go! Everyone in the... Waiting for you... And, Augustus, it dawned on me that we didn't need a final resting place. We just needed to keep moving forward. As long as it does not stop, the road will continue to extend
+message.huajiage.orga.sing.8=(memory)
+message.huajiage.orga.sing.9=§9I won't forgive you if you apologize
+message.huajiage.orga.sing.10=§4Yeah, I understand
+message.huajiage.orga.sing.11=(BGM:Hope Flower)
+message.huajiage.orga.sing.12= §4Because I will not stop, as long as you do not stop, there must be me in front
+message.huajiage.orga.sing.13=(World Famous Painting)
+message.huajiage.orga.sing.14=§4So, don't stop...
+message.huajiage.orga.sing.15=§9Orga?
+message.huajiage.orga.sing.16=(woman sings, man dies)
+message.huajiage.orga.sing.17=(group photo)
+message.huajiage.orga.sing.18=(hat)
 
+==================================================================================
 #Info
 huajiage.secondhit=§9Warning!!Two-dimensional strike detected!
 huajiage.nice=§eNice!
