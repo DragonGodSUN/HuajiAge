@@ -93,7 +93,7 @@ public class EventViewRender {
 		GlStateManager.depthMask(false);
 		GlStateManager.tryBlendFuncSeparate(GlStateManager.SourceFactor.ZERO, GlStateManager.DestFactor.ONE_MINUS_SRC_COLOR, GlStateManager.SourceFactor.ONE, GlStateManager.DestFactor.ZERO);
 		GlStateManager.color(0.25F, 0.25F, 0.25F, 1.0F);
-		mc.getTextureManager().bindTexture(new ResourceLocation(ConfigHuaji.Stands.useTimeStopNoiseMask?HuajiAge.MODID+":"+tex:"textures/misc/vignette.png"));
+		mc.getTextureManager().bindTexture(ConfigHuaji.Stands.useTimeStopNoiseMask?new ResourceLocation(HuajiAge.MODID,tex):new ResourceLocation("textures/misc/vignette.png"));
 		Tessellator tessellator = Tessellator.getInstance();
 		BufferBuilder bufferbuilder = tessellator.getBuffer();
 		bufferbuilder.begin(7, DefaultVertexFormats.POSITION_TEX);
@@ -111,7 +111,7 @@ public class EventViewRender {
          GlStateManager.disableDepth();
          GlStateManager.tryBlendFuncSeparate(GlStateManager.SourceFactor.ZERO, GlStateManager.DestFactor.ONE_MINUS_SRC_COLOR, GlStateManager.SourceFactor.ONE, GlStateManager.DestFactor.ZERO);
          GlStateManager.color(0.3F, 0.3F, 0.3F, 1.0F);
-         mc.getTextureManager().bindTexture(new ResourceLocation(HuajiAge.MODID+":"+tex));
+         mc.getTextureManager().bindTexture(new ResourceLocation(HuajiAge.MODID,tex));
          GlStateManager.scale(scaleX, scaleY, 0);
          GlStateManager.translate(x, y, 0);
          Gui.drawModalRectWithCustomSizedTexture(0, 0, 0, 0, 512, 512, 512, 512);
