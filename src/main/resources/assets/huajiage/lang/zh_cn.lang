@@ -168,7 +168,8 @@ config.huaji_age.huaji_config.stand.punish.out_time=使用替身超时的惩罚
 config.huaji_age.huaji_config.stand.weak_up_fail=替身觉醒失败概率
 config.huaji_age.huaji_config.stand.mask_time_stop_noise=采用时停时的噪纹遮罩
 config.huaji_age.huaji_config.icon_time_stop=时停时的齿轮标志大小
-config.huaji_age.huaji_config.stand.fog_time_stop=启用时停的烟雾特效
+config.huaji_age.huaji_config.stand.mask_time_stop=启用时停齿轮特效
+config.huaji_age.huaji_config.stand.fog_time_stop=启用时停的烟雾特效（显卡性能不够支持的话不建议开启）
 config.huaji_age.huaji_config.stand.huaji_splash=用滑稽粒子代替绿宝石水花
 
 

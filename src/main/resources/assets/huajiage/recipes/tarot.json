@@ -17,6 +17,12 @@
     }
   },
   "result": {
-    "item": "huajiage:tarot"
+
+  "type": "minecraft:item_nbt", 
+  "item": "huajiage:tarot",
+  "nbt": {
+      "Name": "empty"
+ 		}
   }
+  
 }

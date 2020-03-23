@@ -71,7 +71,7 @@ public class ConfigHuaji {
 		
 		@Config.Comment("Need the fog of time stop?")
 		@LangKey("config.huaji_age.huaji_config.stand.fog_time_stop")
-		public boolean allowFogTimeStop=true;
+		public boolean allowFogTimeStop=false;
 		
 		@Config.Comment("Need the mask of time stop?")
 		@LangKey("config.huaji_age.huaji_config.stand.mask_time_stop")
