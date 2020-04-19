@@ -143,6 +143,10 @@ message.huajiage.singularity=§eIt's is the Fate,for everyone
 message.huajiage.stand.lost=§bIf you found that your STAND lost when you travel to a dimension.Don't worry!Just log out and log in again,the problem is solved.
 mesage.huajiage.stand.fail=Your Stand attack yourself---you have a bad luck
 mesage.huajiage.stand.gain=Your Stand :
+message.huajiage.exglutenbur.flavor.1=§6Crisp
+message.huajiage.exglutenbur.flavor.2=§4Spicy
+message.huajiage.exglutenbur.flavor.3=§lLime
+message.huajiage.exglutenbur.kdjl=§8§lIt's awesome!!
 
 gui.huajiage.poly.cook=Process
 gui.huajiage.poly.fuel=Fuel Point

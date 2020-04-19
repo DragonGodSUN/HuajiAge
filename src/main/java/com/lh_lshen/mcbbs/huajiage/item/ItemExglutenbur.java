@@ -1,5 +1,8 @@
 package com.lh_lshen.mcbbs.huajiage.item;
 
+import java.util.List;
+import java.util.Random;
+
 import javax.annotation.Nullable;
 
 import com.google.common.collect.HashMultimap;
@@ -11,6 +14,7 @@ import com.lh_lshen.mcbbs.huajiage.init.playsound.HuajiSoundPlayer;
 import com.lh_lshen.mcbbs.huajiage.init.playsound.SoundLoader;
 import com.lh_lshen.mcbbs.huajiage.network.HuajiAgeNetWorkHandler;
 import com.lh_lshen.mcbbs.huajiage.network.messages.MessageExglutenburMode;
+import com.lh_lshen.mcbbs.huajiage.util.MotionHelper;
 import com.lh_lshen.mcbbs.huajiage.util.NBTHelper;
 
 import net.minecraft.client.Minecraft;
@@ -34,8 +38,12 @@ import net.minecraft.util.ActionResult;
 import net.minecraft.util.DamageSource;
 import net.minecraft.util.EnumActionResult;
 import net.minecraft.util.EnumHand;
+import net.minecraft.util.EnumParticleTypes;
 import net.minecraft.util.ResourceLocation;
 import net.minecraft.util.SoundCategory;
+import net.minecraft.util.math.MathHelper;
+import net.minecraft.util.math.Vec3d;
+import net.minecraft.util.text.TextComponentTranslation;
 import net.minecraft.world.World;
 import net.minecraftforge.client.event.MouseEvent;
 import net.minecraftforge.common.MinecraftForge;
@@ -94,13 +102,21 @@ public class ItemExglutenbur extends ItemSword {
 		        target.setFire(5);
 		        stack.damageItem(1, attacker);
 		        target.playSound(SoundEvents.ENTITY_FIREWORK_LARGE_BLAST, 1f, 1f);
- 
+		        List<EntityLivingBase> entities = target.world.getEntitiesWithinAABB(EntityLivingBase.class, target.getEntityBoundingBox().grow(2));
+		        for(EntityLivingBase entity : entities)
+		        {
+		        	if(entity != attacker && entity != target) 
+		        	{
+		        	entity.attackEntityFrom(DamageSource.IN_FIRE, 5f);
+		        	entity.setFire(3);
+		        	}
+		        }	
 		        target.world.playEvent(2004, target.getPosition(), 0xFF4500);
 		    break;
 		    }
 			case 3:{
 		        stack.damageItem(10, attacker);
-		        
+		        attacker.heal(1f);
 		        target.playSound(SoundEvents.BLOCK_STONE_BREAK, 1f, 1f);
 		        target.playSound(SoundEvents.BLOCK_FIRE_EXTINGUISH, 1f, 1f);
 		        target.addPotionEffect(new PotionEffect(MobEffects.WEAKNESS,60,2));
@@ -108,9 +124,23 @@ public class ItemExglutenbur extends ItemSword {
 		        target.world.playEvent(2001, target.getPosition(), Blocks.OBSIDIAN.getStateId(Blocks.OBSIDIAN.getStateFromMeta(0)));
 		  double r=Math.random();
 		  if(r<0.3d) {
+			  attacker.heal(10f);
 			  stack.damageItem(50, attacker);
 			  target.attackEntityFrom(new DamageSource(HuajiConstant.DamageSource.KDJL), 50f);
 			  target.playSound(SoundLoader.EXGLUTENBUR_HIT, 1f, 1f);
+			  attacker.sendMessage(new TextComponentTranslation("message.huajiage.exglutenbur.kdjl"));
+			   List<EntityLivingBase> entities = target.world.getEntitiesWithinAABB(EntityLivingBase.class, target.getEntityBoundingBox().grow(5));
+		        for(EntityLivingBase entity : entities)
+		        {
+		        	if(entity != attacker && entity != target) 
+		        	{
+	        		Vec3d vec = MotionHelper.getVectorEntity(target, entity);
+		        	entity.attackEntityFrom(new DamageSource(HuajiConstant.DamageSource.KDJL), (float) (20f/vec.length()));
+		        	entity.motionX-=vec.x/vec.length();
+		        	entity.motionY-=vec.y/vec.length();
+		        	entity.motionZ-=vec.z/vec.length();
+		        	}
+		        }	
 		  }
 		        
 		     break;
@@ -141,10 +171,12 @@ public class ItemExglutenbur extends ItemSword {
 				 case 0: {
 					 if(flag) {
 					 HuajiSoundPlayer.playMovingSoundClient(player, SoundLoader.EXGLUTENBUR_1, SoundCategory.PLAYERS, 1f);
+					 player.sendMessage(new TextComponentTranslation("message.huajiage.exglutenbur.flavor.1"));
 //			    	 player.playSound(SoundLoader.EXGLUTENBUR_1, 1f, 1f);
 					 }
 					 else {
 					 HuajiSoundPlayer.playMovingSoundClient(player, SoundLoader.EXGLUTENBUR_3, SoundCategory.PLAYERS, 1f);
+					 player.sendMessage(new TextComponentTranslation("message.huajiage.exglutenbur.flavor.3"));
 //					 player.playSound(SoundLoader.EXGLUTENBUR_3, 1f, 1f);	 
 					 }
 			    	 break;
@@ -152,6 +184,7 @@ public class ItemExglutenbur extends ItemSword {
 				 case 1:{
 					 if(flag) {
 						 HuajiSoundPlayer.playMovingSoundClient(player, SoundLoader.EXGLUTENBUR_2, SoundCategory.PLAYERS, 1f);
+						 player.sendMessage(new TextComponentTranslation("message.huajiage.exglutenbur.flavor.2"));
 //				    	 player.playSound(SoundLoader.EXGLUTENBUR_2, 1f, 1f);
 						 }
 			    	 break;
@@ -159,10 +192,12 @@ public class ItemExglutenbur extends ItemSword {
 				 case 2:{
 					 if(flag) {
 						 HuajiSoundPlayer.playMovingSoundClient(player, SoundLoader.EXGLUTENBUR_3, SoundCategory.PLAYERS, 1f);
+						 player.sendMessage(new TextComponentTranslation("message.huajiage.exglutenbur.flavor.3"));
 //				    	 player.playSound(SoundLoader.EXGLUTENBUR_3, 1f, 1f);
 				    	 }
 						 else {
 						 HuajiSoundPlayer.playMovingSoundClient(player, SoundLoader.EXGLUTENBUR_1, SoundCategory.PLAYERS, 1f);
+						 player.sendMessage(new TextComponentTranslation("message.huajiage.exglutenbur.flavor.1"));
 //						 player.playSound(SoundLoader.EXGLUTENBUR_1, 1f, 1f);	 
 						 }
 			    	 break;
@@ -170,6 +205,7 @@ public class ItemExglutenbur extends ItemSword {
 				 case 3:{
 					 if(!flag) {
 						 HuajiSoundPlayer.playMovingSoundClient(player, SoundLoader.EXGLUTENBUR_2, SoundCategory.PLAYERS, 1f);
+						 player.sendMessage(new TextComponentTranslation("message.huajiage.exglutenbur.flavor.2"));
 //						 player.playSound(SoundLoader.EXGLUTENBUR_2, 1f, 1f);	 
 						 }
 			    	 break;
@@ -264,7 +300,8 @@ public class ItemExglutenbur extends ItemSword {
 		if(playerIn.isSneaking()) {
 			
 			 if (!worldIn.isRemote) {
-				 switch(getTagCompoundSafe(stack).getInteger("flavor")){
+				 switch(getTagCompoundSafe(stack).getInteger("flavor"))
+				 {
 				 case 0:{
 					 getTagCompoundSafe(stack).setInteger("flavor",1);  
 					 break;
@@ -281,23 +318,28 @@ public class ItemExglutenbur extends ItemSword {
 					 getTagCompoundSafe(stack).setInteger("flavor",0);  
 					 break;
 				     } 
-		     }
-			    }
-			 
-			 switch(flavor(stack)) {
-			 case 0: {
-		    	 playerIn.playSound(SoundLoader.EXGLUTENBUR_1, 1f, 1f);
-		    	 break;
-		              }
-			 case 1:{
-		    	 playerIn.playSound(SoundLoader.EXGLUTENBUR_2, 1f, 1f);
-		    	 break;
-		             } 
-			 case 2:{
-		    	 playerIn.playSound(SoundLoader.EXGLUTENBUR_3, 1f, 1f);
-		    	 break;
-		             }
+				 }
+		    }else
+		    {
+				 switch(flavor(stack)) 
+				 {
+				 case 0: {
+			    	 playerIn.playSound(SoundLoader.EXGLUTENBUR_1, 1f, 1f);
+			    	 playerIn.sendMessage(new TextComponentTranslation("message.huajiage.exglutenbur.flavor.1"));
+			    	 break;
+			              }
+				 case 1:{
+			    	 playerIn.playSound(SoundLoader.EXGLUTENBUR_2, 1f, 1f);
+			    	 playerIn.sendMessage(new TextComponentTranslation("message.huajiage.exglutenbur.flavor.2"));
+			    	 break;
+			             } 
+				 case 2:{
+			    	 playerIn.playSound(SoundLoader.EXGLUTENBUR_3, 1f, 1f);
+			    	 playerIn.sendMessage(new TextComponentTranslation("message.huajiage.exglutenbur.flavor.3"));
+			    	 break;
+			             }
 			       }
+		    }
 			   }
 			    return new ActionResult(EnumActionResult.SUCCESS, stack);
 			}

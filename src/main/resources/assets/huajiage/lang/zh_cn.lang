@@ -143,6 +143,10 @@ message.huajiage.singularity=§e究极的特异点，你能到达新世界吗？
 message.huajiage.stand.lost=§b如果你发现你的替身在你穿越维度的时候跑路了，不要担心，只要退出再登录，让你的替身去吃个饭，你的替身就回来了(Capability机制的锅，作者也是无能为力)
 mesage.huajiage.stand.gain=§b恭喜你获得替身：
 mesage.huajiage.stand.fail=替身反噬了你——看来你是个非酋
+message.huajiage.exglutenbur.flavor.1=§6香香的口味
+message.huajiage.exglutenbur.flavor.2=§4辣辣的感觉
+message.huajiage.exglutenbur.flavor.3=§l让你吃到真正的石灰
+message.huajiage.exglutenbur.kdjl=§8§8可带劲啦!!!
 
 
 gui.huajiage.poly.cook=§l进程
@@ -351,8 +355,6 @@ huajiage.welcome.1=§庆贺吧！滑稽的时代再度降临  §f当前模组版
 huaji.welcome.2=还有这玩意可通过配置文件关闭啦  2333333。
 huaji.lighting.1=§9你需要治疗
 huaji.lighting.2=§9这电量电不死人的
-huaji.lightingstone.open=§e闪电护身已开启
-huaji.lightingStone.isOpen=§e闪电护身已开启
 huajiage.secondhit=§9警告：检测到在途二维化打击！！！
 huajiage.nice=§e真香！
 
