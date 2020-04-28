@@ -55,6 +55,7 @@ potion.huajiage.stand=§b§lStand Power
 key.category.huajiage=滑稽纪元
 key.huajiage.switch=转换模式
 key.huajiage.stand_up=放出或收回替身
+key.huajiage.stand_skill=使用替身技能
 
 stand.huajiage.name=替身：
 stand.huajiage.stage=阶段：
@@ -175,6 +176,7 @@ config.huaji_age.huaji_config.icon_time_stop=时停时的齿轮标志大小
 config.huaji_age.huaji_config.stand.mask_time_stop=启用时停齿轮特效
 config.huaji_age.huaji_config.stand.fog_time_stop=启用时停的烟雾特效（显卡性能不够支持的话不建议开启）
 config.huaji_age.huaji_config.stand.huaji_splash=用滑稽粒子代替绿宝石水花
+config.huaji_age.huaji_config.orga.flower=使用希望之花原版音乐
 
 
 stand.huajiage.empty=缺失
@@ -347,6 +349,23 @@ message.huajiage.orga.sing.16=（女人唱歌男人死）
 message.huajiage.orga.sing.17=（合影）
 message.huajiage.orga.sing.18=（空条承太郎之帽）
 
+message.huajiage.orga.sing.p1=   |
+message.huajiage.orga.sing.p2=mn
+message.huajiage.orga.sing.p3=|  n
+message.huajiage.orga.sing.p4=█    ､⺍
+message.huajiage.orga.sing.p5=█|   ⺰ʷʷｨ
+message.huajiage.orga.sing.p6=█◣▄██◣
+message.huajiage.orga.sing.p7=◥█████▋
+message.huajiage.orga.sing.p8=  ◥████ █▎
+message.huajiage.orga.sing.p9=    ███  █▎
+message.huajiage.orga.sing.p10=  ◢████◣ oₘ℩
+message.huajiage.orga.sing.p11=    ██◥█◣ \≫
+message.huajiage.orga.sing.p12=    ██  ◥█◣
+message.huajiage.orga.sing.p13=    █▉   █▊
+message.huajiage.orga.sing.p14=    █▊   █▊
+message.huajiage.orga.sing.p15=    █▊   █▋
+message.huajiage.orga.sing.p16=    █|     █▙
+message.huajiage.orga.sing.p17=    █|
 ==================================================================================
 
 

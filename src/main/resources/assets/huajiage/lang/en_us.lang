@@ -83,6 +83,7 @@ potion.huajiage.stand=§b§lStand Power
 key.category.huajiage=HUAJI Age
 key.huajiage.switch=Switch
 key.huajiage.stand_up=Stand Up
+key.huajiage.stand_skill=Stand Power
 
 stand.huajiage.name=Stand:
 stand.huajiage.stage=Stage:
@@ -172,6 +173,7 @@ config.huaji_age.huaji_config.stand.mask_time_stop=Gears effects for time stop
 config.huaji_age.huaji_config.icon_time_stop=The icon display in time stop
 config.huaji_age.huaji_config.stand.fog_time_stop=The fog in the time stop(do not recommend if your GPU is not supported)
 config.huaji_age.huaji_config.stand.huaji_splash=Use HUAJI particle to replace the emerald splash
+config.huaji_age.huaji_config.orga.flower=Use Hope Flower BGM
 
 stand.huajiage.empty=Empty
 stand.huajiage.the_world=§e§lThe World
@@ -208,6 +210,23 @@ message.huajiage.orga.sing.16=(woman sings, man dies)
 message.huajiage.orga.sing.17=(group photo)
 message.huajiage.orga.sing.18=(hat)
 
+message.huajiage.orga.sing.p1=   |
+message.huajiage.orga.sing.p2=mn
+message.huajiage.orga.sing.p3=|  n
+message.huajiage.orga.sing.p4=█    ､⺍
+message.huajiage.orga.sing.p5=█|   ⺰ʷʷｨ
+message.huajiage.orga.sing.p6=█◣▄██◣
+message.huajiage.orga.sing.p7=◥█████▋
+message.huajiage.orga.sing.p8=  ◥████ █▎
+message.huajiage.orga.sing.p9=    ███  █▎
+message.huajiage.orga.sing.p10=  ◢████◣ oₘ℩
+message.huajiage.orga.sing.p11=    ██◥█◣ \≫
+message.huajiage.orga.sing.p12=    ██  ◥█◣
+message.huajiage.orga.sing.p13=    █▉   █▊
+message.huajiage.orga.sing.p14=    █▊   █▊
+message.huajiage.orga.sing.p15=    █▊   █▋
+message.huajiage.orga.sing.p16=    █|     █▙
+message.huajiage.orga.sing.p17=    █|
 ==================================================================================
 #Info
 huajiage.secondhit=§9Warning!!Two-dimensional strike detected!

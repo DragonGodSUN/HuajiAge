@@ -48,6 +48,21 @@ public class EventOrgaSing {
 							}
 						}
 					}
+				if(duration== 80*10-20) {
+					for(int i =1; i< 6; i++) {
+						entity.sendMessage(new TextComponentTranslation("message.huajiage.orga.sing.p"+i));
+						}
+					}
+				if(duration== 80*10-40) {
+					for(int i =6; i<12; i++) {
+						entity.sendMessage(new TextComponentTranslation("message.huajiage.orga.sing.p"+i));
+						}
+					}
+				if(duration== 80*10-60) {
+					for(int i =12; i<18; i++) {
+						entity.sendMessage(new TextComponentTranslation("message.huajiage.orga.sing.p"+i));
+						}
+					}
 				}
 			}
 		}
