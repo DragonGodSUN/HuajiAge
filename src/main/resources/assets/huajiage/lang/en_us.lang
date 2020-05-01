@@ -210,23 +210,24 @@ message.huajiage.orga.sing.16=(woman sings, man dies)
 message.huajiage.orga.sing.17=(group photo)
 message.huajiage.orga.sing.18=(hat)
 
-message.huajiage.orga.sing.p1=   |
-message.huajiage.orga.sing.p2=mn
+message.huajiage.orga.sing.p0=  |
+message.huajiage.orga.sing.p1=  n
+message.huajiage.orga.sing.p2=mm
 message.huajiage.orga.sing.p3=|  n
 message.huajiage.orga.sing.p4=█    ､⺍
 message.huajiage.orga.sing.p5=█|   ⺰ʷʷｨ
 message.huajiage.orga.sing.p6=█◣▄██◣
-message.huajiage.orga.sing.p7=◥█████▋
+message.huajiage.orga.sing.p7=◥█████▋◣
 message.huajiage.orga.sing.p8=  ◥████ █▎
 message.huajiage.orga.sing.p9=    ███  █▎
 message.huajiage.orga.sing.p10=  ◢████◣ oₘ℩
 message.huajiage.orga.sing.p11=    ██◥█◣ \≫
 message.huajiage.orga.sing.p12=    ██  ◥█◣
-message.huajiage.orga.sing.p13=    █▉   █▊
-message.huajiage.orga.sing.p14=    █▊   █▊
-message.huajiage.orga.sing.p15=    █▊   █▋
-message.huajiage.orga.sing.p16=    █|     █▙
-message.huajiage.orga.sing.p17=    █|
+message.huajiage.orga.sing.p13=    █▉    █▊
+message.huajiage.orga.sing.p14=    █▊    █▊
+message.huajiage.orga.sing.p15=    █▊    █▋
+message.huajiage.orga.sing.p16=     █|    █▙
+message.huajiage.orga.sing.p17=     █|
 ==================================================================================
 #Info
 huajiage.secondhit=§9Warning!!Two-dimensional strike detected!

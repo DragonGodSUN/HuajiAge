@@ -49,7 +49,7 @@ public class EventOrgaSing {
 						}
 					}
 				if(duration== 80*10-20) {
-					for(int i =1; i< 6; i++) {
+					for(int i =0; i< 6; i++) {
 						entity.sendMessage(new TextComponentTranslation("message.huajiage.orga.sing.p"+i));
 						}
 					}
