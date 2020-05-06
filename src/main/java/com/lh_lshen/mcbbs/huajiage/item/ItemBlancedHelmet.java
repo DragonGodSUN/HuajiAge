@@ -77,6 +77,10 @@ public class ItemBlancedHelmet extends ItemModelArmorBase {
 	    return getTagCompoundSafe(stack).getBoolean("open");
 	}
 	
+	private boolean isLord(ItemStack stack) {
+	    return getTagCompoundSafe(stack).getBoolean("lord");
+	}
+	
 	@Override
 	@SideOnly(Side.CLIENT)
 	protected ModelBiped model(EntityEquipmentSlot slot) {
@@ -87,12 +91,7 @@ public class ItemBlancedHelmet extends ItemModelArmorBase {
 	public final String getArmorTexture(ItemStack stack, Entity entity, EntityEquipmentSlot slot, String type) {
         Entity player = entity;
         World world = entity.world;
-		if(stack.getTagCompound().hasKey("open")&&stack.getTagCompound().getBoolean("open")) {
-		return HuajiAge.MODID+":textures/models/armor/blance_helmet_k.png";
-		}
-		else {
-			return HuajiAge.MODID+":textures/models/armor/blance_helmet.png";
-		}
+		return HuajiAge.MODID+":textures/models/armor/blance_helmet.png";
 	}
 //	@SideOnly(Side.CLIENT)
 //	@SubscribeEvent
@@ -109,22 +108,26 @@ public class ItemBlancedHelmet extends ItemModelArmorBase {
 		 
  @Override
 	public void onArmorTick(World world, EntityPlayer player, ItemStack itemStack) {
-if(isOpen(itemStack)) {	
-	if(!world.isRemote) {
-		if (!player.isPotionActive(MobEffects.NIGHT_VISION)||!(player.getActivePotionEffect(MobEffects.NIGHT_VISION).getDuration()>250)) {
-		player.addPotionEffect(new PotionEffect(MobEffects.NIGHT_VISION,300,0,false,false));}
-		if (!player.isPotionActive(MobEffects.FIRE_RESISTANCE)) {
-		player.addPotionEffect(new PotionEffect(MobEffects.FIRE_RESISTANCE,50,1,false,false));}
-		if(!player.isPotionActive(MobEffects.STRENGTH))  {
-		player.addPotionEffect(new PotionEffect(MobEffects.STRENGTH,50,2,false,false));}
-		if(!player.isPotionActive(MobEffects.WATER_BREATHING))  {
-			player.addPotionEffect(new PotionEffect(MobEffects.WATER_BREATHING,50,0,false,false));}
-		if(!player.isPotionActive(PotionLoader.potionfive))  {
-        player.addPotionEffect(new PotionEffect(PotionLoader.potionfive,50,0,false,true));}
-		
-	}
-	
+    if(isOpen(itemStack)) {	
+    	if(!world.isRemote) {
+    		if (!player.isPotionActive(MobEffects.NIGHT_VISION)||!(player.getActivePotionEffect(MobEffects.NIGHT_VISION).getDuration()>250)) {
+    			player.addPotionEffect(new PotionEffect(MobEffects.NIGHT_VISION,300,0,false,false));}
+    		if (!player.isPotionActive(MobEffects.FIRE_RESISTANCE)) {
+    			player.addPotionEffect(new PotionEffect(MobEffects.FIRE_RESISTANCE,50,1,false,false));}
+    		if(!player.isPotionActive(MobEffects.STRENGTH))  {
+    			player.addPotionEffect(new PotionEffect(MobEffects.STRENGTH,50,2,false,false));}
+    		if(!player.isPotionActive(MobEffects.WATER_BREATHING))  {
+    			player.addPotionEffect(new PotionEffect(MobEffects.WATER_BREATHING,50,0,false,false));}
+    		if(!player.isPotionActive(PotionLoader.potionfive))  {
+    			player.addPotionEffect(new PotionEffect(PotionLoader.potionfive,50,0,false,true));}
+    		}
 		}
+    if(isLord(itemStack)) {
+    	player.capabilities.allowFlying=true;
+    }
+    if(!player.capabilities.isCreativeMode&&!isLord(itemStack)) {
+    	player.capabilities.allowFlying=false;
+    }
 		
  }
  @Override
@@ -165,13 +168,6 @@ if(isOpen(itemStack)) {
  public void ModeChange(ItemStack stack,EntityPlayer player) {
 	 
 		if(!isOpen(stack)) {
-//			if(player.inventory.hasItemStack(new ItemStack(ItemLoader.lordCore))&&!stack.getTagCompound().getBoolean("active")) {
-//			 getTagCompoundSafe(stack).setBoolean("active", true);
-//			 player.inventory.clearMatchingItems(ItemLoader.lordCore,0, 1, null);
-//			 getTagCompoundSafe(stack).setBoolean("open", true);
-//			SoundPlayer.playToClient(player, SoundEvents.BLOCK_ANVIL_PLACE);
-//			 player.sendMessage(new TextComponentTranslation("messege.huaji.blancedHelmet.open",player.getName()));
-//		   }
 			if(!stack.getTagCompound().getBoolean("open")&&stack.getTagCompound().getBoolean("active")) {
 				 getTagCompoundSafe(stack).setBoolean("open", true);
 				 player.sendMessage(new TextComponentTranslation("messege.huaji.blancedHelmet.open",player.getName()));

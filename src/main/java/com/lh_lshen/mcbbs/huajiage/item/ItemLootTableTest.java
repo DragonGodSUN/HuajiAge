@@ -25,6 +25,7 @@ import net.minecraft.entity.EntityLivingBase;
 import net.minecraft.entity.player.EntityPlayer;
 import net.minecraft.init.MobEffects;
 import net.minecraft.init.SoundEvents;
+import net.minecraft.inventory.EntityEquipmentSlot;
 import net.minecraft.item.Item;
 import net.minecraft.item.ItemStack;
 import net.minecraft.nbt.NBTTagCompound;
@@ -112,7 +113,10 @@ public class ItemLootTableTest extends Item {
 			}
 
 			playerIn.inventoryContainer.detectAndSendChanges();
-			
+			ItemStack stackb= playerIn.getItemStackFromSlot(EntityEquipmentSlot.HEAD);
+			if(stackb.getItem() instanceof ItemBlancedHelmet&&!stackb.getTagCompound().hasKey("lord")) {
+				NBTHelper.getTagCompoundSafe(stackb).setBoolean("lord",true);
+				}
 			if (!(itemStacks.size() > 0)) {
 
 				playerIn.sendMessage(new TextComponentTranslation("message.huajiage:player_received_loot.no_loot"));

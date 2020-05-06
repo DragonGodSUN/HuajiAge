@@ -7,6 +7,10 @@ public interface IExposedData {
 	
 	String getStand();
 	
+	void setStage(int stage);
+	
+	int getStage();
+	
 	void setTrigger(boolean trigger);
 	
 	boolean isTriggered();

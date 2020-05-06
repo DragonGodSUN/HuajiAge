@@ -13,151 +13,175 @@ package com.lh_lshen.mcbbs.huajiage.client.model;
 
 import javax.annotation.Nonnull;
 
+import com.lh_lshen.mcbbs.huajiage.HuajiAge;
 import com.lh_lshen.mcbbs.huajiage.item.ItemBlancedHelmet;
 import com.lh_lshen.mcbbs.huajiage.item.ItemLoader;
 import com.lh_lshen.mcbbs.huajiage.item.ItemLordCore;
 
 import net.minecraft.client.Minecraft;
 import net.minecraft.client.model.ModelBiped;
+import net.minecraft.client.model.ModelBox;
 import net.minecraft.client.model.ModelRenderer;
+import net.minecraft.client.renderer.GlStateManager;
+import net.minecraft.client.renderer.OpenGlHelper;
 import net.minecraft.client.renderer.block.model.ItemCameraTransforms.TransformType;
 import net.minecraft.entity.Entity;
+import net.minecraft.entity.EntityLivingBase;
 import net.minecraft.entity.item.EntityArmorStand;
 import net.minecraft.entity.player.EntityPlayer;
 import net.minecraft.inventory.EntityEquipmentSlot;
 import net.minecraft.item.ItemStack;
+import net.minecraft.util.ResourceLocation;
 
 public class ModelBlanceHelmet extends ModelArmor
 {
-	
+	private final ModelRenderer Base1;
+	private final ModelRenderer Base2;
+	private final ModelRenderer Base3;
+	private final ModelRenderer Base4;
+	private final ModelRenderer p1;
+	private final ModelRenderer p2;
+	private final ModelRenderer p3;
+	private final ModelRenderer p4;
+	private final ModelRenderer p5;
+	private final ModelRenderer p6;
+	private final ModelRenderer p7;
+	private final ModelRenderer p8;
+	private final ModelRenderer p9;
+	private final ModelRenderer eyes;
+	private final ModelRenderer tubes_b;
+	private final ModelRenderer tubes_y;
 
-  //fields
-    ModelRenderer p1;
-    ModelRenderer p2;
-    ModelRenderer p3;
-    ModelRenderer p4;
-    ModelRenderer p5;
-    ModelRenderer p6;
-    ModelRenderer p7;
-    ModelRenderer p8;
-    ModelRenderer p9;
-    ModelRenderer Base1;
-    ModelRenderer Base2;
-    ModelRenderer Base3;
-    ModelRenderer Base4;
-  
-    public ModelBlanceHelmet(EntityEquipmentSlot slot) {
+
+	public ModelBlanceHelmet(EntityEquipmentSlot slot) {
 		super(slot);
-    textureWidth = 64;
-    textureHeight = 32;
-    
-    p1 = new ModelRenderer(this, 14, 28);
-    p1.addBox(4.466667F, -6F, 0F, 2, 2, 2);
-    p1.setRotationPoint(0F, 0F, 0F);
-    p1.setTextureSize(64, 32);
-    p1.mirror = true;
-    setRotation(p1, 0F, 0F, 0F);
-    p2 = new ModelRenderer(this, 0, 0);
-    p2.addBox(-6F, -6.466667F, -6F, 1, 5, 6);
-    p2.setRotationPoint(0F, 0F, 0F);
-    p2.setTextureSize(64, 32);
-    p2.mirror = true;
-    setRotation(p2, 0F, 0F, 0F);
-    p3 = new ModelRenderer(this, 0, 21);
-    p3.addBox(-5F, -7F, -6F, 10, 7, 1);
-    p3.setRotationPoint(0F, 0F, 0F);
-    p3.setTextureSize(64, 32);
-    p3.mirror = true;
-    setRotation(p3, 0F, 0F, 0F);
-    p4 = new ModelRenderer(this, 0, 28);
-    p4.addBox(-6.466667F, -6F, 0F, 2, 2, 2);
-    p4.setRotationPoint(0F, 0F, 0F);
-    p4.setTextureSize(64, 32);
-    p4.mirror = true;
-    setRotation(p4, 0F, 0F, 0F);
-    p5 = new ModelRenderer(this, 0, 0);
-    p5.addBox(5F, -6.466667F, -6F, 1, 5, 6);
-    p5.setRotationPoint(0F, 0F, 0F);
-    p5.setTextureSize(64, 32);
-    p5.mirror = true;
-    setRotation(p5, 0F, 0F, 0F);
-    p6 = new ModelRenderer(this, 0, 0);
-    p6.addBox(-4F, -4F, -7F, 8, 1, 1);
-    p6.setRotationPoint(0F, 0F, 0F);
-    p6.setTextureSize(64, 32);
-    p6.mirror = true;
-    setRotation(p6, 0F, 0F, 0F);
-    p7 = new ModelRenderer(this, 0, 0);
-    p7.addBox(-4F, -6F, -7F, 8, 1, 1);
-    p7.setRotationPoint(0F, 0F, 0F);
-    p7.setTextureSize(64, 32);
-    p7.mirror = true;
-    setRotation(p7, 0F, 0F, 0F);
-    p8 = new ModelRenderer(this, 0, 0);
-    p8.addBox(-4F, -5F, -7F, 1, 1, 1);
-    p8.setRotationPoint(0F, 0F, 0F);
-    p8.setTextureSize(64, 32);
-    p8.mirror = true;
-    setRotation(p8, 0F, 0F, 0F);
-    p9 = new ModelRenderer(this, 0, 0);
-    p9.addBox(3F, -5F, -7F, 1, 1, 1);
-    p9.setRotationPoint(0F, 0F, 0F);
-    p9.setTextureSize(64, 32);
-    p9.mirror = true;
-    setRotation(p9, 0F, 0F, 0F);
-    Base1 = new ModelRenderer(this, 0, 0);
-    Base1.addBox(-5F, -9F, -5F, 10, 4, 10);
-    Base1.setRotationPoint(0F, 0F, 0F);
-    Base1.setTextureSize(64, 32);
-    Base1.mirror = true;
-    setRotation(Base1, 0F, 0F, 0F);
-    Base2 = new ModelRenderer(this, 12, 5);
-    Base2.addBox(-4F, -5F, 4F, 8, 3, 1);
-    Base2.setRotationPoint(0F, 0F, 0F);
-    Base2.setTextureSize(64, 32);
-    Base2.mirror = true;
-    setRotation(Base2, 0F, 0F, 0F);
-    Base3 = new ModelRenderer(this, 0, 0);
-    Base3.addBox(-5F, -5F, 0F, 1, 5, 5);
-    Base3.setRotationPoint(0F, 0F, 0F);
-    Base3.setTextureSize(64, 32);
-    Base3.mirror = true;
-    setRotation(Base3, 0F, 0F, 0F);
-    Base4 = new ModelRenderer(this, 0, 0);
-    Base4.addBox(4F, -5F, 0F, 1, 5, 5);
-    Base4.setRotationPoint(0F, 0F, 0F);
-    Base4.setTextureSize(64, 32);
-    Base4.mirror = true;
-    setRotation(Base4, 0F, 0F, 0F);
-      this.Base1.addChild(Base2);
-      this.Base1.addChild(Base3);
-      this.Base1.addChild(Base4);
-      this.Base1.addChild(p1);
-      this.Base1.addChild(p2);
-      this.Base1.addChild(p3);
-      this.Base1.addChild(p4);
-      this.Base1.addChild(p5);
-      this.Base1.addChild(p6);
-      this.Base1.addChild(p7);
-      this.Base1.addChild(p8);
-      this.Base1.addChild(p9);
-  }
+		textureWidth = 64;
+		textureHeight = 64;
+
+		Base1 = new ModelRenderer(this);
+		Base1.setRotationPoint(0.0F, 0.0F, 0.0F);
+		Base1.cubeList.add(new ModelBox(Base1, 0, 0, -5.0F, -9.0F, -5.0F, 10, 4, 10, 0.0F, true));
+
+		Base2 = new ModelRenderer(this);
+		Base2.setRotationPoint(0.0F, 0.0F, 0.0F);
+		Base1.addChild(Base2);
+		Base2.cubeList.add(new ModelBox(Base2, 12, 5, -4.0F, -5.0F, 4.0F, 8, 3, 1, 0.0F, true));
+
+		Base3 = new ModelRenderer(this);
+		Base3.setRotationPoint(0.0F, 0.0F, 0.0F);
+		Base1.addChild(Base3);
+		Base3.cubeList.add(new ModelBox(Base3, 0, 0, -5.0F, -5.0F, 0.0F, 1, 5, 5, 0.0F, true));
+
+		Base4 = new ModelRenderer(this);
+		Base4.setRotationPoint(0.0F, 0.0F, 0.0F);
+		Base1.addChild(Base4);
+		Base4.cubeList.add(new ModelBox(Base4, 0, 0, 4.0F, -5.0F, 0.0F, 1, 5, 5, 0.0F, true));
+
+		p1 = new ModelRenderer(this);
+		p1.setRotationPoint(0.0F, 0.0F, 0.0F);
+		Base1.addChild(p1);
+		p1.cubeList.add(new ModelBox(p1, 14, 28, 4.4667F, -6.0F, 0.0F, 2, 2, 2, 0.0F, true));
+
+		p2 = new ModelRenderer(this);
+		p2.setRotationPoint(0.0F, 0.0F, 0.0F);
+		Base1.addChild(p2);
+		p2.cubeList.add(new ModelBox(p2, 0, 0, -6.0F, -6.4667F, -6.0F, 1, 5, 6, 0.0F, true));
+
+		p3 = new ModelRenderer(this);
+		p3.setRotationPoint(0.0F, 0.0F, 0.0F);
+		Base1.addChild(p3);
+		p3.cubeList.add(new ModelBox(p3, 0, 21, -5.0F, -7.0F, -6.0F, 10, 7, 1, 0.0F, true));
+
+		p4 = new ModelRenderer(this);
+		p4.setRotationPoint(0.0F, 0.0F, 0.0F);
+		Base1.addChild(p4);
+		p4.cubeList.add(new ModelBox(p4, 0, 28, -6.4667F, -6.0F, 0.0F, 2, 2, 2, 0.0F, true));
+
+		p5 = new ModelRenderer(this);
+		p5.setRotationPoint(0.0F, 0.0F, 0.0F);
+		Base1.addChild(p5);
+		p5.cubeList.add(new ModelBox(p5, 0, 0, 5.0F, -6.4667F, -6.0F, 1, 5, 6, 0.0F, true));
+
+		p6 = new ModelRenderer(this);
+		p6.setRotationPoint(0.0F, 0.0F, 0.0F);
+		Base1.addChild(p6);
+		p6.cubeList.add(new ModelBox(p6, 0, 0, -4.0F, -4.0F, -7.0F, 8, 1, 1, 0.0F, true));
+
+		p7 = new ModelRenderer(this);
+		p7.setRotationPoint(0.0F, 0.0F, 0.0F);
+		Base1.addChild(p7);
+		p7.cubeList.add(new ModelBox(p7, 0, 0, -4.0F, -6.0F, -7.0F, 8, 1, 1, 0.0F, true));
+
+		p8 = new ModelRenderer(this);
+		p8.setRotationPoint(0.0F, 0.0F, 0.0F);
+		Base1.addChild(p8);
+		p8.cubeList.add(new ModelBox(p8, 0, 0, -4.0F, -5.0F, -7.0F, 1, 1, 1, 0.0F, true));
+
+		p9 = new ModelRenderer(this);
+		p9.setRotationPoint(0.0F, 0.0F, 0.0F);
+		Base1.addChild(p9);
+		p9.cubeList.add(new ModelBox(p9, 0, 0, 3.0F, -5.0F, -7.0F, 1, 1, 1, 0.0F, true));
+
+
+		eyes = new ModelRenderer(this);
+		eyes.setRotationPoint(0.0F, 0.0F, 0.0F);
+		eyes.cubeList.add(new ModelBox(eyes, 25, 30, -3.5F, -5.5F, -6.2F, 7, 2, 0, 0.0F, false));
+
+		tubes_b = new ModelRenderer(this);
+		tubes_b.setRotationPoint(0.0F, 0.0F, 0.0F);
+		tubes_b.cubeList.add(new ModelBox(tubes_b, 0, 37, -6.5F, -6.0F, -6.5F, 1, 1, 4, 0.0F, false));
+		tubes_b.cubeList.add(new ModelBox(tubes_b, 0, 37, -6.5F, -4.0F, -6.5F, 1, 1, 4, 0.0F, false));
+		tubes_b.cubeList.add(new ModelBox(tubes_b, 0, 37, 5.5F, -6.0F, -6.5F, 1, 1, 4, 0.0F, false));
+		tubes_b.cubeList.add(new ModelBox(tubes_b, 0, 37, 5.5F, -4.0F, -6.5F, 1, 1, 4, 0.0F, false));
+
+		tubes_y = new ModelRenderer(this);
+		tubes_y.setRotationPoint(0.0F, 0.0F, 0.0F);
+		Base1.addChild(tubes_y);
+		setRotateAngle(tubes_y, 0.5236F, 0.0F, 0.0F);
+		tubes_y.cubeList.add(new ModelBox(tubes_y, 0, 43, 4.5F, -6.0F, -1.0F, 1, 1, 8, 0.0F, false));
+		tubes_y.cubeList.add(new ModelBox(tubes_y, 20, 43, 4.5F, -7.0F, -1.0F, 1, 1, 8, 0.0F, false));
+		tubes_y.cubeList.add(new ModelBox(tubes_y, 0, 43, -5.5F, -6.0F, -1.0F, 1, 1, 8, 0.0F, false));
+		tubes_y.cubeList.add(new ModelBox(tubes_y, 20, 43, -5.5F, -7.0F, -1.0F, 1, 1, 8, 0.0F, false));
+
+	}
   
     @Override
 	public void render(@Nonnull Entity entity, float limbSwing, float limbSwingAmount, float ageInTicks, float netHeadYaw, float headPitch, float scale) {
 		
 		Base1.showModel = slot == EntityEquipmentSlot.HEAD;
-
-		
 		bipedHeadwear.showModel = false;
 
 		bipedHead = Base1;
 		super.render(entity, limbSwing, limbSwingAmount, ageInTicks, netHeadYaw, headPitch, scale);
-		if(entity instanceof EntityPlayer) {
+		if(entity instanceof EntityLivingBase) {
 			ItemStack stack=((EntityPlayer)entity).getItemStackFromSlot(EntityEquipmentSlot.HEAD);
 			if(stack.getItem() instanceof ItemBlancedHelmet) {
 				if(stack.getTagCompound().hasKey("active")) {
 					Minecraft.getMinecraft().getRenderItem().renderItem(new ItemStack(ItemLoader.lordCore), TransformType.HEAD);
+						if(stack.getTagCompound().hasKey("lord")&&stack.getTagCompound().getBoolean("lord")){
+						tubes_b.showModel=true;
+						tubes_y.showModel=true;
+						}else {
+						tubes_b.showModel=false;
+						tubes_y.showModel=false;
+						}
+					if(stack.getTagCompound().hasKey("open")&&stack.getTagCompound().getBoolean("open")&&!((EntityLivingBase)entity).isSneaking()) {
+						Minecraft.getMinecraft().renderEngine.bindTexture(new ResourceLocation(HuajiAge.MODID,"textures/models/armor/blance_helmet.png"));
+						GlStateManager.enableBlend();
+						GlStateManager.disableAlpha();
+						GlStateManager.blendFunc(GlStateManager.SourceFactor.ONE, GlStateManager.DestFactor.ONE);
+						GlStateManager.disableLighting();
+						GlStateManager.depthMask(!entity.isInvisible());
+						OpenGlHelper.setLightmapTextureCoords(OpenGlHelper.lightmapTexUnit, 240f, 240f);
+						copyModelAngles(bipedHead, eyes);
+						copyModelAngles(bipedHead, tubes_b);
+						eyes.render(scale);
+						tubes_b.render(scale);
+						GlStateManager.enableLighting();
+						GlStateManager.depthMask(true);
+						GlStateManager.disableBlend();
+						GlStateManager.enableAlpha();
+					}
 				}
 			}
 		}

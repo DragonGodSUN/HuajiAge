@@ -2,6 +2,7 @@ package com.lh_lshen.mcbbs.huajiage.entity.render;
 
 import com.lh_lshen.mcbbs.huajiage.entity.render.layers.LayerCharmDisplay;
 import com.lh_lshen.mcbbs.huajiage.entity.render.layers.LayerHeldTopItem;
+import com.lh_lshen.mcbbs.huajiage.entity.render.layers.LayerLordPower;
 import com.lh_lshen.mcbbs.huajiage.entity.render.layers.LayerStand;
 import com.lh_lshen.mcbbs.huajiage.item.ItemRoadRoller;
 import com.lh_lshen.mcbbs.huajiage.item.ItemSecondFoilEntity;
@@ -24,6 +25,7 @@ public class RenderPlayerLayers extends net.minecraft.client.renderer.entity.Ren
 		        	playerRender.addLayer(new LayerCharmDisplay());
 //		        	playerRender.addLayer(new LayerHeldTopItem(playerRender));
 		        	playerRender.addLayer(new LayerStand(playerRender));  
+		        	playerRender.addLayer(new LayerLordPower(playerRender));
     	}
 
     }

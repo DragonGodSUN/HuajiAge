@@ -22,6 +22,7 @@ public class CapabilityExposedData {
 	        	
 	        	cmp_stand.setString("stand_name", instance.getStand());
 	        	cmp_stand.setBoolean("stand_put", instance.isTriggered());
+	        	cmp_stand.setInteger("stand_stage", instance.getStage());
 	        	
 	            return cmp_stand;
 	        }
@@ -34,10 +35,11 @@ public class CapabilityExposedData {
 	        	
 	        	String stand = cmp.getString("stand_name");
 	        	boolean istriggered = cmp.getBoolean("stand_put");
+	        	int stage = cmp.getInteger("stand_stage");
 	        	
 	        	instance.setStand(stand);
 	        	instance.setTrigger(istriggered);
-	        	
+	        	instance.setStage(stage);
 	        }
 	        
 	    }
@@ -47,6 +49,7 @@ public class CapabilityExposedData {
 	    	String standName = EnumStandtype.EMPTY;
 	    	boolean istriggered = false;
 	    	boolean dirty =false;
+	    	int stage = 0;
 	    	
 	    	@Override
 	    	public void setStand(String standName) {
@@ -80,6 +83,16 @@ public class CapabilityExposedData {
 	    	@Override
 	    	public boolean isTriggered() {
 	    		return istriggered;
+	    	}
+	    	@Override
+	    	public void setStage(int stage) {
+	    		this.stage = stage;
+	    		markDirty();
+	    		
+	    	}
+	    	@Override
+	    	public int getStage() {
+	    		return stage;
 	    	}
 	    	private static class Factory implements Callable<IExposedData> {
 	    		@Override

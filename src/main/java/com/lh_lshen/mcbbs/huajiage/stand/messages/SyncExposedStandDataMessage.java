@@ -26,13 +26,14 @@ public class SyncExposedStandDataMessage implements IMessage {
     public SyncExposedStandDataMessage() {
     }
 
-    public SyncExposedStandDataMessage(String stand ,boolean trigger ,String user) {
+    public SyncExposedStandDataMessage(String stand ,int stage, boolean trigger ,String user) {
 //        this.stand = stand;
 //        this.isTriggered = trigger;
         this.user = user;
         NBTTagCompound tags = new NBTTagCompound();
         tags.setString("stand_name", stand);
         tags.setBoolean("stand_put", trigger);
+        tags.setInteger("stand_stage", stage);
         nbt =tags;
     }
 
