@@ -18,14 +18,14 @@ item.huajiage.eggRice.name=§e真香蛋炒饭
 item.huajiage.eggRiceU.name=§d奥义·§e真香蛋炒饭
 item.huajiage.arrowStand.name=§d觉醒之箭
 
-death.attack.huajiage.hope_flower= %s死于世界线收束
-death.attack.huajiage.orga.shot=%s被团长乱枪打死
-death.attack.huajiage.second=%s被压成了PNG图像
+death.attack.huajiage.hope_flower= %s终究逃不过世界线收束的生草命运
+death.attack.huajiage.orga.shot=%s被团长乱枪带走
+death.attack.huajiage.second=%s被压缩成了PNG图像
 death.attack.huajiage.stella=%s化为了天空中的一颗流星
 death.attack.huajiage.KeDaiJinLa=%s感到非常带劲
-death.attack.huajiage.requiem.back=%s被反伤致死
-death.attack.huajiage.requiem.hit=%s被替身木大致死
-death.attack.huajiage.dio.hit=%s在时停中被连打暴击致死
+death.attack.huajiage.requiem.back=%s被自己干掉了
+death.attack.huajiage.requiem.hit=%s被替身木大木大木大木大木大
+death.attack.huajiage.dio.hit=%s在时停中被连打暴击横飞过了安静的街道
 death.attack.huajiage.singularity=%s被压缩成了一个无穷小的点
 
 huajiage.burstout=§e·真名解放
@@ -43,6 +43,7 @@ item.huajiage.blanceHelmet.name=§d五五开头盔
 item.huajiage.orgaFlagUnbroken.name=§4铁华团的不灭誓约
 item.huajiage.orgaFlag.name=木大的誓约
 item.huajiage.tarot.name=命运的塔罗牌
+item.huajiage.lordKey.name=§e五行至尊之芯
 
 potion.huaji=滑稽·施工中
 potion.huaji.five=§d五五开
@@ -92,7 +93,7 @@ item.huajiage.lordCore.name=§3§l挂者核心
 item.huajiage.huajiStarPoly.name=§o§l多重叠加态滑稽之星
 item.huajiage.singularity.name=§l特异点
 item.singularity.tooltip.warning=警告！！！你最好穿上最好的装备来抵御特异点的作用！必须确保在效果结束前的存活！死者是无法抵达新世界的！！！
-
+item.lord_key:tooltips.1=上古时代流传下来的神秘钥匙，据说能进一步解放§3§l挂者核心§r中§e§lLord.Lu§r的恐怖如斯的至尊之力
 
 item.blance_helmet:unicode_tooltips.1.desc=释放力量的唯一方法§b（按住Shift以查看更多）
 item.blance_helmet:unicode_tooltips.2.desc=§4只有§3§l挂者核心§4能够释放其无上威力
@@ -148,6 +149,7 @@ message.huajiage.exglutenbur.flavor.1=§6香香的口味
 message.huajiage.exglutenbur.flavor.2=§4辣辣的感觉
 message.huajiage.exglutenbur.flavor.3=§l让你吃到真正的石灰
 message.huajiage.exglutenbur.kdjl=§8§8可带劲啦!!!
+messege.huaji.blancedHelmet.lord.break=§l%s解放了Lu上至尊之力，踏破虚空而行，恐怖如斯！
 
 
 gui.huajiage.poly.cook=§l进程

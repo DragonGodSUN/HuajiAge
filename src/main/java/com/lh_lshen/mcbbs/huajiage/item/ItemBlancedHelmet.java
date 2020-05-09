@@ -77,6 +77,10 @@ public class ItemBlancedHelmet extends ItemModelArmorBase {
 	    return getTagCompoundSafe(stack).getBoolean("open");
 	}
 	
+	private boolean isActive(ItemStack stack) {
+	    return getTagCompoundSafe(stack).getBoolean("active");
+	}
+	
 	private boolean isLord(ItemStack stack) {
 	    return getTagCompoundSafe(stack).getBoolean("lord");
 	}
@@ -133,7 +137,7 @@ public class ItemBlancedHelmet extends ItemModelArmorBase {
  @Override
 	public Multimap<String, AttributeModifier> getAttributeModifiers(EntityEquipmentSlot slot, ItemStack stack) {
 
-	 if(getTagCompoundSafe(stack).getBoolean("active")) {
+	 if(isActive(stack)) {
 		Multimap<String, AttributeModifier> multimap = HashMultimap.create();
 		if (slot == EntityEquipmentSlot.HEAD) {
 			    multimap.putAll(super.getAttributeModifiers(slot, stack));
@@ -143,6 +147,10 @@ public class ItemBlancedHelmet extends ItemModelArmorBase {
 					multimap.put(SharedMonsterAttributes.ATTACK_SPEED.getName(), new AttributeModifier(UUID.fromString("1cb6e486-6aee-11e9-a923-1681be663d3e"), "attack speed motdifier",5,1));
 					multimap.put(SharedMonsterAttributes.MOVEMENT_SPEED.getName(), new AttributeModifier(UUID.fromString("1cb6e710-6aee-11e9-a923-1681be663d3e"), "movement speed motdifier",5,1));
 				}    
+				if(isLord(stack)) {
+					multimap.put(SharedMonsterAttributes.ARMOR_TOUGHNESS.getName(), new AttributeModifier(UUID.fromString("1cb6e710-6aee-11e9-a923-1681be663d3e"), "movement speed motdifier",15,0));
+					multimap.put(SharedMonsterAttributes.ARMOR.getName(), new AttributeModifier(UUID.fromString("1cb6e710-6aee-11e9-a923-1681be663d3e"), "movement speed motdifier",5,0));
+				}
 		}
 		return multimap;}
 		else {

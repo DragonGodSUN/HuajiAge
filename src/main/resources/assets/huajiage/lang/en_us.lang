@@ -70,7 +70,8 @@ item.huajiage.loot.name=§lLOOT STICK
 item.huajiage.lordCore.name=§3§lLord Core
 item.huajiage.tarot.name=Fate Tarot 
 item.huajiage.disc.name=§oDisc  
-item.huajiage.singularity.name=§lThe Singularity 
+item.huajiage.singularity.name=§lThe Singularity
+item.huajiage.lordKey.name=§eLord Key
 
 potion.huaji=HUAJI
 potion.huaji.five=Five-fold Power
@@ -121,7 +122,7 @@ item.tarot:tooltips.2=Stage:
 item.huajiage.disc.tooltip.1=Stand: 
 item.huajiage.disc.tooltip.2=Stage: 
 item.singularity.tooltip.warning=Warning !!!You must prepare your beat equipment to protect yourself,once you died before the end of the effect, you will regret to make this!
-
+item.lord_key:tooltips.1=The mysterious key handed down from ancient times is said to further liberate the supreme power of the terror of §e§lLord Lu§r in the §3§lLord Core
 
 huajiage.orga.1=§b To celebrate! The birth of the most powerful king of Mars---Orga Izka
 messege.huaji.blancedHelmet.active=§lFrom now on it's called %s §lSquare！
@@ -148,6 +149,7 @@ message.huajiage.exglutenbur.flavor.1=§6Crisp
 message.huajiage.exglutenbur.flavor.2=§4Spicy
 message.huajiage.exglutenbur.flavor.3=§lLime
 message.huajiage.exglutenbur.kdjl=§8§lIt's awesome!!
+messege.huaji.blancedHelmet.lord.break=§l%s has freed the supreme power of §e§lLord Lu§r, walking through the void, like terror!
 
 gui.huajiage.poly.cook=Process
 gui.huajiage.poly.fuel=Fuel Point

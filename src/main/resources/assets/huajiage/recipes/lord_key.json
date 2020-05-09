@@ -1,0 +1,22 @@
+{
+    "type": "minecraft:crafting_shaped",
+  "pattern": [
+    "AAA",
+    "BCB",
+    " B "
+  ],
+  "key": {
+    "A": {
+      "item": "huajiage:hope_flower"
+    },
+    "B": {
+      "item": "huajiage:neutron_star_fragment"
+    },
+    "C": {
+      "item": "huajiage:huaji_star_sky"
+    }
+  },
+  "result": {
+    "item": "huajiage:lord_key"
+  }
+}

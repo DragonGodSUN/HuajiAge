@@ -156,15 +156,15 @@ public class ModelBlanceHelmet extends ModelArmor
 		if(entity instanceof EntityLivingBase) {
 			ItemStack stack=((EntityPlayer)entity).getItemStackFromSlot(EntityEquipmentSlot.HEAD);
 			if(stack.getItem() instanceof ItemBlancedHelmet) {
+				if(stack.getTagCompound().hasKey("lord")&&stack.getTagCompound().getBoolean("lord")){
+					tubes_b.showModel=true;
+					tubes_y.showModel=true;
+				}else {
+					tubes_b.showModel=false;
+					tubes_y.showModel=false;
+				}
 				if(stack.getTagCompound().hasKey("active")) {
 					Minecraft.getMinecraft().getRenderItem().renderItem(new ItemStack(ItemLoader.lordCore), TransformType.HEAD);
-						if(stack.getTagCompound().hasKey("lord")&&stack.getTagCompound().getBoolean("lord")){
-						tubes_b.showModel=true;
-						tubes_y.showModel=true;
-						}else {
-						tubes_b.showModel=false;
-						tubes_y.showModel=false;
-						}
 					if(stack.getTagCompound().hasKey("open")&&stack.getTagCompound().getBoolean("open")&&!((EntityLivingBase)entity).isSneaking()) {
 						Minecraft.getMinecraft().renderEngine.bindTexture(new ResourceLocation(HuajiAge.MODID,"textures/models/armor/blance_helmet.png"));
 						GlStateManager.enableBlend();

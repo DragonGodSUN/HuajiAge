@@ -43,7 +43,8 @@ public class LayerLordPower implements  LayerRenderer<EntityLivingBase> {
 			{
 				AbstractClientPlayer p=(AbstractClientPlayer) entitylivingbaseIn;
 	 			ItemStack helmet = p.getItemStackFromSlot(EntityEquipmentSlot.HEAD);
-	 			if(helmet.getItem() instanceof ItemBlancedHelmet && helmet.getTagCompound().hasKey("active")) {
+	 			if(helmet.getItem() instanceof ItemBlancedHelmet && helmet.getTagCompound().hasKey("lord") &&
+	 					!p.onGround) {
 	 				GlStateManager.color(1.0F, 1.0F, 1.0F, 1.0F);
 		            GlStateManager.enableBlend();	
 		            GlStateManager.disableLighting();

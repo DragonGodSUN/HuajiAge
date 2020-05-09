@@ -49,6 +49,7 @@ public class ItemLoader {
 	public static Item roadRoller=new ItemRoadRoller();
 	public static Item orgaFlag=new ItemOrgaFlag();
 	public static Item lordCore=new ItemLordCore();
+	public static Item lordKey=new ItemLordKey();
 	public static Item etherC=new ItemEtherCircumfluxBoard();
 	public static Item huajiStarPoly=new ItemHuajiStarPoly();
 	public static Item tarot=new ItemTarot();
@@ -114,6 +115,7 @@ public class ItemLoader {
         register(orgaFlag,"orgaFlag","orga_flag");
         register(etherC,"etherCircumfluxBoard","ether_circumflux_board");
         register(lordCore,"lordCore","lord_core");
+        register(lordKey,"lordKey","lord_key");
         register(tarot,"tarot","tarot");
         register(disc,"disc","disc");
         register(singularity,"singularity","singularity");
@@ -166,6 +168,7 @@ public class ItemLoader {
         registerRender(orgaFlag);
         registerRender(etherC);
         registerRender(lordCore);
+        registerRender(lordKey);
         registerRender(huajiStarPoly);
         registerRender(tarot);
         registerRender(disc);

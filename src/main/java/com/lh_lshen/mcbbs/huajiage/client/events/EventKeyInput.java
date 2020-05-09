@@ -15,7 +15,9 @@ import com.lh_lshen.mcbbs.huajiage.item.ItemBlancedHelmet;
 import com.lh_lshen.mcbbs.huajiage.item.ItemLoader;
 import com.lh_lshen.mcbbs.huajiage.network.HuajiAgeNetWorkHandler;
 import com.lh_lshen.mcbbs.huajiage.network.messages.MessageExglutenburMode;
+import com.lh_lshen.mcbbs.huajiage.network.messages.MessageFiveBulletShoot;
 import com.lh_lshen.mcbbs.huajiage.network.messages.MessageHelmetModeChange;
+import com.lh_lshen.mcbbs.huajiage.network.messages.MessageLeftClickModeChange;
 import com.lh_lshen.mcbbs.huajiage.network.messages.MessageParticleGenerator;
 import com.lh_lshen.mcbbs.huajiage.network.messages.MessagePlaySoundToServer;
 import com.lh_lshen.mcbbs.huajiage.network.messages.MessageServerInterchange;
@@ -24,6 +26,7 @@ import com.lh_lshen.mcbbs.huajiage.stand.EnumStandtype;
 import com.lh_lshen.mcbbs.huajiage.stand.StandClientUtil;
 import com.lh_lshen.mcbbs.huajiage.stand.StandUtil;
 import com.lh_lshen.mcbbs.huajiage.stand.messages.MessageStandUp;
+import com.lh_lshen.mcbbs.huajiage.util.NBTHelper;
 import com.lh_lshen.mcbbs.huajiage.util.ServerUtil;
 
 import net.minecraft.client.Minecraft;
@@ -35,20 +38,22 @@ import net.minecraft.client.entity.EntityPlayerSP;
 import net.minecraft.entity.player.EntityPlayer;
 import net.minecraft.init.SoundEvents;
 import net.minecraft.inventory.EntityEquipmentSlot;
+import net.minecraft.item.ItemStack;
 import net.minecraft.network.play.server.SPacketEffect;
 import net.minecraft.network.play.server.SPacketSoundEffect;
 import net.minecraft.util.EnumParticleTypes;
 import net.minecraft.util.SoundCategory;
 import net.minecraft.util.SoundEvent;
 import net.minecraft.util.math.Vec3d;
+import net.minecraft.util.text.TextComponentTranslation;
 import net.minecraftforge.client.event.MouseEvent;
+import net.minecraftforge.event.entity.player.PlayerInteractEvent;
 import net.minecraftforge.fml.common.eventhandler.SubscribeEvent;
 import net.minecraftforge.fml.common.gameevent.InputEvent;
 import net.minecraftforge.fml.relauncher.Side;
 import net.minecraftforge.fml.relauncher.SideOnly;
-
+@SideOnly(Side.CLIENT)
 public class EventKeyInput {
-	@SideOnly(Side.CLIENT)
 	@SubscribeEvent
 	public static void modeSwitch(InputEvent.KeyInputEvent evt) {
 
@@ -62,4 +67,17 @@ public class EventKeyInput {
 		}
 		
 	}
+	@SubscribeEvent
+	public static void leftClick(PlayerInteractEvent.LeftClickEmpty evt) {
+		EntityPlayer player=evt.getEntityPlayer();
+		ItemStack helmet = player.getItemStackFromSlot(EntityEquipmentSlot.HEAD);
+		if ( helmet.getItem() instanceof ItemBlancedHelmet) {
+		       if(helmet.getTagCompound().hasKey("lord")&&helmet.getTagCompound().hasKey("open")&&helmet.getTagCompound().getBoolean("open")) 
+		       {
+		    	   HuajiAgeNetWorkHandler.sendToServer(new MessageFiveBulletShoot());
+	       		}
+		       
+		}
+	}
+	
 }

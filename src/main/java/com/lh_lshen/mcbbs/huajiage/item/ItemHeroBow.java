@@ -269,7 +269,7 @@ public void leftClick(PlayerInteractEvent.LeftClickEmpty evt) {
 	         player.playSound(SoundEvents.ENTITY_ENDERDRAGON_GROWL, 3.0F, 1.0F);	
 	         player.sendMessage( new TextComponentTranslation("huajiage.stellawarning"));    
                                   }
-}
+        	}
 		}
 	}
 public void ModeChange(ItemStack itemstack,EntityPlayer player) {

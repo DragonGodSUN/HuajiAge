@@ -2,6 +2,7 @@ package com.lh_lshen.mcbbs.huajiage.network;
 
 import com.lh_lshen.mcbbs.huajiage.HuajiAge;
 import com.lh_lshen.mcbbs.huajiage.network.messages.MessageExglutenburMode;
+import com.lh_lshen.mcbbs.huajiage.network.messages.MessageFiveBulletShoot;
 import com.lh_lshen.mcbbs.huajiage.network.messages.MessageHelmetModeChange;
 import com.lh_lshen.mcbbs.huajiage.network.messages.MessageLeftClickModeChange;
 import com.lh_lshen.mcbbs.huajiage.network.messages.MessageMovingSound;
@@ -41,7 +42,7 @@ public final class  HuajiAgeNetWorkHandler {
 		HANDLER.registerMessage(MessageLeftClickModeChange.Handler.class, MessageLeftClickModeChange.class, id++, Side.SERVER);
 		HANDLER.registerMessage(MessageHelmetModeChange.Handler.class, MessageHelmetModeChange.class, id++, Side.SERVER);
 		HANDLER.registerMessage(MessageExglutenburMode.Handler.class, MessageExglutenburMode.class, id++, Side.SERVER);
-	    
+		HANDLER.registerMessage(MessageFiveBulletShoot.Handler.class, MessageFiveBulletShoot.class, id++, Side.SERVER);
 		
 	    HANDLER.registerMessage(MessagePlaySoundClient.Handler.class,MessagePlaySoundClient.class, id++, Side.CLIENT);
 	    HANDLER.registerMessage(MessageParticleGenerator.Handler.class,MessageParticleGenerator.class, id++, Side.CLIENT);
