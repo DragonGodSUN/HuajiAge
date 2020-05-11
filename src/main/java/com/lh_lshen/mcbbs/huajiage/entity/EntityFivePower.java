@@ -1,22 +1,14 @@
 package com.lh_lshen.mcbbs.huajiage.entity;
 
 import java.util.List;
-import java.util.Random;
 
 import javax.annotation.Nonnull;
 
-import com.lh_lshen.mcbbs.huajiage.DamageSource.DamageEmeraldSplash;
-import com.lh_lshen.mcbbs.huajiage.particle.EnumHuajiPraticle;
-import com.lh_lshen.mcbbs.huajiage.util.NBTHelper;
+import com.lh_lshen.mcbbs.huajiage.damage_source.DamageEmeraldSplash;
+import com.lh_lshen.mcbbs.huajiage.damage_source.DamageFivePower;
 
-import ibxm.Player;
-import net.minecraft.block.Block;
-import net.minecraft.block.material.Material;
 import net.minecraft.block.state.IBlockState;
-import net.minecraft.client.Minecraft;
-import net.minecraft.entity.Entity;
 import net.minecraft.entity.EntityLivingBase;
-import net.minecraft.entity.boss.EntityDragon;
 import net.minecraft.entity.player.EntityPlayer;
 import net.minecraft.entity.projectile.EntityThrowable;
 import net.minecraft.init.SoundEvents;
@@ -24,23 +16,15 @@ import net.minecraft.nbt.NBTTagCompound;
 import net.minecraft.network.datasync.DataParameter;
 import net.minecraft.network.datasync.DataSerializers;
 import net.minecraft.network.datasync.EntityDataManager;
-import net.minecraft.tileentity.TileEntity;
 import net.minecraft.util.DamageSource;
-import net.minecraft.util.EnumFacing.Axis;
-import net.minecraft.util.EnumFacing.AxisDirection;
 import net.minecraft.util.EnumParticleTypes;
-import net.minecraft.util.ResourceLocation;
-import net.minecraft.util.SoundCategory;
-import net.minecraft.util.math.AxisAlignedBB;
-import net.minecraft.util.math.BlockPos;
-import net.minecraft.util.math.MathHelper;
 import net.minecraft.util.math.RayTraceResult;
-import net.minecraft.util.math.Vec3d;
 import net.minecraft.world.World;
-import net.minecraft.world.end.DragonFightManager;
 
 public class EntityFivePower extends EntityThrowable{
-
+	private static final String TAG_LIFE = "life";
+	private static final DataParameter<Float> LIFE = EntityDataManager.createKey(EntityEmeraldBullet.class,
+			DataSerializers.FLOAT);
 	public EntityFivePower(World worldIn) {
 		super(worldIn);
 		
@@ -50,12 +34,45 @@ public class EntityFivePower extends EntityThrowable{
 
 	}
 	@Override
+	protected void entityInit() {
+		super.entityInit();
+		dataManager.register(LIFE, 0F);
+	}
+	@Override
+	public void writeEntityToNBT(@Nonnull NBTTagCompound cmp) {
+		super.writeEntityToNBT(cmp);
+		cmp.setFloat(TAG_LIFE, getLife());
+	}
+
+	@Override
+	public void readEntityFromNBT(@Nonnull NBTTagCompound cmp) {
+		super.readEntityFromNBT(cmp);
+		setLife(cmp.getFloat(TAG_LIFE));
+	}
+	@Override
 	public void onUpdate() {
 		super.onUpdate();
+		List<EntityLivingBase> entities = this.world.getEntitiesWithinAABB(EntityLivingBase.class, this.getEntityBoundingBox().grow(1));
+		for(EntityLivingBase entity : entities) {
+			if(entity!=thrower) {
+				entity.setFire(3);
+				if(thrower instanceof EntityPlayer) {
+				entity.attackEntityFrom(new DamageFivePower(thrower), 15f);
+				}else {
+				entity.attackEntityFrom(DamageSource.OUT_OF_WORLD , 15f);
+				}
+			}
+		}
+		if(getLife()<180) {
+				setLife(getLife()+1f);
+		}else {
+			this.setDead();
+		}
 		double r = Math.random()-0.5;
 		for(int i=0;i<5;i++) {
 		world.spawnParticle(EnumParticleTypes.FLAME, posX+r, posY+r, posZ+r, (Math.random()-0.5)/10, (Math.random()-0.5)/10, (Math.random()-0.5)/10);
 		}
+		
 	}
 	@Override
 	public boolean hasNoGravity() {
@@ -68,7 +85,6 @@ public class EntityFivePower extends EntityThrowable{
 				if(!this.world.isRemote) {
 				if(!(result.entityHit instanceof EntityFivePower)) {
 					result.entityHit.attackEntityFrom(new DamageEmeraldSplash(this, getThrower()), 10f);
-					this.setDead();
 					this.world.createExplosion(this,posX, posY, posZ, 1f, false);
 					}
 				}
@@ -84,6 +100,12 @@ public class EntityFivePower extends EntityThrowable{
 			}
 		}
 	}
+	public float getLife() {
+		return dataManager.get(LIFE);
+	}
 	
+	public void setLife(float timeTick) {
+		dataManager.set(LIFE, timeTick);
+	}
 
 }

@@ -8,6 +8,7 @@ import static org.lwjgl.opengl.GL11.GL_ZERO;
 import org.lwjgl.opengl.GL11;
 
 import com.lh_lshen.mcbbs.huajiage.HuajiAge;
+import com.lh_lshen.mcbbs.huajiage.client.model.ModelEmeraldBullet;
 import com.lh_lshen.mcbbs.huajiage.entity.EntityFivePower;
 import com.lh_lshen.mcbbs.huajiage.entity.EntitySecondFoil;
 import com.lh_lshen.mcbbs.huajiage.item.ItemLoader;
@@ -19,6 +20,7 @@ import net.minecraft.client.renderer.BufferBuilder;
 import net.minecraft.client.renderer.GlStateManager;
 import net.minecraft.client.renderer.OpenGlHelper;
 import net.minecraft.client.renderer.Tessellator;
+import net.minecraft.client.renderer.block.model.ItemCameraTransforms.TransformType;
 import net.minecraft.client.renderer.entity.Render;
 import net.minecraft.client.renderer.entity.RenderEntity;
 import net.minecraft.client.renderer.entity.RenderFireball;
@@ -28,6 +30,8 @@ import net.minecraft.client.renderer.entity.RenderSnowball;
 import net.minecraft.client.renderer.tileentity.TileEntityRendererDispatcher;
 import net.minecraft.client.renderer.vertex.DefaultVertexFormats;
 import net.minecraft.entity.Entity;
+import net.minecraft.init.Items;
+import net.minecraft.item.ItemStack;
 import net.minecraft.util.ResourceLocation;
 import net.minecraft.util.math.Vec3d;
 
@@ -38,37 +42,48 @@ public class RenderFivePower extends Render<EntityFivePower> {
 	{
 		super(manager);
 	}
+	private static final ModelEmeraldBullet MODEL_N = new ModelEmeraldBullet();
 	@Override
 	public void doRender(EntityFivePower entity, double x, double y, double z, float entityYaw, float partialTicks) {
-		 Vec3d playerVec3d = new Vec3d(-TileEntityRendererDispatcher.staticPlayerX,
-	                -TileEntityRendererDispatcher.staticPlayerY + Minecraft.getMinecraft().player.getEyeHeight(),
-	                -TileEntityRendererDispatcher.staticPlayerZ);
-	        float yaw = TileEntityRendererDispatcher.instance.entityYaw;
-	        float pitch = TileEntityRendererDispatcher.instance.entityPitch;
-	        GlStateManager.enableBlend();
-	        OpenGlHelper.glBlendFunc(GL_SRC_ALPHA, GL_ONE_MINUS_SRC_ALPHA, GL_ONE, GL_ZERO);
-	        GlStateManager.disableTexture2D();
-	        GlStateManager.resetColor();
-            GlStateManager.pushMatrix();
-            GlStateManager.translate(playerVec3d.x, playerVec3d.y, playerVec3d.z);
-            GlStateManager.translate(x+ 0.5f, y - 1f, z + 0.5f);
-            GlStateManager.rotate(-yaw, 0.0F, 1.0F, 0.0F);
-            GlStateManager.rotate(pitch, 1.0F, 0.0F, 0.0F);
-            GlStateManager.rotate(180, 0.0F, 0.0F, 1.0F);
-            Minecraft.getMinecraft().getTextureManager().bindTexture(TEX);
-            Tessellator tessellator = Tessellator.getInstance();
-            BufferBuilder buffer = tessellator.getBuffer();
-            buffer.begin(GL11.GL_QUADS, DefaultVertexFormats.POSITION_TEX);
-            buffer.pos(0.25, 0.25, 0).tex(1, 1).endVertex();
-            buffer.pos(0.25, -0.25, 0).tex(1, 0).endVertex();
-            buffer.pos(-0.25, -0.25, 0).tex(0, 0).endVertex();
-            buffer.pos(-0.25, 0.25, 0).tex(0, 1).endVertex();
-            tessellator.draw();
-            GlStateManager.popMatrix();
-            GlStateManager.resetColor();
-            GlStateManager.enableTexture2D();
-            GlStateManager.disableBlend();
-            super.doRender(entity, x, y, z, entityYaw, partialTicks);
+		super.doRender(entity, x, y, z, entityYaw, partialTicks);
+        int w = 16;
+        int l = 16;
+
+        double pStartU = 0;
+        double pStartV = 0;
+        GlStateManager.disableLighting();
+        GlStateManager.pushMatrix();
+        GlStateManager.enableRescaleNormal();
+        GlStateManager.shadeModel(GL11.GL_SMOOTH);
+        GlStateManager.enableBlend();
+        GlStateManager.tryBlendFuncSeparate(GlStateManager.SourceFactor.SRC_ALPHA, GlStateManager.DestFactor.ONE_MINUS_SRC_ALPHA,
+                GlStateManager.SourceFactor.ONE, GlStateManager.DestFactor.ZERO);
+        GlStateManager.alphaFunc(GL11.GL_GREATER, 0f);
+        OpenGlHelper.setLightmapTextureCoords(OpenGlHelper.lightmapTexUnit, 240f, 240f);
+
+        GlStateManager.translate(x, y, z);
+        GlStateManager.rotate(-this.renderManager.playerViewY, 0.0F, 1.0F, 0.0F);
+        GlStateManager.rotate((float) (this.renderManager.options.thirdPersonView == 2 ? -1 : 1) * this.renderManager.playerViewX,
+                1.0F, 0.0F, 0.0F);
+        GlStateManager.rotate(180F, 0.0F, 1.0F, 0.0F);
+
+        Tessellator tessellator = Tessellator.getInstance();
+        BufferBuilder bufBuilder = tessellator.getBuffer();
+
+        bufBuilder.begin(GL11.GL_QUADS, DefaultVertexFormats.POSITION_TEX);
+        this.renderManager.renderEngine.bindTexture(TEX);
+
+        bufBuilder.pos(-0.5, 0.5, 0).tex((pStartU + 0) / w, (pStartV + 0) / l).endVertex();
+        bufBuilder.pos(-0.5, -0.5, 0).tex((pStartU + 0) / w, (pStartV + 16) / l).endVertex();
+        bufBuilder.pos(0.5, -0.5, 0).tex((pStartU + 16) / w, (pStartV + 16) / l).endVertex();
+        bufBuilder.pos(0.5, 0.5, 0).tex((pStartU + 16) / w, (pStartV + 0) / l).endVertex();
+        tessellator.draw();
+
+        GlStateManager.disableBlend();
+        GlStateManager.shadeModel(GL11.GL_FLAT);
+        GlStateManager.disableRescaleNormal();
+        GlStateManager.popMatrix();
+        GlStateManager.enableLighting();
 	}
 	@Override
 	protected ResourceLocation getEntityTexture(EntityFivePower entity) {

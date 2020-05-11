@@ -22,12 +22,12 @@ public class EntityLoader {
 
 	    public EntityLoader()
 	    {
-	        registerEntity((new ResourceLocation(HuajiAge.MODID, "SecondFoil")), EntitySecondFoil.class, "SecondFiol", 80, 3, true);
+	        registerEntity((new ResourceLocation(HuajiAge.MODID, "SecondFoil")), EntitySecondFoil.class, "SecondFiol", 150, 3, true);
 	        registerEntity((new ResourceLocation(HuajiAge.MODID, "HeroArrow")), EntityHeroArrow.class, "HeroArrow", 80, 3, true);
-	        registerEntity((new ResourceLocation(HuajiAge.MODID, "MuliKnife")), EntityMultiKnife.class, "MuliKnife", 80, 3, true);
+	        registerEntity((new ResourceLocation(HuajiAge.MODID, "MuliKnife")), EntityMultiKnife.class, "MuliKnife", 100, 3, true);
 	        registerEntity((new ResourceLocation(HuajiAge.MODID, "RoadRoller")), EntityRoadRoller.class, "RoadRoller", 80, 3, true);
 	        registerEntity((new ResourceLocation(HuajiAge.MODID, "StandBase")), EntityStandBase.class, "StandBase", 80, 3, true);
-	        registerEntity((new ResourceLocation(HuajiAge.MODID, "EmeraldBullet")), EntityEmeraldBullet.class, "EmeraldBullet", 80, 3, true);
+	        registerEntity((new ResourceLocation(HuajiAge.MODID, "EmeraldBullet")), EntityEmeraldBullet.class, "EmeraldBullet", 100, 3, true);
 	        registerEntity((new ResourceLocation(HuajiAge.MODID, "FivePower")), EntityFivePower.class, "FivePower", 80, 3, true);
 	    }
 

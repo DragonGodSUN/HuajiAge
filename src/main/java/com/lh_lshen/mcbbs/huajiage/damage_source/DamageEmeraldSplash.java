@@ -1,4 +1,4 @@
-package com.lh_lshen.mcbbs.huajiage.DamageSource;
+package com.lh_lshen.mcbbs.huajiage.damage_source;
 
 import net.minecraft.entity.Entity;
 import net.minecraft.util.EntityDamageSourceIndirect;

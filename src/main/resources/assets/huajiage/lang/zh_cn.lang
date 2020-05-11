@@ -25,8 +25,9 @@ death.attack.huajiage.stella=%s化为了天空中的一颗流星
 death.attack.huajiage.KeDaiJinLa=%s感到非常带劲
 death.attack.huajiage.requiem.back=%s被自己干掉了
 death.attack.huajiage.requiem.hit=%s被替身木大木大木大木大木大
-death.attack.huajiage.dio.hit=%s在时停中被连打暴击横飞过了安静的街道
+death.attack.huajiage.dio.hit=%s在时停中被连打暴击而横飞过了安静的街道
 death.attack.huajiage.singularity=%s被压缩成了一个无穷小的点
+death.attack.huajiage.void_break=%s被§eLord.Lu§f恐怖如斯的虚空之力§7碾成了渣渣
 
 huajiage.burstout=§e·真名解放
 huajiage.stellawarning=§e警告：真名解放状态下可能会造成不可挽回的后果，请不要轻易将此状态下的弓弦拉满！！！
@@ -93,7 +94,7 @@ item.huajiage.lordCore.name=§3§l挂者核心
 item.huajiage.huajiStarPoly.name=§o§l多重叠加态滑稽之星
 item.huajiage.singularity.name=§l特异点
 item.singularity.tooltip.warning=警告！！！你最好穿上最好的装备来抵御特异点的作用！必须确保在效果结束前的存活！死者是无法抵达新世界的！！！
-item.lord_key:tooltips.1=上古时代流传下来的神秘钥匙，据说能进一步解放§3§l挂者核心§r中§e§lLord.Lu§r的恐怖如斯的至尊之力
+item.lord_key:tooltips.1=上古时代流传下来的神秘钥匙，据说能进一步解放§3§l挂者核心§7中§e§lLord.Lu§7的恐怖如斯的至尊之力
 
 item.blance_helmet:unicode_tooltips.1.desc=释放力量的唯一方法§b（按住Shift以查看更多）
 item.blance_helmet:unicode_tooltips.2.desc=§4只有§3§l挂者核心§4能够释放其无上威力
@@ -149,7 +150,7 @@ message.huajiage.exglutenbur.flavor.1=§6香香的口味
 message.huajiage.exglutenbur.flavor.2=§4辣辣的感觉
 message.huajiage.exglutenbur.flavor.3=§l让你吃到真正的石灰
 message.huajiage.exglutenbur.kdjl=§8§8可带劲啦!!!
-messege.huaji.blancedHelmet.lord.break=§l%s解放了Lu上至尊之力，踏破虚空而行，恐怖如斯！
+messege.huaji.blancedHelmet.lord.break=§l§7%s解放了Lu上至尊之力，踏破虚空而行，恐怖如斯！
 
 
 gui.huajiage.poly.cook=§l进程

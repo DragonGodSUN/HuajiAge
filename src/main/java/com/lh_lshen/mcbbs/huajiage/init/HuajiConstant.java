@@ -56,6 +56,7 @@ public  class HuajiConstant {
 	public static final String REQUIEM_DAMAGE=HuajiAge.MODID+"."+"requiem.hit";
 	public static final String DIO_DAMAGE=HuajiAge.MODID+"."+"dio.hit";
 	public static final String SINGULARITY_DAMAGE=HuajiAge.MODID+"."+"singularity";
+	public static final String VOID_BREAK=HuajiAge.MODID+"."+"void_break";
 	}
 	
  

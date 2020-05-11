@@ -5,7 +5,7 @@ import java.util.Random;
 
 import javax.annotation.Nonnull;
 
-import com.lh_lshen.mcbbs.huajiage.DamageSource.DamageEmeraldSplash;
+import com.lh_lshen.mcbbs.huajiage.damage_source.DamageEmeraldSplash;
 import com.lh_lshen.mcbbs.huajiage.particle.EnumHuajiPraticle;
 import com.lh_lshen.mcbbs.huajiage.util.NBTHelper;
 
