@@ -35,6 +35,7 @@ public class TileEntityNewLandMan extends TileEntity {
         this.blockState = blockState;
         refresh();
     }
+    
 
     @Override
     public NBTTagCompound writeToNBT(NBTTagCompound compound) {
@@ -64,7 +65,7 @@ public class TileEntityNewLandMan extends TileEntity {
     @Override
     @SideOnly(Side.CLIENT)
     public AxisAlignedBB getRenderBoundingBox() {
-        return new AxisAlignedBB(pos.add(-1, -4, -1), pos.add(1, 4, 1));
+        return new AxisAlignedBB(pos.add(-1, -1, -1), pos.add(1,3, 1));
     }
 
     @Nonnull
