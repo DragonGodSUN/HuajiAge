@@ -1,4 +1,4 @@
-package com.lh_lshen.mcbbs.huajiage.entity.render;
+package com.lh_lshen.mcbbs.huajiage.client.render.entity;
 
 import com.lh_lshen.mcbbs.huajiage.item.ItemLoader;
 import com.lh_lshen.mcbbs.huajiage.stand.entity.EntityStandBase;

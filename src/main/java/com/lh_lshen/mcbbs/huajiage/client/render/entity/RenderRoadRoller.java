@@ -1,10 +1,10 @@
-package com.lh_lshen.mcbbs.huajiage.entity.render;
+package com.lh_lshen.mcbbs.huajiage.client.render.entity;
 
 import javax.annotation.Nonnull;
 
 import com.lh_lshen.mcbbs.huajiage.HuajiAge;
-import com.lh_lshen.mcbbs.huajiage.client.model.ModelMuliKnife;
-import com.lh_lshen.mcbbs.huajiage.client.model.ModelRoadRoller;
+import com.lh_lshen.mcbbs.huajiage.client.render.model.ModelMuliKnife;
+import com.lh_lshen.mcbbs.huajiage.client.render.model.ModelRoadRoller;
 import com.lh_lshen.mcbbs.huajiage.entity.EntityMultiKnife;
 import com.lh_lshen.mcbbs.huajiage.entity.EntityRoadRoller;
 

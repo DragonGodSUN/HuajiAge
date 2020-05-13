@@ -1,4 +1,4 @@
-package com.lh_lshen.mcbbs.huajiage.entity.render;
+package com.lh_lshen.mcbbs.huajiage.client.render.entity;
 
 import static org.lwjgl.opengl.GL11.GL_ONE;
 import static org.lwjgl.opengl.GL11.GL_ONE_MINUS_SRC_ALPHA;
@@ -8,7 +8,7 @@ import static org.lwjgl.opengl.GL11.GL_ZERO;
 import org.lwjgl.opengl.GL11;
 
 import com.lh_lshen.mcbbs.huajiage.HuajiAge;
-import com.lh_lshen.mcbbs.huajiage.client.model.ModelEmeraldBullet;
+import com.lh_lshen.mcbbs.huajiage.client.render.model.ModelEmeraldBullet;
 import com.lh_lshen.mcbbs.huajiage.entity.EntityFivePower;
 import com.lh_lshen.mcbbs.huajiage.entity.EntitySecondFoil;
 import com.lh_lshen.mcbbs.huajiage.item.ItemLoader;

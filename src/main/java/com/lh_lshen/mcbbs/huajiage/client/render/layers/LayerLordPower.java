@@ -1,8 +1,8 @@
-package com.lh_lshen.mcbbs.huajiage.entity.render.layers;
+package com.lh_lshen.mcbbs.huajiage.client.render.layers;
 
 import com.lh_lshen.mcbbs.huajiage.HuajiAge;
 import com.lh_lshen.mcbbs.huajiage.capability.CapabilityStandHandler;
-import com.lh_lshen.mcbbs.huajiage.client.model.ModelLordLu;
+import com.lh_lshen.mcbbs.huajiage.client.render.model.ModelLordLu;
 import com.lh_lshen.mcbbs.huajiage.item.ItemBlancedHelmet;
 import com.lh_lshen.mcbbs.huajiage.item.ItemLoader;
 import com.lh_lshen.mcbbs.huajiage.potion.PotionLoader;

@@ -1,4 +1,4 @@
-package com.lh_lshen.mcbbs.huajiage.entity.render;
+package com.lh_lshen.mcbbs.huajiage.client.render.entity;
 
 import com.lh_lshen.mcbbs.huajiage.entity.EntityHeroArrow;
 import com.lh_lshen.mcbbs.huajiage.entity.EntitySecondFoil;

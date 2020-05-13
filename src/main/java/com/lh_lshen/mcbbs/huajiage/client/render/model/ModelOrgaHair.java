@@ -5,7 +5,7 @@
 // - ZeuX
 
 
-package com.lh_lshen.mcbbs.huajiage.client.model;
+package com.lh_lshen.mcbbs.huajiage.client.render.model;
 
 import javax.annotation.Nonnull;
 

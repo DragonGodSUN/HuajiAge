@@ -1,9 +1,9 @@
-package com.lh_lshen.mcbbs.huajiage.entity.render;
+package com.lh_lshen.mcbbs.huajiage.client.render.entity;
 
-import com.lh_lshen.mcbbs.huajiage.entity.render.layers.LayerCharmDisplay;
-import com.lh_lshen.mcbbs.huajiage.entity.render.layers.LayerHeldTopItem;
-import com.lh_lshen.mcbbs.huajiage.entity.render.layers.LayerLordPower;
-import com.lh_lshen.mcbbs.huajiage.entity.render.layers.LayerStand;
+import com.lh_lshen.mcbbs.huajiage.client.render.layers.LayerCharmDisplay;
+import com.lh_lshen.mcbbs.huajiage.client.render.layers.LayerHeldTopItem;
+import com.lh_lshen.mcbbs.huajiage.client.render.layers.LayerLordPower;
+import com.lh_lshen.mcbbs.huajiage.client.render.layers.LayerStand;
 import com.lh_lshen.mcbbs.huajiage.item.ItemRoadRoller;
 import com.lh_lshen.mcbbs.huajiage.item.ItemSecondFoilEntity;
 

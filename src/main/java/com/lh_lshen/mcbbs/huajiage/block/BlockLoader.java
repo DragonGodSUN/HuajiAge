@@ -24,6 +24,7 @@ public class BlockLoader {
 	 public static Block huajiBlender = new HuajiBlender();
 	 public static Block huajiBomb = new HuajiBomb();
 	 public static Block huajiPolyFurnace = new HuajiPolyfurnace();
+	 public static Block blockNewLandMan = new BlockNewLandMan();
 
 	    public BlockLoader(FMLPreInitializationEvent event)
 	    {
@@ -33,6 +34,7 @@ public class BlockLoader {
 	        register(huajiBlender, "huajiBlender","huaji_blender");
 	        register(huajiBomb, "huajiBomb","huaji_bomb");
 	        register(huajiPolyFurnace, "huajiPolyFurnace","huaji_poly_furnace");
+	        registerBlock(blockNewLandMan,"new_land_man");
 	    }
 	    public void init(FMLInitializationEvent event)
 	    {
@@ -57,6 +59,13 @@ public class BlockLoader {
 	    	block.setTranslationKey(HuajiAge.MODID+"."+name1);
 	    	block.setRegistryName(name2);
 	    	ForgeRegistries.ITEMS.register(new ItemBlock(block).setRegistryName(block.getRegistryName()));
+	        ForgeRegistries.BLOCKS.register(block);
+	   
+	    }
+	    
+	    private static void registerBlock(Block block,String name)
+	    {
+	    	block.setRegistryName(name);
 	        ForgeRegistries.BLOCKS.register(block);
 	   
 	    }

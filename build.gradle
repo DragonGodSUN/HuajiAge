@@ -82,3 +82,10 @@ processResources {
         exclude 'mcmod.info'
     }
 }
+
+jar {
+    manifest {
+        // 打包 Access Transformers 文件
+        attributes 'FMLAT': 'huajiage_at.cfg'
+    }
+}

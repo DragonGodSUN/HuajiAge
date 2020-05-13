@@ -1,0 +1,11 @@
+{
+  "forge_marker": 1,
+  "defaults": {
+    "model": "huajiage:new_land_man"
+  },
+  "variants": {
+    "normal": [
+      {}
+    ]
+  }
+}

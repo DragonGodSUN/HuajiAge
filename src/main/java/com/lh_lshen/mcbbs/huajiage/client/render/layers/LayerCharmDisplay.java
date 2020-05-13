@@ -1,4 +1,4 @@
-package com.lh_lshen.mcbbs.huajiage.entity.render.layers;
+package com.lh_lshen.mcbbs.huajiage.client.render.layers;
 
 import com.lh_lshen.mcbbs.huajiage.capability.CapabilityStandHandler;
 import com.lh_lshen.mcbbs.huajiage.item.ItemLoader;

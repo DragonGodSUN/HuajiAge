@@ -9,7 +9,7 @@
 
 
 
-package com.lh_lshen.mcbbs.huajiage.client.model;
+package com.lh_lshen.mcbbs.huajiage.client.render.model;
 
 import net.minecraft.client.model.ModelBase;
 import net.minecraft.client.model.ModelRenderer;

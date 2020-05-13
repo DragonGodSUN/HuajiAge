@@ -4,7 +4,7 @@ import java.util.UUID;
 
 import com.lh_lshen.mcbbs.huajiage.capability.CapabilityStandHandler;
 import com.lh_lshen.mcbbs.huajiage.capability.StandHandler;
-import com.lh_lshen.mcbbs.huajiage.entity.render.layers.LayerStand;
+import com.lh_lshen.mcbbs.huajiage.client.render.layers.LayerStand;
 
 import io.netty.buffer.ByteBuf;
 import net.minecraft.client.Minecraft;

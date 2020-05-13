@@ -4,6 +4,8 @@ package com.lh_lshen.mcbbs.huajiage;
 import org.apache.logging.log4j.LogManager;
 import org.apache.logging.log4j.Logger;
 
+import com.lh_lshen.mcbbs.huajiage.api.HuajiAgeAPI;
+import com.lh_lshen.mcbbs.huajiage.api.HuajiAgeAPIImpl;
 import com.lh_lshen.mcbbs.huajiage.client.ClientProxy;
 import com.lh_lshen.mcbbs.huajiage.common.CommonProxy;
 
@@ -30,6 +32,9 @@ public class HuajiAge
     public static HuajiAge instance;
     public static final Logger LOGGER = LogManager.getLogger(MODID);
 
+    public HuajiAge() {
+    		HuajiAgeAPI.setInstance(new HuajiAgeAPIImpl());
+	}
     @EventHandler
     public void preInit(FMLPreInitializationEvent event)
     {

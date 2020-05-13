@@ -1,9 +1,9 @@
 package com.lh_lshen.mcbbs.huajiage.client;
 
-import com.lh_lshen.mcbbs.huajiage.entity.render.RenderPlayerLayers;
-import com.lh_lshen.mcbbs.huajiage.entity.render.layers.LayerCharmDisplay;
-import com.lh_lshen.mcbbs.huajiage.entity.render.layers.LayerLordPower;
-import com.lh_lshen.mcbbs.huajiage.entity.render.layers.LayerStand;
+import com.lh_lshen.mcbbs.huajiage.client.render.entity.RenderPlayerLayers;
+import com.lh_lshen.mcbbs.huajiage.client.render.layers.LayerCharmDisplay;
+import com.lh_lshen.mcbbs.huajiage.client.render.layers.LayerLordPower;
+import com.lh_lshen.mcbbs.huajiage.client.render.layers.LayerStand;
 
 import net.minecraft.client.Minecraft;
 import net.minecraft.client.renderer.entity.RenderPlayer;

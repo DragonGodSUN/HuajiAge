@@ -1,17 +1,18 @@
 package com.lh_lshen.mcbbs.huajiage.common;
 
 import com.lh_lshen.mcbbs.huajiage.block.BlockLoader;
+import com.lh_lshen.mcbbs.huajiage.block.mutiblock.MutiBlockLoader;
 import com.lh_lshen.mcbbs.huajiage.capability.CapabilityLoader;
 import com.lh_lshen.mcbbs.huajiage.capability.CapabilityStandChargeHandler;
 import com.lh_lshen.mcbbs.huajiage.capability.CapabilityStandHandler;
 import com.lh_lshen.mcbbs.huajiage.capability.CapabilityStandStageHandler;
 import com.lh_lshen.mcbbs.huajiage.client.KeyLoader;
 import com.lh_lshen.mcbbs.huajiage.client.LayerRenderLoader;
+import com.lh_lshen.mcbbs.huajiage.client.render.entity.RenderPlayerLayers;
+import com.lh_lshen.mcbbs.huajiage.client.render.layers.LayerHeldTopItem;
 import com.lh_lshen.mcbbs.huajiage.common.world.gen.OreGenEventHandler;
 import com.lh_lshen.mcbbs.huajiage.crativetab.CreativeTabLoader;
 import com.lh_lshen.mcbbs.huajiage.entity.EntityLoader;
-import com.lh_lshen.mcbbs.huajiage.entity.render.RenderPlayerLayers;
-import com.lh_lshen.mcbbs.huajiage.entity.render.layers.LayerHeldTopItem;
 import com.lh_lshen.mcbbs.huajiage.init.EventLoader;
 import com.lh_lshen.mcbbs.huajiage.init.LootNBTFuntion;
 import com.lh_lshen.mcbbs.huajiage.init.LootTablesLoader;
@@ -64,11 +65,12 @@ public class CommonProxy
 
     public void init(FMLInitializationEvent event)
     {
-       LootTablesLoader.registerLootTables();
-       LootFunctionManager.registerFunction(new LootNBTFuntion.Serializer());
-    	new CraftingLoader();
-    	new EventLoader();
-        new OreGenEventHandler();
+    	LootTablesLoader.registerLootTables();
+       	LootFunctionManager.registerFunction(new LootNBTFuntion.Serializer());
+	   	new MutiBlockLoader();
+		new CraftingLoader();
+		new EventLoader();
+	    new OreGenEventHandler();
         
 //        for (RenderPlayer playerRender : Minecraft.getMinecraft().getRenderManager().getSkinMap().values()) {
 //        	new RenderHuajiPlayer(playerRender.getRenderManager()); 

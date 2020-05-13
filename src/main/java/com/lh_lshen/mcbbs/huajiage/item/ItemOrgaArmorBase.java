@@ -9,9 +9,9 @@ import javax.annotation.Nonnull;
 
 import com.google.common.collect.Multimap;
 import com.lh_lshen.mcbbs.huajiage.HuajiAge;
-import com.lh_lshen.mcbbs.huajiage.client.model.IModelRegister;
-import com.lh_lshen.mcbbs.huajiage.client.model.ModelBlanceHelmet;
-import com.lh_lshen.mcbbs.huajiage.client.model.ModelOrgaHair;
+import com.lh_lshen.mcbbs.huajiage.client.render.model.IModelRegister;
+import com.lh_lshen.mcbbs.huajiage.client.render.model.ModelBlanceHelmet;
+import com.lh_lshen.mcbbs.huajiage.client.render.model.ModelOrgaHair;
 import com.lh_lshen.mcbbs.huajiage.crativetab.CreativeTabLoader;
 
 import net.minecraft.client.Minecraft;

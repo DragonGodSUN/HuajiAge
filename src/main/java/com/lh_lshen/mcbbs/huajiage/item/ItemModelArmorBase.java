@@ -4,7 +4,7 @@ import java.util.EnumMap;
 import java.util.Map;
 
 import com.lh_lshen.mcbbs.huajiage.HuajiAge;
-import com.lh_lshen.mcbbs.huajiage.client.model.ModelBlanceHelmet;
+import com.lh_lshen.mcbbs.huajiage.client.render.model.ModelBlanceHelmet;
 import com.lh_lshen.mcbbs.huajiage.crativetab.CreativeTabLoader;
 
 import net.minecraft.client.model.ModelBase;

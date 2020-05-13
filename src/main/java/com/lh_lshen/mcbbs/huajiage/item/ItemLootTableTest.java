@@ -1,17 +1,14 @@
 package com.lh_lshen.mcbbs.huajiage.item;
 
 import java.util.List;
-import java.util.UUID;
 
+import com.lh_lshen.mcbbs.huajiage.api.HuajiAgeAPI;
+import com.lh_lshen.mcbbs.huajiage.api.IMultiBlock;
 import com.lh_lshen.mcbbs.huajiage.capability.CapabilityStandHandler;
 import com.lh_lshen.mcbbs.huajiage.capability.StandHandler;
 import com.lh_lshen.mcbbs.huajiage.capability.StandStageHandler;
-import com.lh_lshen.mcbbs.huajiage.data.StandUserWorldSavedData;
-import com.lh_lshen.mcbbs.huajiage.entity.EntityEmeraldBullet;
 import com.lh_lshen.mcbbs.huajiage.init.HuajiConstant;
 import com.lh_lshen.mcbbs.huajiage.init.LootTablesLoader;
-import com.lh_lshen.mcbbs.huajiage.init.events.EventStand;
-import com.lh_lshen.mcbbs.huajiage.init.events.EventTimeStop;
 import com.lh_lshen.mcbbs.huajiage.init.playsound.SoundLoader;
 import com.lh_lshen.mcbbs.huajiage.potion.PotionLoader;
 import com.lh_lshen.mcbbs.huajiage.stand.EnumStandtype;
@@ -20,28 +17,25 @@ import com.lh_lshen.mcbbs.huajiage.stand.helper.instance.StandHieropantGreen;
 import com.lh_lshen.mcbbs.huajiage.stand.helper.skill.TimeStopHelper;
 import com.lh_lshen.mcbbs.huajiage.util.NBTHelper;
 
-import net.minecraft.client.resources.I18n;
-import net.minecraft.entity.EntityLivingBase;
+import net.minecraft.block.state.IBlockState;
 import net.minecraft.entity.player.EntityPlayer;
 import net.minecraft.init.MobEffects;
-import net.minecraft.init.SoundEvents;
-import net.minecraft.inventory.EntityEquipmentSlot;
 import net.minecraft.item.Item;
 import net.minecraft.item.ItemStack;
 import net.minecraft.nbt.NBTTagCompound;
 import net.minecraft.potion.PotionEffect;
 import net.minecraft.util.ActionResult;
 import net.minecraft.util.EnumActionResult;
+import net.minecraft.util.EnumFacing;
 import net.minecraft.util.EnumHand;
+import net.minecraft.util.math.BlockPos;
 import net.minecraft.util.text.TextComponentString;
 import net.minecraft.util.text.TextComponentTranslation;
-import net.minecraft.util.text.TextFormatting;
 import net.minecraft.world.World;
 import net.minecraft.world.WorldServer;
+import net.minecraft.world.gen.structure.template.Template;
 import net.minecraft.world.storage.loot.LootContext;
 import net.minecraft.world.storage.loot.LootTable;
-import net.minecraft.world.storage.loot.LootTableList;
-import net.minecraftforge.event.LootTableLoadEvent;
 import net.minecraftforge.items.ItemHandlerHelper;
 
 public class ItemLootTableTest extends Item {
@@ -113,10 +107,7 @@ public class ItemLootTableTest extends Item {
 			}
 
 			playerIn.inventoryContainer.detectAndSendChanges();
-			ItemStack stackb= playerIn.getItemStackFromSlot(EntityEquipmentSlot.HEAD);
-			if(stackb.getItem() instanceof ItemBlancedHelmet&&!stackb.getTagCompound().hasKey("lord")) {
-				NBTHelper.getTagCompoundSafe(stackb).setBoolean("lord",true);
-				}
+
 			if (!(itemStacks.size() > 0)) {
 
 				playerIn.sendMessage(new TextComponentTranslation("message.huajiage:player_received_loot.no_loot"));
@@ -208,6 +199,7 @@ public class ItemLootTableTest extends Item {
 		return new ActionResult<>(EnumActionResult.SUCCESS, playerIn.getHeldItem(hand));
 
 	}
+
 
 }
 	

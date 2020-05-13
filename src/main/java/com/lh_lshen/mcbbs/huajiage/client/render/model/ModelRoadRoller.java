@@ -9,7 +9,7 @@
 
 
 
-package com.lh_lshen.mcbbs.huajiage.client.model;
+package com.lh_lshen.mcbbs.huajiage.client.render.model;
 
 import com.lh_lshen.mcbbs.huajiage.item.ItemLoader;
 

@@ -11,6 +11,7 @@ public class TileEntityLoader {
 	    {
 	        registerTileEntity(TileEntityHuajiBlender.class, "HuajiBlader");
 	        registerTileEntity(TileEntityHuajiPolyfurnace.class, "HuajiPolyfurnace");
+	        registerTileEntity(TileEntityNewLandMan.class, "NewLandMan");
 	    }
 
 	    public void registerTileEntity(Class<? extends TileEntity> tileEntityClass, String id)

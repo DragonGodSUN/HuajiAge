@@ -1,4 +1,4 @@
-package com.lh_lshen.mcbbs.huajiage.client.model;
+package com.lh_lshen.mcbbs.huajiage.client.render.model;
 // Made with Blockbench
 // Paste this code into your mod.
 // Make sure to generate all required imports

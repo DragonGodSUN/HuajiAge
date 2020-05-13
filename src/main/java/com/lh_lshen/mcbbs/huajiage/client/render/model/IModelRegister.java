@@ -1,4 +1,4 @@
-package com.lh_lshen.mcbbs.huajiage.client.model;
+package com.lh_lshen.mcbbs.huajiage.client.render.model;
 
 import net.minecraftforge.fml.relauncher.Side;
 import net.minecraftforge.fml.relauncher.SideOnly;

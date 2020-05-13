@@ -1,8 +1,8 @@
-package com.lh_lshen.mcbbs.huajiage.entity.render;
+package com.lh_lshen.mcbbs.huajiage.client.render.entity;
 
 import com.lh_lshen.mcbbs.huajiage.HuajiAge;
-import com.lh_lshen.mcbbs.huajiage.client.model.ModelEmeraldBullet;
-import com.lh_lshen.mcbbs.huajiage.client.model.ModelMuliKnife;
+import com.lh_lshen.mcbbs.huajiage.client.render.model.ModelEmeraldBullet;
+import com.lh_lshen.mcbbs.huajiage.client.render.model.ModelMuliKnife;
 import com.lh_lshen.mcbbs.huajiage.entity.EntityEmeraldBullet;
 import com.lh_lshen.mcbbs.huajiage.entity.EntityMultiKnife;
 

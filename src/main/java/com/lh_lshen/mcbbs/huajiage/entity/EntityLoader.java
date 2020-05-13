@@ -1,13 +1,13 @@
 package com.lh_lshen.mcbbs.huajiage.entity;
 
 import com.lh_lshen.mcbbs.huajiage.HuajiAge;
-import com.lh_lshen.mcbbs.huajiage.entity.render.RenderEmeraldBullet;
-import com.lh_lshen.mcbbs.huajiage.entity.render.RenderFivePower;
-import com.lh_lshen.mcbbs.huajiage.entity.render.RenderHeroArrow;
-import com.lh_lshen.mcbbs.huajiage.entity.render.RenderMultiKnife;
-import com.lh_lshen.mcbbs.huajiage.entity.render.RenderRoadRoller;
-import com.lh_lshen.mcbbs.huajiage.entity.render.RenderSecondFoil;
-import com.lh_lshen.mcbbs.huajiage.entity.render.RenderStandBase;
+import com.lh_lshen.mcbbs.huajiage.client.render.entity.RenderEmeraldBullet;
+import com.lh_lshen.mcbbs.huajiage.client.render.entity.RenderFivePower;
+import com.lh_lshen.mcbbs.huajiage.client.render.entity.RenderHeroArrow;
+import com.lh_lshen.mcbbs.huajiage.client.render.entity.RenderMultiKnife;
+import com.lh_lshen.mcbbs.huajiage.client.render.entity.RenderRoadRoller;
+import com.lh_lshen.mcbbs.huajiage.client.render.entity.RenderSecondFoil;
+import com.lh_lshen.mcbbs.huajiage.client.render.entity.RenderStandBase;
 import com.lh_lshen.mcbbs.huajiage.stand.entity.EntityStandBase;
 
 import net.minecraft.entity.Entity;

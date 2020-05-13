@@ -1,7 +1,7 @@
-package com.lh_lshen.mcbbs.huajiage.entity.render;
+package com.lh_lshen.mcbbs.huajiage.client.render.entity;
 
 import com.lh_lshen.mcbbs.huajiage.HuajiAge;
-import com.lh_lshen.mcbbs.huajiage.client.model.ModelMuliKnife;
+import com.lh_lshen.mcbbs.huajiage.client.render.model.ModelMuliKnife;
 import com.lh_lshen.mcbbs.huajiage.entity.EntityMultiKnife;
 
 import net.minecraft.client.Minecraft;
