@@ -24,7 +24,8 @@ import net.minecraft.util.math.RayTraceResult;
 import net.minecraft.world.World;
 import net.minecraftforge.fml.relauncher.Side;
 import net.minecraftforge.fml.relauncher.SideOnly;
-
+//A test structure leaned from @Tartaric_Acid and Sonwnee, follow the MIT License
+//Learn More : https://github.com/TartaricAcid/TouhouLittleMaid
 public class BlockNewLandMan extends Block{
 
 	public BlockNewLandMan() {
