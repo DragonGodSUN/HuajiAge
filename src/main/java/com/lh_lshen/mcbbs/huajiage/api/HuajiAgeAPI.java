@@ -8,8 +8,16 @@ public class HuajiAgeAPI {
 	
 	 public static void setInstance(IHuajiAgeAPI instance) {
 	        INSTANCE = instance;
-	    }
+    }
+	 
+	public static void registerStand(IStandPower stand) {
+        INSTANCE.registerStand(stand);
+    }
 
+    public static List<IStandPower> getStandList() {
+        return INSTANCE.getStandList();
+    }
+	 
     public static void registerMultiBlock(IMultiBlock multiBlock) {
         INSTANCE.registerMultiBlock(multiBlock);
     }
@@ -23,6 +31,10 @@ public class HuajiAgeAPI {
 		 void registerMultiBlock(IMultiBlock multiBlock);
 
          List<IMultiBlock> getMultiBlockList();
+         
+         void registerStand(IStandPower stand);
+         
+         List<IStandPower> getStandList();
          
 	}
 	

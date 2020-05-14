@@ -25,6 +25,7 @@ import com.lh_lshen.mcbbs.huajiage.item.ItemSecondFoilEntity;
 import com.lh_lshen.mcbbs.huajiage.network.HuajiAgeNetWorkHandler;
 import com.lh_lshen.mcbbs.huajiage.network.StandNetWorkHandler;
 import com.lh_lshen.mcbbs.huajiage.potion.PotionLoader;
+import com.lh_lshen.mcbbs.huajiage.stand.StandLoader;
 import com.lh_lshen.mcbbs.huajiage.tileentity.TileEntityLoader;
 
 import net.minecraft.client.Minecraft;
@@ -67,6 +68,7 @@ public class CommonProxy
     {
     	LootTablesLoader.registerLootTables();
        	LootFunctionManager.registerFunction(new LootNBTFuntion.Serializer());
+       	new StandLoader();
 	   	new MutiBlockLoader();
 		new CraftingLoader();
 		new EventLoader();

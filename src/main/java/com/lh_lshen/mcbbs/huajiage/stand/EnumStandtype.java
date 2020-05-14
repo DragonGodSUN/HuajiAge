@@ -1,8 +1,8 @@
 package com.lh_lshen.mcbbs.huajiage.stand;
 
 import com.lh_lshen.mcbbs.huajiage.HuajiAge;
+import com.lh_lshen.mcbbs.huajiage.api.IStandPower;
 import com.lh_lshen.mcbbs.huajiage.init.HuajiConstant;
-import com.lh_lshen.mcbbs.huajiage.stand.helper.instance.IStandPower;
 import com.lh_lshen.mcbbs.huajiage.stand.helper.instance.StandHieropantGreen;
 import com.lh_lshen.mcbbs.huajiage.stand.helper.instance.StandStarPlatinum;
 import com.lh_lshen.mcbbs.huajiage.stand.helper.instance.StandTheWorld;

@@ -4,6 +4,7 @@ import java.util.List;
 import java.util.Random;
 
 import com.jcraft.jorbis.Block;
+import com.lh_lshen.mcbbs.huajiage.api.IStandPower;
 import com.lh_lshen.mcbbs.huajiage.client.model.stand.ModelStandBase;
 import com.lh_lshen.mcbbs.huajiage.entity.EntityEmeraldBullet;
 import com.lh_lshen.mcbbs.huajiage.init.HuajiConstant;
@@ -11,7 +12,6 @@ import com.lh_lshen.mcbbs.huajiage.init.playsound.HuajiSoundPlayer;
 import com.lh_lshen.mcbbs.huajiage.init.playsound.SoundLoader;
 import com.lh_lshen.mcbbs.huajiage.init.playsound.SoundStand;
 import com.lh_lshen.mcbbs.huajiage.network.StandNetWorkHandler;
-import com.lh_lshen.mcbbs.huajiage.stand.EnumStandSkillType;
 import com.lh_lshen.mcbbs.huajiage.stand.EnumStandtype;
 import com.lh_lshen.mcbbs.huajiage.stand.StandClientUtil;
 import com.lh_lshen.mcbbs.huajiage.stand.StandUtil;
@@ -43,7 +43,15 @@ import net.minecraft.util.math.Vec3d;
 import net.minecraft.util.text.TextComponentTranslation;
 import net.minecraft.world.World;
 
-public class StandHieropantGreen implements IStandPower {
+public class StandHieropantGreen extends StandBase {
+
+	public StandHieropantGreen() {
+	}
+	
+	public StandHieropantGreen(String name, float speed, float damage, int duration, float distance, int cost,
+			String texPath, String localName) {
+		super(name, speed, damage, duration, distance, cost, texPath, localName);
+	}
 
 	@Override
 	public void doStandPower(EntityLivingBase user) {
