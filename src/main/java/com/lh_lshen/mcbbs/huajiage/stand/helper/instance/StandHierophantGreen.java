@@ -14,6 +14,7 @@ import com.lh_lshen.mcbbs.huajiage.init.playsound.SoundStand;
 import com.lh_lshen.mcbbs.huajiage.network.StandNetWorkHandler;
 import com.lh_lshen.mcbbs.huajiage.stand.EnumStandtype;
 import com.lh_lshen.mcbbs.huajiage.stand.StandClientUtil;
+import com.lh_lshen.mcbbs.huajiage.stand.StandLoader;
 import com.lh_lshen.mcbbs.huajiage.stand.StandUtil;
 import com.lh_lshen.mcbbs.huajiage.stand.messages.MessageDoStandCapabilityServer;
 import com.lh_lshen.mcbbs.huajiage.stand.messages.MessageDoStandPowerClient;
@@ -43,19 +44,19 @@ import net.minecraft.util.math.Vec3d;
 import net.minecraft.util.text.TextComponentTranslation;
 import net.minecraft.world.World;
 
-public class StandHieropantGreen extends StandBase {
+public class StandHierophantGreen extends StandBase {
 
-	public StandHieropantGreen() {
+	public StandHierophantGreen() {
 	}
 	
-	public StandHieropantGreen(String name, float speed, float damage, int duration, float distance, int cost,
+	public StandHierophantGreen(String name, float speed, float damage, int duration, float distance, int cost,
 			String texPath, String localName) {
 		super(name, speed, damage, duration, distance, cost, texPath, localName);
 	}
 
 	@Override
 	public void doStandPower(EntityLivingBase user) {
-		EnumStandtype type = StandUtil.getType(user);
+		StandBase type = StandUtil.getType(user);
 		int stage = StandUtil.getStandStage(user);
 		if(type == null) {
 			return;
@@ -74,7 +75,7 @@ public class StandHieropantGreen extends StandBase {
 			float r =(float) Math.random()*360;
 			bullet.setRotationRandom(r);
 			bullet.setLife(10*20);
-			bullet.setDamage(stage>0?EnumStandtype.HIEROPHANT_GREEN.getDamage()+2:EnumStandtype.HIEROPHANT_GREEN.getDamage());
+			bullet.setDamage(stage>0?StandLoader.HIEROPHANT_GREEN.getDamage()+2:StandLoader.HIEROPHANT_GREEN.getDamage());
 			bullet.shoot(user, user.rotationPitch, user.rotationYaw, 0, 1.5f, 0.2f);
 			user.getEntityWorld().spawnEntity(bullet);
 			}
@@ -86,7 +87,7 @@ public class StandHieropantGreen extends StandBase {
 	public void doStandCapability(EntityLivingBase user) {
 		Vec3d look = user.getLookVec();
 		Vec3d dist = new Vec3d(user.posX+5*look.x, user.posY+5*look.y, user.posZ+5*look.z);
-		List<EntityLivingBase> entityCllection = user.getEntityWorld().getEntitiesWithinAABB(EntityLivingBase.class, user.getEntityBoundingBox().grow(EnumStandtype.HIEROPHANT_GREEN.getDistance()));
+		List<EntityLivingBase> entityCllection = user.getEntityWorld().getEntitiesWithinAABB(EntityLivingBase.class, user.getEntityBoundingBox().grow(StandLoader.HIEROPHANT_GREEN.getDistance()));
 		if(entityCllection.size()>0) {
 		for(EntityLivingBase i:entityCllection) {
 			if(i!=user) {
@@ -107,7 +108,7 @@ public class StandHieropantGreen extends StandBase {
 		}
 		
 		if(user instanceof EntityPlayer) {
-			ServerUtil.sendPacketToNearbyPlayersStand(user, new MessageDoStandPowerClient((EntityPlayer) user,EnumStandtype.HIEROPHANT_GREEN.getName()));
+			ServerUtil.sendPacketToNearbyPlayersStand(user, new MessageDoStandPowerClient((EntityPlayer) user,StandLoader.HIEROPHANT_GREEN.getName()));
 			}
 	}
 

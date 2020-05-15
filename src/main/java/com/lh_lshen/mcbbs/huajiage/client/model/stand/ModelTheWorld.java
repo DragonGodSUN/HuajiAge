@@ -6,6 +6,7 @@
 package com.lh_lshen.mcbbs.huajiage.client.model.stand;
 
 import com.lh_lshen.mcbbs.huajiage.stand.EnumStandtype;
+import com.lh_lshen.mcbbs.huajiage.stand.StandLoader;
 
 import net.minecraft.client.Minecraft;
 import net.minecraft.client.model.ModelBase;
@@ -371,7 +372,7 @@ public void effect(Entity entityIn, float limbSwing, float limbSwingAmount, floa
 public void extraEffect(Entity entityIn, float limbSwing, float limbSwingAmount,
 		float ageInTicks, float netHeadYaw, float headPitch, float scale) {
 	ModelStandBase model = new ModelTheWorld();
-	model.setRotationAngles(limbSwing, limbSwingAmount, ageInTicks, netHeadYaw, headPitch, scale, entityIn, 1 ,EnumStandtype.THE_WORLD.getSpeed());
+	model.setRotationAngles(limbSwing, limbSwingAmount, ageInTicks, netHeadYaw, headPitch, scale, entityIn, 1 ,StandLoader.THE_WORLD.getSpeed());
 	model.doHandRender(0, 0, 0,(float)(scale*1.3), 0.5f);
 	
 }

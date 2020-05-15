@@ -10,6 +10,9 @@ import com.lh_lshen.mcbbs.huajiage.init.playsound.HuajiSoundPlayer;
 import com.lh_lshen.mcbbs.huajiage.init.playsound.SoundLoader;
 import com.lh_lshen.mcbbs.huajiage.potion.PotionLoader;
 import com.lh_lshen.mcbbs.huajiage.stand.EnumStandtype;
+import com.lh_lshen.mcbbs.huajiage.stand.StandLoader;
+import com.lh_lshen.mcbbs.huajiage.stand.StandUtil;
+import com.lh_lshen.mcbbs.huajiage.stand.helper.instance.StandBase;
 
 import net.minecraft.client.Minecraft;
 import net.minecraft.client.audio.MusicTicker;
@@ -42,11 +45,11 @@ public class ItemArrowStand extends Item {
 	@Override
 	public ActionResult<ItemStack> onItemRightClick(World worldIn, EntityPlayer playerIn, EnumHand handIn) {
 	 if(!worldIn.isRemote){
-	 if(playerIn.getCapability(CapabilityStandHandler.STAND_TYPE, null).getStand().equals(EnumStandtype.EMPTY)) {
+	 if(playerIn.getCapability(CapabilityStandHandler.STAND_TYPE, null).getStand().equals(StandLoader.EMPTY)) {
 		 
 	   double chance = Math.random();
 	   int standNumber = (int) MathHelper.nextFloat(new Random(), 0, 100);
-	   EnumStandtype type = EnumStandtype.getTypeWithIndex(standNumber);
+	   StandBase type = StandUtil.getTypeWithIndex(standNumber);
 	   if(chance>=ConfigHuaji.Stands.chanceStandFail) {
 		   if(type !=null) {
 			   playerIn.getCapability(CapabilityStandHandler.STAND_TYPE, null).setStand(type.getName());

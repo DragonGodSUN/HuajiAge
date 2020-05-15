@@ -10,6 +10,7 @@ import com.lh_lshen.mcbbs.huajiage.init.playsound.HuajiSoundPlayer;
 import com.lh_lshen.mcbbs.huajiage.init.playsound.SoundLoader;
 import com.lh_lshen.mcbbs.huajiage.network.messages.MessageParticleGenerator;
 import com.lh_lshen.mcbbs.huajiage.stand.EnumStandtype;
+import com.lh_lshen.mcbbs.huajiage.stand.StandLoader;
 import com.lh_lshen.mcbbs.huajiage.stand.StandUtil;
 import com.lh_lshen.mcbbs.huajiage.stand.helper.skill.TimeStopHelper;
 import com.lh_lshen.mcbbs.huajiage.stand.messages.MessageDioHitClient;
@@ -96,11 +97,11 @@ public class EventTimeStop {
 	  if(NBTHelper.getEntityInteger(player,HuajiConstant.Tags.THE_WORLD)>0) {
 		  player.heal(3f);
 		  boolean star =false ;
-		  if(player.getCapability(CapabilityStandHandler.STAND_TYPE, null).getStand().equals(EnumStandtype.STAR_PLATINUM.getName()))
+		  if(player.getCapability(CapabilityStandHandler.STAND_TYPE, null).getStand().equals(StandLoader.STAR_PLATINUM.getName()))
 		  {
 			  star = true;
 		  }
-		  StandUtil.standPower(player);
+		  StandUtil.standBuff(player);
 		  if(!star) {
 	 	      MessageDioHitClient msg1 = new MessageDioHitClient(targetPosition, false); 
 	 	      MessageDioHitClient msg2 =new MessageDioHitClient(targetPosition, true); 

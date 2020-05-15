@@ -3,13 +3,14 @@ package com.lh_lshen.mcbbs.huajiage.capability;
 import java.util.concurrent.Callable;
 
 import com.lh_lshen.mcbbs.huajiage.stand.EnumStandtype;
+import com.lh_lshen.mcbbs.huajiage.stand.StandLoader;
 
 import net.minecraft.util.EnumParticleTypes;
 import net.minecraft.util.math.MathHelper;
 
 public class StandHandler {
 	 static StandHandler.Factory FACTORY = new StandHandler.Factory();
-	    private String stand = EnumStandtype.EMPTY;
+	    private String stand = StandLoader.EMPTY;
 	    private boolean dirty;
 	    
 	    public void setStand(String stand) {

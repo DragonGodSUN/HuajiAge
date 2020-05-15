@@ -9,8 +9,10 @@ import com.lh_lshen.mcbbs.huajiage.capability.CapabilityStandStageHandler;
 import com.lh_lshen.mcbbs.huajiage.capability.StandHandler;
 import com.lh_lshen.mcbbs.huajiage.capability.StandStageHandler;
 import com.lh_lshen.mcbbs.huajiage.crativetab.CreativeTabLoader;
-import com.lh_lshen.mcbbs.huajiage.data.StandUserWorldSavedData;
 import com.lh_lshen.mcbbs.huajiage.stand.EnumStandtype;
+import com.lh_lshen.mcbbs.huajiage.stand.StandLoader;
+import com.lh_lshen.mcbbs.huajiage.stand.StandUtil;
+import com.lh_lshen.mcbbs.huajiage.stand.helper.instance.StandBase;
 import com.lh_lshen.mcbbs.huajiage.util.NBTHelper;
 
 import net.minecraft.client.resources.I18n;
@@ -34,7 +36,7 @@ import net.minecraftforge.fml.relauncher.Side;
 import net.minecraftforge.fml.relauncher.SideOnly;
 
 public class ItemDiscStand extends Item {
-	private static final String DEFAULT_STAND_ID =EnumStandtype.EMPTY;
+	private static final String DEFAULT_STAND_ID ="empty";
 
 	public ItemDiscStand()
 	{
@@ -100,7 +102,7 @@ public class ItemDiscStand extends Item {
 	@SideOnly(Side.CLIENT)
 	public void getSubItems(CreativeTabs tab, NonNullList<ItemStack> items) {
 		if (this.isInCreativeTab(tab)) {
-            for (EnumStandtype stand : EnumStandtype.values()) {
+            for (StandBase stand : StandLoader.STAND_LIST) {
             	String type = stand.getName();
             	items.add(getItemData(new ItemStack(this),type,0));
             	items.add(getItemData(new ItemStack(this),type,1));
@@ -112,7 +114,7 @@ public class ItemDiscStand extends Item {
 		super.addInformation(stack, worldIn, tooltip, flagIn);
 		String stand = getStandId(stack);
 		int stage = getStandStage(stack);
-		tooltip.add(I18n.format("item.huajiage.disc.tooltip.1")+I18n.format(EnumStandtype.getLocalName(stand)));
+		tooltip.add(I18n.format("item.huajiage.disc.tooltip.1")+I18n.format(StandUtil.getLocalName(stand)));
 		tooltip.add(I18n.format("item.huajiage.disc.tooltip.2")+stage);
 
 	}
@@ -120,7 +122,7 @@ public class ItemDiscStand extends Item {
 	@Override
 	public String getItemStackDisplayName(ItemStack stack) {
 		String stand = getStandId(stack);
-		return super.getItemStackDisplayName(stack)+I18n.format(EnumStandtype.getLocalName(stand));
+		return super.getItemStackDisplayName(stack)+I18n.format(StandUtil.getLocalName(stand));
 	}
 	@Override
 	public ActionResult<ItemStack> onItemRightClick(World worldIn, EntityPlayer playerIn, EnumHand handIn) {

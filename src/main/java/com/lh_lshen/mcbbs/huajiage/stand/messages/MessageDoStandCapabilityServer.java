@@ -7,6 +7,7 @@ import com.lh_lshen.mcbbs.huajiage.capability.CapabilityStandHandler;
 import com.lh_lshen.mcbbs.huajiage.item.ItemHeroBow;
 import com.lh_lshen.mcbbs.huajiage.item.ItemLoader;
 import com.lh_lshen.mcbbs.huajiage.stand.EnumStandtype;
+import com.lh_lshen.mcbbs.huajiage.stand.StandLoader;
 import com.lh_lshen.mcbbs.huajiage.stand.StandUtil;
 import com.lh_lshen.mcbbs.huajiage.stand.helper.skill.TimeStopHelper;
 import com.lh_lshen.mcbbs.huajiage.util.ServerUtil;
@@ -43,10 +44,9 @@ public class MessageDoStandCapabilityServer implements IMessage {
         	FMLCommonHandler.instance().getWorldThread(ctx.netHandler).addScheduledTask(() ->{
         		EntityPlayerMP player = ctx.getServerHandler().player;
         		String stand = player.getCapability(CapabilityStandHandler.STAND_TYPE, null).getStand();
-				if(!stand.equals(EnumStandtype.EMPTY))
+				if(!stand.equals(StandLoader.EMPTY))
 				{
-					IStandPower power = EnumStandtype.getType(stand).getStandPower();
-					power.doStandCapability(player);
+					StandLoader.getStand(stand).doStandCapability(player);
 				}
 				});
         	}

@@ -4,6 +4,7 @@ import com.lh_lshen.mcbbs.huajiage.capability.CapabilityLoader;
 import com.lh_lshen.mcbbs.huajiage.capability.IExposedData;
 import com.lh_lshen.mcbbs.huajiage.stand.EnumStandtype;
 import com.lh_lshen.mcbbs.huajiage.stand.StandUtil;
+import com.lh_lshen.mcbbs.huajiage.stand.helper.instance.StandBase;
 
 import io.netty.buffer.ByteBuf;
 import net.minecraft.client.Minecraft;
@@ -64,7 +65,7 @@ public class SyncExposedStandDataMessage implements IMessage {
                 Minecraft.getMinecraft().addScheduledTask(() -> {
                     EntityPlayer player = Minecraft.getMinecraft().world.getPlayerEntityByName(message.getStandUser());
                     EntityPlayer user = Minecraft.getMinecraft().player;
-                    EnumStandtype stand = StandUtil.getType(user);
+                    StandBase stand = StandUtil.getType(user);
                     NBTTagCompound nbt = message.nbt;
                     if (player == null ) {
                         return;

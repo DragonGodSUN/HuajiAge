@@ -24,7 +24,9 @@ import com.lh_lshen.mcbbs.huajiage.network.messages.MessageParticleGenerator;
 import com.lh_lshen.mcbbs.huajiage.potion.PotionLoader;
 import com.lh_lshen.mcbbs.huajiage.stand.EnumStandtype;
 import com.lh_lshen.mcbbs.huajiage.stand.StandClientUtil;
+import com.lh_lshen.mcbbs.huajiage.stand.StandLoader;
 import com.lh_lshen.mcbbs.huajiage.stand.StandUtil;
+import com.lh_lshen.mcbbs.huajiage.stand.helper.instance.StandBase;
 import com.lh_lshen.mcbbs.huajiage.stand.messages.SyncExposedStandDataMessage;
 import com.lh_lshen.mcbbs.huajiage.util.MotionHelper;
 import com.lh_lshen.mcbbs.huajiage.util.NBTHelper;
@@ -112,9 +114,9 @@ public class EventStand {
 			  return;
 		  }
 		  if(stand_owner.isPotionActive(PotionLoader.potionStand)) {
-			  EnumStandtype type = StandUtil.getType(stand_owner);
+			  StandBase type = StandUtil.getType(stand_owner);
 			  if(type != null) {
-			  type.getStandPower().doStandPower(stand_owner);
+			  type.doStandPower(stand_owner);
 			  }
 		  }
  	  }
@@ -151,7 +153,7 @@ public class EventStand {
 	  {
 		 EntityLivingBase stand_owner =evt.getEntityLiving();
 		 IExposedData data = stand_owner.getCapability(CapabilityLoader.EXPOSED_DATA, null);
-		 if(data!=null && !data.getStand().equals(EnumStandtype.EMPTY)) {
+		 if(data!=null && !data.getStand().equals(StandLoader.EMPTY)) {
 			 boolean flag = data.isTriggered();
 
 			 if(stand_owner.isPotionActive(PotionLoader.potionStand)&&stand_owner.getActivePotionEffect(PotionLoader.potionStand).getDuration()<=5) {
@@ -173,12 +175,12 @@ public class EventStand {
 	  public static void onBreaking(PlayerEvent.BreakSpeed evt)
 	  {
 		  if(ConfigHuaji.Stands.allowTheWorldDestory) {
-			  EnumStandtype type = StandUtil.getType(evt.getEntityLiving());
+			  StandBase type = StandUtil.getType(evt.getEntityLiving());
 				if(type == null) {
 					return;
 				}
 			  if(NBTHelper.getEntityInteger(evt.getEntityLiving(), HuajiConstant.Tags.THE_WORLD)>0) {
-				StandUtil.standPower(evt.getEntityLiving());
+				StandUtil.standBuff(evt.getEntityLiving());
 			  }
 			  float op =evt.getOriginalSpeed();
 			  if(evt.getEntityPlayer().isPotionActive(PotionLoader.potionStand)) {

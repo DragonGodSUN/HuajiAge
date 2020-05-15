@@ -2,7 +2,9 @@ package com.lh_lshen.mcbbs.huajiage.stand.messages;
 
 import com.lh_lshen.mcbbs.huajiage.api.IStandPower;
 import com.lh_lshen.mcbbs.huajiage.stand.EnumStandtype;
+import com.lh_lshen.mcbbs.huajiage.stand.StandLoader;
 import com.lh_lshen.mcbbs.huajiage.stand.StandUtil;
+import com.lh_lshen.mcbbs.huajiage.stand.helper.instance.StandBase;
 import com.lh_lshen.mcbbs.huajiage.stand.helper.skill.TimeStopHelper;
 
 import io.netty.buffer.ByteBuf;
@@ -55,7 +57,7 @@ public static class Handler implements IMessageHandler<MessageDoStandPowerClient
 	    Minecraft minecraft = Minecraft.getMinecraft();
 	    final WorldClient worldClient = minecraft.world;
 	    EntityPlayer player = worldClient.getPlayerEntityByName(message.playerName);
-	    EnumStandtype stand = EnumStandtype.getType(message.standName);
+	    StandBase stand = StandLoader.getStand(message.standName);
 	    minecraft.addScheduledTask(()->{ 
 	    	if(player!=null) {
 	    		if(stand!=null) {
@@ -66,9 +68,8 @@ public static class Handler implements IMessageHandler<MessageDoStandPowerClient
 	  	}
 	    return null;
 	  }
-	  public void processStandClient(WorldClient world , EntityLivingBase entity ,EnumStandtype stand) {
-		  IStandPower power = stand.getStandPower();
-		  power.doStandCapabilityClient(world, entity);
+	  public void processStandClient(WorldClient world , EntityLivingBase entity ,StandBase stand) {
+		  stand.doStandCapabilityClient(world, entity);
 		 
 	  }
 	}

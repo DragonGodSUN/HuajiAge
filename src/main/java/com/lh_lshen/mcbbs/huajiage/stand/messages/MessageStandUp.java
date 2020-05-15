@@ -12,7 +12,9 @@ import com.lh_lshen.mcbbs.huajiage.item.ItemLoader;
 import com.lh_lshen.mcbbs.huajiage.network.HuajiAgeNetWorkHandler;
 import com.lh_lshen.mcbbs.huajiage.potion.PotionLoader;
 import com.lh_lshen.mcbbs.huajiage.stand.EnumStandtype;
+import com.lh_lshen.mcbbs.huajiage.stand.StandLoader;
 import com.lh_lshen.mcbbs.huajiage.stand.entity.EntityStandBase;
+import com.lh_lshen.mcbbs.huajiage.stand.helper.instance.StandBase;
 import com.lh_lshen.mcbbs.huajiage.util.ServerUtil;
 
 import io.netty.buffer.ByteBuf;
@@ -51,7 +53,7 @@ public class MessageStandUp implements IMessage {
         	EntityPlayerMP player = ctx.getServerHandler().player;
         	StandHandler standHandler = player.getCapability(CapabilityStandHandler.STAND_TYPE, null);
         	String standType = standHandler.getStand();
-        	EnumStandtype stand = EnumStandtype.getType(standType);
+        	StandBase stand = StandLoader.getStand(standType);
         	IExposedData data = player.getCapability(CapabilityLoader.EXPOSED_DATA, null);
         	if(stand==null || data==null)
         		return null;
@@ -63,7 +65,7 @@ public class MessageStandUp implements IMessage {
 					data.setTrigger(true);
 //					 ServerUtil.sendPacketToNearbyPlayersStand(player, new SyncExposedStandDataMessage(standType, true, player.getName()));
 					if(message.isMoving) {
-							EntityStandBase standBase = new EntityStandBase(player.world, player, EnumStandtype.getType(data.getStand()));
+							EntityStandBase standBase = new EntityStandBase(player.world, player, StandLoader.getStand(data.getStand()));
 							standBase.setUser(player.getUniqueID().toString());
 							standBase.setUserName(player.getName());
 							standBase.setPosition(player.posX, player.posY, player.posZ);

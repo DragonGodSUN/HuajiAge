@@ -12,6 +12,7 @@ import com.lh_lshen.mcbbs.huajiage.init.playsound.SoundLoader;
 import com.lh_lshen.mcbbs.huajiage.network.messages.MessageParticleGenerator;
 import com.lh_lshen.mcbbs.huajiage.potion.PotionLoader;
 import com.lh_lshen.mcbbs.huajiage.stand.EnumStandtype;
+import com.lh_lshen.mcbbs.huajiage.stand.StandLoader;
 import com.lh_lshen.mcbbs.huajiage.stand.messages.MessageDioHitClient;
 import com.lh_lshen.mcbbs.huajiage.util.NBTHelper;
 import com.lh_lshen.mcbbs.huajiage.util.ServerUtil;
@@ -128,7 +129,7 @@ public class EntityRoadRoller extends EntityThrowable {
 		if(thrower!=null) {
 		boolean isStar =false;
 		if(((EntityPlayer)thrower).hasCapability(CapabilityStandHandler.STAND_TYPE, null)&&
-				((EntityPlayer)thrower).getCapability(CapabilityStandHandler.STAND_TYPE, null).getStand().equals(EnumStandtype.STAR_PLATINUM.getName())) {
+				((EntityPlayer)thrower).getCapability(CapabilityStandHandler.STAND_TYPE, null).getStand().equals(StandLoader.STAR_PLATINUM.getName())) {
 			isStar = true;
 		}
 		if(thrower.getEntityData().getInteger("huajiage.the_world")>0) {

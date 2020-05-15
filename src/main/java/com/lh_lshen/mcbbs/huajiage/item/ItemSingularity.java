@@ -8,6 +8,7 @@ import com.lh_lshen.mcbbs.huajiage.init.playsound.HuajiSoundPlayer;
 import com.lh_lshen.mcbbs.huajiage.init.playsound.SoundLoader;
 import com.lh_lshen.mcbbs.huajiage.stand.EnumStandtype;
 import com.lh_lshen.mcbbs.huajiage.stand.StandUtil;
+import com.lh_lshen.mcbbs.huajiage.stand.helper.instance.StandBase;
 import com.lh_lshen.mcbbs.huajiage.util.NBTHelper;
 
 import net.minecraft.client.resources.I18n;
@@ -35,7 +36,7 @@ public class ItemSingularity extends Item {
 	@Override
 	public ActionResult<ItemStack> onItemRightClick(World worldIn, EntityPlayer playerIn, EnumHand handIn) {
 		boolean flag = false;
-		EnumStandtype stand = StandUtil.getType(playerIn);
+		StandBase stand = StandUtil.getType(playerIn);
 		int stage = StandUtil.getStandStage(playerIn);
 		if(stand!=null&&stage==0) {
 			flag = true;

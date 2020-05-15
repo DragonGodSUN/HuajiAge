@@ -9,6 +9,8 @@ import com.lh_lshen.mcbbs.huajiage.init.playsound.StandMovingSound;
 import com.lh_lshen.mcbbs.huajiage.potion.PotionLoader;
 import com.lh_lshen.mcbbs.huajiage.stand.EnumStandtype;
 import com.lh_lshen.mcbbs.huajiage.stand.StandClientUtil;
+import com.lh_lshen.mcbbs.huajiage.stand.StandLoader;
+import com.lh_lshen.mcbbs.huajiage.stand.helper.instance.StandBase;
 
 import io.netty.buffer.ByteBuf;
 import net.minecraft.client.Minecraft;
@@ -44,7 +46,7 @@ public class EntityStandBase extends Entity implements IEntityAdditionalSpawnDat
 		super(worldIn);
 		}
 	
-	public EntityStandBase(World worldIn,EntityLivingBase user,EnumStandtype stand) {
+	public EntityStandBase(World worldIn,EntityLivingBase user,StandBase stand) {
 		super(worldIn);
 		setUser(user.getUniqueID().toString());
 		setType(stand.getName());
@@ -57,7 +59,7 @@ public class EntityStandBase extends Entity implements IEntityAdditionalSpawnDat
 
 	@Override
 	protected void entityInit() {
-		dataManager.register(TYPE, EnumStandtype.THE_WORLD.getName());
+		dataManager.register(TYPE, StandLoader.THE_WORLD.getName());
 		dataManager.register(USER, "nouser");
 		dataManager.register(USERNAME, "steve");
 	}
@@ -98,20 +100,20 @@ public class EntityStandBase extends Entity implements IEntityAdditionalSpawnDat
 	
 	@Override
 	public void writeSpawnData(ByteBuf buffer) {
-		EnumStandtype standType = getStandType();
-		ByteBufUtils.writeUTF8String(buffer, standType!=null?standType.getName():EnumStandtype.EMPTY);
+		StandBase standType = getStandType();
+		ByteBufUtils.writeUTF8String(buffer, standType!=null?standType.getName():StandLoader.EMPTY);
 	}
 	
 	@Override
 	public void readSpawnData(ByteBuf additionalData) {
-		EnumStandtype stand = EnumStandtype.getType(ByteBufUtils.readUTF8String(additionalData));
+		StandBase stand = StandLoader.getStand(ByteBufUtils.readUTF8String(additionalData));
 		StandClientUtil.standUpSound(mc.getMinecraft(),this, stand.getName());
 	}
 	
 //	===============================Settings======================================
 	
-	private EnumStandtype getStandType() {
-		EnumStandtype stand = EnumStandtype.getType(dataManager.get(TYPE));
+	private StandBase getStandType() {
+		StandBase stand = StandLoader.getStand(dataManager.get(TYPE));
 		return stand;
 	}
 	
@@ -119,7 +121,7 @@ public class EntityStandBase extends Entity implements IEntityAdditionalSpawnDat
 		if(getStandType() != null) {
 			return getStandType().getName();
 		}
-		return EnumStandtype.EMPTY;
+		return StandLoader.EMPTY;
 	}
 	
 	private EntityLivingBase getUser() {

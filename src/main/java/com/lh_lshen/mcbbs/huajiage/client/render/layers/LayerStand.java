@@ -9,13 +9,14 @@ import com.lh_lshen.mcbbs.huajiage.client.model.stand.ModelStandBase;
 import com.lh_lshen.mcbbs.huajiage.client.model.stand.ModelStarPlatinum;
 import com.lh_lshen.mcbbs.huajiage.client.model.stand.ModelTheWorld;
 import com.lh_lshen.mcbbs.huajiage.client.render.model.ModelMuliKnife;
-import com.lh_lshen.mcbbs.huajiage.data.StandUserWorldSavedData;
 import com.lh_lshen.mcbbs.huajiage.init.HuajiConstant;
 import com.lh_lshen.mcbbs.huajiage.item.ItemLoader;
 import com.lh_lshen.mcbbs.huajiage.potion.PotionLoader;
 import com.lh_lshen.mcbbs.huajiage.stand.EnumStandtype;
 import com.lh_lshen.mcbbs.huajiage.stand.StandClientUtil;
+import com.lh_lshen.mcbbs.huajiage.stand.StandLoader;
 import com.lh_lshen.mcbbs.huajiage.stand.StandUtil;
+import com.lh_lshen.mcbbs.huajiage.stand.helper.instance.StandBase;
 import com.lh_lshen.mcbbs.huajiage.util.NBTHelper;
 
 import net.minecraft.client.Minecraft;
@@ -46,8 +47,8 @@ public class LayerStand implements  LayerRenderer<EntityLivingBase> {
 //	 private static ResourceLocation tex = null;
 //	 private static final ModelStandBase MODEL_THE_WORLD =new ModelTheWorld(); 
 //	 private static final ModelStandBase MODEL_STAR_PLATINUM =new ModelStarPlatinum(); 
-	 private static final ResourceLocation TEXTRUE_THE_WORLD = new ResourceLocation(HuajiAge.MODID, EnumStandtype.THE_WORLD.getTexPath());
-	 private static final ResourceLocation TEXTRUE_STAR_PLATINUM = new ResourceLocation(HuajiAge.MODID, EnumStandtype.STAR_PLATINUM.getTexPath());
+	 private static final ResourceLocation TEXTRUE_THE_WORLD = new ResourceLocation(HuajiAge.MODID, StandLoader.THE_WORLD.getTexPath());
+	 private static final ResourceLocation TEXTRUE_STAR_PLATINUM = new ResourceLocation(HuajiAge.MODID, StandLoader.STAR_PLATINUM.getTexPath());
 	 
 	 public LayerStand(RenderLivingBase<?> livingEntityRendererIn)
 	    {
@@ -59,15 +60,15 @@ public class LayerStand implements  LayerRenderer<EntityLivingBase> {
 		
          		String ex_stand = entitylivingbaseIn.getCapability(CapabilityLoader.EXPOSED_DATA, null).getStand();
 				boolean istrigger = entitylivingbaseIn.getCapability(CapabilityLoader.EXPOSED_DATA, null).isTriggered();
-				EnumStandtype stand = EnumStandtype.getType(ex_stand); 
-				IStandPower stand_power = stand!=null?stand.getStandPower():null;
+				StandBase stand = StandLoader.getStand(ex_stand); 
+//				IStandPower stand_power = stand!=null?stand:null;
 				int stage = StandUtil.getStandStage(entitylivingbaseIn);
 //				boolean potion = entitylivingbaseIn.isPotionActive(PotionLoader.potionStand);
 				
-				String type = stand != null?stand.getName():EnumStandtype.EMPTY;
+				String type = stand != null?stand.getName():StandLoader.EMPTY;
 				ModelStandBase model =  stand != null?StandClientUtil.getModel(type) : null;	
 			    	
-			    	if(model != null&&!type.equals(EnumStandtype.EMPTY)&& istrigger) 
+			    	if(model != null&&!type.equals(StandLoader.EMPTY)&& istrigger) 
 			    	{
 	 					GlStateManager.color(1.0F, 1.0F, 1.0F, 1.0F);
 	 		            GlStateManager.enableBlend();
@@ -85,7 +86,7 @@ public class LayerStand implements  LayerRenderer<EntityLivingBase> {
 	 		            model.setPunch(limbSwing, limbSwingAmount,  ageInTicks, netHeadYaw, headPitch, scale, entitylivingbaseIn, 0.3f ,stand.getSpeed()*4/3);
 	 		            model.render(entitylivingbaseIn, limbSwing, limbSwingAmount, ageInTicks, netHeadYaw, headPitch, scale);
 	 		            model.effect(entitylivingbaseIn, limbSwing, limbSwingAmount, ageInTicks, netHeadYaw, headPitch, scale);
-	 		            if(stage>0&&stand_power!=null) {
+	 		            if(stage>0&&stand!=null) {
 	 		            model.extraEffect(entitylivingbaseIn, limbSwing, limbSwingAmount, ageInTicks, netHeadYaw, headPitch, scale);
 	 		            }
 

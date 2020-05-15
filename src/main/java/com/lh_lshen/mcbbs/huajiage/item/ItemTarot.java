@@ -9,6 +9,7 @@ import com.lh_lshen.mcbbs.huajiage.crativetab.CreativeTabLoader;
 import com.lh_lshen.mcbbs.huajiage.init.HuajiConstant;
 import com.lh_lshen.mcbbs.huajiage.potion.PotionLoader;
 import com.lh_lshen.mcbbs.huajiage.stand.EnumStandtype;
+import com.lh_lshen.mcbbs.huajiage.stand.StandLoader;
 import com.lh_lshen.mcbbs.huajiage.stand.StandUtil;
 import com.lh_lshen.mcbbs.huajiage.util.NBTHelper;
 
@@ -35,7 +36,7 @@ import net.minecraftforge.fml.relauncher.Side;
 import net.minecraftforge.fml.relauncher.SideOnly;
 
 public class ItemTarot extends Item {
-	private static final String DEFAULT_STAND_ID = EnumStandtype.EMPTY;
+	private static final String DEFAULT_STAND_ID = StandLoader.EMPTY;
 	public ItemTarot()
 	{
 		 super();
@@ -48,7 +49,7 @@ public class ItemTarot extends Item {
 		super.addInformation(stack, worldIn, tooltip, flagIn);
 		String stand=NBTHelper.getTagCompoundSafe(stack).getString(NBT.STAND_NAME.getName());
 		int stage=NBTHelper.getTagCompoundSafe(stack).getInteger(NBT.STAND_STAGE.getName());
-		tooltip.add(I18n.format("item.tarot:tooltips.1") +I18n.format(EnumStandtype.getLocalName(stand)));
+		tooltip.add(I18n.format("item.tarot:tooltips.1") +I18n.format(StandUtil.getLocalName(stand)));
 		tooltip.add(I18n.format("item.tarot:tooltips.2") +stage);
 	}
 	@Override
@@ -73,7 +74,7 @@ public class ItemTarot extends Item {
 //				StandUtil.removeStandData(playerIn);
 				if(worldIn.isRemote) {
 				playerIn.playSound(SoundEvents.ITEM_BOTTLE_FILL_DRAGONBREATH, 1f, 1f);
-				playerIn.sendMessage(new TextComponentString(I18n.format(EnumStandtype.getLocalName(stand))+I18n.format("message.huajiage.tarot.stand.store")));
+				playerIn.sendMessage(new TextComponentString(I18n.format(StandUtil.getLocalName(stand))+I18n.format("message.huajiage.tarot.stand.store")));
 				}
 			}
 		}else {

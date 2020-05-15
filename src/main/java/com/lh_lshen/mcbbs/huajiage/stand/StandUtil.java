@@ -1,5 +1,8 @@
 package com.lh_lshen.mcbbs.huajiage.stand;
 
+import java.util.ArrayList;
+import java.util.List;
+
 import com.lh_lshen.mcbbs.huajiage.capability.CapabilityStandBuffHandler;
 import com.lh_lshen.mcbbs.huajiage.capability.CapabilityStandChargeHandler;
 import com.lh_lshen.mcbbs.huajiage.capability.CapabilityStandHandler;
@@ -8,9 +11,11 @@ import com.lh_lshen.mcbbs.huajiage.capability.StandBuffHandler;
 import com.lh_lshen.mcbbs.huajiage.capability.StandChargeHandler;
 import com.lh_lshen.mcbbs.huajiage.capability.StandHandler;
 import com.lh_lshen.mcbbs.huajiage.capability.StandStageHandler;
+import com.lh_lshen.mcbbs.huajiage.init.HuajiConstant;
 import com.lh_lshen.mcbbs.huajiage.init.playsound.HuajiSoundPlayer;
 import com.lh_lshen.mcbbs.huajiage.network.messages.MessageParticleGenerator;
 import com.lh_lshen.mcbbs.huajiage.potion.PotionLoader;
+import com.lh_lshen.mcbbs.huajiage.stand.helper.instance.StandBase;
 import com.lh_lshen.mcbbs.huajiage.util.ServerUtil;
 
 import net.minecraft.entity.EntityLivingBase;
@@ -19,10 +24,10 @@ import net.minecraft.potion.PotionEffect;
 import net.minecraft.util.EnumParticleTypes;
 
 public class StandUtil {
-	public static EnumStandtype getType(EntityLivingBase entity) {
+	public static StandBase getType(EntityLivingBase entity) {
 		   if (entity.hasCapability(CapabilityStandHandler.STAND_TYPE, null)) {
 	           StandHandler stand = entity.getCapability(CapabilityStandHandler.STAND_TYPE, null);
-	    return EnumStandtype.getType(stand.getStand());
+	    return StandLoader.getStand(stand.getStand());
 		   }
 		return null;
 	}
@@ -83,7 +88,7 @@ public class StandUtil {
 	    return 0;
 	}
 	
-	public static void standPower(EntityLivingBase entity) {
+	public static void standBuff(EntityLivingBase entity) {
 			  if(!entity.isPotionActive(PotionLoader.potionStand)) {
 				  StandHandler standHandler = entity.getCapability(CapabilityStandHandler.STAND_TYPE, null);
 
@@ -96,7 +101,25 @@ public class StandUtil {
 			  }
 			  
 	}
+	public static String getLocalName(String name) {
+		for(StandBase type : StandLoader.STAND_LIST) {
+    		if(name.equals(type.getName())) {
+    			return type.getLocalName();
+    			}
+    		}return HuajiConstant.StandType.STAND_EMPTY;
+    	}
 	
+    public static StandBase getTypeWithIndex(int index) {
+    	int id = index;
+    	List<StandBase> stand_list_get = new ArrayList<StandBase>();
+    	stand_list_get.add(StandLoader.THE_WORLD);
+    	stand_list_get.add(StandLoader.STAR_PLATINUM);
+    	stand_list_get.add(StandLoader.HIEROPHANT_GREEN);
+    	if(id>=0 && id<stand_list_get.size() || id>=stand_list_get.size()) {
+        return stand_list_get.get(id%stand_list_get.size());
+    	}
+    	return null;
+    }
 //	public static class StandTypeHelper {
 //		public static StandSkillType getStandSkillType(EntityLivingBase entity) {
 //			

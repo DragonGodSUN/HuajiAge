@@ -17,8 +17,10 @@ import com.lh_lshen.mcbbs.huajiage.network.messages.MessageServerInterchange;
 import com.lh_lshen.mcbbs.huajiage.potion.PotionLoader;
 import com.lh_lshen.mcbbs.huajiage.stand.EnumStandtype;
 import com.lh_lshen.mcbbs.huajiage.stand.StandClientUtil;
+import com.lh_lshen.mcbbs.huajiage.stand.StandLoader;
 import com.lh_lshen.mcbbs.huajiage.stand.StandUtil;
 import com.lh_lshen.mcbbs.huajiage.stand.entity.EntityStandBase;
+import com.lh_lshen.mcbbs.huajiage.stand.helper.instance.StandBase;
 import com.lh_lshen.mcbbs.huajiage.stand.helper.skill.TimeStopHelper;
 import com.lh_lshen.mcbbs.huajiage.stand.messages.MessageDoStandCapabilityServer;
 import com.lh_lshen.mcbbs.huajiage.stand.messages.MessagePerfromSkill;
@@ -46,9 +48,9 @@ public class EventStandKey {
 			EntityPlayer player = Minecraft.getMinecraft().player;
 			StandHandler standHandler = player.getCapability(CapabilityStandHandler.STAND_TYPE, null);
 			String stand_type =standHandler.getStand();
-			EnumStandtype stand = EnumStandtype.getType(stand_type);
+			StandBase stand = StandLoader.getStand(stand_type);
 			
-			 if(!stand_type.equals(EnumStandtype.EMPTY)) {
+			 if(!stand_type.equals(StandLoader.EMPTY)) {
 				 HuajiSoundPlayer.playToServer(player, SoundEvents.ENTITY_EXPERIENCE_ORB_PICKUP, 1f, 3);
 
 				 final int NUMBER_OF_PARTICLES = 60;
@@ -64,9 +66,9 @@ public class EventStandKey {
 				{	
 					 isMovingMusic = false;
 					float random = new Random().nextFloat()*100;
-					switch(stand)
+					switch(stand.getName())
 					{
-					case THE_WORLD :
+					case "thw_world" :
 					{
 						if(random<50) 
 							{
@@ -78,7 +80,7 @@ public class EventStandKey {
 							}
 							break;
 					}
-					case STAR_PLATINUM :
+					case "star_platinum" :
 					{	if(random<25) 
 							{
 								HuajiSoundPlayer.playToServer(player, SoundLoader.STAND_STAR_PLATINUM_1, 1, 1);
@@ -95,7 +97,7 @@ public class EventStandKey {
 							break;
 							
 					}	
-					case HIEROPHANT_GREEN :
+					case "hierophant_green" :
 					{	
 							HuajiSoundPlayer.playToServer(player, SoundLoader.STAND_HIEROPHANT_GREEN_SHOOT_1, 1, 1);
 							break;
@@ -116,7 +118,7 @@ public class EventStandKey {
 		EntityPlayer player = Minecraft.getMinecraft().player;
 		int stage = StandUtil.getStandStage(player);
 		if(KeyLoader.standSkill.isPressed()&&stage>0) {
-			EnumStandtype stand = StandUtil.getType(player);
+			StandBase stand = StandUtil.getType(player);
 			StandChargeHandler charge = StandUtil.getChargeHandler(player);
 			if(null != stand) {
 				int cost = stand.getCost();

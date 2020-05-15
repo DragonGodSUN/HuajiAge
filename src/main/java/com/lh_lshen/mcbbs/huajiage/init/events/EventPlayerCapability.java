@@ -16,6 +16,7 @@ import com.lh_lshen.mcbbs.huajiage.config.ConfigHuaji;
 import com.lh_lshen.mcbbs.huajiage.network.StandNetWorkHandler;
 import com.lh_lshen.mcbbs.huajiage.stand.EnumStandtype;
 import com.lh_lshen.mcbbs.huajiage.stand.StandUtil;
+import com.lh_lshen.mcbbs.huajiage.stand.helper.instance.StandBase;
 import com.lh_lshen.mcbbs.huajiage.stand.messages.SyncExposedStandDataMessage;
 import com.lh_lshen.mcbbs.huajiage.stand.messages.SyncStandBuffMessage;
 import com.lh_lshen.mcbbs.huajiage.stand.messages.SyncStandChargeMessage;
@@ -124,7 +125,7 @@ public class EventPlayerCapability {
     	Entity entity = evt.getEntity();
 		if(entity instanceof EntityPlayer) {
 		EntityPlayer player = (EntityPlayer) entity;
-		EnumStandtype stand = StandUtil.getType(player);
+		StandBase stand = StandUtil.getType(player);
 			if(stand != null) {
 				StandHandler standHandler = player.getCapability(CapabilityStandHandler.STAND_TYPE, null);
 				StandStageHandler stageHandler = player.getCapability(CapabilityStandStageHandler.STAND_STAGE, null);

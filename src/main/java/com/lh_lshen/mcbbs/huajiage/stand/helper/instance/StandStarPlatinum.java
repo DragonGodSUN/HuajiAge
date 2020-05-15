@@ -11,6 +11,7 @@ import com.lh_lshen.mcbbs.huajiage.init.playsound.SoundLoader;
 import com.lh_lshen.mcbbs.huajiage.network.StandNetWorkHandler;
 import com.lh_lshen.mcbbs.huajiage.stand.EnumStandtype;
 import com.lh_lshen.mcbbs.huajiage.stand.StandClientUtil;
+import com.lh_lshen.mcbbs.huajiage.stand.StandLoader;
 import com.lh_lshen.mcbbs.huajiage.stand.StandUtil;
 import com.lh_lshen.mcbbs.huajiage.stand.helper.skill.TimeStopHelper;
 import com.lh_lshen.mcbbs.huajiage.stand.messages.MessageDoStandCapabilityServer;
@@ -46,7 +47,7 @@ public class StandStarPlatinum extends StandBase {
 
 	@Override
 	public void doStandPower(EntityLivingBase user) {
-		EnumStandtype type = StandUtil.getType(user);
+		StandBase type = StandUtil.getType(user);
 		int stage = StandUtil.getStandStage(user);
 		if(type == null) {
 			return;
@@ -59,7 +60,7 @@ public class StandStarPlatinum extends StandBase {
 
 				Vec3d back = MotionHelper.getVectorEntityEye(user, i);
 				boolean flag_player = false;
-				boolean flag_degree = MotionHelper.getDegreeXZ(user.getLookVec(),MotionHelper.getVectorEntityEye(user, i))>(type.getName().equals(EnumStandtype.STAR_PLATINUM.getName())?120:90);
+				boolean flag_degree = MotionHelper.getDegreeXZ(user.getLookVec(),MotionHelper.getVectorEntityEye(user, i))>(type.getName().equals(StandLoader.STAR_PLATINUM.getName())?120:90);
 				
 				if(flag_degree) {
 					continue;
@@ -135,13 +136,13 @@ public class StandStarPlatinum extends StandBase {
 		TimeStopHelper.setTimeStop(user, 5*20);
 		TimeStopHelper.extraEffects(user, 5);
 		if(user instanceof EntityPlayer) {
-		ServerUtil.sendPacketToNearbyPlayersStand(user, new MessageDoStandPowerClient((EntityPlayer) user,EnumStandtype.STAR_PLATINUM.getName()));
+		ServerUtil.sendPacketToNearbyPlayersStand(user, new MessageDoStandPowerClient((EntityPlayer) user,StandLoader.STAR_PLATINUM.getName()));
 		}
 	}
 
 	@Override
 	public void doStandCapabilityClient(WorldClient world, EntityLivingBase user) {
-		TimeStopHelper.doTimeStopClient(world, user.getPositionVector(), EnumStandtype.STAR_PLATINUM);
+		TimeStopHelper.doTimeStopClient(world, user.getPositionVector(), StandLoader.STAR_PLATINUM);
 	}
 
 

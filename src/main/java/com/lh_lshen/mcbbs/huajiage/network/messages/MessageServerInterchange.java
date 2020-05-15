@@ -9,6 +9,7 @@ import com.lh_lshen.mcbbs.huajiage.item.ItemLoader;
 import com.lh_lshen.mcbbs.huajiage.network.HuajiAgeNetWorkHandler;
 import com.lh_lshen.mcbbs.huajiage.stand.EnumStandtype;
 import com.lh_lshen.mcbbs.huajiage.stand.StandClientUtil;
+import com.lh_lshen.mcbbs.huajiage.stand.StandLoader;
 
 import io.netty.buffer.ByteBuf;
 import net.minecraft.entity.player.EntityPlayerMP;
@@ -50,7 +51,7 @@ public class MessageServerInterchange implements IMessage {
 			break;
 			case 2:
 				String stand_type = player.getCapability(CapabilityStandHandler.STAND_TYPE, null).getStand();
-				if(stand_type!=null&&!stand_type.equals(EnumStandtype.EMPTY)) {
+				if(stand_type!=null&&!stand_type.equals(StandLoader.EMPTY)) {
 					HuajiAgeNetWorkHandler.sendToNearby(player.world, player.getPosition(), new MessageMovingSound(player.getName(),stand_type));
 				}
 			break;

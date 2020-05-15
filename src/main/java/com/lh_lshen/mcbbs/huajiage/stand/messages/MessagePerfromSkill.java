@@ -7,6 +7,7 @@ import com.lh_lshen.mcbbs.huajiage.item.ItemHeroBow;
 import com.lh_lshen.mcbbs.huajiage.item.ItemLoader;
 import com.lh_lshen.mcbbs.huajiage.stand.EnumStandtype;
 import com.lh_lshen.mcbbs.huajiage.stand.StandUtil;
+import com.lh_lshen.mcbbs.huajiage.stand.helper.instance.StandBase;
 import com.lh_lshen.mcbbs.huajiage.stand.helper.skill.TimeStopHelper;
 import com.lh_lshen.mcbbs.huajiage.util.ServerUtil;
 
@@ -46,7 +47,7 @@ public class MessagePerfromSkill implements IMessage {
         @Override
         public IMessage onMessage(MessagePerfromSkill message , MessageContext ctx) {
         	EntityPlayerMP player = ctx.getServerHandler().player;
-        	EnumStandtype stand = StandUtil.getType(player);
+        	StandBase stand = StandUtil.getType(player);
         	StandChargeHandler charge = StandUtil.getChargeHandler(player);
         	if (ctx.side == Side.SERVER) {
             	FMLCommonHandler.instance().getWorldThread(ctx.netHandler).addScheduledTask(() ->{

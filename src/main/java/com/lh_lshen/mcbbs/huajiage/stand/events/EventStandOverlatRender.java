@@ -14,7 +14,9 @@ import com.lh_lshen.mcbbs.huajiage.config.ConfigHuaji;
 import com.lh_lshen.mcbbs.huajiage.item.ItemDiscStand;
 import com.lh_lshen.mcbbs.huajiage.item.ItemLoader;
 import com.lh_lshen.mcbbs.huajiage.stand.EnumStandtype;
+import com.lh_lshen.mcbbs.huajiage.stand.StandLoader;
 import com.lh_lshen.mcbbs.huajiage.stand.StandUtil;
+import com.lh_lshen.mcbbs.huajiage.stand.helper.instance.StandBase;
 
 import net.minecraft.client.Minecraft;
 import net.minecraft.client.gui.Gui;
@@ -61,7 +63,7 @@ public class EventStandOverlatRender {
 	            int stage = standStageHandler.getStage();
 	            
 //	            ItemStack disc = ItemDiscStand.getItemData(new ItemStack(ItemLoader.disc),standHandler.getStand(), standStageHandler.getStage());
-	            EnumStandtype stand = EnumStandtype.getType(standHandler.getStand());
+	            StandBase stand = StandLoader.getStand(standHandler.getStand());
 	            StandChargeHandler chargeHandler = StandUtil.getChargeHandler(player);
 	            int charge = chargeHandler.getChargeValue();
 	            int maxCharge = chargeHandler.getMaxValue();
@@ -69,7 +71,7 @@ public class EventStandOverlatRender {
 	            	return;
 	            }
 	            
-	            if (!standHandler.getStand().equals(EnumStandtype.EMPTY)) {
+	            if (!standHandler.getStand().equals(StandLoader.EMPTY)) {
 	                int x = (int) (ConfigHuaji.Stands.StandHUDx * Minecraft.getMinecraft().displayWidth/2);
 	                int y = (int) (ConfigHuaji.Stands.StandHUDy * Minecraft.getMinecraft().displayHeight/2);
 	                GlStateManager.pushMatrix();
@@ -77,12 +79,12 @@ public class EventStandOverlatRender {
 	                GlStateManager.translate(x, y, 0);
 	                GlStateManager.scale(1.5, 1.5, 1.5);
 //	                Minecraft.getMinecraft().player.getCooldownTracker().getCooldown(disc.getItem(), Minecraft.getMinecraft().getRenderPartialTicks());
-	                switch(stand) {
-	                case THE_WORLD :Minecraft.getMinecraft().renderEngine.bindTexture(STAND_THE_WORLD);
+	                switch(stand.getName()) {
+	                case "the_world" :Minecraft.getMinecraft().renderEngine.bindTexture(STAND_THE_WORLD);
 	                break;
-	                case STAR_PLATINUM :Minecraft.getMinecraft().renderEngine.bindTexture(STAND_STAR_PLATINUM);
+	                case "star_platinum" :Minecraft.getMinecraft().renderEngine.bindTexture(STAND_STAR_PLATINUM);
 	                break;
-	                case HIEROPHANT_GREEN :Minecraft.getMinecraft().renderEngine.bindTexture(STAND_HIEROPANT_GREEN);
+	                case "hierophant_green" :Minecraft.getMinecraft().renderEngine.bindTexture(STAND_HIEROPANT_GREEN);
 	                break;
 					default:Minecraft.getMinecraft().renderEngine.bindTexture(STAND_THE_WORLD);
 						break;
@@ -91,7 +93,7 @@ public class EventStandOverlatRender {
 	                GlStateManager.disableBlend();
 	                GlStateManager.popMatrix();
 	                Minecraft.getMinecraft().fontRenderer.drawString( TextFormatting.BOLD+I18n.format("stand.huajiage.name"), 8+ x,  2 + 16 + y, 0xffffff, true);
-	                Minecraft.getMinecraft().fontRenderer.drawString( TextFormatting.BOLD+I18n.format(EnumStandtype.getLocalName(standHandler.getStand())), 13+ x,  10 + 16 + y, 0xffffff, true);
+	                Minecraft.getMinecraft().fontRenderer.drawString( TextFormatting.BOLD+I18n.format(StandUtil.getLocalName(standHandler.getStand())), 13+ x,  10 + 16 + y, 0xffffff, true);
 	                Minecraft.getMinecraft().fontRenderer.drawString( TextFormatting.BOLD+I18n.format("stand.huajiage.stage")+"  "+stage, 8+ x,  20 + 16 + y, 0xffffff, true);
 	                if(stage>0) {
 	                Minecraft.getMinecraft().fontRenderer.drawString( TextFormatting.BOLD+I18n.format("stand.huajiage.mp")+"  "+charge+"/"+maxCharge, 8+ x,  30 + 16 + y, chargeHandler.canBeCost(stand.getCost())?0x00fffc:0xffffff, true);

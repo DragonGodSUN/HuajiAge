@@ -54,6 +54,11 @@ public class StandBase implements IStandPower{
 	public String getTexPath() {
 		return texPath;
 	}
+	
+	public String getLocalName() {
+		return localName;
+	}
+	
 	@Override
 	public void doStandPower(EntityLivingBase user) {
 		

@@ -18,6 +18,7 @@ import com.lh_lshen.mcbbs.huajiage.init.playsound.SoundStand;
 import com.lh_lshen.mcbbs.huajiage.init.playsound.StandMovingSound;
 import com.lh_lshen.mcbbs.huajiage.network.messages.MessageParticleGenerator;
 import com.lh_lshen.mcbbs.huajiage.potion.PotionLoader;
+import com.lh_lshen.mcbbs.huajiage.stand.helper.instance.StandBase;
 
 import net.minecraft.client.Minecraft;
 import net.minecraft.client.renderer.OpenGlHelper;
@@ -38,10 +39,10 @@ public class StandClientUtil {
 	public static void standUpSound(Minecraft mc ,Entity user ,String stand_type ) 
 	{
 		Random random = new Random();
-		EnumStandtype stand = EnumStandtype.getType(stand_type);
-		switch(stand)
+//		List<StandBase> stand = StandLoader.STAND_LIST;
+		switch(stand_type)
 		{
-		case THE_WORLD :
+		case "the_world" :
 		{
 			List<SoundEvent> sounds = SoundStand.WORLD_SOUND_LIST;
 			int size = sounds.size();
@@ -56,7 +57,7 @@ public class StandClientUtil {
 				mc.getSoundHandler().playSound(back_hits_double);
 				break;
 			}
-		case STAR_PLATINUM :
+		case "star_platinum" :
 		{
 			List<SoundEvent> sounds = SoundStand.STAR_SOUND_LIST;
 			int size = sounds.size();
@@ -71,7 +72,7 @@ public class StandClientUtil {
 				mc.getSoundHandler().playSound(back);
 				break;
 			}
-		case HIEROPHANT_GREEN :
+		case "hierophant_green" :
 			{
 				List<SoundEvent> sounds = SoundStand.HIEROPANT_SOUND_LIST;
 				int size = sounds.size();
@@ -117,14 +118,14 @@ public class StandClientUtil {
 	}
 	
     public static void standRender(EntityLivingBase entity) {
-		EnumStandtype type = StandUtil.getType(entity);
+		StandBase type = StandUtil.getType(entity);
 		if(type != null) {
 		ResourceLocation STAND_TEX = new ResourceLocation(HuajiAge.MODID,type.getTexPath());
 		ModelStandBase model = getModel(type.getName());
 		Minecraft.getMinecraft().getTextureManager().bindTexture(STAND_TEX);
-		switch(type) {
-		case THE_WORLD:
-		case STAR_PLATINUM:
+		switch(type.getName()) {
+		case "the_world":
+		case "star_platinum":
 			OpenGlHelper.setLightmapTextureCoords(OpenGlHelper.lightmapTexUnit, 240f, 240f);
 			model.setRotationAngles(0, 0, entity.ticksExisted, 0, -1, 1, entity ,0.5f,(float) (type.getSpeed()*1.5));
 			if(entity.getActivePotionEffect(PotionLoader.potionStand).getDuration()<40) {
@@ -135,7 +136,7 @@ public class StandClientUtil {
 				model.doHandRender(0, -1f, -0.75f, 1f,0.6f);
 			}
 			break;
-		 case HIEROPHANT_GREEN:
+		 case "hierophant_green":
 			 model.effect(entity, 0, 0, entity.ticksExisted, 0, 0, 1f);
 			break;
 		default:

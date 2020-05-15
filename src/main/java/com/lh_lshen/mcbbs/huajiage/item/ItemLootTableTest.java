@@ -12,8 +12,9 @@ import com.lh_lshen.mcbbs.huajiage.init.LootTablesLoader;
 import com.lh_lshen.mcbbs.huajiage.init.playsound.SoundLoader;
 import com.lh_lshen.mcbbs.huajiage.potion.PotionLoader;
 import com.lh_lshen.mcbbs.huajiage.stand.EnumStandtype;
+import com.lh_lshen.mcbbs.huajiage.stand.StandLoader;
 import com.lh_lshen.mcbbs.huajiage.stand.StandUtil;
-import com.lh_lshen.mcbbs.huajiage.stand.helper.instance.StandHieropantGreen;
+import com.lh_lshen.mcbbs.huajiage.stand.helper.instance.StandHierophantGreen;
 import com.lh_lshen.mcbbs.huajiage.stand.helper.skill.TimeStopHelper;
 import com.lh_lshen.mcbbs.huajiage.util.NBTHelper;
 
@@ -117,7 +118,7 @@ public class ItemLootTableTest extends Item {
 		}
 		case 1:{
 			playerIn.playSound(SoundLoader.STAND_HIEROPHANT_GREEN_EMERALD_SPLASH, 5f, 1f);
-			StandHieropantGreen stand = new StandHieropantGreen();
+			StandHierophantGreen stand = new StandHierophantGreen();
 			stand.doStandCapability(playerIn);
 //			playerIn.playSound(SoundLoader.ORGA_FLOWER, 2f, 1f);
 		break;}
@@ -146,7 +147,7 @@ public class ItemLootTableTest extends Item {
 		      }
 		case 3:{
 		if(!playerIn.world.isRemote) {
-		standHandler.setStand(EnumStandtype.EMPTY);
+		standHandler.setStand(StandLoader.EMPTY);
 		stageHandler.setStage(0);
 		playerIn.getEntityData().setInteger("huajiage.time_stop",9*20);
 		playerIn.getEntityData().setDouble("huajiage.time_stop.x", playerIn.posX);
@@ -158,8 +159,8 @@ public class ItemLootTableTest extends Item {
 		}
 		case 4:{
 			if(!playerIn.world.isRemote) {
-			standHandler.setStand(EnumStandtype.THE_WORLD.getName());
-			playerIn.addPotionEffect(new PotionEffect(PotionLoader.potionStand,EnumStandtype.THE_WORLD.getDuration()));
+			standHandler.setStand(StandLoader.THE_WORLD.getName());
+			playerIn.addPotionEffect(new PotionEffect(PotionLoader.potionStand,StandLoader.THE_WORLD.getDuration()));
 			}
 			break;
 		}

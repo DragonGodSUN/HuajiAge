@@ -10,6 +10,8 @@ import com.lh_lshen.mcbbs.huajiage.init.HuajiConstant;
 import com.lh_lshen.mcbbs.huajiage.init.playsound.SoundLoader;
 import com.lh_lshen.mcbbs.huajiage.item.ItemLoader;
 import com.lh_lshen.mcbbs.huajiage.stand.EnumStandtype;
+import com.lh_lshen.mcbbs.huajiage.stand.StandLoader;
+import com.lh_lshen.mcbbs.huajiage.stand.helper.instance.StandBase;
 import com.lh_lshen.mcbbs.huajiage.util.NBTHelper;
 
 import net.minecraft.client.multiplayer.WorldClient;
@@ -43,12 +45,12 @@ public class TimeStopHelper {
 	
 	public static void extraEffects(EntityLivingBase entity,int time) {
 		StandHandler standHandler = entity.getCapability(CapabilityStandHandler.STAND_TYPE, null);
-		EnumStandtype stand =EnumStandtype.getType(standHandler.getStand());
+		StandBase stand =StandLoader.getStand(standHandler.getStand());
 			if(null ==stand) {
 				return;
 			}
         	double rand=Math.random()*100;
-        	 if(!stand.equals(EnumStandtype.STAR_PLATINUM)) {
+        	 if(!stand.equals(StandLoader.STAR_PLATINUM)) {
         		 entity.addPotionEffect(new PotionEffect(MobEffects.NIGHT_VISION,time*20,0));
         		 entity.addPotionEffect(new PotionEffect(MobEffects.STRENGTH,time*20,4));
         		 entity.addPotionEffect(new PotionEffect(MobEffects.SPEED,time*20,6));
@@ -66,9 +68,9 @@ public class TimeStopHelper {
             }
 		}
 	
-	public static void doTimeStopClient(WorldClient world, Vec3d pos ,EnumStandtype stand) {
+	public static void doTimeStopClient(WorldClient world, Vec3d pos ,StandBase stand) {
 		double rand=Math.random()*100;
-        if(!stand.getName().equals(EnumStandtype.STAR_PLATINUM.getName())) {
+        if(!stand.getName().equals(StandLoader.STAR_PLATINUM.getName())) {
 	        if(rand<25) { 	
 	            world.playSound(pos.x, pos.y, pos.z, SoundLoader.THE_WORLD, SoundCategory.PLAYERS, 5f,1f, true);
 	        }else if(rand<50){

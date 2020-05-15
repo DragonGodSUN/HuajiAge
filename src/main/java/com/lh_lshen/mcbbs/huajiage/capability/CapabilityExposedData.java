@@ -3,6 +3,7 @@ package com.lh_lshen.mcbbs.huajiage.capability;
 import java.util.concurrent.Callable;
 
 import com.lh_lshen.mcbbs.huajiage.stand.EnumStandtype;
+import com.lh_lshen.mcbbs.huajiage.stand.StandLoader;
 
 import net.minecraft.nbt.NBTBase;
 import net.minecraft.nbt.NBTTagCompound;
@@ -46,7 +47,7 @@ public class CapabilityExposedData {
 	    
 	    public static class Implementation implements IExposedData{
 	    	static Implementation.Factory FACTORY = new Implementation.Factory();
-	    	String standName = EnumStandtype.EMPTY;
+	    	String standName = StandLoader.EMPTY;
 	    	boolean istriggered = false;
 	    	boolean dirty =false;
 	    	int stage = 0;
