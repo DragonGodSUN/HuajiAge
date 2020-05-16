@@ -23,7 +23,8 @@ item.huajiage.eggRice.name=Fried Rice With Eggs
 item.huajiage.eggRiceU.name=Fried Ultimate Rice With Eggs
 item.huajiage.huajiStarPoly.name=§o§lMultiple superposition state HUAJI star
 item.huajiage.arrowStand.name=§dArrow for Stand
-
+item.huajiage.waveCrystal.name=§bWave Crystal
+item.huajiage.waveKnife.name=§bWave Knife
 
 death.attack.huajiage.hope_flower=%s was dead of world line converge
 death.attack.huajiage.second=%s has been compressed into a PNG image

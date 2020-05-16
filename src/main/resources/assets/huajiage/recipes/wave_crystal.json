@@ -1,0 +1,25 @@
+{
+    "type": "minecraft:crafting_shaped",
+  "pattern": [
+    " AD",
+    "AC ",
+    "B  "
+  ],
+  "key": {
+    "A": {
+      "item": "huajiage:wave_crystal"
+    },
+    "B": {
+      "item": "huajiage:huaji_ingot"
+    },
+    "C": {
+      "item": "huajiage:ether"
+    },
+    "D": {
+      "item": "huajiage:neutron_star_fragment"
+    }
+  },
+  "result": {
+    "item": "huajiage:wave_knife"
+  }
+}

@@ -42,6 +42,7 @@ public class HuajiRecipeList
     	this.addSmeltingRecipeForBlock(Blocks.GOLD_BLOCK, new ItemStack(ItemLoader.huajiIngot), 2F);
     	this.addSmeltingRecipeForBlock(Blocks.REDSTONE_BLOCK, new ItemStack(ItemLoader.redstoneDruse), 2F);
     	this.addSmeltingRecipeForBlock(Blocks.HAY_BLOCK, new ItemStack(ItemLoader.flashFlour), 1F);
+    	this.addSmeltingRecipeForBlock(Blocks.SEA_LANTERN, new ItemStack(ItemLoader.waveCrystal), 10F);
     	
     }
 
