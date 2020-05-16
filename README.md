@@ -21,7 +21,7 @@
 所以各位大神看看就好了【手动滑稽】
 
 # 在此鸣谢
-特别感谢下列大大的教程
+特别感谢下列大大的教程与参考代码
 
 ustc_zzzz的Minecraft 1.8.9 FML Mod 开发教程：
 https://fmltutor.ustc-zzzz.net/
@@ -34,3 +34,6 @@ https://github.com/TheGreyGhost/MinecraftByExample
 
 中文 Minecraft Mod 开发指南Harbinger：
 https://harbinger.covertdragon.team/
+
+酒石酸的女仆模组：
+https://github.com/TartaricAcid/TouhouLittleMaid
