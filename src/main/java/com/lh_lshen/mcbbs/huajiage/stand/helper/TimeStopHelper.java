@@ -1,4 +1,4 @@
-package com.lh_lshen.mcbbs.huajiage.stand.helper.skill;
+package com.lh_lshen.mcbbs.huajiage.stand.helper;
 
 import java.util.List;
 
@@ -11,7 +11,7 @@ import com.lh_lshen.mcbbs.huajiage.init.playsound.SoundLoader;
 import com.lh_lshen.mcbbs.huajiage.item.ItemLoader;
 import com.lh_lshen.mcbbs.huajiage.stand.EnumStandtype;
 import com.lh_lshen.mcbbs.huajiage.stand.StandLoader;
-import com.lh_lshen.mcbbs.huajiage.stand.helper.instance.StandBase;
+import com.lh_lshen.mcbbs.huajiage.stand.instance.StandBase;
 import com.lh_lshen.mcbbs.huajiage.util.NBTHelper;
 
 import net.minecraft.client.multiplayer.WorldClient;

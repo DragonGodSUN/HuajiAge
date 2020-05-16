@@ -16,7 +16,7 @@ import com.lh_lshen.mcbbs.huajiage.stand.EnumStandtype;
 import com.lh_lshen.mcbbs.huajiage.stand.StandClientUtil;
 import com.lh_lshen.mcbbs.huajiage.stand.StandLoader;
 import com.lh_lshen.mcbbs.huajiage.stand.StandUtil;
-import com.lh_lshen.mcbbs.huajiage.stand.helper.instance.StandBase;
+import com.lh_lshen.mcbbs.huajiage.stand.instance.StandBase;
 import com.lh_lshen.mcbbs.huajiage.util.NBTHelper;
 
 import net.minecraft.client.Minecraft;
@@ -47,8 +47,8 @@ public class LayerStand implements  LayerRenderer<EntityLivingBase> {
 //	 private static ResourceLocation tex = null;
 //	 private static final ModelStandBase MODEL_THE_WORLD =new ModelTheWorld(); 
 //	 private static final ModelStandBase MODEL_STAR_PLATINUM =new ModelStarPlatinum(); 
-	 private static final ResourceLocation TEXTRUE_THE_WORLD = new ResourceLocation(HuajiAge.MODID, StandLoader.THE_WORLD.getTexPath());
-	 private static final ResourceLocation TEXTRUE_STAR_PLATINUM = new ResourceLocation(HuajiAge.MODID, StandLoader.STAR_PLATINUM.getTexPath());
+//	 private static final ResourceLocation TEXTRUE_THE_WORLD = new ResourceLocation(HuajiAge.MODID, StandLoader.THE_WORLD.getTexPath());
+//	 private static final ResourceLocation TEXTRUE_STAR_PLATINUM = new ResourceLocation(HuajiAge.MODID, StandLoader.STAR_PLATINUM.getTexPath());
 	 
 	 public LayerStand(RenderLivingBase<?> livingEntityRendererIn)
 	    {

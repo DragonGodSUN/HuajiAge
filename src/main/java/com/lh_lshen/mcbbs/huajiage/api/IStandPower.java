@@ -12,4 +12,5 @@ public interface IStandPower {
 	void doStandCapability(EntityLivingBase user);
 	
 	void doStandCapabilityClient(WorldClient world ,EntityLivingBase user);
+	
 }

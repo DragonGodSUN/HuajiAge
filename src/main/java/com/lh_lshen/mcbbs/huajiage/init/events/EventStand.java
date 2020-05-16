@@ -26,7 +26,7 @@ import com.lh_lshen.mcbbs.huajiage.stand.EnumStandtype;
 import com.lh_lshen.mcbbs.huajiage.stand.StandClientUtil;
 import com.lh_lshen.mcbbs.huajiage.stand.StandLoader;
 import com.lh_lshen.mcbbs.huajiage.stand.StandUtil;
-import com.lh_lshen.mcbbs.huajiage.stand.helper.instance.StandBase;
+import com.lh_lshen.mcbbs.huajiage.stand.instance.StandBase;
 import com.lh_lshen.mcbbs.huajiage.stand.messages.SyncExposedStandDataMessage;
 import com.lh_lshen.mcbbs.huajiage.util.MotionHelper;
 import com.lh_lshen.mcbbs.huajiage.util.NBTHelper;

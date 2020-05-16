@@ -4,6 +4,7 @@ package com.lh_lshen.mcbbs.huajiage.item;
 import java.util.List;
 import java.util.UUID;
 
+import com.lh_lshen.mcbbs.huajiage.HuajiAge;
 import com.lh_lshen.mcbbs.huajiage.capability.CapabilityStandHandler;
 import com.lh_lshen.mcbbs.huajiage.capability.CapabilityStandStageHandler;
 import com.lh_lshen.mcbbs.huajiage.capability.StandHandler;
@@ -12,7 +13,7 @@ import com.lh_lshen.mcbbs.huajiage.crativetab.CreativeTabLoader;
 import com.lh_lshen.mcbbs.huajiage.stand.EnumStandtype;
 import com.lh_lshen.mcbbs.huajiage.stand.StandLoader;
 import com.lh_lshen.mcbbs.huajiage.stand.StandUtil;
-import com.lh_lshen.mcbbs.huajiage.stand.helper.instance.StandBase;
+import com.lh_lshen.mcbbs.huajiage.stand.instance.StandBase;
 import com.lh_lshen.mcbbs.huajiage.util.NBTHelper;
 
 import net.minecraft.client.resources.I18n;
@@ -150,6 +151,8 @@ public class ItemDiscStand extends Item {
 		
 		return new ActionResult<ItemStack>(EnumActionResult.SUCCESS, playerIn.getHeldItem(handIn));
 	}
+	
+	
 	 enum NBT {
 	        STAND_ID("StandId"),
 	        STAND_STAGE("StandStage");

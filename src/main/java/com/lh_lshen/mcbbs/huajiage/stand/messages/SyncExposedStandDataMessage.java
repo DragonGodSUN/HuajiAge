@@ -4,7 +4,7 @@ import com.lh_lshen.mcbbs.huajiage.capability.CapabilityLoader;
 import com.lh_lshen.mcbbs.huajiage.capability.IExposedData;
 import com.lh_lshen.mcbbs.huajiage.stand.EnumStandtype;
 import com.lh_lshen.mcbbs.huajiage.stand.StandUtil;
-import com.lh_lshen.mcbbs.huajiage.stand.helper.instance.StandBase;
+import com.lh_lshen.mcbbs.huajiage.stand.instance.StandBase;
 
 import io.netty.buffer.ByteBuf;
 import net.minecraft.client.Minecraft;

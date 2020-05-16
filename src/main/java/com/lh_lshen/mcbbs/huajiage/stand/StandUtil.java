@@ -3,6 +3,7 @@ package com.lh_lshen.mcbbs.huajiage.stand;
 import java.util.ArrayList;
 import java.util.List;
 
+import com.lh_lshen.mcbbs.huajiage.HuajiAge;
 import com.lh_lshen.mcbbs.huajiage.capability.CapabilityStandBuffHandler;
 import com.lh_lshen.mcbbs.huajiage.capability.CapabilityStandChargeHandler;
 import com.lh_lshen.mcbbs.huajiage.capability.CapabilityStandHandler;
@@ -15,13 +16,14 @@ import com.lh_lshen.mcbbs.huajiage.init.HuajiConstant;
 import com.lh_lshen.mcbbs.huajiage.init.playsound.HuajiSoundPlayer;
 import com.lh_lshen.mcbbs.huajiage.network.messages.MessageParticleGenerator;
 import com.lh_lshen.mcbbs.huajiage.potion.PotionLoader;
-import com.lh_lshen.mcbbs.huajiage.stand.helper.instance.StandBase;
+import com.lh_lshen.mcbbs.huajiage.stand.instance.StandBase;
 import com.lh_lshen.mcbbs.huajiage.util.ServerUtil;
 
 import net.minecraft.entity.EntityLivingBase;
 import net.minecraft.init.SoundEvents;
 import net.minecraft.potion.PotionEffect;
 import net.minecraft.util.EnumParticleTypes;
+import net.minecraft.util.ResourceLocation;
 
 public class StandUtil {
 	public static StandBase getType(EntityLivingBase entity) {
@@ -108,6 +110,10 @@ public class StandUtil {
     			}
     		}return HuajiConstant.StandType.STAND_EMPTY;
     	}
+	
+	public static ResourceLocation getDiscTex(StandBase stand) {
+		return new ResourceLocation(HuajiAge.MODID,"textures/items/disc_"+stand.getName()+".png");
+	}
 	
     public static StandBase getTypeWithIndex(int index) {
     	int id = index;

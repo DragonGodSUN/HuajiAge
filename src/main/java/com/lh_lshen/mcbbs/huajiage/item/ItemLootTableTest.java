@@ -14,8 +14,8 @@ import com.lh_lshen.mcbbs.huajiage.potion.PotionLoader;
 import com.lh_lshen.mcbbs.huajiage.stand.EnumStandtype;
 import com.lh_lshen.mcbbs.huajiage.stand.StandLoader;
 import com.lh_lshen.mcbbs.huajiage.stand.StandUtil;
-import com.lh_lshen.mcbbs.huajiage.stand.helper.instance.StandHierophantGreen;
-import com.lh_lshen.mcbbs.huajiage.stand.helper.skill.TimeStopHelper;
+import com.lh_lshen.mcbbs.huajiage.stand.helper.TimeStopHelper;
+import com.lh_lshen.mcbbs.huajiage.stand.instance.StandHierophantGreen;
 import com.lh_lshen.mcbbs.huajiage.util.NBTHelper;
 
 import net.minecraft.block.state.IBlockState;

@@ -1,9 +1,13 @@
-package com.lh_lshen.mcbbs.huajiage.stand.helper.instance;
+package com.lh_lshen.mcbbs.huajiage.stand.instance;
 
+import com.lh_lshen.mcbbs.huajiage.HuajiAge;
 import com.lh_lshen.mcbbs.huajiage.api.IStandPower;
+import com.lh_lshen.mcbbs.huajiage.api.IStandRes;
+import com.lh_lshen.mcbbs.huajiage.stand.resource.StandRes;
 
 import net.minecraft.client.multiplayer.WorldClient;
 import net.minecraft.entity.EntityLivingBase;
+import net.minecraft.util.ResourceLocation;
 
 public class StandBase implements IStandPower{
 	private String name;
@@ -59,6 +63,10 @@ public class StandBase implements IStandPower{
 		return localName;
 	}
 	
+	public StandRes getBindingRes() {
+		return null;
+	}
+	
 	@Override
 	public void doStandPower(EntityLivingBase user) {
 		
@@ -71,4 +79,5 @@ public class StandBase implements IStandPower{
 	public void doStandCapabilityClient(WorldClient world, EntityLivingBase user) {
 		
 	}
+
 }

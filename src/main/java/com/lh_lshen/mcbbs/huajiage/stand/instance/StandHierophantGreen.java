@@ -1,10 +1,11 @@
-package com.lh_lshen.mcbbs.huajiage.stand.helper.instance;
+package com.lh_lshen.mcbbs.huajiage.stand.instance;
 
 import java.util.List;
 import java.util.Random;
 
 import com.jcraft.jorbis.Block;
 import com.lh_lshen.mcbbs.huajiage.api.IStandPower;
+import com.lh_lshen.mcbbs.huajiage.api.IStandRes;
 import com.lh_lshen.mcbbs.huajiage.client.model.stand.ModelStandBase;
 import com.lh_lshen.mcbbs.huajiage.entity.EntityEmeraldBullet;
 import com.lh_lshen.mcbbs.huajiage.init.HuajiConstant;
@@ -19,6 +20,8 @@ import com.lh_lshen.mcbbs.huajiage.stand.StandUtil;
 import com.lh_lshen.mcbbs.huajiage.stand.messages.MessageDoStandCapabilityServer;
 import com.lh_lshen.mcbbs.huajiage.stand.messages.MessageDoStandPowerClient;
 import com.lh_lshen.mcbbs.huajiage.stand.messages.MessagePerfromSkill;
+import com.lh_lshen.mcbbs.huajiage.stand.resource.StandRes;
+import com.lh_lshen.mcbbs.huajiage.stand.resource.StandResLoader;
 import com.lh_lshen.mcbbs.huajiage.util.MotionHelper;
 import com.lh_lshen.mcbbs.huajiage.util.NBTHelper;
 import com.lh_lshen.mcbbs.huajiage.util.ServerUtil;
@@ -45,15 +48,17 @@ import net.minecraft.util.text.TextComponentTranslation;
 import net.minecraft.world.World;
 
 public class StandHierophantGreen extends StandBase {
-
+	
 	public StandHierophantGreen() {
 	}
-	
-	public StandHierophantGreen(String name, float speed, float damage, int duration, float distance, int cost,
-			String texPath, String localName) {
-		super(name, speed, damage, duration, distance, cost, texPath, localName);
+	public StandHierophantGreen(String name ,float speed ,float damage ,int duration ,float distance ,int cost,
+			String texPath,String localName) {
+			super(name, speed, damage, duration, distance, cost, texPath, localName);
 	}
-
+	@Override
+	public StandRes getBindingRes() {
+		return StandResLoader.HIEROPHANT_GREEN_RES;
+	}
 	@Override
 	public void doStandPower(EntityLivingBase user) {
 		StandBase type = StandUtil.getType(user);

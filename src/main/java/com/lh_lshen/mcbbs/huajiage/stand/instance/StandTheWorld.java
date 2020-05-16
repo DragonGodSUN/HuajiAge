@@ -1,9 +1,10 @@
-package com.lh_lshen.mcbbs.huajiage.stand.helper.instance;
+package com.lh_lshen.mcbbs.huajiage.stand.instance;
 
 import java.util.List;
 import java.util.Random;
 
 import com.lh_lshen.mcbbs.huajiage.api.IStandPower;
+import com.lh_lshen.mcbbs.huajiage.api.IStandRes;
 import com.lh_lshen.mcbbs.huajiage.client.model.stand.ModelStandBase;
 import com.lh_lshen.mcbbs.huajiage.init.HuajiConstant;
 import com.lh_lshen.mcbbs.huajiage.init.playsound.HuajiSoundPlayer;
@@ -13,10 +14,12 @@ import com.lh_lshen.mcbbs.huajiage.stand.EnumStandtype;
 import com.lh_lshen.mcbbs.huajiage.stand.StandClientUtil;
 import com.lh_lshen.mcbbs.huajiage.stand.StandLoader;
 import com.lh_lshen.mcbbs.huajiage.stand.StandUtil;
-import com.lh_lshen.mcbbs.huajiage.stand.helper.skill.TimeStopHelper;
+import com.lh_lshen.mcbbs.huajiage.stand.helper.TimeStopHelper;
 import com.lh_lshen.mcbbs.huajiage.stand.messages.MessageDoStandCapabilityServer;
 import com.lh_lshen.mcbbs.huajiage.stand.messages.MessageDoStandPowerClient;
 import com.lh_lshen.mcbbs.huajiage.stand.messages.MessagePerfromSkill;
+import com.lh_lshen.mcbbs.huajiage.stand.resource.StandRes;
+import com.lh_lshen.mcbbs.huajiage.stand.resource.StandResLoader;
 import com.lh_lshen.mcbbs.huajiage.util.MotionHelper;
 import com.lh_lshen.mcbbs.huajiage.util.NBTHelper;
 import com.lh_lshen.mcbbs.huajiage.util.ServerUtil;
@@ -37,15 +40,18 @@ import net.minecraft.util.math.Vec3d;
 import net.minecraft.util.text.TextComponentTranslation;
 
 public class StandTheWorld extends StandBase {
-	
-	 public StandTheWorld() {
-	 	}
-	 
-	 public StandTheWorld(String name, float speed, float damage, int duration, float distance, int cost,
-				String texPath, String localName) {
-			super(name, speed, damage, duration, distance, cost, texPath, localName);
-	 	}
 
+	public StandTheWorld() {
+	}
+	public StandTheWorld(String name ,float speed ,float damage ,int duration ,float distance ,int cost,
+			String texPath,String localName) {
+			super(name, speed, damage, duration, distance, cost, texPath, localName);
+	}
+	@Override
+	public StandRes getBindingRes() {
+		return StandResLoader.THE_WORLD_RES;
+	}
+	
 	@Override
 	public void doStandPower(EntityLivingBase user) {
 		StandBase type = StandUtil.getType(user);
@@ -152,5 +158,6 @@ public class StandTheWorld extends StandBase {
 		TimeStopHelper.doTimeStopClient(world, user.getPositionVector(), StandLoader.THE_WORLD);
 	}
 
+	
 
 }

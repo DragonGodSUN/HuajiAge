@@ -6,10 +6,10 @@ import java.util.List;
 import com.lh_lshen.mcbbs.huajiage.HuajiAge;
 import com.lh_lshen.mcbbs.huajiage.api.IStandPower;
 import com.lh_lshen.mcbbs.huajiage.init.HuajiConstant;
-import com.lh_lshen.mcbbs.huajiage.stand.helper.instance.StandBase;
-import com.lh_lshen.mcbbs.huajiage.stand.helper.instance.StandHierophantGreen;
-import com.lh_lshen.mcbbs.huajiage.stand.helper.instance.StandStarPlatinum;
-import com.lh_lshen.mcbbs.huajiage.stand.helper.instance.StandTheWorld;
+import com.lh_lshen.mcbbs.huajiage.stand.instance.StandBase;
+import com.lh_lshen.mcbbs.huajiage.stand.instance.StandHierophantGreen;
+import com.lh_lshen.mcbbs.huajiage.stand.instance.StandStarPlatinum;
+import com.lh_lshen.mcbbs.huajiage.stand.instance.StandTheWorld;
 
 import net.minecraft.client.resources.I18n;
 import net.minecraft.util.ResourceLocation;

@@ -16,7 +16,7 @@ import com.lh_lshen.mcbbs.huajiage.item.ItemLoader;
 import com.lh_lshen.mcbbs.huajiage.stand.EnumStandtype;
 import com.lh_lshen.mcbbs.huajiage.stand.StandLoader;
 import com.lh_lshen.mcbbs.huajiage.stand.StandUtil;
-import com.lh_lshen.mcbbs.huajiage.stand.helper.instance.StandBase;
+import com.lh_lshen.mcbbs.huajiage.stand.instance.StandBase;
 
 import net.minecraft.client.Minecraft;
 import net.minecraft.client.gui.Gui;
@@ -49,9 +49,9 @@ import net.minecraftforge.fml.relauncher.SideOnly;
 @Mod.EventBusSubscriber(modid = HuajiAge.MODID, value = Side.CLIENT)
 public class EventStandOverlatRender {
 //	    private static final ResourceLocation STAND = new ResourceLocation(HuajiAge.MODID, "textures/items/tarot.png");
-	    private static final ResourceLocation STAND_THE_WORLD = new ResourceLocation(HuajiAge.MODID, "textures/items/disc_the_world.png");
-	    private static final ResourceLocation STAND_STAR_PLATINUM = new ResourceLocation(HuajiAge.MODID, "textures/items/disc_star_platinum.png");
-	    private static final ResourceLocation STAND_HIEROPANT_GREEN = new ResourceLocation(HuajiAge.MODID, "textures/items/disc_hierophant_green.png");
+//	    private static final ResourceLocation STAND_THE_WORLD = new ResourceLocation(HuajiAge.MODID, "textures/items/disc_the_world.png");
+//	    private static final ResourceLocation STAND_STAR_PLATINUM = new ResourceLocation(HuajiAge.MODID, "textures/items/disc_star_platinum.png");
+//	    private static final ResourceLocation STAND_HIEROPANT_GREEN = new ResourceLocation(HuajiAge.MODID, "textures/items/disc_hierophant_green.png");
 	    
 	    @SideOnly(Side.CLIENT)
 	    @SubscribeEvent
@@ -71,7 +71,7 @@ public class EventStandOverlatRender {
 	            	return;
 	            }
 	            
-	            if (!standHandler.getStand().equals(StandLoader.EMPTY)) {
+	            if (stand!=null&&!standHandler.getStand().equals(StandLoader.EMPTY)) {
 	                int x = (int) (ConfigHuaji.Stands.StandHUDx * Minecraft.getMinecraft().displayWidth/2);
 	                int y = (int) (ConfigHuaji.Stands.StandHUDy * Minecraft.getMinecraft().displayHeight/2);
 	                GlStateManager.pushMatrix();
@@ -79,16 +79,17 @@ public class EventStandOverlatRender {
 	                GlStateManager.translate(x, y, 0);
 	                GlStateManager.scale(1.5, 1.5, 1.5);
 //	                Minecraft.getMinecraft().player.getCooldownTracker().getCooldown(disc.getItem(), Minecraft.getMinecraft().getRenderPartialTicks());
-	                switch(stand.getName()) {
-	                case "the_world" :Minecraft.getMinecraft().renderEngine.bindTexture(STAND_THE_WORLD);
-	                break;
-	                case "star_platinum" :Minecraft.getMinecraft().renderEngine.bindTexture(STAND_STAR_PLATINUM);
-	                break;
-	                case "hierophant_green" :Minecraft.getMinecraft().renderEngine.bindTexture(STAND_HIEROPANT_GREEN);
-	                break;
-					default:Minecraft.getMinecraft().renderEngine.bindTexture(STAND_THE_WORLD);
-						break;
-	                }
+//	                switch(stand.getName()) {
+//	                case "the_world" :Minecraft.getMinecraft().renderEngine.bindTexture(STAND_THE_WORLD);
+//	                break;
+//	                case "star_platinum" :Minecraft.getMinecraft().renderEngine.bindTexture(STAND_STAR_PLATINUM);
+//	                break;
+//	                case "hierophant_green" :Minecraft.getMinecraft().renderEngine.bindTexture(STAND_HIEROPANT_GREEN);
+//	                break;
+//					default:Minecraft.getMinecraft().renderEngine.bindTexture(STAND_THE_WORLD);
+//						break;
+//	                }
+	                Minecraft.getMinecraft().renderEngine.bindTexture(StandUtil.getDiscTex(stand));
 	                Gui.drawModalRectWithCustomSizedTexture(0, 0, 0, 0, 16, 16, 16, 16);
 	                GlStateManager.disableBlend();
 	                GlStateManager.popMatrix();
