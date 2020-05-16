@@ -35,5 +35,5 @@ https://github.com/TheGreyGhost/MinecraftByExample
 中文 Minecraft Mod 开发指南Harbinger：
 https://harbinger.covertdragon.team/
 
-酒石酸的女仆模组：
+酒石酸团队的女仆模组：
 https://github.com/TartaricAcid/TouhouLittleMaid
