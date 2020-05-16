@@ -37,7 +37,8 @@ import net.minecraft.util.math.Vec3d;
 
 public class RenderFivePower extends Render<EntityFivePower> {
 
-	public static final ResourceLocation TEX = new ResourceLocation(HuajiAge.MODID, "textures/particle/five_bullet.png");
+	public static final ResourceLocation TEX_0 = new ResourceLocation(HuajiAge.MODID, "textures/particle/de_bullet_0.png");
+	public static final ResourceLocation TEX_1 = new ResourceLocation(HuajiAge.MODID, "textures/particle/de_bullet_1.png");
 	public RenderFivePower(RenderManager manager)
 	{
 		super(manager);
@@ -46,8 +47,8 @@ public class RenderFivePower extends Render<EntityFivePower> {
 	@Override
 	public void doRender(EntityFivePower entity, double x, double y, double z, float entityYaw, float partialTicks) {
 		super.doRender(entity, x, y, z, entityYaw, partialTicks);
-        int w = 16;
-        int l = 16;
+        int w = 64;
+        int l = 64;
 
         double pStartU = 0;
         double pStartV = 0;
@@ -71,12 +72,16 @@ public class RenderFivePower extends Render<EntityFivePower> {
         BufferBuilder bufBuilder = tessellator.getBuffer();
 
         bufBuilder.begin(GL11.GL_QUADS, DefaultVertexFormats.POSITION_TEX);
-        this.renderManager.renderEngine.bindTexture(TEX);
+        if(entity.getDe()) {
+        this.renderManager.renderEngine.bindTexture(TEX_1);
+        }else {
+    	this.renderManager.renderEngine.bindTexture(TEX_0);
+        }
 
         bufBuilder.pos(-0.5, 0.5, 0).tex((pStartU + 0) / w, (pStartV + 0) / l).endVertex();
-        bufBuilder.pos(-0.5, -0.5, 0).tex((pStartU + 0) / w, (pStartV + 16) / l).endVertex();
-        bufBuilder.pos(0.5, -0.5, 0).tex((pStartU + 16) / w, (pStartV + 16) / l).endVertex();
-        bufBuilder.pos(0.5, 0.5, 0).tex((pStartU + 16) / w, (pStartV + 0) / l).endVertex();
+        bufBuilder.pos(-0.5, -0.5, 0).tex((pStartU + 0) / w, (pStartV + 64) / l).endVertex();
+        bufBuilder.pos(0.5, -0.5, 0).tex((pStartU + 64) / w, (pStartV + 64) / l).endVertex();
+        bufBuilder.pos(0.5, 0.5, 0).tex((pStartU + 64) / w, (pStartV + 0) / l).endVertex();
         tessellator.draw();
 
         GlStateManager.disableBlend();
@@ -87,7 +92,7 @@ public class RenderFivePower extends Render<EntityFivePower> {
 	}
 	@Override
 	protected ResourceLocation getEntityTexture(EntityFivePower entity) {
-		return TEX;
+		return null;
 	}
 	
 

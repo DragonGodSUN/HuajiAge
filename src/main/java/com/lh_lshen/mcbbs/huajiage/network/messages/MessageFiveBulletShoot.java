@@ -38,6 +38,8 @@ public class MessageFiveBulletShoot implements IMessage {
     	Vec3d face = player.getLookVec();
     	FMLCommonHandler.instance().getWorldThread(ctx.netHandler).addScheduledTask(() -> {
 		EntityFivePower bullet = new EntityFivePower(world, player);
+		boolean de = Math.random()>0.5;
+		bullet.setDe(de);
 		bullet.setPosition(player.posX, player.posY+player.eyeHeight-0.2f, player.posZ);
 		bullet.shoot(player, player.rotationPitch, player.prevRotationYawHead, 0.5f, 1.0f, 1.0f);
 		world.spawnEntity(bullet);

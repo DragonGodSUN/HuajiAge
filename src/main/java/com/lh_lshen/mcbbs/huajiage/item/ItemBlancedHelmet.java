@@ -126,12 +126,11 @@ public class ItemBlancedHelmet extends ItemModelArmorBase {
     			player.addPotionEffect(new PotionEffect(PotionLoader.potionfive,50,0,false,true));}
     		}
 		}
-    if(isLord(itemStack)) {
-    	player.capabilities.allowFlying=true;
-    }
-    if(!player.capabilities.isCreativeMode&&!isLord(itemStack)) {
-    	player.capabilities.allowFlying=false;
-    }
+//    if(isLord(itemStack)&&armorType==EntityEquipmentSlot.HEAD) {
+//    	player.capabilities.allowFlying=true;
+//    }else if(!player.capabilities.isCreativeMode) {
+//    	player.capabilities.allowFlying=false;
+//    }
 		
  }
  @Override

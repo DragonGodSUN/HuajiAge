@@ -3,6 +3,7 @@ package com.lh_lshen.mcbbs.huajiage.init;
 import com.lh_lshen.mcbbs.huajiage.client.events.EventKeyInput;
 import com.lh_lshen.mcbbs.huajiage.entity.EntitySecondFoil;
 import com.lh_lshen.mcbbs.huajiage.init.events.EventOrga;
+import com.lh_lshen.mcbbs.huajiage.init.events.EventPlayerFlying;
 import com.lh_lshen.mcbbs.huajiage.init.events.EventRequiem;
 import com.lh_lshen.mcbbs.huajiage.potion.PotionLoader;
 import com.lh_lshen.mcbbs.huajiage.util.NBTHelper;
@@ -30,6 +31,7 @@ public class EventLoader {
 	        MinecraftForge.EVENT_BUS.register(this);
 	        MinecraftForge.EVENT_BUS.register(EventRequiem.class);
 	        MinecraftForge.EVENT_BUS.register(EventOrga.class);
+	        MinecraftForge.EVENT_BUS.register(EventPlayerFlying.class);
 //	        MinecraftForge.EVENT_BUS.register(EventKeyInput.class);
 //	        MinecraftForge.EVENT_BUS.register(EventTimeStop.class);
 //	        MinecraftForge.EVENT_BUS.register(EventStand.class);

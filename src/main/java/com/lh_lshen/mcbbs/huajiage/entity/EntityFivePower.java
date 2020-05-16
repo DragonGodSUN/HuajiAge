@@ -23,8 +23,11 @@ import net.minecraft.world.World;
 
 public class EntityFivePower extends EntityThrowable{
 	private static final String TAG_LIFE = "life";
+	private static final String TAG_DE = "de";
 	private static final DataParameter<Float> LIFE = EntityDataManager.createKey(EntityEmeraldBullet.class,
 			DataSerializers.FLOAT);
+	private static final DataParameter<Boolean> DE = EntityDataManager.createKey(EntityEmeraldBullet.class,
+			DataSerializers.BOOLEAN);
 	public EntityFivePower(World worldIn) {
 		super(worldIn);
 		
@@ -37,17 +40,20 @@ public class EntityFivePower extends EntityThrowable{
 	protected void entityInit() {
 		super.entityInit();
 		dataManager.register(LIFE, 0F);
+		dataManager.register(DE, false);
 	}
 	@Override
 	public void writeEntityToNBT(@Nonnull NBTTagCompound cmp) {
 		super.writeEntityToNBT(cmp);
 		cmp.setFloat(TAG_LIFE, getLife());
+		cmp.setBoolean(TAG_DE, getDe());
 	}
 
 	@Override
 	public void readEntityFromNBT(@Nonnull NBTTagCompound cmp) {
 		super.readEntityFromNBT(cmp);
 		setLife(cmp.getFloat(TAG_LIFE));
+		setDe(cmp.getBoolean(TAG_DE));
 	}
 	@Override
 	public void onUpdate() {
@@ -69,7 +75,7 @@ public class EntityFivePower extends EntityThrowable{
 			this.setDead();
 		}
 		double r = Math.random()-0.5;
-		for(int i=0;i<5;i++) {
+		for(int i=0;i<3;i++) {
 		world.spawnParticle(EnumParticleTypes.FLAME, posX+r, posY+r, posZ+r, (Math.random()-0.5)/10, (Math.random()-0.5)/10, (Math.random()-0.5)/10);
 		}
 		
@@ -107,5 +113,14 @@ public class EntityFivePower extends EntityThrowable{
 	public void setLife(float timeTick) {
 		dataManager.set(LIFE, timeTick);
 	}
+	
+	public  boolean getDe() {
+		return dataManager.get(DE);
+	}
+	
+	public void setDe(boolean de) {
+		dataManager.set(DE, de);
+	}
 
+	
 }

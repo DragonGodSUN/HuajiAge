@@ -1,5 +1,6 @@
 package com.lh_lshen.mcbbs.huajiage.init.events;
-
+//A test structure leaned from @Tartaric_Acid and Sonwnee, follow the MIT License
+//Learn More : https://github.com/TartaricAcid/TouhouLittleMaid
 import com.lh_lshen.mcbbs.huajiage.HuajiAge;
 import com.lh_lshen.mcbbs.huajiage.capability.CapabilityExposedData;
 import com.lh_lshen.mcbbs.huajiage.capability.CapabilityLoader;
