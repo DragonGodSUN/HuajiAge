@@ -24,7 +24,7 @@ item.huajiage.eggRiceU.name=Fried Ultimate Rice With Eggs
 item.huajiage.huajiStarPoly.name=§o§lMultiple superposition state HUAJI star
 item.huajiage.arrowStand.name=§dArrow for Stand
 item.huajiage.waveCrystal.name=§bWave Crystal
-item.huajiage.waveKnife.name=§bWave Knife
+item.huajiage.waveKnife.name=Wave Knife
 
 death.attack.huajiage.hope_flower=%s was dead of world line converge
 death.attack.huajiage.second=%s has been compressed into a PNG image
@@ -35,6 +35,7 @@ death.attack.huajiage.requiem.hit=%s was been killed by Golden Experience Requie
 death.attack.huajiage.dio.hit=%s was killed in a second
 death.attack.huajiage.singularity=%s was squeezed to a point
 death.attack.huajiage.void_break=%s was broken down by void
+death.attack.huajiage.wave_hit=%s was destroyed by wave
 
 
 item.huajiage.orgaRequiem.name=§9Orga Requiem
@@ -125,6 +126,8 @@ item.huajiage.disc.tooltip.1=Stand:
 item.huajiage.disc.tooltip.2=Stage: 
 item.singularity.tooltip.warning=Warning !!!You must prepare your beat equipment to protect yourself,once you died before the end of the effect, you will regret to make this!
 item.lord_key:tooltips.1=The mysterious key handed down from ancient times is said to further liberate the supreme power of the terror of §e§lLord Lu§7 in the §3§lLord Core
+item.wave_knife.tooltip.1=Wave - §9%s
+
 
 huajiage.orga.1=§b To celebrate! The birth of the most powerful king of Mars---Orga Izka
 messege.huaji.blancedHelmet.active=§lFrom now on it's called %s §lSquare！

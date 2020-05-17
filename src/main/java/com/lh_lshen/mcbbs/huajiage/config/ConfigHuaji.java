@@ -25,7 +25,7 @@ public class ConfigHuaji {
 	public static class HuajiConfig{
 		@Config.Comment("The Terrain destruction of the big explosion created by the big hero's bow")
 		@LangKey("config.huaji_age.huaji_config.hero_explode")
-		public boolean heroExplode=true;
+		public boolean heroExplode=false;
 
 		@Config.Comment("Dose The Infinite Charm Change mode when dress Orga suit?")
 		@LangKey("config.huaji_age.huaji_config.orga_suit")
