@@ -41,7 +41,7 @@ import net.minecraftforge.fml.relauncher.SideOnly;
 public class ItemWaveKnife extends ItemSword {
  private static int tick = 0;
  private static int curColor = 0;
- public  final static int wave_max = 50;
+ public  final static int wave_max = 10;
  private static TextFormatting[] wave = {TextFormatting.BLUE,TextFormatting.BLUE,TextFormatting.AQUA,TextFormatting.AQUA };
  public static final Item.ToolMaterial WAVE = EnumHelper.addToolMaterial("WAVE", 3,600, 16.0F, 4.0F, 20);
 	public ItemWaveKnife()

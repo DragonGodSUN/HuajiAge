@@ -72,7 +72,7 @@ public class RenderFivePower extends Render<EntityFivePower> {
         BufferBuilder bufBuilder = tessellator.getBuffer();
 
         bufBuilder.begin(GL11.GL_QUADS, DefaultVertexFormats.POSITION_TEX);
-        if(entity.getDe()) {
+        if(entity.isDe()) {
         this.renderManager.renderEngine.bindTexture(TEX_1);
         }else {
     	this.renderManager.renderEngine.bindTexture(TEX_0);
