@@ -42,13 +42,18 @@ public class EventWave {
 //	                Gui.drawModalRectWithCustomSizedTexture(0, 0, 0, 0, 16, 16, 16, 128);
 //	                GlStateManager.disableBlend();
 //	                GlStateManager.popMatrix();
+	                GlStateManager.pushMatrix();
+	                GlStateManager.enableBlend();
 	                String wave = TextFormatting.BOLD+I18n.format("item.huajiage.wave_knife.hotbar.wave",NBTHelper.getTagCompoundSafe(stack).getInteger("wave_point"));
 	                String reset = TextFormatting.BOLD+I18n.format("item.huajiage.wave_knife.hotbar.wave_reset",(1000-player.ticksExisted%1000)/20);
 	                String charge = TextFormatting.BOLD+I18n.format("item.huajiage.wave_knife.hotbar.wave_charge",1+NBTHelper.getTagCompoundSafe(stack).getInteger("wave_charge"));
 	                fontRenderer.drawString( wave   , ConfigHuaji.Huaji.WaveHUDx<0.5?x:x-fontRenderer.getStringWidth(wave),  10 + 16 + y, 0xffffff, true);
 	                fontRenderer.drawString( reset   ,  ConfigHuaji.Huaji.WaveHUDx<0.5?x:x-fontRenderer.getStringWidth(reset),  20 + 16 + y, 0xffffff, true);
 	                fontRenderer.drawString( charge,  ConfigHuaji.Huaji.WaveHUDx<0.5?x:x-fontRenderer.getStringWidth(charge),  30 + 16 + y, 0xffffff, true);
-                }
+	                GlStateManager.color(1f, 1f, 1f);
+	                GlStateManager.disableBlend();
+	                GlStateManager.popMatrix();
+	            }
 	            
 	        }
 	                
