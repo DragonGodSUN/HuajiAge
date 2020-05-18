@@ -2,6 +2,8 @@ package com.lh_lshen.mcbbs.huajiage.item;
 
 import java.util.List;
 
+import com.google.common.collect.HashMultimap;
+import com.google.common.collect.Multimap;
 import com.lh_lshen.mcbbs.huajiage.crativetab.CreativeTabLoader;
 import com.lh_lshen.mcbbs.huajiage.damage_source.DamageWave;
 import com.lh_lshen.mcbbs.huajiage.init.HuajiConstant;
@@ -15,9 +17,12 @@ import net.minecraft.client.util.ITooltipFlag;
 import net.minecraft.enchantment.EnumEnchantmentType;
 import net.minecraft.entity.Entity;
 import net.minecraft.entity.EntityLivingBase;
+import net.minecraft.entity.SharedMonsterAttributes;
+import net.minecraft.entity.ai.attributes.AttributeModifier;
 import net.minecraft.entity.player.EntityPlayer;
 import net.minecraft.init.MobEffects;
 import net.minecraft.init.SoundEvents;
+import net.minecraft.inventory.EntityEquipmentSlot;
 import net.minecraft.item.Item;
 import net.minecraft.item.ItemStack;
 import net.minecraft.item.ItemSword;
@@ -41,9 +46,9 @@ import net.minecraftforge.fml.relauncher.SideOnly;
 public class ItemWaveKnife extends ItemSword {
  private static int tick = 0;
  private static int curColor = 0;
- public  final static int wave_max = 10;
+ public  final static int wave_max_init = 10;
  private static TextFormatting[] wave = {TextFormatting.BLUE,TextFormatting.BLUE,TextFormatting.AQUA,TextFormatting.AQUA };
- public static final Item.ToolMaterial WAVE = EnumHelper.addToolMaterial("WAVE", 3,600, 16.0F, 4.0F, 20);
+ public static final Item.ToolMaterial WAVE = EnumHelper.addToolMaterial("WAVE", 3,600, 16.0F, 1.0F, 20);
 	public ItemWaveKnife()
 	{
 		 super(WAVE);
@@ -59,8 +64,8 @@ public class ItemWaveKnife extends ItemSword {
 					curColor = wave.length - 1;
 				}
 			}
-			if(entityIn.ticksExisted%1000==0&&getWavePoint(stack)<wave_max) {
-				setWavePoint(stack, wave_max);
+			if(entityIn.ticksExisted%1000==0&&getWavePoint(stack)<getWaveMax(stack)) {
+				setWavePoint(stack, getWaveMax(stack));
 			}
 			if(isWave(stack)) {
 				setWave(stack, getWave(stack)-1);
@@ -115,6 +120,41 @@ public class ItemWaveKnife extends ItemSword {
 		return getWavePoint(stack)>0;
 	}
 	
+	public void setWaveMax(ItemStack stack ,int points) {
+		NBTHelper.getTagCompoundSafe(stack).setInteger("wave_max", points);
+	}
+	
+	public int getWaveMax(ItemStack stack) {
+		return NBTHelper.getTagCompoundSafe(stack).getInteger("wave_max") + wave_max_init;
+	}
+	
+	public void setWaveCharge(ItemStack stack ,int points) {
+		NBTHelper.getTagCompoundSafe(stack).setInteger("wave_charge", points);
+	}
+	
+	public int getWaveCharge(ItemStack stack) {
+		return NBTHelper.getTagCompoundSafe(stack).getInteger("wave_charge")+1;
+	}
+	
+	public void WaveCharge(ItemStack stack) {
+		int result = getWavePoint(stack)+getWaveCharge(stack);
+		if(result<=getWaveMax(stack)) {
+		setWavePoint(stack,result );
+		}else {
+		setWavePoint(stack,getWaveMax(stack));	
+		}
+	}
+	@Override
+	public Multimap<String, AttributeModifier> getAttributeModifiers(EntityEquipmentSlot slot, ItemStack stack) {
+
+		Multimap<String, AttributeModifier> multimap = HashMultimap.create();
+
+		if (slot == EntityEquipmentSlot.MAINHAND) {
+				multimap.put(SharedMonsterAttributes.ATTACK_SPEED.getName(), new AttributeModifier(ATTACK_SPEED_MODIFIER, "Tool modifier", 0.5f , 0));
+				multimap.put(SharedMonsterAttributes.ATTACK_DAMAGE.getName(), new AttributeModifier(ATTACK_DAMAGE_MODIFIER, "Tool modifier", 5f, 0));
+		}
+		return multimap;
+	}
 	@Override
 		public boolean getIsRepairable(ItemStack toRepair, ItemStack repair) {
 		if(repair.getItem()==ItemLoader.waveCrystal) {
@@ -137,10 +177,8 @@ public class ItemWaveKnife extends ItemSword {
 		public boolean hitEntity(ItemStack stack, EntityLivingBase target, EntityLivingBase attacker) {
 			target.attackEntityFrom(new DamageWave(attacker), 5f);
 			attacker.addPotionEffect(new PotionEffect(MobEffects.SPEED,200,2));
-			attacker.addPotionEffect(new PotionEffect(MobEffects.JUMP_BOOST,200,2));
-			if(getWavePoint(stack)<wave_max) {
-				setWavePoint(stack, getWavePoint(stack)+1);
-			}
+			attacker.addPotionEffect(new PotionEffect(MobEffects.JUMP_BOOST,200));
+			WaveCharge(stack);
 			return super.hitEntity(stack, target, attacker);
 		}
 	@Override
@@ -156,6 +194,7 @@ public class ItemWaveKnife extends ItemSword {
 				playerIn.motionY+=vec.y*1.5;
 				playerIn.motionZ+=vec.z*1.5;
 				playerIn.fallDistance=0;
+				playerIn.swingArm(handIn);
 
 				worldIn.playSound(playerIn, playerIn.getPosition(), SoundEvents.BLOCK_WATER_AMBIENT, SoundCategory.NEUTRAL, 1.5f, 1f);
 				worldIn.playSound(playerIn, playerIn.getPosition().add(vec.x, vec.y, vec.z), SoundEvents.ENTITY_BOBBER_SPLASH, SoundCategory.NEUTRAL, 1f, 1f);
@@ -169,5 +208,7 @@ public class ItemWaveKnife extends ItemSword {
 		public void addInformation(ItemStack stack, World worldIn, List<String> tooltip, ITooltipFlag flagIn) {
 			super.addInformation(stack, worldIn, tooltip, flagIn);
 			tooltip.add(I18n.format("item.wave_knife.tooltip.1", getWavePoint(stack)));
+			tooltip.add(I18n.format("item.wave_knife.tooltip.2", getWaveMax(stack)));
+			tooltip.add(I18n.format("item.wave_knife.tooltip.3",getWaveCharge(stack)));
 		}
 }

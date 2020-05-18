@@ -35,6 +35,16 @@ public class ConfigHuaji {
 		@LangKey("config.huaji_age.huaji_config.orga.flower")
 		public boolean useOrgaFlower=false;
 		
+		@Config.Comment("The X position of Wave Knife Using on HUD")
+		@LangKey("config.huaji_age.huaji_config.wave_knife_HUD_x")
+		@RangeDouble(min = 0, max = 1f)
+		public double WaveHUDx = 0f;
+		
+		@Config.Comment("The Y position of Wave Knife Using on HUD")
+		@LangKey("config.huaji_age.huaji_config.wave_knife_HUD_y")
+		@RangeDouble(min = 0, max = 1f)
+		public double WaveHUDy = 0.2f;
+		
 	}
 	public static class StandConfig{
 		@Config.Comment("The Terrain destruction of the big explosion created by road roller")

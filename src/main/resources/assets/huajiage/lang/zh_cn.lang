@@ -128,6 +128,11 @@ item.tarot:tooltips.2=阶段：
 item.huajiage.disc.tooltip.1=存储替身： 
 item.huajiage.disc.tooltip.2=阶段：  
 item.wave_knife.tooltip.1=波澜 - §9%s
+item.wave_knife.tooltip.2=容量 - §b%s
+item.wave_knife.tooltip.3=斩击充能 - §e%s
+item.huajiage.wave_knife.hotbar.wave=§9§l波澜§r - §b%s
+item.huajiage.wave_knife.hotbar.wave_reset=重置时间 - §b%ss
+item.huajiage.wave_knife.hotbar.wave_charge=斩击充能 - §e%s
 
 
 message.huajiage.patchouli_missing=[{"text":"[ Huaji Age II]:","color":"yellow","bold":true},{"text":"为保证最佳游戏体验，请加载  ","color":"aqua","bold":false},{"text":"Patchouli-帕秋莉模组","color":"green","underlined":true,"bold":true,"clickEvent":{"action":"open_url","value":"https://www.curseforge.com/minecraft/mc-mods/patchouli"},"hoverEvent":{"action":"show_text","value":"https://www.curseforge.com/minecraft/mc-mods/patchouli"}},{"text":"§b来获取指南手册，这是鬼畜界先辈们为迎击§0§l♂Dark&&King§b势力耗尽其毕生修为传承下的§e§lJO§6§l级宝典","color":"yellow","bold":false}]

@@ -610,12 +610,14 @@
 			"scale": [1, 1, 1.77]
 		},
 		"firstperson_righthand": {
-			"rotation": [55, -90, 25],
-			"translation": [3, 6.5, 1]
+			"rotation": [40, -90, -20],
+			"translation": [3, 6.5, 1.5],
+			"scale": [0.8, 0.8, 0.8]
 		},
 		"firstperson_lefthand": {
-			"rotation": [15, 90, 25],
-			"translation": [3, 6.5, 1]
+			"rotation": [40, 90, 25],
+			"translation": [3, 6.5, 1.5],
+			"scale": [0.8, 0.8, 0.8]
 		},
 		"ground": {
 			"translation": [0, 2, 0],

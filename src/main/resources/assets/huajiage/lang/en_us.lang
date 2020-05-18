@@ -127,6 +127,11 @@ item.huajiage.disc.tooltip.2=Stage:
 item.singularity.tooltip.warning=Warning !!!You must prepare your beat equipment to protect yourself,once you died before the end of the effect, you will regret to make this!
 item.lord_key:tooltips.1=The mysterious key handed down from ancient times is said to further liberate the supreme power of the terror of §e§lLord Lu§7 in the §3§lLord Core
 item.wave_knife.tooltip.1=Wave - §9%s
+item.wave_knife.tooltip.2=Capacity - §b%s
+item.wave_knife.tooltip.3=Charge Hit - §e%s
+item.huajiage.wave_knife.hotbar.wave=§9Wave - §b%s
+item.huajiage.wave_knife.hotbar.wave_reset=Reset Time - §b%ss
+item.huajiage.wave_knife.hotbar.wave_charge=Hit Charge - §e%s
 
 
 huajiage.orga.1=§b To celebrate! The birth of the most powerful king of Mars---Orga Izka
