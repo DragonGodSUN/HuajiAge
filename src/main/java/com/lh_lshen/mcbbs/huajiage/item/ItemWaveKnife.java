@@ -4,6 +4,7 @@ import java.util.List;
 
 import com.google.common.collect.HashMultimap;
 import com.google.common.collect.Multimap;
+import com.lh_lshen.mcbbs.huajiage.HuajiAge;
 import com.lh_lshen.mcbbs.huajiage.crativetab.CreativeTabLoader;
 import com.lh_lshen.mcbbs.huajiage.damage_source.DamageWave;
 import com.lh_lshen.mcbbs.huajiage.init.HuajiConstant;
@@ -37,12 +38,14 @@ import net.minecraft.util.text.TextFormatting;
 import net.minecraft.world.World;
 import net.minecraftforge.common.MinecraftForge;
 import net.minecraftforge.common.util.EnumHelper;
+import net.minecraftforge.fml.common.Mod;
 import net.minecraftforge.fml.common.eventhandler.SubscribeEvent;
 import net.minecraftforge.fml.common.gameevent.TickEvent.ClientTickEvent;
 import net.minecraftforge.fml.common.gameevent.TickEvent.Phase;
 import net.minecraftforge.fml.relauncher.Side;
 import net.minecraftforge.fml.relauncher.SideOnly;
 
+@Mod.EventBusSubscriber(modid = HuajiAge.MODID, value = Side.CLIENT)
 public class ItemWaveKnife extends ItemSword {
  private static int tick = 0;
  private static int curColor = 0;
@@ -53,17 +56,30 @@ public class ItemWaveKnife extends ItemSword {
 	{
 		 super(WAVE);
 		  this.setCreativeTab(CreativeTabLoader.tabhuaji);
+//		  MinecraftForge.EVENT_BUS.register(this);
 	}
 
-	@Override
-		public void onUpdate(ItemStack stack, World worldIn, Entity entityIn, int itemSlot, boolean isSelected) {
-			super.onUpdate(stack, worldIn, entityIn, itemSlot, isSelected);
-			if (++tick >= 5) {
+	@SubscribeEvent
+	@SideOnly(Side.CLIENT)
+	public static void onClientTick(ClientTickEvent event) {
+		if (event.phase == Phase.START) {
+			if (++tick >= 2) {
 				tick = 0;
 				if (--curColor < 0) {
 					curColor = wave.length - 1;
 				}
 			}
+		}
+	}
+	@Override
+		public void onUpdate(ItemStack stack, World worldIn, Entity entityIn, int itemSlot, boolean isSelected) {
+			super.onUpdate(stack, worldIn, entityIn, itemSlot, isSelected);
+//			if (++tick >= 5) {
+//				tick = 0;
+//				if (--curColor < 0) {
+//					curColor = wave.length - 1;
+//				}
+//			}
 			if(entityIn.ticksExisted%1000==0&&getWavePoint(stack)<getWaveMax(stack)) {
 				setWavePoint(stack, getWaveMax(stack));
 			}
