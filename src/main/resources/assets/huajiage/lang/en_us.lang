@@ -62,6 +62,7 @@ item.huajiage.orgaBoots.name=Orga's boots
 item.huajiage.hopeElement.name=Hope Element
 item.huajiage.hopeFlower.name=Hope Flower
 item.huajiage.infiniteCharm.name=§bInfinite §8Armor Charm
+item.huajiage.orgaRunning.name=§eRunning Orga
 item.huajiage.multiKnife.name=Multi Stacks Knife
 item.huajiage.multiKnife.shiny.name=Shiny Stacks Knife
 item.huajiage.dioBread.name=§e§lDio Bread
@@ -191,6 +192,7 @@ stand.huajiage.empty=Empty
 stand.huajiage.the_world=§e§lThe World
 stand.huajiage.star_platinum=§5§lStar Platinum
 stand.huajiage.hierophant_green=§a§lHierophant Green
+stand.huajiage.orga_requiem=§4§lOrga Requiem
 
 stand.huajiage.skill.the_world.start=§e§lThe World!!!
 stand.huajiage.skill.star_platinum.start=§5§lStar Platinum!The World!!! 

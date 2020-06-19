@@ -88,6 +88,7 @@ item.huajiage.orgaRequiem.name=§9停不下来的奥尔加镇魂曲
 item.huajiage.hopeElement.name=希望要素
 item.huajiage.hopeFlower.name=§b希望之花
 item.huajiage.infiniteCharm.name=§b无限耐久§8护甲护身符
+item.huajiage.orgaRunning.name=§e卡其托里钛
 item.huajiage.dioBread.name=§e§lDio Bread
 item.huajiage.roadRoller.name=§e压路机
 item.huajiage.multiKnife.name=超空间折叠复合小刀
@@ -195,6 +196,7 @@ stand.huajiage.empty=缺失
 stand.huajiage.the_world=§e§lThe World-世界
 stand.huajiage.star_platinum=§5§lStar Platinum-白金之星
 stand.huajiage.hierophant_green=§a§lHierophant Green-绿之法皇
+stand.huajiage.orga_requiem=§4§l停不下来的奥尔加镇魂曲
 
 stand.huajiage.skill.the_world.start=§e§l咋瓦鲁多 ! ! ! 时间停止吧 !
 stand.huajiage.skill.star_platinum.start=§5§l食堂泼辣酱——§b§l咋瓦鲁多 ! 

@@ -157,9 +157,15 @@ public class EventPlayerCapability {
         if (event.side == Side.SERVER && event.phase == Phase.END) {
             if (player.hasCapability(CapabilityStandHandler.STAND_TYPE, null)) {
                 StandHandler stand = player.getCapability(CapabilityStandHandler.STAND_TYPE, null);
+                IExposedData data = player.getCapability(CapabilityLoader.EXPOSED_DATA, null);
                 if (stand != null && stand.isDirty()) {
                     StandNetWorkHandler.HANDLER.sendTo(new SyncStandMessage(stand.getStand()), (EntityPlayerMP) player);
 //                    ServerUtil.sendPacketToNearbyPlayersStand(player, new SyncStandUserMessage(stand.getStand(), player.getName()));
+                    if (data != null ) {
+                    	data.setStand(stand.getStand());
+                    	data.setTrigger(false);
+                    	data.setDirty(true);
+                    }
                     stand.setDirty(false);
                 }
             }

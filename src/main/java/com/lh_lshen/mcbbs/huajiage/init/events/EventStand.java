@@ -165,8 +165,12 @@ public class EventStand {
 					 stand_owner.addPotionEffect(new PotionEffect(MobEffects.WITHER , 5*20 , 1 ));
 					 }
 				 }
+				 }
+		    if(!flag) {
+			    if(stand_owner.isPotionActive(PotionLoader.potionStand)) {
+				   stand_owner.removePotionEffect(PotionLoader.potionStand);
 			 }
-
+			 }
 		 }
 		 
 	  	}

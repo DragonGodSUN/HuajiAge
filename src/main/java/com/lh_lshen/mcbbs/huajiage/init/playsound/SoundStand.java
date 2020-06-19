@@ -20,6 +20,9 @@ public class SoundStand {
 			SoundLoader.STAND_STAR_PLATINUM_1 , SoundLoader.STAND_STAR_PLATINUM_2,
 			SoundLoader.STAND_STAR_PLATINUM_3,SoundLoader.STAND_STAR_PLATINUM_4);
 	
+	public static final List<SoundEvent> ORGA_SOUND_LIST = getGroup(new ArrayList<SoundEvent>(),
+			SoundLoader.ORGA_REQUIEM_2 );
+	
 	private static List<SoundEvent> getGroup(List<SoundEvent> list ,SoundEvent... elements){
 		List<SoundEvent> new_list = list;
 		for(SoundEvent element : elements) {

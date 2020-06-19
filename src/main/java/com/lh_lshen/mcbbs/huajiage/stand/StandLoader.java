@@ -9,6 +9,7 @@ import com.lh_lshen.mcbbs.huajiage.api.IStandPower;
 import com.lh_lshen.mcbbs.huajiage.init.HuajiConstant;
 import com.lh_lshen.mcbbs.huajiage.stand.instance.StandBase;
 import com.lh_lshen.mcbbs.huajiage.stand.instance.StandHierophantGreen;
+import com.lh_lshen.mcbbs.huajiage.stand.instance.StandOrgaRequiem;
 import com.lh_lshen.mcbbs.huajiage.stand.instance.StandStarPlatinum;
 import com.lh_lshen.mcbbs.huajiage.stand.instance.StandTheWorld;
 import com.lh_lshen.mcbbs.huajiage.stand.resource.ResStandHierophantGreen;
@@ -26,11 +27,13 @@ public class StandLoader {
 	public static final StandTheWorld THE_WORLD = new StandTheWorld("the_world",1.2f,10f,200,2f,60000,"textures/entity/entity_the_world.png",HuajiConstant.StandType.STAND_THE_WORLD);
 	public static final StandStarPlatinum STAR_PLATINUM = new StandStarPlatinum("star_platinum",1.5f,15f,275,2f,50000,"textures/entity/entity_star_platinum.png",HuajiConstant.StandType.STAND_STAR_PLATINUM);
 	public static final StandHierophantGreen HIEROPHANT_GREEN = new StandHierophantGreen("hierophant_green",1.0f,5f,200,20f,70000,"textures/entity/entity_hierophant_green.png",HuajiConstant.StandType.STAND_HIEROPANT_GREEN);
+	public static final StandOrgaRequiem ORGA_REQUIEM = new StandOrgaRequiem("orga_requiem",0f,0f,650,50f,8000,"textures/entity/entity_orga_requiem.png",HuajiConstant.StandType.STAND_ORGA_REQUIEM);
 	
 	public StandLoader() {
 		registerStand(THE_WORLD);
 		registerStand(STAR_PLATINUM);
 		registerStand(HIEROPHANT_GREEN);
+		registerStand(ORGA_REQUIEM);
 		for(StandBase stand:STAND_LIST) {
 			HuajiAgeAPI.registerStand(stand);
 		}

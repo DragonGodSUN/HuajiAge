@@ -26,11 +26,13 @@ public class StandResLoader {
 	public static final StandRes THE_WORLD_RES = new ResStandTheWorld("the_world");
 	public static final StandRes STAR_PLATINUM_RES = new ResStandStarPlatinum("star_platinum");
 	public static final StandRes HIEROPHANT_GREEN_RES = new ResStandHierophantGreen("hierophant_green");
+	public static final StandRes ORGA_REQUIEM_RES = new ResStandOrgaRequiem("orga_requiem");
 	
 	public StandResLoader() {
 		register(THE_WORLD_RES);
 		register(STAR_PLATINUM_RES);
 		register(HIEROPHANT_GREEN_RES);
+		register(ORGA_REQUIEM_RES);
 	}
 	
 	private static void register(StandRes stand){

@@ -57,7 +57,7 @@ public class EventViewRender {
 				GlStateManager.setFog(FogMode.EXP);
 //				GlStateManager.color(0.5f, 0.5f, 0.5f);
 //				GlStateManager.
-				GlStateManager.setFogDensity(0.05f);
+				GlStateManager.setFogDensity(0.005f);
 				GlStateManager.enableFog();
 			}
 		}
