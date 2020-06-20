@@ -18,10 +18,11 @@ public class StandBase implements IStandPower{
 	private int cost;
 	private String texPath;
 	private String localName;
+	private boolean displayHand;
 	public StandBase() {
 	}
 	public StandBase(String name ,float speed ,float damage ,int duration ,float distance ,int cost,
-			String texPath,String localName) {
+			String texPath,String localName, boolean displayHand) {
 			this.name=name;
 			this.speed=speed;
 			this.damage=damage;
@@ -30,6 +31,7 @@ public class StandBase implements IStandPower{
 			this.cost=cost;
 			this.texPath = texPath;
 			this.localName = localName;
+			this.displayHand = displayHand;
 	}
 	public float getSpeed() {
 		return speed;
@@ -61,6 +63,10 @@ public class StandBase implements IStandPower{
 	
 	public String getLocalName() {
 		return localName;
+	}
+	
+	public boolean isHandDisplay() {
+		return displayHand;
 	}
 	
 	public StandRes getBindingRes() {

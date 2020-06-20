@@ -46,7 +46,7 @@ public class ResStandOrgaRequiem extends StandRes{
 		int index = (int) MathHelper.nextFloat(new Random(), 0, size);
 		if(index<size) {
 			SoundEvent sound = sounds.get(index);
-			mc.getSoundHandler().playSound(HuajiSoundPlayer.getMovingSound(user, sound, SoundCategory.NEUTRAL, 1f));
+			mc.getSoundHandler().playSound(HuajiSoundPlayer.getMovingSound(user, sound, SoundCategory.NEUTRAL, 0.6f));
 //			HuajiMovingSound hits = new HuajiMovingSound(user, SoundLoader.ORGA_REQUIEM_2, SoundCategory.NEUTRAL);
 //			hits.setVolume(1.0f);
 //			hits.setLoop();

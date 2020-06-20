@@ -41,7 +41,7 @@ public class EventViewRender {
 	@SubscribeEvent
 	public static void TimeStopRender1(FogColors evt) {
 	if(evt.getEntity() instanceof EntityLivingBase) {
-			if(ConfigHuaji.Stands.allowFogTimeStop&&StandUtil.getStandBuffTime((EntityLivingBase) evt.getEntity())>0) {
+			if(StandUtil.getStandBuffTime((EntityLivingBase) evt.getEntity())>0) {
 		    	evt.setRed(85);
 		    	evt.setGreen(85);
 		    	evt.setBlue(85);
@@ -57,7 +57,7 @@ public class EventViewRender {
 				GlStateManager.setFog(FogMode.EXP);
 //				GlStateManager.color(0.5f, 0.5f, 0.5f);
 //				GlStateManager.
-				GlStateManager.setFogDensity(0.005f);
+				GlStateManager.setFogDensity(0.0005f);
 				GlStateManager.enableFog();
 			}
 		}
@@ -65,7 +65,7 @@ public class EventViewRender {
 	
 	@SubscribeEvent
 	public static void TimeStopRender3(FOVModifier evt) {
-		if(ConfigHuaji.Stands.allowFogTimeStop&&evt.getEntity() instanceof EntityLivingBase) {
+		if(evt.getEntity() instanceof EntityLivingBase) {
 				if(StandUtil.getStandBuffTime((EntityLivingBase) evt.getEntity())>0) {
 				evt.setFOV(evt.getFOV()+25f);
 	    		}

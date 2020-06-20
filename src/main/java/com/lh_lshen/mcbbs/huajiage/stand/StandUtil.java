@@ -24,8 +24,10 @@ import net.minecraft.init.SoundEvents;
 import net.minecraft.potion.PotionEffect;
 import net.minecraft.util.EnumParticleTypes;
 import net.minecraft.util.ResourceLocation;
+import net.minecraft.util.text.TextFormatting;
 
 public class StandUtil {
+	private static StandBase[] ArrowStand = {StandLoader.THE_WORLD,StandLoader.STAR_PLATINUM,StandLoader.HIEROPHANT_GREEN};
 	public static StandBase getType(EntityLivingBase entity) {
 		   if (entity.hasCapability(CapabilityStandHandler.STAND_TYPE, null)) {
 	           StandHandler stand = entity.getCapability(CapabilityStandHandler.STAND_TYPE, null);
@@ -90,14 +92,16 @@ public class StandUtil {
 	    return 0;
 	}
 	
-	public static void standBuff(EntityLivingBase entity) {
-			  if(!entity.isPotionActive(PotionLoader.potionStand)) {
-				  StandHandler standHandler = entity.getCapability(CapabilityStandHandler.STAND_TYPE, null);
-
+	public static void standEffectLoad(EntityLivingBase entity) {
+		  if(!entity.isPotionActive(PotionLoader.potionStand)) {
+			  StandBase stand = StandUtil.getType(entity);
+			  if(stand!=null) 
+			  {
 				  entity.addPotionEffect(new PotionEffect(PotionLoader.potionStand,60,0));
 				  HuajiSoundPlayer.playToNearbyClient(entity, SoundEvents.ENTITY_EXPERIENCE_ORB_PICKUP,0.5f);
 				  ServerUtil.sendPacketToNearbyPlayers(entity, new MessageParticleGenerator(entity.getPositionVector(), EnumParticleTypes.FIREWORKS_SPARK,60,3,1));
-			  }
+	  		  }
+		  }
 			  if(entity.isPotionActive(PotionLoader.potionStand)&&entity.getActivePotionEffect(PotionLoader.potionStand).getDuration()<20) {
 				  entity.addPotionEffect(new PotionEffect(PotionLoader.potionStand,60,0));
 			  }
@@ -115,12 +119,18 @@ public class StandUtil {
 		return new ResourceLocation(HuajiAge.MODID,"textures/items/disc_"+stand.getName()+".png");
 	}
 	
+	public static List<StandBase> getArrowStands() {
+    	List<StandBase> list = new ArrayList<StandBase>();
+    	for(StandBase stand : ArrowStand) {
+    		list.add(stand);
+    	}
+		return list;
+	
+	}
+	
     public static StandBase getTypeWithIndex(int index) {
     	int id = index;
-    	List<StandBase> stand_list_get = new ArrayList<StandBase>();
-    	stand_list_get.add(StandLoader.THE_WORLD);
-    	stand_list_get.add(StandLoader.STAR_PLATINUM);
-    	stand_list_get.add(StandLoader.HIEROPHANT_GREEN);
+    	List<StandBase> stand_list_get = getArrowStands();
     	if(id>=0 && id<stand_list_get.size() || id>=stand_list_get.size()) {
         return stand_list_get.get(id%stand_list_get.size());
     	}

@@ -52,8 +52,8 @@ public class StandHierophantGreen extends StandBase {
 	public StandHierophantGreen() {
 	}
 	public StandHierophantGreen(String name ,float speed ,float damage ,int duration ,float distance ,int cost,
-			String texPath,String localName) {
-			super(name, speed, damage, duration, distance, cost, texPath, localName);
+			String texPath,String localName, boolean displayHand) {
+			super(name, speed, damage, duration, distance, cost, texPath, localName, displayHand);
 	}
 	@Override
 	public StandRes getBindingRes() {

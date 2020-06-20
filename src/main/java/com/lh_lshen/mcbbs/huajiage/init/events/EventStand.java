@@ -82,10 +82,11 @@ public class EventStand {
 		World world = Minecraft.getMinecraft().world;
 		EntityPlayer player = Minecraft.getMinecraft().player;
 		ItemStack stack = player.getHeldItemMainhand();
+		StandBase stand =StandUtil.getType(player);
 		int perspective = Minecraft.getMinecraft().gameSettings.thirdPersonView;
 		boolean f1 = Minecraft.getMinecraft().gameSettings.hideGUI;
 
-		if (stack.getItem() != ItemLoader.roadRoller &&player.isPotionActive(PotionLoader.potionStand) && perspective == 0 && !f1)
+		if (stand!=null && stack.getItem() != ItemLoader.roadRoller &&player.isPotionActive(PotionLoader.potionStand) && perspective == 0 && !f1)
 		{
 			GlStateManager.pushMatrix();
 			GlStateManager.enableBlend();
@@ -95,7 +96,7 @@ public class EventStand {
 			
 			EventStand.setLightmapDisabled(true);
 
-			if (perspective == 0)
+			if (perspective == 0 && !stand.isHandDisplay())
 			{
 				event.setCanceled(true);
 			}
@@ -156,17 +157,17 @@ public class EventStand {
 		 if(data!=null && !data.getStand().equals(StandLoader.EMPTY)) {
 			 boolean flag = data.isTriggered();
 
-			 if(stand_owner.isPotionActive(PotionLoader.potionStand)&&stand_owner.getActivePotionEffect(PotionLoader.potionStand).getDuration()<=5) {
-				 if(flag) {
+		 if(flag) {
+			 if( !stand_owner.isPotionActive(PotionLoader.potionStand) || stand_owner.isPotionActive(PotionLoader.potionStand)&&stand_owner.getActivePotionEffect(PotionLoader.potionStand).getDuration()<=5) {
 					 stand_owner.addPotionEffect(new PotionEffect(PotionLoader.potionStand , 5*20  ));
 					 stand_owner.addPotionEffect(new PotionEffect(MobEffects.SLOWNESS , 5*20, 1 ));
 					 stand_owner.addPotionEffect(new PotionEffect(MobEffects.HUNGER , 5*20 , ConfigHuaji.Stands.allowStandPunish? 24 : 49 ));
 					 if(ConfigHuaji.Stands.allowStandPunish) {
 					 stand_owner.addPotionEffect(new PotionEffect(MobEffects.WITHER , 5*20 , 1 ));
 					 }
+				 	}
 				 }
-				 }
-		    if(!flag) {
+		  if(!flag) {
 			    if(stand_owner.isPotionActive(PotionLoader.potionStand)) {
 				   stand_owner.removePotionEffect(PotionLoader.potionStand);
 			 }
@@ -184,7 +185,7 @@ public class EventStand {
 					return;
 				}
 			  if(NBTHelper.getEntityInteger(evt.getEntityLiving(), HuajiConstant.Tags.THE_WORLD)>0) {
-				StandUtil.standBuff(evt.getEntityLiving());
+				StandUtil.standEffectLoad(evt.getEntityLiving());
 			  }
 			  float op =evt.getOriginalSpeed();
 			  if(evt.getEntityPlayer().isPotionActive(PotionLoader.potionStand)) {

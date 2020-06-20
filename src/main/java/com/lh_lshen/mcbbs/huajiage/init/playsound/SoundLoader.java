@@ -37,6 +37,7 @@ public class SoundLoader {
 	public static final SoundEvent ORGA_REQUIEM_1=registerSound("orga_requiem_1");
 	public static final SoundEvent ORGA_REQUIEM_2=registerSound("orga_requiem_2");
 	public static final SoundEvent ORGA_REQUIEM_GOLD=registerSound("orga_requiem_gold");
+	public static final SoundEvent ORGA_REQUIEM_PROTECT=registerSound("orga_requiem_protect");
 	public static final SoundEvent ORGA_REQUIEM_HIT=registerSound("orga_requiem_hit");
 	public static final SoundEvent THE_WORLD=registerSound("the_world");
 	public static final SoundEvent THE_WORLD_1=registerSound("the_world_1");

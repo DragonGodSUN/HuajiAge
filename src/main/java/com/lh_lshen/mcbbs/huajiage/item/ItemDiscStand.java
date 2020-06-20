@@ -103,11 +103,12 @@ public class ItemDiscStand extends Item {
 	@SideOnly(Side.CLIENT)
 	public void getSubItems(CreativeTabs tab, NonNullList<ItemStack> items) {
 		if (this.isInCreativeTab(tab)) {
-            for (StandBase stand : StandLoader.STAND_LIST) {
+            for (StandBase stand : StandUtil.getArrowStands()) {
             	String type = stand.getName();
             	items.add(getItemData(new ItemStack(this),type,0));
             	items.add(getItemData(new ItemStack(this),type,1));
             	}
+            items.add(getItemData(new ItemStack(this),StandLoader.ORGA_REQUIEM.getName(),3));
         	}	
 		}
 	@Override

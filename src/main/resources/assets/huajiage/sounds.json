@@ -117,6 +117,15 @@
       }
     ]
   },
+  "orga_requiem_protect": {
+    "category": "neutral",
+    "sounds": [
+      {
+        "name": "huajiage:orga_requiem_protect",
+        "stream": true
+      }
+    ]
+  },
     "orga_requiem_hit": {
     "category": "music",
     "sounds": [
