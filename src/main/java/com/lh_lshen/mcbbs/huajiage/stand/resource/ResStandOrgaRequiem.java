@@ -11,10 +11,10 @@ import com.lh_lshen.mcbbs.huajiage.client.model.stand.ModelStandBase;
 import com.lh_lshen.mcbbs.huajiage.client.model.stand.ModelStarPlatinum;
 import com.lh_lshen.mcbbs.huajiage.client.model.stand.ModelTheWorld;
 import com.lh_lshen.mcbbs.huajiage.init.HuajiConstant;
-import com.lh_lshen.mcbbs.huajiage.init.playsound.HuajiMovingSound;
-import com.lh_lshen.mcbbs.huajiage.init.playsound.HuajiSoundPlayer;
-import com.lh_lshen.mcbbs.huajiage.init.playsound.SoundLoader;
-import com.lh_lshen.mcbbs.huajiage.init.playsound.SoundStand;
+import com.lh_lshen.mcbbs.huajiage.init.sound.HuajiMovingSound;
+import com.lh_lshen.mcbbs.huajiage.init.sound.HuajiSoundPlayer;
+import com.lh_lshen.mcbbs.huajiage.init.sound.SoundLoader;
+import com.lh_lshen.mcbbs.huajiage.init.sound.SoundStand;
 import com.lh_lshen.mcbbs.huajiage.potion.PotionLoader;
 import com.lh_lshen.mcbbs.huajiage.stand.StandLoader;
 
@@ -47,10 +47,10 @@ public class ResStandOrgaRequiem extends StandRes{
 		if(index<size) {
 			SoundEvent sound = sounds.get(index);
 			mc.getSoundHandler().playSound(HuajiSoundPlayer.getMovingSound(user, sound, SoundCategory.NEUTRAL, 0.6f));
-//			HuajiMovingSound hits = new HuajiMovingSound(user, SoundLoader.ORGA_REQUIEM_2, SoundCategory.NEUTRAL);
-//			hits.setVolume(1.0f);
-//			hits.setLoop();
-//			mc.getSoundHandler().playSound(hits);
+			HuajiMovingSound hits = new HuajiMovingSound(user, SoundEvents.ENTITY_PARROT_FLY, SoundCategory.NEUTRAL);
+			hits.setVolume(1.0f);
+			hits.setLoop();
+			mc.getSoundHandler().playSound(hits);
 			}
 	}
 

@@ -13,7 +13,7 @@ import com.google.common.collect.Multimap;
 import com.lh_lshen.mcbbs.huajiage.HuajiAge;
 import com.lh_lshen.mcbbs.huajiage.client.KeyLoader;
 import com.lh_lshen.mcbbs.huajiage.client.render.model.ModelBlanceHelmet;
-import com.lh_lshen.mcbbs.huajiage.init.playsound.SoundLoader;
+import com.lh_lshen.mcbbs.huajiage.init.sound.SoundLoader;
 import com.lh_lshen.mcbbs.huajiage.network.HuajiAgeNetWorkHandler;
 import com.lh_lshen.mcbbs.huajiage.network.messages.MessageHelmetModeChange;
 import com.lh_lshen.mcbbs.huajiage.network.messages.MessagePlaySoundClient;

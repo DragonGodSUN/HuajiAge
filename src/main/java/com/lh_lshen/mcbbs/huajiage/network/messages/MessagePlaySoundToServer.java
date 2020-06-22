@@ -2,7 +2,7 @@ package com.lh_lshen.mcbbs.huajiage.network.messages;
 
 import java.util.Random;
 
-import com.lh_lshen.mcbbs.huajiage.init.playsound.SoundLoader;
+import com.lh_lshen.mcbbs.huajiage.init.sound.SoundLoader;
 import com.lh_lshen.mcbbs.huajiage.network.HuajiAgeNetWorkHandler;
 
 import io.netty.buffer.ByteBuf;

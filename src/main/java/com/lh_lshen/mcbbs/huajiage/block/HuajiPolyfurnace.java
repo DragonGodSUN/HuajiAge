@@ -4,7 +4,7 @@ import java.util.Random;
 
 import com.lh_lshen.mcbbs.huajiage.HuajiAge;
 import com.lh_lshen.mcbbs.huajiage.crativetab.CreativeTabLoader;
-import com.lh_lshen.mcbbs.huajiage.init.playsound.SoundLoader;
+import com.lh_lshen.mcbbs.huajiage.init.sound.SoundLoader;
 import com.lh_lshen.mcbbs.huajiage.inventroy.GuiHuajiBlenderElementLoader;
 import com.lh_lshen.mcbbs.huajiage.inventroy.GuiHuajiPolyElementLoader;
 import com.lh_lshen.mcbbs.huajiage.item.ItemHuajiStarPoly;

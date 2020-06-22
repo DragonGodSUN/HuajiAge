@@ -10,8 +10,12 @@ import com.lh_lshen.mcbbs.huajiage.damage_source.DamageFivePower;
 import com.lh_lshen.mcbbs.huajiage.util.NBTHelper;
 
 import net.minecraft.block.state.IBlockState;
+import net.minecraft.entity.Entity;
 import net.minecraft.entity.EntityLivingBase;
+import net.minecraft.entity.IProjectile;
 import net.minecraft.entity.effect.EntityLightningBolt;
+import net.minecraft.entity.item.EntityItem;
+import net.minecraft.entity.item.EntityXPOrb;
 import net.minecraft.entity.player.EntityPlayer;
 import net.minecraft.entity.projectile.EntityThrowable;
 import net.minecraft.init.MobEffects;
@@ -76,7 +80,7 @@ public class EntityFivePower extends EntityThrowable{
 		}
 		List<EntityLivingBase> entities = this.world.getEntitiesWithinAABB(EntityLivingBase.class, this.getEntityBoundingBox().grow(1));
 		for(EntityLivingBase entity : entities) {
-			if(entity!=thrower&&player!=null&&entity!=player) {
+			if(entity!=thrower &&player!=null&&entity!=player) {
 				if(!isDe()) {
 					entity.setFire(3);
 					if(thrower instanceof EntityPlayer) {
@@ -94,10 +98,12 @@ public class EntityFivePower extends EntityThrowable{
 					}
 				}else {
 					NBTHelper.setEntityBoolean(entity, "huajiage.de", true);
+					if(entity instanceof EntityLivingBase) {
 					((EntityLivingBase)entity).addPotionEffect(new PotionEffect(MobEffects.BLINDNESS,60));
 					((EntityLivingBase)entity).addPotionEffect(new PotionEffect(MobEffects.SLOWNESS,60,2));
 					((EntityLivingBase)entity).addPotionEffect(new PotionEffect(MobEffects.WEAKNESS,60,2));
 					((EntityLivingBase)entity).addPotionEffect(new PotionEffect(MobEffects.GLOWING,60));
+					}
 				}
 			}
 		}
@@ -124,7 +130,7 @@ public class EntityFivePower extends EntityThrowable{
 	@Override
 	protected void onImpact(RayTraceResult result) {
 		if(result.typeOfHit == RayTraceResult.Type.ENTITY) {
-			if(result.entityHit!=null&&result.entityHit instanceof EntityLivingBase&&result.entityHit!=thrower) {
+			if(result.entityHit!=null&&result.entityHit!=thrower) {
 				if(!this.world.isRemote) {
 				if(!(result.entityHit instanceof EntityFivePower)) {
 					if(!isDe()) {
@@ -140,10 +146,12 @@ public class EntityFivePower extends EntityThrowable{
 						}
 					}else {
 						NBTHelper.setEntityBoolean(result.entityHit, "huajiage.de", true);
+						if(result.entityHit instanceof EntityLivingBase) {
 						((EntityLivingBase)result.entityHit).addPotionEffect(new PotionEffect(MobEffects.BLINDNESS,60));
 						((EntityLivingBase)result.entityHit).addPotionEffect(new PotionEffect(MobEffects.SLOWNESS,60,2));
 						((EntityLivingBase)result.entityHit).addPotionEffect(new PotionEffect(MobEffects.WEAKNESS,60,2));
 						((EntityLivingBase)result.entityHit).addPotionEffect(new PotionEffect(MobEffects.GLOWING,60));
+							}
 						}
 					}
 				}

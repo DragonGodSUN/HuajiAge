@@ -6,13 +6,16 @@ import java.util.Random;
 import com.jcraft.jorbis.Block;
 import com.lh_lshen.mcbbs.huajiage.api.IStandPower;
 import com.lh_lshen.mcbbs.huajiage.api.IStandRes;
+import com.lh_lshen.mcbbs.huajiage.capability.CapabilityLoader;
+import com.lh_lshen.mcbbs.huajiage.capability.IExposedData;
 import com.lh_lshen.mcbbs.huajiage.client.model.stand.ModelStandBase;
 import com.lh_lshen.mcbbs.huajiage.entity.EntityEmeraldBullet;
 import com.lh_lshen.mcbbs.huajiage.init.HuajiConstant;
-import com.lh_lshen.mcbbs.huajiage.init.playsound.HuajiSoundPlayer;
-import com.lh_lshen.mcbbs.huajiage.init.playsound.SoundLoader;
-import com.lh_lshen.mcbbs.huajiage.init.playsound.SoundStand;
+import com.lh_lshen.mcbbs.huajiage.init.sound.HuajiSoundPlayer;
+import com.lh_lshen.mcbbs.huajiage.init.sound.SoundLoader;
+import com.lh_lshen.mcbbs.huajiage.init.sound.SoundStand;
 import com.lh_lshen.mcbbs.huajiage.network.StandNetWorkHandler;
+import com.lh_lshen.mcbbs.huajiage.potion.PotionLoader;
 import com.lh_lshen.mcbbs.huajiage.stand.EnumStandtype;
 import com.lh_lshen.mcbbs.huajiage.stand.StandClientUtil;
 import com.lh_lshen.mcbbs.huajiage.stand.StandLoader;
@@ -71,7 +74,12 @@ public class StandOrgaRequiem extends StandBase {
 
 	@Override
 	public void doStandCapability(EntityLivingBase user) {
-
+		IExposedData data = user.getCapability(CapabilityLoader.EXPOSED_DATA, null);
+		if(data!=null) {
+		data.setTrigger(true);
+		user.addPotionEffect(new PotionEffect(PotionLoader.potionRequiem,600));
+		user.addPotionEffect(new PotionEffect(PotionLoader.potionStand,600));
+		}
 	}
 
 	@Override

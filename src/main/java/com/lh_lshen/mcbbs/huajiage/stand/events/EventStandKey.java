@@ -9,8 +9,8 @@ import com.lh_lshen.mcbbs.huajiage.capability.StandHandler;
 import com.lh_lshen.mcbbs.huajiage.client.KeyLoader;
 import com.lh_lshen.mcbbs.huajiage.config.ConfigHuaji;
 import com.lh_lshen.mcbbs.huajiage.init.HuajiConstant;
-import com.lh_lshen.mcbbs.huajiage.init.playsound.HuajiSoundPlayer;
-import com.lh_lshen.mcbbs.huajiage.init.playsound.SoundLoader;
+import com.lh_lshen.mcbbs.huajiage.init.sound.HuajiSoundPlayer;
+import com.lh_lshen.mcbbs.huajiage.init.sound.SoundLoader;
 import com.lh_lshen.mcbbs.huajiage.network.HuajiAgeNetWorkHandler;
 import com.lh_lshen.mcbbs.huajiage.network.StandNetWorkHandler;
 import com.lh_lshen.mcbbs.huajiage.network.messages.MessageServerInterchange;
@@ -50,7 +50,7 @@ public class EventStandKey {
 			String stand_type =standHandler.getStand();
 			StandBase stand = StandLoader.getStand(stand_type);
 			
-			 if(!stand_type.equals(StandLoader.EMPTY)) {
+			 if(stand !=null && !stand_type.equals(StandLoader.EMPTY)) {
 				 HuajiSoundPlayer.playToServer(player, SoundEvents.ENTITY_EXPERIENCE_ORB_PICKUP, 1f, 3);
 
 				 final int NUMBER_OF_PARTICLES = 60;
@@ -107,6 +107,7 @@ public class EventStandKey {
 					}
 				}
 				StandNetWorkHandler.sendToServer(new MessageStandUp(isMovingMusic));
+
 			 					}
 						}
 	  			}

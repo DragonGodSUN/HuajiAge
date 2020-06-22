@@ -7,7 +7,7 @@ import com.google.common.collect.Multimap;
 import com.lh_lshen.mcbbs.huajiage.HuajiAge;
 import com.lh_lshen.mcbbs.huajiage.client.render.layers.LayerHeldTopItem;
 import com.lh_lshen.mcbbs.huajiage.crativetab.CreativeTabLoader;
-import com.lh_lshen.mcbbs.huajiage.init.playsound.SoundLoader;
+import com.lh_lshen.mcbbs.huajiage.init.sound.SoundLoader;
 
 import net.minecraft.block.properties.PropertyBool;
 import net.minecraft.client.Minecraft;

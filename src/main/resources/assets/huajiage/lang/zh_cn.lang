@@ -152,6 +152,7 @@ messege.huaji.blancedHelmet.active=§6§l从现在开始这里叫%s§l广场！
 message.huajiage.tarot.stand.store=§f替身数据已储存
 message.huajiage.tarot.stand.fail_load=§e您可能已经拥有了一个替身，如果您想更换替身，请找一张空的塔罗牌卸载
 message.huajiage.stand_skill.cost_lack=§e抱歉，您的精神力还不足以引发替身技能
+message.huajiage.stand_stand_up.cost_lack=§e抱歉，您的精神力还不足以召唤替身
 message.huajiage.singularity=§e究极的特异点，你能到达新世界吗？
 message.huajiage.stand.lost=§b如果你发现你的替身在你穿越维度的时候跑路了，不要担心，只要退出再登录，让你的替身去吃个饭，你的替身就回来了(Capability机制的锅，作者也是无能为力)
 mesage.huajiage.stand.gain=§b恭喜你获得替身：

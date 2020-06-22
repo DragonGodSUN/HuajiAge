@@ -152,6 +152,7 @@ message.huajiage.patchouli_missing=[{"text":"[ HUAJI Age II]:","color":"yellow",
 message.huajiage.tarot.stand.store= is stored
 message.huajiage.tarot.stand.fail_load=You may already have a STAND , if you want to change it , please find a empty tarot card to unload it.  
 message.huajiage.stand_skill.cost_lack=§eYour points for stand skill is not enough
+message.huajiage.stand_stand_up.cost_lack=§eYour points for stand up is not enough
 message.huajiage.singularity=§eIt's is the Fate,for everyone
 message.huajiage.stand.lost=§bIf you found that your STAND lost when you travel to a dimension.Don't worry!Just log out and log in again,the problem is solved.
 mesage.huajiage.stand.fail=Your Stand attack yourself---you have a bad luck

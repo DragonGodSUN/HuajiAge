@@ -4,10 +4,11 @@ import java.util.Random;
 
 import com.google.common.util.concurrent.CycleDetectingLockFactory.Policies;
 import com.lh_lshen.mcbbs.huajiage.capability.CapabilityStandHandler;
+import com.lh_lshen.mcbbs.huajiage.capability.CapabilityStandStageHandler;
 import com.lh_lshen.mcbbs.huajiage.config.ConfigHuaji;
 import com.lh_lshen.mcbbs.huajiage.crativetab.CreativeTabLoader;
-import com.lh_lshen.mcbbs.huajiage.init.playsound.HuajiSoundPlayer;
-import com.lh_lshen.mcbbs.huajiage.init.playsound.SoundLoader;
+import com.lh_lshen.mcbbs.huajiage.init.sound.HuajiSoundPlayer;
+import com.lh_lshen.mcbbs.huajiage.init.sound.SoundLoader;
 import com.lh_lshen.mcbbs.huajiage.potion.PotionLoader;
 import com.lh_lshen.mcbbs.huajiage.stand.EnumStandtype;
 import com.lh_lshen.mcbbs.huajiage.stand.StandLoader;
@@ -53,6 +54,7 @@ public class ItemOrgaRunning extends Item {
 	   if(chance>=ConfigHuaji.Stands.chanceStandFail) {
 		   if(type !=null) {
 			   playerIn.getCapability(CapabilityStandHandler.STAND_TYPE, null).setStand(StandLoader.ORGA_REQUIEM.getName());
+			   playerIn.getCapability(CapabilityStandStageHandler.STAND_STAGE, null).setStage(3);
 			   HuajiSoundPlayer.playToNearbyClient(playerIn, SoundEvents.ENTITY_PLAYER_LEVELUP, 1f);
 			   playerIn.addPotionEffect(new PotionEffect(MobEffects.SPEED ,500,6));
 			   HuajiSoundPlayer.playToNearbyClient(playerIn, SoundLoader.ORGA_SHOT , 1f);

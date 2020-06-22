@@ -108,6 +108,15 @@
       }
     ]
   },
+    "orga_requiem_3": {
+    "category": "music",
+    "sounds": [
+      {
+        "name": "huajiage:orga_requiem_3",
+        "stream": false
+      }
+    ]
+  },
   "orga_requiem_gold": {
     "category": "music",
     "sounds": [

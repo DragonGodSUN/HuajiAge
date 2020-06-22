@@ -2,7 +2,7 @@ package com.lh_lshen.mcbbs.huajiage.stand.messages;
 
 import java.util.Random;
 
-import com.lh_lshen.mcbbs.huajiage.init.playsound.SoundLoader;
+import com.lh_lshen.mcbbs.huajiage.init.sound.SoundLoader;
 
 import io.netty.buffer.ByteBuf;
 import net.minecraft.client.Minecraft;

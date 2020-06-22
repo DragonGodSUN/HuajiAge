@@ -2,8 +2,8 @@ package com.lh_lshen.mcbbs.huajiage.item;
 
 import com.google.common.util.concurrent.CycleDetectingLockFactory.Policies;
 import com.lh_lshen.mcbbs.huajiage.crativetab.CreativeTabLoader;
-import com.lh_lshen.mcbbs.huajiage.init.playsound.HuajiSoundPlayer;
-import com.lh_lshen.mcbbs.huajiage.init.playsound.SoundLoader;
+import com.lh_lshen.mcbbs.huajiage.init.sound.HuajiSoundPlayer;
+import com.lh_lshen.mcbbs.huajiage.init.sound.SoundLoader;
 import com.lh_lshen.mcbbs.huajiage.potion.PotionLoader;
 
 import net.minecraft.client.Minecraft;

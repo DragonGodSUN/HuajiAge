@@ -1,10 +1,19 @@
 package com.lh_lshen.mcbbs.huajiage.init.events;
 
+import java.util.UUID;
+
+import org.apache.logging.log4j.core.util.UuidUtil;
+
+import com.lh_lshen.mcbbs.huajiage.damage_source.DamageRequiem;
 import com.lh_lshen.mcbbs.huajiage.init.HuajiConstant;
-import com.lh_lshen.mcbbs.huajiage.init.playsound.SoundLoader;
+import com.lh_lshen.mcbbs.huajiage.init.sound.SoundLoader;
 import com.lh_lshen.mcbbs.huajiage.item.ItemLoader;
 import com.lh_lshen.mcbbs.huajiage.item.ItemOrgaArmorBase;
 import com.lh_lshen.mcbbs.huajiage.potion.PotionLoader;
+import com.lh_lshen.mcbbs.huajiage.stand.StandLoader;
+import com.lh_lshen.mcbbs.huajiage.stand.StandUtil;
+import com.lh_lshen.mcbbs.huajiage.stand.instance.StandBase;
+import com.lh_lshen.mcbbs.huajiage.util.NBTHelper;
 
 import net.minecraft.client.Minecraft;
 import net.minecraft.entity.Entity;
@@ -27,24 +36,28 @@ public class EventRequiem {
 		player.playSound(SoundLoader.ORGA_REQUIEM_HIT, 1f, 1f);
 		((EntityLivingBase) hit).attackEntityFrom(new EntityDamageSource(HuajiConstant.DamageSource.REQUIEM_DAMAGE,player),5f);
 		((EntityLivingBase) hit).getEntityData().setInteger(HuajiConstant.Tags.REQUIEM, 60);
+		((EntityLivingBase) hit).getEntityData().setString(HuajiConstant.Tags.PLAYER_NAME, player.getName());
 		}
 	}
   @SubscribeEvent
 	public static void requiemTarget(LivingUpdateEvent evt){
 	EntityLivingBase target=evt.getEntityLiving();
-	EntityPlayer player=target.world.getClosestPlayerToEntity(target, 100);
+	String name = NBTHelper.getEntityString(target, HuajiConstant.Tags.PLAYER_NAME);
+	EntityPlayer player=target.world.getPlayerEntityByName(name);
+	if(player!=null) {
 		if(target.getEntityData().getInteger(HuajiConstant.Tags.REQUIEM)<=0) {
-		return;
-		}
-		if(target.getEntityData().getInteger(HuajiConstant.Tags.REQUIEM)>0) {
-		target.getEntityData().setInteger(HuajiConstant.Tags.REQUIEM, target.getEntityData().getInteger(HuajiConstant.Tags.REQUIEM) - 1);
-			if(!(target instanceof EntityPlayer)) {
-				if(target.ticksExisted %5==0) {
-				target.attackEntityFrom(new EntityDamageSource(HuajiConstant.DamageSource.REQUIEM_DAMAGE,player),12f);
-				}
-			}else {
-				if(target.ticksExisted %10==0) {
-				target.attackEntityFrom(new DamageSource(HuajiConstant.DamageSource.REQUIEM_DAMAGE),12f);
+			return;
+			}
+			if(target.getEntityData().getInteger(HuajiConstant.Tags.REQUIEM)>0) {
+			target.getEntityData().setInteger(HuajiConstant.Tags.REQUIEM, target.getEntityData().getInteger(HuajiConstant.Tags.REQUIEM) - 1);
+				if(!(target instanceof EntityPlayer)) {
+					if(target.ticksExisted %5==0) {
+					target.attackEntityFrom(new DamageRequiem(player),12f);
+					}
+				}else {
+					if(target.ticksExisted %10==0) {
+					target.attackEntityFrom(new DamageRequiem(player),12f);
+					}
 				}
 			}
 		}
@@ -53,13 +66,16 @@ public class EventRequiem {
 	public static void onRequiem(LivingUpdateEvent event)
 	{
 	EntityLivingBase entity=event.getEntityLiving(); 
+	StandBase stand = StandUtil.getType(entity);
 	if(entity instanceof EntityPlayer) {
 		if(entity.getItemStackFromSlot(EntityEquipmentSlot .HEAD).getItem() instanceof ItemOrgaArmorBase&&
 		entity.getItemStackFromSlot(EntityEquipmentSlot.CHEST).getItem() instanceof ItemOrgaArmorBase &&
 		entity.getItemStackFromSlot(EntityEquipmentSlot.LEGS).getItem() instanceof ItemOrgaArmorBase &&
-		entity.getItemStackFromSlot(EntityEquipmentSlot.FEET).getItem() instanceof ItemOrgaArmorBase) {
+		entity.getItemStackFromSlot(EntityEquipmentSlot.FEET).getItem() instanceof ItemOrgaArmorBase ||
+		stand.equals(StandLoader.ORGA_REQUIEM)) {
 			if(entity.isPotionActive(PotionLoader.potionRequiem)) {
-				if(((EntityPlayer)entity).inventory.hasItemStack(new ItemStack(ItemLoader.orgaRequiem))) {
+				if(((EntityPlayer)entity).inventory.hasItemStack(new ItemStack(ItemLoader.orgaRequiem)) ||
+						entity.isPotionActive(PotionLoader.potionStand)) {
 				}
 				else {
 					entity.removePotionEffect(PotionLoader.potionRequiem);
@@ -74,18 +90,26 @@ public class EventRequiem {
   @SubscribeEvent
 	public static void RequiemHit(LivingUpdateEvent evt) {
 	EntityLivingBase target =evt.getEntityLiving(); 
-	EntityPlayer player=target.world.getClosestPlayerToEntity(target, 100);
+	String name = NBTHelper.getEntityString(target, HuajiConstant.Tags.PLAYER_NAME);
+	EntityPlayer player=target.world.getPlayerEntityByName(name);
 	if(target.isPotionActive(PotionLoader.potionRequiemTarget)) {
 		if(!(target instanceof EntityPlayer)&&!target.isPotionActive(PotionLoader.potionFlowerHope)&&!target.isPotionActive(PotionLoader.potionRequiem)) {
 			if(target.ticksExisted %5==0) {
-				target.attackEntityFrom(new EntityDamageSource(HuajiConstant.DamageSource.REQUIEM_DAMAGE,player),12f);
+				if(player!=null) {
+				target.attackEntityFrom(new DamageRequiem(player),12f);
+				}else {
+				target.attackEntityFrom(new DamageSource(HuajiConstant.DamageSource.REQUIEM_DAMAGE),12f);	
 				}
+			}else {
+				if(target.ticksExisted %10==0) {
+					if(player!=null) {
+						target.attackEntityFrom(new DamageRequiem(player),12f);
+						}else {
+						target.attackEntityFrom(new DamageSource(HuajiConstant.DamageSource.REQUIEM_DAMAGE),12f);	
+						}
+					}	
+				}			
 			}
-			else {
-			if(target.ticksExisted %10==0) {
-				target.attackEntityFrom(new DamageSource(HuajiConstant.DamageSource.REQUIEM_DAMAGE),12f);
-				}	
-			}			
-		}	
+		}
 	} 
 }

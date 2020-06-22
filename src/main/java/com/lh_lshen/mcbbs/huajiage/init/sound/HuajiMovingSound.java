@@ -1,4 +1,4 @@
-package com.lh_lshen.mcbbs.huajiage.init.playsound;
+package com.lh_lshen.mcbbs.huajiage.init.sound;
 
 import com.lh_lshen.mcbbs.huajiage.potion.PotionLoader;
 

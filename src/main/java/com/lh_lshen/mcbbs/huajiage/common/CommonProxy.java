@@ -16,7 +16,7 @@ import com.lh_lshen.mcbbs.huajiage.entity.EntityLoader;
 import com.lh_lshen.mcbbs.huajiage.init.EventLoader;
 import com.lh_lshen.mcbbs.huajiage.init.LootNBTFuntion;
 import com.lh_lshen.mcbbs.huajiage.init.LootTablesLoader;
-import com.lh_lshen.mcbbs.huajiage.init.playsound.SoundLoader;
+import com.lh_lshen.mcbbs.huajiage.init.sound.SoundLoader;
 import com.lh_lshen.mcbbs.huajiage.inventroy.GuiHuajiBlenderElementLoader;
 import com.lh_lshen.mcbbs.huajiage.item.ItemExpendedView;
 import com.lh_lshen.mcbbs.huajiage.item.ItemLoader;

@@ -9,10 +9,11 @@ import com.lh_lshen.mcbbs.huajiage.capability.StandHandler;
 import com.lh_lshen.mcbbs.huajiage.client.KeyLoader;
 import com.lh_lshen.mcbbs.huajiage.config.ConfigHuaji;
 import com.lh_lshen.mcbbs.huajiage.init.HuajiConstant;
-import com.lh_lshen.mcbbs.huajiage.init.playsound.HuajiSoundPlayer;
-import com.lh_lshen.mcbbs.huajiage.init.playsound.SoundLoader;
+import com.lh_lshen.mcbbs.huajiage.init.sound.HuajiSoundPlayer;
+import com.lh_lshen.mcbbs.huajiage.init.sound.SoundLoader;
 import com.lh_lshen.mcbbs.huajiage.network.HuajiAgeNetWorkHandler;
 import com.lh_lshen.mcbbs.huajiage.network.StandNetWorkHandler;
+import com.lh_lshen.mcbbs.huajiage.network.messages.MessageParticleGenerator;
 import com.lh_lshen.mcbbs.huajiage.network.messages.MessageServerInterchange;
 import com.lh_lshen.mcbbs.huajiage.potion.PotionLoader;
 import com.lh_lshen.mcbbs.huajiage.stand.EnumStandtype;
@@ -28,10 +29,19 @@ import com.lh_lshen.mcbbs.huajiage.stand.messages.MessageStandUp;
 import com.lh_lshen.mcbbs.huajiage.util.ServerUtil;
 
 import net.minecraft.client.Minecraft;
+import net.minecraft.entity.Entity;
+import net.minecraft.entity.EntityLivingBase;
 import net.minecraft.entity.player.EntityPlayer;
+import net.minecraft.init.MobEffects;
 import net.minecraft.init.SoundEvents;
+import net.minecraft.potion.PotionEffect;
+import net.minecraft.util.EntityDamageSource;
+import net.minecraft.util.EnumParticleTypes;
 import net.minecraft.util.math.Vec3d;
 import net.minecraft.util.text.TextComponentTranslation;
+import net.minecraftforge.event.entity.living.LivingDeathEvent;
+import net.minecraftforge.event.entity.living.LivingHurtEvent;
+import net.minecraftforge.event.entity.living.LivingEvent.LivingUpdateEvent;
 import net.minecraftforge.fml.common.Mod;
 import net.minecraftforge.fml.common.eventhandler.SubscribeEvent;
 import net.minecraftforge.fml.common.gameevent.InputEvent;
@@ -40,97 +50,53 @@ import net.minecraftforge.fml.relauncher.SideOnly;
 
 @Mod.EventBusSubscriber(modid = HuajiAge.MODID)
 public class EventStandOrga {
-	
-	@SideOnly(Side.CLIENT)
 	@SubscribeEvent
-	public static void standUp(InputEvent.KeyInputEvent evt) {
-		if(KeyLoader.standUp.isPressed()) {
-			EntityPlayer player = Minecraft.getMinecraft().player;
-			StandHandler standHandler = player.getCapability(CapabilityStandHandler.STAND_TYPE, null);
-			String stand_type =standHandler.getStand();
-			StandBase stand = StandLoader.getStand(stand_type);
-			
-			 if(!stand_type.equals(StandLoader.EMPTY)) {
-				 HuajiSoundPlayer.playToServer(player, SoundEvents.ENTITY_EXPERIENCE_ORB_PICKUP, 1f, 3);
-
-				 final int NUMBER_OF_PARTICLES = 60;
-				 final double HORIZONTAL_SPREAD = 3; 
-				 Vec3d targetCoordinates = player.getPositionVector();
-				 HuajiAgeNetWorkHandler.sendToServer(new MessageServerInterchange(1));
-				 boolean isMovingMusic = true;
-				 
-				 if(!ConfigHuaji.Stands.allowStandSound) {
-					 isMovingMusic = false;
-				 }
-				if(!ConfigHuaji.Stands.allowStandSound&&ConfigHuaji.Stands.allowStandSound&&!player.isPotionActive(PotionLoader.potionStand))
-				{	
-					 isMovingMusic = false;
-					float random = new Random().nextFloat()*100;
-					switch(stand.getName())
-					{
-					case "thw_world" :
-					{
-						if(random<50) 
-							{
-								HuajiSoundPlayer.playToServer(player, SoundLoader.STAND_THE_WORLD_HIT_1, 1, 1);
-							}
-						if(random>50) 
-							{
-								HuajiSoundPlayer.playToServer(player, SoundLoader.STAND_THE_WORLD_HIT_2, 1, 1);
-							}
-							break;
-					}
-					case "star_platinum" :
-					{	if(random<25) 
-							{
-								HuajiSoundPlayer.playToServer(player, SoundLoader.STAND_STAR_PLATINUM_1, 1, 1);
-							}else if(random<50) 
-							{
-								HuajiSoundPlayer.playToServer(player, SoundLoader.STAND_STAR_PLATINUM_2, 1, 1);
-							}else if(random<75) 
-							{
-								HuajiSoundPlayer.playToServer(player, SoundLoader.STAND_STAR_PLATINUM_3 ,1, 1);
-							}else if(random<100) 
-							{
-								HuajiSoundPlayer.playToServer(player, SoundLoader.STAND_STAR_PLATINUM_4, 1, 1);
-							}
-							break;
-							
-					}	
-					case "hierophant_green" :
-					{	
-							HuajiSoundPlayer.playToServer(player, SoundLoader.STAND_HIEROPHANT_GREEN_SHOOT_1, 1, 1);
-							break;
-					}
-					default:
-						break;
-					}
-				}
-				StandNetWorkHandler.sendToServer(new MessageStandUp(isMovingMusic));
-			 					}
-						}
-	  			}
-	
-	
-	@SideOnly(Side.CLIENT)
-	@SubscribeEvent
-	public static void performSkill(InputEvent.KeyInputEvent evt) {
-		EntityPlayer player = Minecraft.getMinecraft().player;
-		int stage = StandUtil.getStandStage(player);
-		if(KeyLoader.standSkill.isPressed()&&stage>0) {
-			StandBase stand = StandUtil.getType(player);
-			StandChargeHandler charge = StandUtil.getChargeHandler(player);
-			if(null != stand) {
-				int cost = stand.getCost();
-				boolean flag = charge.canBeCost(cost);
-				MessagePerfromSkill msg = new MessagePerfromSkill(stand.getCost());
-				StandNetWorkHandler.sendToServer(msg);
-				if(flag){
-					StandNetWorkHandler.sendToServer(new MessageDoStandCapabilityServer());
-					player.sendMessage(new TextComponentTranslation("stand.huajiage.skill"+"."+stand.getName()+"."+"start"));
-					}
-				
-				}
+    public static void onOrgaLivingUpdate(LivingUpdateEvent event) {
+	EntityLivingBase entity=event.getEntityLiving(); 
+	StandBase stand = StandUtil.getType(entity);
+	if(stand!=null && stand == StandLoader.ORGA_REQUIEM) 
+		{
+		if(entity.isPotionActive(PotionLoader.potionFlowerHope) && entity.isPotionActive(PotionLoader.potionStand))
+			{
+				entity.removePotionEffect(PotionLoader.potionFlowerHope);
+				entity.removePotionEffect(MobEffects.SLOWNESS);
 			}
+		
 		}
+	}
+	@SubscribeEvent
+	public static void onOrgaPlayerDeath(LivingDeathEvent event) {
+	EntityLivingBase entity=event.getEntityLiving(); 
+	StandBase stand = StandUtil.getType(entity);
+	if( stand!=null && stand == StandLoader.ORGA_REQUIEM && entity.isPotionActive(PotionLoader.potionStand))
+		{
+				event.setCanceled(true);
+				entity.setHealth(1f);
+				entity.addPotionEffect(new PotionEffect(MobEffects.SPEED,100,4));
+				entity.addPotionEffect(new PotionEffect(MobEffects.JUMP_BOOST,100,2));
+				HuajiSoundPlayer.playToNearbyClient(entity, SoundLoader.ORGA_REQUIEM_PROTECT, 1f);
+		}
+	}
+	@SubscribeEvent
+	public static void onOrgaPlayerHurt(LivingHurtEvent evt) {
+	EntityLivingBase entity=evt.getEntityLiving(); 
+	StandBase stand = StandUtil.getType(entity);
+	Entity attacker=evt.getSource().getTrueSource();
+	if( stand!=null && stand == StandLoader.ORGA_REQUIEM && entity.isPotionActive(PotionLoader.potionStand))
+		{
+		if(attacker!=null&&attacker!=entity)
+				{
+					((EntityLivingBase)attacker).attackEntityFrom(new EntityDamageSource(HuajiConstant.DamageSource.REQUIEM_BACK,entity),evt.getAmount()*2);
+					if(entity.getHealth()<2) 
+						{		
+							Vec3d targetPosition = entity.getPositionVector();  	 
+							HuajiAgeNetWorkHandler.sendToNearby(entity.world, entity, new MessageParticleGenerator(targetPosition, EnumParticleTypes.FIREWORKS_SPARK, 200, 2, 1));
+							if(!((EntityLivingBase)attacker).isPotionActive(PotionLoader.potionOrgaTarget)) 
+								{
+									((EntityLivingBase)attacker).addPotionEffect(new PotionEffect(PotionLoader.potionOrgaTarget,100));  
+								}
+						  }
+					}
+			}}
+
 }

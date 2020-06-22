@@ -12,6 +12,9 @@ import net.minecraft.util.ResourceLocation;
 
 public  class HuajiConstant {
 	public  class Tags{
+//		Util
+		public static final String PLAYER_UUID=HuajiAge.MODID+"."+"player_uuid";
+		public static final String PLAYER_NAME=HuajiAge.MODID+"."+"player_name";
 //	Stand Events
 		public static final String SINGULARITY=HuajiAge.MODID+"."+"singularity";
 //	Dio Bread
