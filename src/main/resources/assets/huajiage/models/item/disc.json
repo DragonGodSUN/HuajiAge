@@ -24,6 +24,12 @@
                 "stand": 3
             },
             "model": "huajiage:item/disc_hierophant_green"
+        },
+        {
+            "predicate": {
+                "stand": 4
+            },
+            "model": "huajiage:item/disc_orga_requiem"
         }
     ]
 }

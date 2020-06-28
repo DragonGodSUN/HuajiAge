@@ -3,11 +3,11 @@ package com.lh_lshen.mcbbs.huajiage.network.messages;
 import java.util.UUID;
 
 import com.lh_lshen.mcbbs.huajiage.capability.CapabilityStandHandler;
-import com.lh_lshen.mcbbs.huajiage.init.events.EventStand;
 import com.lh_lshen.mcbbs.huajiage.stand.EnumStandtype;
 import com.lh_lshen.mcbbs.huajiage.stand.StandClientUtil;
 import com.lh_lshen.mcbbs.huajiage.stand.StandLoader;
 import com.lh_lshen.mcbbs.huajiage.stand.StandUtil;
+import com.lh_lshen.mcbbs.huajiage.stand.events.EventStand;
 import com.mojang.util.UUIDTypeAdapter;
 
 import io.netty.buffer.ByteBuf;

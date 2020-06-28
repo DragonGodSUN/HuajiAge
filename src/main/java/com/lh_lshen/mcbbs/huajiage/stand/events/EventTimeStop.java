@@ -1,4 +1,4 @@
-package com.lh_lshen.mcbbs.huajiage.init.events;
+package com.lh_lshen.mcbbs.huajiage.stand.events;
 
 import java.util.List;
 
@@ -77,9 +77,14 @@ public class EventTimeStop {
         		if(target.ticksExisted%10==0) {
         			EntityPlayer p=target.getEntityWorld().getClosestPlayerToEntity(target, 100);
         			if(p!=null&&p!=target) {
-        				target.attackEntityFrom(new EntityDamageSource(HuajiConstant.DamageSource.DIO_DAMAGE, p).setIsThornsDamage(), NBTHelper.getEntityInteger(target,HuajiConstant.Tags.DIO_HIT_EXTRA)+10);
-                      }else {
-                    	target.attackEntityFrom(new DamageSource(HuajiConstant.DamageSource.DIO_DAMAGE), NBTHelper.getEntityInteger(target,HuajiConstant.Tags.DIO_HIT_EXTRA)+10);
+        				if(target instanceof EntityDragon) {
+        					EntityDragon d = (EntityDragon) target;
+        					d.attackEntityFromPart(d.dragonPartHead,new EntityDamageSource(HuajiConstant.DamageSource.STAND_PUNCH_DAMAGE, p), NBTHelper.getEntityInteger(target,HuajiConstant.Tags.DIO_HIT_EXTRA)+10);
+        				}else {
+        				target.attackEntityFrom(new EntityDamageSource(HuajiConstant.DamageSource.STAND_PUNCH_DAMAGE, p).setIsThornsDamage(), NBTHelper.getEntityInteger(target,HuajiConstant.Tags.DIO_HIT_EXTRA)+10);
+        				}
+    				}else {
+                    	target.attackEntityFrom(new DamageSource(HuajiConstant.DamageSource.STAND_PUNCH_DAMAGE), NBTHelper.getEntityInteger(target,HuajiConstant.Tags.DIO_HIT_EXTRA)+10);
                       }
         		}
         	}else {

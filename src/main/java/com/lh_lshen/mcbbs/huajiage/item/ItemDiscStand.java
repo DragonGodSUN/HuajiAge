@@ -47,13 +47,19 @@ public class ItemDiscStand extends Item {
 	        {
 				@Override
 				public float apply(ItemStack stack, World worldIn, EntityLivingBase entityIn) {
-					switch(getStandId(stack)) {
-					case DEFAULT_STAND_ID:return 0;
-					case "the_world":return 1;
-					case "star_platinum":return 2;
-					case "hierophant_green":return 3;
+					List<StandBase> STANDS = StandLoader.STAND_LIST;
+					for (StandBase stand : STANDS) {
+						if(stand.getName().equals(getStandId(stack))) {
+							return STANDS.indexOf(stand)+1;
+						}
 					}
 					return 0;
+//					switch(getStandId(stack)) {
+//					case DEFAULT_STAND_ID:return 0;
+//					case "the_world":return 1;
+//					case "star_platinum":return 2;
+//					case "hierophant_green":return 3;
+//					}
 				}
 	        });
 		  
@@ -111,6 +117,7 @@ public class ItemDiscStand extends Item {
             items.add(getItemData(new ItemStack(this),StandLoader.ORGA_REQUIEM.getName(),3));
         	}	
 		}
+
 	@Override
 	public void addInformation(ItemStack stack, World worldIn, List<String> tooltip, ITooltipFlag flagIn) {
 		super.addInformation(stack, worldIn, tooltip, flagIn);

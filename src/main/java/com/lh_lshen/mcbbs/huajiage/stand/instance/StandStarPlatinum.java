@@ -81,7 +81,7 @@ public class StandStarPlatinum extends StandBase {
 				if(i instanceof EntityDragon) {
 					EntityDragon dragon =(EntityDragon)i;
 					if(flag_player) {
-						dragon.attackEntityFromPart(dragon.dragonPartHead,new EntityDamageSource(HuajiConstant.DamageSource.DIO_DAMAGE, user).setExplosion(), type.getDamage()*type.getSpeed());
+						dragon.attackEntityFromPart(dragon.dragonPartHead,new EntityDamageSource(HuajiConstant.DamageSource.STAND_PUNCH_DAMAGE, user).setExplosion(), type.getDamage()*type.getSpeed());
 					}else {
 						dragon.attackEntityFromPart(dragon.dragonPartHead,DamageSource.GENERIC, type.getDamage()*type.getSpeed());
 					}

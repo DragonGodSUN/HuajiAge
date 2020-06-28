@@ -1,4 +1,4 @@
-package com.lh_lshen.mcbbs.huajiage.init.events;
+package com.lh_lshen.mcbbs.huajiage.stand.events;
 
 import java.util.List;
 import java.util.Random;

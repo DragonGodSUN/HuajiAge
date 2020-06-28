@@ -2,6 +2,9 @@ package com.lh_lshen.mcbbs.huajiage.item;
 
 import com.lh_lshen.mcbbs.huajiage.HuajiAge;
 import com.lh_lshen.mcbbs.huajiage.crativetab.CreativeTabLoader;
+import com.lh_lshen.mcbbs.huajiage.stand.StandLoader;
+import com.lh_lshen.mcbbs.huajiage.stand.instance.StandBase;
+import com.lh_lshen.mcbbs.huajiage.util.NBTHelper;
 
 import net.minecraft.client.renderer.block.model.ModelResourceLocation;
 import net.minecraft.item.Item;
@@ -180,9 +183,15 @@ public class ItemLoader {
         registerRender(lordKey);
         registerRender(huajiStarPoly);
         registerRender(tarot);
-        registerRender(disc);
         registerRender(singularity);
         registerRender(arrowStand);
+        registerRender(disc);
+//        for(StandBase stand : StandLoader.STAND_LIST) {
+//        	String name = disc.getRegistryName()+"_"+stand.getName();
+//        	ModelResourceLocation model = new ModelResourceLocation(name, "inventory");
+//    	    ModelLoader.setCustomModelResourceLocation(disc, StandLoader.STAND_LIST.indexOf(stand)+1, model);
+//        }
+//        	ModelLoader.setCustomModelResourceLocation(disc,0, new ModelResourceLocation(disc.getRegistryName()+"_"+"null", "inventory"));
     }
     public void init(FMLInitializationEvent event)
     {
@@ -206,5 +215,6 @@ public class ItemLoader {
         ModelResourceLocation model = new ModelResourceLocation(item.getRegistryName(), "inventory");
         ModelLoader.setCustomModelResourceLocation(item, meta, model);
     }
+
 
 }

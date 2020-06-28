@@ -18,6 +18,7 @@ import com.lh_lshen.mcbbs.huajiage.util.NBTHelper;
 import net.minecraft.client.Minecraft;
 import net.minecraft.entity.Entity;
 import net.minecraft.entity.EntityLivingBase;
+import net.minecraft.entity.boss.EntityDragon;
 import net.minecraft.entity.player.EntityPlayer;
 import net.minecraft.inventory.EntityEquipmentSlot;
 import net.minecraft.item.ItemStack;
@@ -56,7 +57,12 @@ public class EventRequiem {
 					}
 				}else {
 					if(target.ticksExisted %10==0) {
-					target.attackEntityFrom(new DamageRequiem(player),12f);
+					if(target instanceof EntityDragon) {
+						EntityDragon d = ((EntityDragon) target);
+						d.attackEntityFromPart(d.dragonPartHead, new DamageRequiem(player),12f);
+						}else {
+						target.attackEntityFrom(new DamageRequiem(player),12f);
+						}
 					}
 				}
 			}
@@ -72,7 +78,7 @@ public class EventRequiem {
 		entity.getItemStackFromSlot(EntityEquipmentSlot.CHEST).getItem() instanceof ItemOrgaArmorBase &&
 		entity.getItemStackFromSlot(EntityEquipmentSlot.LEGS).getItem() instanceof ItemOrgaArmorBase &&
 		entity.getItemStackFromSlot(EntityEquipmentSlot.FEET).getItem() instanceof ItemOrgaArmorBase ||
-		stand.equals(StandLoader.ORGA_REQUIEM)) {
+		stand!=null&&stand.getName().equals(StandLoader.ORGA_REQUIEM.getName())) {
 			if(entity.isPotionActive(PotionLoader.potionRequiem)) {
 				if(((EntityPlayer)entity).inventory.hasItemStack(new ItemStack(ItemLoader.orgaRequiem)) ||
 						entity.isPotionActive(PotionLoader.potionStand)) {

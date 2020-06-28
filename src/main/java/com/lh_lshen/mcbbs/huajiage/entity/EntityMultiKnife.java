@@ -5,6 +5,8 @@ import java.util.Random;
 
 import javax.annotation.Nonnull;
 
+import com.lh_lshen.mcbbs.huajiage.damage_source.DamageEmeraldSplash;
+
 import net.minecraft.block.Block;
 import net.minecraft.block.material.Material;
 import net.minecraft.block.state.IBlockState;
@@ -94,7 +96,6 @@ public class EntityMultiKnife extends EntityThrowable{
 	public void onUpdate() {
 
         List<Entity> knife=this.world.getEntitiesInAABBexcluding(this,this.getEntityBoundingBox().grow(20),null);
-        List<EntityDragon> knifeD=this.world.getEntitiesWithinAABB(EntityDragon.class,this.getEntityBoundingBox().grow(10));
         int extra=knife.size();
 		super.onUpdate();
 		if(getLife()>0) {
@@ -142,7 +143,7 @@ public class EntityMultiKnife extends EntityThrowable{
 						result.entityHit.attackEntityFrom(DamageSource.causeThrownDamage(this, this.getThrower()), 5f+getExtra());
 							if(result.entityHit instanceof EntityDragon) {
 								EntityDragon dragon = (EntityDragon) result.entityHit;
-								dragon.attackEntityFromPart(dragon.dragonPartHead, DamageSource.causeExplosionDamage(thrower), 5f+getExtra());
+								dragon.attackEntityFromPart(dragon.dragonPartHead, new DamageEmeraldSplash(this, this.getThrower()), 5f+getExtra());
 							}
 						}
 					this.setDead();
