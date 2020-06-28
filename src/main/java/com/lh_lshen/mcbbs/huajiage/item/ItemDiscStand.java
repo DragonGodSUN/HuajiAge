@@ -2,20 +2,19 @@ package com.lh_lshen.mcbbs.huajiage.item;
 
 
 import java.util.List;
-import java.util.UUID;
 
-import com.lh_lshen.mcbbs.huajiage.HuajiAge;
 import com.lh_lshen.mcbbs.huajiage.capability.CapabilityStandHandler;
 import com.lh_lshen.mcbbs.huajiage.capability.CapabilityStandStageHandler;
 import com.lh_lshen.mcbbs.huajiage.capability.StandHandler;
 import com.lh_lshen.mcbbs.huajiage.capability.StandStageHandler;
 import com.lh_lshen.mcbbs.huajiage.crativetab.CreativeTabLoader;
-import com.lh_lshen.mcbbs.huajiage.stand.EnumStandtype;
 import com.lh_lshen.mcbbs.huajiage.stand.StandLoader;
 import com.lh_lshen.mcbbs.huajiage.stand.StandUtil;
 import com.lh_lshen.mcbbs.huajiage.stand.instance.StandBase;
 import com.lh_lshen.mcbbs.huajiage.util.NBTHelper;
 
+import net.minecraft.client.renderer.ItemMeshDefinition;
+import net.minecraft.client.renderer.block.model.ModelResourceLocation;
 import net.minecraft.client.resources.I18n;
 import net.minecraft.client.util.ITooltipFlag;
 import net.minecraft.creativetab.CreativeTabs;
@@ -31,8 +30,10 @@ import net.minecraft.util.EnumActionResult;
 import net.minecraft.util.EnumHand;
 import net.minecraft.util.NonNullList;
 import net.minecraft.util.ResourceLocation;
-import net.minecraft.util.text.TextComponentString;
 import net.minecraft.world.World;
+import net.minecraftforge.client.event.ModelRegistryEvent;
+import net.minecraftforge.client.model.ModelLoader;
+import net.minecraftforge.fml.common.eventhandler.SubscribeEvent;
 import net.minecraftforge.fml.relauncher.Side;
 import net.minecraftforge.fml.relauncher.SideOnly;
 
@@ -43,25 +44,25 @@ public class ItemDiscStand extends Item {
 	{
 		 super();
 		  this.setCreativeTab(CreativeTabLoader.tabJo);
-		  this.addPropertyOverride(new ResourceLocation("stand"), new IItemPropertyGetter()
-	        {
-				@Override
-				public float apply(ItemStack stack, World worldIn, EntityLivingBase entityIn) {
-					List<StandBase> STANDS = StandLoader.STAND_LIST;
-					for (StandBase stand : STANDS) {
-						if(stand.getName().equals(getStandId(stack))) {
-							return STANDS.indexOf(stand)+1;
-						}
-					}
-					return 0;
-//					switch(getStandId(stack)) {
-//					case DEFAULT_STAND_ID:return 0;
-//					case "the_world":return 1;
-//					case "star_platinum":return 2;
-//					case "hierophant_green":return 3;
+//		  this.addPropertyOverride(new ResourceLocation("stand"), new IItemPropertyGetter()
+//	        {
+//				@Override
+//				public float apply(ItemStack stack, World worldIn, EntityLivingBase entityIn) {
+//					List<StandBase> STANDS = StandLoader.STAND_LIST;
+//					for (StandBase stand : STANDS) {
+//						if(stand.getName().equals(getStandId(stack))) {
+//							return STANDS.indexOf(stand)+1;
+//						}
 //					}
-				}
-	        });
+//					return 0;
+////					switch(getStandId(stack)) {
+////					case DEFAULT_STAND_ID:return 0;
+////					case "the_world":return 1;
+////					case "star_platinum":return 2;
+////					case "hierophant_green":return 3;
+////					}
+//				}
+//	        });
 		  
 	}
 	public static String getStandId(ItemStack stack) {

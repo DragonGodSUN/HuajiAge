@@ -48,6 +48,7 @@ public class CommonProxy
     public void preInit(FMLPreInitializationEvent event)
     {  	 
     	 new CreativeTabLoader(event);
+    	 new StandLoader();
     	 new ItemLoader(event);
     	 new BlockLoader(event); 
     	 new EntityLoader();
@@ -68,7 +69,6 @@ public class CommonProxy
     {
     	LootTablesLoader.registerLootTables();
        	LootFunctionManager.registerFunction(new LootNBTFuntion.Serializer());
-       	new StandLoader();
 	   	new MutiBlockLoader();
 		new CraftingLoader();
 		new EventLoader();

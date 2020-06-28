@@ -44,6 +44,10 @@ public class ItemOrgaRunning extends Item {
 		  this.setCreativeTab(CreativeTabLoader.tabhuaji);
 	}
 	@Override
+	public boolean hasEffect(ItemStack stack) {
+		return true;
+	}
+	@Override
 	public ActionResult<ItemStack> onItemRightClick(World worldIn, EntityPlayer playerIn, EnumHand handIn) {
 	 if(!worldIn.isRemote){
 	 if(playerIn.getCapability(CapabilityStandHandler.STAND_TYPE, null).getStand().equals(StandLoader.EMPTY)) {

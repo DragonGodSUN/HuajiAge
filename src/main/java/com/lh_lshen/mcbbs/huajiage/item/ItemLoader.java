@@ -185,7 +185,7 @@ public class ItemLoader {
         registerRender(tarot);
         registerRender(singularity);
         registerRender(arrowStand);
-        registerRender(disc);
+//        registerRender(disc);
 //        for(StandBase stand : StandLoader.STAND_LIST) {
 //        	String name = disc.getRegistryName()+"_"+stand.getName();
 //        	ModelResourceLocation model = new ModelResourceLocation(name, "inventory");
