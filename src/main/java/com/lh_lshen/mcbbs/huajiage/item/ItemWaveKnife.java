@@ -9,7 +9,7 @@ import com.lh_lshen.mcbbs.huajiage.crativetab.CreativeTabLoader;
 import com.lh_lshen.mcbbs.huajiage.damage_source.DamageWave;
 import com.lh_lshen.mcbbs.huajiage.init.HuajiConstant;
 import com.lh_lshen.mcbbs.huajiage.stand.StandLoader;
-import com.lh_lshen.mcbbs.huajiage.util.MotionHelper;
+import com.lh_lshen.mcbbs.huajiage.util.HAMathHelper;
 import com.lh_lshen.mcbbs.huajiage.util.NBTHelper;
 
 import net.minecraft.client.Minecraft;
@@ -90,8 +90,8 @@ public class ItemWaveKnife extends ItemSword {
 //					worldIn.spawnParticle(EnumParticleTypes.WATER_SPLASH, entityIn.posX+vec.x*2, entityIn.posY+entityIn.getEyeHeight()+vec.y*2, entityIn.posZ+vec.z*2,
 //							-(vec.x*Math.cos(2/3*Math.PI)+vec.z*Math.sin(2/3*Math.PI))*6, (i-15)/2, -(-vec.x*Math.sin(2/3*Math.PI)+vec.z*Math.cos(2/3*Math.PI))*6);
 					for(int j=0;j<20;j++) {
-					Vec3d vec_r_1 = MotionHelper.getVectorForRotation((float) (entityIn.rotationPitch+0.01776*(j-10)*Math.PI/0.017453292F), (float) (entityIn.rotationYaw+0.333*Math.PI/0.017453292F));
-					Vec3d vec_r_2 = MotionHelper.getVectorForRotation((float) (entityIn.rotationPitch+0.01776*(j-10)*Math.PI/0.017453292F), (float) (entityIn.rotationYaw-0.333*Math.PI/0.017453292F));
+					Vec3d vec_r_1 = HAMathHelper.getVectorForRotation((float) (entityIn.rotationPitch+0.01776*(j-10)*Math.PI/0.017453292F), (float) (entityIn.rotationYaw+0.333*Math.PI/0.017453292F));
+					Vec3d vec_r_2 = HAMathHelper.getVectorForRotation((float) (entityIn.rotationPitch+0.01776*(j-10)*Math.PI/0.017453292F), (float) (entityIn.rotationYaw-0.333*Math.PI/0.017453292F));
 					worldIn.spawnParticle(EnumParticleTypes.WATER_WAKE, 
 							entityIn.posX+vec.x*2+entityIn.motionX, entityIn.posY+entityIn.getEyeHeight()+vec.y*2+entityIn.motionY, entityIn.posZ+vec.z*2+entityIn.motionZ,
 							-vec_r_1.x, -vec_r_1.y, -vec_r_1.z);
@@ -102,7 +102,7 @@ public class ItemWaveKnife extends ItemSword {
 				List<EntityLivingBase> entities = entityIn.world.getEntitiesWithinAABB(EntityLivingBase.class, entityIn.getEntityBoundingBox().grow(2));
 				for(EntityLivingBase entity : entities) {
 					if(entity!=entityIn) {
-					double degree = MotionHelper.getDegreeXZ(entityIn.getLookVec(),MotionHelper.getVectorEntityEye(entityIn, entity));
+					double degree = HAMathHelper.getDegreeXZ(entityIn.getLookVec(),HAMathHelper.getVectorEntityEye(entityIn, entity));
 					boolean flag_degree = degree<=120;
 						if(flag_degree) {
 							entity.attackEntityFrom(new DamageWave(entityIn), (float) ((180-degree)/20)+8);

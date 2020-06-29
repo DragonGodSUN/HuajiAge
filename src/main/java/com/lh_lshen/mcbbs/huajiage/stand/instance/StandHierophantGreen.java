@@ -22,7 +22,7 @@ import com.lh_lshen.mcbbs.huajiage.stand.messages.MessageDoStandPowerClient;
 import com.lh_lshen.mcbbs.huajiage.stand.messages.MessagePerfromSkill;
 import com.lh_lshen.mcbbs.huajiage.stand.resource.StandRes;
 import com.lh_lshen.mcbbs.huajiage.stand.resource.StandResLoader;
-import com.lh_lshen.mcbbs.huajiage.util.MotionHelper;
+import com.lh_lshen.mcbbs.huajiage.util.HAMathHelper;
 import com.lh_lshen.mcbbs.huajiage.util.NBTHelper;
 import com.lh_lshen.mcbbs.huajiage.util.ServerUtil;
 
@@ -51,9 +51,9 @@ public class StandHierophantGreen extends StandBase {
 	
 	public StandHierophantGreen() {
 	}
-	public StandHierophantGreen(String name ,float speed ,float damage ,int duration ,float distance ,int cost,
+	public StandHierophantGreen(String name ,float speed ,float damage ,int duration ,float distance ,int cost,int charge,
 			String texPath,String localName, boolean displayHand) {
-			super(name, speed, damage, duration, distance, cost, texPath, localName, displayHand);
+			super(name, speed, damage, duration, distance, cost, charge, texPath, localName, displayHand);
 	}
 	@Override
 	public StandRes getBindingRes() {
@@ -69,7 +69,7 @@ public class StandHierophantGreen extends StandBase {
 		if(!user.world.isRemote) {
 			if(stage>0&&user.ticksExisted%5==0||user.ticksExisted%8==0) {
 			Vec3d look = user.getLookVec();
-			Vec3d shoot_point = MotionHelper.getPostionRelative2D(user, -0.55f, -0.6f);
+			Vec3d shoot_point = HAMathHelper.getPostionRelative2D(user, -0.55f, -0.6f);
 			EntityEmeraldBullet bullet = new EntityEmeraldBullet(user.world, user);
 			bullet.setPosition(user.posX+shoot_point.x, user.posY+2.2f, user.posZ+shoot_point.z);
 //			bullet.posX=user.posX+shoot_point.x;
@@ -96,10 +96,10 @@ public class StandHierophantGreen extends StandBase {
 		if(entityCllection.size()>0) {
 		for(EntityLivingBase i:entityCllection) {
 			if(i!=user) {
-				Vec3d vec = MotionHelper.getVectorEntityEye(user, i);
-				float dgree1 = (float) MotionHelper.getDegreeXZ(look, vec);
-				float dgree2 = (float) MotionHelper.getDegreeXY(look, vec);
-				float dgree3 = (float) MotionHelper.getDegreeXZ(look, vec);
+				Vec3d vec = HAMathHelper.getVectorEntityEye(user, i);
+				float dgree1 = (float) HAMathHelper.getDegreeXZ(look, vec);
+				float dgree2 = (float) HAMathHelper.getDegreeXY(look, vec);
+				float dgree3 = (float) HAMathHelper.getDegreeXZ(look, vec);
 				if(dgree1<15&&dgree2<15&&dgree3<15) {
 					dist = i.getPositionVector();
 					doEmeraldSlash(dist, user);
@@ -131,7 +131,7 @@ public class StandHierophantGreen extends StandBase {
 			float ry = MathHelper.nextFloat(new Random(), 0, 20);
 			float rz = MathHelper.nextFloat(new Random(), -20, 20);
 			Vec3d pos = new Vec3d(user.posX+rx, user.posY+ry, user.posZ+rz);
-			Vec3d v = MotionHelper.getVector(pos, dist);
+			Vec3d v = HAMathHelper.getVector(pos, dist);
 //			if(!isBlocked(user.world, pos)) {
 			
 				EntityEmeraldBullet bullet = new EntityEmeraldBullet(user.world, user);

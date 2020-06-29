@@ -5,6 +5,7 @@ import com.lh_lshen.mcbbs.huajiage.client.render.entity.RenderEmeraldBullet;
 import com.lh_lshen.mcbbs.huajiage.client.render.entity.RenderFivePower;
 import com.lh_lshen.mcbbs.huajiage.client.render.entity.RenderHeroArrow;
 import com.lh_lshen.mcbbs.huajiage.client.render.entity.RenderMultiKnife;
+import com.lh_lshen.mcbbs.huajiage.client.render.entity.RenderOrgaHairKnife;
 import com.lh_lshen.mcbbs.huajiage.client.render.entity.RenderRoadRoller;
 import com.lh_lshen.mcbbs.huajiage.client.render.entity.RenderSecondFoil;
 import com.lh_lshen.mcbbs.huajiage.client.render.entity.RenderStandBase;
@@ -29,6 +30,7 @@ public class EntityLoader {
 	        registerEntity((new ResourceLocation(HuajiAge.MODID, "StandBase")), EntityStandBase.class, "StandBase", 80, 3, true);
 	        registerEntity((new ResourceLocation(HuajiAge.MODID, "EmeraldBullet")), EntityEmeraldBullet.class, "EmeraldBullet", 100, 3, true);
 	        registerEntity((new ResourceLocation(HuajiAge.MODID, "FivePower")), EntityFivePower.class, "FivePower", 80, 3, true);
+	        registerEntity((new ResourceLocation(HuajiAge.MODID, "OrgaHairKnife")), EntityOrgaHairKnife.class, "OrgaHairKnife", 80, 3, true);
 	    }
 
 	    private static void registerEntity(ResourceLocation nameg,Class<? extends Entity> entityClass, String name, int trackingRange,
@@ -48,6 +50,7 @@ public class EntityLoader {
 	    	RenderingRegistry.registerEntityRenderingHandler(EntityStandBase.class, manage -> new RenderStandBase(manage));
 	    	RenderingRegistry.registerEntityRenderingHandler(EntityEmeraldBullet.class, manage -> new RenderEmeraldBullet(manage));
 	    	RenderingRegistry.registerEntityRenderingHandler(EntityFivePower.class, manage -> new RenderFivePower(manage));
+	    	RenderingRegistry.registerEntityRenderingHandler(EntityOrgaHairKnife.class, manage -> new RenderOrgaHairKnife(manage));
 	    
 	    }
 }

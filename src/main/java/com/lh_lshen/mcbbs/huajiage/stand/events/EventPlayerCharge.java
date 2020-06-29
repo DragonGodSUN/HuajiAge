@@ -30,7 +30,7 @@ public class EventPlayerCharge {
 				if(null != stand ) 
 					{
 						StandHandler standHandler = player.getCapability(CapabilityStandHandler.STAND_TYPE, null);
-						int mp = (int)(stand.getDuration()/5) + 20;
+						int mp =stand.getCharge();
 						chargeHandler.charge(mp);
 					}else {
 						chargeHandler.charge(5);

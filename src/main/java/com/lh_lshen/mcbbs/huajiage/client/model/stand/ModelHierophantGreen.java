@@ -4,7 +4,7 @@ import java.util.Random;
 
 import com.lh_lshen.mcbbs.huajiage.config.ConfigHuaji;
 import com.lh_lshen.mcbbs.huajiage.particle.EnumHuajiPraticle;
-import com.lh_lshen.mcbbs.huajiage.util.MotionHelper;
+import com.lh_lshen.mcbbs.huajiage.util.HAMathHelper;
 
 import net.minecraft.client.Minecraft;
 import net.minecraft.client.model.ModelBase;
@@ -299,7 +299,7 @@ public class ModelHierophantGreen extends ModelStandBase {
 		float rf2 = MathHelper.nextFloat(new Random(), -1, 1);
 		float rf3 = MathHelper.nextFloat(new Random(), -1, 1);
 		Vec3d vec = new Vec3d(rf1, rf2, rf3);
-		Vec3d shootPoint = MotionHelper.getPostionRelative2D(entityIn, -0.55f, -0.6f);
+		Vec3d shootPoint = HAMathHelper.getPostionRelative2D(entityIn, -0.55f, -0.6f);
 		Vec3d forward = entityIn.getLookVec();
 		for(int i=0;i<3;i++) {
 			Minecraft.getMinecraft().effectRenderer.spawnEffectParticle(ConfigHuaji.Stands.useHuajiSplash?

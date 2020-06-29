@@ -14,7 +14,7 @@ import com.lh_lshen.mcbbs.huajiage.init.sound.HuajiSoundPlayer;
 import com.lh_lshen.mcbbs.huajiage.init.sound.SoundLoader;
 import com.lh_lshen.mcbbs.huajiage.network.HuajiAgeNetWorkHandler;
 import com.lh_lshen.mcbbs.huajiage.network.messages.MessageExglutenburMode;
-import com.lh_lshen.mcbbs.huajiage.util.MotionHelper;
+import com.lh_lshen.mcbbs.huajiage.util.HAMathHelper;
 import com.lh_lshen.mcbbs.huajiage.util.NBTHelper;
 
 import net.minecraft.client.Minecraft;
@@ -134,7 +134,7 @@ public class ItemExglutenbur extends ItemSword {
 		        {
 		        	if(entity != attacker && entity != target) 
 		        	{
-	        		Vec3d vec = MotionHelper.getVectorEntity(target, entity);
+	        		Vec3d vec = HAMathHelper.getVectorEntity(target, entity);
 		        	entity.attackEntityFrom(new DamageSource(HuajiConstant.DamageSource.KDJL), (float) (20f/vec.length()));
 		        	entity.motionX-=vec.x/vec.length();
 		        	entity.motionY-=vec.y/vec.length();

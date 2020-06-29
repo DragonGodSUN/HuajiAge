@@ -63,6 +63,7 @@ item.huajiage.hopeElement.name=Hope Element
 item.huajiage.hopeFlower.name=Hope Flower
 item.huajiage.infiniteCharm.name=§bInfinite §8Armor Charm
 item.huajiage.orgaRunning.name=§eRunning Orga
+item.huajiage.orgaHairKnife.name=Orga's Hair Knife
 item.huajiage.multiKnife.name=Multi Stacks Knife
 item.huajiage.multiKnife.shiny.name=Shiny Stacks Knife
 item.huajiage.dioBread.name=§e§lDio Bread
@@ -133,7 +134,7 @@ item.wave_knife.tooltip.3=Charge Hit - §e%s
 item.huajiage.wave_knife.hotbar.wave=§9Wave - §b%s
 item.huajiage.wave_knife.hotbar.wave_reset=Reset Time - §b%ss
 item.huajiage.wave_knife.hotbar.wave_charge=Hit Charge - §e%s
-
+item.orga_knife:tooltips.1=The Orga leader's sharp, blade-shaped bangs are full of the element of hope (for throwing use, the lower the hit, the higher the damage, and the mark can be attached during the execution of the Requiem).
 
 huajiage.orga.1=§b To celebrate! The birth of the most powerful king of Mars---Orga Izka
 messege.huaji.blancedHelmet.active=§lFrom now on it's called %s §lSquare！
@@ -198,6 +199,7 @@ stand.huajiage.orga_requiem=§4§lOrga Requiem
 stand.huajiage.skill.the_world.start=§e§lThe World!!!
 stand.huajiage.skill.star_platinum.start=§5§lStar Platinum!The World!!! 
 stand.huajiage.skill.hierophant_green.start=§a§lTake that! Emerald splash with a radius of 20 meters!!!
+stand.huajiage.skill.orga_requiem.start=§4§lDon't stop!The infinite looped reality of the street!
 
 patchouil.huajiage.book.name=§e§lHUAJI§6Book
 patchouil.huajiage.book.landing=HUAJI,means comical or funny things,is making up awkwardly or funnily for hilarious festivals. In this universe, there is a peculiar thing named HUAJI, which is ubiquitous and constitutes thousands of things. It is said that holding the funny starlight power can obtain the supreme power of the legendary HUAJI ancestor.

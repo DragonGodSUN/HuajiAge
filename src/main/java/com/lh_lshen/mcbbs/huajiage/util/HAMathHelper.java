@@ -7,7 +7,7 @@ import net.minecraft.util.math.BlockPos;
 import net.minecraft.util.math.MathHelper;
 import net.minecraft.util.math.Vec3d;
 
-public class MotionHelper {
+public class HAMathHelper {
 	public static Vec3d getVectorEntity(Entity source , Entity target) {
 		  BlockPos eater_pos=source.getPosition();
 		  BlockPos target_pos=target.getPosition();
@@ -74,6 +74,13 @@ public class MotionHelper {
 			return new Vec3d(l1*v1.x+l2*v2.x+l3*v3.x , l1*v1.y+l2*v2.y+l3*v3.y , l1*v1.z+l2*v2.z+l3*v3.z);
 			
 		}
+	
+	public static Vec3d getVecCross(Vec3d v1 , Vec3d v2 ) {
+		
+		return new Vec3d(v1.y*v2.z - v1.z*v2.y,
+								-   v1.x*v2.z+ v1.z*v2.x,
+									v1.x*v2.y - v1.y*v2.x );
+	}
 	
 	public static Vec3d getPostionRelative2D(Entity entity , float x , float z ) {
 		float yaw = entity.rotationYaw;

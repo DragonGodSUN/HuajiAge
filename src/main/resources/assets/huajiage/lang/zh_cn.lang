@@ -89,6 +89,7 @@ item.huajiage.hopeElement.name=希望要素
 item.huajiage.hopeFlower.name=§b希望之花
 item.huajiage.infiniteCharm.name=§b无限耐久§8护甲护身符
 item.huajiage.orgaRunning.name=§e卡其托里钛
+item.huajiage.orgaHairKnife.name=奥尔加的头屑（误）
 item.huajiage.dioBread.name=§e§lDio Bread
 item.huajiage.roadRoller.name=§e压路机
 item.huajiage.multiKnife.name=超空间折叠复合小刀
@@ -134,6 +135,7 @@ item.wave_knife.tooltip.3=斩击充能 - §e%s
 item.huajiage.wave_knife.hotbar.wave=§9§l波澜§r - §b%s
 item.huajiage.wave_knife.hotbar.wave_reset=重置时间 - §b%ss
 item.huajiage.wave_knife.hotbar.wave_charge=斩击充能 - §e%s
+item.orga_knife:tooltips.1=奥尔加团长锋利的刀型刘海，充满了希望元素（投掷使用，血量越低，伤害越高，镇魂曲发动期间可附带标记）
 
 
 message.huajiage.patchouli_missing=[{"text":"[ Huaji Age II]:","color":"yellow","bold":true},{"text":"为保证最佳游戏体验，请加载  ","color":"aqua","bold":false},{"text":"Patchouli-帕秋莉模组","color":"green","underlined":true,"bold":true,"clickEvent":{"action":"open_url","value":"https://www.curseforge.com/minecraft/mc-mods/patchouli"},"hoverEvent":{"action":"show_text","value":"https://www.curseforge.com/minecraft/mc-mods/patchouli"}},{"text":"§b来获取指南手册，这是鬼畜界先辈们为迎击§0§l♂Dark&&King§b势力耗尽其毕生修为传承下的§e§lJO§6§l级宝典","color":"yellow","bold":false}]
@@ -202,6 +204,7 @@ stand.huajiage.orga_requiem=§4§l停不下来的奥尔加镇魂曲
 stand.huajiage.skill.the_world.start=§e§l咋瓦鲁多 ! ! ! 时间停止吧 !
 stand.huajiage.skill.star_platinum.start=§5§l食堂泼辣酱——§b§l咋瓦鲁多 ! 
 stand.huajiage.skill.hierophant_green.start=§a§l接招吧!半径20米的绿宝石水花!!!
+stand.huajiage.skill.orga_requiem.start=§4§l不要停下来啊！！！无限循环街道的真实！
 
 patchouil.huajiage.book.name=§e§lJO§6级宝典
 patchouil.huajiage.book.landing=在这个宇宙中，存在着一种名为滑稽的奇特之物，它们无处不在，并构成了千千万万的事物，据说，持有滑稽的星辉之力，便可得到传说中鬼畜先辈的无上之力

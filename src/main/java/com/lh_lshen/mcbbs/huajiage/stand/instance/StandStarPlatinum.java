@@ -20,7 +20,7 @@ import com.lh_lshen.mcbbs.huajiage.stand.messages.MessageDoStandPowerClient;
 import com.lh_lshen.mcbbs.huajiage.stand.messages.MessagePerfromSkill;
 import com.lh_lshen.mcbbs.huajiage.stand.resource.StandRes;
 import com.lh_lshen.mcbbs.huajiage.stand.resource.StandResLoader;
-import com.lh_lshen.mcbbs.huajiage.util.MotionHelper;
+import com.lh_lshen.mcbbs.huajiage.util.HAMathHelper;
 import com.lh_lshen.mcbbs.huajiage.util.NBTHelper;
 import com.lh_lshen.mcbbs.huajiage.util.ServerUtil;
 
@@ -45,9 +45,9 @@ public class StandStarPlatinum extends StandBase {
 
 	public StandStarPlatinum() {
 	}
-	public StandStarPlatinum(String name ,float speed ,float damage ,int duration ,float distance ,int cost,
+	public StandStarPlatinum(String name ,float speed ,float damage ,int duration ,float distance ,int cost,int charge,
 			String texPath,String localName, boolean displayHand) {
-			super(name, speed, damage, duration, distance, cost, texPath, localName, displayHand);
+			super(name, speed, damage, duration, distance, cost, charge, texPath, localName, displayHand);
 	}
 	@Override
 	public StandRes getBindingRes() {
@@ -66,9 +66,9 @@ public class StandStarPlatinum extends StandBase {
 		}
 		for(Entity i:entityCllection) {
 
-				Vec3d back = MotionHelper.getVectorEntityEye(user, i);
+				Vec3d back = HAMathHelper.getVectorEntityEye(user, i);
 				boolean flag_player = false;
-				boolean flag_degree = MotionHelper.getDegreeXZ(user.getLookVec(),MotionHelper.getVectorEntityEye(user, i))>(type.getName().equals(StandLoader.STAR_PLATINUM.getName())?120:90);
+				boolean flag_degree = HAMathHelper.getDegreeXZ(user.getLookVec(),HAMathHelper.getVectorEntityEye(user, i))>(type.getName().equals(StandLoader.STAR_PLATINUM.getName())?120:90);
 				
 				if(flag_degree) {
 					continue;
@@ -125,7 +125,7 @@ public class StandStarPlatinum extends StandBase {
 			  		
 			  		continue;
 			  		
-			  	}else if(MotionHelper.getAABBSize(i.getEntityBoundingBox())>2){
+			  	}else if(HAMathHelper.getAABBSize(i.getEntityBoundingBox())>2){
 
 			  		user.addPotionEffect(new PotionEffect(MobEffects.RESISTANCE,50,5));
 			  		continue;

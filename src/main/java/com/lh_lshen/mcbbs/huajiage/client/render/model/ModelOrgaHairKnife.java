@@ -17,26 +17,24 @@ import net.minecraft.item.ItemStack;
 import net.minecraft.util.math.MathHelper;
 import net.minecraft.world.World;
 
-public class ModelEmeraldBullet extends ModelBase
+public class ModelOrgaHairKnife extends ModelBase
 {
   
   
   @Override
   public void render(Entity entityIn, float limbSwing, float limbSwingAmount, float ageInTicks, float netHeadYaw,
 		float headPitch, float scale) {
-	  ItemStack item=new ItemStack(Items.EMERALD);
+	  ItemStack item=new ItemStack(ItemLoader.orgaHairKnife);
 	  Minecraft.getMinecraft().getRenderItem().renderItem(item, TransformType.GROUND);
-	  setRotationAngles( limbSwing, limbSwingAmount, ageInTicks, headPitch,netHeadYaw, scale);
 	  super.render(entityIn, limbSwing, limbSwingAmount, ageInTicks, netHeadYaw, headPitch, scale);
   }
  
   
-  private void setRotation(ModelRenderer model, float x, float y, float z)
-  {
-    model.rotateAngleX = x;
-    model.rotateAngleY = y;
-    model.rotateAngleZ = z;
-  }
+	public void setRotationAngle(ModelRenderer modelRenderer, float x, float y, float z) {
+		modelRenderer.rotateAngleX = x;
+		modelRenderer.rotateAngleY = y;
+		modelRenderer.rotateAngleZ = z;
+	}
   
   public void setRotationAngles(float f, float f1, float f2, float f3, float f4, float f5)
   {

@@ -14,6 +14,7 @@ public class StandBase implements IStandPower{
 	private float speed;
 	private float damage;
 	private int duration;
+	private int charge;
 	private float distance;
 	private int cost;
 	private String texPath;
@@ -21,7 +22,7 @@ public class StandBase implements IStandPower{
 	private boolean displayHand;
 	public StandBase() {
 	}
-	public StandBase(String name ,float speed ,float damage ,int duration ,float distance ,int cost,
+	public StandBase(String name ,float speed ,float damage ,int duration ,float distance ,int cost,int charge,
 			String texPath,String localName, boolean displayHand) {
 			this.name=name;
 			this.speed=speed;
@@ -29,6 +30,7 @@ public class StandBase implements IStandPower{
 			this.duration=duration;
 			this.distance=distance;
 			this.cost=cost;
+			this.charge=charge;
 			this.texPath = texPath;
 			this.localName = localName;
 			this.displayHand = displayHand;
@@ -52,6 +54,11 @@ public class StandBase implements IStandPower{
 	public int getCost() {
 		return cost;
 	}
+	
+	public int getCharge() {
+		return charge;
+	}
+
 
 	public String getName() {
 		return name;

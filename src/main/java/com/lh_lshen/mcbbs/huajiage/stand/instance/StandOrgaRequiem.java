@@ -14,6 +14,7 @@ import com.lh_lshen.mcbbs.huajiage.init.HuajiConstant;
 import com.lh_lshen.mcbbs.huajiage.init.sound.HuajiSoundPlayer;
 import com.lh_lshen.mcbbs.huajiage.init.sound.SoundLoader;
 import com.lh_lshen.mcbbs.huajiage.init.sound.SoundStand;
+import com.lh_lshen.mcbbs.huajiage.item.ItemLoader;
 import com.lh_lshen.mcbbs.huajiage.network.StandNetWorkHandler;
 import com.lh_lshen.mcbbs.huajiage.potion.PotionLoader;
 import com.lh_lshen.mcbbs.huajiage.stand.EnumStandtype;
@@ -25,7 +26,7 @@ import com.lh_lshen.mcbbs.huajiage.stand.messages.MessageDoStandPowerClient;
 import com.lh_lshen.mcbbs.huajiage.stand.messages.MessagePerfromSkill;
 import com.lh_lshen.mcbbs.huajiage.stand.resource.StandRes;
 import com.lh_lshen.mcbbs.huajiage.stand.resource.StandResLoader;
-import com.lh_lshen.mcbbs.huajiage.util.MotionHelper;
+import com.lh_lshen.mcbbs.huajiage.util.HAMathHelper;
 import com.lh_lshen.mcbbs.huajiage.util.NBTHelper;
 import com.lh_lshen.mcbbs.huajiage.util.ServerUtil;
 
@@ -54,9 +55,9 @@ public class StandOrgaRequiem extends StandBase {
 	
 	public StandOrgaRequiem() {
 	}
-	public StandOrgaRequiem(String name ,float speed ,float damage ,int duration ,float distance ,int cost,
+	public StandOrgaRequiem(String name ,float speed ,float damage ,int duration ,float distance ,int cost,int charge,
 			String texPath,String localName, boolean displayHand) {
-			super(name, speed, damage, duration, distance, cost, texPath, localName, displayHand);
+			super(name, speed, damage, duration, distance, cost, charge, texPath, localName, displayHand);
 	}
 	@Override
 	public StandRes getBindingRes() {
@@ -77,8 +78,13 @@ public class StandOrgaRequiem extends StandBase {
 		IExposedData data = user.getCapability(CapabilityLoader.EXPOSED_DATA, null);
 		if(data!=null) {
 		data.setTrigger(true);
+		user.dropItem(ItemLoader.orgaHairKnife, 16);
 		user.addPotionEffect(new PotionEffect(PotionLoader.potionRequiem,600));
 		user.addPotionEffect(new PotionEffect(PotionLoader.potionStand,600));
+		user.addPotionEffect(new PotionEffect(MobEffects.SPEED,600,2));
+		if(user.isPotionActive(MobEffects.SLOWNESS)) {
+			user.removePotionEffect(MobEffects.SLOWNESS);
+			}
 		}
 	}
 

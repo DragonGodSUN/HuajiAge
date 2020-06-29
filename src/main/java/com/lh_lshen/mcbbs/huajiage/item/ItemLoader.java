@@ -45,6 +45,7 @@ public class ItemLoader {
 	public static Item arrowRequiem= new ItemArrowRequiem();
 	public static Item orgaRequiem=new ItemOrgaRequiem();
 	public static Item orgaRunning=new ItemOrgaRunning();
+	public static Item orgaHairKnife=new ItemOrgaHairKnife();
 	public static Item hopeElement=new ItemHopeElement();
 	public static Item hopeFlower=new ItemHopeFlower();
 	public static Item waveCrystal=new ItemWaveCrystal();
@@ -113,6 +114,7 @@ public class ItemLoader {
         register(arrowRequiem,"arrowRequiem","arrow_requiem");
         register(orgaRequiem,"orgaRequiem","orga_requiem");
         register(orgaRunning,"orgaRunning","orga_running");
+        register(orgaHairKnife,"orgaHairKnife","orga_hair_knife");
         register(hopeElement,"hopeElement","hope_element");
         register(hopeFlower,"hopeFlower","hope_flower");
         register(waveCrystal,"waveCrystal","wave_crystal");
@@ -168,6 +170,7 @@ public class ItemLoader {
         registerRender(orgaBoots); 
         registerRender(orgaRequiem); 
         registerRender(orgaRunning); 
+        registerRender(orgaHairKnife); 
         registerRender(arrowRequiem); 
         registerRender(hopeElement);
         registerRender(hopeFlower); 
