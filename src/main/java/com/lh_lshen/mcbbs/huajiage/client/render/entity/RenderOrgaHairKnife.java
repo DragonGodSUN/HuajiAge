@@ -35,18 +35,25 @@ public class RenderOrgaHairKnife extends Render<EntityOrgaHairKnife>
 		super.doRender(entity, x, y, z, entityYaw, partialTicks);
 		GlStateManager.pushMatrix();
 		GlStateManager.enableRescaleNormal();
-		GlStateManager.disableLighting();
-		GlStateManager.color(1F, 1F, 1F, 1F);
 		GlStateManager.translate(x, y, z);
-		GlStateManager.rotate(45F, 0F, 1F, 0F); 
-		GlStateManager.rotate(90F, 1F, 0F, 0F); 
+		if(entity.motionX==0&&entity.motionY==0&&entity.motionZ==0) {
 		GlStateManager.rotate(entity.getRotation(), 0F, 1F, 0F);
-		GlStateManager.rotate(entity.getPitch(), 1F, 0F, 0F);
-		GlStateManager.rotate(entity.getRotationRandom(), 0F, 0F, 1F);
+		}else {
+		GlStateManager.rotate(entity.rotationYaw, 0F, 1F, 0F);
+		}
+		GlStateManager.rotate(180F, 1F, 0F, 0F);
+		GlStateManager.rotate(90F, 0F, -1F, 0F);
+		GlStateManager.rotate(entity.getRotationRandom(), 1F, 0F, 0F);
+		GlStateManager.rotate(entity.ticksExisted*40, 0F, 0F, 1F);
+//		GlStateManager.rotate(entity.getPitch(), 0F, 0F, 1F);
+		if(entity.motionX==0&&entity.motionY==0&&entity.motionZ==0) {
+		GlStateManager.rotate(entity.getPitch(), 0F, 0F, 1F);
+		}else {
+		GlStateManager.rotate(entity.rotationPitch, 0F, 0F, 1F);
+		}
 //		GlStateManager.rotate(90F, 0F, 0F, 0F);
+		GlStateManager.scale(1F, -1F, -1F);
 		MODEL_N.render(entity, 0, 0, entity.ticksExisted, entityYaw, entity.rotationPitch, 0.3f);
-		GlStateManager.color(1F, 1F, 1F);
-		GlStateManager.enableLighting();
 		GlStateManager.scale(1F, -1F, -1F);
 		GlStateManager.enableRescaleNormal();
 		GlStateManager.popMatrix();

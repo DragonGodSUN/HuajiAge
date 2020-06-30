@@ -11,6 +11,7 @@
 
 package com.lh_lshen.mcbbs.huajiage.client.render.model;
 
+import com.lh_lshen.mcbbs.huajiage.entity.EntityRoadRoller;
 import com.lh_lshen.mcbbs.huajiage.item.ItemLoader;
 
 import net.minecraft.client.Minecraft;
@@ -27,8 +28,16 @@ public class ModelRoadRoller extends ModelBase
   @Override
 public void render(Entity entityIn, float limbSwing, float limbSwingAmount, float ageInTicks, float netHeadYaw,
 		float headPitch, float scale) {
-	  ItemStack item=new ItemStack(ItemLoader.roadRoller);
-	  Minecraft.getMinecraft().getRenderItem().renderItem(item, TransformType.GROUND);
+	  if(entityIn instanceof EntityRoadRoller) {
+		  EntityRoadRoller road = (EntityRoadRoller) entityIn;
+		  if(road.getType().equals(EntityRoadRoller.enumTYPE.ROAD_ROLLER.getName())) {
+		  ItemStack item=new ItemStack(ItemLoader.roadRoller);
+		  Minecraft.getMinecraft().getRenderItem().renderItem(item, TransformType.GROUND);
+		  }else if(road.getType().equals(EntityRoadRoller.enumTYPE.CAR.getName())){
+		  ItemStack item=new ItemStack(ItemLoader.blackCar);
+		  Minecraft.getMinecraft().getRenderItem().renderItem(item, TransformType.GROUND);
+		  }
+	  }
     setRotationAngles( limbSwing, limbSwingAmount, ageInTicks, headPitch,netHeadYaw, scale);
 	super.render(entityIn, limbSwing, limbSwingAmount, ageInTicks, netHeadYaw, headPitch, scale);
 }
