@@ -189,6 +189,7 @@ config.huaji_age.huaji_config.icon_time_stop=The icon display in time stop
 config.huaji_age.huaji_config.stand.fog_time_stop=The fog in the time stop(do not recommend if your GPU is not supported)
 config.huaji_age.huaji_config.stand.huaji_splash=Use HUAJI particle to replace the emerald splash
 config.huaji_age.huaji_config.orga.flower=Use Hope Flower BGM
+config.huaji_age.huaji_config.density_fog_time_stop=The fog density in time stop(Need the fog Open)
 
 stand.huajiage.empty=Empty
 stand.huajiage.the_world=§e§lThe World

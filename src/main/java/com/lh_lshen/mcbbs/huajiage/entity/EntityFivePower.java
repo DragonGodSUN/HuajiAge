@@ -13,6 +13,7 @@ import net.minecraft.block.state.IBlockState;
 import net.minecraft.entity.Entity;
 import net.minecraft.entity.EntityLivingBase;
 import net.minecraft.entity.IProjectile;
+import net.minecraft.entity.boss.EntityDragon;
 import net.minecraft.entity.effect.EntityLightningBolt;
 import net.minecraft.entity.item.EntityItem;
 import net.minecraft.entity.item.EntityXPOrb;
@@ -83,14 +84,13 @@ public class EntityFivePower extends EntityThrowable{
 			if(entity!=thrower &&player!=null&&entity!=player) {
 				if(!isDe()) {
 					entity.setFire(3);
-					if(thrower instanceof EntityPlayer) {
 					entity.attackEntityFrom(new DamageFivePower(player), 15f);
-					}else {
-					entity.attackEntityFrom(DamageSource.OUT_OF_WORLD , 15f);
-					}
 					if(NBTHelper.getEntityBoolean(entity, "huajiage.de")) {
 						NBTHelper.setEntityBoolean(entity, "huajiage.de", false);
 						entity.attackEntityFrom(new DamageFivePower(player), 50f);
+						if(entity instanceof EntityDragon) {
+							((EntityDragon)entity).attackEntityFromPart(((EntityDragon)entity).dragonPartHead, new DamageFivePower(player), 60f);
+						}
 						player.heal(2f);
 						for(int i=0;i<3;i++) {
 							world.spawnEntity(new EntityLightningBolt(world, entity.posX, entity.posY, entity.posZ, true));

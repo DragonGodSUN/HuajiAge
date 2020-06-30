@@ -120,6 +120,11 @@ public class ConfigHuaji {
 		@RangeDouble(min = 0, max = 5.0)
 		public double TimeStopScale = 1.0;
 		
+		@Config.Comment("The density of fog in time stop")
+		@LangKey("config.huaji_age.huaji_config.density_fog_time_stop")
+		@RangeDouble(min = 0, max = 0.001f)
+		public float TimeStopFog = 0.0005f;
+		
 		
 	}
 	 @Mod.EventBusSubscriber(modid = HuajiAge.MODID)

@@ -54,6 +54,7 @@ public class ItemLoader {
 	public static Item dioBread=new ItemDioBread();
 	public static Item multiKnife=new ItemMultiKnife();
 	public static Item roadRoller=new ItemRoadRoller();
+	public static Item blackCar=new ItemBlackCar();
 	public static Item orgaFlag=new ItemOrgaFlag();
 	public static Item lordCore=new ItemLordCore();
 	public static Item lordKey=new ItemLordKey();
@@ -123,6 +124,7 @@ public class ItemLoader {
         register(dioBread,"dioBread","dio_bread");
         register(multiKnife,"multiKnife","multi_knife");
         register(roadRoller,"roadRoller","road_roller");
+        register(blackCar,"blackCar","black_car");
         register(orgaFlag,"orgaFlag","orga_flag");
         register(etherC,"etherCircumfluxBoard","ether_circumflux_board");
         register(lordCore,"lordCore","lord_core");
@@ -180,6 +182,7 @@ public class ItemLoader {
         registerRender(dioBread);
         registerRender(multiKnife);
         registerRender(roadRoller);
+        registerRender(blackCar);
         registerRender(orgaFlag);
         registerRender(etherC);
         registerRender(lordCore);

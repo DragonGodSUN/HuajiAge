@@ -46,8 +46,8 @@ import net.minecraftforge.fml.common.eventhandler.SubscribeEvent;
 import net.minecraftforge.fml.relauncher.Side;
 import net.minecraftforge.fml.relauncher.SideOnly;
 
-public class ItemRoadRoller extends Item {
-	public ItemRoadRoller()
+public class ItemBlackCar extends Item {
+	public ItemBlackCar()
 	{
 		 super();
 		  this.setCreativeTab(CreativeTabLoader.tabJo);
@@ -68,36 +68,17 @@ public class ItemRoadRoller extends Item {
 			road.posZ+=v1.z/fn;
 			road.setRotation(MathHelper.wrapDegrees(-playerIn.rotationYaw));
 			road.setPitch(playerIn.rotationPitch);
-			road.setDamage(10f);
+			road.setType(EntityRoadRoller.enumTYPE.CAR.getName());
+			road.setDamage(50f);
 			road.setLife(512f);
 			if(!playerIn.isCreative()) {
 			itemstack.shrink(1);}
 			worldIn.spawnEntity(road);
 		}
-		playerIn.playSound(SoundLoader.ROAD_ROLLER, 2f,1f);
+		playerIn.playSound(SoundLoader.ORGA_RIDER, 2f,1f);
 		playerIn.swingArm(handIn);		
 		
 		return new ActionResult<ItemStack>(EnumActionResult.SUCCESS, itemstack);
 	}
-	
-	@SubscribeEvent
-	public void leftClick(PlayerInteractEvent.LeftClickEmpty evt) {
-            EntityPlayer player = evt.getEntityPlayer();
-            List<EntityRoadRoller> road=player.getEntityWorld().getEntitiesWithinAABB(EntityRoadRoller.class,player.getEntityBoundingBox().grow(20));
-            boolean flag=false;
-            if(road!=null)
-            {
-            	for(EntityRoadRoller r:road) {
-            		if(r.motionX==0&&r.motionY==0&&r.motionZ==0) {
-            			flag=true;
-            		}else {
-            			flag=false;
-            		}
-            	}
-            if(flag) 
-	            {
-	            StandNetWorkHandler.sendToServer(new MessageLeftClickRoadRoller());
-	            }
-            } }
 
 }

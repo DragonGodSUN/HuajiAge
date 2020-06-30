@@ -135,6 +135,15 @@
       }
     ]
   },
+  "orga_rider": {
+    "category": "neutral",
+    "sounds": [
+      {
+        "name": "huajiage:orga_rider",
+        "stream": true
+      }
+    ]
+  },
     "orga_requiem_hit": {
     "category": "music",
     "sounds": [
