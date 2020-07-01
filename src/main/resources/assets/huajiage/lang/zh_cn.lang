@@ -137,6 +137,12 @@ item.huajiage.wave_knife.hotbar.wave=§9§l波澜§r - §b%s
 item.huajiage.wave_knife.hotbar.wave_reset=重置时间 - §b%ss
 item.huajiage.wave_knife.hotbar.wave_charge=斩击充能 - §e%s
 item.orga_knife:tooltips.1=奥尔加团长锋利的刀型刘海，充满了希望元素（投掷使用，血量越低，伤害越高，镇魂曲发动期间可附带标记）
+item.killer_queen_trigger:tooltips.type=锁定类型：%s
+item.killer_queen_trigger:tooltips.x=X-%s
+item.killer_queen_trigger:tooltips.y=Y-%s
+item.killer_queen_trigger:tooltips.z=Z-%s
+item.killer_queen_trigger:tooltips.entity=锁定生物UUID：%s
+
 
 
 message.huajiage.patchouli_missing=[{"text":"[ Huaji Age II]:","color":"yellow","bold":true},{"text":"为保证最佳游戏体验，请加载  ","color":"aqua","bold":false},{"text":"Patchouli-帕秋莉模组","color":"green","underlined":true,"bold":true,"clickEvent":{"action":"open_url","value":"https://www.curseforge.com/minecraft/mc-mods/patchouli"},"hoverEvent":{"action":"show_text","value":"https://www.curseforge.com/minecraft/mc-mods/patchouli"}},{"text":"§b来获取指南手册，这是鬼畜界先辈们为迎击§0§l♂Dark&&King§b势力耗尽其毕生修为传承下的§e§lJO§6§l级宝典","color":"yellow","bold":false}]

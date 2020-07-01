@@ -27,7 +27,8 @@ import net.minecraft.util.ResourceLocation;
 import net.minecraft.util.text.TextFormatting;
 
 public class StandUtil {
-	private static StandBase[] ArrowStand = {StandLoader.THE_WORLD,StandLoader.STAR_PLATINUM,StandLoader.HIEROPHANT_GREEN};
+	private static StandBase[] ArrowStand = {StandLoader.THE_WORLD,StandLoader.STAR_PLATINUM,StandLoader.HIEROPHANT_GREEN,
+			StandLoader.KILLER_QUEEN};
 	public static StandBase getType(EntityLivingBase entity) {
 		   if (entity.hasCapability(CapabilityStandHandler.STAND_TYPE, null)) {
 	           StandHandler stand = entity.getCapability(CapabilityStandHandler.STAND_TYPE, null);

@@ -40,6 +40,7 @@ public  class HuajiConstant {
 		public static final String STAND_STAR_PLATINUM="stand"+"."+HuajiAge.MODID+"."+"star_platinum";
 		public static final String STAND_HIEROPANT_GREEN="stand"+"."+HuajiAge.MODID+"."+"hierophant_green";
 		public static final String STAND_ORGA_REQUIEM="stand"+"."+HuajiAge.MODID+"."+"orga_requiem";
+		public static final String STAND_KILLER_QUEEN="stand"+"."+HuajiAge.MODID+"."+"killer_queen";
 		public static final String STAND_EMPTY="stand"+"."+HuajiAge.MODID+"."+"empty";
 	}
 	
@@ -48,6 +49,7 @@ public  class HuajiConstant {
 		public static final ResourceLocation TEXTRUE_STAR_PLATINUM = new ResourceLocation(HuajiAge.MODID, StandLoader.STAR_PLATINUM.getTexPath());
 		public static final ResourceLocation TEXTRUE_HIEROPANT_GREEN = new ResourceLocation(HuajiAge.MODID, StandLoader.HIEROPHANT_GREEN.getTexPath());
 		public static final ResourceLocation TEXTRUE_ORGA_REQUIEM = new ResourceLocation(HuajiAge.MODID, StandLoader.ORGA_REQUIEM.getTexPath());
+		public static final ResourceLocation TEXTRUE_KILLER_QUEEN = new ResourceLocation(HuajiAge.MODID, StandLoader.KILLER_QUEEN.getTexPath());
 		
 	}
 	

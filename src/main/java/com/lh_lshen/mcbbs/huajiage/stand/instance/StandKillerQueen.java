@@ -51,11 +51,11 @@ import net.minecraft.util.math.Vec3d;
 import net.minecraft.util.text.TextComponentTranslation;
 import net.minecraft.world.World;
 
-public class StandOrgaRequiem extends StandBase {
+public class StandKillerQueen extends StandBase {
 	
-	public StandOrgaRequiem() {
+	public StandKillerQueen() {
 	}
-	public StandOrgaRequiem(String name ,float speed ,float damage ,int duration ,float distance ,int cost,int charge,
+	public StandKillerQueen(String name ,float speed ,float damage ,int duration ,float distance ,int cost,int charge,
 			String texPath,String localName, boolean displayHand) {
 			super(name, speed, damage, duration, distance, cost, charge, texPath, localName, displayHand);
 	}
@@ -75,21 +75,7 @@ public class StandOrgaRequiem extends StandBase {
 
 	@Override
 	public void doStandCapability(EntityLivingBase user) {
-		IExposedData data = user.getCapability(CapabilityLoader.EXPOSED_DATA, null);
-		double d = MathHelper.nextDouble(new Random(), 0, 1);
-		if(data!=null) {
-		data.setTrigger(true);
-		user.dropItem(ItemLoader.orgaHairKnife, 16);
-		if(d<0.3) {
-		user.dropItem(ItemLoader.blackCar, 1);
-		}
-		user.addPotionEffect(new PotionEffect(PotionLoader.potionRequiem,600));
-		user.addPotionEffect(new PotionEffect(PotionLoader.potionStand,600));
-		user.addPotionEffect(new PotionEffect(MobEffects.SPEED,600,2));
-		if(user.isPotionActive(MobEffects.SLOWNESS)) {
-			user.removePotionEffect(MobEffects.SLOWNESS);
-			}
-		}
+
 	}
 
 	@Override

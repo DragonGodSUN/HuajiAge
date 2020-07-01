@@ -50,7 +50,7 @@ public class ItemBlackCar extends Item {
 	public ItemBlackCar()
 	{
 		 super();
-		  this.setCreativeTab(CreativeTabLoader.tabJo);
+		  this.setCreativeTab(CreativeTabLoader.tabhuaji);
 		  this.maxStackSize=1;
 		  MinecraftForge.EVENT_BUS.register(this);
 	}
