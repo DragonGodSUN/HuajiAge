@@ -332,6 +332,15 @@
         "stream": true
       }
     ]
+  },
+   "stand_killer_queen_trigger": {
+    "category": "neutral",
+    "sounds": [
+      {
+        "name": "huajiage:stand_killer_queen_trigger",
+        "stream": true
+      }
+    ]
   }
 
 }

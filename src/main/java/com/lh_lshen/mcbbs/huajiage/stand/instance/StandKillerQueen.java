@@ -61,7 +61,7 @@ public class StandKillerQueen extends StandBase {
 	}
 	@Override
 	public StandRes getBindingRes() {
-		return StandResLoader.ORGA_REQUIEM_RES;
+		return StandResLoader.KILLER_QUEEN_RES;
 	}
 	@Override
 	public void doStandPower(EntityLivingBase user) {

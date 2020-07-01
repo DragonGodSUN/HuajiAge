@@ -1,0 +1,6 @@
+{
+    "parent": "item/generated",
+    "textures": {
+        "layer0": "huajiage:items/disc_killer_queen"
+    }
+}

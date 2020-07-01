@@ -25,6 +25,7 @@ item.huajiage.huajiStarPoly.name=§o§lMultiple superposition state HUAJI star
 item.huajiage.arrowStand.name=§dArrow for Stand
 item.huajiage.waveCrystal.name=§bWave Crystal
 item.huajiage.waveKnife.name=Wave Knife
+item.huajiage.killerQueenTrigger.name=§lTrigger
 
 death.attack.huajiage.hope_flower=%s was dead of world line converge
 death.attack.huajiage.second=%s has been compressed into a PNG image
@@ -164,6 +165,7 @@ message.huajiage.exglutenbur.flavor.2=§4Spicy
 message.huajiage.exglutenbur.flavor.3=§lLime
 message.huajiage.exglutenbur.kdjl=§8§lIt's awesome!!
 messege.huaji.blancedHelmet.lord.break=§l%s has freed the supreme power of §e§lLord Lu§7§l, walking through the void, like terror!
+message.huajiage.stand_killer_queen_trigger.cost_lack=§eYour points for fire the bomb is not enough
 
 gui.huajiage.poly.cook=Process
 gui.huajiage.poly.fuel=Fuel Point
@@ -197,6 +199,7 @@ stand.huajiage.the_world=§e§lThe World
 stand.huajiage.star_platinum=§5§lStar Platinum
 stand.huajiage.hierophant_green=§a§lHierophant Green
 stand.huajiage.orga_requiem=§4§lOrga Requiem
+stand.huajiage.killer_queen=§d§lKiller §f§lQueen
 
 stand.huajiage.skill.the_world.start=§e§lThe World!!!
 stand.huajiage.skill.star_platinum.start=§5§lStar Platinum!The World!!! 
