@@ -7,6 +7,7 @@ import com.lh_lshen.mcbbs.huajiage.api.IMultiBlock;
 import com.lh_lshen.mcbbs.huajiage.capability.CapabilityStandHandler;
 import com.lh_lshen.mcbbs.huajiage.capability.StandHandler;
 import com.lh_lshen.mcbbs.huajiage.capability.StandStageHandler;
+import com.lh_lshen.mcbbs.huajiage.entity.EntitySheerHeartAttack;
 import com.lh_lshen.mcbbs.huajiage.init.HuajiConstant;
 import com.lh_lshen.mcbbs.huajiage.init.LootTablesLoader;
 import com.lh_lshen.mcbbs.huajiage.init.sound.SoundLoader;
@@ -68,8 +69,8 @@ public class ItemLootTableTest extends Item {
 			return "Stand Power!!!";
 		case 5:
 			return "Time Stop ---Jostar";
-//		case 6:
-//			return "The list of Stand Users";
+		case 6:
+			return "Sheer Heart Attack";
 //		case 7:
 //			return "Clear up the list of Stand Users";
 		}
@@ -85,7 +86,7 @@ public class ItemLootTableTest extends Item {
 		int stage = stageHandler.getStage();
 		if(playerIn.isSneaking()) {
 			int mode=getmode(stack);
-			if(mode<5) {
+			if(mode<6) {
 			modeSwitch(stack, mode+1);
 			}else {
 			modeSwitch(stack,0);	
@@ -174,6 +175,15 @@ public class ItemLootTableTest extends Item {
         	stageHandler.setStage(1);
 	        break;
 				}
+		case 6:		
+			if(!playerIn.world.isRemote) {
+			EntitySheerHeartAttack attack = new EntitySheerHeartAttack(playerIn.world);
+			attack.setTamedBy(playerIn);
+			attack.setDamage(50f);
+			attack.setPosition(playerIn.posX, playerIn.posY+0.5f, playerIn.posZ);
+			playerIn.world.spawnEntity(attack);
+			}
+			break;
 //		case 6:{
 //			StandUserWorldSavedData data = StandUserWorldSavedData.getGlobal(worldIn);
 //			for(UUID uuid : data.getPlayersByUUID()){

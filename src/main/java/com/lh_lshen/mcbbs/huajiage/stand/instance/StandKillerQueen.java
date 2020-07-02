@@ -10,6 +10,7 @@ import com.lh_lshen.mcbbs.huajiage.capability.CapabilityLoader;
 import com.lh_lshen.mcbbs.huajiage.capability.IExposedData;
 import com.lh_lshen.mcbbs.huajiage.client.model.stand.ModelStandBase;
 import com.lh_lshen.mcbbs.huajiage.entity.EntityEmeraldBullet;
+import com.lh_lshen.mcbbs.huajiage.entity.EntitySheerHeartAttack;
 import com.lh_lshen.mcbbs.huajiage.init.HuajiConstant;
 import com.lh_lshen.mcbbs.huajiage.init.sound.HuajiSoundPlayer;
 import com.lh_lshen.mcbbs.huajiage.init.sound.SoundLoader;
@@ -75,7 +76,13 @@ public class StandKillerQueen extends StandBase {
 
 	@Override
 	public void doStandCapability(EntityLivingBase user) {
-
+		if(user instanceof EntityPlayer) {
+		EntitySheerHeartAttack attack = new EntitySheerHeartAttack(user.world);
+		attack.setTamedBy((EntityPlayer) user);
+		attack.setDamage(50f);
+		attack.setPosition(user.posX, user.posY+0.5f, user.posZ);
+		user.world.spawnEntity(attack);
+		}
 	}
 
 	@Override
