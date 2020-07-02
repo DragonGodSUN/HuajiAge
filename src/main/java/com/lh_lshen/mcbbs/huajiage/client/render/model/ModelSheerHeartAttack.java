@@ -23,8 +23,9 @@ public class ModelSheerHeartAttack extends ModelBase {
 		textureHeight = 128;
 
 		head = new ModelRenderer(this);
-		head.setRotationPoint(1.0F, 21.0F, -6.0F);
+		head.setRotationPoint(1.0F, 21.0F, -5.0F);
 		head.cubeList.add(new ModelBox(head, 34, 0, -3.5F, -5.0F, -2.0F, 5, 5, 3, 0.0F, false));
+		head.cubeList.add(new ModelBox(head, 0, 61, -3.0F, -4.1F, -1.8F, 4, 4, 3, 0.0F, false));
 
 		ear = new ModelRenderer(this);
 		ear.setRotationPoint(-1.0F, -5.0F, 0.0F);
@@ -35,13 +36,13 @@ public class ModelSheerHeartAttack extends ModelBase {
 		ear_1.setRotationPoint(-2.5F, 0.0F, 0.0F);
 		setRotationAngle(ear_1, -0.1745F, 0.4363F, -0.5236F);
 		ear.addChild(ear_1);
-		ear_1.cubeList.add(new ModelBox(ear_1, 58, 0, -0.5F, -1.0F, -1.0F, 1, 2, 2, 0.0F, false));
+		ear_1.cubeList.add(new ModelBox(ear_1, 58, 5, -0.5F, -1.0F, 0.0F, 1, 2, 1, 0.0F, false));
 
 		ear_2 = new ModelRenderer(this);
 		ear_2.setRotationPoint(2.5F, 0.0F, 0.0F);
 		setRotationAngle(ear_2, -0.1745F, -0.4363F, 0.5236F);
 		ear.addChild(ear_2);
-		ear_2.cubeList.add(new ModelBox(ear_2, 58, 0, -0.5F, -1.0F, -1.0F, 1, 2, 2, 0.0F, true));
+		ear_2.cubeList.add(new ModelBox(ear_2, 58, 5, -0.5F, -1.0F, 0.0F, 1, 2, 1, 0.0F, true));
 
 		body = new ModelRenderer(this);
 		body.setRotationPoint(0.0F, 24.0F, 0.0F);

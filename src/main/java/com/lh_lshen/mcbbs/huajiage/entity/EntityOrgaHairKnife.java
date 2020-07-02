@@ -108,7 +108,7 @@ public class EntityOrgaHairKnife extends EntityThrowable{
 		setRotationRandom(cmp.getFloat(TAG_ROTATION_RANDOM));
 		setPitch(cmp.getFloat(TAG_PITCH));
 		setLife(cmp.getFloat(TAG_LIFE));
-		setLife(cmp.getFloat(TAG_DAMAGE));
+		setDamage(cmp.getFloat(TAG_DAMAGE));
 		setStayTime(cmp.getFloat(TAG_STAY));
 	}
 	@Override

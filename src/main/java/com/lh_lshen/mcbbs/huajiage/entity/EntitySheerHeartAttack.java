@@ -75,13 +75,13 @@ public class EntitySheerHeartAttack extends EntityTameable{
 
 	private static final String TAG_LIFE = "life";
 	private static final String TAG_DAMAGE = "damage";
-	private static final String TAG_JUMP = "jump";
+	private static final String TAG_TRIGGER = "trigger";
 
 	private static final DataParameter<Float> LIFE = EntityDataManager.createKey(EntitySheerHeartAttack.class,
 			DataSerializers.FLOAT);
 	private static final DataParameter<Float> DAMAGE = EntityDataManager.createKey(EntitySheerHeartAttack.class,
 			DataSerializers.FLOAT);
-	private static final DataParameter<Boolean> JUMP= EntityDataManager.createKey(EntitySheerHeartAttack.class,
+	private static final DataParameter<Boolean> TRIGGER= EntityDataManager.createKey(EntitySheerHeartAttack.class,
 			DataSerializers.BOOLEAN);
 
 	public EntitySheerHeartAttack(World worldIn) {
@@ -95,7 +95,7 @@ public class EntitySheerHeartAttack extends EntityTameable{
 		
 		dataManager.register(LIFE, 400F);
 		dataManager.register(DAMAGE, 15F);
-		dataManager.register(JUMP, false);
+		dataManager.register(TRIGGER, false);
 
 	}
 	
@@ -136,7 +136,7 @@ public class EntitySheerHeartAttack extends EntityTameable{
 		super.writeEntityToNBT(cmp);
 		cmp.setFloat(TAG_LIFE, getLife());
 		cmp.setFloat(TAG_DAMAGE, getDamage());
-		cmp.setBoolean(TAG_JUMP, isJump());
+		cmp.setBoolean(TAG_TRIGGER, isTriggered());
         
 	}
 
@@ -144,8 +144,8 @@ public class EntitySheerHeartAttack extends EntityTameable{
 	public void readEntityFromNBT(@Nonnull NBTTagCompound cmp) {
 		super.readEntityFromNBT(cmp);
 		setLife(cmp.getFloat(TAG_LIFE));
-		setLife(cmp.getFloat(TAG_DAMAGE));
-		setJump(cmp.getBoolean(TAG_JUMP));
+		setDamage(cmp.getFloat(TAG_DAMAGE));
+		setTrigger(cmp.getBoolean(TAG_TRIGGER));
 	}
 	@Override
 	public void onUpdate() {
@@ -159,18 +159,16 @@ public class EntitySheerHeartAttack extends EntityTameable{
 			this.setDead();
 		}
 		if(entity!=null&&HAMathHelper.getDistance(this.getPositionVector(), entity.getPositionVector())<8) {
-			if(MathHelper.sqrt(motionX*motionX+motionY*motionY+motionZ*motionZ)<=0.5&&
-					HAMathHelper.getDistance(this.getPositionVector(), entity.getPositionVector())>5) {
-			setJump(true);
-			}
-			if(getOwner() instanceof EntityPlayer&&isJump()) {
-				world.playSound((EntityPlayer) getOwner(), getOwner().getPosition(),SoundLoader.STAND_KILLER_QUEEN_TRIGGER, SoundCategory.NEUTRAL, 2f, 1f);
-				setJump(false);
+			if(!isTriggered()) {
+				world.playSound(posX, posY, posZ, SoundLoader.STAND_KILLER_QUEEN_TRIGGER, SoundCategory.NEUTRAL, 2f, 1f, false);
+				setTrigger(true);
 			}
 			Vec3d vec = HAMathHelper.getVectorEntityEye(this, entity);
 			this.motionX = vec.x*0.8;
 			this.motionY = vec.y*0.8;
 			this.motionZ = vec.z*0.8;
+		}else {
+			setTrigger(false);
 		}
 		if(attack!=null) {
 			for(EntitySheerHeartAttack e : attack) {
@@ -180,7 +178,7 @@ public class EntitySheerHeartAttack extends EntityTameable{
 			}
 		}
 		if(getOwner()==null || getOwner()!=null&&getOwner().isDead) {
-			world.createExplosion(this, this.posX, this.posY, this.posZ, 3f, false);
+			world.createExplosion(this, this.posX, this.posY, this.posZ, 2f, false);
 			this.setDead();
 		}
 	}
@@ -233,12 +231,12 @@ public class EntitySheerHeartAttack extends EntityTameable{
 		dataManager.set(DAMAGE, damage);
 	}
 	
-	public Boolean isJump() {
-		return dataManager.get(JUMP);
+	public Boolean isTriggered() {
+		return dataManager.get(TRIGGER);
 	}
 	
-	public void setJump(boolean jump) {
-		dataManager.set(JUMP, jump);
+	public void setTrigger(boolean trigger) {
+		dataManager.set(TRIGGER, trigger);
 	}
 	
     @Nullable

@@ -70,6 +70,7 @@ stand.huajiage.tip.skill=按下%s键释放技能
 stand.huajiage.tip.cost=技能消耗:   §b§l%s
 stand.huajiage.mp=精神力：
 
+entity.sheerHeartAttack.name=枯萎穿心攻击
 
 item.huajiage.secondFoil.name=§e二向箔
 item.huajiage.ether.name=§4以太粒子·伪
@@ -143,7 +144,6 @@ item.killer_queen_trigger:tooltips.x=X-%s
 item.killer_queen_trigger:tooltips.y=Y-%s
 item.killer_queen_trigger:tooltips.z=Z-%s
 item.killer_queen_trigger:tooltips.entity=锁定生物UUID：%s
-
 
 
 message.huajiage.patchouli_missing=[{"text":"[ Huaji Age II]:","color":"yellow","bold":true},{"text":"为保证最佳游戏体验，请加载  ","color":"aqua","bold":false},{"text":"Patchouli-帕秋莉模组","color":"green","underlined":true,"bold":true,"clickEvent":{"action":"open_url","value":"https://www.curseforge.com/minecraft/mc-mods/patchouli"},"hoverEvent":{"action":"show_text","value":"https://www.curseforge.com/minecraft/mc-mods/patchouli"}},{"text":"§b来获取指南手册，这是鬼畜界先辈们为迎击§0§l♂Dark&&King§b势力耗尽其毕生修为传承下的§e§lJO§6§l级宝典","color":"yellow","bold":false}]
