@@ -120,7 +120,7 @@ item.orga_requiem:tooltips.1=Requiem Owner
 item.orga_requiem:tooltips.2=§6Requiem Capabilities§7（Press Shift to see more）
 item.orga_requiem:tooltips.content.1=§6CapabilitiesI：Can't stop Orga：§3With the capabilitity of requiem,Orga can never reach the reality of death. 
 item.orga_requiem:tooltips.content.2=§6CapalititiesII：The Law of Cause and Effect Predestines Assassins：§3Any enemy who tries to attack Olga will receive double the damage dealt.
-item.orga_requiem:tooltips.content.3=§6CapalititiesIII：Requiem：§3Approaching the critical point of death, Olga will activate the ability of Requiem to hit enemies with an (invisible) Stand in a state of empty hands.
+item.orga_requiem:tooltips.content.3=§6CapalititiesIII：Requiem：§3Approaching the critical point of death, Olga will activate the ability of Requiem to hit enemies with an (invisible) Stand.
 item.dio_bread:tooltips.1=§3The GioGio dessert workshop, owned by passion, an Italian chaebol, is said to have been created to commemorate the 30th anniversary of the death of its chairman's father§b(hold Shift to see more)
 item.dio_bread:tooltips.2=§6The bread is basically in short supply.However, some people reported that the bread had been added with a large number of additives, on the grounds that it would not decompose or break if it was soaked in water for several weeks, just like time stands still.Another source said that several people were so excited after using the bread that they even said "wryyyyyyy!" from time to time."Or" Weak!Weak!","Useless!Useless!Useless"Words of unknown meaning.One witness said the neighbor went into a frenzy after eating the food and even smashed a road roller.At present, the local police have carried out a detailed investigation of the food, nothing unusual, police officer abbacchio reminded the public not to believe rumors, spread rumors, do not let the rumors affect the normal social order
 item.lord_core:tooltips.1=§6It is the aggregate of Lord.Lu's great power
@@ -205,6 +205,7 @@ stand.huajiage.skill.the_world.start=§e§lThe World!!!
 stand.huajiage.skill.star_platinum.start=§5§lStar Platinum!The World!!! 
 stand.huajiage.skill.hierophant_green.start=§a§lTake that! Emerald splash with a radius of 20 meters!!!
 stand.huajiage.skill.orga_requiem.start=§4§lDon't stop!The infinite looped reality of the street!
+stand.huajiage.skill.killer_queen.start=§e§lLooking at me!
 
 patchouil.huajiage.book.name=§e§lHUAJI§6Book
 patchouil.huajiage.book.landing=HUAJI,means comical or funny things,is making up awkwardly or funnily for hilarious festivals. In this universe, there is a peculiar thing named HUAJI, which is ubiquitous and constitutes thousands of things. It is said that holding the funny starlight power can obtain the supreme power of the legendary HUAJI ancestor.

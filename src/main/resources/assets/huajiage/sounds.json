@@ -341,6 +341,33 @@
         "stream": true
       }
     ]
+  },
+   "sheer_heart_attack_target": {
+    "category": "neutral",
+    "sounds": [
+      {
+        "name": "huajiage:sheer_heart_attack_target",
+        "stream": true
+      }
+    ]
+  },
+   "stand_killer_queen_show_1": {
+    "category": "neutral",
+    "sounds": [
+      {
+        "name": "huajiage:stand_killer_queen_show_1",
+        "stream": true
+      }
+    ]
+  },
+   "stand_killer_queen_show_2": {
+    "category": "neutral",
+    "sounds": [
+      {
+        "name": "huajiage:stand_killer_queen_show_2",
+        "stream": true
+      }
+    ]
   }
 
 }

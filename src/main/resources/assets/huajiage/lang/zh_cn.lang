@@ -122,7 +122,7 @@ item.orga_requiem:tooltips.1=§e镇魂曲持有者：
 item.orga_requiem:tooltips.2=§6能力§7（按住shift以查看更多）
 item.orga_requiem:tooltips.content.1=§6能力I:停不下来的奥尔加：§3以镇魂曲的能力作用于自身，奥尔加永远达不到死亡的真实。
 item.orga_requiem:tooltips.content.2=§6能力II:因果法则注定的暗杀者：§3凡尝试攻击奥尔加的敌人，必将承受其造成伤害的双倍奉还。
-item.orga_requiem:tooltips.content.3=§6能力III:镇魂曲：§3逼近死亡的临界点，奥尔加将激活镇魂曲的能力，空手状态下以（非替身使者看不见的）替身连续木大对方。
+item.orga_requiem:tooltips.content.3=§6能力III:镇魂曲：§3逼近死亡的临界点，奥尔加将激活镇魂曲的能力，以（非替身使者看不见的）替身连续木大对方。
 huajiage.orga.1=§b 庆贺吧！汇聚了所有时间线希望之花的火星之王的诞生——奥尔加·伊兹卡daze!
 item.dio_bread:tooltips.1=§3意大利大财阀“热情”集团旗下GioGio甜品工坊出品，据说是为纪念其集团董事长父亲逝世30周年而推出的纪念款面包§b（按住Shift以查看都市传说）
 item.dio_bread:tooltips.2=§6该款面包在当地基本上都属于供不应求状态。不过，有群众举报，怀疑该面包加入了大量添加剂，理由是其及时在水里泡上几周都不会腐烂亦或是破碎，就如同时间静止了一般。另有小道消息称，数人在使用该面包后表现出极端兴奋，表示High到不行，甚至时不时发出“Wryyyyyyyyy！”或是“平角裤！平角裤！”、“木大木大木大”等意义不明的词语。有目击者声称，其邻居在食用该面包后陷入了癫狂状态，整天没事对着空气大喊大叫，上街扰民，甚至还砸坏了路边的压路机。当地警方已对该食品进行了详细调查，其化验结果表明并无异常。对此，警官阿帕茶（化名）提醒，罗马市民们莫轻信谣言，传播谣言，莫让谣言影响正常的社会秩序
@@ -216,6 +216,7 @@ stand.huajiage.skill.the_world.start=§e§l咋瓦鲁多 ! ! ! 时间停止吧 !
 stand.huajiage.skill.star_platinum.start=§5§l食堂泼辣酱——§b§l咋瓦鲁多 ! 
 stand.huajiage.skill.hierophant_green.start=§a§l接招吧!半径20米的绿宝石水花!!!
 stand.huajiage.skill.orga_requiem.start=§4§l不要停下来啊！！！无限循环街道的真实！
+stand.huajiage.skill.killer_queen.start=§e§l烤鸡要没了！
 
 patchouil.huajiage.book.name=§e§lJO§6级宝典
 patchouil.huajiage.book.landing=在这个宇宙中，存在着一种名为滑稽的奇特之物，它们无处不在，并构成了千千万万的事物，据说，持有滑稽的星辉之力，便可得到传说中鬼畜先辈的无上之力

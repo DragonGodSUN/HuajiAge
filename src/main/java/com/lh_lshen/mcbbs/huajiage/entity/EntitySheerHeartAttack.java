@@ -75,14 +75,14 @@ public class EntitySheerHeartAttack extends EntityTameable{
 
 	private static final String TAG_LIFE = "life";
 	private static final String TAG_DAMAGE = "damage";
-	private static final String TAG_JUMP_TICK = "jump_tick";
+	private static final String TAG_JUMP = "jump";
 
 	private static final DataParameter<Float> LIFE = EntityDataManager.createKey(EntitySheerHeartAttack.class,
 			DataSerializers.FLOAT);
 	private static final DataParameter<Float> DAMAGE = EntityDataManager.createKey(EntitySheerHeartAttack.class,
 			DataSerializers.FLOAT);
-	private static final DataParameter<Float> JUMP_TICK = EntityDataManager.createKey(EntitySheerHeartAttack.class,
-			DataSerializers.FLOAT);
+	private static final DataParameter<Boolean> JUMP= EntityDataManager.createKey(EntitySheerHeartAttack.class,
+			DataSerializers.BOOLEAN);
 
 	public EntitySheerHeartAttack(World worldIn) {
 		super(worldIn);
@@ -93,9 +93,9 @@ public class EntitySheerHeartAttack extends EntityTameable{
 	protected void entityInit() {
 		super.entityInit();
 		
-		dataManager.register(LIFE, 0F);
-		dataManager.register(DAMAGE, 5F);
-		dataManager.register(JUMP_TICK, 40F);
+		dataManager.register(LIFE, 400F);
+		dataManager.register(DAMAGE, 15F);
+		dataManager.register(JUMP, false);
 
 	}
 	
@@ -105,7 +105,7 @@ public class EntitySheerHeartAttack extends EntityTameable{
 		
 		this.tasks.addTask(1, new EntityAISwimming(this));
 		this.tasks.addTask(1, new EntityAIAttackMelee(this, 0.5D, false));
-		this.tasks.addTask(4, new EntityAIFollowOwner(this, 1.0d, 5, 50));
+		this.tasks.addTask(4, new EntityAIFollowOwner(this, 1.0d, 5, 20));
 		this.tasks.addTask(5, new EntityAIWanderAvoidWater(this, 0.4D));
 		this.tasks.addTask(5, new EntityAIMoveTowardsRestriction(this, 0.4D));
 		this.tasks.addTask(7, new EntityAIWatchClosest(this, EntityMob.class, 10.0F));
@@ -127,8 +127,8 @@ public class EntitySheerHeartAttack extends EntityTameable{
         this.getAttributeMap().registerAttribute(SharedMonsterAttributes.ATTACK_DAMAGE);
 
         this.getEntityAttribute(SharedMonsterAttributes.MAX_HEALTH).setBaseValue(999);
-        this.getEntityAttribute(SharedMonsterAttributes.ARMOR).setBaseValue(30);
-        this.getEntityAttribute(SharedMonsterAttributes.ATTACK_DAMAGE).setBaseValue(50f);
+        this.getEntityAttribute(SharedMonsterAttributes.ARMOR).setBaseValue(999);
+        this.getEntityAttribute(SharedMonsterAttributes.ATTACK_DAMAGE).setBaseValue(15f);
         this.getEntityAttribute(SharedMonsterAttributes.MOVEMENT_SPEED).setBaseValue(0.6d);
     }
 	@Override
@@ -136,7 +136,7 @@ public class EntitySheerHeartAttack extends EntityTameable{
 		super.writeEntityToNBT(cmp);
 		cmp.setFloat(TAG_LIFE, getLife());
 		cmp.setFloat(TAG_DAMAGE, getDamage());
-		cmp.setFloat(TAG_JUMP_TICK, getJump());
+		cmp.setBoolean(TAG_JUMP, isJump());
         
 	}
 
@@ -145,47 +145,62 @@ public class EntitySheerHeartAttack extends EntityTameable{
 		super.readEntityFromNBT(cmp);
 		setLife(cmp.getFloat(TAG_LIFE));
 		setLife(cmp.getFloat(TAG_DAMAGE));
-		setJump(cmp.getFloat(TAG_JUMP_TICK));
+		setJump(cmp.getBoolean(TAG_JUMP));
 	}
 	@Override
 	public void onUpdate() {
 		super.onUpdate();
 		EntityLivingBase entity = getAttackTarget();
+		List<EntitySheerHeartAttack> attack = world.getEntitiesWithinAABB(EntitySheerHeartAttack.class, this.getEntityBoundingBox().grow(100));
+		if(getLife()>0) {
+			setLife(getLife()-1);
+		}else {
+			world.createExplosion(this, this.posX, this.posY, this.posZ, 1f, false);
+			this.setDead();
+		}
 		if(entity!=null&&HAMathHelper.getDistance(this.getPositionVector(), entity.getPositionVector())<8) {
-//			if(getJump()>0) {
-//				JumpTickDecreace(25);
-//			}
-//			if(getJumpBegin()) {
-			if(getOwner() instanceof EntityPlayer) {
+			if(MathHelper.sqrt(motionX*motionX+motionY*motionY+motionZ*motionZ)<=0.5&&
+					HAMathHelper.getDistance(this.getPositionVector(), entity.getPositionVector())>5) {
+			setJump(true);
+			}
+			if(getOwner() instanceof EntityPlayer&&isJump()) {
 				world.playSound((EntityPlayer) getOwner(), getOwner().getPosition(),SoundLoader.STAND_KILLER_QUEEN_TRIGGER, SoundCategory.NEUTRAL, 2f, 1f);
+				setJump(false);
 			}
 			Vec3d vec = HAMathHelper.getVectorEntityEye(this, entity);
 			this.motionX = vec.x*0.8;
 			this.motionY = vec.y*0.8;
 			this.motionZ = vec.z*0.8;
-//			}
 		}
-//		else if(getJump()<40f) {
-//			setJump(40f);
-//		}
+		if(attack!=null) {
+			for(EntitySheerHeartAttack e : attack) {
+				if(e!=this&&e.getOwnerId().equals(this.getOwnerId())&&e.ticksExisted>ticksExisted) {
+					e.setDead();
+				}
+			}
+		}
+		if(getOwner()==null || getOwner()!=null&&getOwner().isDead) {
+			world.createExplosion(this, this.posX, this.posY, this.posZ, 3f, false);
+			this.setDead();
+		}
 	}
 	@Override
 	protected void collideWithEntity(Entity entityIn) {
 		super.collideWithEntity(entityIn);
 		if (entityIn == this.getAttackTarget()) {
-			List<EntityLivingBase> list = world.getEntitiesWithinAABB(EntityLivingBase.class, entityIn.getEntityBoundingBox().grow(3));
-			entityIn.attackEntityFrom(DamageSource.causeExplosionDamage(getOwner()), getDamage());
-			world.createExplosion(this, this.posX, this.posY, this.posZ, 2f, false);
+			List<EntityLivingBase> list = world.getEntitiesWithinAABB(EntityLivingBase.class, entityIn.getEntityBoundingBox().grow(5));
+			
+//			entityIn.attackEntityFrom(DamageSource.causeExplosionDamage(getOwner()), getDamage());
 			if(list!=null) {
 				for(EntityLivingBase entity : list) {
 					if(entity!=getOwner()&&!(entity instanceof EntityTameable)) {
 						float distance = (float) HAMathHelper.getDistance(this.getPositionVector(), entity.getPositionEyes(0));
-						float damage = getDamage()-distance*15;
+						float damage = getDamage()*(5-distance)/5;
 						entity.attackEntityFrom(DamageSource.causeExplosionDamage(getOwner()),damage>0?damage:0);
 					}
 				}
+				world.createExplosion(this, this.posX, this.posY, this.posZ, 3f, false);
 			}
-			this.setDead();
 		}
 	}
 	@Override
@@ -199,14 +214,6 @@ public class EntitySheerHeartAttack extends EntityTameable{
 
 		
 		return super.applyPlayerInteraction(player, vec, hand);
-	}
-	
-	public boolean getJumpBegin() {
-		return (int)getJump()<=0;
-	}
-	
-	public void JumpTickDecreace(float point) {
-		dataManager.set(LIFE, getJump()-point);
 	}
 	
 	public float getLife() {
@@ -226,23 +233,23 @@ public class EntitySheerHeartAttack extends EntityTameable{
 		dataManager.set(DAMAGE, damage);
 	}
 	
-	public float getJump() {
-		return dataManager.get(JUMP_TICK);
+	public Boolean isJump() {
+		return dataManager.get(JUMP);
 	}
 	
-	public void setJump(float ticks) {
-		dataManager.set(JUMP_TICK, ticks);
+	public void setJump(boolean jump) {
+		dataManager.set(JUMP, jump);
 	}
 	
     @Nullable
     @Override
     protected SoundEvent getAmbientSound() {
-        return SoundEvents.ENTITY_IRONGOLEM_ATTACK;
+        return SoundLoader.SHEER_HEART_ATTACK;
     }
 
     @Override
     protected SoundEvent getHurtSound(DamageSource damageSourceIn) {
-        return SoundEvents.ENTITY_WITHER_HURT;
+        return SoundEvents.ENTITY_IRONGOLEM_HURT;
     }
 
     @Override
@@ -252,12 +259,12 @@ public class EntitySheerHeartAttack extends EntityTameable{
 
     @Override
     protected float getSoundVolume() {
-        return 0.6f;
+        return 0.7f;
     }
 
     @Override
     protected void playStepSound(BlockPos pos, Block blockIn) {
-        this.playSound(SoundEvents.ENTITY_IRONGOLEM_STEP, 0.5F, 1.0F);
+        this.playSound(SoundEvents.ENTITY_MINECART_RIDING, 0.5F, 1.0F);
     }
     
 	@Override

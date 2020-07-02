@@ -23,7 +23,8 @@ public class SoundStand {
 	public static final List<SoundEvent> ORGA_SOUND_LIST = getGroup(new ArrayList<SoundEvent>(),
 			SoundLoader.ORGA_REQUIEM_2 ,SoundLoader.ORGA_REQUIEM_3);
 	
-	public static final List<SoundEvent> KILLER_QUEEN_SOUND_LIST = getGroup(new ArrayList<SoundEvent>());
+	public static final List<SoundEvent> KILLER_QUEEN_SOUND_LIST = getGroup(new ArrayList<SoundEvent>(),
+			SoundLoader.STAND_KILLER_QUEEN_SHOW_1,SoundLoader.STAND_KILLER_QUEEN_SHOW_2);
 	
 	private static List<SoundEvent> getGroup(List<SoundEvent> list ,SoundEvent... elements){
 		List<SoundEvent> new_list = list;

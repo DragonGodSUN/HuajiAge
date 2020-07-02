@@ -33,7 +33,7 @@ public class EventRequiem {
 	public static void onRequiemHit(AttackEntityEvent evt) {
 	EntityPlayer player = evt.getEntityPlayer();
 	Entity hit =evt.getTarget();
-		if (player.getHeldItemMainhand().isEmpty()&&player.isPotionActive(PotionLoader.potionRequiem)&&hit instanceof EntityLivingBase) {
+		if (player.isPotionActive(PotionLoader.potionRequiem)&&hit instanceof EntityLivingBase) {
 		player.playSound(SoundLoader.ORGA_REQUIEM_HIT, 1f, 1f);
 		((EntityLivingBase) hit).attackEntityFrom(new EntityDamageSource(HuajiConstant.DamageSource.REQUIEM_DAMAGE,player),5f);
 		((EntityLivingBase) hit).getEntityData().setInteger(HuajiConstant.Tags.REQUIEM, 60);

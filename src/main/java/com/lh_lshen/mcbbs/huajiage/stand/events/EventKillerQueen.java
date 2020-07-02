@@ -27,7 +27,7 @@ import net.minecraftforge.fml.common.eventhandler.SubscribeEvent;
 public class EventKillerQueen {
 
 	@SubscribeEvent
-	public static void onTarget(AttackEntityEvent evt) {
+	public static void onTargetEntity(AttackEntityEvent evt) {
 		EntityPlayer player = evt.getEntityPlayer();
 		Entity hit =evt.getTarget();
 		StandBase stand = StandUtil.getType(player);
@@ -50,10 +50,35 @@ public class EventKillerQueen {
 	}
 	
 	@SubscribeEvent
-	public static void onTarget(PlayerEvent.BreakSpeed evt) {
+	public static void onTargetBlock(PlayerEvent.BreakSpeed evt) {
 		EntityPlayer player = evt.getEntityPlayer();
 		BlockPos pos =evt.getPos();
 		if(player!=null) {
+			StandBase stand = StandUtil.getType(player);
+			if(stand!=null&&stand.equals(StandLoader.KILLER_QUEEN)&&player.isPotionActive(PotionLoader.potionStand)) {
+				if(!player.inventory.hasItemStack(new ItemStack(ItemLoader.killerQueenTrigger))) {
+					ItemStack stack = new ItemStack(ItemLoader.killerQueenTrigger);
+					ItemKillerQueenTrigger.setData(stack, ItemKillerQueenTrigger.TYPE.BLOCK.getName(),"empty",pos.getX(), pos.getY(), pos.getZ());
+					player.inventory.addItemStackToInventory(stack);
+					}else {
+						InventoryPlayer inventory = player.inventory;
+						List<ItemStack> mainInventory = inventory.mainInventory;
+						for(ItemStack stack : mainInventory) {
+							if(stack.getItem() == ItemLoader.killerQueenTrigger) {
+								ItemKillerQueenTrigger.setData(stack, ItemKillerQueenTrigger.TYPE.BLOCK.getName(),"empty",pos.getX(), pos.getY(), pos.getZ());
+								break;
+							}
+						}
+					}
+			}
+		}
+	}
+	
+	@SubscribeEvent
+	public static void onTargetBlock(BlockEvent.BreakEvent evt) {
+		EntityPlayer player = evt.getPlayer();
+		BlockPos pos =evt.getPos();
+		if(player!=null && player.isCreative()) {
 			StandBase stand = StandUtil.getType(player);
 			if(stand!=null&&stand.equals(StandLoader.KILLER_QUEEN)&&player.isPotionActive(PotionLoader.potionStand)) {
 				if(!player.inventory.hasItemStack(new ItemStack(ItemLoader.killerQueenTrigger))) {

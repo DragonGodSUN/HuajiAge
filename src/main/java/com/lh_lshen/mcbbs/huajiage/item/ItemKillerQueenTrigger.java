@@ -8,6 +8,7 @@ import javax.annotation.Nullable;
 import com.lh_lshen.mcbbs.huajiage.capability.StandBuffHandler;
 import com.lh_lshen.mcbbs.huajiage.capability.StandChargeHandler;
 import com.lh_lshen.mcbbs.huajiage.crativetab.CreativeTabLoader;
+import com.lh_lshen.mcbbs.huajiage.entity.EntitySheerHeartAttack;
 import com.lh_lshen.mcbbs.huajiage.init.sound.SoundLoader;
 import com.lh_lshen.mcbbs.huajiage.stand.StandLoader;
 import com.lh_lshen.mcbbs.huajiage.stand.StandUtil;
@@ -127,6 +128,10 @@ public class ItemKillerQueenTrigger extends Item {
 							if(entity instanceof EntityDragon) {
 								EntityDragon dragon = (EntityDragon) entity;
 								dragon.attackEntityFromPart(dragon.dragonPartHead, DamageSource.causeExplosionDamage(playerIn), 20f + stage*40);
+							}
+							if(entity instanceof EntitySheerHeartAttack) {
+								EntitySheerHeartAttack attack = (EntitySheerHeartAttack) entity;
+								attack.setHealth(0);
 							}
 							if(stage>0&&chance<10) {
 								if(entity instanceof EntityLivingBase) {

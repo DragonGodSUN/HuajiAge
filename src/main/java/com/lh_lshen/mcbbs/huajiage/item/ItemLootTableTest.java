@@ -31,6 +31,7 @@ import net.minecraft.util.EnumActionResult;
 import net.minecraft.util.EnumFacing;
 import net.minecraft.util.EnumHand;
 import net.minecraft.util.math.BlockPos;
+import net.minecraft.util.math.Vec3d;
 import net.minecraft.util.text.TextComponentString;
 import net.minecraft.util.text.TextComponentTranslation;
 import net.minecraft.world.World;
@@ -178,9 +179,13 @@ public class ItemLootTableTest extends Item {
 		case 6:		
 			if(!playerIn.world.isRemote) {
 			EntitySheerHeartAttack attack = new EntitySheerHeartAttack(playerIn.world);
+			Vec3d vec = playerIn.getLookVec();
 			attack.setTamedBy(playerIn);
 			attack.setDamage(50f);
 			attack.setPosition(playerIn.posX, playerIn.posY+0.5f, playerIn.posZ);
+			attack.motionX=vec.x*0.5;
+			attack.motionY=vec.y*0.5;
+			attack.motionZ=vec.z*0.5;
 			playerIn.world.spawnEntity(attack);
 			}
 			break;

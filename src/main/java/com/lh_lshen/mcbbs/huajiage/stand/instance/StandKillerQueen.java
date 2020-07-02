@@ -78,18 +78,24 @@ public class StandKillerQueen extends StandBase {
 	public void doStandCapability(EntityLivingBase user) {
 		if(user instanceof EntityPlayer) {
 		EntitySheerHeartAttack attack = new EntitySheerHeartAttack(user.world);
+		Vec3d vec = user.getLookVec();
+//		int number = user.world.getEntitiesWithinAABB(EntitySheerHeartAttack.class, user.)
 		attack.setTamedBy((EntityPlayer) user);
-		attack.setDamage(50f);
+		attack.setDamage(15f);
+		attack.motionX=vec.x*0.5;
+		attack.motionY=vec.y*0.5;
+		attack.motionZ=vec.z*0.5;
 		attack.setPosition(user.posX, user.posY+0.5f, user.posZ);
 		user.world.spawnEntity(attack);
+		if(user instanceof EntityPlayer) {
+			ServerUtil.sendPacketToNearbyPlayersStand(user, new MessageDoStandPowerClient((EntityPlayer) user,StandLoader.KILLER_QUEEN.getName()));
+			}
 		}
 	}
 
 	@Override
 	public void doStandCapabilityClient(WorldClient world, EntityLivingBase user) {
-
-//			world.playSound(user.getPositionVector().x,user.getPositionVector().y,user.getPositionVector().z, SoundLoader.STAND_HIEROPHANT_GREEN_EMERALD_SPLASH, SoundCategory.PLAYERS, 5f, 1f,true);
-	
+			world.playSound(user.getPositionVector().x,user.getPositionVector().y,user.getPositionVector().z, SoundLoader.STAND_KILLER_QUEEN_TRIGGER, SoundCategory.PLAYERS, 2f, 1f,true);
 	}
 
 }

@@ -35,7 +35,9 @@ public class ItemOrgaHairKnife extends Item {
 			EntityOrgaHairKnife hair = new EntityOrgaHairKnife(worldIn, playerIn);
 			hair.setLife(600);
 			hair.setPosition(playerIn.posX, playerIn.posY+playerIn.eyeHeight, playerIn.posZ);
-			hair.setVelocity(vec.x, vec.y, vec.z);
+			hair.motionX = vec.x;
+			hair.motionY = vec.y;
+			hair.motionZ = vec.z;
 			hair.setRotation(MathHelper.wrapDegrees(-playerIn.rotationYaw));
 			hair.setPitch(playerIn.rotationPitch);
 			float r =(float) Math.random()*360;
