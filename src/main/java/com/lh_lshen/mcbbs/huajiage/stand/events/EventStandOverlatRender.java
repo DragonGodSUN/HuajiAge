@@ -1,13 +1,9 @@
 package com.lh_lshen.mcbbs.huajiage.stand.events;
 
+import com.lh_lshen.mcbbs.huajiage.capability.*;
 import org.lwjgl.input.Keyboard;
 
 import com.lh_lshen.mcbbs.huajiage.HuajiAge;
-import com.lh_lshen.mcbbs.huajiage.capability.CapabilityStandHandler;
-import com.lh_lshen.mcbbs.huajiage.capability.CapabilityStandStageHandler;
-import com.lh_lshen.mcbbs.huajiage.capability.StandChargeHandler;
-import com.lh_lshen.mcbbs.huajiage.capability.StandHandler;
-import com.lh_lshen.mcbbs.huajiage.capability.StandStageHandler;
 import com.lh_lshen.mcbbs.huajiage.client.ItemRenderLoader;
 import com.lh_lshen.mcbbs.huajiage.client.KeyLoader;
 import com.lh_lshen.mcbbs.huajiage.config.ConfigHuaji;
@@ -65,13 +61,14 @@ public class EventStandOverlatRender {
 //	            ItemStack disc = ItemDiscStand.getItemData(new ItemStack(ItemLoader.disc),standHandler.getStand(), standStageHandler.getStage());
 	            StandBase stand = StandLoader.getStand(standHandler.getStand());
 	            StandChargeHandler chargeHandler = StandUtil.getChargeHandler(player);
+				IExposedData data = StandUtil.getStandData(player);
 	            int charge = chargeHandler.getChargeValue();
 	            int maxCharge = chargeHandler.getMaxValue();
 	            if(stand == null) {
 	            	return;
 	            }
 	            
-	            if (stand!=null&&!standHandler.getStand().equals(StandLoader.EMPTY)) {
+	            if (stand!=null && data!=null && !standHandler.getStand().equals(StandLoader.EMPTY)) {
 	                int x = (int) (ConfigHuaji.Stands.StandHUDx * Minecraft.getMinecraft().displayWidth/2);
 	                int y = (int) (ConfigHuaji.Stands.StandHUDy * Minecraft.getMinecraft().displayHeight/2);
 	                GlStateManager.pushMatrix();
@@ -98,11 +95,14 @@ public class EventStandOverlatRender {
 	                Minecraft.getMinecraft().fontRenderer.drawString( TextFormatting.BOLD+I18n.format("stand.huajiage.stage")+"  "+stage, 8+ x,  20 + 16 + y, 0xffffff, true);
 	                Minecraft.getMinecraft().fontRenderer.drawString( TextFormatting.BOLD+I18n.format("stand.huajiage.mp")+"  "+charge+"/"+maxCharge, 8+ x,  30 + 16 + y, chargeHandler.canBeCost(stand.getCost())?0x00fffc:0xffffff, true);
 	                if(ConfigHuaji.Stands.allowStandTip) {
-	                Minecraft.getMinecraft().fontRenderer.drawString( TextFormatting.BOLD+I18n.format("stand.huajiage.tip",KeyLoader.standUp.getKeyModifier()+"+"+Keyboard.getKeyName(KeyLoader.standUp.getKeyCode()>0?KeyLoader.standUp.getKeyCode():0)), 5,0, 0xffffff, true);
+	                Minecraft.getMinecraft().fontRenderer.drawString( TextFormatting.BOLD+I18n.format("stand.huajiage.tip",KeyLoader.standUp.getKeyModifier()+"+"+Keyboard.getKeyName(Math.max(KeyLoader.standUp.getKeyCode(), 0))), 5,0, 0xffffff, true);
 	                if(stage>0) {
-	                Minecraft.getMinecraft().fontRenderer.drawString( TextFormatting.BOLD+I18n.format("stand.huajiage.tip.skill",KeyLoader.standUp.getKeyModifier()+"+"+Keyboard.getKeyName(KeyLoader.standSkill.getKeyCode()>0?KeyLoader.standSkill.getKeyCode():0),stand.getCost()), 5,10, 0xffffff, true);
+	                Minecraft.getMinecraft().fontRenderer.drawString( TextFormatting.BOLD+I18n.format("stand.huajiage.tip.skill",KeyLoader.standSkill.getKeyModifier()+"+"+Keyboard.getKeyName(Math.max(KeyLoader.standSkill.getKeyCode(), 0))), 5,10, 0xffffff, true);
 	                Minecraft.getMinecraft().fontRenderer.drawString( TextFormatting.BOLD+I18n.format("stand.huajiage.tip.cost",stand.getCost()), 8+ x,  40 + 16 + y, 0xffffff, true);
 	                }
+	                if(data.isTriggered()){
+						Minecraft.getMinecraft().fontRenderer.drawString( TextFormatting.BOLD+I18n.format("stand.huajiage.tip.mode",KeyLoader.modeSwitch.getKeyModifier()+"+"+Keyboard.getKeyName(Math.max(KeyLoader.modeSwitch.getKeyCode(), 0))), 5,20, 0xffffff, true);
+					}
 	                
                 }
 	                

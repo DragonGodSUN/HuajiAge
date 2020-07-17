@@ -11,7 +11,7 @@ public interface IStandRes {
 
 	String getName();
 	
-	ResourceLocation getTextrue();
+	ResourceLocation getTexture();
 	
 	void doSoundPlay(Minecraft mc ,Entity user );
 	

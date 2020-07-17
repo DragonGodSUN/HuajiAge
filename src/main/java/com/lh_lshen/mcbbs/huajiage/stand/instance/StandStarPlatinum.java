@@ -5,6 +5,7 @@ import java.util.Random;
 
 import com.lh_lshen.mcbbs.huajiage.api.IStandPower;
 import com.lh_lshen.mcbbs.huajiage.api.IStandRes;
+import com.lh_lshen.mcbbs.huajiage.capability.CapabilityExposedData;
 import com.lh_lshen.mcbbs.huajiage.client.model.stand.ModelStandBase;
 import com.lh_lshen.mcbbs.huajiage.init.HuajiConstant;
 import com.lh_lshen.mcbbs.huajiage.init.sound.HuajiSoundPlayer;
@@ -44,10 +45,13 @@ import net.minecraft.util.text.TextComponentTranslation;
 public class StandStarPlatinum extends StandBase {
 
 	public StandStarPlatinum() {
+		super();
 	}
 	public StandStarPlatinum(String name ,float speed ,float damage ,int duration ,float distance ,int cost,int charge,
 			String texPath,String localName, boolean displayHand) {
 			super(name, speed, damage, duration, distance, cost, charge, texPath, localName, displayHand);
+			addState(CapabilityExposedData.States.IDLE.getName());
+			addState(CapabilityExposedData.States.PROTECT.getName());
 	}
 	@Override
 	public StandRes getBindingRes() {
@@ -60,11 +64,11 @@ public class StandStarPlatinum extends StandBase {
 		if(type == null) {
 			return;
 		}
-		List<Entity> entityCllection = user.getEntityWorld().getEntitiesWithinAABB(Entity.class, user.getEntityBoundingBox().grow(stage>0?type.getDistance()+1f:type.getDistance()));
-		if(entityCllection.size()<=0) {
+		List<Entity> entityCollection = user.getEntityWorld().getEntitiesWithinAABB(Entity.class, user.getEntityBoundingBox().grow(stage>0?type.getDistance()+1f:type.getDistance()));
+		if(entityCollection.size()<=0) {
 			return;
 		}
-		for(Entity i:entityCllection) {
+		for(Entity i:entityCollection) {
 
 				Vec3d back = HAMathHelper.getVectorEntityEye(user, i);
 				boolean flag_player = false;
@@ -115,7 +119,7 @@ public class StandStarPlatinum extends StandBase {
 						  if(user.ticksExisted%2==0) {
 						  user.world.playEvent(2001, target.getPosition().add(0, target.getPositionEyes(target.ticksExisted).y-target.getPosition().getY(), 0), Blocks.OBSIDIAN.getStateId(Blocks.OBSIDIAN.getDefaultState()));
 						  }
-						  
+
 						  target.motionX=back.x;
 						  target.motionY=back.y;
 						  target.motionZ=back.z;

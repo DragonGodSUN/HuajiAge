@@ -1,39 +1,14 @@
 package com.lh_lshen.mcbbs.huajiage.stand;
 
-import java.util.List;
-import java.util.Random;
-
-import com.lh_lshen.mcbbs.huajiage.HuajiAge;
-import com.lh_lshen.mcbbs.huajiage.capability.CapabilityStandHandler;
-import com.lh_lshen.mcbbs.huajiage.capability.StandHandler;
-import com.lh_lshen.mcbbs.huajiage.client.model.stand.ModelHierophantGreen;
 import com.lh_lshen.mcbbs.huajiage.client.model.stand.ModelStandBase;
-import com.lh_lshen.mcbbs.huajiage.client.model.stand.ModelStarPlatinum;
 import com.lh_lshen.mcbbs.huajiage.client.model.stand.ModelTheWorld;
-import com.lh_lshen.mcbbs.huajiage.init.HuajiConstant;
-import com.lh_lshen.mcbbs.huajiage.init.sound.HuajiMovingSound;
-import com.lh_lshen.mcbbs.huajiage.init.sound.HuajiSoundPlayer;
-import com.lh_lshen.mcbbs.huajiage.init.sound.SoundLoader;
-import com.lh_lshen.mcbbs.huajiage.init.sound.SoundStand;
-import com.lh_lshen.mcbbs.huajiage.init.sound.StandMovingSound;
-import com.lh_lshen.mcbbs.huajiage.network.messages.MessageParticleGenerator;
-import com.lh_lshen.mcbbs.huajiage.potion.PotionLoader;
 import com.lh_lshen.mcbbs.huajiage.stand.instance.StandBase;
 
 import net.minecraft.client.Minecraft;
-import net.minecraft.client.renderer.OpenGlHelper;
 import net.minecraft.entity.Entity;
 import net.minecraft.entity.EntityLivingBase;
-import net.minecraft.entity.player.EntityPlayer;
-import net.minecraft.init.SoundEvents;
-import net.minecraft.potion.PotionEffect;
-import net.minecraft.util.EnumParticleTypes;
 import net.minecraft.util.ResourceLocation;
-import net.minecraft.util.SoundCategory;
-import net.minecraft.util.SoundEvent;
-import net.minecraft.util.math.MathHelper;
-import net.minecraftforge.fml.relauncher.Side;
-import net.minecraftforge.fml.relauncher.SideOnly;
+
 public class StandClientUtil {
 //	@SideOnly(Side.CLIENT)
 	public static void standUpSound(Minecraft mc ,Entity user ,String stand_type ) 
@@ -121,7 +96,7 @@ public class StandClientUtil {
 //		return HuajiConstant.StandTex.TEXTRUE_HIEROPANT_GREEN;
 //		}
 		StandBase stand = StandLoader.getStand(stand_type);
-		return stand.getBindingRes().getTextrue();
+		return stand.getBindingRes().getTexture();
 	}
 	
     public static void standRender(EntityLivingBase entity) {

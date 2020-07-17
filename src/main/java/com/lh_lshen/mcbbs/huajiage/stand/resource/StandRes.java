@@ -22,7 +22,7 @@ public class StandRes implements IStandRes {
 	}
 	
 	@Override
-	public ResourceLocation getTextrue() {
+	public ResourceLocation getTexture() {
 		return null;
 	}
 

@@ -1,10 +1,7 @@
 package com.lh_lshen.mcbbs.huajiage.stand.events;
 
 import com.lh_lshen.mcbbs.huajiage.HuajiAge;
-import com.lh_lshen.mcbbs.huajiage.capability.CapabilityStandChargeHandler;
-import com.lh_lshen.mcbbs.huajiage.capability.CapabilityStandHandler;
-import com.lh_lshen.mcbbs.huajiage.capability.StandChargeHandler;
-import com.lh_lshen.mcbbs.huajiage.capability.StandHandler;
+import com.lh_lshen.mcbbs.huajiage.capability.*;
 import com.lh_lshen.mcbbs.huajiage.stand.EnumStandtype;
 import com.lh_lshen.mcbbs.huajiage.stand.StandUtil;
 import com.lh_lshen.mcbbs.huajiage.stand.instance.StandBase;
@@ -26,12 +23,13 @@ public class EventPlayerCharge {
 			EntityPlayer player = (EntityPlayer) entity;
 			StandBase stand = StandUtil.getType(player);
 			if(player.hasCapability(CapabilityStandChargeHandler.STAND_CHARGE, null)) {
+				IExposedData data = StandUtil.getStandData(player);
 				StandChargeHandler chargeHandler = player.getCapability(CapabilityStandChargeHandler.STAND_CHARGE, null);
-				if(null != stand ) 
+				if(null != stand && null !=data && null !=chargeHandler )
 					{
 						StandHandler standHandler = player.getCapability(CapabilityStandHandler.STAND_TYPE, null);
 						int mp =stand.getCharge();
-						chargeHandler.charge(mp);
+						chargeHandler.charge(mp+(CapabilityExposedData.States.IDLE.equals(data.getState())?mp:0));
 					}else {
 						chargeHandler.charge(5);
 					}

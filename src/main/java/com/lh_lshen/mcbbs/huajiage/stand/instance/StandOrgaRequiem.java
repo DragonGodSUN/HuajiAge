@@ -54,6 +54,7 @@ import net.minecraft.world.World;
 public class StandOrgaRequiem extends StandBase {
 	
 	public StandOrgaRequiem() {
+		super();
 	}
 	public StandOrgaRequiem(String name ,float speed ,float damage ,int duration ,float distance ,int cost,int charge,
 			String texPath,String localName, boolean displayHand) {

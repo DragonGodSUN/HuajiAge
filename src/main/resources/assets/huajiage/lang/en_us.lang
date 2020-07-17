@@ -92,11 +92,13 @@ key.category.huajiage=HUAJI Age
 key.huajiage.switch=Switch
 key.huajiage.stand_up=Stand Up
 key.huajiage.stand_skill=Stand Power
+key.huajiage.stand_switch=Stand Mode Change
 
 stand.huajiage.name=Stand:
 stand.huajiage.stage=Stage:
 stand.huajiage.tip=Press %s to Stand up
 stand.huajiage.tip.skill=Press %s to use Skill
+stand.huajiage.tip.mode=Press %s to switch Stand mode
 stand.huajiage.tip.cost=Skill Cost:  §b§l%s
 stand.huajiage.mp=Energy:
 
@@ -168,6 +170,8 @@ message.huajiage.exglutenbur.flavor.3=§lLime
 message.huajiage.exglutenbur.kdjl=§8§lIt's awesome!!
 messege.huaji.blancedHelmet.lord.break=§l%s has freed the supreme power of §e§lLord Lu§7§l, walking through the void, like terror!
 message.huajiage.stand_killer_queen_trigger.cost_lack=§eYour points for fire the bomb is not enough
+message.huajiage.stand_mode.switch=§eMode:%s
+message.huajiage.stand_mode.empty=§eThis stand hasn't other mode
 
 gui.huajiage.poly.cook=Process
 gui.huajiage.poly.fuel=Fuel Point

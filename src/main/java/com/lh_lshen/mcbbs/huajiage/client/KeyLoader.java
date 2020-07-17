@@ -11,8 +11,9 @@ import net.minecraftforge.fml.client.registry.ClientRegistry;
 public class KeyLoader {
 
 	public static KeyBinding  modeSwitch =registerKeyInGame("key.huajiage.switch", KeyModifier.CONTROL,Keyboard.KEY_K);
-	public static KeyBinding  standUp = registerKeyInGame("key.huajiage.stand_up", KeyModifier.ALT, Keyboard.KEY_P);
-	public static KeyBinding  standSkill = registerKeyInGame("key.huajiage.stand_skill", KeyModifier.ALT, Keyboard.KEY_O);
+	public static KeyBinding  standUp = registerKeyInGame("key.huajiage.stand_up", KeyModifier.CONTROL, Keyboard.KEY_P);
+	public static KeyBinding  standSkill = registerKeyInGame("key.huajiage.stand_skill", KeyModifier.CONTROL, Keyboard.KEY_O);
+	public static KeyBinding  standSwitch = registerKeyInGame("key.huajiage.stand_switch", KeyModifier.CONTROL, Keyboard.KEY_I);
 	private static  final String HUAJI_KEY_GROUP = "key.category.huajiage";
 	public KeyLoader(){
 		

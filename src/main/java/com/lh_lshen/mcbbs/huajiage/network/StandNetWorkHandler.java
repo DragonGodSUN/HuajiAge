@@ -9,18 +9,7 @@ import com.lh_lshen.mcbbs.huajiage.network.messages.MessageParticleGenerator;
 import com.lh_lshen.mcbbs.huajiage.network.messages.MessagePlaySoundClient;
 import com.lh_lshen.mcbbs.huajiage.network.messages.MessagePlaySoundToServer;
 import com.lh_lshen.mcbbs.huajiage.network.messages.MessageServerInterchange;
-import com.lh_lshen.mcbbs.huajiage.stand.messages.MessageDioHitClient;
-import com.lh_lshen.mcbbs.huajiage.stand.messages.MessageDoStandPowerClient;
-import com.lh_lshen.mcbbs.huajiage.stand.messages.MessageDoStandCapabilityServer;
-import com.lh_lshen.mcbbs.huajiage.stand.messages.MessageLeftClickRoadRoller;
-import com.lh_lshen.mcbbs.huajiage.stand.messages.MessagePerfromSkill;
-import com.lh_lshen.mcbbs.huajiage.stand.messages.MessageStandUp;
-import com.lh_lshen.mcbbs.huajiage.stand.messages.SyncExposedStandDataMessage;
-import com.lh_lshen.mcbbs.huajiage.stand.messages.SyncStandBuffMessage;
-import com.lh_lshen.mcbbs.huajiage.stand.messages.SyncStandChargeMessage;
-import com.lh_lshen.mcbbs.huajiage.stand.messages.SyncStandMessage;
-import com.lh_lshen.mcbbs.huajiage.stand.messages.SyncStandStageMessage;
-import com.lh_lshen.mcbbs.huajiage.stand.messages.SyncStandUserMessage;
+import com.lh_lshen.mcbbs.huajiage.stand.messages.*;
 
 import net.minecraft.entity.Entity;
 import net.minecraft.entity.player.EntityPlayer;
@@ -42,8 +31,9 @@ public final class  StandNetWorkHandler {
 		HANDLER.registerMessage(MessageStandUp.Handler.class, MessageStandUp.class, id++, Side.SERVER);
 		HANDLER.registerMessage(MessageLeftClickRoadRoller.Handler.class, MessageLeftClickRoadRoller.class, id++, Side.SERVER);
 		HANDLER.registerMessage(MessagePerfromSkill.Handler.class, MessagePerfromSkill.class, id++, Side.SERVER);
+		HANDLER.registerMessage(MessageStandModeSwitch.Handler.class, MessageStandModeSwitch.class, id++, Side.SERVER);
 		HANDLER.registerMessage(MessageDoStandCapabilityServer.Handler.class, MessageDoStandCapabilityServer.class, id++, Side.SERVER);
-		
+
 	    HANDLER.registerMessage(MessageDioHitClient.Handler.class,MessageDioHitClient.class, id++, Side.CLIENT);
 	    HANDLER.registerMessage(MessageDoStandPowerClient.Handler.class,MessageDoStandPowerClient.class, id++, Side.CLIENT);
 	    HANDLER.registerMessage(SyncStandMessage.Handler.class,SyncStandMessage.class, id++, Side.CLIENT);

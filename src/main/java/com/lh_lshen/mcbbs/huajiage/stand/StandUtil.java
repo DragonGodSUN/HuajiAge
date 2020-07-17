@@ -1,17 +1,11 @@
 package com.lh_lshen.mcbbs.huajiage.stand;
 
 import java.util.ArrayList;
+import java.util.Arrays;
 import java.util.List;
 
 import com.lh_lshen.mcbbs.huajiage.HuajiAge;
-import com.lh_lshen.mcbbs.huajiage.capability.CapabilityStandBuffHandler;
-import com.lh_lshen.mcbbs.huajiage.capability.CapabilityStandChargeHandler;
-import com.lh_lshen.mcbbs.huajiage.capability.CapabilityStandHandler;
-import com.lh_lshen.mcbbs.huajiage.capability.CapabilityStandStageHandler;
-import com.lh_lshen.mcbbs.huajiage.capability.StandBuffHandler;
-import com.lh_lshen.mcbbs.huajiage.capability.StandChargeHandler;
-import com.lh_lshen.mcbbs.huajiage.capability.StandHandler;
-import com.lh_lshen.mcbbs.huajiage.capability.StandStageHandler;
+import com.lh_lshen.mcbbs.huajiage.capability.*;
 import com.lh_lshen.mcbbs.huajiage.init.HuajiConstant;
 import com.lh_lshen.mcbbs.huajiage.init.sound.HuajiSoundPlayer;
 import com.lh_lshen.mcbbs.huajiage.network.messages.MessageParticleGenerator;
@@ -27,7 +21,7 @@ import net.minecraft.util.ResourceLocation;
 import net.minecraft.util.text.TextFormatting;
 
 public class StandUtil {
-	private static StandBase[] ArrowStand = {StandLoader.THE_WORLD,StandLoader.STAR_PLATINUM,StandLoader.HIEROPHANT_GREEN,
+	private static final StandBase[] ArrowStand = {StandLoader.THE_WORLD,StandLoader.STAR_PLATINUM,StandLoader.HIEROPHANT_GREEN,
 			StandLoader.KILLER_QUEEN};
 	public static StandBase getType(EntityLivingBase entity) {
 		   if (entity.hasCapability(CapabilityStandHandler.STAND_TYPE, null)) {
@@ -83,6 +77,32 @@ public class StandUtil {
 		}
 	    return 0;
 	}
+
+	public static IExposedData getStandData(EntityLivingBase entity) {
+		if (entity.hasCapability(CapabilityLoader.EXPOSED_DATA, null)) {
+			IExposedData data = entity.getCapability(CapabilityLoader.EXPOSED_DATA,null);
+			return data;
+		}
+		return null;
+	}
+
+	public static String getStandState(EntityLivingBase entity) {
+		IExposedData data = StandUtil.getStandData(entity);
+		if (data!=null) {
+			return data.getState();
+		}
+		return "default";
+	}
+
+	public static void setStandState(EntityLivingBase entity, String state) {
+		IExposedData data = StandUtil.getStandData(entity);
+		StandBase stand = StandUtil.getType(entity);
+		if (data!=null && stand != null) {
+			if(stand.chaeckState(state)){
+				data.setState(state);
+			}
+		}
+	}
 	
 	public static int getStandBuffTime(EntityLivingBase entity) {
 	    StandBuffHandler BuffHandler = StandUtil.getStandBuffHandler(entity);
@@ -121,18 +141,14 @@ public class StandUtil {
 	}
 	
 	public static List<StandBase> getArrowStands() {
-    	List<StandBase> list = new ArrayList<StandBase>();
-    	for(StandBase stand : ArrowStand) {
-    		list.add(stand);
-    	}
-		return list;
+		return new ArrayList<>(Arrays.asList(ArrowStand));
 	
 	}
 	
     public static StandBase getTypeWithIndex(int index) {
     	int id = index;
     	List<StandBase> stand_list_get = getArrowStands();
-    	if(id>=0 && id<stand_list_get.size() || id>=stand_list_get.size()) {
+    	if(id >= 0 || id >= stand_list_get.size()) {
         return stand_list_get.get(id%stand_list_get.size());
     	}
     	return null;

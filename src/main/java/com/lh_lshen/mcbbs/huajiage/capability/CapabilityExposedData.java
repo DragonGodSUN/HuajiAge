@@ -24,6 +24,7 @@ public class CapabilityExposedData {
 	        	cmp_stand.setString("stand_name", instance.getStand());
 	        	cmp_stand.setBoolean("stand_put", instance.isTriggered());
 	        	cmp_stand.setInteger("stand_stage", instance.getStage());
+				cmp_stand.setString("stand_state", instance.getState());
 	        	
 	            return cmp_stand;
 	        }
@@ -37,10 +38,12 @@ public class CapabilityExposedData {
 	        	String stand = cmp.getString("stand_name");
 	        	boolean istriggered = cmp.getBoolean("stand_put");
 	        	int stage = cmp.getInteger("stand_stage");
+	        	String state = cmp.getString("stand_state");
 	        	
 	        	instance.setStand(stand);
 	        	instance.setTrigger(istriggered);
 	        	instance.setStage(stage);
+	        	instance.setState(state);
 	        }
 	        
 	    }
@@ -51,6 +54,7 @@ public class CapabilityExposedData {
 	    	boolean istriggered = false;
 	    	boolean dirty =false;
 	    	int stage = 0;
+	    	String state = States.DEFAULT.getName();
 	    	
 	    	@Override
 	    	public void setStand(String standName) {
@@ -85,11 +89,22 @@ public class CapabilityExposedData {
 	    	public boolean isTriggered() {
 	    		return istriggered;
 	    	}
-	    	@Override
+
+			@Override
+			public String getState() {
+				return state;
+			}
+
+			@Override
+			public void setState(String state) {
+				this.state = state;
+				markDirty();
+			}
+
+			@Override
 	    	public void setStage(int stage) {
 	    		this.stage = stage;
 	    		markDirty();
-	    		
 	    	}
 	    	@Override
 	    	public int getStage() {
@@ -132,5 +147,21 @@ public class CapabilityExposedData {
 			}
 			
     }
+
+    public static enum States{
+		DEFAULT("default"),
+		IDLE("idle"),
+		PUNCH("punch"),
+		PROTECT("protect");
+
+		States(String name) {
+			this.name=name;
+		}
+		String name;
+
+		public String getName() {
+			return name;
+		}
+	}
 
 }

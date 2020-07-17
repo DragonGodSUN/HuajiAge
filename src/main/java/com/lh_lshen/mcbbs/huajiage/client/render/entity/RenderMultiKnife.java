@@ -4,12 +4,18 @@ import com.lh_lshen.mcbbs.huajiage.HuajiAge;
 import com.lh_lshen.mcbbs.huajiage.client.render.model.ModelMuliKnife;
 import com.lh_lshen.mcbbs.huajiage.entity.EntityMultiKnife;
 
+import com.lh_lshen.mcbbs.huajiage.stand.StandLoader;
+import com.lh_lshen.mcbbs.huajiage.stand.StandUtil;
 import net.minecraft.client.Minecraft;
+import net.minecraft.client.renderer.BufferBuilder;
 import net.minecraft.client.renderer.GlStateManager;
 import net.minecraft.client.renderer.OpenGlHelper;
+import net.minecraft.client.renderer.Tessellator;
 import net.minecraft.client.renderer.entity.Render;
 import net.minecraft.client.renderer.entity.RenderManager;
+import net.minecraft.client.renderer.vertex.DefaultVertexFormats;
 import net.minecraft.util.ResourceLocation;
+import org.lwjgl.opengl.GL11;
 
 public class RenderMultiKnife extends Render<EntityMultiKnife>
 {
@@ -22,7 +28,7 @@ public class RenderMultiKnife extends Render<EntityMultiKnife>
 		super(renderManager);
 	}
 
-	 @Override
+	@Override
 	    public void doRender(EntityMultiKnife entity, double x, double y, double z, float entityYaw, float partialTicks)
 	    {
 		super.doRender(entity, x, y, z, entityYaw, partialTicks);
@@ -34,6 +40,7 @@ public class RenderMultiKnife extends Render<EntityMultiKnife>
 		GlStateManager.rotate(entity.getRotation(), 0F, 1F, 0F);
 		GlStateManager.rotate(90F, 1F, 0F, 0F);
 		GlStateManager.rotate(entity.getPitch(), 1F, 0F, 0F);
+
 		if(entity.getLight()) {
 			Minecraft.getMinecraft().renderEngine.bindTexture(MULI_KNIFE_LIGHT);
 			OpenGlHelper.setLightmapTextureCoords(OpenGlHelper.lightmapTexUnit, 240f, 240f);
@@ -54,5 +61,6 @@ public class RenderMultiKnife extends Render<EntityMultiKnife>
 	protected ResourceLocation getEntityTexture(EntityMultiKnife entity) {
 		return MULI_KNIFE;
 	}
+
 
 }

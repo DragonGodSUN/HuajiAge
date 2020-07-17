@@ -15,6 +15,10 @@ public interface IExposedData {
 	
 	boolean isTriggered();
 
+	String getState();
+
+	void setState(String state);
+
 	boolean isDirty();
 
 	void setDirty(boolean dirty);

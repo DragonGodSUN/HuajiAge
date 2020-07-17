@@ -5,12 +5,7 @@ import java.util.Random;
 
 import com.ibm.icu.impl.duration.impl.DataRecord.EUnitVariant;
 import com.lh_lshen.mcbbs.huajiage.HuajiAge;
-import com.lh_lshen.mcbbs.huajiage.capability.CapabilityLoader;
-import com.lh_lshen.mcbbs.huajiage.capability.CapabilityStandHandler;
-import com.lh_lshen.mcbbs.huajiage.capability.IExposedData;
-import com.lh_lshen.mcbbs.huajiage.capability.StandBuffHandler;
-import com.lh_lshen.mcbbs.huajiage.capability.StandHandler;
-import com.lh_lshen.mcbbs.huajiage.capability.StandStageHandler;
+import com.lh_lshen.mcbbs.huajiage.capability.*;
 import com.lh_lshen.mcbbs.huajiage.client.model.stand.ModelTheWorld;
 import com.lh_lshen.mcbbs.huajiage.config.ConfigHuaji;
 import com.lh_lshen.mcbbs.huajiage.entity.EntityRoadRoller;
@@ -181,7 +176,9 @@ public class EventStand {
 	  {
 		  if(ConfigHuaji.Stands.allowTheWorldDestory) {
 			  StandBase type = StandUtil.getType(evt.getEntityLiving());
-				if(type == null) {
+			  IExposedData data = StandUtil.getStandData(evt.getEntityLiving());
+			  boolean isIdle = data.getState().equals(CapabilityExposedData.States.IDLE.getName());
+				if(type == null || data==null) {
 					return;
 				}
 			  if(NBTHelper.getEntityInteger(evt.getEntityLiving(), HuajiConstant.Tags.THE_WORLD)>0) {
@@ -189,7 +186,7 @@ public class EventStand {
 			  }
 			  float op =evt.getOriginalSpeed();
 			  if(evt.getEntityPlayer().isPotionActive(PotionLoader.potionStand)) {
-				  evt.setNewSpeed(op*25*type.getSpeed());
+				  evt.setNewSpeed((isIdle?0.1f:1f)*op*25*type.getSpeed());
 			  }else {
 				  evt.setNewSpeed(op);
 			  }

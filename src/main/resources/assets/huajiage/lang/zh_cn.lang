@@ -62,11 +62,13 @@ key.category.huajiage=滑稽纪元
 key.huajiage.switch=转换模式
 key.huajiage.stand_up=放出或收回替身
 key.huajiage.stand_skill=使用替身技能
+key.huajiage.stand_switch=切换替身状态
 
 stand.huajiage.name=替身：
 stand.huajiage.stage=阶段：
 stand.huajiage.tip=按下%s键以放出或收回替身
 stand.huajiage.tip.skill=按下%s键释放技能
+stand.huajiage.tip.mode=按下%s键切换替身状态
 stand.huajiage.tip.cost=技能消耗:   §b§l%s
 stand.huajiage.mp=精神力：
 
@@ -173,6 +175,8 @@ message.huajiage.exglutenbur.flavor.3=§l让你吃到真正的石灰
 message.huajiage.exglutenbur.kdjl=§8§8可带劲啦!!!
 messege.huaji.blancedHelmet.lord.break=§l§7%s解放了Lu上至尊之力，踏破虚空而行，恐怖如斯！
 message.huajiage.stand_killer_queen_trigger.cost_lack=§e抱歉，您的精神力还不足以点燃炸弹
+message.huajiage.stand_mode.switch=§e状态：%s
+message.huajiage.stand_mode.empty=§e该替身暂无其他状态
 
 
 gui.huajiage.poly.cook=§l进程

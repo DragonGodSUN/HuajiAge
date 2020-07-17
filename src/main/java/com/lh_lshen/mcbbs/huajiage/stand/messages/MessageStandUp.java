@@ -2,11 +2,7 @@ package com.lh_lshen.mcbbs.huajiage.stand.messages;
 
 import java.util.UUID;
 
-import com.lh_lshen.mcbbs.huajiage.capability.CapabilityLoader;
-import com.lh_lshen.mcbbs.huajiage.capability.CapabilityStandHandler;
-import com.lh_lshen.mcbbs.huajiage.capability.IExposedData;
-import com.lh_lshen.mcbbs.huajiage.capability.StandChargeHandler;
-import com.lh_lshen.mcbbs.huajiage.capability.StandHandler;
+import com.lh_lshen.mcbbs.huajiage.capability.*;
 import com.lh_lshen.mcbbs.huajiage.item.ItemHeroBow;
 import com.lh_lshen.mcbbs.huajiage.item.ItemLoader;
 import com.lh_lshen.mcbbs.huajiage.network.HuajiAgeNetWorkHandler;
@@ -70,6 +66,7 @@ public class MessageStandUp implements IMessage {
 						player.addPotionEffect(new PotionEffect(PotionLoader.potionStand,stand.getDuration()));
 						data.setStand(standType);
 						data.setTrigger(true);
+						data.setState(CapabilityExposedData.States.DEFAULT.getName());
 //					    ServerUtil.sendPacketToNearbyPlayersStand(player, new SyncExposedStandDataMessage(standType, true, player.getName()));
 						if(message.isMoving) {
 								EntityStandBase standBase = new EntityStandBase(player.world, player, StandLoader.getStand(data.getStand()));

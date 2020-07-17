@@ -4,6 +4,7 @@ import java.util.Random;
 
 import com.lh_lshen.mcbbs.huajiage.HuajiAge;
 import com.lh_lshen.mcbbs.huajiage.capability.CapabilityStandHandler;
+import com.lh_lshen.mcbbs.huajiage.capability.IExposedData;
 import com.lh_lshen.mcbbs.huajiage.capability.StandChargeHandler;
 import com.lh_lshen.mcbbs.huajiage.capability.StandHandler;
 import com.lh_lshen.mcbbs.huajiage.client.KeyLoader;
@@ -24,6 +25,7 @@ import com.lh_lshen.mcbbs.huajiage.stand.helper.TimeStopHelper;
 import com.lh_lshen.mcbbs.huajiage.stand.instance.StandBase;
 import com.lh_lshen.mcbbs.huajiage.stand.messages.MessageDoStandCapabilityServer;
 import com.lh_lshen.mcbbs.huajiage.stand.messages.MessagePerfromSkill;
+import com.lh_lshen.mcbbs.huajiage.stand.messages.MessageStandModeSwitch;
 import com.lh_lshen.mcbbs.huajiage.stand.messages.MessageStandUp;
 import com.lh_lshen.mcbbs.huajiage.util.ServerUtil;
 
@@ -134,4 +136,18 @@ public class EventStandKey {
 				}
 			}
 		}
+
+	@SideOnly(Side.CLIENT)
+	@SubscribeEvent
+	public static void switchMode(InputEvent.KeyInputEvent evt) {
+		EntityPlayer player = Minecraft.getMinecraft().player;
+		IExposedData data = StandUtil.getStandData(player);
+		if(KeyLoader.standSwitch.isPressed()&&data!=null&&data.isTriggered()) {
+			StandBase stand = StandUtil.getType(player);
+			if(null != stand) {
+				MessageStandModeSwitch msg = new MessageStandModeSwitch();
+				StandNetWorkHandler.sendToServer(msg);
+			}
+		}
+	}
 }

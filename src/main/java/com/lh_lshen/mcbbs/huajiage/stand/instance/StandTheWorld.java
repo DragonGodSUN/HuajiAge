@@ -5,6 +5,7 @@ import java.util.Random;
 
 import com.lh_lshen.mcbbs.huajiage.api.IStandPower;
 import com.lh_lshen.mcbbs.huajiage.api.IStandRes;
+import com.lh_lshen.mcbbs.huajiage.capability.CapabilityExposedData;
 import com.lh_lshen.mcbbs.huajiage.client.model.stand.ModelStandBase;
 import com.lh_lshen.mcbbs.huajiage.init.HuajiConstant;
 import com.lh_lshen.mcbbs.huajiage.init.sound.HuajiSoundPlayer;
@@ -43,10 +44,13 @@ import net.minecraft.util.text.TextComponentTranslation;
 public class StandTheWorld extends StandBase {
 
 	public StandTheWorld() {
+		super();
 	}
 	public StandTheWorld(String name ,float speed ,float damage ,int duration ,float distance ,int cost,int charge,
 			String texPath,String localName, boolean displayHand) {
 			super(name, speed, damage, duration, distance, cost, charge, texPath, localName, displayHand);
+			addState(CapabilityExposedData.States.IDLE.getName());
+			addState(CapabilityExposedData.States.PROTECT.getName());
 	}
 	@Override
 	public StandRes getBindingRes() {

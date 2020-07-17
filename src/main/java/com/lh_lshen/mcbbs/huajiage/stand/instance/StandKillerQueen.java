@@ -6,8 +6,7 @@ import java.util.Random;
 import com.jcraft.jorbis.Block;
 import com.lh_lshen.mcbbs.huajiage.api.IStandPower;
 import com.lh_lshen.mcbbs.huajiage.api.IStandRes;
-import com.lh_lshen.mcbbs.huajiage.capability.CapabilityLoader;
-import com.lh_lshen.mcbbs.huajiage.capability.IExposedData;
+import com.lh_lshen.mcbbs.huajiage.capability.*;
 import com.lh_lshen.mcbbs.huajiage.client.model.stand.ModelStandBase;
 import com.lh_lshen.mcbbs.huajiage.entity.EntityEmeraldBullet;
 import com.lh_lshen.mcbbs.huajiage.entity.EntitySheerHeartAttack;
@@ -22,6 +21,7 @@ import com.lh_lshen.mcbbs.huajiage.stand.EnumStandtype;
 import com.lh_lshen.mcbbs.huajiage.stand.StandClientUtil;
 import com.lh_lshen.mcbbs.huajiage.stand.StandLoader;
 import com.lh_lshen.mcbbs.huajiage.stand.StandUtil;
+import com.lh_lshen.mcbbs.huajiage.stand.helper.StandPowerHelper;
 import com.lh_lshen.mcbbs.huajiage.stand.messages.MessageDoStandCapabilityServer;
 import com.lh_lshen.mcbbs.huajiage.stand.messages.MessageDoStandPowerClient;
 import com.lh_lshen.mcbbs.huajiage.stand.messages.MessagePerfromSkill;
@@ -55,10 +55,12 @@ import net.minecraft.world.World;
 public class StandKillerQueen extends StandBase {
 	
 	public StandKillerQueen() {
+		super();
 	}
 	public StandKillerQueen(String name ,float speed ,float damage ,int duration ,float distance ,int cost,int charge,
 			String texPath,String localName, boolean displayHand) {
 			super(name, speed, damage, duration, distance, cost, charge, texPath, localName, displayHand);
+			addState(CapabilityExposedData.States.PUNCH.getName());
 	}
 	@Override
 	public StandRes getBindingRes() {
@@ -68,8 +70,17 @@ public class StandKillerQueen extends StandBase {
 	public void doStandPower(EntityLivingBase user) {
 		StandBase type = StandUtil.getType(user);
 		int stage = StandUtil.getStandStage(user);
+		boolean isPunch = CapabilityExposedData.States.PUNCH.getName().equals(StandUtil.getStandState(user));
 		if(type == null) {
 			return;
+		}else if(isPunch){
+			StandPowerHelper.rangePunchAttack(user,type,stage,45,2+stage);
+		}else{
+			StandChargeHandler chargeHandler = user.getCapability(CapabilityStandChargeHandler.STAND_CHARGE, null);
+			if( null !=chargeHandler )
+			{
+				chargeHandler.charge(getCharge()/3);
+			}
 		}
 		
 	}

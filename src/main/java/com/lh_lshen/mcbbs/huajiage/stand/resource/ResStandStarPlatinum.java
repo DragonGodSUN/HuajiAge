@@ -3,11 +3,8 @@ package com.lh_lshen.mcbbs.huajiage.stand.resource;
 import java.util.List;
 import java.util.Random;
 
-import com.lh_lshen.mcbbs.huajiage.HuajiAge;
-import com.lh_lshen.mcbbs.huajiage.api.IStandRes;
 import com.lh_lshen.mcbbs.huajiage.client.model.stand.ModelStandBase;
 import com.lh_lshen.mcbbs.huajiage.client.model.stand.ModelStarPlatinum;
-import com.lh_lshen.mcbbs.huajiage.client.model.stand.ModelTheWorld;
 import com.lh_lshen.mcbbs.huajiage.init.HuajiConstant;
 import com.lh_lshen.mcbbs.huajiage.init.sound.HuajiMovingSound;
 import com.lh_lshen.mcbbs.huajiage.init.sound.HuajiSoundPlayer;
@@ -32,7 +29,7 @@ public class ResStandStarPlatinum extends StandRes{
 		super(name);
 	}
 	@Override
-	public ResourceLocation getTextrue() {
+	public ResourceLocation getTexture() {
 		return HuajiConstant.StandTex.TEXTRUE_STAR_PLATINUM;
 	}
 
@@ -53,7 +50,7 @@ public class ResStandStarPlatinum extends StandRes{
 
 	@Override
 	public void doStandRender(EntityLivingBase entity) {
-		ResourceLocation STAND_TEX = getTextrue();
+		ResourceLocation STAND_TEX = getTexture();
 		ModelStandBase model = getStandModel();
 		Minecraft.getMinecraft().getTextureManager().bindTexture(STAND_TEX);
 		OpenGlHelper.setLightmapTextureCoords(OpenGlHelper.lightmapTexUnit, 240f, 240f);
