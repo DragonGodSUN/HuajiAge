@@ -69,39 +69,7 @@ import net.minecraftforge.fml.relauncher.SideOnly;
 
 @Mod.EventBusSubscriber(modid = HuajiAge.MODID)
 public class EventStand {
-	
-	@SideOnly(Side.CLIENT)
-	@SubscribeEvent
-	public static void renderStandFirst(RenderHandEvent event)
-	{
-		World world = Minecraft.getMinecraft().world;
-		EntityPlayer player = Minecraft.getMinecraft().player;
-		ItemStack stack = player.getHeldItemMainhand();
-		StandBase stand =StandUtil.getType(player);
-		int perspective = Minecraft.getMinecraft().gameSettings.thirdPersonView;
-		boolean f1 = Minecraft.getMinecraft().gameSettings.hideGUI;
 
-		if (stand!=null && stack.getItem() != ItemLoader.roadRoller &&player.isPotionActive(PotionLoader.potionStand) && perspective == 0 && !f1)
-		{
-			GlStateManager.pushMatrix();
-			GlStateManager.enableBlend();
-			EventStand.setLightmapDisabled(false);
-
-			StandClientUtil.standRender(player);
-			
-			EventStand.setLightmapDisabled(true);
-
-			if (perspective == 0 && !stand.isHandDisplay())
-			{
-				event.setCanceled(true);
-			}
-
-			GlStateManager.disableBlend();
-			GlStateManager.scale(1, 1, 1);
-			GlStateManager.popMatrix();
-
-		}
-	}
 	 @SubscribeEvent
 	  public static void onStand(LivingUpdateEvent evt)
 	  {
@@ -223,22 +191,22 @@ public class EventStand {
 //	  
 //	  ================================Tools==========================================================
 	  
-	  	@SideOnly(Side.CLIENT)
-		private static void setLightmapDisabled(boolean disabled)
-		{
-			GlStateManager.setActiveTexture(OpenGlHelper.lightmapTexUnit);
-	
-			if (disabled)
-			{
-				GlStateManager.disableTexture2D();
-			}
-			else
-			{
-				GlStateManager.enableTexture2D();
-			}
-	
-			GlStateManager.setActiveTexture(OpenGlHelper.defaultTexUnit);
-		}
+//	  	@SideOnly(Side.CLIENT)
+//		private static void setLightmapDisabled(boolean disabled)
+//		{
+//			GlStateManager.setActiveTexture(OpenGlHelper.lightmapTexUnit);
+//
+//			if (disabled)
+//			{
+//				GlStateManager.disableTexture2D();
+//			}
+//			else
+//			{
+//				GlStateManager.enableTexture2D();
+//			}
+//
+//			GlStateManager.setActiveTexture(OpenGlHelper.defaultTexUnit);
+//		}
 
 	
 	}

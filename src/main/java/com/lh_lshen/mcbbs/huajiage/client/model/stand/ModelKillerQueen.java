@@ -232,7 +232,7 @@ public class ModelKillerQueen extends ModelStandBase {
 	}
 
 	@Override
-	public void setPostion() {
+	public void setPosition() {
 		GlStateManager.translate(0.9F, -0.1F, -0.8F);
 		
 	}

@@ -3,10 +3,9 @@ package com.lh_lshen.mcbbs.huajiage.stand;
 import java.util.ArrayList;
 import java.util.List;
 
-import com.google.common.collect.Lists;
-import com.lh_lshen.mcbbs.huajiage.HuajiAge;
 import com.lh_lshen.mcbbs.huajiage.api.HuajiAgeAPI;
-import com.lh_lshen.mcbbs.huajiage.api.IStandPower;
+import com.lh_lshen.mcbbs.huajiage.api.IStand;
+import com.lh_lshen.mcbbs.huajiage.api.IStandState;
 import com.lh_lshen.mcbbs.huajiage.init.HuajiConstant;
 import com.lh_lshen.mcbbs.huajiage.stand.instance.StandBase;
 import com.lh_lshen.mcbbs.huajiage.stand.instance.StandHierophantGreen;
@@ -14,13 +13,6 @@ import com.lh_lshen.mcbbs.huajiage.stand.instance.StandKillerQueen;
 import com.lh_lshen.mcbbs.huajiage.stand.instance.StandOrgaRequiem;
 import com.lh_lshen.mcbbs.huajiage.stand.instance.StandStarPlatinum;
 import com.lh_lshen.mcbbs.huajiage.stand.instance.StandTheWorld;
-import com.lh_lshen.mcbbs.huajiage.stand.resource.ResStandHierophantGreen;
-import com.lh_lshen.mcbbs.huajiage.stand.resource.ResStandStarPlatinum;
-import com.lh_lshen.mcbbs.huajiage.stand.resource.ResStandTheWorld;
-
-import net.minecraft.stats.StatList;
-import net.minecraft.util.ResourceLocation;
-import net.minecraft.util.SoundEvent;
 
 public class StandLoader {
 	public static final List<StandBase> STAND_LIST = new ArrayList<>();
@@ -49,15 +41,24 @@ public class StandLoader {
 	
 	public static StandBase getStandByIndex(int index)
 	{
-		return STAND_LIST.get(index);
-		
+		List<IStand> list = HuajiAgeAPI.getStandList();
+		if (list.get(index) instanceof StandBase) {
+			StandBase stand = (StandBase) list.get(index);
+			return stand;
+		} else {
+			return null;
+		}
+
 	}
 	public static StandBase getStand(String name)
 	{
 		StandBase s=null;
-		for(int i=0;i<STAND_LIST.size();i++) {
-			if(getStandByIndex(i).getName().toString().equals(name)) {
-				s=getStandByIndex(i);
+		List<IStand> list = HuajiAgeAPI.getStandList();
+		if (list!=null) {
+			for(int i=0;i<list.size();i++) {
+				if(getStandByIndex(i).getName().equals(name)) {
+					s=getStandByIndex(i);
+				}
 			}
 		}
 		return s;

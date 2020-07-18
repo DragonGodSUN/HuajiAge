@@ -296,7 +296,7 @@ public class ModelOrgaRequiem extends ModelStandBase {
 	}
 
 	@Override
-	public void setPostion() {
+	public void setPosition() {
 		GlStateManager.translate(-0.5F, -0.7F, 0.75F);		
 		
 	}

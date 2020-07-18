@@ -1,6 +1,10 @@
 package com.lh_lshen.mcbbs.huajiage.stand.events;
 
 import com.lh_lshen.mcbbs.huajiage.capability.*;
+import com.lh_lshen.mcbbs.huajiage.potion.PotionLoader;
+import com.lh_lshen.mcbbs.huajiage.stand.StandClientUtil;
+import net.minecraft.world.World;
+import net.minecraftforge.client.event.RenderHandEvent;
 import org.lwjgl.input.Keyboard;
 
 import com.lh_lshen.mcbbs.huajiage.HuajiAge;
@@ -48,7 +52,41 @@ public class EventStandOverlatRender {
 //	    private static final ResourceLocation STAND_THE_WORLD = new ResourceLocation(HuajiAge.MODID, "textures/items/disc_the_world.png");
 //	    private static final ResourceLocation STAND_STAR_PLATINUM = new ResourceLocation(HuajiAge.MODID, "textures/items/disc_star_platinum.png");
 //	    private static final ResourceLocation STAND_HIEROPANT_GREEN = new ResourceLocation(HuajiAge.MODID, "textures/items/disc_hierophant_green.png");
-	    
+
+	@SideOnly(Side.CLIENT)
+	@SubscribeEvent
+	public static void renderStandFirst(RenderHandEvent event)
+	{
+		World world = Minecraft.getMinecraft().world;
+		EntityPlayer player = Minecraft.getMinecraft().player;
+		ItemStack stack = player.getHeldItemMainhand();
+		StandBase stand =StandUtil.getType(player);
+		int perspective = Minecraft.getMinecraft().gameSettings.thirdPersonView;
+		boolean f1 = Minecraft.getMinecraft().gameSettings.hideGUI;
+		IExposedData data = StandUtil.getStandData(player);
+		boolean isIdle = CapabilityExposedData.States.IDLE.getName().equals(data.getState());
+
+		if (stand!=null && stack.getItem() != ItemLoader.roadRoller &&player.isPotionActive(PotionLoader.potionStand) && perspective == 0 && !f1)
+		{
+			GlStateManager.pushMatrix();
+			GlStateManager.enableBlend();
+			GlStateManager.disableLighting();
+
+			StandClientUtil.standRender(player);
+
+			GlStateManager.enableLighting();
+
+			if (!data.isHandDisplay())
+			{
+				event.setCanceled(true);
+			}
+
+			GlStateManager.disableBlend();
+			GlStateManager.scale(1, 1, 1);
+			GlStateManager.popMatrix();
+
+		}
+	}
 	    @SideOnly(Side.CLIENT)
 	    @SubscribeEvent
 	    public static void onRenderOverlay(RenderGameOverlayEvent event) {
@@ -101,7 +139,7 @@ public class EventStandOverlatRender {
 	                Minecraft.getMinecraft().fontRenderer.drawString( TextFormatting.BOLD+I18n.format("stand.huajiage.tip.cost",stand.getCost()), 8+ x,  40 + 16 + y, 0xffffff, true);
 	                }
 	                if(data.isTriggered()){
-						Minecraft.getMinecraft().fontRenderer.drawString( TextFormatting.BOLD+I18n.format("stand.huajiage.tip.mode",KeyLoader.modeSwitch.getKeyModifier()+"+"+Keyboard.getKeyName(Math.max(KeyLoader.modeSwitch.getKeyCode(), 0))), 5,20, 0xffffff, true);
+						Minecraft.getMinecraft().fontRenderer.drawString( TextFormatting.BOLD+I18n.format("stand.huajiage.tip.mode",KeyLoader.standSwitch.getKeyModifier()+"+"+Keyboard.getKeyName(Math.max(KeyLoader.standSwitch.getKeyCode(), 0))), 5,20, 0xffffff, true);
 					}
 	                
                 }

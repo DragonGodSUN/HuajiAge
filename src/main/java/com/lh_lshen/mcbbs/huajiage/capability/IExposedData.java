@@ -6,21 +6,20 @@ public interface IExposedData {
 	void setStand(String standName);
 	
 	String getStand();
-	
 	void setStage(int stage);
-	
+
 	int getStage();
 	
 	void setTrigger(boolean trigger);
-	
 	boolean isTriggered();
 
-	String getState();
+	void setHandDisplay(boolean display);
+	boolean isHandDisplay();
 
+	String getState();
 	void setState(String state);
 
 	boolean isDirty();
-
 	void setDirty(boolean dirty);
 
 }

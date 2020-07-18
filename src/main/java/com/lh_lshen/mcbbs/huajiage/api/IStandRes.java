@@ -13,10 +13,14 @@ public interface IStandRes {
 	
 	ResourceLocation getTexture();
 	
-	void doSoundPlay(Minecraft mc ,Entity user );
+	void doSoundPlay(Minecraft mc ,Entity user);
+
+	void doSoundPlay(Minecraft mc ,Entity entity, EntityLivingBase user);
 	
 	void doStandRender(EntityLivingBase entity);
 	
 	ModelStandBase getStandModel();
+
+	ModelStandBase getStandModelByData(EntityLivingBase entity);
 	
 }

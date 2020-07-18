@@ -3,6 +3,7 @@ package com.lh_lshen.mcbbs.huajiage.stand.resource;
 import java.util.List;
 import java.util.Random;
 
+import com.lh_lshen.mcbbs.huajiage.client.model.stand.ModelHierophantGreen;
 import com.lh_lshen.mcbbs.huajiage.client.model.stand.ModelKillerQueen;
 import com.lh_lshen.mcbbs.huajiage.client.model.stand.ModelStandBase;
 import com.lh_lshen.mcbbs.huajiage.init.HuajiConstant;
@@ -30,13 +31,13 @@ public class ResStandKillerQueen extends StandRes{
 	}
 
 	@Override
-	public void doSoundPlay(Minecraft mc ,Entity user) {
+	public void doSoundPlay(Minecraft mc ,Entity entity,EntityLivingBase user) {
 		List<SoundEvent> sounds = SoundStand.KILLER_QUEEN_SOUND_LIST;
 		int size = sounds.size();
 		int index = (int) MathHelper.nextFloat(new Random(), 0, size);
 		if(index<size) {
 			SoundEvent sound = sounds.get(index);
-			mc.getSoundHandler().playSound(HuajiSoundPlayer.getMovingSound(user, sound, SoundCategory.NEUTRAL, 0.6f));
+			mc.getSoundHandler().playSound(HuajiSoundPlayer.getMovingSound(entity, sound, SoundCategory.NEUTRAL, 0.6f));
 //			HuajiMovingSound hits = new HuajiMovingSound(user, SoundEvents.ENTITY_PARROT_FLY, SoundCategory.NEUTRAL);
 //			hits.setVolume(1.0f);
 //			hits.setLoop();
@@ -55,6 +56,11 @@ public class ResStandKillerQueen extends StandRes{
 
 	@Override
 	public ModelStandBase getStandModel() {
+		return new ModelKillerQueen();
+	}
+
+	@Override
+	public ModelStandBase getStandModelByData(EntityLivingBase user) {
 		return new ModelKillerQueen();
 	}
 

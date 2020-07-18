@@ -60,4 +60,8 @@ public class ResStandOrgaRequiem extends StandRes{
 		return new ModelOrgaRequiem();
 	}
 
+	@Override
+	public ModelStandBase getStandModelByData(EntityLivingBase entity) {
+		return new ModelOrgaRequiem();
+	}
 }

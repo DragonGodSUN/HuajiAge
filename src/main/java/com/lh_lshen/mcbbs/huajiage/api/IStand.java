@@ -5,7 +5,7 @@ import com.lh_lshen.mcbbs.huajiage.client.model.stand.ModelStandBase;
 import net.minecraft.client.multiplayer.WorldClient;
 import net.minecraft.entity.EntityLivingBase;
 
-public interface IStandPower {
+public interface IStand {
 		
 	void doStandPower(EntityLivingBase user);
 	

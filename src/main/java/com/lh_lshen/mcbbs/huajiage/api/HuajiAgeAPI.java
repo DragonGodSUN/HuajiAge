@@ -10,12 +10,20 @@ public class HuajiAgeAPI {
 	        INSTANCE = instance;
     }
 	 
-	public static void registerStand(IStandPower stand) {
+	public static void registerStand(IStand stand) {
         INSTANCE.registerStand(stand);
     }
 
-    public static List<IStandPower> getStandList() {
+    public static List<IStand> getStandList() {
         return INSTANCE.getStandList();
+    }
+
+    public static void registerStandState(IStandState state) {
+        INSTANCE.registerStandState(state);
+    }
+
+    public static List<IStandState> getStandStateList() {
+        return INSTANCE.getStandStateList();
     }
 	 
     public static void registerMultiBlock(IMultiBlock multiBlock) {
@@ -25,6 +33,8 @@ public class HuajiAgeAPI {
     public static List<IMultiBlock> getMultiBlockList() {
         return INSTANCE.getMultiBlockList();
     }
+
+
 	
 	public interface IHuajiAgeAPI{
 		
@@ -32,9 +42,13 @@ public class HuajiAgeAPI {
 
          List<IMultiBlock> getMultiBlockList();
          
-         void registerStand(IStandPower stand);
+         void registerStand(IStand stand);
          
-         List<IStandPower> getStandList();
+         List<IStand> getStandList();
+
+        void registerStandState(IStandState state);
+
+        List<IStandState> getStandStateList();
          
 	}
 	

@@ -69,6 +69,14 @@ public class StandClientUtil {
 			stand.getBindingRes().doSoundPlay(mc, user);
 			}
 		}
+
+	public static void standUpSound(Minecraft mc ,Entity entity ,EntityLivingBase user )
+	{
+		StandBase stand = StandUtil.getType(user);
+		if(stand!=null) {
+			stand.getBindingRes().doSoundPlay(mc, entity,user);
+		}
+	}
 	public static ModelStandBase getModel(String stand_type) {
 //		switch(name) {
 //		case("the_world"):
@@ -82,6 +90,14 @@ public class StandClientUtil {
 		StandBase stand = StandLoader.getStand(stand_type);
 		if(stand!=null) {
 		return stand.getBindingRes().getStandModel();
+		}
+		return new ModelTheWorld();
+	}
+
+	public static ModelStandBase getModelByData(EntityLivingBase user) {
+		StandBase stand = StandUtil.getType(user);
+		if(stand!=null) {
+			return stand.getBindingRes().getStandModelByData(user);
 		}
 		return new ModelTheWorld();
 	}

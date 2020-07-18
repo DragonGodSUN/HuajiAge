@@ -66,6 +66,7 @@ public class MessageStandUp implements IMessage {
 						player.addPotionEffect(new PotionEffect(PotionLoader.potionStand,stand.getDuration()));
 						data.setStand(standType);
 						data.setTrigger(true);
+						data.setHandDisplay(stand.isHandDisplay());
 						data.setState(CapabilityExposedData.States.DEFAULT.getName());
 //					    ServerUtil.sendPacketToNearbyPlayersStand(player, new SyncExposedStandDataMessage(standType, true, player.getName()));
 						if(message.isMoving) {

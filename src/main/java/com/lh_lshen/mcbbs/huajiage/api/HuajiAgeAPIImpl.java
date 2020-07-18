@@ -9,7 +9,8 @@ import com.lh_lshen.mcbbs.huajiage.api.HuajiAgeAPI.IHuajiAgeAPI;
 public class HuajiAgeAPIImpl implements IHuajiAgeAPI{
 	
 	 private final List<IMultiBlock> multiBlockList = Lists.newArrayList();
-	 private final List<IStandPower> standList = Lists.newArrayList();
+	 private final List<IStand> standList = Lists.newArrayList();
+	private final List<IStandState> standStateList = Lists.newArrayList();
 	
 	 @Override
 	public void registerMultiBlock(IMultiBlock multiBlock) {
@@ -22,14 +23,25 @@ public class HuajiAgeAPIImpl implements IHuajiAgeAPI{
 	}
 
 	@Override
-	public void registerStand(IStandPower stand) {
+	public void registerStand(IStand stand) {
 		standList.add(stand);
 		
 	}
 
 	@Override
-	public List<IStandPower> getStandList() {
+	public List<IStand> getStandList() {
 		return standList;
+	}
+
+	@Override
+	public void registerStandState(IStandState stand) {
+		standStateList.add(stand);
+
+	}
+
+	@Override
+	public List<IStandState> getStandStateList() {
+		return standStateList;
 	}
 
 }

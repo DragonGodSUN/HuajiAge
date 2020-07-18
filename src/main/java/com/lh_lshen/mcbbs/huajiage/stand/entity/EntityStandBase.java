@@ -85,7 +85,7 @@ public class EntityStandBase extends Entity implements IEntityAdditionalSpawnDat
 		if( user==null || user.isDead ) {
 			this.setDead();
 		}
-		
+//		this.
 		if(user !=null) {
 			IExposedData data = user.getCapability(CapabilityLoader.EXPOSED_DATA, null);
 			if(data == null || !data.isTriggered()) {
@@ -101,13 +101,18 @@ public class EntityStandBase extends Entity implements IEntityAdditionalSpawnDat
 	@Override
 	public void writeSpawnData(ByteBuf buffer) {
 		StandBase standType = getStandType();
+		EntityLivingBase user = getUser();
 		ByteBufUtils.writeUTF8String(buffer, standType!=null?standType.getName():StandLoader.EMPTY);
+		ByteBufUtils.writeUTF8String(buffer, user!=null?user.getName():"steve");
 	}
 	
 	@Override
 	public void readSpawnData(ByteBuf additionalData) {
 		StandBase stand = StandLoader.getStand(ByteBufUtils.readUTF8String(additionalData));
-		StandClientUtil.standUpSound(mc.getMinecraft(),this, stand.getName());
+		EntityLivingBase user = this.world.getPlayerEntityByName(ByteBufUtils.readUTF8String(additionalData));
+		if(user!=null){
+		StandClientUtil.standUpSound(mc.getMinecraft(),this, user);
+		}
 	}
 	
 //	===============================Settings======================================
@@ -124,7 +129,7 @@ public class EntityStandBase extends Entity implements IEntityAdditionalSpawnDat
 		return StandLoader.EMPTY;
 	}
 	
-	private EntityLivingBase getUser() {
+	public EntityLivingBase getUser() {
 		EntityLivingBase user = this.world.getPlayerEntityByName(getUserName());
 		if(user==null&&!getUserId().isEmpty()&&!getUserId().equals("nouser")) {
 			user = this.world.getPlayerEntityByUUID(UUID.fromString(getUserId()));

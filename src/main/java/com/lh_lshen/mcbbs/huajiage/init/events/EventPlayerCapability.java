@@ -198,7 +198,7 @@ public class EventPlayerCapability {
             if (player.hasCapability(CapabilityLoader.EXPOSED_DATA, null)) {
                 IExposedData data = player.getCapability(CapabilityLoader.EXPOSED_DATA, null);
                 if (data != null && data.isDirty()) {
-                    ServerUtil.sendPacketToNearbyPlayersStand(player, new SyncExposedStandDataMessage(data.getStand(), data.getStage(), data.isTriggered(), player.getName()));
+                    ServerUtil.sendPacketToNearbyPlayersStand(player, new SyncExposedStandDataMessage(data.getStand(), data.getStage(), data.isTriggered(), data.isHandDisplay(), data.getState(), player.getName()));
                     data.setDirty(false);
                 }
             }

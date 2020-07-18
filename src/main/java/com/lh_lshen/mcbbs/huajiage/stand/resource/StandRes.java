@@ -28,7 +28,12 @@ public class StandRes implements IStandRes {
 
 	@Override
 	public void doSoundPlay(Minecraft mc, Entity user) {
-		
+
+	}
+
+	@Override
+	public void doSoundPlay(Minecraft mc, Entity entity ,EntityLivingBase user) {
+
 	}
 
 	@Override
@@ -40,5 +45,11 @@ public class StandRes implements IStandRes {
 	public ModelStandBase getStandModel() {
 		return null;
 	}
+
+	@Override
+	public ModelStandBase getStandModelByData(EntityLivingBase entity) {
+		return null;
+	}
+
 
 }

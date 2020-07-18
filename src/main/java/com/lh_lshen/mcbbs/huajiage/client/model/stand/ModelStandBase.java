@@ -19,7 +19,7 @@ public abstract class ModelStandBase extends ModelBase {
 	public abstract void extraEffect(Entity entityIn, float limbSwing, float limbSwingAmount, 
 			 float ageInTicks, float netHeadYaw, float headPitch, float scale);
 	
-	public abstract void setPostion();
+	public abstract void setPosition();
 	
 }
 

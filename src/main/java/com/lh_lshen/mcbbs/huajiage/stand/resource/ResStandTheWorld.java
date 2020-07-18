@@ -3,15 +3,19 @@ package com.lh_lshen.mcbbs.huajiage.stand.resource;
 import java.util.List;
 import java.util.Random;
 
+import com.lh_lshen.mcbbs.huajiage.capability.CapabilityExposedData;
+import com.lh_lshen.mcbbs.huajiage.capability.IExposedData;
 import com.lh_lshen.mcbbs.huajiage.client.model.stand.ModelStandBase;
 import com.lh_lshen.mcbbs.huajiage.client.model.stand.ModelTheWorld;
+import com.lh_lshen.mcbbs.huajiage.client.model.stand.states.ModelTheWorldIdle;
 import com.lh_lshen.mcbbs.huajiage.init.HuajiConstant;
 import com.lh_lshen.mcbbs.huajiage.init.sound.HuajiMovingSound;
 import com.lh_lshen.mcbbs.huajiage.init.sound.HuajiSoundPlayer;
 import com.lh_lshen.mcbbs.huajiage.init.sound.SoundStand;
+
 import com.lh_lshen.mcbbs.huajiage.potion.PotionLoader;
 import com.lh_lshen.mcbbs.huajiage.stand.StandLoader;
-
+import com.lh_lshen.mcbbs.huajiage.stand.StandUtil;
 import net.minecraft.client.Minecraft;
 import net.minecraft.client.renderer.OpenGlHelper;
 import net.minecraft.entity.Entity;
@@ -35,15 +39,17 @@ public class ResStandTheWorld extends StandRes{
 	}
 
 	@Override
-	public void doSoundPlay(Minecraft mc ,Entity user) {
+	public void doSoundPlay(Minecraft mc ,Entity entity,EntityLivingBase user) {
 		List<SoundEvent> sounds = SoundStand.WORLD_SOUND_LIST;
+		IExposedData data = StandUtil.getStandData(user);
 		int size = sounds.size();
 		int index = (int) MathHelper.nextFloat(new Random(), 0, size);
-		if(index<size) {
+		if(null!=data&&index<size) {
 			SoundEvent sound = sounds.get(index);
-			mc.getSoundHandler().playSound(HuajiSoundPlayer.getMovingSound(user, sound, SoundCategory.NEUTRAL, 1f));
+			mc.getSoundHandler().playSound(HuajiSoundPlayer.getMovingSound(entity, sound, SoundCategory.NEUTRAL, 1f));
 			}
-			HuajiMovingSound back_hits_double = new HuajiMovingSound(user, SoundEvents.ENTITY_PLAYER_ATTACK_STRONG, SoundCategory.NEUTRAL);
+			HuajiMovingSound back_hits_double = new HuajiMovingSound(entity, SoundEvents.ENTITY_PLAYER_ATTACK_STRONG, SoundCategory.NEUTRAL);
+
 			back_hits_double.setVolume(0.7f);
 			back_hits_double.setLoop();
 			mc.getSoundHandler().playSound(back_hits_double);
@@ -52,7 +58,7 @@ public class ResStandTheWorld extends StandRes{
 	@Override
 	public void doStandRender(EntityLivingBase entity) {
 		ResourceLocation STAND_TEX = getTexture();
-		ModelStandBase model = getStandModel();
+		ModelStandBase model = getStandModelByData(entity);
 		Minecraft.getMinecraft().getTextureManager().bindTexture(STAND_TEX);
 		OpenGlHelper.setLightmapTextureCoords(OpenGlHelper.lightmapTexUnit, 240f, 240f);
 		model.setRotationAngles(0, 0, entity.ticksExisted, 0, -1, 1, entity ,0.5f,(float) (StandLoader.THE_WORLD.getSpeed()*1.5));
@@ -63,10 +69,29 @@ public class ResStandTheWorld extends StandRes{
 			model.effect(entity, 0, 0, entity.ticksExisted, 0, 0, 1f);
 			model.doHandRender(0, -1f, -0.75f, 1f,0.6f);
 		}
+//		IExposedData data = StandUtil.getStandData(entity);
+//		String stand = data.getStand();
+//		String state = data.getState();
+//		List<StandStateBase> list = StandStates.getStandStateListByStand(stand);
+//		for(StandStateBase stand_state:list){
+//			if(stand_state.getStateName().equals(state)){
+//				stand_state.renderFirst(entity);
+//				break;
+//			}
+//		}
 	}
 
 	@Override
 	public ModelStandBase getStandModel() {
+		return new ModelTheWorld();
+	}
+	@Override
+	public ModelStandBase getStandModelByData(EntityLivingBase user) {
+		String state = StandUtil.getStandState(user);
+		switch (state){
+			case "default":return new ModelTheWorld();
+			case "idle":return new ModelTheWorldIdle();
+		}
 		return new ModelTheWorld();
 	}
 

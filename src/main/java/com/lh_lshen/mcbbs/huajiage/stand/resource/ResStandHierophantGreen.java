@@ -32,14 +32,14 @@ public class ResStandHierophantGreen extends StandRes{
 	}
 
 	@Override
-	public void doSoundPlay(Minecraft mc ,Entity user) {
+	public void doSoundPlay(Minecraft mc ,Entity entity,EntityLivingBase user) {
 		List<SoundEvent> sounds = SoundStand.HIEROPANT_SOUND_LIST;
 		int size = sounds.size();
 		int index = (int) MathHelper.nextFloat(new Random(), 0, size);
 		if(index<size) {
 			SoundEvent sound = sounds.get(index);
-			mc.getSoundHandler().playSound(HuajiSoundPlayer.getMovingSound(user, sound, SoundCategory.NEUTRAL, 1f));
-			HuajiMovingSound hits = new HuajiMovingSound(user, SoundEvents.WEATHER_RAIN, SoundCategory.NEUTRAL);
+			mc.getSoundHandler().playSound(HuajiSoundPlayer.getMovingSound(entity, sound, SoundCategory.NEUTRAL, 1f));
+			HuajiMovingSound hits = new HuajiMovingSound(entity, SoundEvents.WEATHER_RAIN, SoundCategory.NEUTRAL);
 			hits.setVolume(1.0f);
 			hits.setLoop();
 			mc.getSoundHandler().playSound(hits);
@@ -57,6 +57,10 @@ public class ResStandHierophantGreen extends StandRes{
 
 	@Override
 	public ModelStandBase getStandModel() {
+		return new ModelHierophantGreen();
+	}
+	@Override
+	public ModelStandBase getStandModelByData(EntityLivingBase user) {
 		return new ModelHierophantGreen();
 	}
 

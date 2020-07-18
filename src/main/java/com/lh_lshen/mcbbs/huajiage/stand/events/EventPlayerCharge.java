@@ -23,13 +23,12 @@ public class EventPlayerCharge {
 			EntityPlayer player = (EntityPlayer) entity;
 			StandBase stand = StandUtil.getType(player);
 			if(player.hasCapability(CapabilityStandChargeHandler.STAND_CHARGE, null)) {
-				IExposedData data = StandUtil.getStandData(player);
 				StandChargeHandler chargeHandler = player.getCapability(CapabilityStandChargeHandler.STAND_CHARGE, null);
-				if(null != stand && null !=data && null !=chargeHandler )
+				if(null != stand && null !=chargeHandler )
 					{
 						StandHandler standHandler = player.getCapability(CapabilityStandHandler.STAND_TYPE, null);
 						int mp =stand.getCharge();
-						chargeHandler.charge(mp+(CapabilityExposedData.States.IDLE.equals(data.getState())?mp:0));
+						chargeHandler.charge(mp);
 					}else {
 						chargeHandler.charge(5);
 					}

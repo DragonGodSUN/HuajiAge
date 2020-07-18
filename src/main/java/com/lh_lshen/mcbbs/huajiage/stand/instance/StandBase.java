@@ -1,18 +1,21 @@
 package com.lh_lshen.mcbbs.huajiage.stand.instance;
 
-import com.google.common.collect.Lists;
-import com.lh_lshen.mcbbs.huajiage.api.IStandPower;
+import com.lh_lshen.mcbbs.huajiage.api.HuajiAgeAPI;
+import com.lh_lshen.mcbbs.huajiage.api.IStand;
+import com.lh_lshen.mcbbs.huajiage.api.IStandState;
 import com.lh_lshen.mcbbs.huajiage.capability.CapabilityExposedData;
-import com.lh_lshen.mcbbs.huajiage.capability.CapabilityLoader;
+import com.lh_lshen.mcbbs.huajiage.capability.IExposedData;
+import com.lh_lshen.mcbbs.huajiage.stand.StandStates;
+import com.lh_lshen.mcbbs.huajiage.stand.StandUtil;
 import com.lh_lshen.mcbbs.huajiage.stand.resource.StandRes;
-import io.netty.util.internal.RecyclableArrayList;
+import com.lh_lshen.mcbbs.huajiage.stand.states.StandStateBase;
+import com.lh_lshen.mcbbs.huajiage.stand.states.default_set.StateTheWorldDefault;
 import net.minecraft.client.multiplayer.WorldClient;
 import net.minecraft.entity.EntityLivingBase;
-import org.lwjgl.Sys;
 
 import java.util.*;
 
-public class StandBase implements IStandPower{
+public class StandBase implements IStand {
 	private String name;
 	private float speed;
 	private float damage;
@@ -25,7 +28,7 @@ public class StandBase implements IStandPower{
 	private List<String> states = new ArrayList<>();
 	private boolean displayHand;
 	public StandBase() {
-		loadStates();
+//		loadStates();
 	}
 	public StandBase(String name ,float speed ,float damage ,int duration ,float distance ,int cost,int charge,
 			String texPath,String localName, boolean displayHand) {
@@ -39,7 +42,7 @@ public class StandBase implements IStandPower{
 			this.texPath = texPath;
 			this.localName = localName;
 			this.displayHand = displayHand;
-			loadStates();
+//			loadStates();
 	}
 
 //	public static void main(String[] args) {
@@ -68,7 +71,7 @@ public class StandBase implements IStandPower{
 		this.texPath = texPath;
 		this.localName = localName;
 		this.displayHand = displayHand;
-		loadStates();
+//		loadStates();
 		addStates(extra_states);
 	}
 	public float getSpeed() {
@@ -120,21 +123,25 @@ public class StandBase implements IStandPower{
 		return states;
 	}
 
-	public void loadStates() {
-		List<String> list = new ArrayList<>();
-//		for (CapabilityExposedData.States state: CapabilityExposedData.States.values()){
-//			list.add(state.getName());
-//		}
-		list.add(CapabilityExposedData.States.DEFAULT.getName());
-		this.states = list;
-	}
+//	public void loadStates() {
+//		List<String> list = new ArrayList<>();
+//		list.add(CapabilityExposedData.States.DEFAULT.getName());
+//
+//		this.states = list;
+//	}
 
 	public void addStates(List<String> states) {
 		this.states.addAll(states);
 	}
 
-	public void addState(String state) {
+	public void addState(String state , StandStateBase state_base) {
 		this.states.add(state);
+		HuajiAgeAPI.registerStandState(state_base);
+
+	}
+
+	public void initState(StandStateBase state_base){
+		addState(CapabilityExposedData.States.DEFAULT.getName(),state_base);
 	}
 
 	public boolean chaeckState(String state) {
@@ -143,7 +150,15 @@ public class StandBase implements IStandPower{
 
 	@Override
 	public void doStandPower(EntityLivingBase user) {
-
+		StandBase type = StandUtil.getType(user);
+		IExposedData data = StandUtil.getStandData(user);
+		if(type == null && data==null) {
+			return;
+		}
+		IStandState standState = StandStates.getStandState(type.getName(),data.getState());
+		if (standState!=null) {
+			standState.doTask(user);
+		}
 	}
 	@Override
 	public void doStandCapability(EntityLivingBase user) {

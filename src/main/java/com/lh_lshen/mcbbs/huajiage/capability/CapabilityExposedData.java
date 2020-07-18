@@ -2,7 +2,6 @@ package com.lh_lshen.mcbbs.huajiage.capability;
 
 import java.util.concurrent.Callable;
 
-import com.lh_lshen.mcbbs.huajiage.stand.EnumStandtype;
 import com.lh_lshen.mcbbs.huajiage.stand.StandLoader;
 
 import net.minecraft.nbt.NBTBase;
@@ -23,6 +22,7 @@ public class CapabilityExposedData {
 	        	
 	        	cmp_stand.setString("stand_name", instance.getStand());
 	        	cmp_stand.setBoolean("stand_put", instance.isTriggered());
+				cmp_stand.setBoolean("stand_hand", instance.isHandDisplay());
 	        	cmp_stand.setInteger("stand_stage", instance.getStage());
 				cmp_stand.setString("stand_state", instance.getState());
 	        	
@@ -36,12 +36,14 @@ public class CapabilityExposedData {
 	        	NBTTagCompound cmp = (NBTTagCompound) nbt;
 	        	
 	        	String stand = cmp.getString("stand_name");
-	        	boolean istriggered = cmp.getBoolean("stand_put");
+	        	boolean is_triggered = cmp.getBoolean("stand_put");
+				boolean is_hand_display = cmp.getBoolean("stand_hand");
 	        	int stage = cmp.getInteger("stand_stage");
 	        	String state = cmp.getString("stand_state");
 	        	
 	        	instance.setStand(stand);
-	        	instance.setTrigger(istriggered);
+	        	instance.setTrigger(is_triggered);
+	        	instance.setHandDisplay(is_hand_display);
 	        	instance.setStage(stage);
 	        	instance.setState(state);
 	        }
@@ -51,7 +53,8 @@ public class CapabilityExposedData {
 	    public static class Implementation implements IExposedData{
 	    	static Implementation.Factory FACTORY = new Implementation.Factory();
 	    	String standName = StandLoader.EMPTY;
-	    	boolean istriggered = false;
+	    	boolean isTriggered = false;
+	    	boolean isHandDisplay = true;
 	    	boolean dirty =false;
 	    	int stage = 0;
 	    	String state = States.DEFAULT.getName();
@@ -69,10 +72,14 @@ public class CapabilityExposedData {
 	    	
 	    	@Override
 	    	public void setTrigger(boolean trigger) {
-	    		this.istriggered = trigger;
+	    		this.isTriggered = trigger;
 	    		markDirty();
 	    	}
-	    	
+	    	@Override
+	    	public boolean isTriggered() {
+	    		return isTriggered;
+	    	}
+
 	    	public void markDirty() {
 		        dirty = true;
 		    }
@@ -84,11 +91,16 @@ public class CapabilityExposedData {
 	  	    public void setDirty(boolean dirty) {
 	  	        this.dirty = dirty;
 	  	    }
-	    	
-	    	@Override
-	    	public boolean isTriggered() {
-	    		return istriggered;
-	    	}
+
+			@Override
+			public boolean isHandDisplay() {
+				return isHandDisplay;
+			}
+			@Override
+			public void setHandDisplay(boolean handDisplay) {
+				isHandDisplay = handDisplay;
+				markDirty();
+			}
 
 			@Override
 			public String getState() {

@@ -288,7 +288,7 @@ public class ModelHierophantGreen extends ModelStandBase {
 	}
 
 	@Override
-	public void setPostion() {
+	public void setPosition() {
 		GlStateManager.translate(0.5F, -1.0F, 0.75F);		
 	}
 

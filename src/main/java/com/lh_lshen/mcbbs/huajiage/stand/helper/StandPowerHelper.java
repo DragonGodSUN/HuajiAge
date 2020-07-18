@@ -1,6 +1,11 @@
 package com.lh_lshen.mcbbs.huajiage.stand.helper;
 
+import com.lh_lshen.mcbbs.huajiage.capability.*;
+import com.lh_lshen.mcbbs.huajiage.config.ConfigHuaji;
 import com.lh_lshen.mcbbs.huajiage.init.HuajiConstant;
+import com.lh_lshen.mcbbs.huajiage.item.ItemKillerQueenTrigger;
+import com.lh_lshen.mcbbs.huajiage.potion.PotionLoader;
+import com.lh_lshen.mcbbs.huajiage.stand.StandLoader;
 import com.lh_lshen.mcbbs.huajiage.stand.instance.StandBase;
 import com.lh_lshen.mcbbs.huajiage.util.HAMathHelper;
 import com.lh_lshen.mcbbs.huajiage.util.NBTHelper;
@@ -21,7 +26,7 @@ import net.minecraft.util.math.Vec3d;
 import java.util.List;
 
 public class StandPowerHelper {
-    public static void rangePunchAttack(EntityLivingBase user, StandBase type,int stage, float degree, float distance){
+    public static void rangePunchAttack(EntityLivingBase user,float degree, float damage, float distance){
         List<Entity> entityCollection = user.getEntityWorld().getEntitiesWithinAABB(Entity.class, user.getEntityBoundingBox().grow(distance));
         if(entityCollection.size()<=0) {
             return;
@@ -39,9 +44,9 @@ public class StandPowerHelper {
             if(i instanceof EntityDragon) {
                 EntityDragon dragon =(EntityDragon)i;
                 if(flag_player) {
-                    dragon.attackEntityFromPart(dragon.dragonPartHead,new EntityDamageSource(HuajiConstant.DamageSource.STAND_PUNCH_DAMAGE, user).setExplosion(), type.getDamage());
+                    dragon.attackEntityFromPart(dragon.dragonPartHead,new EntityDamageSource(HuajiConstant.DamageSource.STAND_PUNCH_DAMAGE, user).setExplosion(), damage);
                 }else {
-                    dragon.attackEntityFromPart(dragon.dragonPartHead, DamageSource.GENERIC, type.getDamage());
+                    dragon.attackEntityFromPart(dragon.dragonPartHead, DamageSource.GENERIC, damage);
                 }
             }
             if(i instanceof EntityLivingBase) {
@@ -52,9 +57,9 @@ public class StandPowerHelper {
                     }else {
                         if(flag_player) {
                             EntityPlayer player =(EntityPlayer) user;
-                            target.attackEntityFrom(DamageSource.causePlayerDamage(player), type.getDamage());
+                            target.attackEntityFrom(DamageSource.causePlayerDamage(player), damage);
                         }else {
-                            target.attackEntityFrom(DamageSource.ANVIL, type.getDamage());
+                            target.attackEntityFrom(DamageSource.ANVIL, damage);
                         }
                     }
                     if(user.ticksExisted%2==0) {
@@ -70,10 +75,27 @@ public class StandPowerHelper {
                 user.addPotionEffect(new PotionEffect(MobEffects.RESISTANCE,50,1));
                 continue;
             }else {
-                i.motionX=(type.getDamage()/10)*back.x;
-                i.motionY=(type.getDamage()/10)*back.y;
-                i.motionZ=(type.getDamage()/10)*back.z;
+                i.motionX=(damage/10)*back.x;
+                i.motionY=(damage/10)*back.y;
+                i.motionZ=(damage/10)*back.z;
             }
         }
     }
+
+    public static void MPCharge(EntityLivingBase user, int points){
+        StandChargeHandler chargeHandler = user.getCapability(CapabilityStandChargeHandler.STAND_CHARGE, null);
+        if( null !=chargeHandler )
+        {
+            chargeHandler.charge(points);
+        }
+    }
+
+    public static void potionEffect(EntityLivingBase user,List<PotionEffect> potions){
+    if( !user.isPotionActive(PotionLoader.potionStand) || user.isPotionActive(PotionLoader.potionStand)&&user.getActivePotionEffect(PotionLoader.potionStand).getDuration()<=10) {
+        for(PotionEffect potion : potions){
+            user.addPotionEffect(potion);
+            }
+        }
+    }
+
 }

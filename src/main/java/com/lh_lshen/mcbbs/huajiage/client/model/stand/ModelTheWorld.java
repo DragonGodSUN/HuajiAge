@@ -356,7 +356,7 @@ public class ModelTheWorld extends ModelStandBase
 
 
 @Override
-public void setPostion() {
+public void setPosition() {
 	GlStateManager.translate(0.0F, -0.2F, -0.75F);	
 }
 
