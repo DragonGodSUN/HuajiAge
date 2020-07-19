@@ -120,7 +120,7 @@ public class EventStand {
 		 if(data!=null && !data.getStand().equals(StandLoader.EMPTY)) {
 			 boolean flag = data.isTriggered();
 
-		 if(flag) {
+		 if(flag&&!stand_owner.world.isRemote) {
 			 if( !stand_owner.isPotionActive(PotionLoader.potionStand) || stand_owner.isPotionActive(PotionLoader.potionStand)&&stand_owner.getActivePotionEffect(PotionLoader.potionStand).getDuration()<=5) {
 					 stand_owner.addPotionEffect(new PotionEffect(PotionLoader.potionStand , 5*20  ));
 					 stand_owner.addPotionEffect(new PotionEffect(MobEffects.SLOWNESS , 5*20, 1 ));
@@ -130,7 +130,7 @@ public class EventStand {
 					 }
 				 	}
 				 }
-		  if(!flag) {
+		  if(!flag&&!stand_owner.world.isRemote) {
 			    if(stand_owner.isPotionActive(PotionLoader.potionStand)) {
 				   stand_owner.removePotionEffect(PotionLoader.potionStand);
 			 }

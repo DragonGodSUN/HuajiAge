@@ -3,6 +3,7 @@ package com.lh_lshen.mcbbs.huajiage.stand.states.idle;
 import com.google.common.collect.Lists;
 import com.lh_lshen.mcbbs.huajiage.client.model.stand.ModelStandBase;
 import com.lh_lshen.mcbbs.huajiage.client.model.stand.ModelTheWorld;
+import com.lh_lshen.mcbbs.huajiage.config.ConfigHuaji;
 import com.lh_lshen.mcbbs.huajiage.init.HuajiConstant;
 import com.lh_lshen.mcbbs.huajiage.init.sound.HuajiSoundPlayer;
 import com.lh_lshen.mcbbs.huajiage.init.sound.SoundLoader;
@@ -49,7 +50,9 @@ public class StateTheWorldIdle extends StandStateBase {
         if(user.isPotionActive(PotionLoader.potionStand)&&user.getActivePotionEffect(PotionLoader.potionStand).getDuration()<10){
             effects.add(new PotionEffect(PotionLoader.potionStand,5*20));
             effects.add(new PotionEffect(MobEffects.HUNGER,5*20,5));
+            if(ConfigHuaji.Stands.allowStandGlow){
             effects.add(new PotionEffect(MobEffects.GLOWING,5*20));
+            }
             StandPowerHelper.potionEffect(user,effects);
             StandPowerHelper.MPCharge(user,StandLoader.THE_WORLD.getCharge());
         }

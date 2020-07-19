@@ -139,7 +139,7 @@ public class EventStandOverlatRender {
 	                Minecraft.getMinecraft().fontRenderer.drawString( TextFormatting.BOLD+I18n.format("stand.huajiage.tip.cost",stand.getCost()), 8+ x,  40 + 16 + y, 0xffffff, true);
 	                }
 	                if(data.isTriggered()){
-						Minecraft.getMinecraft().fontRenderer.drawString( TextFormatting.BOLD+I18n.format("stand.huajiage.tip.mode",KeyLoader.standSwitch.getKeyModifier()+"+"+Keyboard.getKeyName(Math.max(KeyLoader.standSwitch.getKeyCode(), 0))), 5,20, 0xffffff, true);
+						Minecraft.getMinecraft().fontRenderer.drawString( TextFormatting.BOLD+I18n.format("stand.huajiage.tip.mode",KeyLoader.standSwitch.getKeyModifier()+"+"+Keyboard.getKeyName(Math.max(KeyLoader.standSwitch.getKeyCode(), 0))), 5,stage>0?20:10, 0xffffff, true);
 					}
 	                
                 }

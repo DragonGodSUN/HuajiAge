@@ -40,6 +40,10 @@ public class ModelTheWorldIdle extends ModelStandBase {
 	private final ModelRenderer legdownr;
 	private final ModelRenderer right_hands;
 
+	private final ModelRenderer gears;
+	private final ModelRenderer gear1;
+	private final ModelRenderer gear2;
+
 	public ModelTheWorldIdle() {
 		textureWidth = 64;
 		textureHeight = 128;
@@ -157,38 +161,38 @@ public class ModelTheWorldIdle extends ModelStandBase {
 
 		leftarm = new ModelRenderer(this);
 		leftarm.setRotationPoint(5.0F, 2.0F, 0.0F);
-		setRotationAngle(leftarm, 0.6981F, 0.5236F, -0.6109F);
+		setRotationAngle(leftarm, 0.6981F, 0.5236F, -0.5236F);
 		body.addChild(leftarm);
 		leftarm.cubeList.add(new ModelBox(leftarm, 40, 16, -1.0F, -2.0F, -2.0F, 4, 4, 5, 0.0F, false));
 		leftarm.cubeList.add(new ModelBox(leftarm, 49, 27, -1.0F, 2.0F, -1.5F, 3, 4, 4, 0.0F, false));
 
 		handl = new ModelRenderer(this);
 		handl.setRotationPoint(2.0F, 7.0F, 2.0F);
-		setRotationAngle(handl, -0.6109F, 0.0F, 0.0F);
+		setRotationAngle(handl, -1.2218F, 0.0F, 0.0F);
 		leftarm.addChild(handl);
 		handl.cubeList.add(new ModelBox(handl, 48, 4, -3.2F, -1.0F, -4.0F, 4, 8, 4, 0.0F, false));
 
 		rightarm = new ModelRenderer(this);
 		rightarm.setRotationPoint(-5.0F, 2.0F, 0.0F);
-		setRotationAngle(rightarm, -1.1345F, 0.2618F, 1.0472F);
+		setRotationAngle(rightarm, -1.2218F, 0.1745F, 1.0472F);
 		body.addChild(rightarm);
 		rightarm.cubeList.add(new ModelBox(rightarm, 40, 16, -3.0F, -2.0F, -2.0F, 4, 4, 5, 0.0F, true));
 		rightarm.cubeList.add(new ModelBox(rightarm, 49, 27, -2.5F, 2.0F, -1.5F, 3, 4, 4, 0.0F, true));
 
 		handr = new ModelRenderer(this);
 		handr.setRotationPoint(-1.0F, 6.0F, 1.0F);
-		setRotationAngle(handr, -0.0873F, -0.5236F, 0.0873F);
+		setRotationAngle(handr, -0.4364F, -0.2618F, 0.0873F);
 		rightarm.addChild(handr);
 		handr.cubeList.add(new ModelBox(handr, 48, 4, -2.0F, 0.0F, -2.0F, 4, 8, 4, 0.0F, true));
 
 		leftleg = new ModelRenderer(this);
 		leftleg.setRotationPoint(6.0F, 11.0F, 5.0F);
-		setRotationAngle(leftleg, -0.5236F, -0.4363F, -0.4712F);
+		setRotationAngle(leftleg, -0.6981F, -0.6981F, -0.8203F);
 		leftleg.cubeList.add(new ModelBox(leftleg, 21, 100, -2.0F, 0.0F, -3.0F, 5, 7, 5, 0.0F, false));
 
 		legdownl = new ModelRenderer(this);
-		legdownl.setRotationPoint(1.1276F, 4.9224F, 1.6341F);
-		setRotationAngle(legdownl, 1.6487F, 0.0F, 0.1745F);
+		legdownl.setRotationPoint(1.1276F, 3.9224F, 0.6341F);
+		setRotationAngle(legdownl, 2.6086F, 0.0F, 0.1745F);
 		leftleg.addChild(legdownl);
 		legdownl.cubeList.add(new ModelBox(legdownl, 0, 100, -2.2773F, -1.4722F, -3.5434F, 5, 9, 5, 0.0F, false));
 
@@ -205,6 +209,29 @@ public class ModelTheWorldIdle extends ModelStandBase {
 
 		right_hands = new ModelRenderer(this);
 		right_hands.setRotationPoint(0.0F, 5.0F, 2.0F);
+
+		gears = new ModelRenderer(this);
+		gears.setRotationPoint(0.0F, 24.0F, 0.0F);
+
+		gear1 = new ModelRenderer(this);
+		gear1.setRotationPoint(-4.9073F, -21.3328F, 3.0076F);
+		setRotationAngle(gear1, 0.0F, 0.0873F, -0.8727F);
+		gears.addChild(gear1);
+		gear1.cubeList.add(new ModelBox(gear1, 48, 79, -2.0F, -0.5F, -2.0F, 4, 1, 4, 0.0F, false));
+		gear1.cubeList.add(new ModelBox(gear1, 48, 88, -1.0F, -0.5F, 2.0F, 2, 1, 1, 0.0F, false));
+		gear1.cubeList.add(new ModelBox(gear1, 48, 88, -1.0F, -0.5F, -3.0F, 2, 1, 1, 0.0F, false));
+		gear1.cubeList.add(new ModelBox(gear1, 58, 87, -3.0F, -0.5F, -1.0F, 1, 1, 2, 0.0F, false));
+		gear1.cubeList.add(new ModelBox(gear1, 58, 87, 2.0F, -0.5F, -1.0F, 1, 1, 2, 0.0F, false));
+
+		gear2 = new ModelRenderer(this);
+		gear2.setRotationPoint(5.9703F, -25.7181F, 4.6108F);
+		setRotationAngle(gear2, 0.0F, 0.0F, 0.8727F);
+		gears.addChild(gear2);
+		gear2.cubeList.add(new ModelBox(gear2, 48, 79, -2.0F, -0.5F, -2.0F, 4, 1, 4, 0.0F, false));
+		gear2.cubeList.add(new ModelBox(gear2, 48, 88, -1.0F, -0.5F, 2.0F, 2, 1, 1, 0.0F, false));
+		gear2.cubeList.add(new ModelBox(gear2, 48, 88, -1.0F, -0.5F, -3.0F, 2, 1, 1, 0.0F, false));
+		gear2.cubeList.add(new ModelBox(gear2, 58, 87, -3.0F, -0.5F, -1.0F, 1, 1, 2, 0.0F, false));
+		gear2.cubeList.add(new ModelBox(gear2, 58, 87, 2.0F, -0.5F, -1.0F, 1, 1, 2, 0.0F, false));
 	}
 
 	@Override
@@ -216,9 +243,12 @@ public class ModelTheWorldIdle extends ModelStandBase {
 		body.offsetY = off;
 		leftleg.offsetY = off;
 		rightleg.offsetY = off;
+//		gear1.offsetZ = off/2;
+//		gear2.offsetZ = off/2;
 
 		head.rotateAngleX = headPitch * 0.017453292F;
 		head.rotateAngleY = netHeadYaw * 0.017453292F;
+
 
 		head.render(scale);
 		body.render(scale);
@@ -254,11 +284,16 @@ public class ModelTheWorldIdle extends ModelStandBase {
 
 	@Override
 	public void extraEffect(Entity entityIn, float limbSwing, float limbSwingAmount, float ageInTicks, float netHeadYaw, float headPitch, float scale) {
-
+		gears.offsetY-=0.3;
+		gears.offsetZ-=0.2;
+		gear1.rotateAngleY = ageInTicks/10;
+		gear2.rotateAngleY = ageInTicks/15;
+	//		gears.render(scale*3/2);
+		gears.render(scale*2);
 	}
 
 	@Override
 	public void setPosition() {
-		GlStateManager.translate(-0.7F, -0.2F, 0.45F);
+		GlStateManager.translate(-0.45F, -0.2F, 0.45F);
 	}
 }

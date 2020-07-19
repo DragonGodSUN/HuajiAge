@@ -60,6 +60,7 @@ public class MessageStandUp implements IMessage {
         		return null;
         	}
             	FMLCommonHandler.instance().getWorldThread(ctx.netHandler).addScheduledTask(() ->{
+				data.setState(CapabilityExposedData.States.DEFAULT.getName());
 				if(!data.isTriggered()) {
 					if(charge.canBeCost(stand.getCost()/10)) {
 						charge.cost(stand.getCost()/10);
@@ -67,7 +68,6 @@ public class MessageStandUp implements IMessage {
 						data.setStand(standType);
 						data.setTrigger(true);
 						data.setHandDisplay(stand.isHandDisplay());
-						data.setState(CapabilityExposedData.States.DEFAULT.getName());
 //					    ServerUtil.sendPacketToNearbyPlayersStand(player, new SyncExposedStandDataMessage(standType, true, player.getName()));
 						if(message.isMoving) {
 								EntityStandBase standBase = new EntityStandBase(player.world, player, StandLoader.getStand(data.getStand()));

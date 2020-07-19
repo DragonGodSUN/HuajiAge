@@ -207,6 +207,7 @@ config.huaji_age.huaji_config.stand.fog_time_stop=启用时停的烟雾特效（
 config.huaji_age.huaji_config.stand.huaji_splash=用滑稽粒子代替绿宝石水花
 config.huaji_age.huaji_config.orga.flower=使用希望之花原版音乐
 config.huaji_age.huaji_config.density_fog_time_stop=时停雾气浓度（需启用烟雾特效）
+config.huaji_age.huaji_config.stand.punish.glow=使替身处于放出闲置状态下的玩家发光
 
 
 stand.huajiage.empty=缺失

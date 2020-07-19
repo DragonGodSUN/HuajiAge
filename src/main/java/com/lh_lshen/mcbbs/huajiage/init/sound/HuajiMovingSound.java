@@ -7,6 +7,7 @@ import com.lh_lshen.mcbbs.huajiage.potion.PotionLoader;
 import com.lh_lshen.mcbbs.huajiage.stand.StandStates;
 import com.lh_lshen.mcbbs.huajiage.stand.StandUtil;
 import com.lh_lshen.mcbbs.huajiage.stand.entity.EntityStandBase;
+import com.lh_lshen.mcbbs.huajiage.stand.states.StandStateBase;
 import net.minecraft.client.audio.MovingSound;
 import net.minecraft.entity.Entity;
 import net.minecraft.entity.EntityLivingBase;
@@ -63,12 +64,16 @@ public class HuajiMovingSound extends MovingSound {
             EntityLivingBase user = base.getUser();
             if(user !=null){
                 IExposedData data = StandUtil.getStandData(user);
-                if (this.repeat) {
-                    if(data!=null&& !StandStates.getStandState(data.getStand(),data.getState()).isSoundLoop()){
+                StandStateBase state = StandStates.getStandState(data.getStand(),data.getState());
+                if (this.repeat&& state!=null) {
+                    if(data!=null&&!state.isSoundLoop()){
                         this.setVolume(0f);
                     }else{
                         this.setVolume(0.7f);
                     }
+                }
+                if(state==null){
+                    this.stop();
                 }
             }
         }
