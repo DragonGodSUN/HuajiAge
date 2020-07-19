@@ -1,18 +1,12 @@
 package com.lh_lshen.mcbbs.huajiage.stand;
 
-import java.util.ArrayList;
-import java.util.List;
-
 import com.lh_lshen.mcbbs.huajiage.api.HuajiAgeAPI;
 import com.lh_lshen.mcbbs.huajiage.api.IStand;
-import com.lh_lshen.mcbbs.huajiage.api.IStandState;
 import com.lh_lshen.mcbbs.huajiage.init.HuajiConstant;
-import com.lh_lshen.mcbbs.huajiage.stand.instance.StandBase;
-import com.lh_lshen.mcbbs.huajiage.stand.instance.StandHierophantGreen;
-import com.lh_lshen.mcbbs.huajiage.stand.instance.StandKillerQueen;
-import com.lh_lshen.mcbbs.huajiage.stand.instance.StandOrgaRequiem;
-import com.lh_lshen.mcbbs.huajiage.stand.instance.StandStarPlatinum;
-import com.lh_lshen.mcbbs.huajiage.stand.instance.StandTheWorld;
+import com.lh_lshen.mcbbs.huajiage.stand.instance.*;
+
+import java.util.ArrayList;
+import java.util.List;
 
 public class StandLoader {
 	public static final List<StandBase> STAND_LIST = new ArrayList<>();

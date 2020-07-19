@@ -54,8 +54,8 @@ public class StateTheWorldIdle extends StandStateBase {
             effects.add(new PotionEffect(MobEffects.GLOWING,5*20));
             }
             StandPowerHelper.potionEffect(user,effects);
-            StandPowerHelper.MPCharge(user,StandLoader.THE_WORLD.getCharge());
         }
+            StandPowerHelper.MPCharge(user,StandLoader.THE_WORLD.getCharge());
     }
 
 }

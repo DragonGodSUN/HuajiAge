@@ -1,8 +1,6 @@
 package com.lh_lshen.mcbbs.huajiage.stand.messages;
 
-import com.lh_lshen.mcbbs.huajiage.capability.CapabilityExposedData;
 import com.lh_lshen.mcbbs.huajiage.capability.IExposedData;
-import com.lh_lshen.mcbbs.huajiage.capability.StandChargeHandler;
 import com.lh_lshen.mcbbs.huajiage.stand.StandStates;
 import com.lh_lshen.mcbbs.huajiage.stand.StandUtil;
 import com.lh_lshen.mcbbs.huajiage.stand.instance.StandBase;
@@ -12,8 +10,6 @@ import net.minecraft.entity.player.EntityPlayerMP;
 import net.minecraft.init.SoundEvents;
 import net.minecraft.network.play.server.SPacketSoundEffect;
 import net.minecraft.util.SoundCategory;
-import net.minecraft.util.SoundEvent;
-import net.minecraft.util.text.TextComponentString;
 import net.minecraft.util.text.TextComponentTranslation;
 import net.minecraftforge.fml.common.FMLCommonHandler;
 import net.minecraftforge.fml.common.network.simpleimpl.IMessage;
@@ -67,12 +63,12 @@ public class MessageStandModeSwitch implements IMessage {
 						StandStateBase stateBase = StandStates.getStandState(stand.getName(),state_new);
 						if(stateBase!=null){
 						data.setHandDisplay(stateBase.isHandPlay());
-							player.sendMessage(new TextComponentString(stateBase.getStateName()+stateBase.isHandPlay()));
+//							player.sendMessage(new TextComponentString(stateBase.getStateName()+stateBase.isHandPlay()));
 						}
-						String stand_state_format="state.huajiage"+"."+state_new;
+						String stand_state_format="stand.state.huajiage"+"."+state_new;
 						TextComponentTranslation state_trans = new TextComponentTranslation(stand_state_format);
 						player.connection.sendPacket(new SPacketSoundEffect(SoundEvents.ENTITY_PLAYER_LEVELUP, SoundCategory.PLAYERS, player.posX, player.posY, player.posZ,0.5f, 1f));
-						player.sendMessage(new TextComponentTranslation("message.huajiage.stand_mode.switch",state_new));
+						player.sendMessage(new TextComponentTranslation("message.huajiage.stand_mode.switch",state_trans.getUnformattedComponentText()));
 					}else {
 						player.sendMessage(new TextComponentTranslation("message.huajiage.stand_mode.empty"));
 					}

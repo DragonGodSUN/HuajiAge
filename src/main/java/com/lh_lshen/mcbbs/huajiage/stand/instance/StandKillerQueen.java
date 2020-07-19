@@ -27,7 +27,7 @@ public class StandKillerQueen extends StandBase {
 	public StandKillerQueen(String name ,float speed ,float damage ,int duration ,float distance ,int cost,int charge,
 			String texPath,String localName, boolean displayHand) {
 			super(name, speed, damage, duration, distance, cost, charge, texPath, localName, displayHand);
-			initState(new StateKillerQueenDefault(name,CapabilityExposedData.States.DEFAULT.getName(),isHandDisplay(),true));
+			initState(new StateKillerQueenDefault(name,CapabilityExposedData.States.DEFAULT.getName(),isHandDisplay(),false));
 			addState(CapabilityExposedData.States.PUNCH.getName(),new StateKillerQueenPunch(name,CapabilityExposedData.States.PUNCH.getName(),false,true));
 	}
 	@Override

@@ -208,6 +208,11 @@ stand.huajiage.hierophant_green=§a§lHierophant Green
 stand.huajiage.orga_requiem=§4§lOrga Requiem
 stand.huajiage.killer_queen=§d§lKiller §f§lQueen
 
+stand.state.huajiage.default=Default
+stand.state.huajiage.idle=Idle
+stand.state.huajiage.punch=Punch
+stand.state.huajiage.protect=Protect
+
 stand.huajiage.skill.the_world.start=§e§lThe World!!!
 stand.huajiage.skill.star_platinum.start=§5§lStar Platinum!The World!!! 
 stand.huajiage.skill.hierophant_green.start=§a§lTake that! Emerald splash with a radius of 20 meters!!!

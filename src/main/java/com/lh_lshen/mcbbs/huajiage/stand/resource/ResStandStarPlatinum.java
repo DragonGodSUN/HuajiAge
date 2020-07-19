@@ -1,19 +1,16 @@
 package com.lh_lshen.mcbbs.huajiage.stand.resource;
 
-import java.util.List;
-import java.util.Random;
-
 import com.lh_lshen.mcbbs.huajiage.capability.CapabilityExposedData;
 import com.lh_lshen.mcbbs.huajiage.capability.IExposedData;
 import com.lh_lshen.mcbbs.huajiage.client.model.stand.ModelStandBase;
 import com.lh_lshen.mcbbs.huajiage.client.model.stand.ModelStarPlatinum;
+import com.lh_lshen.mcbbs.huajiage.client.model.stand.states.ModelStarPlatinumIdle;
 import com.lh_lshen.mcbbs.huajiage.init.HuajiConstant;
 import com.lh_lshen.mcbbs.huajiage.init.sound.HuajiMovingSound;
 import com.lh_lshen.mcbbs.huajiage.init.sound.HuajiSoundPlayer;
 import com.lh_lshen.mcbbs.huajiage.init.sound.SoundStand;
 import com.lh_lshen.mcbbs.huajiage.potion.PotionLoader;
 import com.lh_lshen.mcbbs.huajiage.stand.StandLoader;
-
 import com.lh_lshen.mcbbs.huajiage.stand.StandUtil;
 import net.minecraft.client.Minecraft;
 import net.minecraft.client.renderer.OpenGlHelper;
@@ -24,6 +21,9 @@ import net.minecraft.util.ResourceLocation;
 import net.minecraft.util.SoundCategory;
 import net.minecraft.util.SoundEvent;
 import net.minecraft.util.math.MathHelper;
+
+import java.util.List;
+import java.util.Random;
 
 public class ResStandStarPlatinum extends StandRes{
 	public ResStandStarPlatinum() {
@@ -57,7 +57,7 @@ public class ResStandStarPlatinum extends StandRes{
 		boolean isIdle = CapabilityExposedData.States.IDLE.getName().equals(data.getState());
 		if (!isIdle) {
 			ResourceLocation STAND_TEX = getTexture();
-			ModelStandBase model = getStandModel();
+			ModelStandBase model = getStandModelByData(entity);
 			Minecraft.getMinecraft().getTextureManager().bindTexture(STAND_TEX);
 			OpenGlHelper.setLightmapTextureCoords(OpenGlHelper.lightmapTexUnit, 240f, 240f);
 			model.setRotationAngles(0, 0, entity.ticksExisted, 0, -1, 1, entity ,0.5f,(float) (StandLoader.THE_WORLD.getSpeed()*1.5));
@@ -77,6 +77,11 @@ public class ResStandStarPlatinum extends StandRes{
 
 	@Override
 	public ModelStandBase getStandModelByData(EntityLivingBase entity) {
+		String state = StandUtil.getStandState(entity);
+		switch (state){
+			case "default":return new ModelStarPlatinum();
+			case "idle":return new ModelStarPlatinumIdle();
+		}
 		return new ModelStarPlatinum();
 	}
 }

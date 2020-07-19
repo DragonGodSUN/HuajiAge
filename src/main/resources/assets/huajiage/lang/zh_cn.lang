@@ -217,6 +217,11 @@ stand.huajiage.hierophant_green=§a§lHierophant Green-绿之法皇
 stand.huajiage.orga_requiem=§4§l停不下来的奥尔加镇魂曲
 stand.huajiage.killer_queen=§d§lKiller §f§lQueen-杀手§d§l皇后
 
+stand.state.huajiage.default=默认
+stand.state.huajiage.idle=闲置
+stand.state.huajiage.punch=连击
+stand.state.huajiage.protect=保护
+
 stand.huajiage.skill.the_world.start=§e§l咋瓦鲁多 ! ! ! 时间停止吧 !
 stand.huajiage.skill.star_platinum.start=§5§l食堂泼辣酱——§b§l咋瓦鲁多 ! 
 stand.huajiage.skill.hierophant_green.start=§a§l接招吧!半径20米的绿宝石水花!!!
