@@ -1,20 +1,15 @@
-package com.lh_lshen.mcbbs.huajiage.client.model.stand;
+package com.lh_lshen.mcbbs.huajiage.client.model.stand.states;// Made with Blockbench
+// Paste this code into your mod.
+// Make sure to generate all required imports
 
-import com.lh_lshen.mcbbs.huajiage.config.ConfigHuaji;
-import com.lh_lshen.mcbbs.huajiage.particle.EnumHuajiPraticle;
-import com.lh_lshen.mcbbs.huajiage.util.HAMathHelper;
-import net.minecraft.client.Minecraft;
+import com.lh_lshen.mcbbs.huajiage.client.model.stand.ModelStandBase;
 import net.minecraft.client.model.ModelBox;
 import net.minecraft.client.model.ModelRenderer;
 import net.minecraft.client.renderer.GlStateManager;
 import net.minecraft.entity.Entity;
-import net.minecraft.util.EnumParticleTypes;
 import net.minecraft.util.math.MathHelper;
-import net.minecraft.util.math.Vec3d;
 
-import java.util.Random;
-
-public class ModelHierophantGreen extends ModelStandBase {
+public class ModelHierophantGreenIdle extends ModelStandBase {
 	private final ModelRenderer head;
 	private final ModelRenderer hat;
 	private final ModelRenderer hat_part_3;
@@ -37,17 +32,29 @@ public class ModelHierophantGreen extends ModelStandBase {
 	private final ModelRenderer part6;
 	private final ModelRenderer part6_1;
 	private final ModelRenderer part6_2;
-	private final ModelRenderer leftarm;
-	private final ModelRenderer leftarmd;
 	private final ModelRenderer rightarm;
 	private final ModelRenderer rightarmd;
+	private final ModelRenderer leftarm;
+	private final ModelRenderer leftarmd;
 	private final ModelRenderer leftleg;
 	private final ModelRenderer legdownl;
 	private final ModelRenderer rightleg;
 	private final ModelRenderer legdownr;
-	private final ModelRenderer extra;
+	private final ModelRenderer strips;
+	private final ModelRenderer strip1;
+	private final ModelRenderer strip2;
+	private final ModelRenderer strip3;
+	private final ModelRenderer strip4;
+	private final ModelRenderer strip5;
+	private final ModelRenderer strip6;
+	private final ModelRenderer strip7;
+	private final ModelRenderer strip8;
+	private final ModelRenderer strip9;
+	private final ModelRenderer strip10;
+	private final ModelRenderer strip11;
+//	private final ModelRenderer strip12;
 
-	public ModelHierophantGreen() {
+	public ModelHierophantGreenIdle() {
 		textureWidth = 64;
 		textureHeight = 128;
 
@@ -71,7 +78,7 @@ public class ModelHierophantGreen extends ModelStandBase {
 
 		body = new ModelRenderer(this);
 		body.setRotationPoint(0.0F, 0.0F, 0.0F);
-		setRotationAngle(body, 0.1745F, 0.1745F, 0.0F);
+		setRotationAngle(body, 1.3963F, 0.0F, 0.2618F);
 		body.cubeList.add(new ModelBox(body, 16, 16, -4.0F, 0.0F, -2.0F, 8, 6, 4, 0.0F, false));
 
 		Shape1 = new ModelRenderer(this);
@@ -177,142 +184,189 @@ public class ModelHierophantGreen extends ModelStandBase {
 		part6.addChild(part6_2);
 		part6_2.cubeList.add(new ModelBox(part6_2, 0, 74, -3.0F, -2.0F, 0.0F, 1, 3, 6, 0.0F, true));
 
-		leftarm = new ModelRenderer(this);
-		leftarm.setRotationPoint(0.0F, 6.0F, 0.0F);
-		setRotationAngle(leftarm, -0.0873F, 0.0F, -0.9599F);
-		leftarm.cubeList.add(new ModelBox(leftarm, 40, 16, 3.0F, 1.0872F, -1.9962F, 4, 6, 4, 0.0F, false));
-
-		leftarmd = new ModelRenderer(this);
-		leftarmd.setRotationPoint(2.6753F, 5.2814F, -3.4392F);
-		setRotationAngle(leftarmd, 2.0071F, 3.0543F, -1.6581F);
-		leftarm.addChild(leftarmd);
-		leftarmd.cubeList.add(new ModelBox(leftarmd, 48, 4, -2.0F, -3.5F, -2.0F, 4, 7, 4, 0.0F, false));
-
 		rightarm = new ModelRenderer(this);
-		rightarm.setRotationPoint(0.0F, 4.0F, 0.0F);
-		setRotationAngle(rightarm, -0.7854F, 0.0F, 1.309F);
-		rightarm.cubeList.add(new ModelBox(rightarm, 40, 16, -4.1335F, 1.8434F, 1.2756F, 4, 6, 4, 0.0F, true));
+		rightarm.setRotationPoint(4.0667F, 4.2177F, 1.4699F);
+		setRotationAngle(rightarm, 0.0F, -0.7854F, -1.6581F);
+		body.addChild(rightarm);
+		rightarm.cubeList.add(new ModelBox(rightarm, 40, 16, -2.9332F, -0.5783F, -1.8622F, 4, 6, 4, 0.0F, false));
 
 		rightarmd = new ModelRenderer(this);
-		rightarmd.setRotationPoint(-1.6845F, 7.7366F, 2.1856F);
-		setRotationAngle(rightarmd, -2.0944F, 0.2618F, -0.2618F);
+		rightarmd.setRotationPoint(-0.0667F, 5.0783F, -0.1378F);
+		setRotationAngle(rightarmd, 0.0F, -0.4363F, 0.2618F);
 		rightarm.addChild(rightarmd);
-		rightarmd.cubeList.add(new ModelBox(rightarmd, 48, 4, -2.3983F, -2.8966F, -1.1802F, 4, 7, 4, 0.0F, true));
+		rightarmd.cubeList.add(new ModelBox(rightarmd, 48, 4, -2.5F, 0.0F, -1.5F, 4, 7, 4, 0.0F, false));
+
+		leftarm = new ModelRenderer(this);
+		leftarm.setRotationPoint(-4.0667F, 4.2177F, 1.4699F);
+		setRotationAngle(leftarm, 0.0F, 1.3963F, 1.6581F);
+		body.addChild(leftarm);
+		leftarm.cubeList.add(new ModelBox(leftarm, 40, 16, -1.0668F, -0.5783F, -1.8622F, 4, 6, 4, 0.0F, true));
+
+		leftarmd = new ModelRenderer(this);
+		leftarmd.setRotationPoint(0.0667F, 5.0783F, -0.1378F);
+		setRotationAngle(leftarmd, 0.0F, 0.6981F, -0.3491F);
+		leftarm.addChild(leftarmd);
+		leftarmd.cubeList.add(new ModelBox(leftarmd, 48, 4, -1.5F, 0.0F, -1.5F, 4, 7, 4, 0.0F, true));
 
 		leftleg = new ModelRenderer(this);
-		leftleg.setRotationPoint(2.0F, 10.0F, 0.0F);
-		setRotationAngle(leftleg, -0.5494F, -0.3992F, -0.4341F);
-		leftleg.cubeList.add(new ModelBox(leftleg, 21, 100, -2.0F, 0.0F, -3.5F, 5, 7, 5, 0.0F, false));
+		leftleg.setRotationPoint(-2.0F, 10.0F, 1.0F);
+		setRotationAngle(leftleg, 0.0F, 0.0F, -0.0873F);
+		body.addChild(leftleg);
+		leftleg.cubeList.add(new ModelBox(leftleg, 21, 100, -3.0F, 0.0F, -3.5F, 5, 7, 5, 0.0F, true));
 
 		legdownl = new ModelRenderer(this);
-		legdownl.setRotationPoint(1.8266F, 3.8994F, 3.2559F);
-		setRotationAngle(legdownl, 1.8088F, -0.1374F, -0.4105F);
+		legdownl.setRotationPoint(0.0F, 7.0F, -0.5F);
 		leftleg.addChild(legdownl);
-		legdownl.cubeList.add(new ModelBox(legdownl, 0, 100, -4.5885F, -4.6434F, -2.9332F, 4, 9, 5, 0.0F, false));
+		legdownl.cubeList.add(new ModelBox(legdownl, 0, 100, -2.0F, -0.5F, -2.5F, 4, 9, 5, 0.0F, true));
 
 		rightleg = new ModelRenderer(this);
-		rightleg.setRotationPoint(-2.0F, 10.0F, 2.0F);
-		setRotationAngle(rightleg, -0.2762F, 0.2504F, 0.1609F);
-		rightleg.cubeList.add(new ModelBox(rightleg, 21, 100, -3.0F, 0.0F, -3.5F, 5, 7, 5, 0.0F, true));
+		rightleg.setRotationPoint(2.0F, 10.0F, 1.0F);
+		setRotationAngle(rightleg, -1.309F, 0.2618F, 0.0F);
+		body.addChild(rightleg);
+		rightleg.cubeList.add(new ModelBox(rightleg, 21, 100, -2.0F, 0.0F, -3.5F, 5, 7, 5, 0.0F, false));
 
 		legdownr = new ModelRenderer(this);
-		legdownr.setRotationPoint(-0.9457F, 10.0163F, 1.7692F);
-		setRotationAngle(legdownr, 0.6015F, 0.0728F, 0.0614F);
+		legdownr.setRotationPoint(0.0F, 7.0F, -0.5F);
+		setRotationAngle(legdownr, 2.1817F, 0.0F, 0.0F);
 		rightleg.addChild(legdownr);
-		legdownr.cubeList.add(new ModelBox(legdownr, 0, 100, -1.5F, -4.5F, -2.5F, 4, 9, 5, 0.0F, true));
+		legdownr.cubeList.add(new ModelBox(legdownr, 0, 100, -2.2F, -0.5F, -2.5F, 4, 9, 5, 0.0F, false));
 
-		extra = new ModelRenderer(this);
-		extra.setRotationPoint(-0.6176F, 4.3949F, -4.7861F);
-		setRotationAngle(extra, 0.4363F, 0.0F, 0.349F);
-		extra.cubeList.add(new ModelBox(extra, 0, 36, -5.2887F, -1.5893F, -1.4862F, 10, 3, 3, 0.0F, false));
-		extra.cubeList.add(new ModelBox(extra, 0, 44, -4.7113F, -0.4107F, -0.5139F, 10, 1, 1, 0.0F, false));
+		strips = new ModelRenderer(this);
+		strips.setRotationPoint(-2.0F, 5.0F, 25.0F);
+		setRotationAngle(strips, 0.0873F, 0.0F, 0.0F);
+
+		strip1 = new ModelRenderer(this);
+		strip1.setRotationPoint(2.0F, 1.0F, 1.0F);
+		strips.addChild(strip1);
+		strip1.cubeList.add(new ModelBox(strip1, 44, 36, -3.0F, -3.0F, -1.0F, 3, 3, 7, 0.0F, false));
+
+		strip2 = new ModelRenderer(this);
+		strip2.setRotationPoint(-1.0F, -2.0F, 7.0F);
+		setRotationAngle(strip2, 0.3491F, 0.5236F, -0.1745F);
+		strip1.addChild(strip2);
+		strip2.cubeList.add(new ModelBox(strip2, 2, 48, -1.0F, -0.5F, -1.0F, 2, 2, 12, 0.0F, false));
+
+		strip3 = new ModelRenderer(this);
+		strip3.setRotationPoint(1.0F, 0.0F, 11.0F);
+		setRotationAngle(strip3, 0.3491F, 0.8727F, 0.6109F);
+		strip2.addChild(strip3);
+		strip3.cubeList.add(new ModelBox(strip3, 2, 48, -1.0F, -0.5F, -1.0F, 2, 2, 12, 0.0F, false));
+
+		strip4 = new ModelRenderer(this);
+		strip4.setRotationPoint(1.3493F, -0.2779F, 10.1046F);
+		setRotationAngle(strip4, 0.3491F, 1.4835F, 0.6981F);
+		strip3.addChild(strip4);
+		strip4.cubeList.add(new ModelBox(strip4, 2, 48, -1.0F, -0.5F, -1.0F, 2, 2, 12, 0.0F, false));
+
+		strip5 = new ModelRenderer(this);
+		strip5.setRotationPoint(1.1632F, 1.1236F, 11.0628F);
+		setRotationAngle(strip5, 0.3491F, 1.4835F, 0.6981F);
+		strip4.addChild(strip5);
+		strip5.cubeList.add(new ModelBox(strip5, 2, 48, -1.0F, -0.5F, -1.0F, 2, 2, 12, 0.0F, false));
+
+		strip6 = new ModelRenderer(this);
+		strip6.setRotationPoint(1.8064F, 0.502F, 11.423F);
+		setRotationAngle(strip6, 0.3491F, 1.4835F, 0.6981F);
+		strip5.addChild(strip6);
+		strip6.cubeList.add(new ModelBox(strip6, 2, 48, -1.0F, -0.5F, -1.0F, 2, 2, 12, 0.0F, false));
+
+		strip7 = new ModelRenderer(this);
+		strip7.setRotationPoint(-0.3493F, -0.2217F, 10.7624F);
+		setRotationAngle(strip7, 0.3491F, -1.309F, 0.6981F);
+		strip6.addChild(strip7);
+		strip7.cubeList.add(new ModelBox(strip7, 2, 48, -1.0F, -0.5F, -1.0F, 2, 2, 12, 0.0F, false));
+
+		strip8 = new ModelRenderer(this);
+		strip8.setRotationPoint(-0.2159F, 0.0822F, 11.4868F);
+		setRotationAngle(strip8, -0.4363F, -0.6109F, 0.6981F);
+		strip7.addChild(strip8);
+		strip8.cubeList.add(new ModelBox(strip8, 2, 48, -1.0F, -0.5F, -1.0F, 2, 2, 12, 0.0F, false));
+
+		strip9 = new ModelRenderer(this);
+		strip9.setRotationPoint(-0.5709F, 0.8538F, 10.9519F);
+		setRotationAngle(strip9, -0.4363F, -0.6109F, 0.6981F);
+		strip8.addChild(strip9);
+		strip9.cubeList.add(new ModelBox(strip9, 2, 48, -1.0F, -0.5F, -1.0F, 2, 2, 12, 0.0F, false));
+
+		strip10 = new ModelRenderer(this);
+		strip10.setRotationPoint(0.2116F, -0.0739F, 11.2227F);
+		setRotationAngle(strip10, -0.6981F, -0.7854F, -0.3491F);
+		strip9.addChild(strip10);
+		strip10.cubeList.add(new ModelBox(strip10, 2, 48, -1.0F, -0.5F, -1.0F, 2, 2, 12, 0.0F, false));
+
+		strip11 = new ModelRenderer(this);
+		strip11.setRotationPoint(-0.2968F, 1.3778F, 10.9551F);
+		setRotationAngle(strip11, -0.6981F, -1.7453F, -2.0944F);
+		strip10.addChild(strip11);
+		strip11.cubeList.add(new ModelBox(strip11, 2, 48, -1.0F, -0.5F, -1.0F, 2, 2, 12, 0.0F, false));
+
+//		strip12 = new ModelRenderer(this);
+//		strip12.setRotationPoint(0.7131F, 0.8792F, 10.7107F);
+//		setRotationAngle(strip12, -0.6109F, 0.4363F, 1.1345F);
+//		strip11.addChild(strip12);
+//		strip12.cubeList.add(new ModelBox(strip12, 2, 48, -1.0F, -0.5F, -1.0F, 2, 2, 12, 0.0F, false));
 	}
 
 	@Override
 	public void render(Entity entityIn, float limbSwing, float limbSwingAmount, float ageInTicks, float netHeadYaw,
-			float headPitch, float scale) {
+					   float headPitch, float scale) {
 		float off = (float) (MathHelper.cos((float) (0.1*ageInTicks))*0.1);
 
-		 head.offsetY = off;
-		 body.offsetY = off;
-		 leftleg.offsetY = off;
-		 rightleg.offsetY = off;
-		 leftarm.offsetY = off;
-		 rightarm.offsetY =off;
-		 extra.offsetY = off;
-		    
-	    head.rotateAngleX = headPitch * 0.017453292F;
-	    head.rotateAngleY = netHeadYaw * 0.017453292F;
-	    
-	    extra.rotateAngleX = ageInTicks*2;
-//	    extra.rotateAngleY = ageInTicks*3;
-		
+		head.   offsetY = off;
+		body.   offsetY = off;
+		strips. offsetY = off;
+		strip2. offsetY += off*0.5f;
+		strip3. offsetY -= off*0.5f;
+		strip4. offsetY -= off*0.5f;
+		strip5. offsetY += off*0.5f;
+		strip6. offsetY += off*0.5f;
+		strip7. offsetY += off*0.5f;
+		strip8. offsetY -= off*0.5f;
+		strip9. offsetY -= off*0.5f;
+		strip10.offsetY += off*0.5f;
+//		strip12.offsetY += off*0.5f;
+
+		head.rotateAngleX = headPitch * 0.017453292F;
+		head.rotateAngleY = netHeadYaw * 0.017453292F;
+
 		head.render(scale);
 		body.render(scale);
-		leftarm.render(scale);
-		rightarm.render(scale);
-		leftleg.render(scale);
-		rightleg.render(scale);
-		extra.render(scale);
-		
-		
-		
+
+
 	}
 	public void setRotationAngle(ModelRenderer modelRenderer, float x, float y, float z) {
 		modelRenderer.rotateAngleX = x;
 		modelRenderer.rotateAngleY = y;
 		modelRenderer.rotateAngleZ = z;
 	}
+
 	@Override
-	public void setRotationAngles(float limbSwing, float limbSwingAmount, float rotateFloat, float rotateYaw,
-			float rotatePitch, float scale, Entity entity, float power, float speed) {
-		
+	public void setRotationAngles(float limbSwing, float limbSwingAmount, float rotateFloat, float rotateYaw, float rotatePitch, float scale, Entity entity, float power, float speed) {
+
 	}
 
 	@Override
-	public void setPunch(float limbSwing, float limbSwingAmount, float ticks, float rotateYaw, float rotatePitch,
-			float scale, Entity entity, float power, float speed) {
-		
+	public void setPunch(float limbSwing, float limbSwingAmount, float rotateFloat, float rotateYaw, float rotatePitch, float scale, Entity entity, float power, float speed) {
+
 	}
 
 	@Override
 	public void doHandRender(float x, float y, float z, float scale, float alpha) {
-		
+
+	}
+
+	@Override
+	public void effect(Entity entityIn, float limbSwing, float limbSwingAmount, float ageInTicks, float netHeadYaw, float headPitch, float scale) {
+
+	}
+
+	@Override
+	public void extraEffect(Entity entityIn, float limbSwing, float limbSwingAmount, float ageInTicks, float netHeadYaw, float headPitch, float scale) {
+		strips.render(scale);
 	}
 
 	@Override
 	public void setPosition() {
-		GlStateManager.translate(0.5F, -1.0F, 0.75F);		
+		GlStateManager.translate(0.8F, -0.75F, -0.7F);
 	}
-
-	@Override
-	public void effect(Entity entityIn, float limbSwing, float limbSwingAmount, float ageInTicks, float netHeadYaw,
-			float headPitch, float scale) {
-		float rf1 = MathHelper.nextFloat(new Random(), -1, 1);
-		float rf2 = MathHelper.nextFloat(new Random(), -1, 1);
-		float rf3 = MathHelper.nextFloat(new Random(), -1, 1);
-		Vec3d vec = new Vec3d(rf1, rf2, rf3);
-		Vec3d shootPoint = HAMathHelper.getPostionRelative2D(entityIn, -0.55f, -0.6f);
-		Vec3d forward = entityIn.getLookVec();
-		for(int i=0;i<3;i++) {
-			Minecraft.getMinecraft().effectRenderer.spawnEffectParticle(ConfigHuaji.Stands.useHuajiSplash?
-					EnumHuajiPraticle.HUAJISPLASH.getId():EnumHuajiPraticle.EMERALD_SPLAH.getId(), 
-					entityIn.posX+shootPoint.x+rf2/5, entityIn.posY+2.2f+rf3/5, entityIn.posZ+shootPoint.z+rf1/5,
-					forward.x/2 + rf1/5,forward.y/2 + rf2/5,forward.z/2 + rf3/5);
-		}
-		if(rf1>0.9) {
-			Minecraft.getMinecraft().effectRenderer.spawnEffectParticle(EnumParticleTypes.EXPLOSION_NORMAL.getParticleID(), 
-					entityIn.posX+shootPoint.x+rf2/5, entityIn.posY+2.2f+rf3/5, entityIn.posZ+shootPoint.z+rf1/5,
-					forward.x/2 + rf1/5,forward.y/2 + rf2/5,forward.z/2 + rf3/5);
-		}
-	}
-
-	@Override
-	public void extraEffect(Entity entityIn, float limbSwing, float limbSwingAmount,
-			float ageInTicks, float netHeadYaw,float headPitch, float scale) {
-		
-	}
-
-	
-
 }

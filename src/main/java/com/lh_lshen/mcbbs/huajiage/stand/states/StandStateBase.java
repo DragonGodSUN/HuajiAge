@@ -1,6 +1,11 @@
 package com.lh_lshen.mcbbs.huajiage.stand.states;
 
 import com.lh_lshen.mcbbs.huajiage.api.IStandState;
+import com.lh_lshen.mcbbs.huajiage.config.ConfigHuaji;
+import com.lh_lshen.mcbbs.huajiage.potion.PotionLoader;
+import net.minecraft.entity.EntityLivingBase;
+import net.minecraft.init.MobEffects;
+import net.minecraft.potion.PotionEffect;
 
 public abstract class StandStateBase implements IStandState {
     private String stand;
@@ -49,5 +54,15 @@ public abstract class StandStateBase implements IStandState {
 
     public void setSoundLoop(boolean soundLoop) {
         this.soundLoop = soundLoop;
+    }
+
+    @Override
+    public void doTaskOutOfTime(EntityLivingBase user) {
+        user.addPotionEffect(new PotionEffect(PotionLoader.potionStand , 5*20  ));
+        user.addPotionEffect(new PotionEffect(MobEffects.SLOWNESS , 5*20, 1 ));
+        user.addPotionEffect(new PotionEffect(MobEffects.HUNGER , 5*20 , ConfigHuaji.Stands.allowStandPunish? 24 : 49 ));
+        if(ConfigHuaji.Stands.allowStandPunish) {
+            user.addPotionEffect(new PotionEffect(MobEffects.WITHER , 5*20 , 1 ));
+        }
     }
 }

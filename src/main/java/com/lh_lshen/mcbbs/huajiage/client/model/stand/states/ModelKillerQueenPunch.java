@@ -80,14 +80,14 @@ public class ModelKillerQueenPunch extends ModelStandBase {
 		cloth1.cubeList.add(new ModelBox(cloth1, 0, 4, -1.0F, -2.5F, -0.5F, 2, 3, 1, 0.0F, false));
 
 		cloth2 = new ModelRenderer(this);
-		cloth2.setRotationPoint(0.0F, 9.9128F, 0.9962F);
-		setRotationAngle(cloth2, 0.1116F, 0.0F, 0.0F);
+		cloth2.setRotationPoint(0.0F, 10.9128F, 0.9962F);
+		setRotationAngle(cloth2, 0.6352F, 0.0F, 0.0F);
 		cloth.addChild(cloth2);
 		cloth2.cubeList.add(new ModelBox(cloth2, 42, 30, -4.5F, 0.0F, 1.0F, 9, 5, 1, 0.0F, false));
 
 		cloth3 = new ModelRenderer(this);
 		cloth3.setRotationPoint(-3.0F, 10.9128F, 0.9962F);
-		setRotationAngle(cloth3, -0.063F, 0.0873F, 0.4364F);
+		setRotationAngle(cloth3, -0.063F, 0.0873F, 0.6109F);
 		cloth.addChild(cloth3);
 		cloth3.cubeList.add(new ModelBox(cloth3, 46, 49, -2.0F, -0.4128F, -4.0F, 1, 5, 6, 0.0F, false));
 
@@ -135,26 +135,26 @@ public class ModelKillerQueenPunch extends ModelStandBase {
 		head.cubeList.add(new ModelBox(head, 54, 44, -3.5F, -9.0F, -3.0F, 1, 2, 5, 0.0F, false));
 
 		leftleg = new ModelRenderer(this);
-		leftleg.setRotationPoint(2.0F, 10.0F, 3.0F);
-		setRotationAngle(leftleg, -0.2876F, -0.2247F, -0.3468F);
-		leftleg.cubeList.add(new ModelBox(leftleg, 37, 37, -2.0F, 0.0F, -3.5F, 5, 7, 5, 0.0F, false));
+		leftleg.setRotationPoint(2.0F, 11.0F, 3.0F);
+		setRotationAngle(leftleg, -0.2003F, -0.0502F, -0.2595F);
+		leftleg.cubeList.add(new ModelBox(leftleg, 37, 37, -2.0F, -2.0F, -3.5F, 5, 7, 5, 0.0F, false));
 
 		legdownl = new ModelRenderer(this);
-		legdownl.setRotationPoint(0.8652F, 10.1324F, 2.1296F);
-		setRotationAngle(legdownl, 0.8489F, -0.0501F, 0.0259F);
+		legdownl.setRotationPoint(0.1482F, 6.2009F, -0.5752F);
+		setRotationAngle(legdownl, 0.6109F, 0.0F, 0.0F);
 		leftleg.addChild(legdownl);
-		legdownl.cubeList.add(new ModelBox(legdownl, 34, 8, -2.3718F, -5.3532F, -0.7494F, 4, 9, 5, 0.0F, false));
+		legdownl.cubeList.add(new ModelBox(legdownl, 34, 8, -1.6482F, -1.5F, -1.5F, 4, 9, 5, 0.0F, false));
 
 		rightleg = new ModelRenderer(this);
-		rightleg.setRotationPoint(-2.0F, 9.0F, 4.0F);
-		setRotationAngle(rightleg, -0.3635F, 0.1631F, 0.0737F);
-		rightleg.cubeList.add(new ModelBox(rightleg, 0, 34, -3.0F, 1.0F, -3.5F, 5, 7, 5, 0.0F, false));
+		rightleg.setRotationPoint(-2.0F, 10.0F, 4.0F);
+		setRotationAngle(rightleg, -0.538F, -0.0114F, 0.2482F);
+		rightleg.cubeList.add(new ModelBox(rightleg, 0, 34, -3.0F, 0.0F, -3.5F, 5, 7, 5, 0.0F, false));
 
 		legdownr = new ModelRenderer(this);
-		legdownr.setRotationPoint(-0.8652F, 10.2875F, 1.899F);
-		setRotationAngle(legdownr, 0.6888F, -0.0145F, 0.1487F);
+		legdownr.setRotationPoint(0.2077F, 3.6937F, 3.8524F);
+		setRotationAngle(legdownr, 0.7854F, 0.0F, 0.0F);
 		rightleg.addChild(legdownr);
-		legdownr.cubeList.add(new ModelBox(legdownr, 24, 27, -2.6475F, -4.2022F, -2.8008F, 4, 9, 5, 0.0F, false));
+		legdownr.cubeList.add(new ModelBox(legdownr, 24, 27, -2.7077F, -1.5F, -7.5F, 4, 9, 5, 0.0F, false));
 
 		hands_r = new ModelRenderer(this);
 		hands_r.setRotationPoint(0.0F, 0.0F, 0.0F);
@@ -337,6 +337,6 @@ public class ModelKillerQueenPunch extends ModelStandBase {
 
 	@Override
 	public void setPosition() {
-		GlStateManager.translate(0.0F, -0.1F, -0.75F);
+		GlStateManager.translate(0.0F, 0.0F, -0.9F);
 	}
 }

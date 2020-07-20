@@ -1,6 +1,5 @@
 package com.lh_lshen.mcbbs.huajiage.stand.states.punch;
 
-import com.lh_lshen.mcbbs.huajiage.stand.StandLoader;
 import com.lh_lshen.mcbbs.huajiage.stand.StandUtil;
 import com.lh_lshen.mcbbs.huajiage.stand.helper.StandPowerHelper;
 import com.lh_lshen.mcbbs.huajiage.stand.instance.StandBase;
@@ -23,4 +22,5 @@ public class StateKillerQueenPunch extends StandStateBase {
         StandPowerHelper.rangePunchAttack(user,45,type.getDamage()*(1+(float)(stage/2)),2);
         }
     }
+
 }

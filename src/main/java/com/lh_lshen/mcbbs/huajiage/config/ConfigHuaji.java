@@ -65,7 +65,7 @@ public class ConfigHuaji {
 
 		@Config.Comment("To glow the stand users who idle its stand")
 		@LangKey("config.huaji_age.huaji_config.stand.punish.glow")
-		public boolean allowStandGlow=true;
+		public boolean allowStandGlow=false;
 		
 		@Config.Comment("Need some tips to notice you how to use STANDs?")
 		@LangKey("config.huaji_age.huaji_config.stand.tip")

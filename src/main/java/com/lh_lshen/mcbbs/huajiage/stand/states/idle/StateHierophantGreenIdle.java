@@ -23,16 +23,17 @@ public class StateHierophantGreenIdle extends StandStateBase {
 
     @Override
     public void doTask(EntityLivingBase user) {
-        List<PotionEffect> effects = Lists.newArrayList();
-        if(user.isPotionActive(PotionLoader.potionStand)&&user.getActivePotionEffect(PotionLoader.potionStand).getDuration()<10){
-            effects.add(new PotionEffect(PotionLoader.potionStand,5*20));
-            effects.add(new PotionEffect(MobEffects.HUNGER,5*20,5));
-            if(ConfigHuaji.Stands.allowStandGlow){
-                effects.add(new PotionEffect(MobEffects.GLOWING,5*20));
-            }
-            StandPowerHelper.potionEffect(user,effects);
-        }
-            StandPowerHelper.MPCharge(user,StandLoader.HIEROPHANT_GREEN.getCharge());
+        StandPowerHelper.MPCharge(user,StandLoader.HIEROPHANT_GREEN.getCharge());
     }
 
+    @Override
+    public void doTaskOutOfTime(EntityLivingBase user) {
+        List<PotionEffect> effects = Lists.newArrayList();
+        effects.add(new PotionEffect(PotionLoader.potionStand,5*20));
+        effects.add(new PotionEffect(MobEffects.HUNGER,5*20,5));
+        if(ConfigHuaji.Stands.allowStandGlow){
+            effects.add(new PotionEffect(MobEffects.GLOWING,5*20));
+        }
+        StandPowerHelper.potionEffect(user,effects);
+    }
 }

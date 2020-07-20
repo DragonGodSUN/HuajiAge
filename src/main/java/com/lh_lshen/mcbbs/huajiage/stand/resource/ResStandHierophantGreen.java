@@ -1,15 +1,13 @@
 package com.lh_lshen.mcbbs.huajiage.stand.resource;
 
-import java.util.List;
-import java.util.Random;
-
 import com.lh_lshen.mcbbs.huajiage.client.model.stand.ModelHierophantGreen;
 import com.lh_lshen.mcbbs.huajiage.client.model.stand.ModelStandBase;
+import com.lh_lshen.mcbbs.huajiage.client.model.stand.states.ModelHierophantGreenIdle;
 import com.lh_lshen.mcbbs.huajiage.init.HuajiConstant;
 import com.lh_lshen.mcbbs.huajiage.init.sound.HuajiMovingSound;
 import com.lh_lshen.mcbbs.huajiage.init.sound.HuajiSoundPlayer;
 import com.lh_lshen.mcbbs.huajiage.init.sound.SoundStand;
-
+import com.lh_lshen.mcbbs.huajiage.stand.StandUtil;
 import net.minecraft.client.Minecraft;
 import net.minecraft.client.renderer.OpenGlHelper;
 import net.minecraft.entity.Entity;
@@ -19,6 +17,9 @@ import net.minecraft.util.ResourceLocation;
 import net.minecraft.util.SoundCategory;
 import net.minecraft.util.SoundEvent;
 import net.minecraft.util.math.MathHelper;
+
+import java.util.List;
+import java.util.Random;
 
 public class ResStandHierophantGreen extends StandRes{
 	public ResStandHierophantGreen() {
@@ -49,7 +50,7 @@ public class ResStandHierophantGreen extends StandRes{
 	@Override
 	public void doStandRender(EntityLivingBase entity) {
 		ResourceLocation STAND_TEX = getTexture();
-		ModelStandBase model = getStandModel();
+		ModelStandBase model = getStandModelByData(entity);
 		Minecraft.getMinecraft().getTextureManager().bindTexture(STAND_TEX);
 		OpenGlHelper.setLightmapTextureCoords(OpenGlHelper.lightmapTexUnit, 240f, 240f);
 		model.effect(entity, 0, 0, entity.ticksExisted, 0, 0, 1f);
@@ -61,6 +62,11 @@ public class ResStandHierophantGreen extends StandRes{
 	}
 	@Override
 	public ModelStandBase getStandModelByData(EntityLivingBase user) {
+		String state = StandUtil.getStandState(user);
+		switch (state){
+			case "default":return new ModelHierophantGreen();
+			case "idle":return new ModelHierophantGreenIdle();
+		}
 		return new ModelHierophantGreen();
 	}
 

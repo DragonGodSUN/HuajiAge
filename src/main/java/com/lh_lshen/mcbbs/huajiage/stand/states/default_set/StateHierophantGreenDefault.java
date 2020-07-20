@@ -41,4 +41,9 @@ public class StateHierophantGreenDefault extends StandStateBase {
             }
         }
     }
+
+    @Override
+    public void doTaskOutOfTime(EntityLivingBase user) {
+        super.doTaskOutOfTime(user);
+    }
 }

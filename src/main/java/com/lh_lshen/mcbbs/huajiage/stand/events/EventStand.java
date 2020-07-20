@@ -17,12 +17,10 @@ import com.lh_lshen.mcbbs.huajiage.item.ItemLoader;
 import com.lh_lshen.mcbbs.huajiage.network.StandNetWorkHandler;
 import com.lh_lshen.mcbbs.huajiage.network.messages.MessageParticleGenerator;
 import com.lh_lshen.mcbbs.huajiage.potion.PotionLoader;
-import com.lh_lshen.mcbbs.huajiage.stand.EnumStandtype;
-import com.lh_lshen.mcbbs.huajiage.stand.StandClientUtil;
-import com.lh_lshen.mcbbs.huajiage.stand.StandLoader;
-import com.lh_lshen.mcbbs.huajiage.stand.StandUtil;
+import com.lh_lshen.mcbbs.huajiage.stand.*;
 import com.lh_lshen.mcbbs.huajiage.stand.instance.StandBase;
 import com.lh_lshen.mcbbs.huajiage.stand.messages.SyncExposedStandDataMessage;
+import com.lh_lshen.mcbbs.huajiage.stand.states.StandStateBase;
 import com.lh_lshen.mcbbs.huajiage.util.HAMathHelper;
 import com.lh_lshen.mcbbs.huajiage.util.NBTHelper;
 import com.lh_lshen.mcbbs.huajiage.util.ServerUtil;
@@ -118,17 +116,18 @@ public class EventStand {
 		 EntityLivingBase stand_owner =evt.getEntityLiving();
 		 IExposedData data = stand_owner.getCapability(CapabilityLoader.EXPOSED_DATA, null);
 		 if(data!=null && !data.getStand().equals(StandLoader.EMPTY)) {
-			 boolean flag = data.isTriggered();
-
-		 if(flag&&!stand_owner.world.isRemote) {
-			 if( !stand_owner.isPotionActive(PotionLoader.potionStand) || stand_owner.isPotionActive(PotionLoader.potionStand)&&stand_owner.getActivePotionEffect(PotionLoader.potionStand).getDuration()<=5) {
-					 stand_owner.addPotionEffect(new PotionEffect(PotionLoader.potionStand , 5*20  ));
-					 stand_owner.addPotionEffect(new PotionEffect(MobEffects.SLOWNESS , 5*20, 1 ));
-					 stand_owner.addPotionEffect(new PotionEffect(MobEffects.HUNGER , 5*20 , ConfigHuaji.Stands.allowStandPunish? 24 : 49 ));
-					 if(ConfigHuaji.Stands.allowStandPunish) {
-					 stand_owner.addPotionEffect(new PotionEffect(MobEffects.WITHER , 5*20 , 1 ));
+		 	StandStateBase state_base = StandStates.getStandState(data.getStand(),data.getState());
+			 boolean flag = data.isTriggered()&&state_base!=null;
+			 if(flag&&!stand_owner.world.isRemote) {
+				 if( !stand_owner.isPotionActive(PotionLoader.potionStand) || stand_owner.isPotionActive(PotionLoader.potionStand)&&stand_owner.getActivePotionEffect(PotionLoader.potionStand).getDuration()<=5) {
+					 state_base.doTaskOutOfTime(stand_owner);
 					 }
-				 	}
+//					 stand_owner.addPotionEffect(new PotionEffect(PotionLoader.potionStand , 5*20  ));
+//					 stand_owner.addPotionEffect(new PotionEffect(MobEffects.SLOWNESS , 5*20, 1 ));
+//					 stand_owner.addPotionEffect(new PotionEffect(MobEffects.HUNGER , 5*20 , ConfigHuaji.Stands.allowStandPunish? 24 : 49 ));
+//					 if(ConfigHuaji.Stands.allowStandPunish) {
+//					 stand_owner.addPotionEffect(new PotionEffect(MobEffects.WITHER , 5*20 , 1 ));
+//					 }
 				 }
 		  if(!flag&&!stand_owner.world.isRemote) {
 			    if(stand_owner.isPotionActive(PotionLoader.potionStand)) {
