@@ -11,6 +11,7 @@ import net.minecraft.util.ResourceLocation;
 
 public class StandClientUtil {
 //	@SideOnly(Side.CLIENT)
+
 	public static void standUpSound(Minecraft mc ,Entity user ,String stand_type ) 
 	{
 //		switch(stand_type)

@@ -21,6 +21,10 @@ public class StateStarPlatinumIdle extends StandStateBase {
         super(stand, stateName, isHandPlay, soundLoop);
     }
 
+    public StateStarPlatinumIdle(String stand, String stateName, boolean isHandPlay, boolean soundLoop, int stage) {
+        super(stand, stateName, isHandPlay, soundLoop, stage);
+    }
+
     @Override
     public void doTask(EntityLivingBase user) {
         List<PotionEffect> effects = Lists.newArrayList();

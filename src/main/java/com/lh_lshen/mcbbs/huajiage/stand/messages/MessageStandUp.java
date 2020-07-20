@@ -1,23 +1,13 @@
 package com.lh_lshen.mcbbs.huajiage.stand.messages;
 
-import java.util.UUID;
-
 import com.lh_lshen.mcbbs.huajiage.capability.*;
-import com.lh_lshen.mcbbs.huajiage.item.ItemHeroBow;
-import com.lh_lshen.mcbbs.huajiage.item.ItemLoader;
-import com.lh_lshen.mcbbs.huajiage.network.HuajiAgeNetWorkHandler;
 import com.lh_lshen.mcbbs.huajiage.potion.PotionLoader;
-import com.lh_lshen.mcbbs.huajiage.stand.EnumStandtype;
 import com.lh_lshen.mcbbs.huajiage.stand.StandLoader;
 import com.lh_lshen.mcbbs.huajiage.stand.StandUtil;
 import com.lh_lshen.mcbbs.huajiage.stand.entity.EntityStandBase;
-import com.lh_lshen.mcbbs.huajiage.stand.events.EventStand;
 import com.lh_lshen.mcbbs.huajiage.stand.instance.StandBase;
-import com.lh_lshen.mcbbs.huajiage.util.ServerUtil;
-
 import io.netty.buffer.ByteBuf;
 import net.minecraft.entity.player.EntityPlayerMP;
-import net.minecraft.item.ItemStack;
 import net.minecraft.potion.PotionEffect;
 import net.minecraft.util.text.TextComponentTranslation;
 import net.minecraftforge.fml.common.FMLCommonHandler;
@@ -53,6 +43,7 @@ public class MessageStandUp implements IMessage {
         	StandHandler standHandler = player.getCapability(CapabilityStandHandler.STAND_TYPE, null);
         	String standType = standHandler.getStand();
         	StandBase stand = StandLoader.getStand(standType);
+        	int stage = StandUtil.getStandStage(player);
         	IExposedData data = player.getCapability(CapabilityLoader.EXPOSED_DATA, null);
         	StandChargeHandler charge = StandUtil.getChargeHandler(player);
         	if(stand==null || data==null || charge==null)
@@ -66,6 +57,7 @@ public class MessageStandUp implements IMessage {
 						charge.cost(stand.getCost()/10);
 						player.addPotionEffect(new PotionEffect(PotionLoader.potionStand,stand.getDuration()));
 						data.setStand(standType);
+						data.setStage(stage);
 						data.setTrigger(true);
 						data.setHandDisplay(stand.isHandDisplay());
 //					    ServerUtil.sendPacketToNearbyPlayersStand(player, new SyncExposedStandDataMessage(standType, true, player.getName()));

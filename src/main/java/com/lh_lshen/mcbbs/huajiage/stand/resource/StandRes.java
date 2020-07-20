@@ -26,6 +26,7 @@ public class StandRes implements IStandRes {
 		return null;
 	}
 
+	@Deprecated
 	@Override
 	public void doSoundPlay(Minecraft mc, Entity user) {
 

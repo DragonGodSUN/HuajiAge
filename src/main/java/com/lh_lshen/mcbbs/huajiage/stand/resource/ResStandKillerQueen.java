@@ -44,7 +44,7 @@ public class ResStandKillerQueen extends StandRes{
 		if(index<size) {
 			SoundEvent sound = sounds.get(index);
 			mc.getSoundHandler().playSound(HuajiSoundPlayer.getMovingSound(entity, sound, SoundCategory.NEUTRAL, 0.6f));
-			HuajiMovingSound hits = new HuajiMovingSound(user, SoundEvents.ENTITY_PLAYER_ATTACK_STRONG, SoundCategory.NEUTRAL);
+			HuajiMovingSound hits = new HuajiMovingSound(entity, SoundEvents.ENTITY_PLAYER_ATTACK_STRONG, SoundCategory.NEUTRAL);
 			hits.setVolume(0.7f);
 			hits.setLoop();
 			mc.getSoundHandler().playSound(hits);

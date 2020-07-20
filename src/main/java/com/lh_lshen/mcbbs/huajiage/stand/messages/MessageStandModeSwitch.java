@@ -6,6 +6,7 @@ import com.lh_lshen.mcbbs.huajiage.stand.StandUtil;
 import com.lh_lshen.mcbbs.huajiage.stand.instance.StandBase;
 import com.lh_lshen.mcbbs.huajiage.stand.states.StandStateBase;
 import io.netty.buffer.ByteBuf;
+import net.minecraft.entity.player.EntityPlayer;
 import net.minecraft.entity.player.EntityPlayerMP;
 import net.minecraft.init.SoundEvents;
 import net.minecraft.network.play.server.SPacketSoundEffect;
@@ -50,14 +51,15 @@ public class MessageStandModeSwitch implements IMessage {
 					if(flag) {
 						if(state==null){
 							player.sendMessage(new TextComponentTranslation("message.huajiage.stand_mode.empty_null"));
+							return;
 						}
-
-						int index = states.indexOf(state)+1;
-						if((index+1)<=states.size()){
-							StandUtil.setStandState(player,states.get(index));
-						}else {
-							StandUtil.setStandState(player,states.get(0));
-						}
+//						int index = states.indexOf(state)+1;
+//						if((index+1)<=states.size()){
+//							StandUtil.setStandState(player,states.get(index));
+//						}else {
+//							StandUtil.setStandState(player,states.get(0));
+//						}
+						switchState(player,data,stand,1);
 
 						String state_new = StandUtil.getStandState(player);
 						StandStateBase stateBase = StandStates.getStandState(stand.getName(),state_new);
@@ -78,4 +80,25 @@ public class MessageStandModeSwitch implements IMessage {
 			return null;
         }
     }
+
+    private static void switchState(EntityPlayer player, IExposedData data, StandBase stand, int i){
+		String state = StandUtil.getStandState(player);
+		List<String> states = stand.getStates();
+		if(states!=null&&!state.isEmpty()){
+			int index = states.indexOf(state)+i;
+			if((index+1)<=states.size()){
+				StandStateBase base = StandStates.getStandState(stand.getName(),states.get(index));
+				if (base!=null) {
+					if(base.getStage()<=data.getStage()){
+						StandUtil.setStandState(player,states.get(index));
+					}else{
+						switchState(player,data,stand,i+1);
+					}
+//					player.sendMessage(new TextComponentString(base.getStage()+"-"+data.getStage()));
+				}
+			}else {
+					StandUtil.setStandState(player,states.get(0));
+			}
+		}
+	}
 }

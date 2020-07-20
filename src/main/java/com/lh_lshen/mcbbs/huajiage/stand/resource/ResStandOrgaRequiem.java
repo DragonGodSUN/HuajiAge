@@ -1,15 +1,11 @@
 package com.lh_lshen.mcbbs.huajiage.stand.resource;
 
-import java.util.List;
-import java.util.Random;
-
 import com.lh_lshen.mcbbs.huajiage.client.model.stand.ModelOrgaRequiem;
 import com.lh_lshen.mcbbs.huajiage.client.model.stand.ModelStandBase;
 import com.lh_lshen.mcbbs.huajiage.init.HuajiConstant;
 import com.lh_lshen.mcbbs.huajiage.init.sound.HuajiMovingSound;
 import com.lh_lshen.mcbbs.huajiage.init.sound.HuajiSoundPlayer;
 import com.lh_lshen.mcbbs.huajiage.init.sound.SoundStand;
-
 import net.minecraft.client.Minecraft;
 import net.minecraft.client.renderer.OpenGlHelper;
 import net.minecraft.entity.Entity;
@@ -19,6 +15,9 @@ import net.minecraft.util.ResourceLocation;
 import net.minecraft.util.SoundCategory;
 import net.minecraft.util.SoundEvent;
 import net.minecraft.util.math.MathHelper;
+
+import java.util.List;
+import java.util.Random;
 
 public class ResStandOrgaRequiem extends StandRes{
 	public ResStandOrgaRequiem() {
@@ -32,14 +31,14 @@ public class ResStandOrgaRequiem extends StandRes{
 	}
 
 	@Override
-	public void doSoundPlay(Minecraft mc ,Entity user) {
+	public void doSoundPlay(Minecraft mc ,Entity entity,EntityLivingBase user) {
 		List<SoundEvent> sounds = SoundStand.ORGA_SOUND_LIST;
 		int size = sounds.size();
 		int index = (int) MathHelper.nextFloat(new Random(), 0, size);
 		if(index<size) {
 			SoundEvent sound = sounds.get(index);
-			mc.getSoundHandler().playSound(HuajiSoundPlayer.getMovingSound(user, sound, SoundCategory.NEUTRAL, 0.6f));
-			HuajiMovingSound hits = new HuajiMovingSound(user, SoundEvents.ENTITY_PARROT_FLY, SoundCategory.NEUTRAL);
+			mc.getSoundHandler().playSound(HuajiSoundPlayer.getMovingSound(entity, sound, SoundCategory.NEUTRAL, 0.6f));
+			HuajiMovingSound hits = new HuajiMovingSound(entity, SoundEvents.ENTITY_PARROT_FLY, SoundCategory.NEUTRAL);
 			hits.setVolume(1.0f);
 			hits.setLoop();
 			mc.getSoundHandler().playSound(hits);

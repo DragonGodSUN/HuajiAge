@@ -1,13 +1,9 @@
 package com.lh_lshen.mcbbs.huajiage.stand.instance;
 
-import java.util.List;
-import java.util.Random;
-
 import com.lh_lshen.mcbbs.huajiage.capability.CapabilityExposedData;
 import com.lh_lshen.mcbbs.huajiage.entity.EntityEmeraldBullet;
 import com.lh_lshen.mcbbs.huajiage.init.sound.SoundLoader;
 import com.lh_lshen.mcbbs.huajiage.stand.StandLoader;
-import com.lh_lshen.mcbbs.huajiage.stand.StandUtil;
 import com.lh_lshen.mcbbs.huajiage.stand.messages.MessageDoStandPowerClient;
 import com.lh_lshen.mcbbs.huajiage.stand.resource.StandRes;
 import com.lh_lshen.mcbbs.huajiage.stand.resource.StandResLoader;
@@ -16,13 +12,15 @@ import com.lh_lshen.mcbbs.huajiage.stand.states.idle.StateHierophantGreenIdle;
 import com.lh_lshen.mcbbs.huajiage.util.HAMathHelper;
 import com.lh_lshen.mcbbs.huajiage.util.NBTHelper;
 import com.lh_lshen.mcbbs.huajiage.util.ServerUtil;
-
 import net.minecraft.client.multiplayer.WorldClient;
 import net.minecraft.entity.EntityLivingBase;
 import net.minecraft.entity.player.EntityPlayer;
 import net.minecraft.util.SoundCategory;
 import net.minecraft.util.math.MathHelper;
 import net.minecraft.util.math.Vec3d;
+
+import java.util.List;
+import java.util.Random;
 
 public class StandHierophantGreen extends StandBase {
 	
@@ -33,7 +31,7 @@ public class StandHierophantGreen extends StandBase {
 			String texPath,String localName, boolean displayHand) {
 			super(name, speed, damage, duration, distance, cost, charge, texPath, localName, displayHand);
 			initState(new StateHierophantGreenDefault(name,CapabilityExposedData.States.DEFAULT.getName(),isHandDisplay(),true));
-			addState(CapabilityExposedData.States.IDLE.getName(),new StateHierophantGreenIdle(name,CapabilityExposedData.States.IDLE.getName(),false,false));
+			addState(CapabilityExposedData.States.IDLE.getName(),new StateHierophantGreenIdle(name,CapabilityExposedData.States.IDLE.getName(),true,false));
 	}
 	@Override
 	public StandRes getBindingRes() {

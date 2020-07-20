@@ -2,29 +2,13 @@ package com.lh_lshen.mcbbs.huajiage.init.events;
 //A test structure leaned from @Tartaric_Acid and Sonwnee, follow the MIT License
 //Learn More : https://github.com/TartaricAcid/TouhouLittleMaid
 import com.lh_lshen.mcbbs.huajiage.HuajiAge;
-import com.lh_lshen.mcbbs.huajiage.capability.CapabilityExposedData;
-import com.lh_lshen.mcbbs.huajiage.capability.CapabilityLoader;
-import com.lh_lshen.mcbbs.huajiage.capability.CapabilityStandBuffHandler;
-import com.lh_lshen.mcbbs.huajiage.capability.CapabilityStandChargeHandler;
-import com.lh_lshen.mcbbs.huajiage.capability.CapabilityStandHandler;
-import com.lh_lshen.mcbbs.huajiage.capability.CapabilityStandStageHandler;
-import com.lh_lshen.mcbbs.huajiage.capability.IExposedData;
-import com.lh_lshen.mcbbs.huajiage.capability.StandBuffHandler;
-import com.lh_lshen.mcbbs.huajiage.capability.StandChargeHandler;
-import com.lh_lshen.mcbbs.huajiage.capability.StandHandler;
-import com.lh_lshen.mcbbs.huajiage.capability.StandStageHandler;
+import com.lh_lshen.mcbbs.huajiage.capability.*;
 import com.lh_lshen.mcbbs.huajiage.config.ConfigHuaji;
 import com.lh_lshen.mcbbs.huajiage.network.StandNetWorkHandler;
-import com.lh_lshen.mcbbs.huajiage.stand.EnumStandtype;
 import com.lh_lshen.mcbbs.huajiage.stand.StandUtil;
 import com.lh_lshen.mcbbs.huajiage.stand.instance.StandBase;
-import com.lh_lshen.mcbbs.huajiage.stand.messages.SyncExposedStandDataMessage;
-import com.lh_lshen.mcbbs.huajiage.stand.messages.SyncStandBuffMessage;
-import com.lh_lshen.mcbbs.huajiage.stand.messages.SyncStandChargeMessage;
-import com.lh_lshen.mcbbs.huajiage.stand.messages.SyncStandMessage;
-import com.lh_lshen.mcbbs.huajiage.stand.messages.SyncStandStageMessage;
+import com.lh_lshen.mcbbs.huajiage.stand.messages.*;
 import com.lh_lshen.mcbbs.huajiage.util.ServerUtil;
-
 import net.minecraft.entity.Entity;
 import net.minecraft.entity.player.EntityPlayer;
 import net.minecraft.entity.player.EntityPlayerMP;
@@ -172,8 +156,13 @@ public class EventPlayerCapability {
             
             if (player.hasCapability(CapabilityStandStageHandler.STAND_STAGE, null)) {
             	StandStageHandler stage = player.getCapability(CapabilityStandStageHandler.STAND_STAGE, null);
+                IExposedData data = player.getCapability(CapabilityLoader.EXPOSED_DATA, null);
                 if (stage != null && stage.isDirty()) {
                 	StandNetWorkHandler.HANDLER.sendTo(new SyncStandStageMessage(stage.getStage()), (EntityPlayerMP) player);
+                    if (data != null ) {
+                        data.setStage(stage.getStage());
+                        data.setDirty(true);
+                    }
                     stage.setDirty(false);
                 }
             }

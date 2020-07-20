@@ -7,6 +7,8 @@ public interface IStandState {
 
     String getStateName();
 
+    int getStage();
+
     boolean isSoundLoop();
 
     void doTask(EntityLivingBase user);

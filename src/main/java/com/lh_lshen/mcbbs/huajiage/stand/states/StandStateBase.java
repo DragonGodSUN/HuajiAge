@@ -10,6 +10,7 @@ import net.minecraft.potion.PotionEffect;
 public abstract class StandStateBase implements IStandState {
     private String stand;
     private String stateName;
+    private int stage;
     private boolean isHandPlay;
     private boolean soundLoop;
 
@@ -21,6 +22,15 @@ public abstract class StandStateBase implements IStandState {
         this.stateName = stateName;
         this.isHandPlay = isHandPlay;
         this.soundLoop = soundLoop;
+        this.stage = 0;
+    }
+
+    public StandStateBase(String stand, String stateName, boolean isHandPlay, boolean soundLoop, int stage) {
+        this.stand = stand;
+        this.stateName = stateName;
+        this.isHandPlay = isHandPlay;
+        this.soundLoop = soundLoop;
+        this.stage = stage;
     }
 
     public String getStand() {
@@ -33,6 +43,11 @@ public abstract class StandStateBase implements IStandState {
 
     public String getStateName() {
         return stateName;
+    }
+
+    @Override
+    public int getStage() {
+        return stage;
     }
 
     public void setStateName(String stateName) {
