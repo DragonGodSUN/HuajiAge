@@ -1,6 +1,5 @@
 package com.lh_lshen.mcbbs.huajiage.init.events;
 
-import com.lh_lshen.mcbbs.huajiage.capability.StandHandler;
 import com.lh_lshen.mcbbs.huajiage.config.ConfigHuaji;
 import com.lh_lshen.mcbbs.huajiage.init.HuajiConstant;
 import com.lh_lshen.mcbbs.huajiage.init.sound.HuajiSoundPlayer;
@@ -10,17 +9,11 @@ import com.lh_lshen.mcbbs.huajiage.item.ItemOrgaArmorBase;
 import com.lh_lshen.mcbbs.huajiage.network.HuajiAgeNetWorkHandler;
 import com.lh_lshen.mcbbs.huajiage.network.messages.MessageParticleGenerator;
 import com.lh_lshen.mcbbs.huajiage.potion.PotionLoader;
-import com.lh_lshen.mcbbs.huajiage.stand.StandLoader;
-import com.lh_lshen.mcbbs.huajiage.stand.StandUtil;
-import com.lh_lshen.mcbbs.huajiage.stand.instance.StandBase;
-import com.lh_lshen.mcbbs.huajiage.stand.instance.StandOrgaRequiem;
 import com.lh_lshen.mcbbs.huajiage.util.NBTHelper;
-
 import net.minecraft.client.Minecraft;
 import net.minecraft.entity.Entity;
 import net.minecraft.entity.EntityLivingBase;
 import net.minecraft.entity.player.EntityPlayer;
-import net.minecraft.entity.player.EntityPlayerMP;
 import net.minecraft.init.MobEffects;
 import net.minecraft.init.SoundEvents;
 import net.minecraft.inventory.EntityEquipmentSlot;
@@ -28,15 +21,14 @@ import net.minecraft.item.Item;
 import net.minecraft.item.ItemBucketMilk;
 import net.minecraft.item.ItemStack;
 import net.minecraft.potion.PotionEffect;
-import net.minecraft.server.MinecraftServer;
 import net.minecraft.util.DamageSource;
 import net.minecraft.util.EntityDamageSource;
 import net.minecraft.util.EnumParticleTypes;
 import net.minecraft.util.math.Vec3d;
 import net.minecraft.util.text.TextComponentTranslation;
 import net.minecraftforge.event.entity.living.LivingDeathEvent;
-import net.minecraftforge.event.entity.living.LivingHurtEvent;
 import net.minecraftforge.event.entity.living.LivingEvent.LivingUpdateEvent;
+import net.minecraftforge.event.entity.living.LivingHurtEvent;
 import net.minecraftforge.fml.common.eventhandler.SubscribeEvent;
 
 public class EventOrga {
@@ -61,7 +53,10 @@ public class EventOrga {
 		if(entity.isPotionActive(PotionLoader.potionFlowerHope)&&
 		((EntityPlayer)entity).inventory.hasItemStack(new ItemStack(ItemLoader.orgaRequiem))&&
 		NBTHelper.getEntityString(((EntityPlayer)entity), HuajiConstant.Tags.REQUIEM_OWNER).equals(((EntityPlayer)entity).getUniqueID().toString()))
-
+		{
+			entity.removePotionEffect(PotionLoader.potionFlowerHope);
+			entity.removePotionEffect(MobEffects.SLOWNESS);
+		}
 			if(entity.isPotionActive(PotionLoader.potionFlowerHope)&&entity.getActivePotionEffect(PotionLoader.potionFlowerHope).getDuration()==112*20-10 ||
 					!ConfigHuaji.Huaji.useOrgaFlower&&entity.isPotionActive(PotionLoader.potionFlowerHope)&&entity.getActivePotionEffect(PotionLoader.potionFlowerHope).getDuration()==80*20-10 )
 				{

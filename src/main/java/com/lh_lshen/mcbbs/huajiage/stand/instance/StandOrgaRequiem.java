@@ -1,22 +1,22 @@
 package com.lh_lshen.mcbbs.huajiage.stand.instance;
 
-import java.util.Random;
-
 import com.lh_lshen.mcbbs.huajiage.capability.CapabilityExposedData;
 import com.lh_lshen.mcbbs.huajiage.capability.CapabilityLoader;
 import com.lh_lshen.mcbbs.huajiage.capability.IExposedData;
 import com.lh_lshen.mcbbs.huajiage.item.ItemLoader;
 import com.lh_lshen.mcbbs.huajiage.potion.PotionLoader;
-import com.lh_lshen.mcbbs.huajiage.stand.StandUtil;
 import com.lh_lshen.mcbbs.huajiage.stand.resource.StandRes;
 import com.lh_lshen.mcbbs.huajiage.stand.resource.StandResLoader;
-
 import com.lh_lshen.mcbbs.huajiage.stand.states.default_set.StateOrgaRequiemDefault;
 import net.minecraft.client.multiplayer.WorldClient;
 import net.minecraft.entity.EntityLivingBase;
+import net.minecraft.entity.player.EntityPlayer;
 import net.minecraft.init.MobEffects;
+import net.minecraft.item.ItemStack;
 import net.minecraft.potion.PotionEffect;
 import net.minecraft.util.math.MathHelper;
+
+import java.util.Random;
 
 public class StandOrgaRequiem extends StandBase {
 	
@@ -44,9 +44,17 @@ public class StandOrgaRequiem extends StandBase {
 		double d = MathHelper.nextDouble(new Random(), 0, 1);
 		if(data!=null) {
 		data.setTrigger(true);
-		user.dropItem(ItemLoader.orgaHairKnife, 16);
-		if(d<0.3) {
-		user.dropItem(ItemLoader.blackCar, 1);
+		if(user instanceof EntityPlayer){
+			EntityPlayer p = (EntityPlayer) user;
+			p.inventory.addItemStackToInventory(new ItemStack(ItemLoader.orgaHairKnife, 16));
+			if (d < 0.3) {
+				p.inventory.addItemStackToInventory(new ItemStack(ItemLoader.blackCar, 1));
+			}
+		}else {
+			user.dropItem(ItemLoader.orgaHairKnife, 16);
+			if (d < 0.3) {
+				user.dropItem(ItemLoader.blackCar, 1);
+			}
 		}
 		user.addPotionEffect(new PotionEffect(PotionLoader.potionRequiem,600));
 		user.addPotionEffect(new PotionEffect(PotionLoader.potionStand,600));
