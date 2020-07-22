@@ -44,6 +44,11 @@ public class ConfigHuaji {
 		@LangKey("config.huaji_age.huaji_config.wave_knife_HUD_y")
 		@RangeDouble(min = 0, max = 1f)
 		public double WaveHUDy = 0.2f;
+
+		@Config.Comment("The Points Needed for Making Universe Star ")
+		@LangKey("config.huaji_age.huaji_config.point_universe_star")
+		@Config.RangeInt(min=10)
+		public int point_star = 81*9*3;
 		
 	}
 	public static class StandConfig{

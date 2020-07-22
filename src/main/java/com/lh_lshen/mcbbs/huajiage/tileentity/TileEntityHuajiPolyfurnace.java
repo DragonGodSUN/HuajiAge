@@ -1,18 +1,11 @@
 package com.lh_lshen.mcbbs.huajiage.tileentity;
 
-import java.util.Arrays;
-import java.util.List;
-import java.util.stream.Collectors;
-import java.util.stream.IntStream;
-
-import javax.annotation.Nullable;
-
 import com.lh_lshen.mcbbs.huajiage.block.BlockLoader;
 import com.lh_lshen.mcbbs.huajiage.capability.EnergyStore;
+import com.lh_lshen.mcbbs.huajiage.config.ConfigHuaji;
 import com.lh_lshen.mcbbs.huajiage.data.InvWrapperRestricted;
 import com.lh_lshen.mcbbs.huajiage.item.ItemLoader;
 import com.lh_lshen.mcbbs.huajiage.recipelist.HuajiPolyRecipeList;
-
 import net.minecraft.block.state.IBlockState;
 import net.minecraft.entity.player.EntityPlayer;
 import net.minecraft.inventory.IInventory;
@@ -33,6 +26,12 @@ import net.minecraft.util.text.TextComponentTranslation;
 import net.minecraft.world.EnumSkyBlock;
 import net.minecraftforge.fml.relauncher.Side;
 import net.minecraftforge.fml.relauncher.SideOnly;
+
+import javax.annotation.Nullable;
+import java.util.Arrays;
+import java.util.List;
+import java.util.stream.Collectors;
+import java.util.stream.IntStream;
 
 public class TileEntityHuajiPolyfurnace extends TileEntityMachineEnergy implements IInventory, ITickable, ISidedInventory{
 	
@@ -153,7 +152,7 @@ public class TileEntityHuajiPolyfurnace extends TileEntityMachineEnergy implemen
 						      }
 						   }
 						 }
-		        if(this.itemPool>=81*9*3) {
+		        if(this.itemPool>=ConfigHuaji.Huaji.point_star) {
 					ItemStack input  =(ItemStack)this.inventory.get(0);
 					ItemStack output =(ItemStack)this.inventory.get(2);
 					ItemStack result =(ItemStack)HuajiPolyRecipeList.instance().getSmeltingResult(input);
@@ -162,7 +161,7 @@ public class TileEntityHuajiPolyfurnace extends TileEntityMachineEnergy implemen
 					}else if(output.getItem()==result.getItem()) {
 						output.grow(result.getCount());
 					}
-					this.itemPool-=81*9*3;
+					this.itemPool-=ConfigHuaji.Huaji.point_star;
 			        		}
 		        ItemStack itemstack = this.inventory.get(1);
 	            if (this.isBurning() || !itemstack.isEmpty())
@@ -605,7 +604,7 @@ public class TileEntityHuajiPolyfurnace extends TileEntityMachineEnergy implemen
 	public double fractionOfPool()
 	{
 		if (this.itemPool <= 0 ) return 0;
-		double fractionPool = (double)this.itemPool/(double)(81.0*9*3);
+		double fractionPool = (double)this.itemPool/(double)(ConfigHuaji.Huaji.point_star);
 		return MathHelper.clamp(fractionPool, 0.0, 1.0);
 	}
 	

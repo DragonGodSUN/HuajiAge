@@ -183,7 +183,8 @@ gui.huajiage.poly.cook=§l进程
 gui.huajiage.poly.fuel=§6黄金精神
 gui.huajiage.poly.pool=聚合池
 gui.huajiage.poly.energy=能源-RF
-gui.jei.category.huajiage.poly.pool=%s 聚合值
+gui.jei.category.huajiage.poly.pool=聚合值-%s
+gui.jei.category.huajiage.poly.full=总量-%s
 
 config.huaji_age.huaji_config=§e滑稽纪元基础设定
 config.huaji_age.huaji_config.hero_explode=是否允许大英雄破坏地形
@@ -208,6 +209,7 @@ config.huaji_age.huaji_config.stand.huaji_splash=用滑稽粒子代替绿宝石�
 config.huaji_age.huaji_config.orga.flower=使用希望之花原版音乐
 config.huaji_age.huaji_config.density_fog_time_stop=时停雾气浓度（需启用烟雾特效）
 config.huaji_age.huaji_config.stand.punish.glow=使替身处于放出闲置状态下的玩家发光
+config.huaji_age.huaji_config.point_universe_star=聚合炉所需星辰点数总量
 
 
 stand.huajiage.empty=缺失
@@ -221,7 +223,7 @@ stand.state.huajiage.default=默认
 stand.state.huajiage.idle=闲置
 stand.state.huajiage.punch=连击
 stand.state.huajiage.protect=保护
-stand.state.huajiage.protect=飞行
+stand.state.huajiage.fly=飞行
 
 stand.huajiage.skill.the_world.start=§e§l咋瓦鲁多 ! ! ! 时间停止吧 !
 stand.huajiage.skill.star_platinum.start=§5§l食堂泼辣酱——§b§l咋瓦鲁多 ! 

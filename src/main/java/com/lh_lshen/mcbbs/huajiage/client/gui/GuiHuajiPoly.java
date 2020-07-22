@@ -1,16 +1,8 @@
 package com.lh_lshen.mcbbs.huajiage.client.gui;
 
-import java.awt.Color;
-import java.math.BigDecimal;
-import java.util.ArrayList;
-import java.util.List;
-
-import com.lh_lshen.mcbbs.huajiage.HuajiAge;
-import com.lh_lshen.mcbbs.huajiage.inventroy.ContainerHuajiBlender;
+import com.lh_lshen.mcbbs.huajiage.config.ConfigHuaji;
 import com.lh_lshen.mcbbs.huajiage.inventroy.ContainerHuajiPolyfurnace;
 import com.lh_lshen.mcbbs.huajiage.tileentity.TileEntityHuajiPolyfurnace;
-import com.lh_lshen.mcbbs.huajiage.tileentity.TileEntityHuajiPolyfurnace;
-
 import net.minecraft.client.Minecraft;
 import net.minecraft.client.gui.FontRenderer;
 import net.minecraft.client.gui.inventory.GuiContainer;
@@ -19,8 +11,12 @@ import net.minecraft.client.resources.I18n;
 import net.minecraft.entity.player.InventoryPlayer;
 import net.minecraft.util.ResourceLocation;
 import net.minecraft.util.math.MathHelper;
-import net.minecraft.util.text.TextComponentTranslation;
 import net.minecraft.util.text.TextFormatting;
+
+import java.awt.*;
+import java.math.BigDecimal;
+import java.util.ArrayList;
+import java.util.List;
 
 public class GuiHuajiPoly extends GuiContainer {
 
@@ -129,7 +125,7 @@ public class GuiHuajiPoly extends GuiContainer {
 		}
 		if (isInRect(guiLeft + POOL_XPOS, guiTop + POOL_YPOS, POOL_WIDTH, POOL_HEIGHT, mouseX, mouseY)) {
 			hoveringText.add(I18n.format("gui.huajiage.poly.pool"));
-			hoveringText.add(TextFormatting.YELLOW+""+TextFormatting.BOLD +""+tileEntity.getPool()+"/"+81*9*3);
+			hoveringText.add(TextFormatting.YELLOW+""+TextFormatting.BOLD +""+tileEntity.getPool()+"/"+ ConfigHuaji.Huaji.point_star);
 		}
 		if (isInRect(guiLeft + ENERGY_XPOS, guiTop + ENERGY_YPOS, ENERGY_WIDTH, ENERGY_HEIGHT, mouseX, mouseY)) {
 			hoveringText.add(I18n.format("gui.huajiage.poly.energy"));

@@ -177,7 +177,8 @@ gui.huajiage.poly.cook=Process
 gui.huajiage.poly.fuel=Fuel Point
 gui.huajiage.poly.pool=Item Pool
 gui.huajiage.poly.energy=Energy
-gui.jei.category.huajiage.poly.pool=%s Point 
+gui.jei.category.huajiage.poly.pool=Point-%s
+gui.jei.category.huajiage.poly.full=Require-%s
 
 config.huaji_age.huaji_config=§eHuaji Age Settings
 config.huaji_age.huaji_config.hero_explode=The Terrain destruction of the big explosion created by the big hero's bow
@@ -212,6 +213,7 @@ stand.state.huajiage.default=Default
 stand.state.huajiage.idle=Idle
 stand.state.huajiage.punch=Punch
 stand.state.huajiage.protect=Protect
+stand.state.huajiage.fly=Fly
 
 stand.huajiage.skill.the_world.start=§e§lThe World!!!
 stand.huajiage.skill.star_platinum.start=§5§lStar Platinum!The World!!! 
