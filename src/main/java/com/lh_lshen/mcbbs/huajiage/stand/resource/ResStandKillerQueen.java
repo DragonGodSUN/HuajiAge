@@ -12,7 +12,6 @@ import com.lh_lshen.mcbbs.huajiage.init.sound.SoundStand;
 import com.lh_lshen.mcbbs.huajiage.potion.PotionLoader;
 import com.lh_lshen.mcbbs.huajiage.stand.StandUtil;
 import net.minecraft.client.Minecraft;
-import net.minecraft.client.renderer.GlStateManager;
 import net.minecraft.client.renderer.OpenGlHelper;
 import net.minecraft.entity.Entity;
 import net.minecraft.entity.EntityLivingBase;
@@ -63,11 +62,11 @@ public class ResStandKillerQueen extends StandRes{
 			model.setRotationAngles(0, 0, entity.ticksExisted, 0, -1, 1, entity ,0.4f,1f);
 			model.effect(entity, 0, 0, entity.ticksExisted, 0, 0, 1f);
 			if(entity.getActivePotionEffect(PotionLoader.potionStand).getDuration()<40) {
-				model.doHandRender(0, -1f, -0.75f, 1f,0.3f);
+				model.doHandRender(0, 1f, -5f, 1f,0.3f);
 			}else {
-				model.doHandRender(0, -1f, -0.75f, 1f,0.45f);
+				model.doHandRender(0, 1f, -5f, 1f,0.45f);
 			}
-			GlStateManager.translate(0,0,5);
+//			GlStateManager.translate(0,0,100);
 		}
 	}
 

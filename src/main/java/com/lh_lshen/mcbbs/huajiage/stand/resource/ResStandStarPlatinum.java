@@ -1,7 +1,5 @@
 package com.lh_lshen.mcbbs.huajiage.stand.resource;
 
-import com.lh_lshen.mcbbs.huajiage.capability.CapabilityExposedData;
-import com.lh_lshen.mcbbs.huajiage.capability.IExposedData;
 import com.lh_lshen.mcbbs.huajiage.client.model.stand.ModelStandBase;
 import com.lh_lshen.mcbbs.huajiage.client.model.stand.ModelStarPlatinum;
 import com.lh_lshen.mcbbs.huajiage.client.model.stand.states.ModelStarPlatinumIdle;
@@ -25,63 +23,63 @@ import net.minecraft.util.math.MathHelper;
 import java.util.List;
 import java.util.Random;
 
-public class ResStandStarPlatinum extends StandRes{
-	public ResStandStarPlatinum() {
-	}
-	public ResStandStarPlatinum(String name) {
-		super(name);
-	}
-	@Override
-	public ResourceLocation getTexture() {
-		return HuajiConstant.StandTex.TEXTRUE_STAR_PLATINUM;
-	}
+public class ResStandStarPlatinum extends StandRes {
+    public ResStandStarPlatinum() {
+    }
 
-	@Override
-	public void doSoundPlay(Minecraft mc ,Entity entity,EntityLivingBase user) {
-		List<SoundEvent> sounds = SoundStand.STAR_SOUND_LIST;
-		int size = sounds.size();
-		int index = (int) MathHelper.nextFloat(new Random(), 0, size);
-		if(index<size) {
-				SoundEvent sound = sounds.get(index);
-				Minecraft.getMinecraft().getSoundHandler().playSound(HuajiSoundPlayer.getMovingSound(entity, sound, SoundCategory.NEUTRAL, 1f));
-			}
-			HuajiMovingSound back = new HuajiMovingSound(entity, SoundEvents.ENTITY_PLAYER_ATTACK_STRONG, SoundCategory.NEUTRAL);
-			back.setVolume(0.7f);
-			back.setLoop();
-			mc.getSoundHandler().playSound(back);
-	}
+    public ResStandStarPlatinum(String name) {
+        super(name);
+    }
 
-	@Override
-	public void doStandRender(EntityLivingBase entity) {
-		IExposedData data = StandUtil.getStandData(entity);
-		boolean isIdle = CapabilityExposedData.States.IDLE.getName().equals(data.getState());
-		if (!isIdle) {
-			ResourceLocation STAND_TEX = getTexture();
-			ModelStandBase model = getStandModelByData(entity);
-			Minecraft.getMinecraft().getTextureManager().bindTexture(STAND_TEX);
-			OpenGlHelper.setLightmapTextureCoords(OpenGlHelper.lightmapTexUnit, 240f, 240f);
-			model.setRotationAngles(0, 0, entity.ticksExisted, 0, -1, 1, entity ,0.5f,(float) (StandLoader.THE_WORLD.getSpeed()*1.5));
-			model.effect(entity, 0, 0, entity.ticksExisted, 0, 0, 1f);
-			if(entity.getActivePotionEffect(PotionLoader.potionStand).getDuration()<40) {
-				model.doHandRender(0, -1f, -0.75f, 1f,0.3f);
-			}else {
-				model.doHandRender(0, -1f, -0.75f, 1f,0.6f);
-			}
-		}
-	}
+    @Override
+    public ResourceLocation getTexture() {
+        return HuajiConstant.StandTex.TEXTRUE_STAR_PLATINUM;
+    }
 
-	@Override
-	public ModelStandBase getStandModel() {
-		return new ModelStarPlatinum();
-	}
+    @Override
+    public void doSoundPlay(Minecraft mc, Entity entity, EntityLivingBase user) {
+        List<SoundEvent> sounds = SoundStand.STAR_SOUND_LIST;
+        int size = sounds.size();
+        int index = (int) MathHelper.nextFloat(new Random(), 0, size);
+        if (index < size) {
+            SoundEvent sound = sounds.get(index);
+            Minecraft.getMinecraft().getSoundHandler().playSound(HuajiSoundPlayer.getMovingSound(entity, sound, SoundCategory.NEUTRAL, 1f));
+        }
+        HuajiMovingSound back = new HuajiMovingSound(entity, SoundEvents.ENTITY_PLAYER_ATTACK_STRONG, SoundCategory.NEUTRAL);
+        back.setVolume(0.7f);
+        back.setLoop();
+        mc.getSoundHandler().playSound(back);
+    }
 
-	@Override
-	public ModelStandBase getStandModelByData(EntityLivingBase entity) {
-		String state = StandUtil.getStandState(entity);
-		switch (state){
-			case "default":return new ModelStarPlatinum();
-			case "idle":return new ModelStarPlatinumIdle();
-		}
-		return new ModelStarPlatinum();
-	}
+    @Override
+    public void doStandRender(EntityLivingBase entity) {
+        ResourceLocation STAND_TEX = getTexture();
+        ModelStandBase model = getStandModelByData(entity);
+        Minecraft.getMinecraft().getTextureManager().bindTexture(STAND_TEX);
+        OpenGlHelper.setLightmapTextureCoords(OpenGlHelper.lightmapTexUnit, 240f, 240f);
+        model.setRotationAngles(0, 0, entity.ticksExisted, 0, -1, 1, entity, 0.5f, (float) (StandLoader.THE_WORLD.getSpeed() * 1.5));
+        model.effect(entity, 0, 0, entity.ticksExisted, 0, 0, 1f);
+        if (entity.getActivePotionEffect(PotionLoader.potionStand).getDuration() < 40) {
+            model.doHandRender(0, -1f, -0.75f, 1f, 0.3f);
+        } else {
+            model.doHandRender(0, -1f, -0.75f, 1f, 0.6f);
+        }
+    }
+
+    @Override
+    public ModelStandBase getStandModel() {
+        return new ModelStarPlatinum();
+    }
+
+    @Override
+    public ModelStandBase getStandModelByData(EntityLivingBase entity) {
+        String state = StandUtil.getStandState(entity);
+        switch (state) {
+            case "default":
+                return new ModelStarPlatinum();
+            case "idle":
+                return new ModelStarPlatinumIdle();
+        }
+        return new ModelStarPlatinum();
+    }
 }

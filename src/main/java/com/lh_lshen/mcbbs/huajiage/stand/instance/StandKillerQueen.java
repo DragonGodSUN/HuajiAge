@@ -10,7 +10,7 @@ import com.lh_lshen.mcbbs.huajiage.stand.messages.MessageDoStandPowerClient;
 import com.lh_lshen.mcbbs.huajiage.stand.resource.StandRes;
 import com.lh_lshen.mcbbs.huajiage.stand.resource.StandResLoader;
 import com.lh_lshen.mcbbs.huajiage.stand.states.default_set.StateKillerQueenDefault;
-import com.lh_lshen.mcbbs.huajiage.stand.states.punch.StateKillerQueenPunch;
+import com.lh_lshen.mcbbs.huajiage.stand.states.various.StateKillerQueenPunch;
 import com.lh_lshen.mcbbs.huajiage.util.ServerUtil;
 
 import net.minecraft.client.multiplayer.WorldClient;

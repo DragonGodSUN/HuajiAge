@@ -14,57 +14,6 @@ public class StandClientUtil {
 
 	public static void standUpSound(Minecraft mc ,Entity user ,String stand_type ) 
 	{
-//		switch(stand_type)
-//		{
-//		case "the_world" :
-//		{
-//			List<SoundEvent> sounds = SoundStand.WORLD_SOUND_LIST;
-//			int size = sounds.size();
-//			int index = (int) MathHelper.nextFloat(new Random(), 0, size);
-//			if(index<size) {
-//				SoundEvent sound = sounds.get(index);
-//				mc.getSoundHandler().playSound(HuajiSoundPlayer.getMovingSound(user, sound, SoundCategory.NEUTRAL, 1f));
-//				}
-//				HuajiMovingSound back_hits_double = new HuajiMovingSound(user, SoundEvents.ENTITY_PLAYER_ATTACK_STRONG, SoundCategory.NEUTRAL);
-//				back_hits_double.setVolume(0.7f);
-//				back_hits_double.setLoop();
-//				mc.getSoundHandler().playSound(back_hits_double);
-//				break;
-//			}
-//		case "star_platinum" :
-//		{
-//			List<SoundEvent> sounds = SoundStand.STAR_SOUND_LIST;
-//			int size = sounds.size();
-//			int index = (int) MathHelper.nextFloat(new Random(), 0, size);
-//			if(index<size) {
-//					SoundEvent sound = sounds.get(index);
-//					Minecraft.getMinecraft().getSoundHandler().playSound(HuajiSoundPlayer.getMovingSound(user, sound, SoundCategory.NEUTRAL, 1f));
-//				}
-//				HuajiMovingSound back = new HuajiMovingSound(user, SoundEvents.ENTITY_PLAYER_ATTACK_STRONG, SoundCategory.NEUTRAL);
-//				back.setVolume(0.7f);
-//				back.setLoop();
-//				mc.getSoundHandler().playSound(back);
-//				break;
-//			}
-//		case "hierophant_green" :
-//			{
-//				List<SoundEvent> sounds = SoundStand.HIEROPANT_SOUND_LIST;
-//				int size = sounds.size();
-//				int index = (int) MathHelper.nextFloat(new Random(), 0, size);
-//				if(index<size) {
-//					SoundEvent sound = sounds.get(index);
-//					mc.getSoundHandler().playSound(HuajiSoundPlayer.getMovingSound(user, sound, SoundCategory.NEUTRAL, 1f));
-//					HuajiMovingSound hits = new HuajiMovingSound(user, SoundEvents.WEATHER_RAIN, SoundCategory.NEUTRAL);
-//					hits.setVolume(1.0f);
-//					hits.setLoop();
-//					mc.getSoundHandler().playSound(hits);
-//				}
-//				break;
-//			}	
-//		default:
-//				break;
-//				
-//			}
 		StandBase stand = StandLoader.getStand(stand_type);
 		if(stand!=null) {
 			stand.getBindingRes().doSoundPlay(mc, user);

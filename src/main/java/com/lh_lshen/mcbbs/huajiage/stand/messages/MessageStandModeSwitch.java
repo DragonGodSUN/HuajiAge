@@ -63,6 +63,13 @@ public class MessageStandModeSwitch implements IMessage {
 
 						String state_new = StandUtil.getStandState(player);
 						StandStateBase stateBase = StandStates.getStandState(stand.getName(),state_new);
+//						for(String s : stateBase.getExtraDatas()){
+//							player.sendMessage(new TextComponentString(s));
+//						}
+//						if(stateBase.getExtraDatas().isEmpty()){
+//							player.sendMessage(new TextComponentString("empty"));
+//						}
+
 						if(stateBase!=null){
 						data.setHandDisplay(stateBase.isHandPlay());
 //							player.sendMessage(new TextComponentString(stateBase.getStateName()+stateBase.isHandPlay()));

@@ -1,13 +1,14 @@
 package com.lh_lshen.mcbbs.huajiage.stand.resource;
 
+import com.lh_lshen.mcbbs.huajiage.client.model.stand.ModelOrgaFly;
 import com.lh_lshen.mcbbs.huajiage.client.model.stand.ModelOrgaRequiem;
 import com.lh_lshen.mcbbs.huajiage.client.model.stand.ModelStandBase;
 import com.lh_lshen.mcbbs.huajiage.init.HuajiConstant;
 import com.lh_lshen.mcbbs.huajiage.init.sound.HuajiMovingSound;
 import com.lh_lshen.mcbbs.huajiage.init.sound.HuajiSoundPlayer;
 import com.lh_lshen.mcbbs.huajiage.init.sound.SoundStand;
+import com.lh_lshen.mcbbs.huajiage.stand.StandUtil;
 import net.minecraft.client.Minecraft;
-import net.minecraft.client.renderer.OpenGlHelper;
 import net.minecraft.entity.Entity;
 import net.minecraft.entity.EntityLivingBase;
 import net.minecraft.init.SoundEvents;
@@ -50,10 +51,18 @@ public class ResStandOrgaRequiem extends StandRes {
     @Override
     public void doStandRender(EntityLivingBase entity) {
         ResourceLocation STAND_TEX = getTexture();
-        ModelStandBase model = getStandModel();
+        ModelStandBase model = getStandModelByData(entity);
         Minecraft.getMinecraft().getTextureManager().bindTexture(STAND_TEX);
-        OpenGlHelper.setLightmapTextureCoords(OpenGlHelper.lightmapTexUnit, 240f, 240f);
-        model.effect(entity, 0, 0, entity.ticksExisted, 0, 0, 1f);
+//            OpenGlHelper.setLightmapTextureCoords(OpenGlHelper.lightmapTexUnit, 240f, 240f);
+//            model.setRotationAngles(0, 0, entity.ticksExisted, 0, -1, 1, entity ,0.5f,(float) (StandLoader.THE_WORLD.getSpeed()*1.5));
+//            model.effect(entity, 0, 0, entity.ticksExisted, 0, 0, 1f);
+//            if(entity.getActivePotionEffect(PotionLoader.potionStand).getDuration()<40) {
+//                model.doHandRender(0, -1f, -0.75f, 1f,0.3f);
+//            }else {
+//                model.doHandRender(0, -1f, -0.75f, 1f,0.6f);
+//            }
+        model.doHandRender(0,-10,-50,1f,0.6f);
+//        model.doHandRender(0, -1f, 5f, 1f, 0.6f);
     }
 
     @Override
@@ -63,6 +72,13 @@ public class ResStandOrgaRequiem extends StandRes {
 
     @Override
     public ModelStandBase getStandModelByData(EntityLivingBase entity) {
+        String state = StandUtil.getStandState(entity);
+        switch (state) {
+            case "default":
+                return new ModelOrgaRequiem();
+            case "fly":
+                return new ModelOrgaFly();
+        }
         return new ModelOrgaRequiem();
     }
 }

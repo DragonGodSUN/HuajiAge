@@ -221,6 +221,7 @@ stand.state.huajiage.default=默认
 stand.state.huajiage.idle=闲置
 stand.state.huajiage.punch=连击
 stand.state.huajiage.protect=保护
+stand.state.huajiage.protect=飞行
 
 stand.huajiage.skill.the_world.start=§e§l咋瓦鲁多 ! ! ! 时间停止吧 !
 stand.huajiage.skill.star_platinum.start=§5§l食堂泼辣酱——§b§l咋瓦鲁多 ! 

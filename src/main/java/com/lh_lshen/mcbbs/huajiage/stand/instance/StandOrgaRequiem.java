@@ -8,6 +8,7 @@ import com.lh_lshen.mcbbs.huajiage.potion.PotionLoader;
 import com.lh_lshen.mcbbs.huajiage.stand.resource.StandRes;
 import com.lh_lshen.mcbbs.huajiage.stand.resource.StandResLoader;
 import com.lh_lshen.mcbbs.huajiage.stand.states.default_set.StateOrgaRequiemDefault;
+import com.lh_lshen.mcbbs.huajiage.stand.states.various.StateOrgaRequiemFly;
 import net.minecraft.client.multiplayer.WorldClient;
 import net.minecraft.entity.EntityLivingBase;
 import net.minecraft.entity.player.EntityPlayer;
@@ -28,6 +29,7 @@ public class StandOrgaRequiem extends StandBase {
 			super(name, speed, damage, duration, distance, cost, charge, texPath, localName, displayHand);
 			initState(new StateOrgaRequiemDefault(name,CapabilityExposedData.States.DEFAULT.getName(),isHandDisplay(),true));
 //			this.addState(CapabilityExposedData.States.PROTECT.getName());
+			this.addState("fly",new StateOrgaRequiemFly(name,"fly",isHandDisplay(),true));
 	}
 	@Override
 	public StandRes getBindingRes() {

@@ -1,4 +1,4 @@
-package com.lh_lshen.mcbbs.huajiage.stand.states.punch;
+package com.lh_lshen.mcbbs.huajiage.stand.states.various;
 
 import com.lh_lshen.mcbbs.huajiage.stand.StandUtil;
 import com.lh_lshen.mcbbs.huajiage.stand.helper.StandPowerHelper;
