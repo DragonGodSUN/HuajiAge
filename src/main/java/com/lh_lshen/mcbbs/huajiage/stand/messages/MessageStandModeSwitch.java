@@ -61,6 +61,8 @@ public class MessageStandModeSwitch implements IMessage {
 //						}
 						switchState(player,data,stand,1);
 
+						data.setStage(StandUtil.getStandStage(player));
+
 						String state_new = StandUtil.getStandState(player);
 						StandStateBase stateBase = StandStates.getStandState(stand.getName(),state_new);
 //						for(String s : stateBase.getExtraDatas()){

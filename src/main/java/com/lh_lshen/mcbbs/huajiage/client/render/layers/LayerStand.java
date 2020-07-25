@@ -4,9 +4,7 @@ import com.lh_lshen.mcbbs.huajiage.capability.CapabilityLoader;
 import com.lh_lshen.mcbbs.huajiage.client.model.stand.ModelStandBase;
 import com.lh_lshen.mcbbs.huajiage.stand.StandClientUtil;
 import com.lh_lshen.mcbbs.huajiage.stand.StandLoader;
-import com.lh_lshen.mcbbs.huajiage.stand.StandUtil;
 import com.lh_lshen.mcbbs.huajiage.stand.instance.StandBase;
-
 import net.minecraft.client.renderer.GlStateManager;
 import net.minecraft.client.renderer.OpenGlHelper;
 import net.minecraft.client.renderer.entity.RenderLivingBase;
@@ -38,11 +36,11 @@ public class LayerStand implements  LayerRenderer<EntityLivingBase> {
 				boolean istrigger = entitylivingbaseIn.getCapability(CapabilityLoader.EXPOSED_DATA, null).isTriggered();
 				StandBase stand = StandLoader.getStand(ex_stand); 
 //				IStandPower stand_power = stand!=null?stand:null;
-				int stage = StandUtil.getStandStage(entitylivingbaseIn);
+				int stage = entitylivingbaseIn.getCapability(CapabilityLoader.EXPOSED_DATA, null).getStage();
 //				boolean potion = entitylivingbaseIn.isPotionActive(PotionLoader.potionStand);
 				
 				String type = stand != null?stand.getName():StandLoader.EMPTY;
-				ModelStandBase model =  stand != null?StandClientUtil.getModelByData(entitylivingbaseIn) : null;
+				ModelStandBase model =  stand != null?StandClientUtil.getModelByData(entitylivingbaseIn,stand) : null;
 			    	
 			    	if(model != null&&!type.equals(StandLoader.EMPTY)&& istrigger) 
 			    	{

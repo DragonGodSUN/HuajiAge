@@ -44,8 +44,7 @@ public class StandClientUtil {
 		return new ModelTheWorld();
 	}
 
-	public static ModelStandBase getModelByData(EntityLivingBase user) {
-		StandBase stand = StandUtil.getType(user);
+	public static ModelStandBase getModelByData(EntityLivingBase user, StandBase stand) {
 		if(stand!=null) {
 			return stand.getBindingRes().getStandModelByData(user);
 		}
