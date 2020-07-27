@@ -3,7 +3,6 @@ package com.lh_lshen.mcbbs.huajiage.client.model.stand.states;// Made with Block
 // Make sure to generate all required imports
 
 import com.lh_lshen.mcbbs.huajiage.client.model.stand.ModelStandBase;
-import net.minecraft.client.model.ModelBase;
 import net.minecraft.client.model.ModelBox;
 import net.minecraft.client.model.ModelRenderer;
 import net.minecraft.client.renderer.GlStateManager;
@@ -14,6 +13,7 @@ public class ModelTheWorldIdle extends ModelStandBase {
 	private final ModelRenderer head;
 	private final ModelRenderer Shape1;
 	private final ModelRenderer Shape2;
+	private final ModelRenderer glass;
 	private final ModelRenderer Shape3;
 	private final ModelRenderer Shape4;
 	private final ModelRenderer Shape5;
@@ -64,16 +64,20 @@ public class ModelTheWorldIdle extends ModelStandBase {
 		head.addChild(Shape2);
 		Shape2.cubeList.add(new ModelBox(Shape2, 0, 49, -4.5F, -7.2F, -3.0F, 9, 4, 8, 0.0F, false));
 
+		glass = new ModelRenderer(this);
+		glass.setRotationPoint(0.0F, 0.0F, -0.5F);
+		head.addChild(glass);
+
 		Shape3 = new ModelRenderer(this);
-		Shape3.setRotationPoint(0.0F, 0.0F, 0.0F);
+		Shape3.setRotationPoint(0.0F, 0.0F, 1.0F);
 		setRotationAngle(Shape3, 0.0F, 1.0996F, 0.0F);
-		head.addChild(Shape3);
+		glass.addChild(Shape3);
 		Shape3.cubeList.add(new ModelBox(Shape3, 0, 63, 2.8F, -7.0F, -3.0F, 3, 4, 6, 0.0F, false));
 
 		Shape4 = new ModelRenderer(this);
-		Shape4.setRotationPoint(0.0F, 0.0F, 0.0F);
+		Shape4.setRotationPoint(0.0F, 0.0F, 1.0F);
 		setRotationAngle(Shape4, 0.0F, -1.0996F, 0.0F);
-		head.addChild(Shape4);
+		glass.addChild(Shape4);
 		Shape4.cubeList.add(new ModelBox(Shape4, 0, 63, -5.8F, -7.0F, -3.0F, 3, 4, 6, 0.0F, true));
 
 		Shape5 = new ModelRenderer(this);

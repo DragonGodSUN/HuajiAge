@@ -28,6 +28,7 @@ public class HuajiAge
     public static HuajiAge instance;
     public static final Logger LOGGER = LogManager.getLogger(MODID);
 
+
     public HuajiAge() {
     		HuajiAgeAPI.setInstance(new HuajiAgeAPIImpl());
 	}

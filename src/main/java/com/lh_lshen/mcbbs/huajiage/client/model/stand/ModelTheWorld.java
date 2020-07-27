@@ -5,16 +5,11 @@
 // - ZeuX
 package com.lh_lshen.mcbbs.huajiage.client.model.stand;
 
-import com.lh_lshen.mcbbs.huajiage.stand.EnumStandtype;
 import com.lh_lshen.mcbbs.huajiage.stand.StandLoader;
-
-import net.minecraft.client.Minecraft;
-import net.minecraft.client.model.ModelBase;
 import net.minecraft.client.model.ModelBox;
 import net.minecraft.client.model.ModelRenderer;
 import net.minecraft.client.renderer.GlStateManager;
 import net.minecraft.entity.Entity;
-import net.minecraft.entity.EntityLivingBase;
 import net.minecraft.util.math.MathHelper;
 
 public class ModelTheWorld extends ModelStandBase
@@ -23,6 +18,7 @@ public class ModelTheWorld extends ModelStandBase
 	private final ModelRenderer head;
 	private final ModelRenderer Shape1;
 	private final ModelRenderer Shape2;
+	private final ModelRenderer glass;
 	private final ModelRenderer Shape3;
 	private final ModelRenderer Shape4;
 	private final ModelRenderer Shape5;
@@ -79,17 +75,21 @@ public class ModelTheWorld extends ModelStandBase
 	head.addChild(Shape2);
 	Shape2.cubeList.add(new ModelBox(Shape2, 0, 49, -4.5F, -7.2F, -3.0F, 9, 4, 8, 0.0F, false));
 
-	Shape3 = new ModelRenderer(this);
-	Shape3.setRotationPoint(0.0F, 0.0F, 0.0F);
-	setRotation(Shape3, 0.0F, 1.0996F, 0.0F);
-	head.addChild(Shape3);
-	Shape3.cubeList.add(new ModelBox(Shape3, 0, 63, 2.8F, -7.0F, -3.0F, 3, 4, 6, 0.0F, false));
+  	glass = new ModelRenderer(this);
+  	glass.setRotationPoint(0.0F, 0.0F, -0.5F);
+  	head.addChild(glass);
 
-	Shape4 = new ModelRenderer(this);
-	Shape4.setRotationPoint(0.0F, 0.0F, 0.0F);
-	setRotation(Shape4, 0.0F, -1.0996F, 0.0F);
-	head.addChild(Shape4);
-	Shape4.cubeList.add(new ModelBox(Shape4, 0, 63, -5.8F, -7.0F, -3.0F, 3, 4, 6, 0.0F, true));
+  	Shape3 = new ModelRenderer(this);
+  	Shape3.setRotationPoint(0.0F, 0.0F, 1.0F);
+  	setRotation(Shape3, 0.0F, 1.0996F, 0.0F);
+  	glass.addChild(Shape3);
+  	Shape3.cubeList.add(new ModelBox(Shape3, 0, 63, 2.8F, -7.0F, -3.0F, 3, 4, 6, 0.0F, false));
+
+  	Shape4 = new ModelRenderer(this);
+  	Shape4.setRotationPoint(0.0F, 0.0F, 1.0F);
+  	setRotation(Shape4, 0.0F, -1.0996F, 0.0F);
+  	glass.addChild(Shape4);
+  	Shape4.cubeList.add(new ModelBox(Shape4, 0, 63, -5.8F, -7.0F, -3.0F, 3, 4, 6, 0.0F, true));
 
 	Shape5 = new ModelRenderer(this);
 	Shape5.setRotationPoint(0.0F, 0.0F, 0.0F);
