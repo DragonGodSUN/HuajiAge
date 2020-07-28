@@ -5,10 +5,16 @@ package com.lh_lshen.mcbbs.huajiage.client.model.pojo;
  */
 
 import com.google.common.collect.Lists;
+import com.lh_lshen.mcbbs.huajiage.capability.IExposedData;
+import com.lh_lshen.mcbbs.huajiage.client.model.stand.ModelStandBase;
+import com.lh_lshen.mcbbs.huajiage.client.resources.CustomResourceLoader;
 import com.lh_lshen.mcbbs.huajiage.common.CommonProxy;
-import net.minecraft.client.model.ModelBase;
+import com.lh_lshen.mcbbs.huajiage.stand.StandStates;
+import com.lh_lshen.mcbbs.huajiage.stand.StandUtil;
+import com.lh_lshen.mcbbs.huajiage.stand.states.StandStateBase;
 import net.minecraft.client.model.ModelRenderer;
 import net.minecraft.entity.Entity;
+import net.minecraft.entity.player.EntityPlayer;
 import net.minecraft.util.EnumHandSide;
 import net.minecraft.util.math.AxisAlignedBB;
 import net.minecraftforge.fml.relauncher.Side;
@@ -21,9 +27,9 @@ import java.util.LinkedList;
 import java.util.List;
 
 @SideOnly(Side.CLIENT)
-public class EntityModelJson extends ModelBase {
+public class EntityModelJson extends ModelStandBase {
     public final AxisAlignedBB renderBoundingBox;
-//    private EntityMaidWrapper entityMaidWrapper;
+    private EntityStandWrapper entityStandWrapper;
     private List<Object> animations = Lists.newArrayList();
     /**
      * 存储 ModelRender 子模型的 HashMap
@@ -39,7 +45,7 @@ public class EntityModelJson extends ModelBase {
     private List<ModelRenderer> shouldRender = new LinkedList<>();
 
     public EntityModelJson(CustomModelPOJO pojo) {
-//        this.entityMaidWrapper = new EntityMaidWrapper();
+        this.entityStandWrapper = new EntityStandWrapper();
 
         // 材质的长度、宽度
         textureWidth = pojo.getGeometryModel().getTexturewidth();
@@ -125,20 +131,26 @@ public class EntityModelJson extends ModelBase {
             return;
         }
         Invocable invocable = (Invocable) CommonProxy.NASHORN;
-//        if (entityIn instanceof EntityMaid) {
-//            entityMaidWrapper.setData((EntityMaid) entityIn, swingProgress, isRiding);
-//            String modelId = ((EntityMaid) entityIn).getModelId();
-//            try {
-//                for (Object animation : animations) {
-//                    invocable.invokeMethod(animation, "animation",
-//                            entityMaidWrapper, limbSwing, limbSwingAmount, ageInTicks, netHeadYaw, headPitch, scaleFactor, modelMap);
-//                }
-//            } catch (Exception e) {
-//                e.printStackTrace();
-//                CustomResourcesLoader.MAID_MODEL.removeAnimation(modelId);
-//            }
-//            return;
-//        }
+        if (entityIn instanceof EntityPlayer) {
+            entityStandWrapper.setData((EntityPlayer)entityIn, swingProgress, isRiding);
+            IExposedData data = StandUtil.getStandData((EntityPlayer)entityIn);
+            if(data!=null){
+                StandStateBase base = StandStates.getStandState(data.getStand(),data.getState());
+                if (base!=null) {
+                    String modelId = base.getModelID();
+                    try {
+                        for (Object animation : animations) {
+                            invocable.invokeMethod(animation, "animation",
+                                    entityStandWrapper, limbSwing, limbSwingAmount, ageInTicks, netHeadYaw, headPitch, scaleFactor, modelMap);
+                        }
+                    } catch (Exception e) {
+                        e.printStackTrace();
+                        CustomResourceLoader.STAND_MODEL.removeAnimation(modelId);
+                    }
+                }
+            }
+            return;
+        }
     }
 
     private void setRotationAngle(ModelRenderer modelRenderer, float x, float y, float z) {
@@ -242,4 +254,37 @@ public class EntityModelJson extends ModelBase {
     private float convertRotation(float degree) {
         return (float) (degree * Math.PI / 180);
     }
+
+    @Override
+    public void setRotationAngles(float limbSwing, float limbSwingAmount, float rotateFloat, float rotateYaw,
+                                  float rotatePitch, float scale, Entity entity, float power, float speed) {
+//        super.setRotationAngles(limbSwing,limbSwingAmount,rotateFloat,rotateYaw,rotatePitch,scale,entity);
+        setRotationAngles(limbSwing, limbSwingAmount, rotateFloat, rotateYaw, rotatePitch, scale, entity);
+    }
+
+    @Override
+    public void setPunch(float limbSwing, float limbSwingAmount, float rotateFloat, float rotateYaw, float rotatePitch, float scale, Entity entity, float power, float speed) {
+
+    }
+
+    @Override
+    public void doHandRender(float x, float y, float z, float scale, float alpha) {
+
+    }
+
+    @Override
+    public void effect(Entity entityIn, float limbSwing, float limbSwingAmount, float ageInTicks, float netHeadYaw, float headPitch, float scale) {
+
+    }
+
+    @Override
+    public void extraEffect(Entity entityIn, float limbSwing, float limbSwingAmount, float ageInTicks, float netHeadYaw, float headPitch, float scale) {
+
+    }
+
+    @Override
+    public void setPosition() {
+
+    }
+
 }

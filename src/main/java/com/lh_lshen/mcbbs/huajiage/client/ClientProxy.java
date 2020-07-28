@@ -1,6 +1,7 @@
 package com.lh_lshen.mcbbs.huajiage.client;
 
 import com.lh_lshen.mcbbs.huajiage.HuajiAge;
+import com.lh_lshen.mcbbs.huajiage.client.model.stand.HAModelFactory;
 import com.lh_lshen.mcbbs.huajiage.common.CommonProxy;
 import com.lh_lshen.mcbbs.huajiage.init.EventClientLoader;
 import com.lh_lshen.mcbbs.huajiage.particle.ParticleLoader;
@@ -17,6 +18,7 @@ public class ClientProxy extends CommonProxy {
 	    public void preInit(FMLPreInitializationEvent event)
 	    {
 	        super.preInit(event);
+	        new HAModelFactory();
 	        new ItemRenderLoader();
 	        new EntityRenderLoader();
 	        new StandResLoader();

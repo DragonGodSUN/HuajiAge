@@ -20,6 +20,7 @@ public abstract class ModelStandBase extends ModelBase {
 			 float ageInTicks, float netHeadYaw, float headPitch, float scale);
 	
 	public abstract void setPosition();
-	
+
+
 }
 

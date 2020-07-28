@@ -34,7 +34,7 @@ import static net.minecraft.network.status.server.SPacketServerInfo.GSON;
 
 
 public class CustomResourceLoader {
-    public static final CustomStandModelResources MAID_MODEL = new CustomStandModelResources("stand_model.json", Lists.newArrayList(), Maps.newHashMap(), Maps.newHashMap(), Maps.newHashMap());
+    public static final CustomStandModelResources STAND_MODEL = new CustomStandModelResources("stand_model.json", Lists.newArrayList(), Maps.newHashMap(), Maps.newHashMap(), Maps.newHashMap());
 
     private static final Logger LOGGER = HuajiAge.LOGGER;
     private static final Marker MARKER = MarkerManager.getMarker("ResourcesLoader");
@@ -44,7 +44,7 @@ public class CustomResourceLoader {
 
     public static void reloadResources() {
         CustomJsAnimationManger.clearAll();
-        MAID_MODEL.clearAll();
+        STAND_MODEL.clearAll();
         // 重载数据
         loadStandModelPack();
     }
@@ -56,25 +56,25 @@ public class CustomResourceLoader {
             InputStream input = null;
             try {
                 // 获取所有资源域下的指定文件
-                ResourceLocation res = new ResourceLocation(domain, MAID_MODEL.getJsonFileName());
+                ResourceLocation res = new ResourceLocation(domain, STAND_MODEL.getJsonFileName());
                 input = manager.getResource(res).getInputStream();
                 // 将其转换为 pojo 对象
                 // 这个 pojo 是二次修饰的过的对象，所以一部分数据异常已经进行了处理或者抛出
                 CustomModelPack<StandModelInfo> pack = GSON.fromJson(new InputStreamReader(input, StandardCharsets.UTF_8), new TypeToken<CustomModelPack<StandModelInfo>>() {
                 }.getType());
                 pack.decorate();
-                for (StandModelInfo maidModelItem : pack.getModelList()) {
+                for (StandModelInfo standModelItem : pack.getModelList()) {
                     // 尝试加载模型
-                    EntityModelJson modelJson = loadModel(maidModelItem.getModel());
+                    EntityModelJson modelJson = loadModel(standModelItem.getModel());
                     // 加载动画
-                    @Nullable List<Object> animations = CustomJsAnimationManger.getCustomAnimation(maidModelItem);
+                    @Nullable List<Object> animations = CustomJsAnimationManger.getCustomAnimation(standModelItem);
                     if (modelJson != null) {
-                            putMaidModelData(maidModelItem, modelJson, animations);
+                            putMaidModelData(standModelItem, modelJson, animations);
                         // 打印日志
-                        LOGGER.info(MARKER, "Loaded model: {}", maidModelItem.getModel());
+                        LOGGER.info(MARKER, "Loaded model: {}", standModelItem.getModel());
                     }
                 }
-                MAID_MODEL.addPack(pack);
+                STAND_MODEL.addPack(pack);
             } catch (IOException ignore) {
                 // 忽略错误，因为资源域很多
             } catch (JsonSyntaxException e) {
@@ -84,16 +84,16 @@ public class CustomResourceLoader {
                 IOUtils.closeQuietly(input);
             }
         }
-        LOGGER.info(MARKER, "Touhou little maid mod's model is loaded");
+        LOGGER.info(MARKER, "Huaji Age's model is loaded");
     }
 
     private static void putMaidModelData(StandModelInfo model, EntityModelJson modelJson, List<Object> animations) {
         String id = model.getModelId().toString();
         // 如果加载的模型不为空
-        MAID_MODEL.putModel(id, modelJson);
-        MAID_MODEL.putInfo(id, model);
+        STAND_MODEL.putModel(id, modelJson);
+        STAND_MODEL.putInfo(id, model);
         if (animations != null && animations.size() > 0) {
-            MAID_MODEL.putAnimation(id, animations);
+            STAND_MODEL.putAnimation(id, animations);
         }
     }
 

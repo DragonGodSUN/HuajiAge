@@ -1,9 +1,10 @@
 package com.lh_lshen.mcbbs.huajiage.stand;
 
+import com.lh_lshen.mcbbs.huajiage.client.model.stand.HAModelFactory;
 import com.lh_lshen.mcbbs.huajiage.client.model.stand.ModelStandBase;
 import com.lh_lshen.mcbbs.huajiage.client.model.stand.ModelTheWorld;
+import com.lh_lshen.mcbbs.huajiage.client.resources.CustomResourceLoader;
 import com.lh_lshen.mcbbs.huajiage.stand.instance.StandBase;
-
 import net.minecraft.client.Minecraft;
 import net.minecraft.entity.Entity;
 import net.minecraft.entity.EntityLivingBase;
@@ -91,6 +92,15 @@ public class StandClientUtil {
 //			break;
 //			}
 		}
-		
+	}
+	public static ModelStandBase getModelByID(String id, boolean isCustom){
+		if(isCustom) {
+			if (CustomResourceLoader.STAND_MODEL.getModel(id).isPresent()) {
+				return CustomResourceLoader.STAND_MODEL.getModel(id).get();
+			}
+		}else if(HAModelFactory.has(id)){
+			return HAModelFactory.newInstance(id);
+		}
+		return new ModelTheWorld();
 	}
 }

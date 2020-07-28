@@ -1,13 +1,7 @@
 package com.lh_lshen.mcbbs.huajiage.init;
 
 import com.lh_lshen.mcbbs.huajiage.HuajiAge;
-import com.lh_lshen.mcbbs.huajiage.client.model.stand.ModelStandBase;
-import com.lh_lshen.mcbbs.huajiage.client.model.stand.ModelStarPlatinum;
-import com.lh_lshen.mcbbs.huajiage.client.model.stand.ModelTheWorld;
-import com.lh_lshen.mcbbs.huajiage.stand.EnumStandtype;
 import com.lh_lshen.mcbbs.huajiage.stand.StandLoader;
-
-import net.minecraft.init.SoundEvents;
 import net.minecraft.util.ResourceLocation;
 
 public  class HuajiConstant {
@@ -71,11 +65,7 @@ public  class HuajiConstant {
 	
  
 	public static class StandModels {
-//		public final static ModelStandBase STAND_THE_WORLD = new ModelTheWorld();
-//		public final static ModelStandBase STAND_STAR_PLATINUM = new ModelStarPlatinum();
-		
-		public final static String THE_WORLD_TEX_PATH = "textures/entity/entity_the_world.png";
-		public final static String STAR_PLATINUM_TEX_PATH = "textures/entity/entity_star_platinum.png";
-		
+		public static final String DEFAULT_MODEL_ID = "huajiage:the_world_default";
+
 	}
 }

@@ -1,8 +1,10 @@
 package com.lh_lshen.mcbbs.huajiage.stand.resource;
 
+import com.lh_lshen.mcbbs.huajiage.HuajiAge;
 import com.lh_lshen.mcbbs.huajiage.api.IStandRes;
 import com.lh_lshen.mcbbs.huajiage.client.model.stand.ModelStandBase;
-
+import com.lh_lshen.mcbbs.huajiage.stand.StandClientUtil;
+import com.lh_lshen.mcbbs.huajiage.stand.StandUtil;
 import net.minecraft.client.Minecraft;
 import net.minecraft.entity.Entity;
 import net.minecraft.entity.EntityLivingBase;
@@ -48,8 +50,17 @@ public class StandRes implements IStandRes {
 	}
 
 	@Override
-	public ModelStandBase getStandModelByData(EntityLivingBase entity) {
-		return null;
+	public ModelStandBase getStandModelByData(EntityLivingBase user) {
+		String stand = StandUtil.getType(user).getName();
+		String state = StandUtil.getStandState(user);
+		String id = HuajiAge.MODID+":"+stand;
+		String id_state = HuajiAge.MODID+":"+stand+"_"+state;
+		switch (state){
+			case "default":
+				return StandClientUtil.getModelByID(id,false);
+			default:
+				return StandClientUtil.getModelByID(id_state,false);
+		}
 	}
 
 

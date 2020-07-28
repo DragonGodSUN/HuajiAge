@@ -1,13 +1,11 @@
 package com.lh_lshen.mcbbs.huajiage.stand.resource;
 
-import com.lh_lshen.mcbbs.huajiage.client.model.stand.ModelOrgaFly;
 import com.lh_lshen.mcbbs.huajiage.client.model.stand.ModelOrgaRequiem;
 import com.lh_lshen.mcbbs.huajiage.client.model.stand.ModelStandBase;
 import com.lh_lshen.mcbbs.huajiage.init.HuajiConstant;
 import com.lh_lshen.mcbbs.huajiage.init.sound.HuajiMovingSound;
 import com.lh_lshen.mcbbs.huajiage.init.sound.HuajiSoundPlayer;
 import com.lh_lshen.mcbbs.huajiage.init.sound.SoundStand;
-import com.lh_lshen.mcbbs.huajiage.stand.StandUtil;
 import net.minecraft.client.Minecraft;
 import net.minecraft.entity.Entity;
 import net.minecraft.entity.EntityLivingBase;
@@ -70,15 +68,4 @@ public class ResStandOrgaRequiem extends StandRes {
         return new ModelOrgaRequiem();
     }
 
-    @Override
-    public ModelStandBase getStandModelByData(EntityLivingBase entity) {
-        String state = StandUtil.getStandState(entity);
-        switch (state) {
-            case "default":
-                return new ModelOrgaRequiem();
-            case "fly":
-                return new ModelOrgaFly();
-        }
-        return new ModelOrgaRequiem();
-    }
 }

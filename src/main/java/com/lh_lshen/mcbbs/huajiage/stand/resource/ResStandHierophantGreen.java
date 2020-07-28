@@ -2,12 +2,10 @@ package com.lh_lshen.mcbbs.huajiage.stand.resource;
 
 import com.lh_lshen.mcbbs.huajiage.client.model.stand.ModelHierophantGreen;
 import com.lh_lshen.mcbbs.huajiage.client.model.stand.ModelStandBase;
-import com.lh_lshen.mcbbs.huajiage.client.model.stand.states.ModelHierophantGreenIdle;
 import com.lh_lshen.mcbbs.huajiage.init.HuajiConstant;
 import com.lh_lshen.mcbbs.huajiage.init.sound.HuajiMovingSound;
 import com.lh_lshen.mcbbs.huajiage.init.sound.HuajiSoundPlayer;
 import com.lh_lshen.mcbbs.huajiage.init.sound.SoundStand;
-import com.lh_lshen.mcbbs.huajiage.stand.StandUtil;
 import net.minecraft.client.Minecraft;
 import net.minecraft.client.renderer.OpenGlHelper;
 import net.minecraft.entity.Entity;
@@ -60,14 +58,14 @@ public class ResStandHierophantGreen extends StandRes{
 	public ModelStandBase getStandModel() {
 		return new ModelHierophantGreen();
 	}
-	@Override
-	public ModelStandBase getStandModelByData(EntityLivingBase user) {
-		String state = StandUtil.getStandState(user);
-		switch (state){
-			case "default":return new ModelHierophantGreen();
-			case "idle":return new ModelHierophantGreenIdle();
-		}
-		return new ModelHierophantGreen();
-	}
+//	@Override
+//	public ModelStandBase getStandModelByData(EntityLivingBase user) {
+//		String state = StandUtil.getStandState(user);
+//		switch (state){
+//			case "default":return new ModelHierophantGreen();
+//			case "idle":return new ModelHierophantGreenIdle();
+//		}
+//		return new ModelHierophantGreen();
+//	}
 
 }

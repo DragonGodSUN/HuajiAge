@@ -2,14 +2,12 @@ package com.lh_lshen.mcbbs.huajiage.stand.resource;
 
 import com.lh_lshen.mcbbs.huajiage.client.model.stand.ModelStandBase;
 import com.lh_lshen.mcbbs.huajiage.client.model.stand.ModelStarPlatinum;
-import com.lh_lshen.mcbbs.huajiage.client.model.stand.states.ModelStarPlatinumIdle;
 import com.lh_lshen.mcbbs.huajiage.init.HuajiConstant;
 import com.lh_lshen.mcbbs.huajiage.init.sound.HuajiMovingSound;
 import com.lh_lshen.mcbbs.huajiage.init.sound.HuajiSoundPlayer;
 import com.lh_lshen.mcbbs.huajiage.init.sound.SoundStand;
 import com.lh_lshen.mcbbs.huajiage.potion.PotionLoader;
 import com.lh_lshen.mcbbs.huajiage.stand.StandLoader;
-import com.lh_lshen.mcbbs.huajiage.stand.StandUtil;
 import net.minecraft.client.Minecraft;
 import net.minecraft.client.renderer.OpenGlHelper;
 import net.minecraft.entity.Entity;
@@ -71,15 +69,4 @@ public class ResStandStarPlatinum extends StandRes {
         return new ModelStarPlatinum();
     }
 
-    @Override
-    public ModelStandBase getStandModelByData(EntityLivingBase entity) {
-        String state = StandUtil.getStandState(entity);
-        switch (state) {
-            case "default":
-                return new ModelStarPlatinum();
-            case "idle":
-                return new ModelStarPlatinumIdle();
-        }
-        return new ModelStarPlatinum();
-    }
 }

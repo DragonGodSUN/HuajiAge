@@ -1,22 +1,28 @@
 package com.lh_lshen.mcbbs.huajiage.stand.states;
 
 import com.google.common.collect.Lists;
+import com.lh_lshen.mcbbs.huajiage.HuajiAge;
 import com.lh_lshen.mcbbs.huajiage.api.IStandState;
 import com.lh_lshen.mcbbs.huajiage.config.ConfigHuaji;
+import com.lh_lshen.mcbbs.huajiage.init.HuajiConstant;
 import com.lh_lshen.mcbbs.huajiage.potion.PotionLoader;
 import net.minecraft.entity.EntityLivingBase;
 import net.minecraft.init.MobEffects;
 import net.minecraft.potion.PotionEffect;
+import net.minecraft.util.ResourceLocation;
 
 import java.util.List;
 
 public abstract class StandStateBase implements IStandState {
     private String stand;
     private String stateName;
+    private String ID = HuajiConstant.StandModels.DEFAULT_MODEL_ID;
+    private ResourceLocation tex= new ResourceLocation(HuajiAge.MODID,"textures/entity/entity_the_world.png");
     private List<String> extraDatas = Lists.newArrayList();
     private int stage;
     private boolean isHandPlay;
     private boolean soundLoop;
+
 
     public StandStateBase() {
     }
@@ -50,6 +56,16 @@ public abstract class StandStateBase implements IStandState {
     }
 
     @Override
+    public String getModelID() {
+        return ID;
+    }
+
+    @Override
+    public ResourceLocation getTex() {
+        return tex;
+    }
+
+    @Override
     public int getStage() {
         return stage;
     }
@@ -68,6 +84,14 @@ public abstract class StandStateBase implements IStandState {
 
     public void setStateName(String stateName) {
         this.stateName = stateName;
+    }
+
+    public void setID(String ID) {
+        this.ID = ID;
+    }
+
+    public void setTex(ResourceLocation tex) {
+        this.tex = tex;
     }
 
     public boolean isHandPlay() {

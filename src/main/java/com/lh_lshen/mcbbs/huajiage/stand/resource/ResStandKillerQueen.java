@@ -4,7 +4,6 @@ import com.lh_lshen.mcbbs.huajiage.capability.CapabilityExposedData;
 import com.lh_lshen.mcbbs.huajiage.capability.IExposedData;
 import com.lh_lshen.mcbbs.huajiage.client.model.stand.ModelKillerQueen;
 import com.lh_lshen.mcbbs.huajiage.client.model.stand.ModelStandBase;
-import com.lh_lshen.mcbbs.huajiage.client.model.stand.states.ModelKillerQueenPunch;
 import com.lh_lshen.mcbbs.huajiage.init.HuajiConstant;
 import com.lh_lshen.mcbbs.huajiage.init.sound.HuajiMovingSound;
 import com.lh_lshen.mcbbs.huajiage.init.sound.HuajiSoundPlayer;
@@ -75,14 +74,5 @@ public class ResStandKillerQueen extends StandRes{
 		return new ModelKillerQueen();
 	}
 
-	@Override
-	public ModelStandBase getStandModelByData(EntityLivingBase user) {
-		String state = StandUtil.getStandState(user);
-		switch (state){
-			case "default":return new ModelKillerQueen();
-			case "punch":return new ModelKillerQueenPunch();
-		}
-		return new ModelKillerQueen();
-	}
 
 }

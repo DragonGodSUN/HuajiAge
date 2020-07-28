@@ -5,7 +5,6 @@ package com.lh_lshen.mcbbs.huajiage.client.resources.pojo;
  */
 
 import com.google.gson.JsonSyntaxException;
-import com.google.gson.annotations.Expose;
 import com.google.gson.annotations.SerializedName;
 import net.minecraft.util.ResourceLocation;
 
@@ -34,9 +33,6 @@ public class CustomModelPack <T extends IModelInfo>{
 
     @SerializedName("icon")
     private ResourceLocation icon;
-
-    @Expose(deserialize = false)
-    private int iconAspectRatio = 1;
 
     @Nullable
     public String getDate() {
@@ -67,14 +63,6 @@ public class CustomModelPack <T extends IModelInfo>{
     @Nullable
     public ResourceLocation getIcon() {
         return icon;
-    }
-
-    public int getIconAspectRatio() {
-        return iconAspectRatio;
-    }
-
-    public void setIconAspectRatio(int iconAspectRatio) {
-        this.iconAspectRatio = iconAspectRatio;
     }
 
     @SuppressWarnings("unchecked")

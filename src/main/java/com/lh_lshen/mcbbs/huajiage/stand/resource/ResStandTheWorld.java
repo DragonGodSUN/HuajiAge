@@ -1,18 +1,12 @@
 package com.lh_lshen.mcbbs.huajiage.stand.resource;
 
-import java.util.List;
-import java.util.Random;
-
-import com.lh_lshen.mcbbs.huajiage.capability.CapabilityExposedData;
 import com.lh_lshen.mcbbs.huajiage.capability.IExposedData;
 import com.lh_lshen.mcbbs.huajiage.client.model.stand.ModelStandBase;
 import com.lh_lshen.mcbbs.huajiage.client.model.stand.ModelTheWorld;
-import com.lh_lshen.mcbbs.huajiage.client.model.stand.states.ModelTheWorldIdle;
 import com.lh_lshen.mcbbs.huajiage.init.HuajiConstant;
 import com.lh_lshen.mcbbs.huajiage.init.sound.HuajiMovingSound;
 import com.lh_lshen.mcbbs.huajiage.init.sound.HuajiSoundPlayer;
 import com.lh_lshen.mcbbs.huajiage.init.sound.SoundStand;
-
 import com.lh_lshen.mcbbs.huajiage.potion.PotionLoader;
 import com.lh_lshen.mcbbs.huajiage.stand.StandLoader;
 import com.lh_lshen.mcbbs.huajiage.stand.StandUtil;
@@ -25,6 +19,9 @@ import net.minecraft.util.ResourceLocation;
 import net.minecraft.util.SoundCategory;
 import net.minecraft.util.SoundEvent;
 import net.minecraft.util.math.MathHelper;
+
+import java.util.List;
+import java.util.Random;
 
 public class ResStandTheWorld extends StandRes{
 	public ResStandTheWorld() {
@@ -83,15 +80,6 @@ public class ResStandTheWorld extends StandRes{
 
 	@Override
 	public ModelStandBase getStandModel() {
-		return new ModelTheWorld();
-	}
-	@Override
-	public ModelStandBase getStandModelByData(EntityLivingBase user) {
-		String state = StandUtil.getStandState(user);
-		switch (state){
-			case "default":return new ModelTheWorld();
-			case "idle":return new ModelTheWorldIdle();
-		}
 		return new ModelTheWorld();
 	}
 
