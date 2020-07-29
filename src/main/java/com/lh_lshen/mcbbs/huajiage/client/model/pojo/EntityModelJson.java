@@ -13,6 +13,7 @@ import com.lh_lshen.mcbbs.huajiage.stand.StandStates;
 import com.lh_lshen.mcbbs.huajiage.stand.StandUtil;
 import com.lh_lshen.mcbbs.huajiage.stand.states.StandStateBase;
 import net.minecraft.client.model.ModelRenderer;
+import net.minecraft.client.renderer.GlStateManager;
 import net.minecraft.entity.Entity;
 import net.minecraft.entity.player.EntityPlayer;
 import net.minecraft.util.EnumHandSide;
@@ -30,6 +31,8 @@ import java.util.List;
 public class EntityModelJson extends ModelStandBase {
     public final AxisAlignedBB renderBoundingBox;
     private EntityStandWrapper entityStandWrapper;
+    private List<Float> positions = Lists.newArrayList();
+    private List<Float> rotations = Lists.newArrayList();
     private List<Object> animations = Lists.newArrayList();
     /**
      * 存储 ModelRender 子模型的 HashMap
@@ -45,6 +48,8 @@ public class EntityModelJson extends ModelStandBase {
     private List<ModelRenderer> shouldRender = new LinkedList<>();
 
     public EntityModelJson(CustomModelPOJO pojo) {
+        initTranslate(0,0,0);
+        initRotations(0,0,0,0);
         this.entityStandWrapper = new EntityStandWrapper();
 
         // 材质的长度、宽度
@@ -149,7 +154,6 @@ public class EntityModelJson extends ModelStandBase {
                     }
                 }
             }
-            return;
         }
     }
 
@@ -284,7 +288,41 @@ public class EntityModelJson extends ModelStandBase {
 
     @Override
     public void setPosition() {
-
+        if (!rotations.isEmpty()&&rotations.size()>=4) {
+            GlStateManager.rotate(rotations.get(0),rotations.get(1),rotations.get(2),rotations.get(3));
+        }
+        if (!positions.isEmpty()&&positions.size()>=3) {
+            GlStateManager.translate(positions.get(0),positions.get(1),positions.get(2));
+        }
     }
 
+    public void initTranslate(float x, float y, float z){
+        positions.add(x);
+        positions.add(y);
+        positions.add(z);
+    }
+
+    public void initRotations(float degree, float y, float p, float w){
+        rotations.add(degree);
+        rotations.add(y);
+        rotations.add(p);
+        rotations.add(w);
+    }
+
+    public void setPositions(float x, float y, float z){
+        if (!positions.isEmpty()&&positions.size()>=3) {
+            positions.set(0,x);
+            positions.set(1,y);
+            positions.set(2,z);
+        }
+    }
+
+    public void setRotations(float degree, float y, float p, float w) {
+        if (!rotations.isEmpty()&&rotations.size()>=4) {
+            rotations.set(0,degree);
+            rotations.set(1,y);
+            rotations.set(2,p);
+            rotations.set(3,w);
+        }
+    }
 }

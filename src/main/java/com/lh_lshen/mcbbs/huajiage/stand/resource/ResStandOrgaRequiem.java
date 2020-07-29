@@ -2,7 +2,6 @@ package com.lh_lshen.mcbbs.huajiage.stand.resource;
 
 import com.lh_lshen.mcbbs.huajiage.client.model.stand.ModelOrgaRequiem;
 import com.lh_lshen.mcbbs.huajiage.client.model.stand.ModelStandBase;
-import com.lh_lshen.mcbbs.huajiage.init.HuajiConstant;
 import com.lh_lshen.mcbbs.huajiage.init.sound.HuajiMovingSound;
 import com.lh_lshen.mcbbs.huajiage.init.sound.HuajiSoundPlayer;
 import com.lh_lshen.mcbbs.huajiage.init.sound.SoundStand;
@@ -26,10 +25,10 @@ public class ResStandOrgaRequiem extends StandRes {
         super(name);
     }
 
-    @Override
-    public ResourceLocation getTexture() {
-        return HuajiConstant.StandTex.TEXTRUE_ORGA_REQUIEM;
-    }
+//    @Override
+//    public ResourceLocation getTexture() {
+//        return HuajiConstant.StandTex.TEXTRUE_ORGA_REQUIEM;
+//    }
 
     @Override
     public void doSoundPlay(Minecraft mc, Entity entity, EntityLivingBase user) {
@@ -48,7 +47,7 @@ public class ResStandOrgaRequiem extends StandRes {
 
     @Override
     public void doStandRender(EntityLivingBase entity) {
-        ResourceLocation STAND_TEX = getTexture();
+        ResourceLocation STAND_TEX = getTextureByData(entity);
         ModelStandBase model = getStandModelByData(entity);
         Minecraft.getMinecraft().getTextureManager().bindTexture(STAND_TEX);
 //            OpenGlHelper.setLightmapTextureCoords(OpenGlHelper.lightmapTexUnit, 240f, 240f);

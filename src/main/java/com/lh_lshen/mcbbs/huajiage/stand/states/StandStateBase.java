@@ -17,7 +17,7 @@ public abstract class StandStateBase implements IStandState {
     private String stand;
     private String stateName;
     private String ID = HuajiConstant.StandModels.DEFAULT_MODEL_ID;
-    private ResourceLocation tex= new ResourceLocation(HuajiAge.MODID,"textures/entity/entity_the_world.png");
+    private ResourceLocation tex= new ResourceLocation(HuajiAge.MODID,"textures/entity/entity_the_world_default.png");
     private List<String> extraDatas = Lists.newArrayList();
     private int stage;
     private boolean isHandPlay;
@@ -33,6 +33,8 @@ public abstract class StandStateBase implements IStandState {
         this.isHandPlay = isHandPlay;
         this.soundLoop = soundLoop;
         this.stage = 0;
+        ID = HuajiAge.MODID+":"+stand+"_"+stateName;
+        tex= new ResourceLocation(HuajiAge.MODID,"textures/entity/entity_"+stand+"_"+stateName+".png");
     }
 
     public StandStateBase(String stand, String stateName, boolean isHandPlay, boolean soundLoop, int stage) {
@@ -41,6 +43,8 @@ public abstract class StandStateBase implements IStandState {
         this.isHandPlay = isHandPlay;
         this.soundLoop = soundLoop;
         this.stage = stage;
+        ID = HuajiAge.MODID+":"+stand+"_"+stateName;
+        tex= new ResourceLocation(HuajiAge.MODID,"textures/entity/entity_"+stand+"_"+stateName+".png");
     }
 
     public String getStand() {
@@ -120,4 +124,12 @@ public abstract class StandStateBase implements IStandState {
             user.addPotionEffect(new PotionEffect(MobEffects.WITHER , 5*20 , 1 ));
         }
     }
+
+//    public void loadCustomTex(){
+//        if(HAModelFactory.getModel(getModelID()) instanceof EntityModelJson){
+//            CustomResourceLoader.STAND_MODEL.getInfo(getModelID()).ifPresent(info->this.tex=info.getTexture());
+//            HuajiAge.LOGGER.info(MarkerManager.getMarker("ResourcesLoader"), "Loaded model[texture]: {}",tex);
+//            HuajiAge.LOGGER.info(MarkerManager.getMarker("ResourcesLoader"), "Loaded model[texture]: {}",CustomResourceLoader.STAND_MODEL.getInfo(getModelID()).isPresent());
+//        }
+//    }
 }

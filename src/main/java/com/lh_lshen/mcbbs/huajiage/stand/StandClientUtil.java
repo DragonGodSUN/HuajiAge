@@ -3,7 +3,6 @@ package com.lh_lshen.mcbbs.huajiage.stand;
 import com.lh_lshen.mcbbs.huajiage.client.model.stand.HAModelFactory;
 import com.lh_lshen.mcbbs.huajiage.client.model.stand.ModelStandBase;
 import com.lh_lshen.mcbbs.huajiage.client.model.stand.ModelTheWorld;
-import com.lh_lshen.mcbbs.huajiage.client.resources.CustomResourceLoader;
 import com.lh_lshen.mcbbs.huajiage.stand.instance.StandBase;
 import net.minecraft.client.Minecraft;
 import net.minecraft.entity.Entity;
@@ -62,7 +61,12 @@ public class StandClientUtil {
 //		return HuajiConstant.StandTex.TEXTRUE_HIEROPANT_GREEN;
 //		}
 		StandBase stand = StandLoader.getStand(stand_type);
-		return stand.getBindingRes().getTexture();
+		return stand.getBindingRes().getTextureByData("default");
+	}
+
+	public static ResourceLocation getTex(String stand_type, String state) {
+		StandBase stand = StandLoader.getStand(stand_type);
+		return stand.getBindingRes().getTextureByData(state);
 	}
 	
     public static void standRender(EntityLivingBase entity) {
@@ -93,12 +97,8 @@ public class StandClientUtil {
 //			}
 		}
 	}
-	public static ModelStandBase getModelByID(String id, boolean isCustom){
-		if(isCustom) {
-			if (CustomResourceLoader.STAND_MODEL.getModel(id).isPresent()) {
-				return CustomResourceLoader.STAND_MODEL.getModel(id).get();
-			}
-		}else if(HAModelFactory.has(id)){
+	public static ModelStandBase getModelByID(String id){
+		if(HAModelFactory.hasModel(id)){
 			return HAModelFactory.newInstance(id);
 		}
 		return new ModelTheWorld();

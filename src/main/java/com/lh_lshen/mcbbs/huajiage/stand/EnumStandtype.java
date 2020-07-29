@@ -1,9 +1,9 @@
 package com.lh_lshen.mcbbs.huajiage.stand;
 
 public class EnumStandtype {
-//	THE_WORLD("the_world",1.2f,10f,200,2f,60000,new StandTheWorld(),"textures/entity/entity_the_world.png",HuajiConstant.StandType.STAND_THE_WORLD),
-//	STAR_PLATINUM("star_platinum",1.5f,15f,275,2f,50000,new StandStarPlatinum(),"textures/entity/entity_star_platinum.png",HuajiConstant.StandType.STAND_STAR_PLATINUM),
-//	HIEROPHANT_GREEN("hierophant_green",1.0f,5f,200,20f,70000,new StandHieropantGreen(),"textures/entity/entity_hierophant_green.png",HuajiConstant.StandType.STAND_HIEROPANT_GREEN);
+//	THE_WORLD("the_world",1.2f,10f,200,2f,60000,new StandTheWorld(),"textures/entity/entity_the_world_default.png",HuajiConstant.StandType.STAND_THE_WORLD),
+//	STAR_PLATINUM("star_platinum",1.5f,15f,275,2f,50000,new StandStarPlatinum(),"textures/entity/entity_star_platinum_default.png",HuajiConstant.StandType.STAND_STAR_PLATINUM),
+//	HIEROPHANT_GREEN("hierophant_green",1.0f,5f,200,20f,70000,new StandHieropantGreen(),"textures/entity/entity_hierophant_green_default.png",HuajiConstant.StandType.STAND_HIEROPANT_GREEN);
 //	
 //	private EnumStandtype(String name ,float speed ,float damage ,int duration ,float distance ,int cost,
 //			IStandPower power,String texPath,String localName) {

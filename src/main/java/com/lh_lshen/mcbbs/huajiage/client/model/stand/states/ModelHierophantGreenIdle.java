@@ -315,15 +315,15 @@ public class ModelHierophantGreenIdle extends ModelStandBase {
 		head.   offsetY = off;
 		body.   offsetY = off;
 		strips. offsetY = off;
-		strip2. offsetY += off*0.5f;
-		strip3. offsetY -= off*0.5f;
-		strip4. offsetY -= off*0.5f;
-		strip5. offsetY += off*0.5f;
-		strip6. offsetY += off*0.5f;
-		strip7. offsetY += off*0.5f;
-		strip8. offsetY -= off*0.5f;
-		strip9. offsetY -= off*0.5f;
-		strip10.offsetY += off*0.5f;
+//		strip2. offsetY += off*0.05f;
+//		strip3. offsetY -= off*0.05f;
+//		strip4. offsetY -= off*0.05f;
+//		strip5. offsetY += off*0.05f;
+//		strip6. offsetY += off*0.05f;
+//		strip7. offsetY += off*0.05f;
+//		strip8. offsetY -= off*0.05f;
+//		strip9. offsetY -= off*0.05f;
+//		strip10.offsetY += off*0.05f;
 //		strip12.offsetY += off*0.5f;
 
 		head.rotateAngleX = headPitch * 0.017453292F;

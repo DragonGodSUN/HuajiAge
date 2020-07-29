@@ -3,7 +3,6 @@ package com.lh_lshen.mcbbs.huajiage.stand.resource;
 import com.lh_lshen.mcbbs.huajiage.capability.IExposedData;
 import com.lh_lshen.mcbbs.huajiage.client.model.stand.ModelStandBase;
 import com.lh_lshen.mcbbs.huajiage.client.model.stand.ModelTheWorld;
-import com.lh_lshen.mcbbs.huajiage.init.HuajiConstant;
 import com.lh_lshen.mcbbs.huajiage.init.sound.HuajiMovingSound;
 import com.lh_lshen.mcbbs.huajiage.init.sound.HuajiSoundPlayer;
 import com.lh_lshen.mcbbs.huajiage.init.sound.SoundStand;
@@ -30,10 +29,10 @@ public class ResStandTheWorld extends StandRes{
 	public ResStandTheWorld(String name) {
 		super(name);
 	}
-	@Override
-	public ResourceLocation getTexture() {
-		return HuajiConstant.StandTex.TEXTRUE_THE_WORLD;
-	}
+//	@Override
+//	public ResourceLocation getTexture() {
+//		return HuajiConstant.StandTex.TEXTRUE_THE_WORLD;
+//	}
 
 	@Override
 	public void doSoundPlay(Minecraft mc ,Entity entity,EntityLivingBase user) {
@@ -54,7 +53,7 @@ public class ResStandTheWorld extends StandRes{
 
 	@Override
 	public void doStandRender(EntityLivingBase entity) {
-		ResourceLocation STAND_TEX = getTexture();
+		ResourceLocation STAND_TEX = getTextureByData(entity);
 		ModelStandBase model = getStandModelByData(entity);
 		Minecraft.getMinecraft().getTextureManager().bindTexture(STAND_TEX);
 		OpenGlHelper.setLightmapTextureCoords(OpenGlHelper.lightmapTexUnit, 240f, 240f);

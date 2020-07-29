@@ -1,6 +1,7 @@
 package com.lh_lshen.mcbbs.huajiage.client.render.layers;
 
 import com.lh_lshen.mcbbs.huajiage.capability.CapabilityLoader;
+import com.lh_lshen.mcbbs.huajiage.capability.IExposedData;
 import com.lh_lshen.mcbbs.huajiage.client.model.stand.ModelStandBase;
 import com.lh_lshen.mcbbs.huajiage.stand.StandClientUtil;
 import com.lh_lshen.mcbbs.huajiage.stand.StandLoader;
@@ -30,44 +31,43 @@ public class LayerStand implements  LayerRenderer<EntityLivingBase> {
 	    }
 	@Override
 	public void doRenderLayer(EntityLivingBase entitylivingbaseIn, float limbSwing, float limbSwingAmount,
-			float partialTicks, float ageInTicks, float netHeadYaw, float headPitch, float scale) {
-		
-         		String ex_stand = entitylivingbaseIn.getCapability(CapabilityLoader.EXPOSED_DATA, null).getStand();
-				boolean istrigger = entitylivingbaseIn.getCapability(CapabilityLoader.EXPOSED_DATA, null).isTriggered();
-				StandBase stand = StandLoader.getStand(ex_stand); 
-//				IStandPower stand_power = stand!=null?stand:null;
-				int stage = entitylivingbaseIn.getCapability(CapabilityLoader.EXPOSED_DATA, null).getStage();
-//				boolean potion = entitylivingbaseIn.isPotionActive(PotionLoader.potionStand);
-				
-				String type = stand != null?stand.getName():StandLoader.EMPTY;
-				ModelStandBase model =  stand != null?StandClientUtil.getModelByData(entitylivingbaseIn,stand) : null;
-			    	
-			    	if(model != null&&!type.equals(StandLoader.EMPTY)&& istrigger) 
-			    	{
-	 					GlStateManager.color(1.0F, 1.0F, 1.0F, 1.0F);
-	 		            GlStateManager.enableBlend();
-	 		            GlStateManager.disableLighting();
-	 		            ResourceLocation texture = StandClientUtil.getTex(stand.getName());
-	 		            if(texture!=null) {
-	 		            livingEntityRenderer.bindTexture(texture);
-	 		            }
-	 					OpenGlHelper.setLightmapTextureCoords(OpenGlHelper.lightmapTexUnit, 240f, 240f);
-	 					
-	 					GlStateManager.pushMatrix();
-	 					
-	 					model.setPosition();
-	 		            model.setRotationAngles(limbSwing, limbSwingAmount, ageInTicks, netHeadYaw, headPitch, scale, entitylivingbaseIn, 1f ,stand.getSpeed()*4/3);
-	 		            model.setPunch(limbSwing, limbSwingAmount,  ageInTicks, netHeadYaw, headPitch, scale, entitylivingbaseIn, 0.3f ,stand.getSpeed()*4/3);
-	 		            model.render(entitylivingbaseIn, limbSwing, limbSwingAmount, ageInTicks, netHeadYaw, headPitch, scale);
-	 		            model.effect(entitylivingbaseIn, limbSwing, limbSwingAmount, ageInTicks, netHeadYaw, headPitch, scale);
-	 		            if(stage>0&&stand!=null) {
-	 		            model.extraEffect(entitylivingbaseIn, limbSwing, limbSwingAmount, ageInTicks, netHeadYaw, headPitch, scale);
-	 		            }
+		float partialTicks, float ageInTicks, float netHeadYaw, float headPitch, float scale) {
+		IExposedData data = entitylivingbaseIn.getCapability(CapabilityLoader.EXPOSED_DATA, null);
+		if (data!=null) {
+			String ex_stand = data.getStand();
+			boolean istrigger = data.isTriggered();
+			StandBase stand = StandLoader.getStand(ex_stand);
+			String state = data.getState();
+			int stage = data.getStage();
+			String type = stand != null?stand.getName():StandLoader.EMPTY;
+			ModelStandBase model =  stand != null?StandClientUtil.getModelByData(entitylivingbaseIn,stand) : null;
 
-	 					GlStateManager.disableBlend();
-						GlStateManager.enableLighting();
-			            GlStateManager.popMatrix();
-			    	}
+			if(model != null&&!type.equals(StandLoader.EMPTY)&& istrigger)
+			{
+				 GlStateManager.pushMatrix();
+				 GlStateManager.color(1.0F, 1.0F, 1.0F, 1.0F);
+				 GlStateManager.enableBlend();
+				 GlStateManager.disableLighting();
+				 ResourceLocation texture = StandClientUtil.getTex(stand.getName(),state);
+				 if(texture!=null) {
+				 livingEntityRenderer.bindTexture(texture);
+				 }
+				 OpenGlHelper.setLightmapTextureCoords(OpenGlHelper.lightmapTexUnit, 240f, 240f);
+
+				 model.setPosition();
+				 model.setRotationAngles(limbSwing, limbSwingAmount, ageInTicks, netHeadYaw, headPitch, scale, entitylivingbaseIn, 1f ,stand.getSpeed()*4/3);
+				 model.setPunch(limbSwing, limbSwingAmount,  ageInTicks, netHeadYaw, headPitch, scale, entitylivingbaseIn, 0.3f ,stand.getSpeed()*4/3);
+				 model.render(entitylivingbaseIn, limbSwing, limbSwingAmount, ageInTicks, netHeadYaw, headPitch, scale);
+				 model.effect(entitylivingbaseIn, limbSwing, limbSwingAmount, ageInTicks, netHeadYaw, headPitch, scale);
+				 if(stage>0&&stand!=null) {
+				 model.extraEffect(entitylivingbaseIn, limbSwing, limbSwingAmount, ageInTicks, netHeadYaw, headPitch, scale);
+				 }
+
+				GlStateManager.enableLighting();
+			 	GlStateManager.disableBlend();
+				GlStateManager.popMatrix();
+			}
+		}
 	}
 	
 	@Override

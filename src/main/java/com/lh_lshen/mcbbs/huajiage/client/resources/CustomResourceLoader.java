@@ -66,6 +66,17 @@ public class CustomResourceLoader {
                 for (StandModelInfo standModelItem : pack.getModelList()) {
                     // 尝试加载模型
                     EntityModelJson modelJson = loadModel(standModelItem.getModel());
+                    if (standModelItem.getTransfer()!=null && standModelItem.getTransfer().size()>=3) {
+                        modelJson.setPositions((Float) standModelItem.getTransfer().get(0),
+                                               (Float) standModelItem.getTransfer().get(1),
+                                               (Float) standModelItem.getTransfer().get(2));
+                    }
+                    if (standModelItem.getRotation()!=null && standModelItem.getRotation().size()>=4) {
+                        modelJson.setRotations((Float) standModelItem.getRotation().get(0),
+                                               (Float) standModelItem.getRotation().get(1),
+                                               (Float) standModelItem.getRotation().get(2),
+                                               (Float) standModelItem.getRotation().get(3));
+                    }
                     // 加载动画
                     @Nullable List<Object> animations = CustomJsAnimationManger.getCustomAnimation(standModelItem);
                     if (modelJson != null) {

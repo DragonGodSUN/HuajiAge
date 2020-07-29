@@ -4,7 +4,6 @@ import com.lh_lshen.mcbbs.huajiage.capability.CapabilityExposedData;
 import com.lh_lshen.mcbbs.huajiage.capability.IExposedData;
 import com.lh_lshen.mcbbs.huajiage.client.model.stand.ModelKillerQueen;
 import com.lh_lshen.mcbbs.huajiage.client.model.stand.ModelStandBase;
-import com.lh_lshen.mcbbs.huajiage.init.HuajiConstant;
 import com.lh_lshen.mcbbs.huajiage.init.sound.HuajiMovingSound;
 import com.lh_lshen.mcbbs.huajiage.init.sound.HuajiSoundPlayer;
 import com.lh_lshen.mcbbs.huajiage.init.sound.SoundStand;
@@ -29,10 +28,10 @@ public class ResStandKillerQueen extends StandRes{
 	public ResStandKillerQueen(String name) {
 		super(name);
 	}
-	@Override
-	public ResourceLocation getTexture() {
-		return HuajiConstant.StandTex.TEXTRUE_KILLER_QUEEN;
-	}
+//	@Override
+//	public ResourceLocation getTexture() {
+//		return HuajiConstant.StandTex.TEXTRUE_KILLER_QUEEN;
+//	}
 
 	@Override
 	public void doSoundPlay(Minecraft mc ,Entity entity,EntityLivingBase user) {
@@ -54,7 +53,7 @@ public class ResStandKillerQueen extends StandRes{
 		IExposedData data = StandUtil.getStandData(entity);
 		boolean isPunch = CapabilityExposedData.States.PUNCH.getName().equals(data.getState());
 		if (isPunch) {
-			ResourceLocation STAND_TEX = getTexture();
+			ResourceLocation STAND_TEX = getTextureByData(entity);
 			ModelStandBase model = getStandModelByData(entity);
 			Minecraft.getMinecraft().getTextureManager().bindTexture(STAND_TEX);
 			OpenGlHelper.setLightmapTextureCoords(OpenGlHelper.lightmapTexUnit, 240f, 240f);

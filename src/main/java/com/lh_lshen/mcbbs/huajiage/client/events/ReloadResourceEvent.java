@@ -4,6 +4,7 @@ package com.lh_lshen.mcbbs.huajiage.client.events;
  * 更多内容请转至：https://github.com/TartaricAcid/TouhouLittleMaid
  */
 import com.lh_lshen.mcbbs.huajiage.HuajiAge;
+import com.lh_lshen.mcbbs.huajiage.client.model.stand.HAModelFactory;
 import com.lh_lshen.mcbbs.huajiage.client.resources.CustomResourceLoader;
 import net.minecraftforge.client.event.TextureStitchEvent;
 import net.minecraftforge.fml.common.Mod;
@@ -17,5 +18,6 @@ public class ReloadResourceEvent {
     @SubscribeEvent
     public static void onTextureStitchEvent(TextureStitchEvent.Post event) {
         CustomResourceLoader.reloadResources();
+        HAModelFactory.reloadStandModels();
     }
 }

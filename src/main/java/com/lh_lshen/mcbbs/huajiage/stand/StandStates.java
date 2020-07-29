@@ -4,9 +4,7 @@ import com.google.common.collect.Lists;
 import com.lh_lshen.mcbbs.huajiage.api.HuajiAgeAPI;
 import com.lh_lshen.mcbbs.huajiage.api.IStandState;
 import com.lh_lshen.mcbbs.huajiage.stand.states.StandStateBase;
-import com.lh_lshen.mcbbs.huajiage.stand.states.default_set.StateTheWorldDefault;
 
-import java.util.ArrayList;
 import java.util.List;
 
 public class StandStates {
@@ -62,5 +60,15 @@ public class StandStates {
         }
         return null;
     }
+
+//    public static void reloadTexture(){
+//        List<IStandState> list = HuajiAgeAPI.getStandStateList();
+//        if (list!=null) {
+//            for(int i = 0; i< list.size(); i++) {
+//                StandStateBase state = getStateByIndex(i);
+//                state.loadCustomTex();
+//            }
+//        }
+//    }
 
 }

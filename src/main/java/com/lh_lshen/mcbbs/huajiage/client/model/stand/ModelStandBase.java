@@ -3,7 +3,7 @@ package com.lh_lshen.mcbbs.huajiage.client.model.stand;
 import net.minecraft.client.model.ModelBase;
 import net.minecraft.entity.Entity;
 
-public abstract class ModelStandBase extends ModelBase {
+public abstract class ModelStandBase extends ModelBase implements Cloneable {
 
 	public abstract void setRotationAngles(float limbSwing, float limbSwingAmount, float rotateFloat, float rotateYaw,
 	          float rotatePitch, float scale, Entity entity ,float power ,float speed) ;
@@ -21,6 +21,9 @@ public abstract class ModelStandBase extends ModelBase {
 	
 	public abstract void setPosition();
 
-
+	@Override
+	public ModelStandBase clone() throws CloneNotSupportedException {
+		return (ModelStandBase) super.clone();
+	}
 }
 
