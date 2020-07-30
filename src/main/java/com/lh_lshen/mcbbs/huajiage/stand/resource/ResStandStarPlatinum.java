@@ -51,15 +51,22 @@ public class ResStandStarPlatinum extends StandRes {
     @Override
     public void doStandRender(EntityLivingBase entity) {
         ResourceLocation STAND_TEX = getTextureByData(entity);
-        ModelStandBase model = getStandModelByData(entity);
-        Minecraft.getMinecraft().getTextureManager().bindTexture(STAND_TEX);
-        OpenGlHelper.setLightmapTextureCoords(OpenGlHelper.lightmapTexUnit, 240f, 240f);
-        model.setRotationAngles(0, 0, entity.ticksExisted, 0, -1, 1, entity, 0.5f, (float) (StandLoader.THE_WORLD.getSpeed() * 1.5));
-        model.effect(entity, 0, 0, entity.ticksExisted, 0, 0, 1f);
-        if (entity.getActivePotionEffect(PotionLoader.potionStand).getDuration() < 40) {
-            model.doHandRender(0, -1f, -0.75f, 1f, 0.3f);
-        } else {
-            model.doHandRender(0, -1f, -0.75f, 1f, 0.6f);
+        ModelStandBase model = null;
+        try {
+            model = getStandModelByData(entity).clone();
+        } catch (CloneNotSupportedException e) {
+            e.printStackTrace();
+        }
+        if (model!=null) {
+            Minecraft.getMinecraft().getTextureManager().bindTexture(STAND_TEX);
+            OpenGlHelper.setLightmapTextureCoords(OpenGlHelper.lightmapTexUnit, 240f, 240f);
+            model.setRotationAngles(0, 0, entity.ticksExisted, 0, -1, 1, entity, 0.5f, (float) (StandLoader.THE_WORLD.getSpeed() * 1.5));
+            model.effect(entity, 0, 0, entity.ticksExisted, 0, 0, 1f);
+            if (entity.getActivePotionEffect(PotionLoader.potionStand).getDuration() < 40) {
+                model.doHandRender(0, -1f, -0.75f, 1f, 0.3f);
+            } else {
+                model.doHandRender(0, -1f, -0.75f, 1f, 0.6f);
+            }
         }
     }
 

@@ -14,7 +14,8 @@ import net.minecraftforge.fml.common.event.FMLPreInitializationEvent;
 import org.apache.logging.log4j.LogManager;
 import org.apache.logging.log4j.Logger;
 
-@Mod(modid = HuajiAge.MODID, name = HuajiAge.NAME, version = HuajiAge.VERSION, acceptedMinecraftVersions = "[1.12]")
+@Mod(modid = HuajiAge.MODID, name = HuajiAge.NAME, version = HuajiAge.VERSION,
+        acceptedMinecraftVersions = "[1.12]",dependencies = "after:touhou_little_maid@[1.2.2,);")
 public class HuajiAge
 {
     @SidedProxy(clientSide = "com.lh_lshen.mcbbs.huajiage.client.ClientProxy", 

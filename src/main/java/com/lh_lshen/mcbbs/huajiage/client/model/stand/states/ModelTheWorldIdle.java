@@ -288,8 +288,8 @@ public class ModelTheWorldIdle extends ModelStandBase {
 
 	@Override
 	public void extraEffect(Entity entityIn, float limbSwing, float limbSwingAmount, float ageInTicks, float netHeadYaw, float headPitch, float scale) {
-		gears.offsetY-=0.3;
-		gears.offsetZ-=0.2;
+		gears.offsetY=-0.3f;
+		gears.offsetZ=-0.2f;
 		gear1.rotateAngleY = ageInTicks/10;
 		gear2.rotateAngleY = ageInTicks/15;
 	//		gears.render(scale*3/2);

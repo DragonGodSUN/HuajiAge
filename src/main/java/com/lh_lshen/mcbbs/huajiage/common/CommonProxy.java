@@ -19,9 +19,9 @@ import com.lh_lshen.mcbbs.huajiage.potion.PotionLoader;
 import com.lh_lshen.mcbbs.huajiage.stand.StandLoader;
 import com.lh_lshen.mcbbs.huajiage.tileentity.TileEntityLoader;
 import net.minecraft.util.ResourceLocation;
-import net.minecraft.world.World;
 import net.minecraft.world.storage.loot.functions.LootFunctionManager;
 import net.minecraftforge.common.MinecraftForge;
+import net.minecraftforge.fml.common.Loader;
 import net.minecraftforge.fml.common.event.FMLInitializationEvent;
 import net.minecraftforge.fml.common.event.FMLPostInitializationEvent;
 import net.minecraftforge.fml.common.event.FMLPreInitializationEvent;
@@ -73,8 +73,16 @@ public class CommonProxy
 
         
     }
-    public World getClientWorld() {
-        return null;
-    }
+//    public World getClientWorld() {
+//        return null;
+//    }
+
+	public static class ModsLoader{
+		public static boolean isTouhouMaidLoaded(){
+			return Loader.isModLoaded("touhou_little_maid");
+		}
+
+	}
+
   
 }

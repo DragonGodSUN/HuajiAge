@@ -4,9 +4,11 @@ package com.lh_lshen.mcbbs.huajiage.client.resources.pojo;
  * 更多内容请转至：https://github.com/TartaricAcid/TouhouLittleMaid
  */
 
+import com.github.tartaricacid.touhoulittlemaid.TouhouLittleMaid;
 import com.google.common.collect.Lists;
 import com.google.gson.JsonSyntaxException;
 import com.google.gson.annotations.SerializedName;
+import com.lh_lshen.mcbbs.huajiage.common.CommonProxy;
 import net.minecraft.util.ResourceLocation;
 import net.minecraft.util.math.MathHelper;
 
@@ -42,7 +44,7 @@ public class StandModelInfo implements IModelInfo {
     private float renderEntityScale = 1.0f;
 
     @SerializedName("animation")
-    private List<ResourceLocation> animation;
+    private List<String> animation;
 
 //    private ResourceLocation ID = new ResourceLocation(modelId!=null?modelId:"huajiage:the_world");
 
@@ -79,12 +81,18 @@ public class StandModelInfo implements IModelInfo {
 
     @Override
     public List<ResourceLocation> getAnimation() {
-        return animation;
+        List<ResourceLocation> list = Lists.newArrayList();
+        if(animation!=null&&!animation.isEmpty()){
+            for(String s : animation){
+                list.add(new ResourceLocation(s));
+            }
+        }
+        return list;
     }
 
     @Override
     public ResourceLocation getModelId() {
-        return new ResourceLocation(modelId);
+        return new ResourceLocation(modelId+"_"+ state);
     }
 
     @Override
@@ -114,10 +122,10 @@ public class StandModelInfo implements IModelInfo {
         }
         // 如果 model 或 texture 为空，自动生成默认位置的模型
         if (model == null) {
-            model = new ResourceLocation(new ResourceLocation(modelId).getNamespace(), "models/entity/" + new ResourceLocation(modelId).getPath() + "_"+ state + ".json");
+            model = new ResourceLocation(new ResourceLocation(modelId).getNamespace(), "models/entity/" + new ResourceLocation(modelId).getPath() +(state.equals("default")? ".json":("_"+ state) + ".json"));
         }
         if (texture == null) {
-            texture = new ResourceLocation(new ResourceLocation(modelId).getNamespace(), "textures/entity/" + new ResourceLocation(modelId).getPath() + "_"+ state + ".png");
+            texture = new ResourceLocation(new ResourceLocation(modelId).getNamespace(), "textures/entity/" + new ResourceLocation(modelId).getPath() +(state.equals("default")? ".json":("_"+ state) + ".png"));
         }
         // 如果名称为空，自动生成本地化名称
         if (name == null) {
@@ -125,9 +133,28 @@ public class StandModelInfo implements IModelInfo {
         }
         if (animation == null || animation.size() == 0) {
             animation = Collections.EMPTY_LIST;
+            if(CommonProxy.ModsLoader.isTouhouMaidLoaded()){
+                animation = Lists.newArrayList(
+                        new ResourceLocation(TouhouLittleMaid.MOD_ID, "animation/maid/default/head/default.js").toString(),
+                        new ResourceLocation(TouhouLittleMaid.MOD_ID, "animation/maid/default/head/blink.js").toString(),
+                        new ResourceLocation(TouhouLittleMaid.MOD_ID, "animation/maid/default/head/beg.js").toString(),
+                        new ResourceLocation(TouhouLittleMaid.MOD_ID, "animation/maid/default/head/music_shake.js").toString(),
+                        new ResourceLocation(TouhouLittleMaid.MOD_ID, "animation/maid/default/leg/default.js").toString(),
+                        new ResourceLocation(TouhouLittleMaid.MOD_ID, "animation/maid/default/arm/default.js").toString(),
+                        new ResourceLocation(TouhouLittleMaid.MOD_ID, "animation/maid/default/arm/swing.js").toString(),
+                        new ResourceLocation(TouhouLittleMaid.MOD_ID, "animation/maid/default/arm/vertical.js").toString(),
+                        new ResourceLocation(TouhouLittleMaid.MOD_ID, "animation/maid/default/sit/default.js").toString(),
+                        new ResourceLocation(TouhouLittleMaid.MOD_ID, "animation/maid/default/armor/default.js").toString(),
+                        new ResourceLocation(TouhouLittleMaid.MOD_ID, "animation/maid/default/armor/reverse.js").toString(),
+                        new ResourceLocation(TouhouLittleMaid.MOD_ID, "animation/maid/default/wing/default.js").toString(),
+                        new ResourceLocation(TouhouLittleMaid.MOD_ID, "animation/maid/default/tail/default.js").toString(),
+                        new ResourceLocation(TouhouLittleMaid.MOD_ID, "animation/maid/default/sit/skirt_rotation.js").toString(),
+                        new ResourceLocation(TouhouLittleMaid.MOD_ID, "animation/base/float/default.js").toString()
+                );
+            }
         }
         if (transfer == null || transfer.isEmpty()) {
-            transfer = Lists.newArrayList(0f,-0.5f,-0.75f);//x,y,z
+            transfer = Lists.newArrayList(0f,-1.0f,0.75f);//x,y,z
         }
         if (rotation == null || rotation.isEmpty()) {
             rotation = Lists.newArrayList(0f,0f,0f,0f);//degree,y,p,w

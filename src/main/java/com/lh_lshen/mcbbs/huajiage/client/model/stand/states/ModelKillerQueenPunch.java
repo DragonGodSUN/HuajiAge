@@ -225,7 +225,7 @@ public class ModelKillerQueenPunch extends ModelStandBase {
 
 	public void render(Entity entityIn, float limbSwing, float limbSwingAmount, float ageInTicks, float netHeadYaw,
 					   float headPitch, float scale) {
-		setRotationAngles( limbSwing, limbSwingAmount, ageInTicks, headPitch,netHeadYaw, scale, entityIn);
+//		setRotationAngles( limbSwing, limbSwingAmount, ageInTicks, headPitch,netHeadYaw, scale, entityIn);
 		float off = (float) (MathHelper.cos((float) (0.1*ageInTicks))*0.1);
 		head.offsetY = off;
 		body.offsetY = off;

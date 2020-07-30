@@ -4,20 +4,22 @@ package com.lh_lshen.mcbbs.huajiage.client.resources;
  * 更多内容请转至：https://github.com/TartaricAcid/TouhouLittleMaid
  */
 
+import com.github.tartaricacid.touhoulittlemaid.client.resources.CustomResourcesLoader;
 import com.google.common.collect.Lists;
 import com.google.common.collect.Maps;
 import com.google.gson.JsonSyntaxException;
 import com.google.gson.reflect.TypeToken;
 import com.lh_lshen.mcbbs.huajiage.HuajiAge;
-import com.lh_lshen.mcbbs.huajiage.client.model.pojo.CustomJsAnimationManger;
-import com.lh_lshen.mcbbs.huajiage.client.model.pojo.CustomModelPOJO;
-import com.lh_lshen.mcbbs.huajiage.client.model.pojo.EntityModelJson;
+import com.lh_lshen.mcbbs.huajiage.client.model.custom.CustomJsAnimationManger;
+import com.lh_lshen.mcbbs.huajiage.client.model.custom.CustomModelPOJO;
+import com.lh_lshen.mcbbs.huajiage.client.model.custom.ModelStandJson;
 import com.lh_lshen.mcbbs.huajiage.client.resources.pojo.CustomModelPack;
 import com.lh_lshen.mcbbs.huajiage.client.resources.pojo.StandModelInfo;
 import com.lh_lshen.mcbbs.huajiage.common.CommonProxy;
 import net.minecraft.client.Minecraft;
 import net.minecraft.client.resources.IResourceManager;
 import net.minecraft.util.ResourceLocation;
+import net.minecraftforge.fml.common.Optional;
 import org.apache.commons.io.IOUtils;
 import org.apache.logging.log4j.Logger;
 import org.apache.logging.log4j.Marker;
@@ -29,6 +31,7 @@ import java.io.InputStream;
 import java.io.InputStreamReader;
 import java.nio.charset.StandardCharsets;
 import java.util.List;
+import java.util.Set;
 
 import static net.minecraft.network.status.server.SPacketServerInfo.GSON;
 
@@ -65,7 +68,7 @@ public class CustomResourceLoader {
                 pack.decorate();
                 for (StandModelInfo standModelItem : pack.getModelList()) {
                     // 尝试加载模型
-                    EntityModelJson modelJson = loadModel(standModelItem.getModel());
+                    ModelStandJson modelJson = loadModel(standModelItem.getModel());
                     if (standModelItem.getTransfer()!=null && standModelItem.getTransfer().size()>=3) {
                         modelJson.setPositions((Float) standModelItem.getTransfer().get(0),
                                                (Float) standModelItem.getTransfer().get(1),
@@ -80,7 +83,8 @@ public class CustomResourceLoader {
                     // 加载动画
                     @Nullable List<Object> animations = CustomJsAnimationManger.getCustomAnimation(standModelItem);
                     if (modelJson != null) {
-                            putMaidModelData(standModelItem, modelJson, animations);
+                            putStandModelData(standModelItem, modelJson, animations);
+                            putMaidAnimation();
                         // 打印日志
                         LOGGER.info(MARKER, "Loaded model: {}", standModelItem.getModel());
                     }
@@ -98,7 +102,7 @@ public class CustomResourceLoader {
         LOGGER.info(MARKER, "Huaji Age's model is loaded");
     }
 
-    private static void putMaidModelData(StandModelInfo model, EntityModelJson modelJson, List<Object> animations) {
+    private static void putStandModelData(StandModelInfo model, ModelStandJson modelJson, List<Object> animations) {
         String id = model.getModelId().toString();
         // 如果加载的模型不为空
         STAND_MODEL.putModel(id, modelJson);
@@ -109,7 +113,7 @@ public class CustomResourceLoader {
     }
 
     @Nullable
-    public static EntityModelJson loadModel(ResourceLocation modelLocation) {
+    public static ModelStandJson loadModel(ResourceLocation modelLocation) {
         InputStream input = null;
         try {
             input = manager.getResource(modelLocation).getInputStream();
@@ -118,13 +122,12 @@ public class CustomResourceLoader {
             // 先判断是不是 1.10.0 版本基岩版模型文件
             if (!pojo.getFormatVersion().equals(OLD_BEDROCK_VERSION)) {
                 LOGGER.warn(MARKER, "{} model version is not 1.10.0", modelLocation);
-                // TODO: 2019/7/26 添加对高版本基岩版模型的兼容
                 return null;
             }
 
             // 如果 model 字段不为空
             if (pojo.getGeometryModel() != null) {
-                return new EntityModelJson(pojo);
+                return new ModelStandJson(pojo);
             } else {
                 // 否则日志给出提示
                 LOGGER.warn(MARKER, "{} model file don't have model field", modelLocation);
@@ -141,5 +144,13 @@ public class CustomResourceLoader {
         return null;
     }
 
-
+    @Optional.Method(modid = "touhou_little_maid")
+    public static void  putMaidAnimation(){
+        Set<String> ids = CustomResourcesLoader.MAID_MODEL.getModelIdSet();
+        for(String id : ids){
+        @Nullable List<Object> animations = CustomResourcesLoader.MAID_MODEL.getAnimation(id).isPresent()?CustomResourcesLoader.MAID_MODEL.getAnimation(id).get():Lists.newArrayList();
+        STAND_MODEL.putAnimation(id+"_default",animations);
+        }
     }
+
+}

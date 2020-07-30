@@ -1,23 +1,23 @@
 package com.lh_lshen.mcbbs.huajiage.client.resources;
 
-import com.lh_lshen.mcbbs.huajiage.client.model.pojo.EntityModelJson;
+import com.lh_lshen.mcbbs.huajiage.client.model.custom.ModelStandJson;
 import com.lh_lshen.mcbbs.huajiage.client.resources.pojo.StandModelInfo;
 
 import javax.annotation.Nullable;
 import java.util.List;
 
 public class ModelData {
-    private EntityModelJson model;
+    private ModelStandJson model;
     private StandModelInfo info;
     private List<Object> animations;
 
-    public ModelData(EntityModelJson model, StandModelInfo info, @Nullable List<Object> animations) {
+    public ModelData(ModelStandJson model, StandModelInfo info, @Nullable List<Object> animations) {
         this.model = model;
         this.info = info;
         this.animations = animations;
     }
 
-    public void setModel(EntityModelJson model) {
+    public void setModel(ModelStandJson model) {
         this.model = model;
     }
 
@@ -29,7 +29,7 @@ public class ModelData {
         this.animations = animations;
     }
 
-    public EntityModelJson getModel() {
+    public ModelStandJson getModel() {
         return model;
     }
 

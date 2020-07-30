@@ -271,22 +271,14 @@ public class ModelStarPlatinum extends ModelStandBase
   
   public void render(Entity entityIn, float limbSwing, float limbSwingAmount, float ageInTicks, float netHeadYaw,
 			float headPitch, float scale) {
-    setRotationAngles( limbSwing, limbSwingAmount, ageInTicks, headPitch,netHeadYaw, scale, entityIn);
-    float off = (float) (MathHelper.cos((float) (0.1*ageInTicks))*0.1);
-    head.offsetY = off;
-    body.offsetY = off;
-    leftleg.offsetY = off;
-    rightleg.offsetY = off;
-    
-    head.rotateAngleX = headPitch * 0.017453292F;
-    head.rotateAngleY = netHeadYaw * 0.017453292F;
-    
+//    setRotationAngles( limbSwing, limbSwingAmount, ageInTicks, headPitch,netHeadYaw, scale, entityIn);
     head.render(scale);
     body.render(scale);
     leftleg.render(scale);
     rightleg.render(scale);
     left_hands.render(scale);
     right_hands.render(scale);
+//  	System.out.println(this);
     
   }
   
@@ -319,14 +311,30 @@ public class ModelStarPlatinum extends ModelStandBase
 	  left_hands.rotateAngleY = rotateYaw * 0.017453292F;
 	  right_hands.rotateAngleX = rotatePitch * 0.017453292F;
 	  right_hands.rotateAngleY = rotateYaw * 0.017453292F;
+
+	  float off = (float) (MathHelper.cos((float) (0.1*rotateFloat))*0.1);
+	  head.offsetY = off;
+	  body.offsetY = off;
+	  leftleg.offsetY = off;
+	  rightleg.offsetY = off;
+
+	  head.rotateAngleX = rotatePitch * 0.017453292F;
+	  head.rotateAngleY = rotateYaw * 0.017453292F;
 	}
 
 	@Override
 	public void doHandRender(float x, float y, float z, float scale, float alpha) {
 		GlStateManager.translate(x, y, z);
 	  	GlStateManager.color(1.0F, 1.0F, 1.0F, alpha);
-	  	left_hands.render(scale);
-	  	right_hands.render(scale);
+//		System.out.println(Minecraft.getMinecraft().gameSettings.thirdPersonView);
+//	  	head.showModel=false;
+//	  	body.showModel=false;
+//		leftleg.showModel=false;
+//		rightleg.showModel=false;
+		left_hands.render(scale);
+		right_hands.render(scale);
+
+//		System.out.println(this);
 	
 	}
 

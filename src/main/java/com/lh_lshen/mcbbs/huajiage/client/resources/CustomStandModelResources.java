@@ -4,7 +4,7 @@ package com.lh_lshen.mcbbs.huajiage.client.resources;
  * 更多内容请转至：https://github.com/TartaricAcid/TouhouLittleMaid
  */
 
-import com.lh_lshen.mcbbs.huajiage.client.model.pojo.EntityModelJson;
+import com.lh_lshen.mcbbs.huajiage.client.model.custom.ModelStandJson;
 import com.lh_lshen.mcbbs.huajiage.client.resources.pojo.CustomModelPack;
 import com.lh_lshen.mcbbs.huajiage.client.resources.pojo.StandModelInfo;
 
@@ -16,12 +16,12 @@ import java.util.Set;
 public class CustomStandModelResources {
     private String jsonFileName;
     private List<CustomModelPack<StandModelInfo>> packList;
-    private HashMap<String, EntityModelJson> idModelMap;
+    private HashMap<String, ModelStandJson> idModelMap;
     private HashMap<String, StandModelInfo> idInfoMap;
     private HashMap<String, List<Object>> idAnimationMap;
 
     public CustomStandModelResources(String jsonFileName, List<CustomModelPack<StandModelInfo>> packList,
-                                     HashMap<String, EntityModelJson> idToModel,
+                                     HashMap<String, ModelStandJson> idToModel,
                                      HashMap<String, StandModelInfo> idToInfo,
                                      HashMap<String, List<Object>> idAnimationMap) {
         this.jsonFileName = jsonFileName;
@@ -54,7 +54,7 @@ public class CustomStandModelResources {
         this.packList.add(pack);
     }
 
-    public void putModel(String modelId, EntityModelJson modelJson) {
+    public void putModel(String modelId, ModelStandJson modelJson) {
         this.idModelMap.put(modelId, modelJson);
     }
 
@@ -67,7 +67,7 @@ public class CustomStandModelResources {
     }
 
 
-    public Optional<EntityModelJson> getModel(String modelId) {
+    public Optional<ModelStandJson> getModel(String modelId) {
         return Optional.ofNullable(idModelMap.get(modelId));
     }
 

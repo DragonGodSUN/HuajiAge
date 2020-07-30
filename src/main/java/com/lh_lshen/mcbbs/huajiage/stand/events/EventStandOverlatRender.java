@@ -1,49 +1,30 @@
 package com.lh_lshen.mcbbs.huajiage.stand.events;
 
-import com.lh_lshen.mcbbs.huajiage.capability.*;
-import com.lh_lshen.mcbbs.huajiage.potion.PotionLoader;
-import com.lh_lshen.mcbbs.huajiage.stand.StandClientUtil;
-import net.minecraft.world.World;
-import net.minecraftforge.client.event.RenderHandEvent;
-import org.lwjgl.input.Keyboard;
-
 import com.lh_lshen.mcbbs.huajiage.HuajiAge;
-import com.lh_lshen.mcbbs.huajiage.client.ItemRenderLoader;
+import com.lh_lshen.mcbbs.huajiage.capability.*;
 import com.lh_lshen.mcbbs.huajiage.client.KeyLoader;
 import com.lh_lshen.mcbbs.huajiage.config.ConfigHuaji;
-import com.lh_lshen.mcbbs.huajiage.item.ItemDiscStand;
 import com.lh_lshen.mcbbs.huajiage.item.ItemLoader;
-import com.lh_lshen.mcbbs.huajiage.stand.EnumStandtype;
+import com.lh_lshen.mcbbs.huajiage.potion.PotionLoader;
+import com.lh_lshen.mcbbs.huajiage.stand.StandClientUtil;
 import com.lh_lshen.mcbbs.huajiage.stand.StandLoader;
 import com.lh_lshen.mcbbs.huajiage.stand.StandUtil;
 import com.lh_lshen.mcbbs.huajiage.stand.instance.StandBase;
-
 import net.minecraft.client.Minecraft;
 import net.minecraft.client.gui.Gui;
-import net.minecraft.client.gui.ScaledResolution;
-import net.minecraft.client.renderer.BufferBuilder;
-import net.minecraft.client.renderer.EntityRenderer;
 import net.minecraft.client.renderer.GlStateManager;
-import net.minecraft.client.renderer.ItemRenderer;
-import net.minecraft.client.renderer.RenderGlobal;
-import net.minecraft.client.renderer.RenderItem;
-import net.minecraft.client.renderer.Tessellator;
-import net.minecraft.client.renderer.vertex.DefaultVertexFormats;
 import net.minecraft.client.resources.I18n;
 import net.minecraft.entity.player.EntityPlayer;
 import net.minecraft.item.ItemStack;
-import net.minecraft.util.ResourceLocation;
 import net.minecraft.util.text.TextFormatting;
-import net.minecraftforge.client.event.EntityViewRenderEvent;
-import net.minecraftforge.client.event.EntityViewRenderEvent.FOVModifier;
-import net.minecraftforge.client.event.EntityViewRenderEvent.FogColors;
-import net.minecraftforge.client.event.EntityViewRenderEvent.FogDensity;
+import net.minecraft.world.World;
 import net.minecraftforge.client.event.RenderGameOverlayEvent;
-import net.minecraftforge.client.event.RenderWorldLastEvent;
+import net.minecraftforge.client.event.RenderHandEvent;
 import net.minecraftforge.fml.common.Mod;
 import net.minecraftforge.fml.common.eventhandler.SubscribeEvent;
 import net.minecraftforge.fml.relauncher.Side;
 import net.minecraftforge.fml.relauncher.SideOnly;
+import org.lwjgl.input.Keyboard;
 
 @SideOnly(Side.CLIENT)
 @Mod.EventBusSubscriber(modid = HuajiAge.MODID, value = Side.CLIENT)
@@ -64,7 +45,6 @@ public class EventStandOverlatRender {
 		int perspective = Minecraft.getMinecraft().gameSettings.thirdPersonView;
 		boolean f1 = Minecraft.getMinecraft().gameSettings.hideGUI;
 		IExposedData data = StandUtil.getStandData(player);
-		boolean isIdle = CapabilityExposedData.States.IDLE.getName().equals(data.getState());
 
 		if (stand!=null && stack.getItem() != ItemLoader.roadRoller &&player.isPotionActive(PotionLoader.potionStand) && perspective == 0 && !f1)
 		{
@@ -81,8 +61,8 @@ public class EventStandOverlatRender {
 				event.setCanceled(true);
 			}
 
-			GlStateManager.disableBlend();
 			GlStateManager.scale(1, 1, 1);
+			GlStateManager.disableBlend();
 			GlStateManager.popMatrix();
 
 		}
