@@ -1,8 +1,5 @@
 package com.lh_lshen.mcbbs.huajiage.client.model.stand;
 
-import com.github.tartaricacid.touhoulittlemaid.client.model.EntityModelJson;
-import com.github.tartaricacid.touhoulittlemaid.client.resources.CustomResourcesLoader;
-import com.github.tartaricacid.touhoulittlemaid.client.resources.pojo.MaidModelInfo;
 import com.google.common.collect.Maps;
 import com.lh_lshen.mcbbs.huajiage.HuajiAge;
 import com.lh_lshen.mcbbs.huajiage.api.HuajiAgeAPI;
@@ -18,7 +15,6 @@ import com.lh_lshen.mcbbs.huajiage.init.HuajiConstant;
 import com.lh_lshen.mcbbs.huajiage.stand.StandStates;
 import com.lh_lshen.mcbbs.huajiage.stand.states.StandStateBase;
 import net.minecraft.util.ResourceLocation;
-import net.minecraftforge.fml.common.Optional;
 import org.apache.logging.log4j.MarkerManager;
 
 import java.util.HashMap;
@@ -33,7 +29,9 @@ public class HAModelFactory {
     public HAModelFactory() {
         loadModel();
         loadCustomModel();
-        loadMaidModel();
+//    if(CommonProxy.ModsLoader.isTouhouMaidLoaded()){
+//        loadMaidModel();
+//    }
         for(String id:STAND_MODEL.keySet()){
             HuajiAge.LOGGER.info(MarkerManager.getMarker("ResourcesLoader"), "Loaded model: {}",id);
         }
@@ -76,26 +74,27 @@ public class HAModelFactory {
     public static void reloadStandModels(){
         STAND_MODEL.clear();
         ID_TEX_MAP.clear();
+
         loadModel();
         loadCustomModel();
-        loadMaidModel();
+
         for(String id:STAND_MODEL.keySet()){
             HuajiAge.LOGGER.info(MarkerManager.getMarker("ResourcesLoader"), "Loaded model: {}",id);
         }
     }
 
     private static void loadModel(){
-        addStandModel("huajiage:the_world_default",new ModelTheWorld());
-        addStandModel("huajiage:star_platinum_default",new ModelStarPlatinum());
-        addStandModel("huajiage:hierophant_green_default",new ModelHierophantGreen());
-        addStandModel("huajiage:killer_queen_default",new ModelKillerQueen());
-        addStandModel("huajiage:orga_requiem_default",new ModelOrgaRequiem());
+        addStandModel("huajiage:the_world_default",new ModelTheWorld().setModelID("huajiage:the_world_default"));
+        addStandModel("huajiage:star_platinum_default",new ModelStarPlatinum().setModelID("huajiage:star_platinum_default"));
+        addStandModel("huajiage:hierophant_green_default",new ModelHierophantGreen().setModelID("huajiage:hierophant_green_default"));
+        addStandModel("huajiage:killer_queen_default",new ModelKillerQueen().setModelID("huajiage:killer_queen_default"));
+        addStandModel("huajiage:orga_requiem_default",new ModelOrgaRequiem().setModelID("huajiage:orga_requiem_default"));
 
-        addStandModel("huajiage:the_world_idle",new ModelTheWorldIdle());
-        addStandModel("huajiage:star_platinum_idle",new ModelStarPlatinumIdle());
-        addStandModel("huajiage:hierophant_green_idle",new ModelHierophantGreenIdle());
-        addStandModel("huajiage:killer_queen_punch",new ModelKillerQueenPunch());
-        addStandModel("huajiage:orga_requiem_fly",new ModelOrgaFly());
+        addStandModel("huajiage:the_world_idle",new ModelTheWorldIdle().setModelID("huajiage:the_world_idle"));
+        addStandModel("huajiage:star_platinum_idle",new ModelStarPlatinumIdle().setModelID("huajiage:star_platinum_idle"));
+        addStandModel("huajiage:hierophant_green_idle",new ModelHierophantGreenIdle().setModelID("huajiage:hierophant_green_idle"));
+        addStandModel("huajiage:killer_queen_punch",new ModelKillerQueenPunch().setModelID("huajiage:killer_queen_punch"));
+        addStandModel("huajiage:orga_requiem_fly",new ModelOrgaFly().setModelID("huajiage:orga_requiem_fly"));
 
         List<IStandState> list = HuajiAgeAPI.getStandStateList();
         if (list!=null) {
@@ -118,31 +117,29 @@ public class HAModelFactory {
                     StandModelInfo info = CustomResourceLoader.STAND_MODEL.getInfo(id).get();
                     ModelStandJson json = CustomResourceLoader.STAND_MODEL.getModel(id).get();
                     String modelID = info.getModelId().toString();
-                    addStandModel(modelID,json);
+                    addStandModel(modelID,json.setModelID(modelID));
                     addTexture(modelID,info.getTexture());
-                    System.out.println(modelID);
                 }
             }
         }
 
     }
 
-    @Optional.Method(modid = "touhou_little_maid")
-    private static void loadMaidModel(){
-        CustomResourceLoader.reloadResources();
-        Set<String> CUSTOM_MODEL = CustomResourcesLoader.MAID_MODEL.getModelIdSet();
-        if (!CUSTOM_MODEL.isEmpty()) {
-            for(String id : CUSTOM_MODEL){
-                if (CustomResourcesLoader.MAID_MODEL.getInfo(id).isPresent() && CustomResourcesLoader.MAID_MODEL.getModel(id).isPresent()) {
-                    MaidModelInfo info = CustomResourcesLoader.MAID_MODEL.getInfo(id).get();
-                    EntityModelJson json = CustomResourcesLoader.MAID_MODEL.getModel(id).get();
-                    String modelID = info.getModelId().toString()+"_default";
-                    addStandModel(modelID,new ModelStandJson(json));
-                    addTexture(modelID,info.getTexture());
-                    System.out.println(modelID);
-                }
-            }
-        }
-    }
+//    @Optional.Method(modid = "touhou_little_maid")
+//    private static void loadMaidModel(){
+//        CustomResourceLoader.reloadResources();
+//        Set<String> CUSTOM_MODEL = CustomResourcesLoader.MAID_MODEL.getModelIdSet();
+//        if (!CUSTOM_MODEL.isEmpty()) {
+//            for(String id : CUSTOM_MODEL){
+//                if (CustomResourcesLoader.MAID_MODEL.getInfo(id).isPresent() && CustomResourcesLoader.MAID_MODEL.getModel(id).isPresent()) {
+//                    MaidModelInfo info = CustomResourcesLoader.MAID_MODEL.getInfo(id).get();
+//                    EntityModelJson json = CustomResourcesLoader.MAID_MODEL.getModel(id).get();
+//                    String modelID = info.getModelId().toString()+"_default";
+//                    addStandModel(modelID,new ModelStandJson(json).setModelID(modelID));
+//                    addTexture(modelID,info.getTexture());
+//                }
+//            }
+//        }
+//    }
 
 }

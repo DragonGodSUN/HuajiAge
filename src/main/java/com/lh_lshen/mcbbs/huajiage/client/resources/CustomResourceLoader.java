@@ -4,7 +4,6 @@ package com.lh_lshen.mcbbs.huajiage.client.resources;
  * 更多内容请转至：https://github.com/TartaricAcid/TouhouLittleMaid
  */
 
-import com.github.tartaricacid.touhoulittlemaid.client.resources.CustomResourcesLoader;
 import com.google.common.collect.Lists;
 import com.google.common.collect.Maps;
 import com.google.gson.JsonSyntaxException;
@@ -38,6 +37,7 @@ import static net.minecraft.network.status.server.SPacketServerInfo.GSON;
 
 public class CustomResourceLoader {
     public static final CustomStandModelResources STAND_MODEL = new CustomStandModelResources("stand_model.json", Lists.newArrayList(), Maps.newHashMap(), Maps.newHashMap(), Maps.newHashMap());
+    public static final CustomStandModelResources MAID_MODEL = new CustomStandModelResources("maid_model.json", Lists.newArrayList(), Maps.newHashMap(), Maps.newHashMap(), Maps.newHashMap());
 
     private static final Logger LOGGER = HuajiAge.LOGGER;
     private static final Marker MARKER = MarkerManager.getMarker("ResourcesLoader");
@@ -48,12 +48,22 @@ public class CustomResourceLoader {
     public static void reloadResources() {
         CustomJsAnimationManger.clearAll();
         STAND_MODEL.clearAll();
+        STAND_MODEL.clearAll();
         // 重载数据
         loadStandModelPack();
+
+        if(CommonProxy.ModsLoader.isTouhouMaidLoaded()){
+            loadMaidModelPack();
+            mergeMaidModel();
+        }
     }
 
     private static void loadStandModelPack() {
         LOGGER.info(MARKER, "Stand Models Loading...");
+//        //导入女仆模组的动作包
+//        if(CommonProxy.ModsLoader.isTouhouMaidLoaded()){
+//            putMaidAnimation();
+//        }
         // 遍历所有的资源包，获取到模型文件
         for (String domain : manager.getResourceDomains()) {
             InputStream input = null;
@@ -84,12 +94,12 @@ public class CustomResourceLoader {
                     @Nullable List<Object> animations = CustomJsAnimationManger.getCustomAnimation(standModelItem);
                     if (modelJson != null) {
                             putStandModelData(standModelItem, modelJson, animations);
-                            putMaidAnimation();
                         // 打印日志
                         LOGGER.info(MARKER, "Loaded model: {}", standModelItem.getModel());
                     }
                 }
                 STAND_MODEL.addPack(pack);
+
             } catch (IOException ignore) {
                 // 忽略错误，因为资源域很多
             } catch (JsonSyntaxException e) {
@@ -102,6 +112,7 @@ public class CustomResourceLoader {
         LOGGER.info(MARKER, "Huaji Age's model is loaded");
     }
 
+
     private static void putStandModelData(StandModelInfo model, ModelStandJson modelJson, List<Object> animations) {
         String id = model.getModelId().toString();
         // 如果加载的模型不为空
@@ -109,6 +120,68 @@ public class CustomResourceLoader {
         STAND_MODEL.putInfo(id, model);
         if (animations != null && animations.size() > 0) {
             STAND_MODEL.putAnimation(id, animations);
+        }
+    }
+
+    @Optional.Method(modid = "touhou_little_maid")
+    private static void loadMaidModelPack() {
+        LOGGER.info(MARKER, "Maid Models Loading...");
+        // 遍历所有的资源包，获取到模型文件
+        for (String domain : manager.getResourceDomains()) {
+            InputStream input = null;
+            try {
+                // 获取所有资源域下的指定文件
+                ResourceLocation res = new ResourceLocation(domain, MAID_MODEL.getJsonFileName());
+                input = manager.getResource(res).getInputStream();
+                // 将其转换为 pojo 对象
+                // 这个 pojo 是二次修饰的过的对象，所以一部分数据异常已经进行了处理或者抛出
+                CustomModelPack<StandModelInfo> pack = GSON.fromJson(new InputStreamReader(input, StandardCharsets.UTF_8), new TypeToken<CustomModelPack<StandModelInfo>>() {
+                }.getType());
+                pack.decorate();
+                for (StandModelInfo maidModelItem : pack.getModelList()) {
+                    // 尝试加载模型
+                    ModelStandJson modelJson = loadModel(maidModelItem.getModel());
+                    if (maidModelItem.getTransfer()!=null && maidModelItem.getTransfer().size()>=3) {
+                        modelJson.setPositions((Float) maidModelItem.getTransfer().get(0),
+                                (Float) maidModelItem.getTransfer().get(1),
+                                (Float) maidModelItem.getTransfer().get(2));
+                    }
+                    if (maidModelItem.getRotation()!=null && maidModelItem.getRotation().size()>=4) {
+                        modelJson.setRotations((Float) maidModelItem.getRotation().get(0),
+                                (Float) maidModelItem.getRotation().get(1),
+                                (Float) maidModelItem.getRotation().get(2),
+                                (Float) maidModelItem.getRotation().get(3));
+                    }
+                    // 加载动画
+                    @Nullable List<Object> animations = CustomJsAnimationManger.getCustomAnimation(maidModelItem);
+                    if (modelJson != null) {
+                        putStandModelData(maidModelItem, modelJson, animations);
+                        // 打印日志
+                        LOGGER.info(MARKER, "Loaded model: {}", maidModelItem.getModel());
+                    }
+                }
+                MAID_MODEL.addPack(pack);
+
+            } catch (IOException ignore) {
+                // 忽略错误，因为资源域很多
+            } catch (JsonSyntaxException e) {
+                LOGGER.warn(MARKER, "Fail to parse model pack in domain {}", domain);
+                e.printStackTrace();
+            } finally {
+                IOUtils.closeQuietly(input);
+            }
+        }
+        LOGGER.info(MARKER, "Huaji Age's model is loaded");
+    }
+
+    @Optional.Method(modid = "touhou_little_maid")
+    private static void putMaidModelData(StandModelInfo model, ModelStandJson modelJson, List<Object> animations) {
+        String id = model.getModelId().toString();
+        // 如果加载的模型不为空
+        MAID_MODEL.putModel(id, modelJson);
+        MAID_MODEL.putInfo(id, model);
+        if (animations != null && animations.size() > 0) {
+            MAID_MODEL.putAnimation(id, animations);
         }
     }
 
@@ -145,12 +218,15 @@ public class CustomResourceLoader {
     }
 
     @Optional.Method(modid = "touhou_little_maid")
-    public static void  putMaidAnimation(){
-        Set<String> ids = CustomResourcesLoader.MAID_MODEL.getModelIdSet();
+    public static void  mergeMaidModel(){
+        Set<String> ids = MAID_MODEL.getModelIdSet();
         for(String id : ids){
-        @Nullable List<Object> animations = CustomResourcesLoader.MAID_MODEL.getAnimation(id).isPresent()?CustomResourcesLoader.MAID_MODEL.getAnimation(id).get():Lists.newArrayList();
-        STAND_MODEL.putAnimation(id+"_default",animations);
+        MAID_MODEL.getModel(id).ifPresent(json->STAND_MODEL.putModel(id,json));
+        MAID_MODEL.getInfo(id).ifPresent(info->STAND_MODEL.putInfo(id,info));
+        MAID_MODEL.getAnimation(id).ifPresent(animations->STAND_MODEL.putAnimation(id,animations));
+        System.out.println("===================="+id+"======================");
         }
     }
+
 
 }

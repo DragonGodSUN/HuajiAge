@@ -4,9 +4,26 @@ import net.minecraft.client.model.ModelBase;
 import net.minecraft.entity.Entity;
 
 public abstract class ModelStandBase extends ModelBase implements Cloneable {
+	private String modelID;
+
+	public ModelStandBase() {
+	}
+
+	public ModelStandBase(String modelID) {
+		this.modelID = modelID;
+	}
+
+	public String getModelID() {
+		return modelID;
+	}
+
+	public ModelStandBase setModelID(String modelID) {
+		this.modelID = modelID;
+		return this;
+	}
 
 	public abstract void setRotationAngles(float limbSwing, float limbSwingAmount, float rotateFloat, float rotateYaw,
-	          float rotatePitch, float scale, Entity entity ,float power ,float speed) ;
+										   float rotatePitch, float scale, Entity entity , float power , float speed) ;
 	
 	public abstract void setPunch(float limbSwing, float limbSwingAmount, float rotateFloat, float rotateYaw,
 	          float rotatePitch, float scale, Entity entity ,float power ,float speed) ;

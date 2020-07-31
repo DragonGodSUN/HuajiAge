@@ -2,10 +2,8 @@ package com.lh_lshen.mcbbs.huajiage.stand.messages;
 
 import com.lh_lshen.mcbbs.huajiage.capability.CapabilityLoader;
 import com.lh_lshen.mcbbs.huajiage.capability.IExposedData;
-import com.lh_lshen.mcbbs.huajiage.stand.EnumStandtype;
 import com.lh_lshen.mcbbs.huajiage.stand.StandUtil;
 import com.lh_lshen.mcbbs.huajiage.stand.instance.StandBase;
-
 import io.netty.buffer.ByteBuf;
 import net.minecraft.client.Minecraft;
 import net.minecraft.entity.player.EntityPlayer;
@@ -27,7 +25,7 @@ public class SyncExposedStandDataMessage implements IMessage {
     public SyncExposedStandDataMessage() {
     }
 
-    public SyncExposedStandDataMessage(String stand ,int stage, boolean trigger , boolean hand ,String state, String user) {
+    public SyncExposedStandDataMessage(String stand ,int stage, boolean trigger , boolean hand ,String state, String model , String user) {
 //        this.stand = stand;
 //        this.isTriggered = trigger;
         this.user = user;
@@ -36,7 +34,8 @@ public class SyncExposedStandDataMessage implements IMessage {
         tags.setBoolean("stand_put", trigger);
         tags.setBoolean("stand_hand", hand);
         tags.setInteger("stand_stage", stage);
-        tags.setString("stand_state",state);
+        tags.setString("stand_state", state);
+        tags.setString("stand_model", model);
         nbt =tags;
     }
 

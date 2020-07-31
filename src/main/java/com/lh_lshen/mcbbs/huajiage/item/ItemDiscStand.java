@@ -1,27 +1,18 @@
 package com.lh_lshen.mcbbs.huajiage.item;
 
 
-import java.util.List;
-
-import com.lh_lshen.mcbbs.huajiage.capability.CapabilityStandHandler;
-import com.lh_lshen.mcbbs.huajiage.capability.CapabilityStandStageHandler;
-import com.lh_lshen.mcbbs.huajiage.capability.StandHandler;
-import com.lh_lshen.mcbbs.huajiage.capability.StandStageHandler;
+import com.lh_lshen.mcbbs.huajiage.capability.*;
+import com.lh_lshen.mcbbs.huajiage.common.CommonProxy;
 import com.lh_lshen.mcbbs.huajiage.crativetab.CreativeTabLoader;
 import com.lh_lshen.mcbbs.huajiage.stand.StandLoader;
 import com.lh_lshen.mcbbs.huajiage.stand.StandUtil;
 import com.lh_lshen.mcbbs.huajiage.stand.instance.StandBase;
 import com.lh_lshen.mcbbs.huajiage.util.NBTHelper;
-
-import net.minecraft.client.renderer.ItemMeshDefinition;
-import net.minecraft.client.renderer.block.model.ModelResourceLocation;
 import net.minecraft.client.resources.I18n;
 import net.minecraft.client.util.ITooltipFlag;
 import net.minecraft.creativetab.CreativeTabs;
-import net.minecraft.entity.EntityLivingBase;
 import net.minecraft.entity.player.EntityPlayer;
 import net.minecraft.init.SoundEvents;
-import net.minecraft.item.IItemPropertyGetter;
 import net.minecraft.item.Item;
 import net.minecraft.item.ItemStack;
 import net.minecraft.nbt.NBTTagCompound;
@@ -29,13 +20,11 @@ import net.minecraft.util.ActionResult;
 import net.minecraft.util.EnumActionResult;
 import net.minecraft.util.EnumHand;
 import net.minecraft.util.NonNullList;
-import net.minecraft.util.ResourceLocation;
 import net.minecraft.world.World;
-import net.minecraftforge.client.event.ModelRegistryEvent;
-import net.minecraftforge.client.model.ModelLoader;
-import net.minecraftforge.fml.common.eventhandler.SubscribeEvent;
 import net.minecraftforge.fml.relauncher.Side;
 import net.minecraftforge.fml.relauncher.SideOnly;
+
+import java.util.List;
 
 public class ItemDiscStand extends Item {
 	private static final String DEFAULT_STAND_ID ="empty";
@@ -44,26 +33,6 @@ public class ItemDiscStand extends Item {
 	{
 		 super();
 		  this.setCreativeTab(CreativeTabLoader.tabJo);
-//		  this.addPropertyOverride(new ResourceLocation("stand"), new IItemPropertyGetter()
-//	        {
-//				@Override
-//				public float apply(ItemStack stack, World worldIn, EntityLivingBase entityIn) {
-//					List<StandBase> STANDS = StandLoader.STAND_LIST;
-//					for (StandBase stand : STANDS) {
-//						if(stand.getName().equals(getStandId(stack))) {
-//							return STANDS.indexOf(stand)+1;
-//						}
-//					}
-//					return 0;
-////					switch(getStandId(stack)) {
-////					case DEFAULT_STAND_ID:return 0;
-////					case "the_world":return 1;
-////					case "star_platinum":return 2;
-////					case "hierophant_green":return 3;
-////					}
-//				}
-//	        });
-		  
 	}
 	public static String getStandId(ItemStack stack) {
         if (stack.getItem() == ItemLoader.disc && stack.hasTagCompound() && stack.getTagCompound().hasKey(NBT.STAND_ID.getName())) {
@@ -77,6 +46,12 @@ public class ItemDiscStand extends Item {
         }
         return 0;
     }
+	public static String getStandModel(ItemStack stack) {
+		if (stack.getItem() == ItemLoader.disc && stack.hasTagCompound() && stack.getTagCompound().hasKey(NBT.STAND_MODEL.getName())) {
+			return stack.getTagCompound().getString(NBT.STAND_MODEL.getName());
+		}
+		return DEFAULT_STAND_ID;
+	}
 	private static ItemStack setStandId(ItemStack stack, String stand_id) {
         if (stack.getItem() == ItemLoader.disc) {
             if (stack.hasTagCompound()) {
@@ -101,9 +76,31 @@ public class ItemDiscStand extends Item {
         }
         return stack;
     }
+
+	private static ItemStack setModel(ItemStack stack, String model) {
+		if (stack.getItem() == ItemLoader.disc) {
+			if (stack.hasTagCompound()) {
+				stack.getTagCompound().setString(NBT.STAND_MODEL.getName(), model);
+			} else {
+				NBTTagCompound tag = new NBTTagCompound();
+				tag.setString(NBT.STAND_MODEL.getName(), model);
+				stack.setTagCompound(tag);
+			}
+		}
+		return stack;
+	}
+
 	public static ItemStack getItemData(ItemStack stack ,String stand_id ,int stage) {
 		setStandId(stack, stand_id);
 		setStandStage(stack, stage);
+		setModel(stack, DEFAULT_STAND_ID);
+		return stack;
+	}
+
+	public static ItemStack getItemData(ItemStack stack, String stand_id ,int stage, String model) {
+		setStandId(stack, stand_id);
+		setStandStage(stack, stage);
+		setModel(stack, model);
 		return stack;
 	}
 	@Override
@@ -116,16 +113,23 @@ public class ItemDiscStand extends Item {
             	items.add(getItemData(new ItemStack(this),type,1));
             	}
             items.add(getItemData(new ItemStack(this),StandLoader.ORGA_REQUIEM.getName(),3));
-        	}	
+            if(CommonProxy.ModsLoader.isTouhouMaidLoaded()){
+			items.add(getItemData(new ItemStack(this),StandLoader.MAID.getName(),1,"touhou_little_maid:hakurei_reimu_default"));
+			}
 		}
+	}
 
 	@Override
 	public void addInformation(ItemStack stack, World worldIn, List<String> tooltip, ITooltipFlag flagIn) {
 		super.addInformation(stack, worldIn, tooltip, flagIn);
 		String stand = getStandId(stack);
 		int stage = getStandStage(stack);
+		String model = getStandModel(stack);
 		tooltip.add(I18n.format("item.huajiage.disc.tooltip.1")+I18n.format(StandUtil.getLocalName(stand)));
 		tooltip.add(I18n.format("item.huajiage.disc.tooltip.2")+stage);
+		if (!model.equals(DEFAULT_STAND_ID)) {
+			tooltip.add(I18n.format("item.huajiage.disc.tooltip.3")+model);
+		}
 
 	}
 	@SideOnly(Side.CLIENT)
@@ -138,32 +142,35 @@ public class ItemDiscStand extends Item {
 	public ActionResult<ItemStack> onItemRightClick(World worldIn, EntityPlayer playerIn, EnumHand handIn) {
 		StandHandler standHandler = playerIn.getCapability(CapabilityStandHandler.STAND_TYPE, null);
 		StandStageHandler stageHandler = playerIn.getCapability(CapabilityStandStageHandler.STAND_STAGE, null);
-		String type = standHandler.getStand();
-		int stage = stageHandler.getStage();
-		String standTag = NBTHelper.getTagCompoundSafe(playerIn.getHeldItem(handIn)).getString(NBT.STAND_ID.getName());
-		int stageTag = NBTHelper.getTagCompoundSafe(playerIn.getHeldItem(handIn)).getInteger(NBT.STAND_STAGE.getName());
-		if(!standTag.equals(DEFAULT_STAND_ID)) {
-				standHandler.setStand(standTag);
-				stageHandler.setStage(stageTag);
-				playerIn.getHeldItem(handIn).shrink(1);
-//				 UUID uuid = playerIn.getUniqueID();
-//				 StandUserWorldSavedData.getGlobal(worldIn).add(standTag, uuid);
-			if(!type.equals(DEFAULT_STAND_ID)) {
-				if(!worldIn.isRemote) {
-				playerIn.dropItem(getItemData(new ItemStack(ItemLoader.disc),type,stage),true);
-//				StandUserWorldSavedData data =  StandUserWorldSavedData.getGlobal(worldIn);
-//				playerIn.sendMessage(new TextComponentString("stand-->"+data.getPlayerStand(playerIn)));
+		IExposedData data = StandUtil.getStandData(playerIn);
+		if (standHandler!=null && stageHandler!=null && data!=null) {
+			String type = standHandler.getStand();
+			int stage = stageHandler.getStage();
+			String model = data.getModel();
+			String standTag = NBTHelper.getTagCompoundSafe(playerIn.getHeldItem(handIn)).getString(NBT.STAND_ID.getName());
+			int stageTag = NBTHelper.getTagCompoundSafe(playerIn.getHeldItem(handIn)).getInteger(NBT.STAND_STAGE.getName());
+			String modelTag = NBTHelper.getTagCompoundSafe(playerIn.getHeldItem(handIn)).getString(NBT.STAND_MODEL.getName());
+			if(!standTag.equals(DEFAULT_STAND_ID)) {
+					standHandler.setStand(standTag);
+					stageHandler.setStage(stageTag);
+					data.setModel(modelTag);
+					playerIn.getHeldItem(handIn).shrink(1);
+				if(!type.equals(DEFAULT_STAND_ID)) {
+					if(!worldIn.isRemote) {
+					playerIn.dropItem(getItemData(new ItemStack(ItemLoader.disc),type,stage,model),true);
+					}
 				}
+					playerIn.playSound(SoundEvents.BLOCK_COMPARATOR_CLICK, 1f, 1f);
 			}
-				playerIn.playSound(SoundEvents.BLOCK_COMPARATOR_CLICK, 1f, 1f);
 		}
-		
+
 		return new ActionResult<ItemStack>(EnumActionResult.SUCCESS, playerIn.getHeldItem(handIn));
 	}
 	
 	
 	 enum NBT {
 	        STAND_ID("StandId"),
+	        STAND_MODEL("StandModel"),
 	        STAND_STAGE("StandStage");
 
 	        private String name;

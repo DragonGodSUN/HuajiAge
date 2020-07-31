@@ -8,6 +8,7 @@ import com.lh_lshen.mcbbs.huajiage.capability.IExposedData;
 import com.lh_lshen.mcbbs.huajiage.stand.StandStates;
 import com.lh_lshen.mcbbs.huajiage.stand.StandUtil;
 import com.lh_lshen.mcbbs.huajiage.stand.resource.StandRes;
+import com.lh_lshen.mcbbs.huajiage.stand.resource.StandResLoader;
 import com.lh_lshen.mcbbs.huajiage.stand.states.StandStateBase;
 import com.lh_lshen.mcbbs.huajiage.stand.states.default_set.StateTheWorldDefault;
 import net.minecraft.client.multiplayer.WorldClient;
@@ -116,7 +117,7 @@ public class StandBase implements IStand {
 	}
 
 	public StandRes getBindingRes() {
-		return null;
+		return StandResLoader.getStand(name)!=null?StandResLoader.getStand(name):StandResLoader.THE_WORLD_RES;
 	}
 
 	public List<String> getStates() {

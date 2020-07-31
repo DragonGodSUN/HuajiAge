@@ -1,8 +1,10 @@
 package com.lh_lshen.mcbbs.huajiage.stand;
 
+import com.lh_lshen.mcbbs.huajiage.capability.IExposedData;
 import com.lh_lshen.mcbbs.huajiage.client.model.stand.HAModelFactory;
 import com.lh_lshen.mcbbs.huajiage.client.model.stand.ModelStandBase;
 import com.lh_lshen.mcbbs.huajiage.client.model.stand.ModelTheWorld;
+import com.lh_lshen.mcbbs.huajiage.init.HuajiConstant;
 import com.lh_lshen.mcbbs.huajiage.stand.instance.StandBase;
 import net.minecraft.client.Minecraft;
 import net.minecraft.entity.Entity;
@@ -15,7 +17,7 @@ public class StandClientUtil {
 	public static void standUpSound(Minecraft mc ,Entity user ,String stand_type ) 
 	{
 		StandBase stand = StandLoader.getStand(stand_type);
-		if(stand!=null) {
+		if(stand!=null && stand.getBindingRes()!=null) {
 			stand.getBindingRes().doSoundPlay(mc, user);
 			}
 		}
@@ -38,7 +40,7 @@ public class StandClientUtil {
 //		}
 //		return new ModelTheWorld();
 		StandBase stand = StandLoader.getStand(stand_type);
-		if(stand!=null) {
+		if(stand!=null ) {
 		return stand.getBindingRes().getStandModel();
 		}
 		return new ModelTheWorld();
@@ -67,6 +69,19 @@ public class StandClientUtil {
 	public static ResourceLocation getTex(String stand_type, String state) {
 		StandBase stand = StandLoader.getStand(stand_type);
 		return stand.getBindingRes().getTextureByData(state);
+	}
+
+	public static ResourceLocation getTexByID(EntityLivingBase entity) {
+		IExposedData data = StandUtil.getStandData(entity);
+		if(data!=null){
+			String stand = data.getStand();
+			String state = data.getState();
+			if(!data.getModel().equals(StandLoader.EMPTY)){
+				return HAModelFactory.getTexture(data.getModel());
+			}
+			return getTex(stand,state);
+		}
+		return new ResourceLocation(HuajiConstant.StandModels.DEFAULT_MODEL_ID);
 	}
 	
     public static void standRender(EntityLivingBase entity) {

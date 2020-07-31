@@ -1,15 +1,14 @@
 package com.lh_lshen.mcbbs.huajiage.capability;
 
-import java.util.concurrent.Callable;
-
 import com.lh_lshen.mcbbs.huajiage.stand.StandLoader;
-
 import net.minecraft.nbt.NBTBase;
 import net.minecraft.nbt.NBTTagCompound;
 import net.minecraft.util.EnumFacing;
 import net.minecraftforge.common.capabilities.Capability;
 import net.minecraftforge.common.capabilities.Capability.IStorage;
 import net.minecraftforge.common.capabilities.ICapabilitySerializable;
+
+import java.util.concurrent.Callable;
 
 public class CapabilityExposedData {
 	    public static class Storage implements Capability.IStorage<IExposedData>
@@ -25,6 +24,7 @@ public class CapabilityExposedData {
 				cmp_stand.setBoolean("stand_hand", instance.isHandDisplay());
 	        	cmp_stand.setInteger("stand_stage", instance.getStage());
 				cmp_stand.setString("stand_state", instance.getState());
+				cmp_stand.setString("stand_model", instance.getModel());
 	        	
 	            return cmp_stand;
 	        }
@@ -40,12 +40,14 @@ public class CapabilityExposedData {
 				boolean is_hand_display = cmp.getBoolean("stand_hand");
 	        	int stage = cmp.getInteger("stand_stage");
 	        	String state = cmp.getString("stand_state");
+	        	String model = cmp.getString("stand_model");
 	        	
 	        	instance.setStand(stand);
 	        	instance.setTrigger(is_triggered);
 	        	instance.setHandDisplay(is_hand_display);
 	        	instance.setStage(stage);
 	        	instance.setState(state);
+	        	instance.setModel(model);
 	        }
 	        
 	    }
@@ -58,6 +60,7 @@ public class CapabilityExposedData {
 	    	boolean dirty =false;
 	    	int stage = 0;
 	    	String state = States.DEFAULT.getName();
+	    	String modelID = StandLoader.EMPTY;
 	    	
 	    	@Override
 	    	public void setStand(String standName) {
@@ -110,6 +113,17 @@ public class CapabilityExposedData {
 			@Override
 			public void setState(String state) {
 				this.state = state;
+				markDirty();
+			}
+
+			@Override
+			public String getModel() {
+				return modelID;
+			}
+
+			@Override
+			public void setModel(String model) {
+				this.modelID = model;
 				markDirty();
 			}
 

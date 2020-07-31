@@ -35,6 +35,7 @@ public  class HuajiConstant {
 		public static final String STAND_HIEROPANT_GREEN="stand"+"."+HuajiAge.MODID+"."+"hierophant_green";
 		public static final String STAND_ORGA_REQUIEM="stand"+"."+HuajiAge.MODID+"."+"orga_requiem";
 		public static final String STAND_KILLER_QUEEN="stand"+"."+HuajiAge.MODID+"."+"killer_queen";
+		public static final String STAND_MAID="stand"+"."+HuajiAge.MODID+"."+"maid";
 		public static final String STAND_EMPTY="stand"+"."+HuajiAge.MODID+"."+"empty";
 	}
 	

@@ -23,10 +23,10 @@ public class StandModelInfo implements IModelInfo {
     private List<String> description;
 
     @SerializedName("model")
-    private ResourceLocation model;
+    private String model;
 
     @SerializedName("texture")
-    private ResourceLocation texture;
+    private String texture;
 
     @SerializedName("model_id")
     private String modelId;
@@ -51,7 +51,7 @@ public class StandModelInfo implements IModelInfo {
 
     @Override
     public ResourceLocation getTexture() {
-        return texture;
+        return new ResourceLocation(texture);
     }
 
     @Override
@@ -97,7 +97,7 @@ public class StandModelInfo implements IModelInfo {
 
     @Override
     public ResourceLocation getModel() {
-        return model;
+        return new ResourceLocation(model);
     }
 
     public float getRenderEntityScale() {
@@ -122,10 +122,10 @@ public class StandModelInfo implements IModelInfo {
         }
         // 如果 model 或 texture 为空，自动生成默认位置的模型
         if (model == null) {
-            model = new ResourceLocation(new ResourceLocation(modelId).getNamespace(), "models/entity/" + new ResourceLocation(modelId).getPath() +(state.equals("default")? ".json":("_"+ state) + ".json"));
+            model = new ResourceLocation(new ResourceLocation(modelId).getNamespace(), "models/entity/" + new ResourceLocation(modelId).getPath() +(state.equals("default")? ".json":("_"+ state) + ".json")).toString();
         }
         if (texture == null) {
-            texture = new ResourceLocation(new ResourceLocation(modelId).getNamespace(), "textures/entity/" + new ResourceLocation(modelId).getPath() +(state.equals("default")? ".json":("_"+ state) + ".png"));
+            texture = new ResourceLocation(new ResourceLocation(modelId).getNamespace(), "textures/entity/" + new ResourceLocation(modelId).getPath() +(state.equals("default")? ".png":("_"+ state) + ".png")).toString();
         }
         // 如果名称为空，自动生成本地化名称
         if (name == null) {

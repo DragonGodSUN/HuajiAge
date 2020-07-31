@@ -22,7 +22,6 @@ public class StateOrgaRequiemFly extends StandStateBase {
     @Override
     public void doTask(EntityLivingBase user) {
         StandBase type = StandUtil.getType(user);
-        int stage = StandUtil.getStandStage(user);
         if(type!=null){
         StandPowerHelper.rangePunchAttack(user,45,10,2);
         }

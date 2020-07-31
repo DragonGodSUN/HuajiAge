@@ -1,5 +1,7 @@
 package com.lh_lshen.mcbbs.huajiage.stand.resource;
 
+import com.lh_lshen.mcbbs.huajiage.common.CommonProxy;
+
 import java.util.ArrayList;
 import java.util.List;
 
@@ -11,6 +13,7 @@ public class StandResLoader {
 	public static final StandRes HIEROPHANT_GREEN_RES = new ResStandHierophantGreen("hierophant_green");
 	public static final StandRes ORGA_REQUIEM_RES = new ResStandOrgaRequiem("orga_requiem");
 	public static final StandRes KILLER_QUEEN_RES = new ResStandKillerQueen("killer_queen");
+	public static final StandRes MAID_RES = new ResStandMaid("maid");
 	
 	public StandResLoader() {
 		register(THE_WORLD_RES);
@@ -18,6 +21,9 @@ public class StandResLoader {
 		register(HIEROPHANT_GREEN_RES);
 		register(ORGA_REQUIEM_RES);
 		register(KILLER_QUEEN_RES);
+		if(CommonProxy.ModsLoader.isTouhouMaidLoaded()){
+		register(MAID_RES);
+		}
 	}
 	
 	private static void register(StandRes stand){

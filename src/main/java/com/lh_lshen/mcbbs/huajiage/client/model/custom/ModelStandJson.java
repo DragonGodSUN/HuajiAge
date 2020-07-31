@@ -6,13 +6,9 @@ package com.lh_lshen.mcbbs.huajiage.client.model.custom;
 
 import com.github.tartaricacid.touhoulittlemaid.client.model.EntityModelJson;
 import com.google.common.collect.Lists;
-import com.lh_lshen.mcbbs.huajiage.capability.IExposedData;
 import com.lh_lshen.mcbbs.huajiage.client.model.stand.ModelStandBase;
 import com.lh_lshen.mcbbs.huajiage.client.resources.CustomResourceLoader;
 import com.lh_lshen.mcbbs.huajiage.common.CommonProxy;
-import com.lh_lshen.mcbbs.huajiage.stand.StandStates;
-import com.lh_lshen.mcbbs.huajiage.stand.StandUtil;
-import com.lh_lshen.mcbbs.huajiage.stand.states.StandStateBase;
 import net.minecraft.client.model.ModelRenderer;
 import net.minecraft.client.renderer.GlStateManager;
 import net.minecraft.entity.Entity;
@@ -126,7 +122,14 @@ public class ModelStandJson extends ModelStandBase {
     }
 
     public ModelStandJson(EntityModelJson json){
+        initTranslate(0,0,0);
+        initRotations(0,0,0,0);
+
+        textureWidth = json.textureWidth;
+        textureHeight = json.textureHeight;
+
         this.renderBoundingBox =json.renderBoundingBox;
+
         this.entityStandWrapper = new EntityStandWrapper();
         try {
             Field field1 = EntityModelJson.class.getDeclaredField("modelMap");
@@ -135,15 +138,15 @@ public class ModelStandJson extends ModelStandBase {
             this.modelMap = (HashMap<String, ModelRendererWrapper>) value1;
             Field field2 = EntityModelJson.class.getDeclaredField("indexBones");
             field2.setAccessible(true);
-            Object value2 = field1.get(json);
+            Object value2 = field2.get(json);
             this.indexBones = (HashMap<String, BonesItem>) value2;
             Field field3 = EntityModelJson.class.getDeclaredField("shouldRender");
             field3.setAccessible(true);
-            Object value3 = field1.get(json);
+            Object value3 = field3.get(json);
             this.shouldRender = (List<ModelRenderer>) value3;
             Field field4 = EntityModelJson.class.getDeclaredField("animations");
             field4.setAccessible(true);
-            Object value4 = field1.get(json);
+            Object value4 = field4.get(json);
             this.animations = (List<Object>) value4;
         } catch (Exception e) {
             e.printStackTrace();
@@ -167,20 +170,16 @@ public class ModelStandJson extends ModelStandBase {
         Invocable invocable = (Invocable) CommonProxy.NASHORN;
         if (entityIn instanceof EntityPlayer) {
             entityStandWrapper.setData((EntityPlayer)entityIn, swingProgress, isRiding);
-            IExposedData data = StandUtil.getStandData((EntityPlayer)entityIn);
-            if(data!=null){
-                StandStateBase base = StandStates.getStandState(data.getStand(),data.getState());
-                if (base!=null) {
-                    String modelId = base.getModelID();
-                    try {
-                        for (Object animation : animations) {
-                            invocable.invokeMethod(animation, "animation",
-                                    entityStandWrapper, limbSwing, limbSwingAmount, ageInTicks, netHeadYaw, headPitch, scaleFactor, modelMap);
-                        }
-                    } catch (Exception e) {
-                        e.printStackTrace();
-                        CustomResourceLoader.STAND_MODEL.removeAnimation(modelId);
+            String modelId = this.getModelID();
+            if(modelId!=null){
+                try {
+                    for (Object animation : animations) {
+                        invocable.invokeMethod(animation, "animation",
+                                entityStandWrapper, limbSwing, limbSwingAmount, ageInTicks, netHeadYaw, headPitch, scaleFactor, modelMap);
                     }
+                } catch (Exception e) {
+                    e.printStackTrace();
+                    CustomResourceLoader.STAND_MODEL.removeAnimation(modelId);
                 }
             }
         }

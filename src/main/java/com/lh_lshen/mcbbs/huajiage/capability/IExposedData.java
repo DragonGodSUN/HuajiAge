@@ -19,6 +19,9 @@ public interface IExposedData {
 	String getState();
 	void setState(String state);
 
+	String getModel();
+	void setModel(String model);
+
 	boolean isDirty();
 	void setDirty(boolean dirty);
 

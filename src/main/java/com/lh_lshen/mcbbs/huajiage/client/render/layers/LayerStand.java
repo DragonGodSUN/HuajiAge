@@ -28,8 +28,7 @@ public class LayerStand implements  LayerRenderer<EntityLivingBase> {
 	 protected final RenderLivingBase<?> livingEntityRenderer;
 	private StandModelInfo mainInfo;
 	private List<Object> mainAnimations;
-	private String DEFAULT_MODEL_ID = HuajiConstant.StandModels.DEFAULT_MODEL_ID;
-//	 private static  ModelStandBase model = null;
+	//	 private static  ModelStandBase model = null;
 //	 private static ResourceLocation tex = null;
 //	 private static final ModelStandBase MODEL_THE_WORLD =new ModelTheWorld(); 
 //	 private static final ModelStandBase MODEL_STAR_PLATINUM =new ModelStarPlatinum(); 
@@ -59,12 +58,13 @@ public class LayerStand implements  LayerRenderer<EntityLivingBase> {
 				//	酒石酸号模型加载
 				if (model instanceof ModelStandJson) {
 					// 尝试读取模型信息
+					String DEFAULT_MODEL_ID = HuajiConstant.StandModels.DEFAULT_MODEL_ID;
 					CustomResourceLoader.STAND_MODEL.getInfo(DEFAULT_MODEL_ID).ifPresent(info -> this.mainInfo = info);
 					this.mainAnimations = null;
 
 					// 通过模型 id 获取对应数据
-					CustomResourceLoader.STAND_MODEL.getInfo(stateBase.getModelID()).ifPresent(info -> this.mainInfo = info);
-					CustomResourceLoader.STAND_MODEL.getAnimation(stateBase.getModelID()).ifPresent(animations -> this.mainAnimations = animations);
+//					CustomResourceLoader.STAND_MODEL.getInfo(stateBase.getModelID()).ifPresent(info -> this.mainInfo = info);
+					CustomResourceLoader.STAND_MODEL.getAnimation(model.getModelID()).ifPresent(animations -> this.mainAnimations = animations);
 
 					// 模型动画设置
 					if (this.mainAnimations != null) {
@@ -76,7 +76,7 @@ public class LayerStand implements  LayerRenderer<EntityLivingBase> {
 				GlStateManager.color(1.0F, 1.0F, 1.0F, 1.0F);
 				GlStateManager.enableBlend();
 				GlStateManager.disableLighting();
-				ResourceLocation texture = StandClientUtil.getTex(stand.getName(),state);
+				ResourceLocation texture = StandClientUtil.getTexByID(entitylivingbaseIn);
 				if(texture!=null) {
 				livingEntityRenderer.bindTexture(texture);
 				}
