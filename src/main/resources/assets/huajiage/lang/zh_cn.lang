@@ -218,6 +218,7 @@ stand.huajiage.star_platinum=§5§lStar Platinum-白金之星
 stand.huajiage.hierophant_green=§a§lHierophant Green-绿之法皇
 stand.huajiage.orga_requiem=§4§l停不下来的奥尔加镇魂曲
 stand.huajiage.killer_queen=§d§lKiller §f§lQueen-杀手§d§l皇后
+stand.huajiage.maid=§c§l女§f§l仆
 
 stand.state.huajiage.default=默认
 stand.state.huajiage.idle=闲置
@@ -230,6 +231,7 @@ stand.huajiage.skill.star_platinum.start=§5§l食堂泼辣酱——§b§l咋瓦
 stand.huajiage.skill.hierophant_green.start=§a§l接招吧!半径20米的绿宝石水花!!!
 stand.huajiage.skill.orga_requiem.start=§4§l不要停下来啊！！！无限循环街道的真实！
 stand.huajiage.skill.killer_queen.start=§e§l烤鸡要没了！
+stand.huajiage.skill.maid.start=\(>￣▽￣<)/
 
 patchouil.huajiage.book.name=§e§lJO§6级宝典
 patchouil.huajiage.book.landing=在这个宇宙中，存在着一种名为滑稽的奇特之物，它们无处不在，并构成了千千万万的事物，据说，持有滑稽的星辉之力，便可得到传说中鬼畜先辈的无上之力

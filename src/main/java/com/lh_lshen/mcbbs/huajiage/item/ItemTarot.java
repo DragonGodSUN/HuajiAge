@@ -1,18 +1,12 @@
 package com.lh_lshen.mcbbs.huajiage.item;
 
-import java.util.List;
-
 import com.lh_lshen.mcbbs.huajiage.capability.CapabilityStandHandler;
 import com.lh_lshen.mcbbs.huajiage.capability.CapabilityStandStageHandler;
-import com.lh_lshen.mcbbs.huajiage.capability.StandHandler;
+import com.lh_lshen.mcbbs.huajiage.capability.IExposedData;
 import com.lh_lshen.mcbbs.huajiage.crativetab.CreativeTabLoader;
-import com.lh_lshen.mcbbs.huajiage.init.HuajiConstant;
-import com.lh_lshen.mcbbs.huajiage.potion.PotionLoader;
-import com.lh_lshen.mcbbs.huajiage.stand.EnumStandtype;
 import com.lh_lshen.mcbbs.huajiage.stand.StandLoader;
 import com.lh_lshen.mcbbs.huajiage.stand.StandUtil;
 import com.lh_lshen.mcbbs.huajiage.util.NBTHelper;
-
 import net.minecraft.client.resources.I18n;
 import net.minecraft.client.util.ITooltipFlag;
 import net.minecraft.creativetab.CreativeTabs;
@@ -22,18 +16,17 @@ import net.minecraft.init.SoundEvents;
 import net.minecraft.item.Item;
 import net.minecraft.item.ItemStack;
 import net.minecraft.nbt.NBTTagCompound;
-import net.minecraft.nbt.NBTTagList;
-import net.minecraft.potion.PotionEffect;
 import net.minecraft.util.ActionResult;
 import net.minecraft.util.EnumActionResult;
 import net.minecraft.util.EnumHand;
 import net.minecraft.util.NonNullList;
-import net.minecraft.util.SoundEvent;
 import net.minecraft.util.text.TextComponentString;
 import net.minecraft.util.text.TextComponentTranslation;
 import net.minecraft.world.World;
 import net.minecraftforge.fml.relauncher.Side;
 import net.minecraftforge.fml.relauncher.SideOnly;
+
+import java.util.List;
 
 public class ItemTarot extends Item {
 	private static final String DEFAULT_STAND_ID = StandLoader.EMPTY;
@@ -64,39 +57,44 @@ public class ItemTarot extends Item {
 		ItemStack stack = playerIn.getHeldItem(handIn);
 		String stand = playerIn.getCapability(CapabilityStandHandler.STAND_TYPE, null).getStand();
 		int stage = playerIn.getCapability(CapabilityStandStageHandler.STAND_STAGE, null).getStage();
+
+		IExposedData data = StandUtil.getStandData(playerIn);
 		boolean flag = NBTHelper.getTagCompoundSafe(stack).getString(NBT.STAND_NAME.getName()).equals(DEFAULT_STAND_ID);
-		
-		if(playerIn.isSneaking()) {
-			if(flag && !stand.equals(DEFAULT_STAND_ID)) {
-				setStandTag(playerIn, stack, stand, stage);
-				playerIn.getCapability(CapabilityStandHandler.STAND_TYPE, null).setStand(DEFAULT_STAND_ID);
-				playerIn.getCapability(CapabilityStandStageHandler.STAND_STAGE, null).setStage(0);
-//				StandUtil.removeStandData(playerIn);
-				if(worldIn.isRemote) {
-				playerIn.playSound(SoundEvents.ITEM_BOTTLE_FILL_DRAGONBREATH, 1f, 1f);
-				playerIn.sendMessage(new TextComponentString(I18n.format(StandUtil.getLocalName(stand))+I18n.format("message.huajiage.tarot.stand.store")));
-				}
-			}
-		}else {
-			String standTag = NBTHelper.getTagCompoundSafe(stack).getString(NBT.STAND_NAME.getName());
-			int stageTag = NBTHelper.getTagCompoundSafe(stack).getInteger(NBT.STAND_STAGE.getName());
-			if(stand.equals(DEFAULT_STAND_ID)&&!standTag.equals(DEFAULT_STAND_ID)) {
-			playerIn.getCapability(CapabilityStandHandler.STAND_TYPE, null).setStand(standTag);
-			playerIn.getCapability(CapabilityStandStageHandler.STAND_STAGE, null).setStage(stageTag);
-			playerIn.playSound(SoundEvents.BLOCK_GLASS_BREAK, 1f, 1f);
-			playerIn.playSound(SoundEvents.UI_TOAST_CHALLENGE_COMPLETE, 1f, 1f);
-			setStandTag(playerIn, stack, DEFAULT_STAND_ID, 0);
-//			StandUtil.setStandData(playerIn, standTag);
-			}else {
-				if(worldIn.isRemote) {
-					if(!stand.equals(DEFAULT_STAND_ID)) {
-					playerIn.sendMessage(new TextComponentTranslation("message.huajiage.tarot.stand.fail_load"));
+
+		if (data!=null) {
+			if(playerIn.isSneaking()) {
+				if(flag && !stand.equals(DEFAULT_STAND_ID)) {
+					setStandTag(playerIn, stack, stand, stage ,data.getModel());
+					playerIn.getCapability(CapabilityStandHandler.STAND_TYPE, null).setStand(DEFAULT_STAND_ID);
+					playerIn.getCapability(CapabilityStandStageHandler.STAND_STAGE, null).setStage(0);
+					data.setModel(DEFAULT_STAND_ID);
+
+					if(worldIn.isRemote) {
+					playerIn.playSound(SoundEvents.ITEM_BOTTLE_FILL_DRAGONBREATH, 1f, 1f);
+					playerIn.sendMessage(new TextComponentString(I18n.format(StandUtil.getLocalName(stand))+I18n.format("message.huajiage.tarot.stand.store")));
 					}
-					
+				}
+			}else {
+				String standTag = NBTHelper.getTagCompoundSafe(stack).getString(NBT.STAND_NAME.getName());
+				int stageTag = NBTHelper.getTagCompoundSafe(stack).getInteger(NBT.STAND_STAGE.getName());
+				String modelTag = NBTHelper.getTagCompoundSafe(stack).getString(NBT.STAND_MODEL.getName());
+				if(stand.equals(DEFAULT_STAND_ID)&&!standTag.equals(DEFAULT_STAND_ID)) {
+				playerIn.getCapability(CapabilityStandHandler.STAND_TYPE, null).setStand(standTag);
+				playerIn.getCapability(CapabilityStandStageHandler.STAND_STAGE, null).setStage(stageTag);
+				data.setModel(modelTag);
+				playerIn.playSound(SoundEvents.BLOCK_GLASS_BREAK, 1f, 1f);
+				playerIn.playSound(SoundEvents.UI_TOAST_CHALLENGE_COMPLETE, 1f, 1f);
+				setStandTag(playerIn, stack, DEFAULT_STAND_ID, 0 ,DEFAULT_STAND_ID);
+				}else {
+					if(worldIn.isRemote) {
+						if(!stand.equals(DEFAULT_STAND_ID)) {
+						playerIn.sendMessage(new TextComponentTranslation("message.huajiage.tarot.stand.fail_load"));
+						}
+
+					}
 				}
 			}
-//			playerIn.addPotionEffect(new PotionEffect(PotionLoader.potionStand,200));
-			}
+		}
 		return new ActionResult(EnumActionResult.SUCCESS, stack);
 	}
 	public static ItemStack getItemData(String stand_id, int stage) {
@@ -109,13 +107,16 @@ public class ItemTarot extends Item {
         }
         return stack;
     }
-	public void setStandTag(EntityLivingBase entity,ItemStack stack , String stand_id, int stage) {
+	public void setStandTag(EntityLivingBase entity,ItemStack stack , String stand_id, int stage, String model) {
 			NBTTagCompound data = NBTHelper.getTagCompoundSafe(stack);
 	        	data.setString(NBT.STAND_NAME.getName(), stand_id);
 	        	data.setInteger(NBT.STAND_STAGE.getName(), stage);
+	        	data.setString(NBT.STAND_MODEL.getName(), model);
+
 	}
 	 public enum NBT {
 		 	STAND_NAME("Name"),
+		 	STAND_MODEL("Model"),
 	        STAND_STAGE("Stage");
 
 	        private String name;

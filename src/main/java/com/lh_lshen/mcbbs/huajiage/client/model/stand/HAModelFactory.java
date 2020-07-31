@@ -32,9 +32,9 @@ public class HAModelFactory {
 //    if(CommonProxy.ModsLoader.isTouhouMaidLoaded()){
 //        loadMaidModel();
 //    }
-        for(String id:STAND_MODEL.keySet()){
-            HuajiAge.LOGGER.info(MarkerManager.getMarker("ResourcesLoader"), "Loaded model: {}",id);
-        }
+//        for(String id:STAND_MODEL.keySet()){
+//            HuajiAge.LOGGER.info(MarkerManager.getMarker("ResourcesLoader"), "Loaded model: {}",id);
+//        }
     }
 
     public static void addStandModel(String id, ModelStandBase model){

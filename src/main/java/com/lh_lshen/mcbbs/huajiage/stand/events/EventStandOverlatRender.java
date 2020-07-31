@@ -3,6 +3,8 @@ package com.lh_lshen.mcbbs.huajiage.stand.events;
 import com.lh_lshen.mcbbs.huajiage.HuajiAge;
 import com.lh_lshen.mcbbs.huajiage.capability.*;
 import com.lh_lshen.mcbbs.huajiage.client.KeyLoader;
+import com.lh_lshen.mcbbs.huajiage.client.resources.CustomResourceLoader;
+import com.lh_lshen.mcbbs.huajiage.client.resources.pojo.StandModelInfo;
 import com.lh_lshen.mcbbs.huajiage.config.ConfigHuaji;
 import com.lh_lshen.mcbbs.huajiage.item.ItemLoader;
 import com.lh_lshen.mcbbs.huajiage.potion.PotionLoader;
@@ -108,8 +110,19 @@ public class EventStandOverlatRender {
 	                Gui.drawModalRectWithCustomSizedTexture(0, 0, 0, 0, 16, 16, 16, 16);
 	                GlStateManager.disableBlend();
 	                GlStateManager.popMatrix();
-	                Minecraft.getMinecraft().fontRenderer.drawString( TextFormatting.BOLD+I18n.format("stand.huajiage.name"), 8+ x,  2 + 16 + y, 0xffffff, true);
+
+	                if(!data.getModel().equals(StandLoader.EMPTY)){
+	                	if( CustomResourceLoader.STAND_MODEL.getInfo(data.getModel()).isPresent()){
+						StandModelInfo info = CustomResourceLoader.STAND_MODEL.getInfo(data.getModel()).get();
+						StringBuilder builder = new StringBuilder(info.getName());
+						builder.deleteCharAt(0);
+						builder.deleteCharAt(builder.indexOf("}"));
+						Minecraft.getMinecraft().fontRenderer.drawString( TextFormatting.BOLD+I18n.format(builder.toString()), 13+ x,  10 + 16 + y, 0xffffff, true);
+	                	}
+					}else{
 	                Minecraft.getMinecraft().fontRenderer.drawString( TextFormatting.BOLD+I18n.format(StandUtil.getLocalName(standHandler.getStand())), 13+ x,  10 + 16 + y, 0xffffff, true);
+	                }
+	                Minecraft.getMinecraft().fontRenderer.drawString( TextFormatting.BOLD+I18n.format("stand.huajiage.name"), 8+ x,  2 + 16 + y, 0xffffff, true);
 	                Minecraft.getMinecraft().fontRenderer.drawString( TextFormatting.BOLD+I18n.format("stand.huajiage.stage")+"  "+stage, 8+ x,  20 + 16 + y, 0xffffff, true);
 	                Minecraft.getMinecraft().fontRenderer.drawString( TextFormatting.BOLD+I18n.format("stand.huajiage.mp")+"  "+charge+"/"+maxCharge, 8+ x,  30 + 16 + y, chargeHandler.canBeCost(stand.getCost())?0x00fffc:0xffffff, true);
 	                if(ConfigHuaji.Stands.allowStandTip) {
@@ -121,6 +134,7 @@ public class EventStandOverlatRender {
 	                if(data.isTriggered()){
 						Minecraft.getMinecraft().fontRenderer.drawString( TextFormatting.BOLD+I18n.format("stand.huajiage.tip.mode",KeyLoader.standSwitch.getKeyModifier()+"+"+Keyboard.getKeyName(Math.max(KeyLoader.standSwitch.getKeyCode(), 0))), 5,stage>0?20:10, 0xffffff, true);
 					}
+	                GlStateManager.scale(1,1,1);
 	                
                 }
 	                

@@ -1,21 +1,15 @@
 package com.lh_lshen.mcbbs.huajiage.item;
 
 import com.lh_lshen.mcbbs.huajiage.HuajiAge;
-import com.lh_lshen.mcbbs.huajiage.crativetab.CreativeTabLoader;
-import com.lh_lshen.mcbbs.huajiage.stand.StandLoader;
-import com.lh_lshen.mcbbs.huajiage.stand.instance.StandBase;
-import com.lh_lshen.mcbbs.huajiage.util.NBTHelper;
-
+import com.lh_lshen.mcbbs.huajiage.common.CommonProxy;
 import net.minecraft.client.renderer.block.model.ModelResourceLocation;
 import net.minecraft.item.Item;
 import net.minecraft.item.ItemArmor;
 import net.minecraft.item.ItemFood;
-import net.minecraft.item.ItemSword;
 import net.minecraftforge.client.model.ModelLoader;
 import net.minecraftforge.fml.common.event.FMLInitializationEvent;
 import net.minecraftforge.fml.common.event.FMLPreInitializationEvent;
 import net.minecraftforge.fml.common.registry.ForgeRegistries;
-import net.minecraftforge.fml.common.registry.GameRegistry;
 import net.minecraftforge.fml.relauncher.Side;
 import net.minecraftforge.fml.relauncher.SideOnly;
 import net.minecraftforge.oredict.OreDictionary;
@@ -65,6 +59,7 @@ public class ItemLoader {
 	public static Item singularity=new ItemSingularity();
 	public static Item arrowStand=new ItemArrowStand();
 	public static Item killerQueenTrigger=new ItemKillerQueenTrigger();
+    public static Item doublePoleBall=new ItemDoublePoleBall();
 	public static ItemFood eggRice = new ItemEggRice();
 	public static ItemFood eggRiceU = new ItemEggRiceU();
     public static ItemArmor huajiHelmet = new ItemHuajiArmor.Helmet();
@@ -135,6 +130,9 @@ public class ItemLoader {
         register(singularity,"singularity","singularity");
         register(arrowStand,"arrowStand","arrow_stand");
         register(killerQueenTrigger,"killerQueenTrigger","killer_queen_trigger");
+        if(CommonProxy.ModsLoader.isTouhouMaidLoaded()){
+        register(doublePoleBall,"doublePoleBall","double_pole_ball");
+        }
     }
 
     @SideOnly(Side.CLIENT)
@@ -194,6 +192,9 @@ public class ItemLoader {
         registerRender(singularity);
         registerRender(arrowStand);
         registerRender(killerQueenTrigger);
+        if(CommonProxy.ModsLoader.isTouhouMaidLoaded()){
+        registerRender(doublePoleBall);
+        }
 //        registerRender(disc);
 //        for(StandBase stand : StandLoader.STAND_LIST) {
 //        	String name = disc.getRegistryName()+"_"+stand.getName();
