@@ -117,22 +117,32 @@ public class ConfigHuaji {
 		@Config.Comment("The X position of Stand on HUD")
 		@LangKey("config.huaji_age.huaji_config.stand_HUD_x")
 		@RangeDouble(min = 0, max = 1f)
-		public double StandHUDx = 0f;
+		public double standHUDx = 0f;
 		
 		@Config.Comment("The Y position of Stand on HUD")
 		@LangKey("config.huaji_age.huaji_config.stand_HUD_y")
 		@RangeDouble(min = 0, max = 1.0f)
-		public double StandHUDy = 0.7f;
+		public double standHUDy = 0.7f;
 		
 		@Config.Comment("The scale of effect icon of time stop")
 		@LangKey("config.huaji_age.huaji_config.icon_time_stop")
 		@RangeDouble(min = 0, max = 5.0)
-		public double TimeStopScale = 1.0;
+		public double timeStopScale = 1.0;
 		
 		@Config.Comment("The density of fog in time stop")
 		@LangKey("config.huaji_age.huaji_config.density_fog_time_stop")
 		@RangeDouble(min = 0, max = 0.001f)
-		public float TimeStopFog = 0.0005f;
+		public float timeStopFog = 0.0005f;
+
+		@Config.Comment("The swing speed of maid")
+		@LangKey("config.huaji_age.huaji_config.maid_limb_swing")
+		@RangeDouble(min = 0)
+		public float maidLimbSwing = 0.7f;
+
+		@Config.Comment("The swing am of maid")
+		@LangKey("config.huaji_age.huaji_config.maid_limb_swing_amount")
+		@RangeDouble(min = 0)
+		public float maidLimbSwingAmount = 0.2f;
 		
 		
 	}

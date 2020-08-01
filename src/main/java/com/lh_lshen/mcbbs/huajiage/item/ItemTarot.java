@@ -42,8 +42,10 @@ public class ItemTarot extends Item {
 		super.addInformation(stack, worldIn, tooltip, flagIn);
 		String stand=NBTHelper.getTagCompoundSafe(stack).getString(NBT.STAND_NAME.getName());
 		int stage=NBTHelper.getTagCompoundSafe(stack).getInteger(NBT.STAND_STAGE.getName());
-		tooltip.add(I18n.format("item.tarot:tooltips.1") +I18n.format(StandUtil.getLocalName(stand)));
-		tooltip.add(I18n.format("item.tarot:tooltips.2") +stage);
+		String model =NBTHelper.getTagCompoundSafe(stack).getString(NBT.STAND_MODEL.getName());
+		tooltip.add(I18n.format("item.tarot:tooltips.1") +I18n.format(StandUtil.getLocalName(stand)) );
+		tooltip.add(I18n.format("item.tarot:tooltips.2") +stage );
+		tooltip.add(I18n.format("item.tarot:tooltips.3") +( model.equals("")?I18n.format("stand.huajiage.default"):model) );
 	}
 	@Override
 	@SideOnly(Side.CLIENT)

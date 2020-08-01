@@ -1,0 +1,20 @@
+{
+   "parent": "item/generated",
+    "textures": {
+        "layer0": "huajiage:items/yin_yang_ball"
+    },
+    "overrides": [
+        {
+            "predicate": {
+                "data": 0
+            },
+            "model": "huajiage:item/yin_yang_ball_0"
+        },
+        {
+            "predicate": {
+                "data": 1
+            },
+            "model": "huajiage:item/yin_yang_ball_1"
+        }
+    ]
+}

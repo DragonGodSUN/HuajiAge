@@ -6,7 +6,6 @@ package com.lh_lshen.mcbbs.huajiage.client.model.custom;
 
 import com.github.tartaricacid.touhoulittlemaid.TouhouLittleMaid;
 import com.github.tartaricacid.touhoulittlemaid.entity.item.AbstractEntityTrolley;
-import com.github.tartaricacid.touhoulittlemaid.entity.item.EntityMarisaBroom;
 import com.github.tartaricacid.touhoulittlemaid.entity.item.EntityPortableAudio;
 import com.github.tartaricacid.touhoulittlemaid.init.MaidItems;
 import com.lh_lshen.mcbbs.huajiage.common.CommonProxy;
@@ -114,7 +113,7 @@ public class EntityStandWrapper {
     }
 
     public boolean isBegging() {
-        return player.isSneaking();
+        return player.isSneaking() && !player.isSwingInProgress;
     }
 
     public boolean isRiding() {
@@ -126,7 +125,7 @@ public class EntityStandWrapper {
     }
 
     public boolean isSitting() {
-        return player.isSilent();
+        return player.isRiding();
     }
 
     public boolean hasBackpack() {
@@ -162,11 +161,11 @@ public class EntityStandWrapper {
     }
 
     public boolean isHoldTrolley() {
-        return CommonProxy.ModsLoader.isTouhouMaidLoaded()&&(player.getControllingPassenger() instanceof AbstractEntityTrolley);
+        return CommonProxy.ModsLoader.isTouhouMaidLoaded()&&(player.getRidingEntity() instanceof AbstractEntityTrolley);
     }
 
     public boolean isRidingMarisaBroom() {
-        return CommonProxy.ModsLoader.isTouhouMaidLoaded()&&player.getControllingPassenger() instanceof EntityMarisaBroom;
+        return false;
     }
 
     public boolean isRidingPlayer() {

@@ -16,9 +16,9 @@ public interface IModelInfo {
 
     ResourceLocation getModel();
 
-    List<Number> getTransfer();
+    List<Float> getTransfer();
 
-    List<Number> getRotation();
+    List<Float> getRotation();
 
     List<ResourceLocation> getAnimation();
 

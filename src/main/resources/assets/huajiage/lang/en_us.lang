@@ -26,6 +26,7 @@ item.huajiage.arrowStand.name=§dArrow for Stand
 item.huajiage.waveCrystal.name=§bWave Crystal
 item.huajiage.waveKnife.name=Wave Knife
 item.huajiage.killerQueenTrigger.name=§lTrigger
+item.huajiage.yinYangBall.name=§8§lMaster §f§lBall
 
 death.attack.huajiage.hope_flower=%s was dead of world line converge
 death.attack.huajiage.second=%s has been compressed into a PNG image
@@ -129,9 +130,11 @@ item.dio_bread:tooltips.1=§3The GioGio dessert workshop, owned by passion, an I
 item.dio_bread:tooltips.2=§6The bread is basically in short supply.However, some people reported that the bread had been added with a large number of additives, on the grounds that it would not decompose or break if it was soaked in water for several weeks, just like time stands still.Another source said that several people were so excited after using the bread that they even said "wryyyyyyy!" from time to time."Or" Weak!Weak!","Useless!Useless!Useless"Words of unknown meaning.One witness said the neighbor went into a frenzy after eating the food and even smashed a road roller.At present, the local police have carried out a detailed investigation of the food, nothing unusual, police officer abbacchio reminded the public not to believe rumors, spread rumors, do not let the rumors affect the normal social order
 item.lord_core:tooltips.1=§6It is the aggregate of Lord.Lu's great power
 item.tarot:tooltips.1=Stand Name: 
-item.tarot:tooltips.2=Stage: 
+item.tarot:tooltips.2=Stage:
+item.tarot:tooltips.3=Model：
 item.huajiage.disc.tooltip.1=Stand: 
-item.huajiage.disc.tooltip.2=Stage: 
+item.huajiage.disc.tooltip.2=Stage:
+item.huajiage.disc.tooltip.3=Model:
 item.singularity.tooltip.warning=Warning !!!You must prepare your beat equipment to protect yourself,once you died before the end of the effect, you will regret to make this!
 item.lord_key:tooltips.1=The mysterious key handed down from ancient times is said to further liberate the supreme power of the terror of §e§lLord Lu§7 in the §3§lLord Core
 item.wave_knife.tooltip.1=Wave - §9%s
@@ -141,6 +144,10 @@ item.huajiage.wave_knife.hotbar.wave=§9Wave - §b%s
 item.huajiage.wave_knife.hotbar.wave_reset=Reset Time - §b%ss
 item.huajiage.wave_knife.hotbar.wave_charge=Hit Charge - §e%s
 item.orga_knife:tooltips.1=The Orga leader's sharp, blade-shaped bangs are full of the element of hope (for throwing use, the lower the hit, the higher the damage, and the mark can be attached during the execution of the Requiem).
+item.yin_yang_ball:tooltips.1=You think I'm a yin-yang Orb ? Ko no Master Ball da!§b(Press shift to see more)
+item.yin_yang_ball:tooltips.2=§eMaid:%s
+item.yin_yang_ball:tooltips.3=§eMaster:%s
+item.yin_yang_ball:empty=Empty
 
 huajiage.orga.1=§b To celebrate! The birth of the most powerful king of Mars---Orga Izka
 messege.huaji.blancedHelmet.active=§lFrom now on it's called %s §lSquare！
@@ -172,6 +179,9 @@ messege.huaji.blancedHelmet.lord.break=§l%s has freed the supreme power of §e�
 message.huajiage.stand_killer_queen_trigger.cost_lack=§eYour points for fire the bomb is not enough
 message.huajiage.stand_mode.switch=§eMode:%s
 message.huajiage.stand_mode.empty=§eThis stand hasn't other mode
+message.huajiage.maid_ball.is_no_owner=You are not the owner of this master ball
+message.huajiage.maid_ball.fail=This master ball is empty
+message.huajiage.maid_ball.load=Capture successful! -§e%s
 
 gui.huajiage.poly.cook=Process
 gui.huajiage.poly.fuel=Fuel Point
@@ -201,8 +211,12 @@ config.huaji_age.huaji_config.stand.huaji_splash=Use HUAJI particle to replace t
 config.huaji_age.huaji_config.orga.flower=Use Hope Flower BGM
 config.huaji_age.huaji_config.density_fog_time_stop=The fog density in time stop(Need the fog Open)
 config.huaji_age.huaji_config.stand.punish.glow=Glow the player which let stand idle
+config.huaji_age.huaji_config.maid_limb_swing=The swing speed of maid
+config.huaji_age.huaji_config.maid_limb_swing_amount=The swing amount of maid
+
 
 stand.huajiage.empty=Empty
+stand.huajiage.default=Default
 stand.huajiage.the_world=§e§lThe World
 stand.huajiage.star_platinum=§5§lStar Platinum
 stand.huajiage.hierophant_green=§a§lHierophant Green

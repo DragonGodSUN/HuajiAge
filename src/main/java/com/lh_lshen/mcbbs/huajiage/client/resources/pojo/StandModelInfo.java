@@ -11,6 +11,7 @@ import com.google.gson.annotations.SerializedName;
 import com.lh_lshen.mcbbs.huajiage.common.CommonProxy;
 import net.minecraft.util.ResourceLocation;
 import net.minecraft.util.math.MathHelper;
+import org.apache.commons.lang3.math.NumberUtils;
 
 import java.util.Collections;
 import java.util.List;
@@ -35,10 +36,10 @@ public class StandModelInfo implements IModelInfo {
     private String state;
 
     @SerializedName("transfer")
-    private List<Number> transfer;
+    private List<String> transfer;
 
     @SerializedName("rotation")
-    private List<Number> rotation;
+    private List<String> rotation;
 
     @SerializedName("render_entity_scale")
     private float renderEntityScale = 1.0f;
@@ -65,14 +66,31 @@ public class StandModelInfo implements IModelInfo {
     }
 
     @Override
-    public List<Number> getTransfer() {
-        return transfer;
+    public List<Float> getTransfer() {
+        if(transfer!=null && !transfer.isEmpty()){
+            List<Float> fl = Lists.newArrayList();
+            for(String s : transfer){
+            float f = NumberUtils.createFloat(s);
+            fl.add(f);
+            }
+            return fl;
+        }
+        return null;
     }
 
     @Override
-    public List<Number> getRotation() {
-        return rotation;
+    public List<Float> getRotation() {
+        if(rotation!=null && !rotation.isEmpty()){
+            List<Float> fl = Lists.newArrayList();
+            for(String s : rotation){
+            float f = NumberUtils.createFloat(s);
+            fl.add(f);
+            }
+            return fl;
+        }
+        return null;
     }
+
 
     @Override
     public List<String> getDescription() {
@@ -154,10 +172,10 @@ public class StandModelInfo implements IModelInfo {
             }
         }
         if (transfer == null || transfer.isEmpty()) {
-            transfer = Lists.newArrayList(0f,-1.0f,0.75f);//x,y,z
+            transfer = Lists.newArrayList("0f","-1.0f","0.75f");//x,y,z
         }
         if (rotation == null || rotation.isEmpty()) {
-            rotation = Lists.newArrayList(0f,0f,0f,0f);//degree,y,p,w
+            rotation = Lists.newArrayList("0f","0f","0f","0f");//degree,y,p,w
         }
         renderEntityScale = MathHelper.clamp(renderEntityScale, 0.7f, 1.3f);
         return this;

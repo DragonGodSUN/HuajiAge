@@ -9,6 +9,7 @@ import com.google.common.collect.Lists;
 import com.lh_lshen.mcbbs.huajiage.client.model.stand.ModelStandBase;
 import com.lh_lshen.mcbbs.huajiage.client.resources.CustomResourceLoader;
 import com.lh_lshen.mcbbs.huajiage.common.CommonProxy;
+import com.lh_lshen.mcbbs.huajiage.config.ConfigHuaji;
 import net.minecraft.client.model.ModelRenderer;
 import net.minecraft.client.renderer.GlStateManager;
 import net.minecraft.entity.Entity;
@@ -155,7 +156,7 @@ public class ModelStandJson extends ModelStandBase {
 
     @Override
     public void render(Entity entityIn, float limbSwing, float limbSwingAmount, float ageInTicks, float netHeadYaw, float headPitch, float scale) {
-        setPositions(0f, (float) (-1.0f+ MathHelper.sin(ageInTicks/20)*0.1),0.75f);
+        GlStateManager.translate(0, MathHelper.sin(ageInTicks/20)*0.1,0);
         for (ModelRenderer model : shouldRender) {
             model.render(scale);
         }
@@ -175,7 +176,7 @@ public class ModelStandJson extends ModelStandBase {
                 try {
                     for (Object animation : animations) {
                         invocable.invokeMethod(animation, "animation",
-                                entityStandWrapper, limbSwing, limbSwingAmount, ageInTicks, netHeadYaw, headPitch, scaleFactor, modelMap);
+                                entityStandWrapper, limbSwing * ConfigHuaji.Stands.maidLimbSwing , limbSwingAmount * ConfigHuaji.Stands.maidLimbSwingAmount , ageInTicks, netHeadYaw, headPitch, scaleFactor, modelMap);
                     }
                 } catch (Exception e) {
                     e.printStackTrace();

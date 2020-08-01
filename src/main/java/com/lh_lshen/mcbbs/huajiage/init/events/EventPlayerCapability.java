@@ -1,6 +1,7 @@
 package com.lh_lshen.mcbbs.huajiage.init.events;
 //A test structure leaned from @Tartaric_Acid and Sonwnee, follow the MIT License
 //Learn More : https://github.com/TartaricAcid/TouhouLittleMaid
+
 import com.lh_lshen.mcbbs.huajiage.HuajiAge;
 import com.lh_lshen.mcbbs.huajiage.capability.*;
 import com.lh_lshen.mcbbs.huajiage.config.ConfigHuaji;
@@ -10,6 +11,7 @@ import com.lh_lshen.mcbbs.huajiage.stand.instance.StandBase;
 import com.lh_lshen.mcbbs.huajiage.stand.messages.*;
 import com.lh_lshen.mcbbs.huajiage.util.ServerUtil;
 import net.minecraft.entity.Entity;
+import net.minecraft.entity.EntityLivingBase;
 import net.minecraft.entity.player.EntityPlayer;
 import net.minecraft.entity.player.EntityPlayerMP;
 import net.minecraft.nbt.NBTBase;
@@ -20,6 +22,7 @@ import net.minecraftforge.common.capabilities.Capability;
 import net.minecraftforge.common.capabilities.Capability.IStorage;
 import net.minecraftforge.common.capabilities.ICapabilitySerializable;
 import net.minecraftforge.event.AttachCapabilitiesEvent;
+import net.minecraftforge.event.entity.EntityJoinWorldEvent;
 import net.minecraftforge.event.entity.EntityTravelToDimensionEvent;
 import net.minecraftforge.event.entity.player.PlayerEvent;
 import net.minecraftforge.fml.common.Mod;
@@ -130,7 +133,31 @@ public class EventPlayerCapability {
 			}
 		}
 	}
-    
+
+    /**
+     * 玩家加入世界时进行数据更新
+     */
+    @SubscribeEvent
+    public static void onPlayerJoin(EntityJoinWorldEvent evt) {
+        if (!evt.getWorld().isRemote && evt.getEntity() instanceof EntityLivingBase)
+        {
+            EntityLivingBase player = (EntityLivingBase) evt.getEntity();
+
+            StandHandler standHandler = player.getCapability(CapabilityStandHandler.STAND_TYPE, null);
+            StandStageHandler stageHandler = player.getCapability(CapabilityStandStageHandler.STAND_STAGE, null);
+            StandChargeHandler chargeHandler = player.getCapability(CapabilityStandChargeHandler.STAND_CHARGE, null);
+            StandBuffHandler buffHandler = player.getCapability(CapabilityStandBuffHandler.STAND_BUFF, null);
+            IExposedData data = player.getCapability(CapabilityLoader.EXPOSED_DATA, null);
+
+            if(standHandler!=null) standHandler.setDirty(true);
+            if(stageHandler!=null) stageHandler.setDirty(true);
+            if(chargeHandler!=null) chargeHandler.setDirty(true);
+            if(buffHandler!=null)buffHandler.setDirty(true);
+            if(data!=null) data.setDirty(true);
+
+        }
+
+    }
 
     /**
      * 同步客户端服务端数据

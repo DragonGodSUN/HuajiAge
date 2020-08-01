@@ -69,79 +69,70 @@ public class EventStandOverlatRender {
 
 		}
 	}
-	    @SideOnly(Side.CLIENT)
-	    @SubscribeEvent
-	    public static void onRenderOverlay(RenderGameOverlayEvent event) {
-	        if (event.getType() == RenderGameOverlayEvent.ElementType.HOTBAR) {
-	        	EntityPlayer player = Minecraft.getMinecraft().player;
-	            StandHandler standHandler = player.getCapability(CapabilityStandHandler.STAND_TYPE, null);
-	            StandStageHandler standStageHandler = player.getCapability(CapabilityStandStageHandler.STAND_STAGE, null);
-	            int stage = standStageHandler.getStage();
-	            
-//	            ItemStack disc = ItemDiscStand.getItemData(new ItemStack(ItemLoader.disc),standHandler.getStand(), standStageHandler.getStage());
-	            StandBase stand = StandLoader.getStand(standHandler.getStand());
-	            StandChargeHandler chargeHandler = StandUtil.getChargeHandler(player);
-				IExposedData data = StandUtil.getStandData(player);
-	            int charge = chargeHandler.getChargeValue();
-	            int maxCharge = chargeHandler.getMaxValue();
-	            if(stand == null) {
-	            	return;
-	            }
-	            
-	            if (stand!=null && data!=null && !standHandler.getStand().equals(StandLoader.EMPTY)) {
-	                int x = (int) (ConfigHuaji.Stands.StandHUDx * Minecraft.getMinecraft().displayWidth/2);
-	                int y = (int) (ConfigHuaji.Stands.StandHUDy * Minecraft.getMinecraft().displayHeight/2);
-	                GlStateManager.pushMatrix();
-	                GlStateManager.enableBlend();
-	                GlStateManager.translate(x, y, 0);
-	                GlStateManager.scale(1.5, 1.5, 1.5);
-//	                Minecraft.getMinecraft().player.getCooldownTracker().getCooldown(disc.getItem(), Minecraft.getMinecraft().getRenderPartialTicks());
-//	                switch(stand.getName()) {
-//	                case "the_world" :Minecraft.getMinecraft().renderEngine.bindTexture(STAND_THE_WORLD);
-//	                break;
-//	                case "star_platinum" :Minecraft.getMinecraft().renderEngine.bindTexture(STAND_STAR_PLATINUM);
-//	                break;
-//	                case "hierophant_green" :Minecraft.getMinecraft().renderEngine.bindTexture(STAND_HIEROPANT_GREEN);
-//	                break;
-//					default:Minecraft.getMinecraft().renderEngine.bindTexture(STAND_THE_WORLD);
-//						break;
-//	                }
-	                Minecraft.getMinecraft().renderEngine.bindTexture(StandUtil.getDiscTex(stand));
-	                Gui.drawModalRectWithCustomSizedTexture(0, 0, 0, 0, 16, 16, 16, 16);
-	                GlStateManager.disableBlend();
-	                GlStateManager.popMatrix();
 
-	                if(!data.getModel().equals(StandLoader.EMPTY)){
-	                	if( CustomResourceLoader.STAND_MODEL.getInfo(data.getModel()).isPresent()){
+	@SideOnly(Side.CLIENT)
+	@SubscribeEvent
+	public static void onRenderOverlay(RenderGameOverlayEvent event) {
+		if (event.getType() == RenderGameOverlayEvent.ElementType.HOTBAR) {
+			EntityPlayer player = Minecraft.getMinecraft().player;
+			StandHandler standHandler = player.getCapability(CapabilityStandHandler.STAND_TYPE, null);
+			StandStageHandler standStageHandler = player.getCapability(CapabilityStandStageHandler.STAND_STAGE, null);
+			int stage = standStageHandler.getStage();
+
+			StandBase stand = StandLoader.getStand(standHandler.getStand());
+			StandChargeHandler chargeHandler = StandUtil.getChargeHandler(player);
+			IExposedData data = StandUtil.getStandData(player);
+			int charge = chargeHandler.getChargeValue();
+			int maxCharge = chargeHandler.getMaxValue();
+			if (stand == null) {
+				return;
+			}
+
+			if (stand != null && data != null && !standHandler.getStand().equals(StandLoader.EMPTY)) {
+				int x = (int) (ConfigHuaji.Stands.standHUDx * Minecraft.getMinecraft().displayWidth / 2);
+				int y = (int) (ConfigHuaji.Stands.standHUDy * Minecraft.getMinecraft().displayHeight / 2);
+				GlStateManager.pushMatrix();
+				GlStateManager.enableBlend();
+				GlStateManager.translate(x, y, 0);
+				GlStateManager.scale(1.5, 1.5, 1.5);
+
+				Minecraft.getMinecraft().renderEngine.bindTexture(StandUtil.getDiscTex(stand));
+				Gui.drawModalRectWithCustomSizedTexture(0, 0, 0, 0, 16, 16, 16, 16);
+				GlStateManager.disableBlend();
+				GlStateManager.popMatrix();
+
+				if (!data.getModel().equals(StandLoader.EMPTY)) {
+					if (CustomResourceLoader.STAND_MODEL.getInfo(data.getModel()).isPresent()) {
 						StandModelInfo info = CustomResourceLoader.STAND_MODEL.getInfo(data.getModel()).get();
 						StringBuilder builder = new StringBuilder(info.getName());
 						builder.deleteCharAt(0);
 						builder.deleteCharAt(builder.indexOf("}"));
-						Minecraft.getMinecraft().fontRenderer.drawString( TextFormatting.BOLD+I18n.format(builder.toString()), 13+ x,  10 + 16 + y, 0xffffff, true);
-	                	}
-					}else{
-	                Minecraft.getMinecraft().fontRenderer.drawString( TextFormatting.BOLD+I18n.format(StandUtil.getLocalName(standHandler.getStand())), 13+ x,  10 + 16 + y, 0xffffff, true);
-	                }
-	                Minecraft.getMinecraft().fontRenderer.drawString( TextFormatting.BOLD+I18n.format("stand.huajiage.name"), 8+ x,  2 + 16 + y, 0xffffff, true);
-	                Minecraft.getMinecraft().fontRenderer.drawString( TextFormatting.BOLD+I18n.format("stand.huajiage.stage")+"  "+stage, 8+ x,  20 + 16 + y, 0xffffff, true);
-	                Minecraft.getMinecraft().fontRenderer.drawString( TextFormatting.BOLD+I18n.format("stand.huajiage.mp")+"  "+charge+"/"+maxCharge, 8+ x,  30 + 16 + y, chargeHandler.canBeCost(stand.getCost())?0x00fffc:0xffffff, true);
-	                if(ConfigHuaji.Stands.allowStandTip) {
-	                Minecraft.getMinecraft().fontRenderer.drawString( TextFormatting.BOLD+I18n.format("stand.huajiage.tip",KeyLoader.standUp.getKeyModifier()+"+"+Keyboard.getKeyName(Math.max(KeyLoader.standUp.getKeyCode(), 0))), 5,0, 0xffffff, true);
-	                if(stage>0) {
-	                Minecraft.getMinecraft().fontRenderer.drawString( TextFormatting.BOLD+I18n.format("stand.huajiage.tip.skill",KeyLoader.standSkill.getKeyModifier()+"+"+Keyboard.getKeyName(Math.max(KeyLoader.standSkill.getKeyCode(), 0))), 5,10, 0xffffff, true);
-	                Minecraft.getMinecraft().fontRenderer.drawString( TextFormatting.BOLD+I18n.format("stand.huajiage.tip.cost",stand.getCost()), 8+ x,  40 + 16 + y, 0xffffff, true);
-	                }
-	                if(data.isTriggered()){
-						Minecraft.getMinecraft().fontRenderer.drawString( TextFormatting.BOLD+I18n.format("stand.huajiage.tip.mode",KeyLoader.standSwitch.getKeyModifier()+"+"+Keyboard.getKeyName(Math.max(KeyLoader.standSwitch.getKeyCode(), 0))), 5,stage>0?20:10, 0xffffff, true);
+						Minecraft.getMinecraft().fontRenderer.drawString(TextFormatting.BOLD + I18n.format(builder.toString()), 13 + x, 10 + 16 + y, 0xffffff, true);
 					}
-	                GlStateManager.scale(1,1,1);
-	                
-                }
-	                
-            }
-	            
-        }
-	        
-    }
+				} else {
+					Minecraft.getMinecraft().fontRenderer.drawString(TextFormatting.BOLD + I18n.format(StandUtil.getLocalName(standHandler.getStand())), 13 + x, 10 + 16 + y, 0xffffff, true);
+				}
+				Minecraft.getMinecraft().fontRenderer.drawString(TextFormatting.BOLD + I18n.format("stand.huajiage.name"), 8 + x, 2 + 16 + y, 0xffffff, true);
+				Minecraft.getMinecraft().fontRenderer.drawString(TextFormatting.BOLD + I18n.format("stand.huajiage.stage") + "  " + stage, 8 + x, 20 + 16 + y, 0xffffff, true);
+				Minecraft.getMinecraft().fontRenderer.drawString(TextFormatting.BOLD + I18n.format("stand.huajiage.mp") + "  " + charge + "/" + maxCharge, 8 + x, 30 + 16 + y, chargeHandler.canBeCost(stand.getCost()) ? 0x00fffc : 0xffffff, true);
+				if (ConfigHuaji.Stands.allowStandTip) {
+					Minecraft.getMinecraft().fontRenderer.drawString(TextFormatting.BOLD + I18n.format("stand.huajiage.tip", KeyLoader.standUp.getKeyModifier() + "+" + Keyboard.getKeyName(Math.max(KeyLoader.standUp.getKeyCode(), 0))), 5, 0, 0xffffff, true);
+					if (stage > 0) {
+						Minecraft.getMinecraft().fontRenderer.drawString(TextFormatting.BOLD + I18n.format("stand.huajiage.tip.skill", KeyLoader.standSkill.getKeyModifier() + "+" + Keyboard.getKeyName(Math.max(KeyLoader.standSkill.getKeyCode(), 0))), 5, 10, 0xffffff, true);
+					}
+					if (data.isTriggered()) {
+						Minecraft.getMinecraft().fontRenderer.drawString(TextFormatting.BOLD + I18n.format("stand.huajiage.tip.mode", KeyLoader.standSwitch.getKeyModifier() + "+" + Keyboard.getKeyName(Math.max(KeyLoader.standSwitch.getKeyCode(), 0))), 5, stage > 0 ? 20 : 10, 0xffffff, true);
+					}
+				}
+				if (stage > 0) {
+					Minecraft.getMinecraft().fontRenderer.drawString(TextFormatting.BOLD + I18n.format("stand.huajiage.tip.cost", stand.getCost()), 8 + x, 40 + 16 + y, 0xffffff, true);
+				}
+				GlStateManager.scale(1, 1, 1);
+
+			}
+
+		}
+
+	}
 	    
 }

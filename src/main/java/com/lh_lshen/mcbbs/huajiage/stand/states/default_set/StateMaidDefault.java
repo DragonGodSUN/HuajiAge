@@ -1,10 +1,12 @@
 package com.lh_lshen.mcbbs.huajiage.stand.states.default_set;
 
+import com.lh_lshen.mcbbs.huajiage.init.HuajiConstant;
 import com.lh_lshen.mcbbs.huajiage.potion.PotionLoader;
 import com.lh_lshen.mcbbs.huajiage.stand.states.StandStateBase;
 import net.minecraft.entity.EntityLivingBase;
 import net.minecraft.init.MobEffects;
 import net.minecraft.potion.PotionEffect;
+import net.minecraft.util.ResourceLocation;
 
 public class StateMaidDefault extends StandStateBase {
     public StateMaidDefault() {
@@ -12,6 +14,11 @@ public class StateMaidDefault extends StandStateBase {
 
     public StateMaidDefault(String stand, String stateName, boolean isHandPlay, boolean soundLoop) {
         super(stand, stateName, isHandPlay, soundLoop);
+    }
+
+    @Override
+    public ResourceLocation getTex() {
+        return HuajiConstant.StandTex.TEXTRUE_THE_WORLD;
     }
 
     @Override

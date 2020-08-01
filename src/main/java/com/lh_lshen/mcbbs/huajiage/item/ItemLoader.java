@@ -59,7 +59,7 @@ public class ItemLoader {
 	public static Item singularity=new ItemSingularity();
 	public static Item arrowStand=new ItemArrowStand();
 	public static Item killerQueenTrigger=new ItemKillerQueenTrigger();
-    public static Item doublePoleBall=new ItemDoublePoleBall();
+    public static Item yinYangBall =new ItemYinYangBall();
 	public static ItemFood eggRice = new ItemEggRice();
 	public static ItemFood eggRiceU = new ItemEggRiceU();
     public static ItemArmor huajiHelmet = new ItemHuajiArmor.Helmet();
@@ -131,7 +131,7 @@ public class ItemLoader {
         register(arrowStand,"arrowStand","arrow_stand");
         register(killerQueenTrigger,"killerQueenTrigger","killer_queen_trigger");
         if(CommonProxy.ModsLoader.isTouhouMaidLoaded()){
-        register(doublePoleBall,"doublePoleBall","double_pole_ball");
+        register(yinYangBall,"yinYangBall","yin_yang_ball");
         }
     }
 
@@ -193,7 +193,7 @@ public class ItemLoader {
         registerRender(arrowStand);
         registerRender(killerQueenTrigger);
         if(CommonProxy.ModsLoader.isTouhouMaidLoaded()){
-        registerRender(doublePoleBall);
+        registerRender(yinYangBall);
         }
 //        registerRender(disc);
 //        for(StandBase stand : StandLoader.STAND_LIST) {

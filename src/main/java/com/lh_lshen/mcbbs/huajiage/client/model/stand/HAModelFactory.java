@@ -1,7 +1,6 @@
 package com.lh_lshen.mcbbs.huajiage.client.model.stand;
 
 import com.google.common.collect.Maps;
-import com.lh_lshen.mcbbs.huajiage.HuajiAge;
 import com.lh_lshen.mcbbs.huajiage.api.HuajiAgeAPI;
 import com.lh_lshen.mcbbs.huajiage.api.IStandState;
 import com.lh_lshen.mcbbs.huajiage.client.model.custom.ModelStandJson;
@@ -15,7 +14,6 @@ import com.lh_lshen.mcbbs.huajiage.init.HuajiConstant;
 import com.lh_lshen.mcbbs.huajiage.stand.StandStates;
 import com.lh_lshen.mcbbs.huajiage.stand.states.StandStateBase;
 import net.minecraft.util.ResourceLocation;
-import org.apache.logging.log4j.MarkerManager;
 
 import java.util.HashMap;
 import java.util.List;
@@ -29,12 +27,6 @@ public class HAModelFactory {
     public HAModelFactory() {
         loadModel();
         loadCustomModel();
-//    if(CommonProxy.ModsLoader.isTouhouMaidLoaded()){
-//        loadMaidModel();
-//    }
-//        for(String id:STAND_MODEL.keySet()){
-//            HuajiAge.LOGGER.info(MarkerManager.getMarker("ResourcesLoader"), "Loaded model: {}",id);
-//        }
     }
 
     public static void addStandModel(String id, ModelStandBase model){
@@ -78,9 +70,6 @@ public class HAModelFactory {
         loadModel();
         loadCustomModel();
 
-        for(String id:STAND_MODEL.keySet()){
-            HuajiAge.LOGGER.info(MarkerManager.getMarker("ResourcesLoader"), "Loaded model: {}",id);
-        }
     }
 
     private static void loadModel(){

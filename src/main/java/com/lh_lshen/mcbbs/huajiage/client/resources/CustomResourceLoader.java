@@ -80,15 +80,15 @@ public class CustomResourceLoader {
                     // 尝试加载模型
                     ModelStandJson modelJson = loadModel(standModelItem.getModel());
                     if (standModelItem.getTransfer()!=null && standModelItem.getTransfer().size()>=3) {
-                        modelJson.setPositions((Float) standModelItem.getTransfer().get(0),
-                                               (Float) standModelItem.getTransfer().get(1),
-                                               (Float) standModelItem.getTransfer().get(2));
+                        modelJson.setPositions((float) standModelItem.getTransfer().get(0),
+                                               (float) standModelItem.getTransfer().get(1),
+                                               (float) standModelItem.getTransfer().get(2));
                     }
                     if (standModelItem.getRotation()!=null && standModelItem.getRotation().size()>=4) {
-                        modelJson.setRotations((Float) standModelItem.getRotation().get(0),
-                                               (Float) standModelItem.getRotation().get(1),
-                                               (Float) standModelItem.getRotation().get(2),
-                                               (Float) standModelItem.getRotation().get(3));
+                        modelJson.setRotations((float) standModelItem.getRotation().get(0),
+                                               (float) standModelItem.getRotation().get(1),
+                                               (float) standModelItem.getRotation().get(2),
+                                               (float) standModelItem.getRotation().get(3));
                     }
                     // 加载动画
                     @Nullable List<Object> animations = CustomJsAnimationManger.getCustomAnimation(standModelItem);
