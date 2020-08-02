@@ -1,13 +1,14 @@
 package com.lh_lshen.mcbbs.huajiage.client.model.custom;
-/**
- * 此类代码基于酒石酸团队“车万女仆”模组代码，依据MIT协议进行编写
- * 更多内容请转至：https://github.com/TartaricAcid/TouhouLittleMaid
- */
+
 import net.minecraft.client.model.PositionTextureVertex;
 import net.minecraft.client.model.TexturedQuad;
 import net.minecraftforge.fml.relauncher.Side;
 import net.minecraftforge.fml.relauncher.SideOnly;
 
+/**
+ * 此类代码基于酒石酸团队“车万女仆”模组代码，依据MIT协议进行编写
+ * 更多内容请转至：https://github.com/TartaricAcid/TouhouLittleMaid
+ */
 @SideOnly(Side.CLIENT)
 public class TexturedQuadFloat extends TexturedQuad {
     public TexturedQuadFloat(PositionTextureVertex[] vertices, float texcoordU1, float texcoordV1, float texcoordU2, float texcoordV2, float textureWidth, float textureHeight) {

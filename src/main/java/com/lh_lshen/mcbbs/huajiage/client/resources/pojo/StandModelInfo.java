@@ -1,8 +1,4 @@
 package com.lh_lshen.mcbbs.huajiage.client.resources.pojo;
-/**
- * 此类代码基于酒石酸团队“车万女仆”模组代码，依据MIT协议进行编写
- * 更多内容请转至：https://github.com/TartaricAcid/TouhouLittleMaid
- */
 
 import com.github.tartaricacid.touhoulittlemaid.TouhouLittleMaid;
 import com.google.common.collect.Lists;
@@ -16,6 +12,10 @@ import org.apache.commons.lang3.math.NumberUtils;
 import java.util.Collections;
 import java.util.List;
 
+/**
+ * 此类代码基于酒石酸团队“车万女仆”模组代码，依据MIT协议进行编写
+ * 更多内容请转至：https://github.com/TartaricAcid/TouhouLittleMaid
+ */
 public class StandModelInfo implements IModelInfo {
     @SerializedName("name")
     private String name;

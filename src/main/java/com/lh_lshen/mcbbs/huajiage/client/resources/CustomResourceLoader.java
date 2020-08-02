@@ -1,8 +1,4 @@
 package com.lh_lshen.mcbbs.huajiage.client.resources;
-/**
- * 此类代码基于酒石酸团队“车万女仆”模组代码，依据MIT协议进行编写
- * 更多内容请转至：https://github.com/TartaricAcid/TouhouLittleMaid
- */
 
 import com.google.common.collect.Lists;
 import com.google.common.collect.Maps;
@@ -34,7 +30,10 @@ import java.util.Set;
 
 import static net.minecraft.network.status.server.SPacketServerInfo.GSON;
 
-
+/**
+ * 此类代码基于酒石酸团队“车万女仆”模组代码，依据MIT协议进行编写
+ * 更多内容请转至：https://github.com/TartaricAcid/TouhouLittleMaid
+ */
 public class CustomResourceLoader {
     public static final CustomStandModelResources STAND_MODEL = new CustomStandModelResources("stand_model.json", Lists.newArrayList(), Maps.newHashMap(), Maps.newHashMap(), Maps.newHashMap());
     public static final CustomStandModelResources MAID_MODEL = new CustomStandModelResources("maid_model.json", Lists.newArrayList(), Maps.newHashMap(), Maps.newHashMap(), Maps.newHashMap());

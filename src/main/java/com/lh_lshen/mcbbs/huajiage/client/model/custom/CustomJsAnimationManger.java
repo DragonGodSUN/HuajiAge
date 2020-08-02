@@ -1,8 +1,4 @@
 package com.lh_lshen.mcbbs.huajiage.client.model.custom;
-/**
- * 此类代码基于酒石酸团队“车万女仆”模组代码，依据MIT协议进行编写
- * 更多内容请转至：https://github.com/TartaricAcid/TouhouLittleMaid
- */
 
 import com.google.common.collect.Lists;
 import com.google.common.collect.Maps;
@@ -23,6 +19,10 @@ import java.nio.charset.StandardCharsets;
 import java.util.List;
 import java.util.Map;
 
+/**
+ * 此类代码基于酒石酸团队“车万女仆”模组代码，依据MIT协议进行编写
+ * 更多内容请转至：https://github.com/TartaricAcid/TouhouLittleMaid
+ */
 @SideOnly(Side.CLIENT)
 public class CustomJsAnimationManger {
     private static final Map<ResourceLocation, Object> CUSTOM_ANIMATION_MAP = Maps.newHashMap();

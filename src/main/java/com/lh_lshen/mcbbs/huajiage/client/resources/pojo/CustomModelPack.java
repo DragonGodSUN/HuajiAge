@@ -1,8 +1,4 @@
 package com.lh_lshen.mcbbs.huajiage.client.resources.pojo;
-/**
- * 此类代码基于酒石酸团队“车万女仆”模组代码，依据MIT协议进行编写
- * 更多内容请转至：https://github.com/TartaricAcid/TouhouLittleMaid
- */
 
 import com.google.gson.JsonSyntaxException;
 import com.google.gson.annotations.SerializedName;
@@ -11,6 +7,10 @@ import javax.annotation.Nullable;
 import java.util.Collections;
 import java.util.List;
 
+/**
+ * 此类代码基于酒石酸团队“车万女仆”模组代码，依据MIT协议进行编写
+ * 更多内容请转至：https://github.com/TartaricAcid/TouhouLittleMaid
+ */
 public class CustomModelPack <T extends IModelInfo>{
     @SerializedName("date")
     private String date;

@@ -51,12 +51,8 @@ public class ResStandStarPlatinum extends StandRes {
     @Override
     public void doStandRender(EntityLivingBase entity) {
         ResourceLocation STAND_TEX = getTextureByData(entity);
-        ModelStandBase model = null;
-        try {
-            model = getStandModelByData(entity).clone();
-        } catch (CloneNotSupportedException e) {
-            e.printStackTrace();
-        }
+        ModelStandBase model = getStandModelByData(entity);
+
         if (model!=null) {
             Minecraft.getMinecraft().getTextureManager().bindTexture(STAND_TEX);
             OpenGlHelper.setLightmapTextureCoords(OpenGlHelper.lightmapTexUnit, 240f, 240f);

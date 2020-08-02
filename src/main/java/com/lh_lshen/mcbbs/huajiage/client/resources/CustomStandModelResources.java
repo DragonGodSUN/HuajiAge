@@ -1,8 +1,4 @@
 package com.lh_lshen.mcbbs.huajiage.client.resources;
-/**
- * 此类代码基于酒石酸团队“车万女仆”模组代码，依据MIT协议进行编写
- * 更多内容请转至：https://github.com/TartaricAcid/TouhouLittleMaid
- */
 
 import com.lh_lshen.mcbbs.huajiage.client.model.custom.ModelStandJson;
 import com.lh_lshen.mcbbs.huajiage.client.resources.pojo.CustomModelPack;
@@ -13,6 +9,10 @@ import java.util.List;
 import java.util.Optional;
 import java.util.Set;
 
+/**
+ * 此类代码基于酒石酸团队“车万女仆”模组代码，依据MIT协议进行编写
+ * 更多内容请转至：https://github.com/TartaricAcid/TouhouLittleMaid
+ */
 public class CustomStandModelResources {
     private String jsonFileName;
     private List<CustomModelPack<StandModelInfo>> packList;

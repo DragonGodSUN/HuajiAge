@@ -1,8 +1,4 @@
 package com.lh_lshen.mcbbs.huajiage.client.model.custom;
-/**
- * 此类代码基于酒石酸团队“车万女仆”模组代码，依据MIT协议进行编写
- * 更多内容请转至：https://github.com/TartaricAcid/TouhouLittleMaid
- */
 
 import net.minecraft.client.model.ModelBox;
 import net.minecraft.client.model.ModelRenderer;
@@ -12,6 +8,10 @@ import net.minecraft.util.math.Vec3d;
 import net.minecraftforge.fml.relauncher.Side;
 import net.minecraftforge.fml.relauncher.SideOnly;
 
+/**
+ * 此类代码基于酒石酸团队“车万女仆”模组代码，依据MIT协议进行编写
+ * 更多内容请转至：https://github.com/TartaricAcid/TouhouLittleMaid
+ */
 @SideOnly(Side.CLIENT)
 public class ModelBoxFloat extends ModelBox {
     public ModelBoxFloat(ModelRenderer renderer, float texU, float texV, float x, float y, float z, float dx, float dy, float dz, float delta, boolean mirror) {

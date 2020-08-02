@@ -1,10 +1,5 @@
 package com.lh_lshen.mcbbs.huajiage.client.model.custom;
-/**
- * 此类代码基于酒石酸团队“车万女仆”模组代码，依据MIT协议进行编写
- * 更多内容请转至：https://github.com/TartaricAcid/TouhouLittleMaid
- */
 
-import com.github.tartaricacid.touhoulittlemaid.client.model.EntityModelJson;
 import com.google.common.collect.Lists;
 import com.lh_lshen.mcbbs.huajiage.client.model.stand.ModelStandBase;
 import com.lh_lshen.mcbbs.huajiage.client.resources.CustomResourceLoader;
@@ -22,11 +17,14 @@ import net.minecraftforge.fml.relauncher.SideOnly;
 
 import javax.annotation.Nullable;
 import javax.script.Invocable;
-import java.lang.reflect.Field;
 import java.util.HashMap;
 import java.util.LinkedList;
 import java.util.List;
 
+/**
+ * 此类代码基于酒石酸团队“车万女仆”模组代码，依据MIT协议进行编写
+ * 更多内容请转至：https://github.com/TartaricAcid/TouhouLittleMaid
+ */
 @SideOnly(Side.CLIENT)
 public class ModelStandJson extends ModelStandBase {
     public final AxisAlignedBB renderBoundingBox;
@@ -122,36 +120,42 @@ public class ModelStandJson extends ModelStandBase {
         }
     }
 
-    public ModelStandJson(EntityModelJson json){
+    public ModelStandJson(ModelStandJson json){
         initTranslate(0,0,0);
         initRotations(0,0,0,0);
+        this.setModelID(json.getModelID());
 
         textureWidth = json.textureWidth;
         textureHeight = json.textureHeight;
 
         this.renderBoundingBox =json.renderBoundingBox;
+        this.entityStandWrapper = json.createEntityStandWrapper();
+//        try {
+//            Field field1 = EntityModelJson.class.getDeclaredField("modelMap");
+//            field1.setAccessible(true);
+//            Object value1 = field1.get(json);
+//            this.modelMap = (HashMap<String, ModelRendererWrapper>) value1;
+//            Field field2 = EntityModelJson.class.getDeclaredField("indexBones");
+//            field2.setAccessible(true);
+//            Object value2 = field2.get(json);
+//            this.indexBones = (HashMap<String, BonesItem>) value2;
+//            Field field3 = EntityModelJson.class.getDeclaredField("shouldRender");
+//            field3.setAccessible(true);
+//            Object value3 = field3.get(json);
+//            this.shouldRender = (List<ModelRenderer>) value3;
+//            Field field4 = EntityModelJson.class.getDeclaredField("animations");
+//            field4.setAccessible(true);
+//            Object value4 = field4.get(json);
+//            this.animations = (List<Object>) value4;
+//        } catch (Exception e) {
+//            e.printStackTrace();
+//        }
+        this.positions = json.getPositions();
+        this.rotations = json.getRotations();
+        this.modelMap = json.getModelMap();
+        this.indexBones = json.getIndexBones();
+        this.shouldRender = json.getShouldRender();
 
-        this.entityStandWrapper = new EntityStandWrapper();
-        try {
-            Field field1 = EntityModelJson.class.getDeclaredField("modelMap");
-            field1.setAccessible(true);
-            Object value1 = field1.get(json);
-            this.modelMap = (HashMap<String, ModelRendererWrapper>) value1;
-            Field field2 = EntityModelJson.class.getDeclaredField("indexBones");
-            field2.setAccessible(true);
-            Object value2 = field2.get(json);
-            this.indexBones = (HashMap<String, BonesItem>) value2;
-            Field field3 = EntityModelJson.class.getDeclaredField("shouldRender");
-            field3.setAccessible(true);
-            Object value3 = field3.get(json);
-            this.shouldRender = (List<ModelRenderer>) value3;
-            Field field4 = EntityModelJson.class.getDeclaredField("animations");
-            field4.setAccessible(true);
-            Object value4 = field4.get(json);
-            this.animations = (List<Object>) value4;
-        } catch (Exception e) {
-            e.printStackTrace();
-        }
     }
 
     @Override
@@ -288,33 +292,38 @@ public class ModelStandJson extends ModelStandBase {
         return (float) (degree * Math.PI / 180);
     }
 
+    //ModelStandBase渲染的方法
     @Override
     public void setRotationAngles(float limbSwing, float limbSwingAmount, float rotateFloat, float rotateYaw,
                                   float rotatePitch, float scale, Entity entity, float power, float speed) {
-//        super.setRotationAngles(limbSwing,limbSwingAmount,rotateFloat,rotateYaw,rotatePitch,scale,entity);
         setRotationAngles(limbSwing, limbSwingAmount, rotateFloat, rotateYaw, rotatePitch, scale, entity);
     }
 
+    //进行手部渲染前对其进行的调整
     @Override
     public void setPunch(float limbSwing, float limbSwingAmount, float rotateFloat, float rotateYaw, float rotatePitch, float scale, Entity entity, float power, float speed) {
 
     }
 
+    //第一人称手部模型的渲染
     @Override
     public void doHandRender(float x, float y, float z, float scale, float alpha) {
 
     }
 
+    //附加特效
     @Override
     public void effect(Entity entityIn, float limbSwing, float limbSwingAmount, float ageInTicks, float netHeadYaw, float headPitch, float scale) {
 
     }
 
+    //高阶段的额外特效
     @Override
     public void extraEffect(Entity entityIn, float limbSwing, float limbSwingAmount, float ageInTicks, float netHeadYaw, float headPitch, float scale) {
 
     }
 
+    //设置替身位置与旋转角
     @Override
     public void setPosition() {
         if (!rotations.isEmpty()&&rotations.size()>=4) {
@@ -325,12 +334,14 @@ public class ModelStandJson extends ModelStandBase {
         }
     }
 
+    //初始化transfer数据
     public void initTranslate(float x, float y, float z){
         positions.add(x);
         positions.add(y);
         positions.add(z);
     }
 
+    //初始化rotation数据
     public void initRotations(float degree, float y, float p, float w){
         rotations.add(degree);
         rotations.add(y);
@@ -338,6 +349,7 @@ public class ModelStandJson extends ModelStandBase {
         rotations.add(w);
     }
 
+    //设置位置
     public void setPositions(float x, float y, float z){
         if (!positions.isEmpty()&&positions.size()>=3) {
             positions.set(0,x);
@@ -346,6 +358,7 @@ public class ModelStandJson extends ModelStandBase {
         }
     }
 
+    //设置旋转角
     public void setRotations(float degree, float y, float p, float w) {
         if (!rotations.isEmpty()&&rotations.size()>=4) {
             rotations.set(0,degree);
@@ -353,5 +366,42 @@ public class ModelStandJson extends ModelStandBase {
             rotations.set(2,p);
             rotations.set(3,w);
         }
+    }
+
+    @Override
+    public ModelStandBase copy() {
+        return new ModelStandJson(this);
+    }
+
+    public AxisAlignedBB getRenderBoundingBox() {
+        return renderBoundingBox;
+    }
+
+    public EntityStandWrapper createEntityStandWrapper() {
+        return new EntityStandWrapper();
+    }
+
+    public List<Float> getPositions() {
+        return positions;
+    }
+
+    public List<Float> getRotations() {
+        return rotations;
+    }
+
+    public List<Object> getAnimations() {
+        return animations;
+    }
+
+    public HashMap<String, ModelRendererWrapper> getModelMap() {
+        return modelMap;
+    }
+
+    public HashMap<String, BonesItem> getIndexBones() {
+        return indexBones;
+    }
+
+    public List<ModelRenderer> getShouldRender() {
+        return shouldRender;
     }
 }

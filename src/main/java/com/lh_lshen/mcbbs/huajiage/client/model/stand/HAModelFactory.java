@@ -51,14 +51,15 @@ public class HAModelFactory {
 
     public static ModelStandBase newInstance(String id){
         if (hasModel(id)&&getModel(id)!=null) {
-            try {
-                if(getModel(id) instanceof ModelStandJson){
-                return Objects.requireNonNull(getModel(id)).clone();
-                }
-                return Objects.requireNonNull(getModel(id)).getClass().newInstance();
-            } catch (Exception e) {
-                e.printStackTrace();
-            }
+            return Objects.requireNonNull(getModel(id)).copy();
+//            try {
+//                if(getModel(id) instanceof ModelStandJson){
+//                return Objects.requireNonNull(getModel(id)).copy();
+//                }
+//                return Objects.requireNonNull(getModel(id)).getClass().newInstance();
+//            } catch (Exception e) {
+//                e.printStackTrace();
+//            }
         }
         return null;
     }
