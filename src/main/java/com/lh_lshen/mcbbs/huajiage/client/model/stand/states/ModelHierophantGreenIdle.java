@@ -351,7 +351,7 @@ public class ModelHierophantGreenIdle extends ModelStandBase {
 	}
 
 	@Override
-	public void doHandRender(float x, float y, float z, float scale, float alpha) {
+	public void renderFirst(float x, float y, float z, float scale, float alpha) {
 
 	}
 

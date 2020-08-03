@@ -270,7 +270,7 @@ public class ModelOrgaFly extends ModelStandBase {
 	}
 
 	@Override
-	public void doHandRender(float x, float y, float z, float scale, float alpha) {
+	public void renderFirst(float x, float y, float z, float scale, float alpha) {
 		GlStateManager.rotate(180,0,0,1);
 		GlStateManager.translate(x,y,z);
 		GlStateManager.rotate(-35,1,0,0);

@@ -347,7 +347,7 @@ public class ModelTheWorld extends ModelStandBase
     
   }
   
-  public void doHandRender(float x ,float y ,float z ,float scale ,float alpha) {
+  public void renderFirst(float x , float y , float z , float scale , float alpha) {
 	  	GlStateManager.translate(x, y, z);
 	  	GlStateManager.color(1.0F, 1.0F, 1.0F, alpha);
 	  	left_hands.render(scale);
@@ -373,7 +373,7 @@ public void extraEffect(Entity entityIn, float limbSwing, float limbSwingAmount,
 		float ageInTicks, float netHeadYaw, float headPitch, float scale) {
 	ModelStandBase model = new ModelTheWorld();
 	model.setRotationAngles(limbSwing, limbSwingAmount, ageInTicks, netHeadYaw, headPitch, scale, entityIn, 1 ,StandLoader.THE_WORLD.getSpeed());
-	model.doHandRender(0, 0, 0,(float)(scale*1.3), 0.5f);
+	model.renderFirst(0, 0, 0,(float)(scale*1.3), 0.5f);
 	
 }
 

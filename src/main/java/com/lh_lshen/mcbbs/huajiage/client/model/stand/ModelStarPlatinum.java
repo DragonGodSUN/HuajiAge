@@ -323,7 +323,7 @@ public class ModelStarPlatinum extends ModelStandBase
 	}
 
 	@Override
-	public void doHandRender(float x, float y, float z, float scale, float alpha) {
+	public void renderFirst(float x, float y, float z, float scale, float alpha) {
 		GlStateManager.translate(x, y, z);
 	  	GlStateManager.color(1.0F, 1.0F, 1.0F, alpha);
 //		System.out.println(Minecraft.getMinecraft().gameSettings.thirdPersonView);
@@ -379,6 +379,6 @@ public class ModelStarPlatinum extends ModelStandBase
 			float ageInTicks, float netHeadYaw, float headPitch, float scale){
 		ModelStandBase model = new ModelStarPlatinum();
 		model.setRotationAngles(limbSwing, limbSwingAmount, ageInTicks, netHeadYaw, headPitch, scale, entityIn, 1 , StandLoader.STAR_PLATINUM.getSpeed());
-		model.doHandRender(0, 0, 0,(float)(scale*1.3), 0.5f);
+		model.renderFirst(0, 0, 0,(float)(scale*1.3), 0.5f);
 	}
 }

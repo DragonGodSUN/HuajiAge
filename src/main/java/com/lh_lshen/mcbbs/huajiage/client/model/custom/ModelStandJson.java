@@ -1,7 +1,9 @@
 package com.lh_lshen.mcbbs.huajiage.client.model.custom;
 
 import com.google.common.collect.Lists;
+import com.lh_lshen.mcbbs.huajiage.client.model.stand.HAModelFactory;
 import com.lh_lshen.mcbbs.huajiage.client.model.stand.ModelStandBase;
+import com.lh_lshen.mcbbs.huajiage.client.model.stand.ModelTheWorld;
 import com.lh_lshen.mcbbs.huajiage.client.resources.CustomResourceLoader;
 import com.lh_lshen.mcbbs.huajiage.common.CommonProxy;
 import com.lh_lshen.mcbbs.huajiage.config.ConfigHuaji;
@@ -98,7 +100,11 @@ public class ModelStandJson extends ModelStandBase {
                 modelMap.get(parent).getModelRenderer().addChild(model);
             } else {
                 // 没有父骨骼的模型才进行渲染
-                shouldRender.add(model);
+                //viewFirst模型不渲染
+                if(!name.equals("viewFirst"))
+                {
+                    shouldRender.add(model);
+                }
             }
 
             // 我的天，Cubes 还能为空……
@@ -307,8 +313,15 @@ public class ModelStandJson extends ModelStandBase {
 
     //第一人称手部模型的渲染
     @Override
-    public void doHandRender(float x, float y, float z, float scale, float alpha) {
-
+    public void renderFirst(float x, float y, float z, float scale, float alpha) {
+        ModelRendererWrapper wrapper = modelMap.get("viewFirst");
+        if(wrapper!=null){
+           GlStateManager.color(1,1,1,scale);
+           GlStateManager.translate(x,y,z);
+           ModelRenderer view = wrapper.getModelRenderer();
+           view.render(scale);
+           GlStateManager.color(1,1,1,1);
+        }
     }
 
     //附加特效
@@ -370,7 +383,11 @@ public class ModelStandJson extends ModelStandBase {
 
     @Override
     public ModelStandBase copy() {
-        return new ModelStandJson(this);
+        ModelStandBase model = HAModelFactory.getModel(this.getModelID());
+        if(model instanceof ModelStandJson){
+            return new ModelStandJson((ModelStandJson) model);
+        }
+        return new ModelTheWorld();
     }
 
     public AxisAlignedBB getRenderBoundingBox() {

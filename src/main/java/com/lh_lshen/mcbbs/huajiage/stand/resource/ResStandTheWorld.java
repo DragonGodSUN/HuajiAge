@@ -60,10 +60,10 @@ public class ResStandTheWorld extends StandRes{
 		model.setRotationAngles(0, 0, entity.ticksExisted, 0, -1, 1, entity ,0.5f,(float) (StandLoader.THE_WORLD.getSpeed()*1.5));
 		if(entity.getActivePotionEffect(PotionLoader.potionStand).getDuration()<40) {
 			model.effect(entity, 0, 0, entity.ticksExisted, 0, 0, 1f);
-			model.doHandRender(0, -1f, -0.75f, 1f,0.3f);
+			model.renderFirst(0, -1f, -0.75f, 1f,0.3f);
 		}else {
 			model.effect(entity, 0, 0, entity.ticksExisted, 0, 0, 1f);
-			model.doHandRender(0, -1f, -0.75f, 1f,0.6f);
+			model.renderFirst(0, -1f, -0.75f, 1f,0.6f);
 		}
 //		IExposedData data = StandUtil.getStandData(entity);
 //		String stand = data.getStand();

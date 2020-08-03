@@ -58,7 +58,7 @@ public class ResStandOrgaRequiem extends StandRes {
 //            }else {
 //                model.doHandRender(0, -1f, -0.75f, 1f,0.6f);
 //            }
-        model.doHandRender(0,-10,-50,1f,0.6f);
+        model.renderFirst(0,-10,-50,1f,0.6f);
 //        model.doHandRender(0, -1f, 5f, 1f, 0.6f);
     }
 

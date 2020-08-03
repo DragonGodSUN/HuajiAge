@@ -303,7 +303,7 @@ public class ModelKillerQueenPunch extends ModelStandBase {
 	}
 
 	@Override
-	public void doHandRender(float x, float y, float z, float scale, float alpha) {
+	public void renderFirst(float x, float y, float z, float scale, float alpha) {
 		GlStateManager.translate(x, y, z);
 		GlStateManager.color(1.0F, 1.0F, 1.0F, alpha);
 		GlStateManager.rotate(180,0,0,1);

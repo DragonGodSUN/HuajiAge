@@ -30,7 +30,7 @@ public class HAModelFactory {
     }
 
     public static void addStandModel(String id, ModelStandBase model){
-        HAModelFactory.STAND_MODEL.put(id,model);
+        HAModelFactory.STAND_MODEL.put(id,model.setModelID(id));
     }
 
     public static void addTexture(String id, ResourceLocation res){
@@ -74,17 +74,17 @@ public class HAModelFactory {
     }
 
     private static void loadModel(){
-        addStandModel("huajiage:the_world_default",new ModelTheWorld().setModelID("huajiage:the_world_default"));
-        addStandModel("huajiage:star_platinum_default",new ModelStarPlatinum().setModelID("huajiage:star_platinum_default"));
-        addStandModel("huajiage:hierophant_green_default",new ModelHierophantGreen().setModelID("huajiage:hierophant_green_default"));
-        addStandModel("huajiage:killer_queen_default",new ModelKillerQueen().setModelID("huajiage:killer_queen_default"));
-        addStandModel("huajiage:orga_requiem_default",new ModelOrgaRequiem().setModelID("huajiage:orga_requiem_default"));
+        addStandModel("huajiage:the_world_default",new ModelTheWorld());
+        addStandModel("huajiage:star_platinum_default",new ModelStarPlatinum());
+        addStandModel("huajiage:hierophant_green_default",new ModelHierophantGreen());
+        addStandModel("huajiage:killer_queen_default",new ModelKillerQueen());
+        addStandModel("huajiage:orga_requiem_default",new ModelOrgaRequiem());
 
-        addStandModel("huajiage:the_world_idle",new ModelTheWorldIdle().setModelID("huajiage:the_world_idle"));
-        addStandModel("huajiage:star_platinum_idle",new ModelStarPlatinumIdle().setModelID("huajiage:star_platinum_idle"));
-        addStandModel("huajiage:hierophant_green_idle",new ModelHierophantGreenIdle().setModelID("huajiage:hierophant_green_idle"));
-        addStandModel("huajiage:killer_queen_punch",new ModelKillerQueenPunch().setModelID("huajiage:killer_queen_punch"));
-        addStandModel("huajiage:orga_requiem_fly",new ModelOrgaFly().setModelID("huajiage:orga_requiem_fly"));
+        addStandModel("huajiage:the_world_idle",new ModelTheWorldIdle());
+        addStandModel("huajiage:star_platinum_idle",new ModelStarPlatinumIdle());
+        addStandModel("huajiage:hierophant_green_idle",new ModelHierophantGreenIdle());
+        addStandModel("huajiage:killer_queen_punch",new ModelKillerQueenPunch());
+        addStandModel("huajiage:orga_requiem_fly",new ModelOrgaFly());
 
         List<IStandState> list = HuajiAgeAPI.getStandStateList();
         if (list!=null) {
@@ -107,7 +107,7 @@ public class HAModelFactory {
                     StandModelInfo info = CustomResourceLoader.STAND_MODEL.getInfo(id).get();
                     ModelStandJson json = CustomResourceLoader.STAND_MODEL.getModel(id).get();
                     String modelID = info.getModelId().toString();
-                    addStandModel(modelID,json.setModelID(modelID));
+                    addStandModel(modelID,json);
                     addTexture(modelID,info.getTexture());
                 }
             }
