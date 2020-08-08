@@ -97,10 +97,13 @@ public class EventStand {
 			  }
 		  }
 		  if(t==3) {
-			  StandStageHandler stageHandler = StandUtil.getStandStageHandler(stand_owner);
-			  stageHandler.setStage(1);
-			  HuajiSoundPlayer.playToNearbyClient(stand_owner, SoundEvents.UI_TOAST_CHALLENGE_COMPLETE, 2f);
-			  ServerUtil.sendPacketToNearbyPlayers(stand_owner, new MessageParticleGenerator(stand_owner.getPositionVector(), EnumParticleTypes.FIREWORKS_SPARK, 120, 3, 1));
+//			  StandStageHandler stageHandler = StandUtil.getStandStageHandler(stand_owner);
+			  IExposedData data = StandUtil.getStandData(stand_owner);
+			  if (data != null) {
+				  data.setStage(1);
+				  HuajiSoundPlayer.playToNearbyClient(stand_owner, SoundEvents.UI_TOAST_CHALLENGE_COMPLETE, 2f);
+				  ServerUtil.sendPacketToNearbyPlayers(stand_owner, new MessageParticleGenerator(stand_owner.getPositionVector(), EnumParticleTypes.FIREWORKS_SPARK, 120, 3, 1));
+			  }
 		  }
 		  if(t==1) {
 			  stand_owner.attackEntityFrom(DamageSource.OUT_OF_WORLD, 999999);
@@ -164,9 +167,9 @@ public class EventStand {
 	  public static void StandBuff(LivingUpdateEvent evt) {
 		  EntityLivingBase entity = evt.getEntityLiving();
 		  if(entity instanceof EntityPlayer) {
-		  StandBuffHandler buff = StandUtil.getStandBuffHandler(entity);
-		  if(buff.getTime()>0) {
-		  buff.decreace();
+		  StandChargeHandler chargeHandler = StandUtil.getChargeHandler(entity);
+		  if(chargeHandler.getBuffer()>0) {
+		  chargeHandler.bufferDecreace();
 		  }else {
 			  return;
 		  }

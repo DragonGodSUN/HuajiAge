@@ -149,8 +149,8 @@ item.killer_queen_trigger:tooltips.x=X-%s
 item.killer_queen_trigger:tooltips.y=Y-%s
 item.killer_queen_trigger:tooltips.z=Z-%s
 item.killer_queen_trigger:tooltips.entity=锁定生物UUID：%s
-item.yin_yang_ball:tooltips.1=你以为我是阴阳玉？Ko no 带师球 da!§b(按住shift以查看数据)
-item.yin_yang_ball:tooltips.2=§e存储女仆：%s
+item.yin_yang_ball:tooltips.1=你以为我是阴阳玉？Ko no 带师球 da！§b(按住shift以查看数据)
+item.yin_yang_ball:tooltips.2=§e从者：%s
 item.yin_yang_ball:tooltips.3=§e御主：%s
 item.yin_yang_ball:empty=空
 
@@ -187,6 +187,13 @@ message.huajiage.stand_mode.empty=§e该替身暂无其他状态
 message.huajiage.maid_ball.is_no_owner=你不是该带师球的主人
 message.huajiage.maid_ball.fail=这个带师球是空的
 message.huajiage.maid_ball.load=捕捉成功! -§e%s
+message.huajiage.maid_ball.stand_load_1=§e试问，汝就是吾的Master吗？
+message.huajiage.maid_ball.stand_load_2=§e芜湖，起飞！
+message.huajiage.maid_ball.stand_load_3=§e一同作战吧！Master!
+message.huajiage.maid_ball.stand_load_4=§e扶鸡米！不老不死！呃哈哈~四蛋都怕我！！！
+message.huajiage.maid_ball.stand_load_5=§e唔呼呼呼呼呼呼呼呼呼~
+message.huajiage.maid_ball.stand_load_6=§e我不通关了！二小姐！
+message.huajiage.maid_ball.stand_load_7=§e啊~魔理沙~
 
 
 gui.huajiage.poly.cook=§l进程

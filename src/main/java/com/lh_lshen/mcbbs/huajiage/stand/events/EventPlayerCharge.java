@@ -26,7 +26,6 @@ public class EventPlayerCharge {
 				StandChargeHandler chargeHandler = player.getCapability(CapabilityStandChargeHandler.STAND_CHARGE, null);
 				if(null != stand && null !=chargeHandler )
 					{
-						StandHandler standHandler = player.getCapability(CapabilityStandHandler.STAND_TYPE, null);
 						int mp =stand.getCharge();
 						chargeHandler.charge(mp);
 					}else {

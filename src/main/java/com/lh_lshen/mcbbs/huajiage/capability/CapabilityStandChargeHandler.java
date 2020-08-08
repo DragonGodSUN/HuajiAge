@@ -1,16 +1,15 @@
 package com.lh_lshen.mcbbs.huajiage.capability;
 
-import javax.annotation.Nonnull;
-import javax.annotation.Nullable;
-
 import net.minecraft.nbt.NBTBase;
 import net.minecraft.nbt.NBTTagCompound;
-import net.minecraft.nbt.NBTTagInt;
 import net.minecraft.util.EnumFacing;
 import net.minecraftforge.common.capabilities.Capability;
 import net.minecraftforge.common.capabilities.CapabilityInject;
 import net.minecraftforge.common.capabilities.CapabilityManager;
 import net.minecraftforge.common.capabilities.ICapabilitySerializable;
+
+import javax.annotation.Nonnull;
+import javax.annotation.Nullable;
 
 public class CapabilityStandChargeHandler implements ICapabilitySerializable<NBTBase> {
     @CapabilityInject(StandChargeHandler.class)
@@ -18,20 +17,24 @@ public class CapabilityStandChargeHandler implements ICapabilitySerializable<NBT
     private StandChargeHandler instance = STAND_CHARGE.getDefaultInstance();
 
     public static void register() {
-        CapabilityManager.INSTANCE.register(StandChargeHandler.class, new Capability.IStorage<StandChargeHandler>() {
-        	@Override
-        	public NBTBase writeNBT(Capability<StandChargeHandler> capability, StandChargeHandler instance, EnumFacing side) {
-        		
-        		return new NBTTagInt(instance.getChargeValue());
-        	}
-            @Override
-            public void readNBT(Capability<StandChargeHandler> capability, StandChargeHandler instance, EnumFacing side, NBTBase nbt) {
-            	
-            	instance.setChargeValue(((NBTTagInt)nbt).getInt());
+        CapabilityManager.INSTANCE.register(StandChargeHandler.class, new Storage(), StandChargeHandler.FACTORY);
+    }
 
+    public static class Storage implements Capability.IStorage<StandChargeHandler>{
+        @Override
+        public NBTBase writeNBT(Capability<StandChargeHandler> capability, StandChargeHandler instance, EnumFacing side) {
+            int value = instance.getChargeValue();
+            NBTTagCompound tag = new NBTTagCompound();
+            tag.setInteger("charge", value);
+            return tag;
+        }
+
+        @Override
+        public void readNBT(Capability<StandChargeHandler> capability, StandChargeHandler instance, EnumFacing side, NBTBase nbt) {
+            if (nbt instanceof NBTTagCompound) {
+                instance.setChargeValue((((NBTTagCompound) nbt).getInteger("charge")));
             }
-
-        }, StandChargeHandler.FACTORY);
+        }
     }
 
     @Override
@@ -47,16 +50,17 @@ public class CapabilityStandChargeHandler implements ICapabilitySerializable<NBT
 
     @Override
     public void deserializeNBT(NBTBase nbt) {
-    	
-        STAND_CHARGE.getStorage().readNBT(STAND_CHARGE, this.instance, null, nbt);;
+        if(nbt instanceof NBTTagCompound){
+            NBTTagCompound compound = ((NBTTagCompound)nbt).getCompoundTag("charge_data");
+            STAND_CHARGE.getStorage().readNBT(STAND_CHARGE, this.instance, null, compound);
+        }
     }
 
     @Override
     public NBTBase serializeNBT() {
-
-    	NBTBase tag = STAND_CHARGE.getStorage().writeNBT(STAND_CHARGE, this.instance, null);
-
-    		return tag;
+        NBTTagCompound compound = new NBTTagCompound();
+        compound.setTag("charge_data",STAND_CHARGE.getStorage().writeNBT(STAND_CHARGE, this.instance, null));
+        return compound;
 
     }
 }

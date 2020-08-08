@@ -40,13 +40,10 @@ public class MessageStandUp implements IMessage {
         public IMessage onMessage(MessageStandUp message , MessageContext ctx) {
         	if (ctx.side == Side.SERVER) {
         	EntityPlayerMP player = ctx.getServerHandler().player;
-        	StandHandler standHandler = player.getCapability(CapabilityStandHandler.STAND_TYPE, null);
-        	String standType = standHandler.getStand();
-        	StandBase stand = StandLoader.getStand(standType);
-        	int stage = StandUtil.getStandStage(player);
         	IExposedData data = player.getCapability(CapabilityLoader.EXPOSED_DATA, null);
+        	StandBase stand = StandUtil.getType(player);
         	StandChargeHandler charge = StandUtil.getChargeHandler(player);
-        	if(stand==null || data==null || charge==null)
+        	if(data==null || stand==null || charge==null)
         	{
         		return null;
         	}
@@ -56,8 +53,6 @@ public class MessageStandUp implements IMessage {
 					if(charge.canBeCost(stand.getCost()/10)) {
 						charge.cost(stand.getCost()/10);
 						player.addPotionEffect(new PotionEffect(PotionLoader.potionStand,stand.getDuration()));
-						data.setStand(standType);
-						data.setStage(stage);
 						data.setTrigger(true);
 						data.setHandDisplay(stand.isHandDisplay());
 //					    ServerUtil.sendPacketToNearbyPlayersStand(player, new SyncExposedStandDataMessage(standType, true, player.getName()));

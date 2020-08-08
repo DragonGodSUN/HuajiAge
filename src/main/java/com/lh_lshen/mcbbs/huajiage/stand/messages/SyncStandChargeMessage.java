@@ -1,16 +1,10 @@
 package com.lh_lshen.mcbbs.huajiage.stand.messages;
 
 import com.lh_lshen.mcbbs.huajiage.capability.CapabilityStandChargeHandler;
-import com.lh_lshen.mcbbs.huajiage.capability.CapabilityStandHandler;
-import com.lh_lshen.mcbbs.huajiage.capability.CapabilityStandStageHandler;
 import com.lh_lshen.mcbbs.huajiage.capability.StandChargeHandler;
-import com.lh_lshen.mcbbs.huajiage.capability.StandHandler;
-import com.lh_lshen.mcbbs.huajiage.capability.StandStageHandler;
-
 import io.netty.buffer.ByteBuf;
 import net.minecraft.client.Minecraft;
 import net.minecraft.entity.player.EntityPlayer;
-import net.minecraftforge.fml.common.network.ByteBufUtils;
 import net.minecraftforge.fml.common.network.simpleimpl.IMessage;
 import net.minecraftforge.fml.common.network.simpleimpl.IMessageHandler;
 import net.minecraftforge.fml.common.network.simpleimpl.MessageContext;
@@ -18,35 +12,43 @@ import net.minecraftforge.fml.relauncher.Side;
 import net.minecraftforge.fml.relauncher.SideOnly;
 
 public class SyncStandChargeMessage implements IMessage {
-    private int chage;
+    private int charge;
     private int max;
+    private int buffer;
 
     public SyncStandChargeMessage() {
     	
     }
-    public SyncStandChargeMessage(int value , int max) {
-        this.chage = value;
+    public SyncStandChargeMessage(int value, int max, int buffer) {
+        this.charge = value;
         this.max = max;
+        this.buffer = buffer;
     }
 
     @Override
     public void fromBytes(ByteBuf buf) {
-        this.chage = buf.readInt();
+        this.charge = buf.readInt();
         this.max = buf.readInt();
+        this.buffer = buf.readInt();
     }
 
     @Override
     public void toBytes(ByteBuf buf) {
-        buf.writeInt(chage);
+        buf.writeInt(charge);
         buf.writeInt(max);
+        buf.writeInt(buffer);
     }
 
     public int getChargeValue() {
-        return chage;
+        return charge;
     }
     
     public int getMaxValue() {
         return max;
+    }
+
+    public int getBuffer() {
+        return buffer;
     }
 
     public static class Handler implements IMessageHandler<SyncStandChargeMessage, IMessage> {
@@ -62,7 +64,8 @@ public class SyncStandChargeMessage implements IMessage {
                     StandChargeHandler charge = player.getCapability(CapabilityStandChargeHandler.STAND_CHARGE, null);
                     if (charge != null) {
                         charge.setChargeValue(message.getChargeValue());
-//                        charge.setMaxValue(message.max);
+                        charge.setMaxValue(message.max);
+                        charge.setBuffer(message.buffer);
                     }
                 });
             }

@@ -1,7 +1,5 @@
 package com.lh_lshen.mcbbs.huajiage.item;
 
-import com.lh_lshen.mcbbs.huajiage.capability.CapabilityStandHandler;
-import com.lh_lshen.mcbbs.huajiage.capability.CapabilityStandStageHandler;
 import com.lh_lshen.mcbbs.huajiage.capability.IExposedData;
 import com.lh_lshen.mcbbs.huajiage.crativetab.CreativeTabLoader;
 import com.lh_lshen.mcbbs.huajiage.stand.StandLoader;
@@ -57,18 +55,18 @@ public class ItemTarot extends Item {
 	@Override
 	public ActionResult<ItemStack> onItemRightClick(World worldIn, EntityPlayer playerIn, EnumHand handIn) {
 		ItemStack stack = playerIn.getHeldItem(handIn);
-		String stand = playerIn.getCapability(CapabilityStandHandler.STAND_TYPE, null).getStand();
-		int stage = playerIn.getCapability(CapabilityStandStageHandler.STAND_STAGE, null).getStage();
 
 		IExposedData data = StandUtil.getStandData(playerIn);
 		boolean flag = NBTHelper.getTagCompoundSafe(stack).getString(NBT.STAND_NAME.getName()).equals(DEFAULT_STAND_ID);
 
 		if (data!=null) {
+		String stand = data.getStand();
+		int stage = data.getStage();
 			if(playerIn.isSneaking()) {
 				if(flag && !stand.equals(DEFAULT_STAND_ID)) {
 					setStandTag(playerIn, stack, stand, stage ,data.getModel());
-					playerIn.getCapability(CapabilityStandHandler.STAND_TYPE, null).setStand(DEFAULT_STAND_ID);
-					playerIn.getCapability(CapabilityStandStageHandler.STAND_STAGE, null).setStage(0);
+					data.setStand(DEFAULT_STAND_ID);
+					data.setStage(0);
 					data.setModel(DEFAULT_STAND_ID);
 
 					if(worldIn.isRemote) {
@@ -81,9 +79,10 @@ public class ItemTarot extends Item {
 				int stageTag = NBTHelper.getTagCompoundSafe(stack).getInteger(NBT.STAND_STAGE.getName());
 				String modelTag = NBTHelper.getTagCompoundSafe(stack).getString(NBT.STAND_MODEL.getName());
 				if(stand.equals(DEFAULT_STAND_ID)&&!standTag.equals(DEFAULT_STAND_ID)) {
-				playerIn.getCapability(CapabilityStandHandler.STAND_TYPE, null).setStand(standTag);
-				playerIn.getCapability(CapabilityStandStageHandler.STAND_STAGE, null).setStage(stageTag);
+				data.setStand(standTag);
+				data.setStage(stageTag);
 				data.setModel(modelTag);
+				data.setTrigger(false);
 				playerIn.playSound(SoundEvents.BLOCK_GLASS_BREAK, 1f, 1f);
 				playerIn.playSound(SoundEvents.UI_TOAST_CHALLENGE_COMPLETE, 1f, 1f);
 				setStandTag(playerIn, stack, DEFAULT_STAND_ID, 0 ,DEFAULT_STAND_ID);

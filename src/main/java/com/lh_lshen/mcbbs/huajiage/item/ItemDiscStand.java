@@ -140,20 +140,21 @@ public class ItemDiscStand extends Item {
 	}
 	@Override
 	public ActionResult<ItemStack> onItemRightClick(World worldIn, EntityPlayer playerIn, EnumHand handIn) {
-		StandHandler standHandler = playerIn.getCapability(CapabilityStandHandler.STAND_TYPE, null);
-		StandStageHandler stageHandler = playerIn.getCapability(CapabilityStandStageHandler.STAND_STAGE, null);
+//		StandHandler standHandler = playerIn.getCapability(CapabilityStandHandler.STAND_TYPE, null);
+//		StandStageHandler stageHandler = playerIn.getCapability(CapabilityStandStageHandler.STAND_STAGE, null);
 		IExposedData data = StandUtil.getStandData(playerIn);
-		if (standHandler!=null && stageHandler!=null && data!=null) {
-			String type = standHandler.getStand();
-			int stage = stageHandler.getStage();
+		if (data!=null) {
+			String type = data.getStand();
+			int stage = data.getStage();
 			String model = data.getModel();
 			String standTag = NBTHelper.getTagCompoundSafe(playerIn.getHeldItem(handIn)).getString(NBT.STAND_ID.getName());
 			int stageTag = NBTHelper.getTagCompoundSafe(playerIn.getHeldItem(handIn)).getInteger(NBT.STAND_STAGE.getName());
 			String modelTag = NBTHelper.getTagCompoundSafe(playerIn.getHeldItem(handIn)).getString(NBT.STAND_MODEL.getName());
 			if(!standTag.equals(DEFAULT_STAND_ID)) {
-					standHandler.setStand(standTag);
-					stageHandler.setStage(stageTag);
+					data.setStand(standTag);
+					data.setStage(stageTag);
 					data.setModel(modelTag);
+					data.setTrigger(false);
 					playerIn.getHeldItem(handIn).shrink(1);
 				if(!type.equals(DEFAULT_STAND_ID)) {
 					if(!worldIn.isRemote) {

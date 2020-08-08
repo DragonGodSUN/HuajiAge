@@ -16,19 +16,21 @@ import net.minecraftforge.fml.common.network.simpleimpl.MessageContext;
 import net.minecraftforge.fml.relauncher.Side;
 import net.minecraftforge.fml.relauncher.SideOnly;
 
+import java.util.UUID;
+
 public class SyncExposedStandDataMessage implements IMessage {
 	private String user;
-//    private String stand;
-//    private boolean isTriggered;
+	private boolean isUser;
     public NBTTagCompound nbt;
 
     public SyncExposedStandDataMessage() {
     }
 
-    public SyncExposedStandDataMessage(String stand ,int stage, boolean trigger , boolean hand ,String state, String model , String user) {
+    public SyncExposedStandDataMessage(String stand ,int stage, boolean trigger , boolean hand ,String state, String model , String user, boolean isUser) {
 //        this.stand = stand;
 //        this.isTriggered = trigger;
         this.user = user;
+        this.isUser = isUser;
         NBTTagCompound tags = new NBTTagCompound();
         tags.setString("stand_name", stand);
         tags.setBoolean("stand_put", trigger);
@@ -45,6 +47,7 @@ public class SyncExposedStandDataMessage implements IMessage {
     {
         nbt = ByteBufUtils.readTag(buf);
         user = ByteBufUtils.readUTF8String(buf);
+        isUser = buf.readBoolean();
     }
 
     @Override
@@ -52,6 +55,7 @@ public class SyncExposedStandDataMessage implements IMessage {
     {
         ByteBufUtils.writeTag(buf, nbt);
         ByteBufUtils.writeUTF8String(buf, user);
+        buf.writeBoolean(isUser);
     }
     
     public String getStandUser() {
@@ -64,13 +68,16 @@ public class SyncExposedStandDataMessage implements IMessage {
         public IMessage onMessage(SyncExposedStandDataMessage message, MessageContext ctx) {
             if (ctx.side == Side.CLIENT) {
                 Minecraft.getMinecraft().addScheduledTask(() -> {
-                    EntityPlayer player = Minecraft.getMinecraft().world.getPlayerEntityByName(message.getStandUser());
                     EntityPlayer user = Minecraft.getMinecraft().player;
+                    EntityPlayer player =message.isUser ?
+                         user:Minecraft.getMinecraft().world.getPlayerEntityByUUID(UUID.fromString(message.user));
                     StandBase stand = StandUtil.getType(user);
                     NBTTagCompound nbt = message.nbt;
+
                     if (player == null ) {
                         return;
-                    }else {
+                    }
+
                     IExposedData data = player.getCapability(CapabilityLoader.EXPOSED_DATA, null);
                     if (data != null ) {
                     	 IStorage<IExposedData> storage = CapabilityLoader.EXPOSED_DATA.getStorage();
@@ -81,7 +88,6 @@ public class SyncExposedStandDataMessage implements IMessage {
                     		 storage.readNBT(CapabilityLoader.EXPOSED_DATA, data, null, nbt);
 	                    	 }
                     	}
-                    }
                 });
             }
             return null;

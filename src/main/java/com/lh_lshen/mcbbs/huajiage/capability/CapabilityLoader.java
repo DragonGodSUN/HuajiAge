@@ -14,10 +14,10 @@ public class CapabilityLoader {
 		CapabilityManager.INSTANCE.register(IExposedData.class, new CapabilityExposedData.Storage(),
 				CapabilityExposedData.Implementation.FACTORY);
 		
-		 CapabilityStandHandler.register();
-    	 CapabilityStandStageHandler.register();
+//		 CapabilityStandHandler.register();
+//    	 CapabilityStandStageHandler.register();
+//    	 CapabilityStandBuffHandler.register();
     	 CapabilityStandChargeHandler.register();
-    	 CapabilityStandBuffHandler.register();
     }
 
 }

@@ -1,6 +1,5 @@
 package com.lh_lshen.mcbbs.huajiage.client.model.custom;
 
-import com.github.tartaricacid.touhoulittlemaid.TouhouLittleMaid;
 import com.github.tartaricacid.touhoulittlemaid.entity.item.AbstractEntityTrolley;
 import com.github.tartaricacid.touhoulittlemaid.entity.item.EntityPortableAudio;
 import com.github.tartaricacid.touhoulittlemaid.init.MaidItems;
@@ -37,7 +36,7 @@ public class EntityStandWrapper {
     }
 
     public String getTask() {
-        return new ResourceLocation(TouhouLittleMaid.MOD_ID, "idle").toString();
+        return new ResourceLocation("touhou_little_maid", "idle").toString();
     }
 
     public boolean hasHelmet() {

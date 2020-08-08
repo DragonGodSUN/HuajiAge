@@ -75,20 +75,19 @@ public class EventStandOverlatRender {
 	public static void onRenderOverlay(RenderGameOverlayEvent event) {
 		if (event.getType() == RenderGameOverlayEvent.ElementType.HOTBAR) {
 			EntityPlayer player = Minecraft.getMinecraft().player;
-			StandHandler standHandler = player.getCapability(CapabilityStandHandler.STAND_TYPE, null);
-			StandStageHandler standStageHandler = player.getCapability(CapabilityStandStageHandler.STAND_STAGE, null);
-			int stage = standStageHandler.getStage();
-
-			StandBase stand = StandLoader.getStand(standHandler.getStand());
+//			StandHandler standHandler = player.getCapability(CapabilityStandHandler.STAND_TYPE, null);
+//			StandStageHandler standStageHandler = player.getCapability(CapabilityStandStageHandler.STAND_STAGE, null);
 			StandChargeHandler chargeHandler = StandUtil.getChargeHandler(player);
 			IExposedData data = StandUtil.getStandData(player);
-			int charge = chargeHandler.getChargeValue();
-			int maxCharge = chargeHandler.getMaxValue();
-			if (stand == null) {
+			StandBase stand = StandUtil.getType(player);
+			if (data == null || stand == null || chargeHandler == null) {
 				return;
 			}
+			int stage = data.getStage();
+			int charge = chargeHandler.getChargeValue();
+			int maxCharge = chargeHandler.getMaxValue();
 
-			if (stand != null && data != null && !standHandler.getStand().equals(StandLoader.EMPTY)) {
+			if (!data.getStand().equals(StandLoader.EMPTY)) {
 				int x = (int) (ConfigHuaji.Stands.standHUDx * Minecraft.getMinecraft().displayWidth / 2);
 				int y = (int) (ConfigHuaji.Stands.standHUDy * Minecraft.getMinecraft().displayHeight / 2);
 				GlStateManager.pushMatrix();
@@ -110,7 +109,7 @@ public class EventStandOverlatRender {
 						Minecraft.getMinecraft().fontRenderer.drawString(TextFormatting.BOLD + I18n.format(builder.toString()), 13 + x, 10 + 16 + y, 0xffffff, true);
 					}
 				} else {
-					Minecraft.getMinecraft().fontRenderer.drawString(TextFormatting.BOLD + I18n.format(StandUtil.getLocalName(standHandler.getStand())), 13 + x, 10 + 16 + y, 0xffffff, true);
+					Minecraft.getMinecraft().fontRenderer.drawString(TextFormatting.BOLD + I18n.format(StandUtil.getLocalName(data.getStand())), 13 + x, 10 + 16 + y, 0xffffff, true);
 				}
 				Minecraft.getMinecraft().fontRenderer.drawString(TextFormatting.BOLD + I18n.format("stand.huajiage.name"), 8 + x, 2 + 16 + y, 0xffffff, true);
 				Minecraft.getMinecraft().fontRenderer.drawString(TextFormatting.BOLD + I18n.format("stand.huajiage.stage") + "  " + stage, 8 + x, 20 + 16 + y, 0xffffff, true);

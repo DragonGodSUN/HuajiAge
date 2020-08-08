@@ -1,19 +1,13 @@
 package com.lh_lshen.mcbbs.huajiage.stand.helper;
 
-import java.util.List;
-
-import com.lh_lshen.mcbbs.huajiage.capability.CapabilityStandBuffHandler;
-import com.lh_lshen.mcbbs.huajiage.capability.CapabilityStandHandler;
-import com.lh_lshen.mcbbs.huajiage.capability.StandBuffHandler;
-import com.lh_lshen.mcbbs.huajiage.capability.StandHandler;
+import com.lh_lshen.mcbbs.huajiage.capability.StandChargeHandler;
 import com.lh_lshen.mcbbs.huajiage.init.HuajiConstant;
 import com.lh_lshen.mcbbs.huajiage.init.sound.SoundLoader;
 import com.lh_lshen.mcbbs.huajiage.item.ItemLoader;
-import com.lh_lshen.mcbbs.huajiage.stand.EnumStandtype;
 import com.lh_lshen.mcbbs.huajiage.stand.StandLoader;
+import com.lh_lshen.mcbbs.huajiage.stand.StandUtil;
 import com.lh_lshen.mcbbs.huajiage.stand.instance.StandBase;
 import com.lh_lshen.mcbbs.huajiage.util.NBTHelper;
-
 import net.minecraft.client.multiplayer.WorldClient;
 import net.minecraft.entity.Entity;
 import net.minecraft.entity.EntityLivingBase;
@@ -23,6 +17,8 @@ import net.minecraft.item.ItemStack;
 import net.minecraft.potion.PotionEffect;
 import net.minecraft.util.SoundCategory;
 import net.minecraft.util.math.Vec3d;
+
+import java.util.List;
 
 public class TimeStopHelper {
 
@@ -34,8 +30,8 @@ public class TimeStopHelper {
 	public static void setTimeStop(Entity entity ,int ticks) {
 		NBTHelper.setEntityInteger(entity, HuajiConstant.Tags.THE_WORLD, ticks);
 		if( entity instanceof EntityPlayer) {
-			StandBuffHandler buff = entity.getCapability(CapabilityStandBuffHandler.STAND_BUFF, null);
-			buff.setTime(ticks);
+			StandChargeHandler chargeHandler = StandUtil.getChargeHandler((EntityLivingBase) entity);
+			chargeHandler.setBuffer(ticks);
 		}
 	}
 	
@@ -44,8 +40,7 @@ public class TimeStopHelper {
 	}
 	
 	public static void extraEffects(EntityLivingBase entity,int time) {
-		StandHandler standHandler = entity.getCapability(CapabilityStandHandler.STAND_TYPE, null);
-		StandBase stand =StandLoader.getStand(standHandler.getStand());
+		StandBase stand = StandUtil.getType(entity);
 			if(null ==stand) {
 				return;
 			}

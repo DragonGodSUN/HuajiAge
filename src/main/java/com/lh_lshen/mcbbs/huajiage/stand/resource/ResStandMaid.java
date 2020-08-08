@@ -56,7 +56,7 @@ public class ResStandMaid extends StandRes {
         int index = (int) MathHelper.nextFloat(new Random(), 0, size);
         if (index < size) {
             SoundEvent sound = sounds.get(index);
-            mc.getSoundHandler().playSound(HuajiSoundPlayer.getMovingSound(entity, sound, SoundCategory.NEUTRAL, 0.6f));
+            mc.getSoundHandler().playSound(HuajiSoundPlayer.getMovingSound(entity, sound, SoundCategory.NEUTRAL, 2f));
         }
     }
 

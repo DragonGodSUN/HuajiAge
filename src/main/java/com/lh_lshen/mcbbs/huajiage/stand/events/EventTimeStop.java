@@ -1,22 +1,18 @@
 package com.lh_lshen.mcbbs.huajiage.stand.events;
 
-import java.util.List;
-
 import com.lh_lshen.mcbbs.huajiage.HuajiAge;
-import com.lh_lshen.mcbbs.huajiage.capability.CapabilityStandHandler;
+import com.lh_lshen.mcbbs.huajiage.capability.IExposedData;
 import com.lh_lshen.mcbbs.huajiage.config.ConfigHuaji;
 import com.lh_lshen.mcbbs.huajiage.init.HuajiConstant;
 import com.lh_lshen.mcbbs.huajiage.init.sound.HuajiSoundPlayer;
 import com.lh_lshen.mcbbs.huajiage.init.sound.SoundLoader;
 import com.lh_lshen.mcbbs.huajiage.network.messages.MessageParticleGenerator;
-import com.lh_lshen.mcbbs.huajiage.stand.EnumStandtype;
 import com.lh_lshen.mcbbs.huajiage.stand.StandLoader;
 import com.lh_lshen.mcbbs.huajiage.stand.StandUtil;
 import com.lh_lshen.mcbbs.huajiage.stand.helper.TimeStopHelper;
 import com.lh_lshen.mcbbs.huajiage.stand.messages.MessageDioHitClient;
 import com.lh_lshen.mcbbs.huajiage.util.NBTHelper;
 import com.lh_lshen.mcbbs.huajiage.util.ServerUtil;
-
 import net.minecraft.entity.Entity;
 import net.minecraft.entity.EntityLivingBase;
 import net.minecraft.entity.IProjectile;
@@ -36,6 +32,8 @@ import net.minecraftforge.event.entity.living.LivingEvent.LivingUpdateEvent;
 import net.minecraftforge.event.entity.player.AttackEntityEvent;
 import net.minecraftforge.fml.common.Mod;
 import net.minecraftforge.fml.common.eventhandler.SubscribeEvent;
+
+import java.util.List;
 
 @Mod.EventBusSubscriber(modid = HuajiAge.MODID)
 public class EventTimeStop {
@@ -99,10 +97,11 @@ public class EventTimeStop {
 	  EntityPlayer player = evt.getEntityPlayer();
 	  Entity hit =evt.getTarget();
 	  Vec3d targetPosition = player.getPositionVector();
-	  if(NBTHelper.getEntityInteger(player,HuajiConstant.Tags.THE_WORLD)>0) {
+	  IExposedData data = StandUtil.getStandData(player);
+	  if(data != null && NBTHelper.getEntityInteger(player,HuajiConstant.Tags.THE_WORLD)>0) {
 		  player.heal(3f);
 		  boolean star =false ;
-		  if(player.getCapability(CapabilityStandHandler.STAND_TYPE, null).getStand().equals(StandLoader.STAR_PLATINUM.getName()))
+		  if(data.getStand().equals(StandLoader.STAR_PLATINUM.getName()))
 		  {
 			  star = true;
 		  }
@@ -143,7 +142,7 @@ public class EventTimeStop {
     		eater.getEntityData().setInteger(HuajiConstant.Tags.THE_WORLD, t-1);
     		int range=(int) eater.getEntityData().getDouble(HuajiConstant.Tags.TIME_STOP_RANGE);
     		List<Entity> arrows=range>0?TimeStopHelper.getTagetsInRange(eater, range):TimeStopHelper.getTagetsInRange(eater, 100);
-    		if(arrows!=null) {
+    		if(!arrows.isEmpty()) {
     			for(Entity i:arrows) {
     				
     				if(i instanceof IProjectile || i instanceof EntityFireball || i instanceof EntityTNTPrimed || i instanceof EntityShulkerBullet) {

@@ -1,8 +1,8 @@
 package com.lh_lshen.mcbbs.huajiage.stand.messages;
 
-import com.lh_lshen.mcbbs.huajiage.capability.CapabilityStandHandler;
+import com.lh_lshen.mcbbs.huajiage.capability.IExposedData;
 import com.lh_lshen.mcbbs.huajiage.stand.StandLoader;
-
+import com.lh_lshen.mcbbs.huajiage.stand.StandUtil;
 import io.netty.buffer.ByteBuf;
 import net.minecraft.entity.player.EntityPlayerMP;
 import net.minecraftforge.fml.common.FMLCommonHandler;
@@ -32,10 +32,10 @@ public class MessageDoStandCapabilityServer implements IMessage {
     	if (ctx.side == Side.SERVER) {
         	FMLCommonHandler.instance().getWorldThread(ctx.netHandler).addScheduledTask(() ->{
         		EntityPlayerMP player = ctx.getServerHandler().player;
-        		String stand = player.getCapability(CapabilityStandHandler.STAND_TYPE, null).getStand();
-				if(!stand.equals(StandLoader.EMPTY))
+				IExposedData data = StandUtil.getStandData(player);
+				if(data != null && !data.getStand().equals(StandLoader.EMPTY))
 				{
-					StandLoader.getStand(stand).doStandCapability(player);
+					StandLoader.getStand(data.getStand()).doStandCapability(player);
 				}
 				});
         	}

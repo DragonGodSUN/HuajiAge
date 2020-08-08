@@ -145,7 +145,7 @@ item.huajiage.wave_knife.hotbar.wave_reset=Reset Time - §b%ss
 item.huajiage.wave_knife.hotbar.wave_charge=Hit Charge - §e%s
 item.orga_knife:tooltips.1=The Orga leader's sharp, blade-shaped bangs are full of the element of hope (for throwing use, the lower the hit, the higher the damage, and the mark can be attached during the execution of the Requiem).
 item.yin_yang_ball:tooltips.1=You think I'm a yin-yang Orb ? Ko no Master Ball da!§b(Press shift to see more)
-item.yin_yang_ball:tooltips.2=§eMaid:%s
+item.yin_yang_ball:tooltips.2=§eServant:%s
 item.yin_yang_ball:tooltips.3=§eMaster:%s
 item.yin_yang_ball:empty=Empty
 
@@ -182,6 +182,13 @@ message.huajiage.stand_mode.empty=§eThis stand hasn't other mode
 message.huajiage.maid_ball.is_no_owner=You are not the owner of this master ball
 message.huajiage.maid_ball.fail=This master ball is empty
 message.huajiage.maid_ball.load=Capture successful! -§e%s
+message.huajiage.maid_ball.stand_load_1=§eQuestion, are you my Master?
+message.huajiage.maid_ball.stand_load_2=§eLet's go!
+message.huajiage.maid_ball.stand_load_3=§eFight with me, my master!
+message.huajiage.maid_ball.stand_load_4=§eUndead!Infinity!Ah-ha-ha-ha-ha~ Stand Power!!!
+message.huajiage.maid_ball.stand_load_5=§eUh-ha-ha-ha-ha-ha~
+message.huajiage.maid_ball.stand_load_6=§eI won't pass the game level! lady!
+message.huajiage.maid_ball.stand_load_7=§eAh ~ Marisa ~
 
 gui.huajiage.poly.cook=Process
 gui.huajiage.poly.fuel=Fuel Point

@@ -5,10 +5,7 @@ import com.github.tartaricacid.touhoulittlemaid.entity.passive.EntityMaid;
 import com.github.tartaricacid.touhoulittlemaid.init.MaidItems;
 import com.github.tartaricacid.touhoulittlemaid.util.ItemDropUtil;
 import com.github.tartaricacid.touhoulittlemaid.util.MaidRayTraceHelper;
-import com.lh_lshen.mcbbs.huajiage.capability.CapabilityStandHandler;
 import com.lh_lshen.mcbbs.huajiage.capability.IExposedData;
-import com.lh_lshen.mcbbs.huajiage.capability.StandHandler;
-import com.lh_lshen.mcbbs.huajiage.capability.StandStageHandler;
 import com.lh_lshen.mcbbs.huajiage.client.resources.CustomResourceLoader;
 import com.lh_lshen.mcbbs.huajiage.common.CommonProxy;
 import com.lh_lshen.mcbbs.huajiage.stand.StandLoader;
@@ -26,6 +23,7 @@ import net.minecraft.item.ItemStack;
 import net.minecraft.nbt.NBTTagCompound;
 import net.minecraft.util.*;
 import net.minecraft.util.math.BlockPos;
+import net.minecraft.util.math.MathHelper;
 import net.minecraft.util.text.TextComponentTranslation;
 import net.minecraft.world.World;
 import net.minecraftforge.fml.common.Optional;
@@ -36,7 +34,9 @@ import net.minecraftforge.items.IItemHandler;
 import org.lwjgl.input.Keyboard;
 
 import javax.annotation.Nullable;
+import java.util.Arrays;
 import java.util.List;
+import java.util.Random;
 
 public class ItemYinYangBall extends Item {
 
@@ -101,11 +101,18 @@ public class ItemYinYangBall extends Item {
 	@Optional.Method(modid = "touhou_little_maid")
 	public EnumActionResult onItemUse(EntityPlayer player, World worldIn, BlockPos pos, EnumHand hand, EnumFacing facing, float hitX, float hitY, float hitZ) {
 		ItemStack stack = player.getHeldItem(hand);
-		StandHandler standHandler = player.getCapability(CapabilityStandHandler.STAND_TYPE, null);
-		StandStageHandler standStageHandler = StandUtil.getStandStageHandler(player);
 		IExposedData data = StandUtil.getStandData(player);
+		List<String> load_list = Arrays.asList("message.huajiage.maid_ball.stand_load_1",
+											   "message.huajiage.maid_ball.stand_load_2",
+											   "message.huajiage.maid_ball.stand_load_3",
+											   "message.huajiage.maid_ball.stand_load_4",
+											   "message.huajiage.maid_ball.stand_load_5",
+											   "message.huajiage.maid_ball.stand_load_6",
+											   "message.huajiage.maid_ball.stand_load_7"
+				);
 
-		if(standHandler == null || standStageHandler == null || data ==null){
+
+		if(data ==null){
 			return super.onItemUse(player,worldIn,pos,hand,facing,hitX,hitY,hitZ);
 		}
 
@@ -115,19 +122,25 @@ public class ItemYinYangBall extends Item {
 					if (StandUtil.getType(player) != null) {
 						player.dropItem(ItemDiscStand.getItemData(new ItemStack(ItemLoader.disc), data.getStand(), data.getStage(), data.getModel()), true);
 					}
-					standHandler.setStand(StandLoader.MAID.getName());
-					standStageHandler.setStage(1);
+					data.setStand(StandLoader.MAID.getName());
+					data.setStage(1);
 					data.setModel(getMaidModel(stack) + "_default");
+					data.setTrigger(false);
 					dropMaidItems(stack, player, pos.getX(), pos.getY(), pos.getZ());
 					reset(stack);
 					stack.shrink(1);
 					player.playSound(SoundEvents.BLOCK_GLASS_BREAK, 0.5f, 1f);
 					player.playSound(SoundEvents.ENTITY_PLAYER_LEVELUP, 1f, 1f);
+
+					if (worldIn.isRemote) {
+						int d = (int) MathHelper.nextFloat(new Random(),0,load_list.size());
+						player.sendMessage(new TextComponentTranslation(load_list.get(d)));
+					}
 				} else {
 					player.sendMessage(new TextComponentTranslation("message.huajiage.maid_ball.is_no_owner"));
 				}
 			} else {
-				if (player.world.isRemote) {
+				if (worldIn.isRemote) {
 					player.sendMessage(new TextComponentTranslation("message.huajiage.maid_ball.fail"));
 				}
 			}

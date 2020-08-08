@@ -1,23 +1,13 @@
 package com.lh_lshen.mcbbs.huajiage.network;
 
 import com.lh_lshen.mcbbs.huajiage.HuajiAge;
-import com.lh_lshen.mcbbs.huajiage.network.messages.MessageExglutenburMode;
-import com.lh_lshen.mcbbs.huajiage.network.messages.MessageHelmetModeChange;
-import com.lh_lshen.mcbbs.huajiage.network.messages.MessageLeftClickModeChange;
-import com.lh_lshen.mcbbs.huajiage.network.messages.MessageMovingSound;
-import com.lh_lshen.mcbbs.huajiage.network.messages.MessageParticleGenerator;
-import com.lh_lshen.mcbbs.huajiage.network.messages.MessagePlaySoundClient;
-import com.lh_lshen.mcbbs.huajiage.network.messages.MessagePlaySoundToServer;
-import com.lh_lshen.mcbbs.huajiage.network.messages.MessageServerInterchange;
 import com.lh_lshen.mcbbs.huajiage.stand.messages.*;
-
 import net.minecraft.entity.Entity;
 import net.minecraft.entity.player.EntityPlayer;
 import net.minecraft.entity.player.EntityPlayerMP;
 import net.minecraft.util.math.BlockPos;
 import net.minecraft.world.World;
 import net.minecraft.world.WorldServer;
-import net.minecraftforge.fml.common.network.NetworkRegistry;
 import net.minecraftforge.fml.common.network.simpleimpl.IMessage;
 import net.minecraftforge.fml.common.network.simpleimpl.SimpleNetworkWrapper;
 import net.minecraftforge.fml.relauncher.Side;
@@ -36,12 +26,8 @@ public final class  StandNetWorkHandler {
 
 	    HANDLER.registerMessage(MessageDioHitClient.Handler.class,MessageDioHitClient.class, id++, Side.CLIENT);
 	    HANDLER.registerMessage(MessageDoStandPowerClient.Handler.class,MessageDoStandPowerClient.class, id++, Side.CLIENT);
-	    HANDLER.registerMessage(SyncStandMessage.Handler.class,SyncStandMessage.class, id++, Side.CLIENT);
-	    HANDLER.registerMessage(SyncStandStageMessage.Handler.class,SyncStandStageMessage.class, id++, Side.CLIENT);
 	    HANDLER.registerMessage(SyncStandChargeMessage.Handler.class,SyncStandChargeMessage.class, id++, Side.CLIENT);
-	    HANDLER.registerMessage(SyncStandBuffMessage.Handler.class,SyncStandBuffMessage.class, id++, Side.CLIENT);
 	    HANDLER.registerMessage(SyncExposedStandDataMessage.Handler.class,SyncExposedStandDataMessage.class, id++, Side.CLIENT);
-	    HANDLER.registerMessage(SyncStandUserMessage.Handler.class,SyncStandUserMessage.class, id++, Side.CLIENT);
 	}
     /**
 	 * Send message to all within 64 blocks that have this chunk loaded

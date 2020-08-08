@@ -1,34 +1,24 @@
 package com.lh_lshen.mcbbs.huajiage.stand.events;
 
-import java.util.Random;
-
 import com.lh_lshen.mcbbs.huajiage.HuajiAge;
-import com.lh_lshen.mcbbs.huajiage.capability.CapabilityStandHandler;
+import com.lh_lshen.mcbbs.huajiage.capability.CapabilityLoader;
 import com.lh_lshen.mcbbs.huajiage.capability.IExposedData;
 import com.lh_lshen.mcbbs.huajiage.capability.StandChargeHandler;
-import com.lh_lshen.mcbbs.huajiage.capability.StandHandler;
 import com.lh_lshen.mcbbs.huajiage.client.KeyLoader;
 import com.lh_lshen.mcbbs.huajiage.config.ConfigHuaji;
-import com.lh_lshen.mcbbs.huajiage.init.HuajiConstant;
 import com.lh_lshen.mcbbs.huajiage.init.sound.HuajiSoundPlayer;
 import com.lh_lshen.mcbbs.huajiage.init.sound.SoundLoader;
 import com.lh_lshen.mcbbs.huajiage.network.HuajiAgeNetWorkHandler;
 import com.lh_lshen.mcbbs.huajiage.network.StandNetWorkHandler;
 import com.lh_lshen.mcbbs.huajiage.network.messages.MessageServerInterchange;
 import com.lh_lshen.mcbbs.huajiage.potion.PotionLoader;
-import com.lh_lshen.mcbbs.huajiage.stand.EnumStandtype;
-import com.lh_lshen.mcbbs.huajiage.stand.StandClientUtil;
 import com.lh_lshen.mcbbs.huajiage.stand.StandLoader;
 import com.lh_lshen.mcbbs.huajiage.stand.StandUtil;
-import com.lh_lshen.mcbbs.huajiage.stand.entity.EntityStandBase;
-import com.lh_lshen.mcbbs.huajiage.stand.helper.TimeStopHelper;
 import com.lh_lshen.mcbbs.huajiage.stand.instance.StandBase;
 import com.lh_lshen.mcbbs.huajiage.stand.messages.MessageDoStandCapabilityServer;
 import com.lh_lshen.mcbbs.huajiage.stand.messages.MessagePerfromSkill;
 import com.lh_lshen.mcbbs.huajiage.stand.messages.MessageStandModeSwitch;
 import com.lh_lshen.mcbbs.huajiage.stand.messages.MessageStandUp;
-import com.lh_lshen.mcbbs.huajiage.util.ServerUtil;
-
 import net.minecraft.client.Minecraft;
 import net.minecraft.entity.player.EntityPlayer;
 import net.minecraft.init.SoundEvents;
@@ -40,6 +30,8 @@ import net.minecraftforge.fml.common.gameevent.InputEvent;
 import net.minecraftforge.fml.relauncher.Side;
 import net.minecraftforge.fml.relauncher.SideOnly;
 
+import java.util.Random;
+
 @Mod.EventBusSubscriber(modid = HuajiAge.MODID)
 public class EventStandKey {
 	
@@ -48,8 +40,8 @@ public class EventStandKey {
 	public static void standUp(InputEvent.KeyInputEvent evt) {
 		if(KeyLoader.standUp.isPressed()) {
 			EntityPlayer player = Minecraft.getMinecraft().player;
-			StandHandler standHandler = player.getCapability(CapabilityStandHandler.STAND_TYPE, null);
-			String stand_type =standHandler.getStand();
+			IExposedData data = player.getCapability(CapabilityLoader.EXPOSED_DATA, null);
+			String stand_type =data.getStand();
 			StandBase stand = StandLoader.getStand(stand_type);
 			
 			 if(stand !=null && !stand_type.equals(StandLoader.EMPTY)) {

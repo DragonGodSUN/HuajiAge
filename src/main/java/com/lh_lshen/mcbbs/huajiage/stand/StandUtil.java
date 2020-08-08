@@ -24,10 +24,13 @@ public class StandUtil {
 	private static final StandBase[] ArrowStand = {StandLoader.THE_WORLD,StandLoader.STAR_PLATINUM,StandLoader.HIEROPHANT_GREEN,
 			StandLoader.KILLER_QUEEN};
 	public static StandBase getType(EntityLivingBase entity) {
-		   if (entity.hasCapability(CapabilityStandHandler.STAND_TYPE, null)) {
-	           StandHandler stand = entity.getCapability(CapabilityStandHandler.STAND_TYPE, null);
-	    return StandLoader.getStand(stand.getStand());
-		   }
+
+		IExposedData data = StandUtil.getStandData(entity);
+		if(data!= null){
+			String stand = data.getStand();
+			StandBase base = StandLoader.getStand(stand);
+			return base;
+		}
 		return null;
 	}
 
@@ -52,27 +55,20 @@ public class StandUtil {
 		}
 		return 3000;
 	}
-	
-	public static StandStageHandler getStandStageHandler(EntityLivingBase entity) {
-		   if (entity.hasCapability(CapabilityStandStageHandler.STAND_STAGE, null)) {
-			   StandStageHandler stage = entity.getCapability(CapabilityStandStageHandler.STAND_STAGE,null);
-	    return stage;
-		   }
-		return null;
-	}
-	
-	public static StandBuffHandler getStandBuffHandler(EntityLivingBase entity) {
-		   if (entity.hasCapability(CapabilityStandBuffHandler.STAND_BUFF, null)) {
-			   StandBuffHandler buff = entity.getCapability(CapabilityStandBuffHandler.STAND_BUFF,null);
-	    return buff;
-		   }
-		return null;
-	}
+
+
+//	public static StandBuffHandler getStandBuffHandler(EntityLivingBase entity) {
+//		if (entity.hasCapability(CapabilityStandBuffHandler.STAND_BUFF, null)) {
+//			StandBuffHandler buff = entity.getCapability(CapabilityStandBuffHandler.STAND_BUFF, null);
+//			return buff;
+//		}
+//		return null;
+//	}
 	
 	public static int getStandStage(EntityLivingBase entity) {
-	    StandStageHandler stageHandler = StandUtil.getStandStageHandler(entity);
-	    if(stageHandler!=null) {
-		int stage = stageHandler.getStage();
+	    IExposedData data = StandUtil.getStandData(entity);
+	    if(data!=null) {
+		int stage = data.getStage();
 		return stage;
 		}
 	    return 0;
@@ -105,12 +101,11 @@ public class StandUtil {
 	}
 	
 	public static int getStandBuffTime(EntityLivingBase entity) {
-	    StandBuffHandler BuffHandler = StandUtil.getStandBuffHandler(entity);
-	    if(BuffHandler!=null && BuffHandler.getTime()>0) {
-		int ticks = BuffHandler.getTime();
-		return ticks;
+	    StandChargeHandler chargeHandler = StandUtil.getChargeHandler(entity);
+	    if(chargeHandler!=null && chargeHandler.getBuffer()>0) {
+			return chargeHandler.getBuffer();
 		}
-	    return 0;
+		return 0;
 	}
 	
 	public static void standEffectLoad(EntityLivingBase entity) {
