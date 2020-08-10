@@ -14,14 +14,14 @@ import net.minecraft.util.ResourceLocation;
 import java.util.List;
 
 public abstract class StandStateBase implements IStandState {
-    private String stand;
-    private String stateName;
-    private String ID = HuajiConstant.StandModels.DEFAULT_MODEL_ID;
-    private ResourceLocation tex= new ResourceLocation(HuajiAge.MODID,"textures/entity/entity_the_world_default.png");
-    private List<String> extraDatas = Lists.newArrayList();
-    private int stage;
-    private boolean isHandPlay;
-    private boolean soundLoop;
+    protected String stand;
+    protected String stateName;
+    protected String ID = HuajiConstant.StandModels.DEFAULT_MODEL_ID;
+    protected ResourceLocation tex= new ResourceLocation(HuajiAge.MODID,"textures/entity/entity_the_world_default.png");
+    protected List<String> extraDatas = Lists.newArrayList();
+    protected int stage;
+    protected boolean isHandPlay;
+    protected boolean soundLoop;
 
 
     public StandStateBase() {

@@ -17,6 +17,7 @@ import com.lh_lshen.mcbbs.huajiage.network.HuajiAgeNetWorkHandler;
 import com.lh_lshen.mcbbs.huajiage.network.StandNetWorkHandler;
 import com.lh_lshen.mcbbs.huajiage.potion.PotionLoader;
 import com.lh_lshen.mcbbs.huajiage.stand.StandLoader;
+import com.lh_lshen.mcbbs.huajiage.stand.StandResourceLoader;
 import com.lh_lshen.mcbbs.huajiage.tileentity.TileEntityLoader;
 import net.minecraft.util.ResourceLocation;
 import net.minecraft.world.storage.loot.functions.LootFunctionManager;
@@ -36,15 +37,16 @@ public class CommonProxy
 
     public void preInit(FMLPreInitializationEvent event)
     {  	 
+    	 StandResourceLoader.loadCustomStand();
     	 new CreativeTabLoader(event);
     	 new StandLoader();
     	 new ItemLoader(event);
-    	 new BlockLoader(event); 
+    	 new BlockLoader(event);
     	 new EntityLoader();
     	 new TileEntityLoader(event);
     	 new GuiLoader(event);
     	 new CapabilityLoader(event);
-    	 
+
     	 MinecraftForge.EVENT_BUS.register(PotionLoader.class);
     	 MinecraftForge.EVENT_BUS.register(SoundLoader.class);
     	 HuajiAgeNetWorkHandler.init();
@@ -62,7 +64,8 @@ public class CommonProxy
 		new CraftingLoader();
 		new EventLoader();
 	    new OreGenEventHandler();
-        
+
+
 //        for (RenderPlayer playerRender : Minecraft.getMinecraft().getRenderManager().getSkinMap().values()) {
 //        	new RenderHuajiPlayer(playerRender.getRenderManager()); 
 //        	}

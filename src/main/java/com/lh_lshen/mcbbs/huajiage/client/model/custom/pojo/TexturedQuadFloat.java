@@ -1,4 +1,4 @@
-package com.lh_lshen.mcbbs.huajiage.client.model.custom;
+package com.lh_lshen.mcbbs.huajiage.client.model.custom.pojo;
 
 import net.minecraft.client.model.PositionTextureVertex;
 import net.minecraft.client.model.TexturedQuad;

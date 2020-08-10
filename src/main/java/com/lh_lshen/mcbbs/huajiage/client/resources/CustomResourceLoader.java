@@ -6,7 +6,7 @@ import com.google.gson.JsonSyntaxException;
 import com.google.gson.reflect.TypeToken;
 import com.lh_lshen.mcbbs.huajiage.HuajiAge;
 import com.lh_lshen.mcbbs.huajiage.client.model.custom.CustomJsAnimationManger;
-import com.lh_lshen.mcbbs.huajiage.client.model.custom.CustomModelPOJO;
+import com.lh_lshen.mcbbs.huajiage.client.model.custom.pojo.CustomModelPOJO;
 import com.lh_lshen.mcbbs.huajiage.client.model.custom.ModelStandJson;
 import com.lh_lshen.mcbbs.huajiage.client.resources.pojo.CustomModelPack;
 import com.lh_lshen.mcbbs.huajiage.client.resources.pojo.StandModelInfo;

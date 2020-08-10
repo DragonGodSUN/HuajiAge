@@ -4,6 +4,8 @@ import com.lh_lshen.mcbbs.huajiage.api.HuajiAgeAPI;
 import com.lh_lshen.mcbbs.huajiage.api.IStand;
 import com.lh_lshen.mcbbs.huajiage.common.CommonProxy;
 import com.lh_lshen.mcbbs.huajiage.init.HuajiConstant;
+import com.lh_lshen.mcbbs.huajiage.stand.custom.StandCustom;
+import com.lh_lshen.mcbbs.huajiage.stand.custom.StandCustomInfo;
 import com.lh_lshen.mcbbs.huajiage.stand.instance.*;
 
 import java.util.ArrayList;
@@ -31,6 +33,9 @@ public class StandLoader {
 		}
 		for(StandBase stand:STAND_LIST) {
 			HuajiAgeAPI.registerStand(stand);
+		}
+		for(StandCustomInfo info : StandResourceLoader.CUSTOM_STAND_SERVER.values()){
+			HuajiAgeAPI.registerStand(new StandCustom(info));
 		}
 	}
 	

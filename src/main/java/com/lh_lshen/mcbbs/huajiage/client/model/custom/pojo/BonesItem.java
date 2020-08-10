@@ -1,4 +1,4 @@
-package com.lh_lshen.mcbbs.huajiage.client.model.custom;
+package com.lh_lshen.mcbbs.huajiage.client.model.custom.pojo;
 
 import com.google.gson.annotations.SerializedName;
 

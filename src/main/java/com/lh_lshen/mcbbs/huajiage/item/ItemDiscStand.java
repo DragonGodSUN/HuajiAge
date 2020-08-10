@@ -112,6 +112,11 @@ public class ItemDiscStand extends Item {
             	items.add(getItemData(new ItemStack(this),type,0));
             	items.add(getItemData(new ItemStack(this),type,1));
             	}
+			for (StandBase stand : StandUtil.getCustomStands()) {
+				String type = stand.getName();
+				items.add(getItemData(new ItemStack(this),type,0));
+				items.add(getItemData(new ItemStack(this),type,1));
+			}
             items.add(getItemData(new ItemStack(this),StandLoader.ORGA_REQUIEM.getName(),3));
             if(CommonProxy.ModsLoader.isTouhouMaidLoaded()){
 			items.add(getItemData(new ItemStack(this),StandLoader.MAID.getName(),1,"touhou_little_maid:hakurei_reimu_default"));

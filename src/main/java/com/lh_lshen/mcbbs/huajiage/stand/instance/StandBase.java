@@ -17,17 +17,17 @@ import net.minecraft.entity.EntityLivingBase;
 import java.util.*;
 
 public class StandBase implements IStand {
-	private String name;
-	private float speed;
-	private float damage;
-	private int duration;
-	private int charge;
-	private float distance;
-	private int cost;
-	private String texPath;
-	private String localName;
-	private List<String> states = new ArrayList<>();
-	private boolean displayHand;
+	protected String name;
+	protected float speed;
+	protected float damage;
+	protected int duration;
+	protected int charge;
+	protected float distance;
+	protected int cost;
+	protected String texPath;
+	protected String localName;
+	protected List<String> states = new ArrayList<>();
+	protected boolean displayHand;
 	public StandBase() {
 //		loadStates();
 	}

@@ -1,6 +1,10 @@
 package com.lh_lshen.mcbbs.huajiage.client.model.custom;
 
 import com.google.common.collect.Lists;
+import com.lh_lshen.mcbbs.huajiage.client.model.custom.pojo.BonesItem;
+import com.lh_lshen.mcbbs.huajiage.client.model.custom.pojo.CubesItem;
+import com.lh_lshen.mcbbs.huajiage.client.model.custom.pojo.CustomModelPOJO;
+import com.lh_lshen.mcbbs.huajiage.client.model.custom.pojo.ModelBoxFloat;
 import com.lh_lshen.mcbbs.huajiage.client.model.stand.HAModelFactory;
 import com.lh_lshen.mcbbs.huajiage.client.model.stand.ModelStandBase;
 import com.lh_lshen.mcbbs.huajiage.client.model.stand.ModelTheWorld;

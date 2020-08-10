@@ -16,7 +16,7 @@ import net.minecraft.entity.EntityLivingBase;
 import net.minecraft.util.ResourceLocation;
 
 public class StandRes implements IStandRes {
-	private String name;
+	protected String name;
 	public StandRes() {
 	}
 	public StandRes(String name) {

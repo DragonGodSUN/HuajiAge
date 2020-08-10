@@ -1,24 +1,27 @@
 package com.lh_lshen.mcbbs.huajiage.stand;
 
-import java.util.ArrayList;
-import java.util.Arrays;
-import java.util.List;
-
+import com.google.common.collect.Lists;
 import com.lh_lshen.mcbbs.huajiage.HuajiAge;
-import com.lh_lshen.mcbbs.huajiage.capability.*;
+import com.lh_lshen.mcbbs.huajiage.capability.CapabilityLoader;
+import com.lh_lshen.mcbbs.huajiage.capability.CapabilityStandChargeHandler;
+import com.lh_lshen.mcbbs.huajiage.capability.IExposedData;
+import com.lh_lshen.mcbbs.huajiage.capability.StandChargeHandler;
 import com.lh_lshen.mcbbs.huajiage.init.HuajiConstant;
 import com.lh_lshen.mcbbs.huajiage.init.sound.HuajiSoundPlayer;
 import com.lh_lshen.mcbbs.huajiage.network.messages.MessageParticleGenerator;
 import com.lh_lshen.mcbbs.huajiage.potion.PotionLoader;
+import com.lh_lshen.mcbbs.huajiage.stand.custom.StandCustom;
 import com.lh_lshen.mcbbs.huajiage.stand.instance.StandBase;
 import com.lh_lshen.mcbbs.huajiage.util.ServerUtil;
-
 import net.minecraft.entity.EntityLivingBase;
 import net.minecraft.init.SoundEvents;
 import net.minecraft.potion.PotionEffect;
 import net.minecraft.util.EnumParticleTypes;
 import net.minecraft.util.ResourceLocation;
-import net.minecraft.util.text.TextFormatting;
+
+import java.util.ArrayList;
+import java.util.Arrays;
+import java.util.List;
 
 public class StandUtil {
 	private static final StandBase[] ArrowStand = {StandLoader.THE_WORLD,StandLoader.STAR_PLATINUM,StandLoader.HIEROPHANT_GREEN,
@@ -132,12 +135,25 @@ public class StandUtil {
     	}
 	
 	public static ResourceLocation getDiscTex(StandBase stand) {
-		return new ResourceLocation(HuajiAge.MODID,"textures/items/disc_"+stand.getName()+".png");
+		return new ResourceLocation(HuajiAge.MODID,"textures/items/disc_"+
+				((stand instanceof StandCustom)?stand.getName().replace(":","_"):stand.getName())+".png");
 	}
 	
 	public static List<StandBase> getArrowStands() {
 		return new ArrayList<>(Arrays.asList(ArrowStand));
 	
+	}
+
+	public static List<StandBase> getCustomStands() {
+		List<StandBase> list = Lists.newArrayList();
+		for(String key : StandResourceLoader.CUSTOM_STAND_SERVER.keySet()){
+			StandBase stand = StandLoader.getStand(key);
+			if (stand!=null) {
+				list.add(stand);
+			}
+		}
+		return list;
+
 	}
 	
     public static StandBase getTypeWithIndex(int index) {
