@@ -1,12 +1,11 @@
 package com.lh_lshen.mcbbs.huajiage.stand.helper;
 
-import com.lh_lshen.mcbbs.huajiage.capability.*;
+import com.google.common.collect.Lists;
+import com.lh_lshen.mcbbs.huajiage.capability.CapabilityStandChargeHandler;
+import com.lh_lshen.mcbbs.huajiage.capability.StandChargeHandler;
 import com.lh_lshen.mcbbs.huajiage.config.ConfigHuaji;
 import com.lh_lshen.mcbbs.huajiage.init.HuajiConstant;
-import com.lh_lshen.mcbbs.huajiage.item.ItemKillerQueenTrigger;
 import com.lh_lshen.mcbbs.huajiage.potion.PotionLoader;
-import com.lh_lshen.mcbbs.huajiage.stand.StandLoader;
-import com.lh_lshen.mcbbs.huajiage.stand.instance.StandBase;
 import com.lh_lshen.mcbbs.huajiage.util.HAMathHelper;
 import com.lh_lshen.mcbbs.huajiage.util.NBTHelper;
 import net.minecraft.block.Block;
@@ -96,6 +95,34 @@ public class StandPowerHelper {
             user.addPotionEffect(potion);
             }
         }
+    }
+
+    public static void potionDefaultOutOfTime(EntityLivingBase user){
+        List<PotionEffect> potions = Lists.newArrayList();
+        potions.add(new PotionEffect(PotionLoader.potionStand , 5*20  ));
+        potions.add(new PotionEffect(MobEffects.SLOWNESS , 5*20, 1 ));
+        potions.add(new PotionEffect(MobEffects.HUNGER , 5*20 , ConfigHuaji.Stands.allowStandPunish? 24 : 49 ));
+        if(ConfigHuaji.Stands.allowStandPunish) {
+            potions.add(new PotionEffect(MobEffects.WITHER, 5 * 20, 1));
+        }
+        potionEffect(user, potions);
+    }
+
+    public static void shootProjectile(EntityLivingBase user, Entity projectile, Vec3d position, Vec3d vector, int ticks){
+        if(user.ticksExisted%ticks==0){
+            shoot(user,projectile,position,vector);
+        }
+    }
+
+    public static void shoot(EntityLivingBase user, Entity projectile, Vec3d position, Vec3d vector){
+        projectile.setPosition(position.x,position.y,position.z);
+        projectile.motionX = vector.x;
+        projectile.motionY = vector.y;
+        projectile.motionZ = vector.z;
+        if(!user.world.isRemote){
+            user.world.spawnEntity(projectile);
+        }
+
     }
 
 }

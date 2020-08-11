@@ -11,6 +11,7 @@ import com.lh_lshen.mcbbs.huajiage.stand.resource.StandRes;
 import net.minecraft.entity.EntityLivingBase;
 
 import java.util.Map;
+import java.util.Objects;
 
 public class StandCustom extends StandBase {
     private StandCustomInfo info;
@@ -31,9 +32,12 @@ public class StandCustom extends StandBase {
         Map<String, StandStateInfo> CUSTOM_STATE_SERVER = StandResourceLoader.CUSTOM_STATE_SERVER;
         for(String key : CUSTOM_STATE_SERVER.keySet()){
             StandStateInfo info_state = CUSTOM_STATE_SERVER.get(key);
-            if(key.equals(info.getStand())){
+            if(key.equals(info.getStand()+"_"+info_state.getStateId())){
                 this.addState(info_state.getStateId(),new StandStateCustom(info_state));
             }
+        }
+        if(!this.states.isEmpty() && StandStates.getStandState(name, states.get(0))!=null){
+            this.displayHand = Objects.requireNonNull(StandStates.getStandState(name, states.get(0))).isHandPlay();
         }
 
     }

@@ -52,9 +52,9 @@ public class CustomJsAnimationManger {
         }
         InputStream stream = null;
         try {
-            Bindings bindings = CommonProxy.NASHORN.createBindings();
+            Bindings bindings = CommonProxy.NASHORN_ENGINE.createBindings();
             stream = Minecraft.getMinecraft().getResourceManager().getResource(resourceLocation).getInputStream();
-            Object scriptObject = CommonProxy.NASHORN.eval(IOUtils.toString(stream, StandardCharsets.UTF_8), bindings);
+            Object scriptObject = CommonProxy.NASHORN_ENGINE.eval(IOUtils.toString(stream, StandardCharsets.UTF_8), bindings);
             CUSTOM_ANIMATION_MAP.put(resourceLocation, scriptObject);
             return scriptObject;
         } catch (IOException | ScriptException e) {

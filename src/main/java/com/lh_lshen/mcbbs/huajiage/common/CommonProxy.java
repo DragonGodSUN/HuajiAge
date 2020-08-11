@@ -33,7 +33,7 @@ import javax.script.ScriptEngineManager;
 public class CommonProxy
 {
 	public static final Gson GSON = new GsonBuilder().registerTypeAdapter(ResourceLocation.class, new ResourceLocation.Serializer()).create();
-	public static final ScriptEngine NASHORN = new ScriptEngineManager().getEngineByName("nashorn");
+	public static final ScriptEngine NASHORN_ENGINE = new ScriptEngineManager().getEngineByName("nashorn");
 
     public void preInit(FMLPreInitializationEvent event)
     {  	 

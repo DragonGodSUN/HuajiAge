@@ -19,6 +19,10 @@ public class StandStateCustom extends StandStateBase {
     public StandStateCustom(){
     }
 
+    public static void main(String[] args) {
+
+    }
+
     public StandStateCustom(StandStateInfo stateInfo) {
         this.stateInfo = stateInfo;
         this.stand = stateInfo.getStand();
@@ -43,10 +47,10 @@ public class StandStateCustom extends StandStateBase {
     @Override
     public void doTask(EntityLivingBase user) {
         try {
-            if (stateInfo == null) {
+            if (stateInfo == null || stateInfo.getScript() == null) {
                 return;
             }
-            Invocable invocable = (Invocable) CommonProxy.NASHORN;
+            Invocable invocable = (Invocable) CommonProxy.NASHORN_ENGINE;
             if(stateInfo.getStateId().equals(stateName)){
             invocable.invokeMethod(stateInfo.getScript(), "update",
                     new WorldWrapper(user.getEntityWorld()), new EntityLivingBaseWrapper(user));
@@ -58,29 +62,29 @@ public class StandStateCustom extends StandStateBase {
 
     @Override
     public void doTaskOutOfTime(EntityLivingBase user) {
-//        try {
-//            if (stateInfo.getScript() == null) {
-//                return;
-//            }
-//            Invocable invocable = (Invocable) CommonProxy.NASHORN;
-//            invocable.invokeMethod(stateInfo.getScript(), "timeOut",
-//                    new WorldWrapper(user.getEntityWorld()), new EntityLivingBaseWrapper(user));
-//        } catch (ScriptException | NoSuchMethodException e) {
-//            e.printStackTrace();
-//        }
+        try {
+            if (stateInfo.getScript() == null) {
+                return;
+            }
+            Invocable invocable = (Invocable) CommonProxy.NASHORN_ENGINE;
+            invocable.invokeMethod(stateInfo.getScript(), "timeOut",
+                    new WorldWrapper(user.getEntityWorld()), new EntityLivingBaseWrapper(user));
+        } catch (ScriptException | NoSuchMethodException e) {
+            e.printStackTrace();
+        }
     }
 
     public void doTaskCapability(EntityLivingBase user){
-//        try {
-//            if (stateInfo.getScript() == null) {
-//                return;
-//            }
-//            Invocable invocable = (Invocable) CommonProxy.NASHORN;
-//            invocable.invokeMethod(stateInfo.getScript(), "capability",
-//                    new WorldWrapper(user.getEntityWorld()), new EntityLivingBaseWrapper(user));
-//        } catch (ScriptException | NoSuchMethodException e) {
-//            e.printStackTrace();
-//        }
+        try {
+            if (stateInfo.getScript() == null) {
+                return;
+            }
+            Invocable invocable = (Invocable) CommonProxy.NASHORN_ENGINE;
+            invocable.invokeMethod(stateInfo.getScript(), "capability",
+                    new WorldWrapper(user.getEntityWorld()), new EntityLivingBaseWrapper(user));
+        } catch (ScriptException | NoSuchMethodException e) {
+            e.printStackTrace();
+        }
     }
 
 }

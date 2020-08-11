@@ -182,7 +182,7 @@ public class ModelStandJson extends ModelStandBase {
         if (animations == null) {
             return;
         }
-        Invocable invocable = (Invocable) CommonProxy.NASHORN;
+        Invocable invocable = (Invocable) CommonProxy.NASHORN_ENGINE;
         if (entityIn instanceof EntityPlayer) {
             entityStandWrapper.setData((EntityPlayer)entityIn, swingProgress, isRiding);
             String modelId = this.getModelID();

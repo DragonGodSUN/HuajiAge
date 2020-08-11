@@ -1,0 +1,9 @@
+{
+  "stand":"huajiage:prototype",
+  "name": "stand.huajiage.prototype.name",
+  "states":["default"],
+  "disc":"huajiage:the_world",
+  "stages":1,
+  "attributes":["1.2f","10f","200f","2f","60000","75"],
+  "sounds":[""]
+}

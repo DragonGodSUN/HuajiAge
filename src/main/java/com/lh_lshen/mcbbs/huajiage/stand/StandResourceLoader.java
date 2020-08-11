@@ -1,9 +1,9 @@
 package com.lh_lshen.mcbbs.huajiage.stand;
 
-import com.github.tartaricacid.touhoulittlemaid.proxy.CommonProxy;
 import com.google.common.collect.Maps;
 import com.google.gson.reflect.TypeToken;
 import com.lh_lshen.mcbbs.huajiage.HuajiAge;
+import com.lh_lshen.mcbbs.huajiage.common.CommonProxy;
 import com.lh_lshen.mcbbs.huajiage.stand.custom.StandCustomInfo;
 import com.lh_lshen.mcbbs.huajiage.stand.custom.StandStateInfo;
 import net.minecraft.util.ResourceLocation;
@@ -38,6 +38,8 @@ public class StandResourceLoader {
 
     private static final Path CONFIG_FOLDER = Paths.get("config", HuajiAge.MODID, "custom_stand");
     private static final Path CONFIG_STATE_FOLDER = Paths.get("config", HuajiAge.MODID, "custom_stand/states");
+    private static final String JAR_FOLDER = "/assets/huajiage/custom_stand";
+    private static final String JAR_STATE_FOLDER = "/assets/huajiage/custom_stand/states";
     private static final String ACCEPTED_STAND_SUFFIX = ".json";
     private static final String ACCEPTED_STATE_SUFFIX = ".js";
     private static final ResourceLocation DISC_DEFAULT = new ResourceLocation(HuajiAge.MODID, "textures/items/disc_null.png");
@@ -47,6 +49,8 @@ public class StandResourceLoader {
         CUSTOM_STATE_SERVER.clear();
         HuajiAge.LOGGER.info("Loaded Stand:----------------------------------");
         checkStandFolder();
+        loadInternalStands();
+        loadInternalStates();
         loadStand(CONFIG_FOLDER,ACCEPTED_STAND_SUFFIX);
         loadStandStates(CONFIG_STATE_FOLDER,ACCEPTED_STATE_SUFFIX);
 
@@ -56,7 +60,7 @@ public class StandResourceLoader {
             HuajiAge.LOGGER.info("Loaded Stand: {} ", stand);
         }
         for(String state :CUSTOM_STATE_SERVER.keySet()){
-            HuajiAge.LOGGER.info("Loaded Stand: {} ", state);
+            HuajiAge.LOGGER.info("Loaded State: {} ", state);
         }
 
     }
@@ -74,6 +78,30 @@ public class StandResourceLoader {
                 Files.createDirectories(CONFIG_FOLDER);
             } catch (IOException e) {
                 e.printStackTrace();
+            }
+        }
+    }
+
+    public static void loadInternalStands()  {
+        File stand_f = new File(HuajiAge.class.getResource(JAR_FOLDER).getFile());
+        String[] files = stand_f.list((dir, name) -> name.endsWith(ACCEPTED_STAND_SUFFIX));
+        if(stand_f!=null){
+            if(files!=null && files.length>0) {
+                for (String file : files) {
+                    loadInternalStand(file);
+                    HuajiAge.LOGGER.info("Internal Stand Load: {}", file);
+                }
+            }
+        }
+    }
+
+    public static void loadInternalStates()  {
+        File state_f = new File(HuajiAge.class.getResource(JAR_STATE_FOLDER).getFile());
+        String[] files = state_f.list((dir, name) -> name.endsWith(ACCEPTED_STATE_SUFFIX));
+        if(files!=null && files.length>0) {
+            for (String file : files) {
+                loadInternalState(file);
+                HuajiAge.LOGGER.info("Internal State Load: {}", file);
             }
         }
     }
@@ -110,10 +138,10 @@ public class StandResourceLoader {
             try {
                 StandStateInfo info = loadStates(file);
                 if (info != null) {
-                    if (CUSTOM_STATE_SERVER.containsKey(info.getStand())) {
+                    if (CUSTOM_STATE_SERVER.containsKey(info.getStand()+"_"+info.getStateId())) {
                         HuajiAge.LOGGER.warn("Have a stand state of the same id: {}", info.getStand());
                     } else {
-                        CUSTOM_STATE_SERVER.put(info.getStand(), info);
+                        CUSTOM_STATE_SERVER.put(info.getStand()+"_"+info.getStateId(), info);
                     }
                 }
             } catch (NullPointerException e) {
@@ -123,25 +151,64 @@ public class StandResourceLoader {
         }
     }
 
-    private static StandCustomInfo loadStand(File file) {
+    private static void loadInternalStand(String json) {
+        InputStream stream = HuajiAge.class.getResourceAsStream(String.format("%s/%s",
+                JAR_FOLDER, json));
         try {
-            InputStream input = Files.newInputStream(file.toPath(), StandardOpenOption.READ);
-            StandCustomInfo info = GSON.fromJson(new InputStreamReader(input, StandardCharsets.UTF_8), new TypeToken<StandCustomInfo>(){}.getType());
-            info.decorate();
-            HuajiAge.LOGGER.info("Loaded Stand Info: {} ", info.getStand());
-            return info;
+            StandCustomInfo info = loadStand(stream);
+            IOUtils.closeQuietly(stream);
+            CUSTOM_STAND_SERVER.put(info.getStand(), info);
+        } catch (NullPointerException e) {
+            HuajiAge.LOGGER.error("Exception while loading stand in {}:", json);
+            HuajiAge.LOGGER.catching(e);
+        }
+    }
+    private static void loadInternalState(String json) {
+        InputStream stream = HuajiAge.class.getResourceAsStream(String.format("%s/%s",
+                JAR_STATE_FOLDER, json));
+        try {
+            StandStateInfo info = loadStates(stream);
+            IOUtils.closeQuietly(stream);
+            CUSTOM_STATE_SERVER.put(info.getStand()+"_"+info.getStateId(), info);
+        } catch (NullPointerException e) {
+            HuajiAge.LOGGER.error("Exception while loading stand in {}:", json);
+            HuajiAge.LOGGER.catching(e);
+        }
+    }
+
+    private static StandCustomInfo loadStand(File file) {
+        InputStream input = null;
+        try {
+            input = Files.newInputStream(file.toPath(), StandardOpenOption.READ);
+            return loadStand(input);
         } catch (IOException e) {
             e.printStackTrace();
         }
         return null;
     }
 
+    private static StandCustomInfo loadStand(InputStream input) {
+        StandCustomInfo info = GSON.fromJson(new InputStreamReader(input, StandardCharsets.UTF_8), new TypeToken<StandCustomInfo>(){}.getType());
+        info.decorate();
+        IOUtils.closeQuietly(input);
+        return info;
+    }
+
     private static StandStateInfo loadStates(File file) {
+        InputStream input = null;
         try {
-            InputStream input = Files.newInputStream(file.toPath(), StandardOpenOption.READ);
-            Bindings bindings = CommonProxy.NASHORN.createBindings();
-            Object scriptObject = CommonProxy.NASHORN.eval(IOUtils.toString(input, StandardCharsets.UTF_8), bindings);
-            HuajiAge.LOGGER.info("script-{}",scriptObject);
+            input = Files.newInputStream(file.toPath(), StandardOpenOption.READ);
+        } catch (IOException e) {
+            e.printStackTrace();
+        }
+        return loadStates(input);
+    }
+
+    private static StandStateInfo loadStates(InputStream input) {
+        try {
+            Bindings bindings = CommonProxy.NASHORN_ENGINE.createBindings();
+            Object scriptObject = CommonProxy.NASHORN_ENGINE.eval(IOUtils.toString(input, StandardCharsets.UTF_8), bindings);
+            IOUtils.closeQuietly(input);
             return transObjectToEntry(scriptObject);
         } catch (IOException | ScriptException e) {
             e.printStackTrace();
@@ -180,8 +247,6 @@ public class StandResourceLoader {
 
         if (scriptMaps.containsKey(stateArgs.HAND.getName())) {
             hand = (Boolean) scriptMaps.get(stateArgs.HAND.getName());
-            HuajiAge.LOGGER.info("Loaded Stand hand: {} ", hand);
-
         }
 
         if (scriptMaps.containsKey(stateArgs.STAGE.getName())) {
