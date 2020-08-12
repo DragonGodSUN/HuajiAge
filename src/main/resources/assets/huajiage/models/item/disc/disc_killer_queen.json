@@ -1,6 +1,6 @@
 {
     "parent": "item/generated",
     "textures": {
-        "layer0": "huajiage:items/disc_orga_requiem"
+        "layer0": "huajiage:items/disc/disc_killer_queen"
     }
 }

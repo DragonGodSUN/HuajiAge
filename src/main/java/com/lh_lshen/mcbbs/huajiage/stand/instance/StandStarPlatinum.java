@@ -37,8 +37,8 @@ public class StandStarPlatinum extends StandBase {
 
 	@Override
 	public void doStandCapability(EntityLivingBase user) {
-		TimeStopHelper.setEntityTimeStopRange(user,120);
 		TimeStopHelper.setTimeStop(user, 5*20);
+		TimeStopHelper.setEntityTimeStopRange(user,120);
 		TimeStopHelper.extraEffects(user, 5);
 		if(user instanceof EntityPlayer) {
 		ServerUtil.sendPacketToNearbyPlayersStand(user, new MessageDoStandPowerClient((EntityPlayer) user,StandLoader.STAR_PLATINUM.getName()));

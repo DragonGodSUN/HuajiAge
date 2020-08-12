@@ -7,8 +7,8 @@ import com.lh_lshen.mcbbs.huajiage.client.model.stand.HAModelFactory;
 import com.lh_lshen.mcbbs.huajiage.client.model.stand.ModelStandBase;
 import com.lh_lshen.mcbbs.huajiage.client.resources.CustomResourceLoader;
 import com.lh_lshen.mcbbs.huajiage.init.sound.HuajiSoundPlayer;
-import com.lh_lshen.mcbbs.huajiage.init.sound.SoundLoader;
 import com.lh_lshen.mcbbs.huajiage.stand.StandClientUtil;
+import com.lh_lshen.mcbbs.huajiage.stand.StandLoader;
 import com.lh_lshen.mcbbs.huajiage.stand.StandUtil;
 import com.lh_lshen.mcbbs.huajiage.stand.custom.StandCustomInfo;
 import net.minecraft.client.Minecraft;
@@ -19,6 +19,7 @@ import net.minecraft.util.ResourceLocation;
 import net.minecraft.util.SoundCategory;
 import net.minecraft.util.SoundEvent;
 import net.minecraft.util.math.MathHelper;
+import net.minecraftforge.fml.common.registry.ForgeRegistries;
 
 import java.util.List;
 import java.util.Random;
@@ -40,8 +41,8 @@ public class ResStandCustom extends StandRes {
     public void doSoundPlay(Minecraft mc, Entity entity, EntityLivingBase user) {
         List<SoundEvent> sounds = Lists.newArrayList();
         for(String s : info.getSounds()){
-            if(SoundLoader.getSound(s)!=null){
-            sounds.add(SoundLoader.getSound(s));
+            if(ForgeRegistries.SOUND_EVENTS.getValue(new ResourceLocation(s)) !=null){
+            sounds.add(ForgeRegistries.SOUND_EVENTS.getValue(new ResourceLocation(s)));
             }
         }
         if(sounds.isEmpty()){
@@ -64,29 +65,21 @@ public class ResStandCustom extends StandRes {
         }
         ResourceLocation STAND_TEX = HAModelFactory.getTexture(data.getModel());
         ModelStandBase model = StandClientUtil.getModelByID(data.getModel());
-        Minecraft.getMinecraft().getTextureManager().bindTexture(STAND_TEX);
         if(model instanceof ModelStandJson){
             this.mainAnimations = null;
             CustomResourceLoader.STAND_MODEL.getAnimation(this.getName()).ifPresent(animations -> this.mainAnimations = animations);
             if (this.mainAnimations != null) {
                 ((ModelStandJson) model).setAnimations(this.mainAnimations);
             }
-            GlStateManager.popMatrix();
-            GlStateManager.pushMatrix();
-            GlStateManager.color(1.0F, 1.0F, 1.0F, 0.5F);
-            GlStateManager.rotate(180,0,0,1);
-            model.setPosition();
-            GlStateManager.translate(0,0,-5);
-            model.setRotationAngles( entity.limbSwing, entity.limbSwingAmount, entity.ticksExisted, entity.rotationYaw, entity.rotationPitch, 1f, entity, 1f ,1.5f);
-//            model.render(entity, entity.limbSwing, entity.limbSwingAmount, entity.ticksExisted, entity.rotationYaw, entity.rotationPitch, 0.06f);
-            model.renderFirst(0,0,0,1f,1f);
-            model.effect(entity, entity.limbSwing, entity.limbSwingAmount, entity.ticksExisted, entity.rotationYaw, entity.rotationPitch, 1f);
-            if(data.getStage()>0) {
-                model.extraEffect(entity,  entity.limbSwing, entity.limbSwingAmount, entity.ticksExisted, entity.rotationYaw, entity.rotationPitch, 1f);
-            }
+        }else {
+            STAND_TEX = StandClientUtil.getTexByID(entity);
+            model = StandClientUtil.getModelByData(entity, StandLoader.getStand(data.getStand()));
         }
-        GlStateManager.popMatrix();
-        GlStateManager.pushMatrix();
+        Minecraft.getMinecraft().getTextureManager().bindTexture(STAND_TEX);
+            GlStateManager.rotate(180,0,0,1);
+            model.setRotationAngles( entity.limbSwing, entity.limbSwingAmount, entity.ticksExisted, 0, 0, 1f, entity, 0.5f ,1.5f);
+            model.renderFirst(0,-4,-3,1f,0.6f);
+            model.effect(entity, entity.limbSwing, entity.limbSwingAmount, entity.ticksExisted, entity.rotationYaw, entity.rotationPitch, 1f);
     }
 
 }

@@ -2,6 +2,8 @@ package com.lh_lshen.mcbbs.huajiage.stand;
 
 import com.google.common.collect.Lists;
 import com.lh_lshen.mcbbs.huajiage.HuajiAge;
+import com.lh_lshen.mcbbs.huajiage.api.HuajiAgeAPI;
+import com.lh_lshen.mcbbs.huajiage.api.IStand;
 import com.lh_lshen.mcbbs.huajiage.capability.CapabilityLoader;
 import com.lh_lshen.mcbbs.huajiage.capability.CapabilityStandChargeHandler;
 import com.lh_lshen.mcbbs.huajiage.capability.IExposedData;
@@ -11,6 +13,7 @@ import com.lh_lshen.mcbbs.huajiage.init.sound.HuajiSoundPlayer;
 import com.lh_lshen.mcbbs.huajiage.network.messages.MessageParticleGenerator;
 import com.lh_lshen.mcbbs.huajiage.potion.PotionLoader;
 import com.lh_lshen.mcbbs.huajiage.stand.custom.StandCustom;
+import com.lh_lshen.mcbbs.huajiage.stand.custom.StandCustomInfo;
 import com.lh_lshen.mcbbs.huajiage.stand.instance.StandBase;
 import com.lh_lshen.mcbbs.huajiage.util.ServerUtil;
 import net.minecraft.entity.EntityLivingBase;
@@ -56,9 +59,19 @@ public class StandUtil {
 		if(null != charge) {
 			return charge.getMaxValue();
 		}
-		return 3000;
+		return 10000;
 	}
 
+	public static void setChargeMax(EntityLivingBase entity,StandChargeHandler charge, int max) {
+		if(null != charge) {
+			charge.setMaxValue(max);
+		}
+	}
+
+	public static void setChargeMax(EntityLivingBase entity,int max) {
+		StandChargeHandler chargeHandler = getChargeHandler(entity);
+		setChargeMax(entity,chargeHandler,max);
+	}
 
 //	public static StandBuffHandler getStandBuffHandler(EntityLivingBase entity) {
 //		if (entity.hasCapability(CapabilityStandBuffHandler.STAND_BUFF, null)) {
@@ -127,7 +140,8 @@ public class StandUtil {
 			  
 	}
 	public static String getLocalName(String name) {
-		for(StandBase type : StandLoader.STAND_LIST) {
+		for(IStand stand : HuajiAgeAPI.getStandList()) {
+			StandBase type = (StandBase) stand;
     		if(name.equals(type.getName())) {
     			return type.getLocalName();
     			}
@@ -135,8 +149,12 @@ public class StandUtil {
     	}
 	
 	public static ResourceLocation getDiscTex(StandBase stand) {
-		return new ResourceLocation(HuajiAge.MODID,"textures/items/disc_"+
-				((stand instanceof StandCustom)?stand.getName().replace(":","_"):stand.getName())+".png");
+		if(stand instanceof StandCustom){
+			StandCustom custom = (StandCustom) stand;
+			StandCustomInfo info = custom.getInfo();
+			return new ResourceLocation(HuajiAge.MODID,"textures/items/"+info.getDisc().getPath()+".png");
+		}
+		return new ResourceLocation(HuajiAge.MODID,"textures/items/disc/disc_"+stand.getName()+".png");
 	}
 	
 	public static List<StandBase> getArrowStands() {

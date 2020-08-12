@@ -15,6 +15,7 @@ import java.io.File;
 import java.io.IOException;
 import java.io.InputStream;
 import java.io.InputStreamReader;
+import java.net.URL;
 import java.nio.charset.StandardCharsets;
 import java.nio.file.Files;
 import java.nio.file.Path;
@@ -30,10 +31,10 @@ import static net.minecraft.network.status.server.SPacketServerInfo.GSON;
  */
 public class StandResourceLoader {
 
-    public static final Map<String, StandCustomInfo> CUSTOM_STAND_CLIENT = Maps.newHashMap();
+//    public static final Map<String, StandCustomInfo> CUSTOM_STAND_CLIENT = Maps.newHashMap();
     public static final Map<String, StandCustomInfo> CUSTOM_STAND_SERVER = Maps.newHashMap();
 
-    public static final Map<String, StandStateInfo> CUSTOM_STATE_CLIENT = Maps.newHashMap();
+//    public static final Map<String, StandStateInfo> CUSTOM_STATE_CLIENT = Maps.newHashMap();
     public static final Map<String, StandStateInfo> CUSTOM_STATE_SERVER = Maps.newHashMap();
 
     private static final Path CONFIG_FOLDER = Paths.get("config", HuajiAge.MODID, "custom_stand");
@@ -83,9 +84,10 @@ public class StandResourceLoader {
     }
 
     public static void loadInternalStands()  {
-        File stand_f = new File(HuajiAge.class.getResource(JAR_FOLDER).getFile());
+    URL f =HuajiAge.class.getResource(JAR_FOLDER);
+    if(f!=null){
+        File stand_f = new File(f.getFile());
         String[] files = stand_f.list((dir, name) -> name.endsWith(ACCEPTED_STAND_SUFFIX));
-        if(stand_f!=null){
             if(files!=null && files.length>0) {
                 for (String file : files) {
                     loadInternalStand(file);
@@ -96,12 +98,15 @@ public class StandResourceLoader {
     }
 
     public static void loadInternalStates()  {
-        File state_f = new File(HuajiAge.class.getResource(JAR_STATE_FOLDER).getFile());
-        String[] files = state_f.list((dir, name) -> name.endsWith(ACCEPTED_STATE_SUFFIX));
-        if(files!=null && files.length>0) {
-            for (String file : files) {
-                loadInternalState(file);
-                HuajiAge.LOGGER.info("Internal State Load: {}", file);
+        URL f =HuajiAge.class.getResource(JAR_STATE_FOLDER);
+        if (f!=null) {
+            File state_f = new File(f.getFile());
+            String[] files = state_f.list((dir, name) -> name.endsWith(ACCEPTED_STATE_SUFFIX));
+            if(files!=null && files.length>0) {
+                for (String file : files) {
+                    loadInternalState(file);
+                    HuajiAge.LOGGER.info("Internal State Load: {}", file);
+                }
             }
         }
     }

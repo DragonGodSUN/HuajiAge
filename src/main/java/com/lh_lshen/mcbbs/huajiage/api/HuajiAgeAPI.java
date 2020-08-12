@@ -25,7 +25,7 @@ public class HuajiAgeAPI {
     public static List<IStandState> getStandStateList() {
         return INSTANCE.getStandStateList();
     }
-	 
+
     public static void registerMultiBlock(IMultiBlock multiBlock) {
         INSTANCE.registerMultiBlock(multiBlock);
     }
@@ -34,6 +34,13 @@ public class HuajiAgeAPI {
         return INSTANCE.getMultiBlockList();
     }
 
+	public static void standClear() {
+        INSTANCE.standClear();
+    }
+
+    public static void statesClear() {
+        INSTANCE.statesClear();
+    }
 
 	
 	public interface IHuajiAgeAPI{
@@ -49,7 +56,11 @@ public class HuajiAgeAPI {
         void registerStandState(IStandState state);
 
         List<IStandState> getStandStateList();
-         
+
+        void standClear();
+
+        void statesClear();
+
 	}
 	
 }

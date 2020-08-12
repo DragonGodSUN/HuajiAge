@@ -22,8 +22,8 @@ public class StandMaid extends StandBase {
     public StandMaid() {
     }
 
-    public StandMaid(String name, float speed, float damage, int duration, float distance, int cost, int charge, String texPath, String localName, boolean displayHand) {
-        super(name, speed, damage, duration, distance, cost, charge, texPath, localName, displayHand);
+    public StandMaid(String name, float speed, float damage, int duration, float distance, int cost, int charge, int maxMP, String texPath, String localName, boolean displayHand) {
+        super(name, speed, damage, duration, distance, cost, charge, maxMP, texPath, localName, displayHand);
         initState(new StateMaidDefault(name, CapabilityExposedData.States.DEFAULT.getName(),isHandDisplay(),true));
     }
 

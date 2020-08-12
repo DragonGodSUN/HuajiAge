@@ -77,21 +77,12 @@ public class ResStandMaid extends StandRes {
             if (this.mainAnimations != null) {
                 ((ModelStandJson) model).setAnimations(this.mainAnimations);
             }
-            GlStateManager.popMatrix();
-            GlStateManager.pushMatrix();
             GlStateManager.color(1.0F, 1.0F, 1.0F, 0.5F);
             GlStateManager.rotate(180,0,0,1);
-            model.setPosition();
-            GlStateManager.translate(0,0,-30);
-            model.setRotationAngles( entity.limbSwing, entity.limbSwingAmount, entity.ticksExisted, entity.rotationYaw, entity.rotationPitch, 1f, entity, 1f ,1.5f);
-//            model.render(entity, entity.limbSwing, entity.limbSwingAmount, entity.ticksExisted, entity.rotationYaw, entity.rotationPitch, 0.06f);
-            model.renderFirst(0,0,0,1f,1f);
-            model.effect(entity, entity.limbSwing, entity.limbSwingAmount, entity.ticksExisted, entity.rotationYaw, entity.rotationPitch, 1f);
-            if(data.getStage()>0) {
-                model.extraEffect(entity,  entity.limbSwing, entity.limbSwingAmount, entity.ticksExisted, entity.rotationYaw, entity.rotationPitch, 1f);
-            }
+            model.setRotationAngles( entity.limbSwing, entity.limbSwingAmount, entity.ticksExisted, 0, 0, 1f, entity, 1f ,1.5f);
+            model.renderFirst(0,-4,-3,1f,1f);
+            model.effect(entity, entity.limbSwing, entity.limbSwingAmount, entity.ticksExisted, 0, 0, 1f);
         }
-        GlStateManager.popMatrix();
-        GlStateManager.pushMatrix();
+
     }
 }

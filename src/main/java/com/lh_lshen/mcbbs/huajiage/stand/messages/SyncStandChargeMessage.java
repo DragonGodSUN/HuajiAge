@@ -64,8 +64,8 @@ public class SyncStandChargeMessage implements IMessage {
                     StandChargeHandler charge = player.getCapability(CapabilityStandChargeHandler.STAND_CHARGE, null);
                     if (charge != null) {
                         charge.setChargeValue(message.getChargeValue());
-                        charge.setMaxValue(message.max);
-                        charge.setBuffer(message.buffer);
+                        charge.setMaxValue(message.getMaxValue());
+                        charge.setBuffer(message.getBuffer());
                     }
                 });
             }

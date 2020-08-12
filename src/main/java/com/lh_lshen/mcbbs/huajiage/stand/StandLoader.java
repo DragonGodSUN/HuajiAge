@@ -20,7 +20,7 @@ public class StandLoader {
 	public static final StandHierophantGreen HIEROPHANT_GREEN = new StandHierophantGreen("hierophant_green",1.0f,5f,200,20f,70000,80,"textures/entity/entity_hierophant_green_default.png",HuajiConstant.StandType.STAND_HIEROPANT_GREEN, true);
 	public static final StandOrgaRequiem ORGA_REQUIEM = new StandOrgaRequiem("orga_requiem",0.04f,0f,650,50f,80000,70,"textures/entity/entity_orga_requiem_default.png",HuajiConstant.StandType.STAND_ORGA_REQUIEM, true);
 	public static final StandKillerQueen KILLER_QUEEN = new StandKillerQueen("killer_queen",0.6f,8f,300,100f,60000,80,"textures/entity/entity_killer_queen_default.png",HuajiConstant.StandType.STAND_KILLER_QUEEN, true);
-	public static final StandMaid MAID = new StandMaid("maid",0.08f,5f,300,5f,25000,15,"textures/entity/entity_star_platinum_default.png",HuajiConstant.StandType.STAND_MAID, true);
+	public static final StandMaid MAID = new StandMaid("maid",0.08f,5f,300,5f,25000,15,30000,"textures/entity/entity_star_platinum_default.png",HuajiConstant.StandType.STAND_MAID, true);
 
 	public StandLoader() {
 		registerStand(THE_WORLD);
@@ -28,15 +28,26 @@ public class StandLoader {
 		registerStand(HIEROPHANT_GREEN);
 		registerStand(ORGA_REQUIEM);
 		registerStand(KILLER_QUEEN);
+		reloadStands();
+	}
+
+	public static void reloadStands(){
+		HuajiAgeAPI.standClear();
+		HuajiAgeAPI.statesClear();
+
+		StandResourceLoader.loadCustomStand();
+
 		if(CommonProxy.ModsLoader.isTouhouMaidLoaded()){
-		registerStand(MAID);
+			registerStand(MAID);
 		}
 		for(StandBase stand:STAND_LIST) {
 			HuajiAgeAPI.registerStand(stand);
+			stand.putInternalStandStates();
 		}
 		for(StandCustomInfo info : StandResourceLoader.CUSTOM_STAND_SERVER.values()){
 			HuajiAgeAPI.registerStand(new StandCustom(info));
 		}
+
 	}
 	
 	private static void registerStand(StandBase stand){

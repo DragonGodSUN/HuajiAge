@@ -17,7 +17,6 @@ import com.lh_lshen.mcbbs.huajiage.network.HuajiAgeNetWorkHandler;
 import com.lh_lshen.mcbbs.huajiage.network.StandNetWorkHandler;
 import com.lh_lshen.mcbbs.huajiage.potion.PotionLoader;
 import com.lh_lshen.mcbbs.huajiage.stand.StandLoader;
-import com.lh_lshen.mcbbs.huajiage.stand.StandResourceLoader;
 import com.lh_lshen.mcbbs.huajiage.tileentity.TileEntityLoader;
 import net.minecraft.util.ResourceLocation;
 import net.minecraft.world.storage.loot.functions.LootFunctionManager;
@@ -37,7 +36,6 @@ public class CommonProxy
 
     public void preInit(FMLPreInitializationEvent event)
     {  	 
-    	 StandResourceLoader.loadCustomStand();
     	 new CreativeTabLoader(event);
     	 new StandLoader();
     	 new ItemLoader(event);
@@ -74,7 +72,6 @@ public class CommonProxy
     public void postInit(FMLPostInitializationEvent event)
     {
 
-        
     }
 //    public World getClientWorld() {
 //        return null;

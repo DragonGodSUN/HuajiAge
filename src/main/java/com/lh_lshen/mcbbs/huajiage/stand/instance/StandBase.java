@@ -1,5 +1,7 @@
 package com.lh_lshen.mcbbs.huajiage.stand.instance;
 
+import com.google.common.collect.Lists;
+import com.google.common.collect.Maps;
 import com.lh_lshen.mcbbs.huajiage.api.HuajiAgeAPI;
 import com.lh_lshen.mcbbs.huajiage.api.IStand;
 import com.lh_lshen.mcbbs.huajiage.api.IStandState;
@@ -24,14 +26,16 @@ public class StandBase implements IStand {
 	protected int charge;
 	protected float distance;
 	protected int cost;
+	protected int maxMP;
 	protected String texPath;
 	protected String localName;
 	protected List<String> states = new ArrayList<>();
+	protected Map<String,StandStateBase> statesMap = Maps.newHashMap();
 	protected boolean displayHand;
 	public StandBase() {
 //		loadStates();
 	}
-	public StandBase(String name ,float speed ,float damage ,int duration ,float distance ,int cost,int charge,
+	public StandBase(String name ,float speed ,float damage ,int duration ,float distance ,int cost ,int charge,
 			String texPath,String localName, boolean displayHand) {
 			this.name=name;
 			this.speed=speed;
@@ -43,6 +47,23 @@ public class StandBase implements IStand {
 			this.texPath = texPath;
 			this.localName = localName;
 			this.displayHand = displayHand;
+			this.maxMP = this.charge*1200;
+//			loadStates();
+	}
+
+	public StandBase(String name ,float speed ,float damage ,int duration ,float distance ,int cost ,int charge,
+					 int maxMP, String texPath,String localName, boolean displayHand) {
+		this.name=name;
+		this.speed=speed;
+		this.damage=damage;
+		this.duration=duration;
+		this.distance=distance;
+		this.cost=cost;
+		this.charge=charge;
+		this.maxMP = maxMP;
+		this.texPath = texPath;
+		this.localName = localName;
+		this.displayHand = displayHand;
 //			loadStates();
 	}
 
@@ -60,21 +81,6 @@ public class StandBase implements IStand {
 //		System.out.println(s.chaeckState("punch"));
 //		System.out.println(s.chaeckState("p"));
 //	}
-	public StandBase(String name ,float speed ,float damage ,int duration ,float distance ,int cost,int charge,
-					 String texPath,String localName, boolean displayHand, List<String> extra_states) {
-		this.name=name;
-		this.speed=speed;
-		this.damage=damage;
-		this.duration=duration;
-		this.distance=distance;
-		this.cost=cost;
-		this.charge=charge;
-		this.texPath = texPath;
-		this.localName = localName;
-		this.displayHand = displayHand;
-//		loadStates();
-		addStates(extra_states);
-	}
 	public float getSpeed() {
 		return speed;
 	}
@@ -99,6 +105,9 @@ public class StandBase implements IStand {
 		return charge;
 	}
 
+	public int getMaxMP() {
+		return maxMP;
+	}
 
 	public String getName() {
 		return name;
@@ -120,6 +129,10 @@ public class StandBase implements IStand {
 		return StandResLoader.getStand(name)!=null?StandResLoader.getStand(name):StandResLoader.THE_WORLD_RES;
 	}
 
+	public Map<String, StandStateBase> getStatesMap() {
+		return statesMap;
+	}
+
 	public List<String> getStates() {
 		return states;
 	}
@@ -135,14 +148,27 @@ public class StandBase implements IStand {
 		this.states.addAll(states);
 	}
 
+	public void addStates(Map<String,StandStateBase> states) {
+		this.states.addAll(states.keySet());
+		this.statesMap.putAll(states);
+	}
+
 	public void addState(String state , StandStateBase state_base) {
 		this.states.add(state);
+		this.statesMap.put(state,state_base);
 		HuajiAgeAPI.registerStandState(state_base);
 
 	}
 
 	public void initState(StandStateBase state_base){
 		addState(CapabilityExposedData.States.DEFAULT.getName(),state_base);
+	}
+
+	public void putInternalStandStates(){
+		for(String key : statesMap.keySet()){
+			StandStateBase stateBase = statesMap.get(key);
+			HuajiAgeAPI.registerStandState(stateBase);
+		}
 	}
 
 	public boolean chaeckState(String state) {

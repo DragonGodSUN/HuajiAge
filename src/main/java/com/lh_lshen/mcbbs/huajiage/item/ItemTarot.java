@@ -68,7 +68,9 @@ public class ItemTarot extends Item {
 					data.setStand(DEFAULT_STAND_ID);
 					data.setStage(0);
 					data.setModel(DEFAULT_STAND_ID);
-
+					if(StandLoader.getStand(data.getStand())!=null){
+						StandUtil.setChargeMax(playerIn,StandLoader.getStand(data.getStand()).getMaxMP());
+					}
 					if(worldIn.isRemote) {
 					playerIn.playSound(SoundEvents.ITEM_BOTTLE_FILL_DRAGONBREATH, 1f, 1f);
 					playerIn.sendMessage(new TextComponentString(I18n.format(StandUtil.getLocalName(stand))+I18n.format("message.huajiage.tarot.stand.store")));

@@ -4,6 +4,7 @@ import com.google.common.collect.Lists;
 import com.lh_lshen.mcbbs.huajiage.capability.CapabilityStandChargeHandler;
 import com.lh_lshen.mcbbs.huajiage.capability.StandChargeHandler;
 import com.lh_lshen.mcbbs.huajiage.config.ConfigHuaji;
+import com.lh_lshen.mcbbs.huajiage.entity.EntityEmeraldBullet;
 import com.lh_lshen.mcbbs.huajiage.init.HuajiConstant;
 import com.lh_lshen.mcbbs.huajiage.potion.PotionLoader;
 import com.lh_lshen.mcbbs.huajiage.util.HAMathHelper;
@@ -17,11 +18,15 @@ import net.minecraft.entity.item.EntityXPOrb;
 import net.minecraft.entity.player.EntityPlayer;
 import net.minecraft.init.Blocks;
 import net.minecraft.init.MobEffects;
+import net.minecraft.potion.Potion;
 import net.minecraft.potion.PotionEffect;
 import net.minecraft.util.DamageSource;
 import net.minecraft.util.EntityDamageSource;
+import net.minecraft.util.ResourceLocation;
 import net.minecraft.util.math.Vec3d;
+import net.minecraftforge.fml.common.registry.ForgeRegistries;
 
+import java.util.Arrays;
 import java.util.List;
 
 public class StandPowerHelper {
@@ -97,6 +102,18 @@ public class StandPowerHelper {
         }
     }
 
+    public static void potionEffectAdd(EntityLivingBase user,PotionEffect... potions){
+        potionEffect(user, Arrays.asList(potions));
+    }
+
+    public static PotionEffect newPotion(String type,int duration,int level){
+        Potion potion = ForgeRegistries.POTIONS.getValue(new ResourceLocation(type));
+        if(potion!=null){
+            return new PotionEffect(potion,duration, Math.max(level-1,0));
+        }
+        return null;
+    }
+
     public static void potionDefaultOutOfTime(EntityLivingBase user){
         List<PotionEffect> potions = Lists.newArrayList();
         potions.add(new PotionEffect(PotionLoader.potionStand , 5*20  ));
@@ -114,6 +131,13 @@ public class StandPowerHelper {
         }
     }
 
+    public static  void shootProjectile(EntityLivingBase user, Entity projectile, float x, float y, float z, float motionX, float motionY, float motionZ, float speed){
+        int ticks = (int) (5/speed);
+        Vec3d pos = new Vec3d(x,y,z);
+        Vec3d vector = new Vec3d(motionX,motionY,motionZ);
+        shootProjectile(user,projectile,pos,vector,ticks);
+    }
+
     public static void shoot(EntityLivingBase user, Entity projectile, Vec3d position, Vec3d vector){
         projectile.setPosition(position.x,position.y,position.z);
         projectile.motionX = vector.x;
@@ -123,6 +147,36 @@ public class StandPowerHelper {
             user.world.spawnEntity(projectile);
         }
 
+    }
+
+    public static void shootEmerald(EntityLivingBase user, float x, float y, float z, float motionX, float motionY, float motionZ, float speed){
+        EntityEmeraldBullet emeraldBullet = new EntityEmeraldBullet(user.world,user);
+        shootProjectile(user,emeraldBullet,x,y,z,motionX,motionY,motionZ,speed);
+    }
+
+    public static void setTimeStop(EntityLivingBase user, int ticks, float range){
+        TimeStopHelper.setTimeStop(user,ticks);
+        TimeStopHelper.setEntityTimeStopRange(user,range);
+    }
+
+    public static List<Entity> getListEntity(EntityLivingBase user, float distance, Entity entity){
+        List<Entity> list = Lists.newArrayList();
+        List<Entity> entities = user.world.getEntitiesWithinAABB(entity.getClass(),user.getEntityBoundingBox().grow(distance));
+        if(entities!=null && !entities.isEmpty()){
+        entities.remove(user);
+        list.addAll(entities);
+        }
+        return list;
+    }
+
+    public static List<Entity> getListEntity(EntityLivingBase user, float distance){
+        List<Entity> list = Lists.newArrayList();
+        List<Entity> entities = user.world.getEntitiesWithinAABB(Entity.class,user.getEntityBoundingBox().grow(distance));
+        if(entities!=null && !entities.isEmpty()){
+            entities.remove(user);
+            list.addAll(entities);
+        }
+        return list;
     }
 
 }

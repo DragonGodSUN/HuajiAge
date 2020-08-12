@@ -1,10 +1,10 @@
 package com.lh_lshen.mcbbs.huajiage.api;
 //A test structure leaned from @Tartaric_Acid and Sonwnee, follow the MIT License
 //Learn More : https://github.com/TartaricAcid/TouhouLittleMaid
-import java.util.List;
-
 import com.google.common.collect.Lists;
 import com.lh_lshen.mcbbs.huajiage.api.HuajiAgeAPI.IHuajiAgeAPI;
+
+import java.util.List;
 
 public class HuajiAgeAPIImpl implements IHuajiAgeAPI{
 	
@@ -25,7 +25,6 @@ public class HuajiAgeAPIImpl implements IHuajiAgeAPI{
 	@Override
 	public void registerStand(IStand stand) {
 		standList.add(stand);
-		
 	}
 
 	@Override
@@ -44,4 +43,13 @@ public class HuajiAgeAPIImpl implements IHuajiAgeAPI{
 		return standStateList;
 	}
 
+	@Override
+	public void standClear() {
+		standList.clear();
+	}
+
+	@Override
+	public void statesClear() {
+		standStateList.clear();
+	}
 }

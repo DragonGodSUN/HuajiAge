@@ -51,10 +51,12 @@ public class MessageStandUp implements IMessage {
 				data.setState(CapabilityExposedData.States.DEFAULT.getName());
 				if(!data.isTriggered()) {
 					if(charge.canBeCost(stand.getCost()/10)) {
+						charge.setMaxValue(stand.getMaxMP());
 						charge.cost(stand.getCost()/10);
 						player.addPotionEffect(new PotionEffect(PotionLoader.potionStand,stand.getDuration()));
 						data.setTrigger(true);
 						data.setHandDisplay(stand.isHandDisplay());
+						player.sendMessage(new TextComponentTranslation(stand.getLocalName()));
 //					    ServerUtil.sendPacketToNearbyPlayersStand(player, new SyncExposedStandDataMessage(standType, true, player.getName()));
 						if(message.isMoving) {
 								EntityStandBase standBase = new EntityStandBase(player.world, player, StandLoader.getStand(data.getStand()));
@@ -68,6 +70,7 @@ public class MessageStandUp implements IMessage {
 							player.sendMessage(new TextComponentTranslation("message.huajiage.stand_stand_up.cost_lack"));
 						}
 					}else {
+						charge.setMaxValue(stand.getMaxMP());
 						player.removePotionEffect(PotionLoader.potionStand);
 						data.setTrigger(false);
 					}

@@ -122,7 +122,8 @@ public class EventStandKey {
 				StandNetWorkHandler.sendToServer(msg);
 				if(flag){
 					StandNetWorkHandler.sendToServer(new MessageDoStandCapabilityServer());
-					player.sendMessage(new TextComponentTranslation("stand.huajiage.skill"+"."+stand.getName()+"."+"start"));
+					player.sendMessage(new TextComponentTranslation("stand.huajiage.skill"+"."+
+							((stand.getName().contains(":"))?stand.getName().replace(":","."):stand.getName())+"."+"start"));
 					}
 				
 				}

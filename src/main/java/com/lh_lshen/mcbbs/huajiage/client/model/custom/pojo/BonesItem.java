@@ -3,13 +3,14 @@ package com.lh_lshen.mcbbs.huajiage.client.model.custom.pojo;
 import com.google.gson.annotations.SerializedName;
 
 import javax.annotation.Nullable;
+import java.io.Serializable;
 import java.util.List;
 
 /**
  * 此类代码基于酒石酸团队“车万女仆”模组代码，依据MIT协议进行编写
  * 更多内容请转至：https://github.com/TartaricAcid/TouhouLittleMaid
  */
-public class BonesItem {
+public class BonesItem implements Serializable {
     @SerializedName("cubes")
     private List<CubesItem> cubes;
 

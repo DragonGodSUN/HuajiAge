@@ -3,6 +3,7 @@ package com.lh_lshen.mcbbs.huajiage;
 
 import com.lh_lshen.mcbbs.huajiage.api.HuajiAgeAPI;
 import com.lh_lshen.mcbbs.huajiage.api.HuajiAgeAPIImpl;
+import com.lh_lshen.mcbbs.huajiage.command.HACommands;
 import com.lh_lshen.mcbbs.huajiage.common.CommonProxy;
 import net.minecraftforge.fml.common.Mod;
 import net.minecraftforge.fml.common.Mod.EventHandler;
@@ -11,6 +12,7 @@ import net.minecraftforge.fml.common.SidedProxy;
 import net.minecraftforge.fml.common.event.FMLInitializationEvent;
 import net.minecraftforge.fml.common.event.FMLPostInitializationEvent;
 import net.minecraftforge.fml.common.event.FMLPreInitializationEvent;
+import net.minecraftforge.fml.common.event.FMLServerStartingEvent;
 import org.apache.logging.log4j.LogManager;
 import org.apache.logging.log4j.Logger;
 
@@ -49,5 +51,10 @@ public class HuajiAge
     public void postInit(FMLPostInitializationEvent event)
     {
         proxy.postInit(event);
+    }
+
+    @EventHandler
+    public void onServerStarting(FMLServerStartingEvent event) {
+        HACommands.onServerStarting(event);
     }
 }

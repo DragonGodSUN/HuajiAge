@@ -1,6 +1,6 @@
 {
     "parent": "item/generated",
     "textures": {
-        "layer0": "huajiage:items/disc_hierophant_green"
+        "layer0": "huajiage:items/disc/disc_orga_requiem"
     }
 }

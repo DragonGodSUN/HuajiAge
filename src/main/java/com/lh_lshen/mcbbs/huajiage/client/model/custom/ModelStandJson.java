@@ -23,9 +23,7 @@ import net.minecraftforge.fml.relauncher.SideOnly;
 
 import javax.annotation.Nullable;
 import javax.script.Invocable;
-import java.util.HashMap;
-import java.util.LinkedList;
-import java.util.List;
+import java.util.*;
 
 /**
  * 此类代码基于酒石酸团队“车万女仆”模组代码，依据MIT协议进行编写
@@ -34,6 +32,7 @@ import java.util.List;
 @SideOnly(Side.CLIENT)
 public class ModelStandJson extends ModelStandBase {
     public final AxisAlignedBB renderBoundingBox;
+    public CustomModelPOJO pojo;
     private EntityStandWrapper entityStandWrapper;
     private List<Float> positions = Lists.newArrayList();
     private List<Float> rotations = Lists.newArrayList();
@@ -50,10 +49,15 @@ public class ModelStandJson extends ModelStandBase {
      * 哪些模型需要渲染。加载进父骨骼的子骨骼是不需要渲染的
      */
     private List<ModelRenderer> shouldRender = new LinkedList<>();
+    /**
+     * 需要再第一人称视角渲染的骨骼
+     */
+    private List<ModelRenderer> shouldRenderFirst = new LinkedList<>();
 
     public ModelStandJson(CustomModelPOJO pojo) {
         initTranslate(0,0,0);
         initRotations(0,0,0,0);
+        this.pojo = pojo;
         this.entityStandWrapper = new EntityStandWrapper();
 
         // 材质的长度、宽度
@@ -105,9 +109,14 @@ public class ModelStandJson extends ModelStandBase {
             } else {
                 // 没有父骨骼的模型才进行渲染
                 //viewFirst模型不渲染
-                if(!name.equals("viewFirst"))
-                {
+                if(name.equals("firstOnly")){
+                    shouldRenderFirst.add(model);
+                }else {
                     shouldRender.add(model);
+                }
+                if(name.equals("viewFirst"))
+                {
+                    shouldRenderFirst.add(model);
                 }
             }
 
@@ -131,15 +140,20 @@ public class ModelStandJson extends ModelStandBase {
     }
 
     public ModelStandJson(ModelStandJson json){
-        initTranslate(0,0,0);
-        initRotations(0,0,0,0);
+        this(json.pojo);
+        this.positions = json.positions;
+        this.rotations = json.rotations;
         this.setModelID(json.getModelID());
-
-        textureWidth = json.textureWidth;
-        textureHeight = json.textureHeight;
-
-        this.renderBoundingBox =json.renderBoundingBox;
-        this.entityStandWrapper = json.createEntityStandWrapper();
+//        initTranslate(0,0,0);
+//        initRotations(0,0,0,0);
+//        this.setModelID(json.getModelID());
+//
+//        textureWidth = json.textureWidth;
+//        textureHeight = json.textureHeight;
+//
+//        this.renderBoundingBox = new AxisAlignedBB(json.renderBoundingBox.minX,json.renderBoundingBox.minY,json.renderBoundingBox.minZ,
+//                json.renderBoundingBox.maxX,json.renderBoundingBox.maxY,json.renderBoundingBox.maxZ);
+//        this.entityStandWrapper = json.createEntityStandWrapper();
 //        try {
 //            Field field1 = EntityModelJson.class.getDeclaredField("modelMap");
 //            field1.setAccessible(true);
@@ -160,11 +174,39 @@ public class ModelStandJson extends ModelStandBase {
 //        } catch (Exception e) {
 //            e.printStackTrace();
 //        }
-        this.positions = json.getPositions();
-        this.rotations = json.getRotations();
-        this.modelMap = json.getModelMap();
-        this.indexBones = json.getIndexBones();
-        this.shouldRender = json.getShouldRender();
+//        this.positions = new ArrayList<>(Arrays.asList(new Float[json.positions.size()]));
+//        Collections.copy(positions,json.positions);
+//
+//        this.rotations = new ArrayList<>(Arrays.asList(new Float[json.rotations.size()]));
+//        Collections.copy(rotations,json.rotations);
+//
+//        for(String key : json.modelMap.keySet()){
+//            ModelRendererWrapper modelRenderer = json.modelMap.get(key);
+//            ModelRenderer renderJson = modelRenderer.getModelRenderer();
+//            ModelRenderer render = new ModelRenderer(this);
+//            render.cubeList = renderJson.cubeList;
+//            render.rotateAngleX = renderJson.rotateAngleX;
+//            render.rotateAngleY = renderJson.rotateAngleY;
+//            render.rotateAngleZ = renderJson.rotateAngleZ;
+//            render.rotationPointX = renderJson.rotationPointX;
+//            render.rotationPointY = renderJson.rotationPointY;
+//            render.rotationPointZ = renderJson.rotationPointZ;
+//            render.offsetX = renderJson.offsetX;
+//            render.offsetY = renderJson.offsetY;
+//            render.offsetY = renderJson.offsetZ;
+//            render.mirror = renderJson.mirror;
+//            this.modelMap.put(key,new ModelRendererWrapper(render));
+//            if(key.equals("firstOnly")){
+//                shouldRenderFirst.add(render);
+//            }else {
+//                shouldRender.add(render);
+//            }
+//            if(key.equals("viewFirst"))
+//            {
+//                shouldRenderFirst.add(render);
+//            }
+//        }
+//        this.indexBones = json.indexBones;
 
     }
 
@@ -318,13 +360,10 @@ public class ModelStandJson extends ModelStandBase {
     //第一人称手部模型的渲染
     @Override
     public void renderFirst(float x, float y, float z, float scale, float alpha) {
-        ModelRendererWrapper wrapper = modelMap.get("viewFirst");
-        if(wrapper!=null){
-           GlStateManager.color(1,1,1,scale);
-           GlStateManager.translate(x,y,z);
-           ModelRenderer view = wrapper.getModelRenderer();
-           view.render(scale);
-           GlStateManager.color(1,1,1,1);
+       GlStateManager.translate(x,y,z);
+
+        for (ModelRenderer model : shouldRenderFirst){
+            model.render(scale);
         }
     }
 

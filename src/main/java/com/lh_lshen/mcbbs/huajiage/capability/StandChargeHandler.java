@@ -63,8 +63,10 @@ public class StandChargeHandler  {
 			}else {
 				setChargeValue(max);
 			}
-		markDirty();
+		}else {
+			setChargeValue(max);
 		}
+		markDirty();
 	}
 	    
 	public void clear() {

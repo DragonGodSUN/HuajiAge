@@ -23,9 +23,10 @@ public class CapabilityStandChargeHandler implements ICapabilitySerializable<NBT
     public static class Storage implements Capability.IStorage<StandChargeHandler>{
         @Override
         public NBTBase writeNBT(Capability<StandChargeHandler> capability, StandChargeHandler instance, EnumFacing side) {
-            int value = instance.getChargeValue();
             NBTTagCompound tag = new NBTTagCompound();
-            tag.setInteger("charge", value);
+            tag.setInteger("charge", instance.getChargeValue());
+            tag.setInteger("max",instance.getMaxValue());
+            tag.setInteger("buffer",instance.getBuffer());
             return tag;
         }
 
@@ -33,6 +34,8 @@ public class CapabilityStandChargeHandler implements ICapabilitySerializable<NBT
         public void readNBT(Capability<StandChargeHandler> capability, StandChargeHandler instance, EnumFacing side, NBTBase nbt) {
             if (nbt instanceof NBTTagCompound) {
                 instance.setChargeValue((((NBTTagCompound) nbt).getInteger("charge")));
+                instance.setChargeValue((((NBTTagCompound) nbt).getInteger("max")));
+                instance.setChargeValue((((NBTTagCompound) nbt).getInteger("buffer")));
             }
         }
     }

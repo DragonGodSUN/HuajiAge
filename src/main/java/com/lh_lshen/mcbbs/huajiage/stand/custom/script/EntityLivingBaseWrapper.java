@@ -35,4 +35,8 @@ public class EntityLivingBaseWrapper {
         Vec3d pos = entity.getPositionVector();
         return (new Vec3d(x, y, z)).rotateYaw(yaw).add(pos.x, pos.y + entity.getEyeHeight() + yOffset, pos.z);
     }
+
+    public Vec3d getLookVec(){
+       return this.livingBase.getLookVec();
+    }
 }

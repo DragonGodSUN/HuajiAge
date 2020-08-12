@@ -137,68 +137,77 @@ public class EventTimeStop {
 //	  if(eater.getEntityData().getInteger(HuajiConstant.Tags.THE_WORLD)<=0) {
 //		  return;
 //	  }
-    	if(eater.getEntityData().getInteger(HuajiConstant.Tags.THE_WORLD)>0) {
-    		int t=eater.getEntityData().getInteger(HuajiConstant.Tags.THE_WORLD);
-    		eater.getEntityData().setInteger(HuajiConstant.Tags.THE_WORLD, t-1);
-    		int range=(int) eater.getEntityData().getDouble(HuajiConstant.Tags.TIME_STOP_RANGE);
-    		List<Entity> arrows=range>0?TimeStopHelper.getTagetsInRange(eater, range):TimeStopHelper.getTagetsInRange(eater, 100);
-    		if(!arrows.isEmpty()) {
-    			for(Entity i:arrows) {
-    				
-    				if(i instanceof IProjectile || i instanceof EntityFireball || i instanceof EntityTNTPrimed || i instanceof EntityShulkerBullet) {
-    					if(i.getEntityData().getInteger(HuajiConstant.Tags.TIME_STOP)==0) {
-    					setMotionTag(i);
-    					i.getEntityData().setInteger(HuajiConstant.Tags.TIME_STOP,t);
-    					}
-    					
-    					if(t>1) {
-    					i.motionX=0;
-    					i.motionY=0;
-    					i.motionZ=0;
-    					if(!(i instanceof IProjectile)) {
-	    						i.updateBlocked =true;
-	    					}
-    					}
-    					if(t==1) {
-    						triggerMotion(i);
-						if(!(i instanceof IProjectile)) {
-    							i.updateBlocked =false;
-    						}
-    					}
-    				}
-    				
-    				if(i instanceof EntityItem) {
-    					if(i.getEntityData().getInteger(HuajiConstant.Tags.TIME_STOP)==0) {
+		 if (eater.getEntityData().getInteger(HuajiConstant.Tags.THE_WORLD) > 0) {
+			 int t = eater.getEntityData().getInteger(HuajiConstant.Tags.THE_WORLD);
+			 eater.getEntityData().setInteger(HuajiConstant.Tags.THE_WORLD, t - 1);
+			 int range = (int) eater.getEntityData().getDouble(HuajiConstant.Tags.TIME_STOP_RANGE);
+			 List<Entity> arrows = range > 0 ? TimeStopHelper.getTagetsInRange(eater, range) : TimeStopHelper.getTagetsInRange(eater, 100);
+			 if (!arrows.isEmpty()) {
+				 for (Entity i : arrows) {
 
-    						setMotionTag(i);
-    						i.getEntityData().setInteger(HuajiConstant.Tags.TIME_STOP,t);
-    					}
-    					if(t>1) {
-        					i.motionX=0;
-        					i.motionY=0;
-        					i.motionZ=0;
-        					i.rotationYaw = 0;
-        					i.setNoGravity(true);}
-        					if(t==1) {
-        						triggerMotion(i);
-        						(( EntityItem)i).rotationYaw=0;
-            					i.setNoGravity(false);
-        					}
-    				}
-    				
-	    				if(i instanceof EntityLivingBase) {
-	    					if(i!=eater&&i.getEntityData().getInteger(HuajiConstant.Tags.TIME_STOP)==0) {
-	    					i.getEntityData().setInteger(HuajiConstant.Tags.TIME_STOP, t);
-	    					if(i instanceof EntityPlayer) {
-	    					setPosTag(i);
-						    							}
-						    					}
-					    				}
-				    			}
-			    		}
-	    		}
-     	}
-  
+					 if (i instanceof IProjectile || i instanceof EntityFireball || i instanceof EntityTNTPrimed || i instanceof EntityShulkerBullet) {
+						 if (i.getEntityData().getInteger(HuajiConstant.Tags.TIME_STOP) == 0) {
+							 setMotionTag(i);
+							 i.getEntityData().setInteger(HuajiConstant.Tags.TIME_STOP, t);
+						 }
+
+						 if (t > 1) {
+							 i.motionX = 0;
+							 i.motionY = 0;
+							 i.motionZ = 0;
+							 if (!(i instanceof IProjectile)) {
+								 i.updateBlocked = true;
+							 }
+						 }
+						 if (t == 1) {
+							 triggerMotion(i);
+							 if (!(i instanceof IProjectile)) {
+								 i.updateBlocked = false;
+							 }
+						 }
+					 }
+
+					 if (i instanceof EntityItem) {
+						 if (i.getEntityData().getInteger(HuajiConstant.Tags.TIME_STOP) == 0) {
+
+							 setMotionTag(i);
+							 i.getEntityData().setInteger(HuajiConstant.Tags.TIME_STOP, t);
+						 }
+						 if (t > 1) {
+							 i.motionX = 0;
+							 i.motionY = 0;
+							 i.motionZ = 0;
+							 i.rotationYaw = 0;
+							 i.setNoGravity(true);
+						 }
+						 if (t == 1) {
+							 triggerMotion(i);
+							 ((EntityItem) i).rotationYaw = 0;
+							 i.setNoGravity(false);
+						 }
+					 }
+
+					 if (i instanceof EntityLivingBase) {
+						 if (i != eater && i.getEntityData().getInteger(HuajiConstant.Tags.TIME_STOP) == 0) {
+							 i.getEntityData().setInteger(HuajiConstant.Tags.TIME_STOP, t);
+							 if (i instanceof EntityPlayer) {
+								 setPosTag(i);
+							 }
+						 }
+					 }
+
+				 }
+			 }
+		 }
+		 if (eater.getEntityData().getInteger(HuajiConstant.Tags.THE_WORLD) == 0) {
+			 int range = (int) eater.getEntityData().getDouble(HuajiConstant.Tags.TIME_STOP_RANGE);
+		 	if(range>50){
+				TimeStopHelper.setEntityTimeStopRange(eater,50);
+			}
+		 }
+	 }
+
+
   
   
   	private static void setPosTag(Entity entity) {

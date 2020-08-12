@@ -26,6 +26,7 @@ public class StandCustom extends StandBase {
         this.distance = info.getAttributes().get(3);
         this.cost = (int) info.getAttributes().get(4).floatValue();
         this.charge = (int) info.getAttributes().get(5).floatValue();
+        this.maxMP = (int) info.getAttributes().get(6).floatValue();
 
         this.localName = info.getName();
 
@@ -43,6 +44,10 @@ public class StandCustom extends StandBase {
     }
 
     public StandCustom() {
+    }
+
+    public StandCustomInfo getInfo() {
+        return info;
     }
 
     @Override

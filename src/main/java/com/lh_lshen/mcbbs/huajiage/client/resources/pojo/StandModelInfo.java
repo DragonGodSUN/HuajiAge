@@ -4,10 +4,10 @@ import com.github.tartaricacid.touhoulittlemaid.TouhouLittleMaid;
 import com.google.common.collect.Lists;
 import com.google.gson.JsonSyntaxException;
 import com.google.gson.annotations.SerializedName;
+import com.lh_lshen.mcbbs.huajiage.HuajiAge;
 import com.lh_lshen.mcbbs.huajiage.common.CommonProxy;
 import net.minecraft.util.ResourceLocation;
 import net.minecraft.util.math.MathHelper;
-import org.apache.commons.lang3.math.NumberUtils;
 
 import java.util.Collections;
 import java.util.List;
@@ -36,10 +36,10 @@ public class StandModelInfo implements IModelInfo {
     private String state;
 
     @SerializedName("transfer")
-    private List<String> transfer;
+    private List<Number> transfer;
 
     @SerializedName("rotation")
-    private List<String> rotation;
+    private List<Number> rotation;
 
     @SerializedName("render_entity_scale")
     private float renderEntityScale = 1.0f;
@@ -69,8 +69,8 @@ public class StandModelInfo implements IModelInfo {
     public List<Float> getTransfer() {
         if(transfer!=null && !transfer.isEmpty()){
             List<Float> fl = Lists.newArrayList();
-            for(String s : transfer){
-            float f = NumberUtils.createFloat(s);
+            for(Number s : transfer){
+            float f = s.floatValue();
             fl.add(f);
             }
             return fl;
@@ -82,8 +82,8 @@ public class StandModelInfo implements IModelInfo {
     public List<Float> getRotation() {
         if(rotation!=null && !rotation.isEmpty()){
             List<Float> fl = Lists.newArrayList();
-            for(String s : rotation){
-            float f = NumberUtils.createFloat(s);
+            for(Number s : rotation){
+            float f = s.floatValue();
             fl.add(f);
             }
             return fl;
@@ -169,13 +169,16 @@ public class StandModelInfo implements IModelInfo {
                         new ResourceLocation(TouhouLittleMaid.MOD_ID, "animation/maid/default/sit/skirt_rotation.js").toString(),
                         new ResourceLocation(TouhouLittleMaid.MOD_ID, "animation/base/float/default.js").toString()
                 );
+            }else {
+                animation = Lists.newArrayList(
+                        new ResourceLocation(HuajiAge.MODID, "animation/head.js").toString());
             }
         }
         if (transfer == null || transfer.isEmpty()) {
-            transfer = Lists.newArrayList("0f","-1.0f","0.75f");//x,y,z
+            transfer = Lists.newArrayList(0f,-1.0f,0.75f);//x,y,z
         }
         if (rotation == null || rotation.isEmpty()) {
-            rotation = Lists.newArrayList("0f","0f","0f","0f");//degree,y,p,w
+            rotation = Lists.newArrayList(0f,0f,0f,0f);//degree,y,p,w
         }
         renderEntityScale = MathHelper.clamp(renderEntityScale, 0.7f, 1.3f);
         return this;

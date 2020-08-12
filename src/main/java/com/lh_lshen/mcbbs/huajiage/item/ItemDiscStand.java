@@ -161,6 +161,9 @@ public class ItemDiscStand extends Item {
 					data.setModel(modelTag);
 					data.setTrigger(false);
 					playerIn.getHeldItem(handIn).shrink(1);
+					if(StandLoader.getStand(data.getStand())!=null){
+						StandUtil.setChargeMax(playerIn,StandLoader.getStand(data.getStand()).getMaxMP());
+					}
 				if(!type.equals(DEFAULT_STAND_ID)) {
 					if(!worldIn.isRemote) {
 					playerIn.dropItem(getItemData(new ItemStack(ItemLoader.disc),type,stage,model),true);
