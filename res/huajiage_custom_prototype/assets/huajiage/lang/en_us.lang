@@ -1,0 +1,11 @@
+stand.huajiage.prototype.name=Prototype
+stand.huajiage.skill.huajiage.prototype.start=My Skill
+maid_pack.huajiage.name=example_maid
+stand.huajiage.prototype.default=Default
+stand.huajiage.prototype.idle=Idle
+stand.huajiage.prototype.maidx=Custom
+maid_pack.huajiage.desc=Example Maid
+model.huajiage.maid_01.name=01
+model.huajiage.maid_01.desc=example
+model.huajiage.maid_x.name=X
+model.huajiage.maid_x.desc=Maid X

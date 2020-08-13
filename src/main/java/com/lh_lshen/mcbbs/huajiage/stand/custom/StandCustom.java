@@ -31,9 +31,10 @@ public class StandCustom extends StandBase {
         this.localName = info.getName();
 
         Map<String, StandStateInfo> CUSTOM_STATE_SERVER = StandResourceLoader.CUSTOM_STATE_SERVER;
-        for(String key : CUSTOM_STATE_SERVER.keySet()){
+        for(String state : info.getStates()){
+            String key = info.getStand()+"_"+state;
             StandStateInfo info_state = CUSTOM_STATE_SERVER.get(key);
-            if(key.equals(info.getStand()+"_"+info_state.getStateId())){
+            if(info_state!=null&&key.equals(info.getStand()+"_"+info_state.getStateId())){
                 this.addState(info_state.getStateId(),new StandStateCustom(info_state));
             }
         }

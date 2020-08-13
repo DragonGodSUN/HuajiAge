@@ -4,6 +4,8 @@ import com.lh_lshen.mcbbs.huajiage.capability.IExposedData;
 import com.lh_lshen.mcbbs.huajiage.crativetab.CreativeTabLoader;
 import com.lh_lshen.mcbbs.huajiage.stand.StandLoader;
 import com.lh_lshen.mcbbs.huajiage.stand.StandUtil;
+import com.lh_lshen.mcbbs.huajiage.stand.custom.StandCustom;
+import com.lh_lshen.mcbbs.huajiage.stand.custom.StandCustomInfo;
 import com.lh_lshen.mcbbs.huajiage.util.NBTHelper;
 import net.minecraft.client.resources.I18n;
 import net.minecraft.client.util.ITooltipFlag;
@@ -41,9 +43,13 @@ public class ItemTarot extends Item {
 		String stand=NBTHelper.getTagCompoundSafe(stack).getString(NBT.STAND_NAME.getName());
 		int stage=NBTHelper.getTagCompoundSafe(stack).getInteger(NBT.STAND_STAGE.getName());
 		String model =NBTHelper.getTagCompoundSafe(stack).getString(NBT.STAND_MODEL.getName());
-		tooltip.add(I18n.format("item.tarot:tooltips.1") +I18n.format(StandUtil.getLocalName(stand)) );
-		tooltip.add(I18n.format("item.tarot:tooltips.2") +stage );
-		tooltip.add(I18n.format("item.tarot:tooltips.3") +( model.equals("")?I18n.format("stand.huajiage.default"):model) );
+		tooltip.add(I18n.format("item.huajiage.tarot.tooltip.1") +I18n.format(StandUtil.getLocalName(stand)) );
+		tooltip.add(I18n.format("item.huajiage.tarot.tooltip.2") +stage );
+		tooltip.add(I18n.format("item.huajiage.tarot.tooltip.3") +( model.equals("")?I18n.format("stand.huajiage.default"):model) );
+		if(StandLoader.getStand(stand) instanceof StandCustom){
+			StandCustomInfo info = ((StandCustom)StandLoader.getStand(stand)).getInfo();
+			tooltip.add(I18n.format("item.huajiage.tarot.tooltip.author")+info.getAuthor());
+		}
 	}
 	@Override
 	@SideOnly(Side.CLIENT)

@@ -3,6 +3,9 @@ package com.lh_lshen.mcbbs.huajiage.stand.messages;
 import com.lh_lshen.mcbbs.huajiage.capability.IExposedData;
 import com.lh_lshen.mcbbs.huajiage.stand.StandStates;
 import com.lh_lshen.mcbbs.huajiage.stand.StandUtil;
+import com.lh_lshen.mcbbs.huajiage.stand.custom.StandCustom;
+import com.lh_lshen.mcbbs.huajiage.stand.custom.StandStateCustom;
+import com.lh_lshen.mcbbs.huajiage.stand.custom.StandStateInfo;
 import com.lh_lshen.mcbbs.huajiage.stand.instance.StandBase;
 import com.lh_lshen.mcbbs.huajiage.stand.states.StandStateBase;
 import io.netty.buffer.ByteBuf;
@@ -11,7 +14,6 @@ import net.minecraft.entity.player.EntityPlayerMP;
 import net.minecraft.init.SoundEvents;
 import net.minecraft.network.play.server.SPacketSoundEffect;
 import net.minecraft.util.SoundCategory;
-import net.minecraft.util.text.TextComponentString;
 import net.minecraft.util.text.TextComponentTranslation;
 import net.minecraftforge.fml.common.FMLCommonHandler;
 import net.minecraftforge.fml.common.network.simpleimpl.IMessage;
@@ -78,6 +80,13 @@ public class MessageStandModeSwitch implements IMessage {
 //							player.sendMessage(new TextComponentString(stateBase.getStateName()+stateBase.isHandPlay()));
 						}
 						String stand_state_format="stand.state.huajiage"+"."+state_new;
+						if(stand instanceof StandCustom){
+							StandStateBase standState = StandStates.getStandState(stand.getName(),state_new);
+							if(standState instanceof StandStateCustom){
+							StandStateInfo stateInfo = ((StandStateCustom)standState).getStateInfo();
+							stand_state_format = stateInfo.getStateKey();
+							}
+						}
 						TextComponentTranslation state_trans = new TextComponentTranslation(stand_state_format);
 						player.connection.sendPacket(new SPacketSoundEffect(SoundEvents.ENTITY_PLAYER_LEVELUP, SoundCategory.PLAYERS, player.posX, player.posY, player.posZ,0.5f, 1f));
 						player.sendMessage(new TextComponentTranslation("message.huajiage.stand_mode.switch",state_trans.getUnformattedComponentText()));

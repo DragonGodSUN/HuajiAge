@@ -6,6 +6,8 @@ import com.lh_lshen.mcbbs.huajiage.common.CommonProxy;
 import com.lh_lshen.mcbbs.huajiage.crativetab.CreativeTabLoader;
 import com.lh_lshen.mcbbs.huajiage.stand.StandLoader;
 import com.lh_lshen.mcbbs.huajiage.stand.StandUtil;
+import com.lh_lshen.mcbbs.huajiage.stand.custom.StandCustom;
+import com.lh_lshen.mcbbs.huajiage.stand.custom.StandCustomInfo;
 import com.lh_lshen.mcbbs.huajiage.stand.instance.StandBase;
 import com.lh_lshen.mcbbs.huajiage.util.NBTHelper;
 import net.minecraft.client.resources.I18n;
@@ -135,6 +137,11 @@ public class ItemDiscStand extends Item {
 		if (!model.equals(DEFAULT_STAND_ID)) {
 			tooltip.add(I18n.format("item.huajiage.disc.tooltip.3")+model);
 		}
+		if(StandLoader.getStand(stand) instanceof StandCustom){
+			StandCustomInfo info = ((StandCustom)StandLoader.getStand(stand)).getInfo();
+			String author = info.getAuthor();
+			tooltip.add(I18n.format("item.huajiage.disc.tooltip.author")+author);
+			}
 
 	}
 	@SideOnly(Side.CLIENT)

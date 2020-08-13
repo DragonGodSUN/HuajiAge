@@ -110,7 +110,12 @@ public class StandModelInfo implements IModelInfo {
 
     @Override
     public ResourceLocation getModelId() {
-        return new ResourceLocation(modelId+"_"+ state);
+        StringBuilder builder = new StringBuilder();
+        builder.append(modelId);
+        if(!state.contains("%custom")){
+        builder.append("_"+state);
+        }
+        return new ResourceLocation(builder.toString());
     }
 
     @Override
@@ -138,6 +143,7 @@ public class StandModelInfo implements IModelInfo {
         if (state == null) {
             state = "default";
         }
+
         // 如果 model 或 texture 为空，自动生成默认位置的模型
         if (model == null) {
             model = new ResourceLocation(new ResourceLocation(modelId).getNamespace(), "models/entity/" + new ResourceLocation(modelId).getPath() +(state.equals("default")? ".json":("_"+ state) + ".json")).toString();

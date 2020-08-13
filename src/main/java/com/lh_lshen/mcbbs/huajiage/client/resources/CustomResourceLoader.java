@@ -223,7 +223,6 @@ public class CustomResourceLoader {
         MAID_MODEL.getModel(id).ifPresent(json->STAND_MODEL.putModel(id,json));
         MAID_MODEL.getInfo(id).ifPresent(info->STAND_MODEL.putInfo(id,info));
         MAID_MODEL.getAnimation(id).ifPresent(animations->STAND_MODEL.putAnimation(id,animations));
-        System.out.println("===================="+id+"======================");
         }
     }
 

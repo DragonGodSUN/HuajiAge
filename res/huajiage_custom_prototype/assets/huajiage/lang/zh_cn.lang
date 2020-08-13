@@ -1,0 +1,12 @@
+stand.huajiage.prototype.name=自定义替身：原型
+stand.huajiage.skill.huajiage.prototype.start=技能释放
+maid_pack.huajiage.name=example_maid
+stand.huajiage.prototype.default=默认
+stand.huajiage.prototype.idle=闲置
+stand.huajiage.prototype.maidx=自定义
+maid_pack.huajiage.desc=演示用女仆替身
+model.huajiage.maid_01.name=01
+model.huajiage.maid_01.desc=演示用女仆替身
+model.huajiage.maid_x.name=X
+model.huajiage.maid_x.desc=演示用女仆替身X号
+

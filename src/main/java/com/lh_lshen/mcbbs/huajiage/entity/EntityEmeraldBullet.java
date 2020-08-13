@@ -27,6 +27,7 @@ public class EntityEmeraldBullet extends EntityThrowable{
 	private static final String TAG_DAMAGE = "damage";
 	private static final String TAG_STAY = "stay";
 	private static final String TAG_HUGE = "huge";
+	private static final String TAG_TYPE = "type";
 
 	private static final DataParameter<Float> ROTATION = EntityDataManager.createKey(EntityEmeraldBullet.class,
 			DataSerializers.FLOAT);
@@ -42,6 +43,8 @@ public class EntityEmeraldBullet extends EntityThrowable{
 			DataSerializers.FLOAT);
 	private static final DataParameter<Boolean> HUGE = EntityDataManager.createKey(EntityEmeraldBullet.class,
 			DataSerializers.BOOLEAN);
+	private static final DataParameter<String> TYPE = EntityDataManager.createKey(EntityEmeraldBullet.class,
+			DataSerializers.STRING);
 	public EntityEmeraldBullet(World worldIn) {
 		super(worldIn);
 		
@@ -61,6 +64,7 @@ public class EntityEmeraldBullet extends EntityThrowable{
 		dataManager.register(DAMAGE, 5F);
 		dataManager.register(STAY, 0F);
 		dataManager.register(HUGE, false);
+		dataManager.register(TYPE,"emerald");
 	}
 
 	@Override
@@ -74,7 +78,8 @@ public class EntityEmeraldBullet extends EntityThrowable{
 		cmp.setFloat(TAG_DAMAGE, getDamage());
 		cmp.setFloat(TAG_STAY, getStayTime());
 		cmp.setBoolean(TAG_HUGE, isSplashHuge());
-        
+		cmp.setString(TAG_TYPE, getType());
+
 	}
 
 	@Override
@@ -88,6 +93,7 @@ public class EntityEmeraldBullet extends EntityThrowable{
 		setDamage(cmp.getFloat(TAG_DAMAGE));
 		setStayTime(cmp.getFloat(TAG_STAY));
 		setSplashHuge(cmp.getBoolean(TAG_HUGE));
+		setType(cmp.getString(TAG_TYPE));
 	}
 	@Override
 	public void onUpdate() {
@@ -226,6 +232,14 @@ public class EntityEmeraldBullet extends EntityThrowable{
 	
 	public void setSplashHuge(boolean isHuge) {
 		dataManager.set(HUGE, isHuge);
+	}
+
+	public String getType() {
+		return dataManager.get(TYPE);
+	}
+
+	public void setType(String type) {
+		dataManager.set(TYPE, type);
 	}
 
 

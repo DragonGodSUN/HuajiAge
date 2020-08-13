@@ -38,6 +38,9 @@ public class StandCustomInfo {
     @SerializedName("sounds")
     private List<String> sounds;
 
+    // 作者
+    @SerializedName("author")
+    private String author;
 
     public String getStand() {
         return stand;
@@ -73,6 +76,9 @@ public class StandCustomInfo {
         return sounds;
     }
 
+    public String getAuthor() {
+        return author;
+    }
 
     @SuppressWarnings("unchecked")
     public StandCustomInfo decorate() {
@@ -82,7 +88,7 @@ public class StandCustomInfo {
         }
 
         if(name == null){
-            name = "stand"+"."+stand.replace(":",".")+"."+"name";
+            name = "stand"+"."+stand.replace(":",".");
         }
 
         // 如果 state 为空，生成默认状态
@@ -110,6 +116,10 @@ public class StandCustomInfo {
 
         if (sounds == null){
             sounds = Lists.newArrayList();
+        }
+
+        if(author == null){
+            author = "";
         }
 
         return this;

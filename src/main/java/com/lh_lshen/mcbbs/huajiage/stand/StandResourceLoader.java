@@ -234,6 +234,13 @@ public class StandResourceLoader {
 
         if (scriptMaps.containsKey(stateArgs.STATE.getName())) {
             stateId = (String) scriptMaps.get(stateArgs.STATE.getName());
+            // 如果 state 为自定义
+            if(stateId.contains("%custom")){
+                StringBuilder builder = new StringBuilder();
+                builder.append(stateId);
+                builder.delete(builder.lastIndexOf("%"),builder.length());
+                stateId = builder.toString();
+            }
         }else{
             stateId = "default";
         }
@@ -246,6 +253,12 @@ public class StandResourceLoader {
 
         if (scriptMaps.containsKey(stateArgs.MODEL.getName())) {
             modelId = (String) scriptMaps.get(stateArgs.MODEL.getName())+"_"+stateId;
+            if(scriptMaps.containsKey(stateArgs.STATE.getName())){
+                String st = (String) scriptMaps.get(stateArgs.STATE.getName());
+                if(st.contains("%custom")){
+                    modelId = (String) scriptMaps.get(stateArgs.MODEL.getName());
+                }
+            }
         }else{
             modelId = id+"_"+stateId;
         }

@@ -61,6 +61,7 @@ public class EventPlayerCapability {
         if (charge != null && oldcharge !=null) {
         	charge.setChargeValue(oldcharge.getChargeValue());
         	charge.setMaxValue(oldcharge.getMaxValue());
+        	charge.setBuffer(oldcharge.getBuffer());
         }
 
 //     Stand Expose~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~

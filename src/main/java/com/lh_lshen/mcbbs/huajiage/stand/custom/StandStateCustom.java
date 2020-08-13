@@ -5,6 +5,7 @@ import com.lh_lshen.mcbbs.huajiage.HuajiAge;
 import com.lh_lshen.mcbbs.huajiage.client.model.stand.HAModelFactory;
 import com.lh_lshen.mcbbs.huajiage.common.CommonProxy;
 import com.lh_lshen.mcbbs.huajiage.stand.custom.script.EntityLivingBaseWrapper;
+import com.lh_lshen.mcbbs.huajiage.stand.custom.script.StandDadaWrapper;
 import com.lh_lshen.mcbbs.huajiage.stand.custom.script.WorldWrapper;
 import com.lh_lshen.mcbbs.huajiage.stand.states.StandStateBase;
 import net.minecraft.entity.EntityLivingBase;
@@ -19,10 +20,6 @@ public class StandStateCustom extends StandStateBase {
     public StandStateCustom(){
     }
 
-    public static void main(String[] args) {
-
-    }
-
     public StandStateCustom(StandStateInfo stateInfo) {
         this.stateInfo = stateInfo;
         this.stand = stateInfo.getStand();
@@ -31,6 +28,10 @@ public class StandStateCustom extends StandStateBase {
         this.stage = stateInfo.getStage();
         this.soundLoop = false;
         HuajiAge.LOGGER.info("Loaded Stand Info: {} ", isHandPlay);
+    }
+
+    public StandStateInfo getStateInfo() {
+        return stateInfo;
     }
 
     @Override
@@ -53,7 +54,7 @@ public class StandStateCustom extends StandStateBase {
             Invocable invocable = (Invocable) CommonProxy.NASHORN_ENGINE;
             if(stateInfo.getStateId().equals(stateName)){
             invocable.invokeMethod(stateInfo.getScript(), "update",
-                    new WorldWrapper(user.getEntityWorld()), new EntityLivingBaseWrapper(user));
+                    new WorldWrapper(user.getEntityWorld()), new EntityLivingBaseWrapper(user), new StandDadaWrapper(user));
             }
         } catch (ScriptException | NoSuchMethodException e) {
             e.printStackTrace();
@@ -68,7 +69,7 @@ public class StandStateCustom extends StandStateBase {
             }
             Invocable invocable = (Invocable) CommonProxy.NASHORN_ENGINE;
             invocable.invokeMethod(stateInfo.getScript(), "timeOut",
-                    new WorldWrapper(user.getEntityWorld()), new EntityLivingBaseWrapper(user));
+                    new WorldWrapper(user.getEntityWorld()), new EntityLivingBaseWrapper(user), new StandDadaWrapper(user));
         } catch (ScriptException | NoSuchMethodException e) {
             e.printStackTrace();
         }
@@ -81,7 +82,7 @@ public class StandStateCustom extends StandStateBase {
             }
             Invocable invocable = (Invocable) CommonProxy.NASHORN_ENGINE;
             invocable.invokeMethod(stateInfo.getScript(), "capability",
-                    new WorldWrapper(user.getEntityWorld()), new EntityLivingBaseWrapper(user));
+                    new WorldWrapper(user.getEntityWorld()), new EntityLivingBaseWrapper(user), new StandDadaWrapper(user));
         } catch (ScriptException | NoSuchMethodException e) {
             e.printStackTrace();
         }

@@ -1,0 +1,11 @@
+{
+  "stand":"huajiage:prototype",
+  "name": "stand.huajiage.prototype.name",
+  "states":["default","idle","maidx"],
+  "disc":"huajiage:disc/disc_huajiage_prototype",
+  "stages":1,
+  "attributes":[1.2,10,200,2,60000,75,114514],
+  "sounds":["huajiage:stand_star_platinum_hit_1","huajiage:stand_star_platinum_hit_2",
+    "huajiage:stand_star_platinum_hit_3","huajiage:stand_star_platinum_hit_4"],
+  "author": "LH_Lshen"
+}
