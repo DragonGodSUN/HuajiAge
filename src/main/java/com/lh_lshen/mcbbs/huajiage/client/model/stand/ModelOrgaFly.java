@@ -274,10 +274,11 @@ public class ModelOrgaFly extends ModelStandBase {
 		GlStateManager.rotate(180,0,0,1);
 		GlStateManager.translate(x,y,z);
 		GlStateManager.rotate(-35,1,0,0);
+		GlStateManager.color(1,1,1,alpha);
 		head.render(scale);
 		body.render(scale);
 		Extra.render(scale);
-
+		GlStateManager.color(1,1,1,1);
 	}
 
 	@Override

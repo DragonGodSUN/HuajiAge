@@ -307,6 +307,7 @@ public class ModelKillerQueenPunch extends ModelStandBase {
 		GlStateManager.translate(x, y, z);
 		GlStateManager.color(1.0F, 1.0F, 1.0F, alpha);
 		GlStateManager.rotate(180,0,0,1);
+		GlStateManager.color(1,1,1,alpha);
 //		GlStateManager.rotate(90f,0,1,0);
 //		GlStateManager.translate(0, 0, 25);
 		hands_l.render(scale);
@@ -321,7 +322,7 @@ public class ModelKillerQueenPunch extends ModelStandBase {
 ////		r_hand3.render(scale);
 ////		r_hand4.render(scale);
 //		r_hand5.render(scale);
-
+		GlStateManager.color(1,1,1,1);
 		GlStateManager.scale(1,1,1);
 	}
 

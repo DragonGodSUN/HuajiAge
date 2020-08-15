@@ -80,7 +80,7 @@ public class ResStandMaid extends StandRes {
             GlStateManager.color(1.0F, 1.0F, 1.0F, 0.5F);
             GlStateManager.rotate(180,0,0,1);
             model.setRotationAngles( entity.limbSwing, entity.limbSwingAmount, entity.ticksExisted, 0, 0, 1f, entity, 1f ,1.5f);
-            model.renderFirst(0,-4,-3,1f,1f);
+            model.renderFirst(0,-4,-3,1f,0.6f);
             model.effect(entity, entity.limbSwing, entity.limbSwingAmount, entity.ticksExisted, 0, 0, 1f);
         }
 

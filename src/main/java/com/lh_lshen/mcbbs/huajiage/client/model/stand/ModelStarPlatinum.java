@@ -333,6 +333,7 @@ public class ModelStarPlatinum extends ModelStandBase
 //		rightleg.showModel=false;
 		left_hands.render(scale);
 		right_hands.render(scale);
+		GlStateManager.color(1,1,1,1);
 
 //		System.out.println(this);
 	

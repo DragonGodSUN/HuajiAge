@@ -361,10 +361,11 @@ public class ModelStandJson extends ModelStandBase {
     @Override
     public void renderFirst(float x, float y, float z, float scale, float alpha) {
        GlStateManager.translate(x,y,z);
-
-        for (ModelRenderer model : shouldRenderFirst){
-            model.render(scale);
-        }
+       GlStateManager.color(1,1,1,alpha);
+       for (ModelRenderer model : shouldRenderFirst){
+           model.render(scale);
+       }
+       GlStateManager.color(1,1,1,1);
     }
 
     //附加特效
