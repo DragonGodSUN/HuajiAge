@@ -67,6 +67,7 @@ public class StandBase implements IStand {
 //			loadStates();
 	}
 
+
 //	public static void main(String[] args) {
 //		StandBase s = new StandBase();
 //		List<String> list = new ArrayList<>();

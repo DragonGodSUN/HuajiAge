@@ -83,7 +83,7 @@ public abstract class StandStateBase implements IStandState {
     }
 
     public boolean hasExtraData(String extraData){
-        return extraDatas.contains(extraData);
+        return extraData!=null && extraDatas.contains(extraData);
     }
 
     public void setStateName(String stateName) {

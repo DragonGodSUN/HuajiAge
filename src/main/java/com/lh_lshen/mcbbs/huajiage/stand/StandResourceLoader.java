@@ -1,5 +1,6 @@
 package com.lh_lshen.mcbbs.huajiage.stand;
 
+import com.google.common.collect.Lists;
 import com.google.common.collect.Maps;
 import com.google.gson.reflect.TypeToken;
 import com.lh_lshen.mcbbs.huajiage.HuajiAge;
@@ -21,6 +22,7 @@ import java.nio.file.Files;
 import java.nio.file.Path;
 import java.nio.file.Paths;
 import java.nio.file.StandardOpenOption;
+import java.util.List;
 import java.util.Map;
 import java.util.Objects;
 
@@ -229,6 +231,7 @@ public class StandResourceLoader {
         String stateId ;
         String stateKey ;
         String modelId ;
+        List<String> stateTags;
         boolean hand = true;
         int stage = 0;
 
@@ -263,6 +266,12 @@ public class StandResourceLoader {
             modelId = id+"_"+stateId;
         }
 
+        if(scriptMaps.containsKey(stateArgs.TAGS.getName())){
+            stateTags = (List<String>) scriptMaps.get(stateArgs.TAGS.getName());
+        }else {
+            stateTags = Lists.newArrayList();
+        }
+
         if (scriptMaps.containsKey(stateArgs.HAND.getName())) {
             hand = (Boolean) scriptMaps.get(stateArgs.HAND.getName());
         }
@@ -271,7 +280,7 @@ public class StandResourceLoader {
             stage = (Integer) scriptMaps.get(stateArgs.STAGE.getName());
         }
 
-        return new StandStateInfo(id,stateId,stateKey,modelId,scriptObject,hand,stage);
+        return new StandStateInfo(id,stateId,stateKey,modelId,stateTags,scriptObject,hand,stage);
         }
 
     enum stateArgs {
@@ -279,6 +288,7 @@ public class StandResourceLoader {
         STATE("stateId"),
         STATEKEY("stateKey"),
         MODEL("modelId"),
+        TAGS("stateTags"),
         HAND("hand"),
         STAGE("stage")
         ;

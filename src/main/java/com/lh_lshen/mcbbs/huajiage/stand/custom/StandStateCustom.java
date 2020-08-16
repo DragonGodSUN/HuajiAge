@@ -24,6 +24,7 @@ public class StandStateCustom extends StandStateBase {
         this.stateInfo = stateInfo;
         this.stand = stateInfo.getStand();
         this.stateName = stateInfo.getStateId();
+        this.extraDatas = stateInfo.getStateTags();
         this.isHandPlay = stateInfo.isHand();
         this.stage = stateInfo.getStage();
         this.soundLoop = false;

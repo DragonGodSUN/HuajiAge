@@ -42,7 +42,7 @@ public class EventStandOrga {
 	}
 	@SubscribeEvent
 	public static void onOrgaPlayerDeath(LivingDeathEvent event) {
-	EntityLivingBase entity=event.getEntityLiving(); 
+	EntityLivingBase entity=event.getEntityLiving();
 	StandBase stand = StandUtil.getType(entity);
 	if( stand!=null && stand == StandLoader.ORGA_REQUIEM && entity.isPotionActive(PotionLoader.potionStand))
 		{

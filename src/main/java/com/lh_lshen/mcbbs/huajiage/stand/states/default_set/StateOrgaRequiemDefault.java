@@ -18,6 +18,7 @@ public class StateOrgaRequiemDefault extends StandStateBase {
 
     public StateOrgaRequiemDefault(String stand, String stateName, boolean isHandPlay, boolean soundLoop) {
         super(stand, stateName, isHandPlay, soundLoop);
+        this.addExtraData("undead");
     }
 
     @Override

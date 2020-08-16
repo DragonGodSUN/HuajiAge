@@ -16,6 +16,7 @@ public class StateOrgaRequiemFly extends StandStateBase {
 
     public StateOrgaRequiemFly(String stand, String stateName, boolean isHandPlay, boolean soundLoop) {
         super(stand, stateName, isHandPlay, soundLoop);
+        this.addExtraData("undead");
         this.addExtraData("fly");
     }
 
