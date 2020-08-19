@@ -8,6 +8,7 @@ import com.lh_lshen.mcbbs.huajiage.entity.EntityEmeraldBullet;
 import com.lh_lshen.mcbbs.huajiage.init.HuajiConstant;
 import com.lh_lshen.mcbbs.huajiage.potion.PotionLoader;
 import com.lh_lshen.mcbbs.huajiage.stand.custom.script.WorldWrapper;
+import com.lh_lshen.mcbbs.huajiage.stand.entity.EntityStandBase;
 import com.lh_lshen.mcbbs.huajiage.util.HAMathHelper;
 import com.lh_lshen.mcbbs.huajiage.util.NBTHelper;
 import net.minecraft.block.Block;
@@ -31,6 +32,7 @@ import net.minecraft.world.World;
 import net.minecraftforge.fml.common.registry.ForgeRegistries;
 
 import java.util.Arrays;
+import java.util.Collection;
 import java.util.List;
 
 public class StandPowerHelper {
@@ -64,7 +66,7 @@ public class StandPowerHelper {
                     dragon.attackEntityFromPart(dragon.dragonPartHead, DamageSource.GENERIC, damage);
                 }
             }
-            if(i instanceof EntityLivingBase) {
+            if(i instanceof EntityLivingBase && !(i instanceof EntityStandBase)) {
                 EntityLivingBase target=(EntityLivingBase)i;
                 if(target!=user) {
                     if(NBTHelper.getEntityInteger(target, HuajiConstant.Tags.TIME_STOP)>0&&NBTHelper.getEntityInteger(target, HuajiConstant.Tags.DIO_HIT)<60) {
@@ -84,7 +86,7 @@ public class StandPowerHelper {
                     target.motionY=back.y;
                     target.motionZ=back.z;
                 }
-            }else if(i instanceof EntityItem || i instanceof EntityXPOrb){
+            }else if(i instanceof EntityItem || i instanceof EntityXPOrb || i instanceof EntityStandBase){
                 continue;
             }else if(HAMathHelper.getAABBSize(i.getEntityBoundingBox())>2){
                 user.addPotionEffect(new PotionEffect(MobEffects.RESISTANCE,50,1));
@@ -117,10 +119,8 @@ public class StandPowerHelper {
      * @param potions 药水效果列表
      */
     public static void potionEffect(EntityLivingBase user,List<PotionEffect> potions){
-    if( !user.isPotionActive(PotionLoader.potionStand) || user.isPotionActive(PotionLoader.potionStand)&&user.getActivePotionEffect(PotionLoader.potionStand).getDuration()<=10) {
-        for(PotionEffect potion : potions){
-            user.addPotionEffect(potion);
-            }
+    for(PotionEffect potion : potions){
+        user.addPotionEffect(potion);
         }
     }
 
@@ -134,6 +134,65 @@ public class StandPowerHelper {
     }
 
     /**
+     * 添加药水效果
+     * @param user
+     * @param type
+     * @param duration
+     * @param level
+     */
+    public static void potionEffectAdd(EntityLivingBase user,String type, int duration,int level ){
+        List<PotionEffect> potionEffects = Lists.newArrayList();
+        PotionEffect potionEffect = newPotion(type,duration,level);
+        potionEffects.add(potionEffect);
+        potionEffect(user, potionEffects);
+    }
+
+    /**
+     * 延长替身释放时间
+     * @param user
+     * @param ticks
+     */
+    public static void increaseStandTime(EntityLivingBase user, int ticks){
+        potionEffectAdd(user,new PotionEffect(PotionLoader.potionStand,ticks));
+    }
+
+    /**
+     * 移除指定药水效果
+     * @param user
+     * @param type
+     */
+    public static void removePotion(EntityLivingBase user,String type){
+        Potion potion = getPotion(type);
+        if(potion!=null){
+            if(user.isPotionActive(potion)){
+                user.removePotionEffect(potion);
+            }
+        }
+    }
+
+    /**
+     * 移除不好的药水效果
+     * @param user
+     */
+    public static void removeBadPotion(EntityLivingBase user){
+        Collection<Potion> potions = ForgeRegistries.POTIONS.getValuesCollection();
+        for(Potion p : potions){
+            if(p.isBadEffect()){
+                removePotion(user,p.getName());
+            }
+        }
+    }
+
+    /**
+     * 获取药水类型
+     * @param type
+     * @return
+     */
+    public static Potion getPotion(String type){
+        return ForgeRegistries.POTIONS.getValue(new ResourceLocation(type));
+    }
+
+    /**
      * 获得指定药水
      * @param type 药水ID
      * @param duration 持续时长
@@ -141,7 +200,7 @@ public class StandPowerHelper {
      * @return  药水
      */
     public static PotionEffect newPotion(String type,int duration,int level){
-        Potion potion = ForgeRegistries.POTIONS.getValue(new ResourceLocation(type));
+        Potion potion = getPotion(type);
         if(potion!=null){
             return new PotionEffect(potion,duration, Math.max(level-1,0));
         }
@@ -173,7 +232,9 @@ public class StandPowerHelper {
         if(ConfigHuaji.Stands.allowStandPunish) {
             potions.add(new PotionEffect(MobEffects.WITHER, 5 * 20, 1));
         }
-        potionEffect(user, potions);
+        if( !user.isPotionActive(PotionLoader.potionStand) || user.isPotionActive(PotionLoader.potionStand)&&user.getActivePotionEffect(PotionLoader.potionStand).getDuration()<=10) {
+            potionEffect(user, potions);
+        }
     }
 
 //  发射物==========================================================================================
@@ -331,6 +392,30 @@ public class StandPowerHelper {
         shootProjectile(user,user.world,emeraldBullet,x,y,z,motionX,motionY,motionZ,speed);
     }
 
+    /**
+     * 发射物品
+     * @param user 玩家
+     * @param x 发射点x坐标
+     * @param y 发射点y坐标
+     * @param z 发射点z坐标
+     * @param motionX X轴矢量
+     * @param motionY Y轴矢量
+     * @param motionZ Z轴矢量
+     * @param speed 发射速度
+     * @param itemId 物品ID
+     * @param damage 伤害
+     */
+    public static void shootItems(EntityLivingBase user,float x, float y, float z, float motionX, float motionY, float motionZ, float speed, String itemId, float damage){
+        EntityEmeraldBullet emeraldBullet = new EntityEmeraldBullet(user.world,user);
+        emeraldBullet.setLife(300);
+        emeraldBullet.setType(itemId);
+        emeraldBullet.setRotation(user.rotationYaw);
+        emeraldBullet.setPitch(user.rotationPitch);
+        emeraldBullet.setDamage(damage);
+        emeraldBullet.setRotationRandom((float) Math.random()*360);
+        shootProjectile(user,user.world,emeraldBullet,x,y,z,motionX,motionY,motionZ,speed);
+    }
+
 //  时间停止========================================================================================
     /**
      * 时间停止
@@ -408,6 +493,25 @@ public class StandPowerHelper {
         }
         return list;
     }
+
+    /**
+     * 获取玩家的替身实体
+     * @param user
+     * @return
+     */
+    public static EntityStandBase getUserStand(EntityLivingBase user){
+        List<Entity> entities = getListEntity(user,1);
+        if(entities.size()>0){
+            for (Entity e : entities) {
+                if(e instanceof EntityStandBase){
+                    if(((EntityStandBase) e).getUser()!=null && ((EntityStandBase) e).getUser().equals(user)){
+                        return (EntityStandBase) e;
+                    }
+                }
+            }
+        }
+        return null;
+    }
 //  物品============================================================================================
     /**
      * 给与玩家物体
@@ -415,7 +519,7 @@ public class StandPowerHelper {
      * @param item 物体
      * @param amount 数量
      */
-    public void addItemToPlayer(EntityLivingBase user, Item item, int amount){
+    public static void addItemToPlayer(EntityLivingBase user, Item item, int amount){
         if(user instanceof EntityPlayer){
             ((EntityPlayer) user).inventory.addItemStackToInventory(new ItemStack(item,amount));
         }
@@ -427,7 +531,7 @@ public class StandPowerHelper {
      * @param itemId 物体ID
      * @param amount 数量
      */
-    public void addItemToplayer(EntityLivingBase user, String itemId, int amount){
+    public static void addItemToplayer(EntityLivingBase user, String itemId, int amount){
         ResourceLocation key = new ResourceLocation(itemId);
         if (ForgeRegistries.ITEMS.containsKey(key)) {
             Item item = ForgeRegistries.ITEMS.getValue(key);
@@ -441,7 +545,7 @@ public class StandPowerHelper {
      * @param item 物品
      * @return 是或否
      */
-    public boolean isPlayerHasItem(EntityLivingBase user, Item item){
+    public static boolean isPlayerHasItem(EntityLivingBase user, Item item){
         if(user instanceof EntityPlayer){
             return ((EntityPlayer) user).inventory.hasItemStack(new ItemStack(item));
         }
@@ -454,7 +558,7 @@ public class StandPowerHelper {
      * @param itemId 物品ID
      * @return 是或否
      */
-    public boolean isPlayerHasItem(EntityLivingBase user, String itemId){
+    public static boolean isPlayerHasItem(EntityLivingBase user, String itemId){
         ResourceLocation key = new ResourceLocation(itemId);
         if (ForgeRegistries.ITEMS.containsKey(key)) {
             Item item = ForgeRegistries.ITEMS.getValue(key);
@@ -462,5 +566,54 @@ public class StandPowerHelper {
         }
         return false;
     }
+
+//  动作=============================================================================================
+
+    /**
+     * 设置生物的运动矢量
+     * @param entityLivingBase
+     * @param vec3d
+     */
+    public static void setMotion(EntityLivingBase entityLivingBase, Vec3d vec3d){
+        if(entityLivingBase!=null){
+            entityLivingBase.motionX = vec3d.x;
+            entityLivingBase.motionY = vec3d.y;
+            entityLivingBase.motionZ = vec3d.z;
+        }
+    }
+
+    /**
+     * 给生物添加一个运动矢量
+     * @param entityLivingBase
+     * @param vec3d
+     */
+    public static void addMotion(EntityLivingBase entityLivingBase, Vec3d vec3d){
+        if(entityLivingBase!=null){
+            entityLivingBase.motionX += vec3d.x;
+            entityLivingBase.motionY += vec3d.y;
+            entityLivingBase.motionZ += vec3d.z;
+            entityLivingBase.fallDistance = 0;
+            if(entityLivingBase.isBeingRidden()){
+                List<Entity> passengers= entityLivingBase.getPassengers();
+                if (passengers.size() > 0) {
+                    for(Entity e : passengers){
+                        e.fallDistance = 0;
+                    }
+                }
+            }
+        }
+    }
+
+    /**
+     * 给生物添加一个运动矢量
+     * @param user
+     * @param x
+     * @param y
+     * @param z
+     */
+    public static void addMotion(EntityLivingBase user, float x, float y, float z){
+        addMotion(user,new Vec3d(x,y,z));
+    }
+
 
 }

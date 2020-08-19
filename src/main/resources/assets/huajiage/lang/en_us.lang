@@ -249,7 +249,11 @@ stand.huajiage.skill.maid.start=\(>￣▽￣<)/
 patchouil.huajiage.book.name=§e§lHUAJI§6Book
 patchouil.huajiage.book.landing=HUAJI,means comical or funny things,is making up awkwardly or funnily for hilarious festivals. In this universe, there is a peculiar thing named HUAJI, which is ubiquitous and constitutes thousands of things. It is said that holding the funny starlight power can obtain the supreme power of the legendary HUAJI ancestor.
 
-
+===============================Stand Pack==========================================
+*****************************************替身包翻译****************************************************
+model.huajiage_healthy_life.bike_base.name=Bike
+model.huajiage_healthy_life.bike_standard.name=Bike
+model.huajiage_healthy_life.bike_standard.desc=A Bike
 ===============================Orga===========================================
 message.huajiage.orga.sing.1=§4What...... I'm a pretty good marksman
 message.huajiage.orga.sing.2=§2Head of... ah

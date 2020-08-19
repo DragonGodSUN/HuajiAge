@@ -8,6 +8,7 @@ import com.lh_lshen.mcbbs.huajiage.network.messages.MessageParticleGenerator;
 import com.lh_lshen.mcbbs.huajiage.potion.PotionLoader;
 import com.lh_lshen.mcbbs.huajiage.stand.StandLoader;
 import com.lh_lshen.mcbbs.huajiage.stand.StandUtil;
+import com.lh_lshen.mcbbs.huajiage.stand.entity.EntityStandBase;
 import com.lh_lshen.mcbbs.huajiage.stand.messages.MessageDioHitClient;
 import com.lh_lshen.mcbbs.huajiage.util.ServerUtil;
 import net.minecraft.entity.Entity;
@@ -110,7 +111,7 @@ public class EntityRoadRoller extends EntityThrowable {
         boolean flag=getExtra()>10&&ConfigHuaji.Stands.roadRolerExplosion;
         if(list!=null) {
         for(Entity entity : list) {
-        	if(entity!=null && !(entity instanceof IProjectile) && entity != thrower) {
+        	if(entity!=null && !(entity instanceof IProjectile) && entity != thrower && !(entity instanceof EntityStandBase)) {
    			 if(!world.isRemote) {
 				 if(entity instanceof EntityLivingBase) {
 					 if(entity instanceof EntityDragon) {

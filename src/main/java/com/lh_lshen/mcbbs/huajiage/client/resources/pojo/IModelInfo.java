@@ -21,6 +21,10 @@ public interface IModelInfo {
 
     List<Float> getRotation();
 
+    List<Float> getTransferFirst();
+
+    List<Float> getRotationFirst();
+
     List<ResourceLocation> getAnimation();
 
     ResourceLocation getTexture();

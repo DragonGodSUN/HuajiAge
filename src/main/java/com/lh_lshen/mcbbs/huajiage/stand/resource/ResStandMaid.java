@@ -70,19 +70,19 @@ public class ResStandMaid extends StandRes {
         }
         ResourceLocation STAND_TEX = HAModelFactory.getTexture(data.getModel());
         ModelStandBase model = StandClientUtil.getModelByID(data.getModel());
-        Minecraft.getMinecraft().getTextureManager().bindTexture(STAND_TEX);
         if(model instanceof ModelStandJson){
             this.mainAnimations = null;
             CustomResourceLoader.STAND_MODEL.getAnimation(this.getName()).ifPresent(animations -> this.mainAnimations = animations);
             if (this.mainAnimations != null) {
                 ((ModelStandJson) model).setAnimations(this.mainAnimations);
             }
-            GlStateManager.color(1.0F, 1.0F, 1.0F, 0.5F);
-            GlStateManager.rotate(180,0,0,1);
-            model.setRotationAngles( entity.limbSwing, entity.limbSwingAmount, entity.ticksExisted, 0, 0, 1f, entity, 1f ,1.5f);
-            model.renderFirst(0,-4,-3,1f,0.6f);
-            model.effect(entity, entity.limbSwing, entity.limbSwingAmount, entity.ticksExisted, 0, 0, 1f);
+        Minecraft.getMinecraft().getTextureManager().bindTexture(STAND_TEX);
+        model.setRotationAngles( entity.limbSwing, entity.limbSwingAmount, entity.ticksExisted, 0, 0, 1f, entity, 0.5f ,1.5f);
+        GlStateManager.rotate(180,0,0,1);
+        List<Float> pos = ((ModelStandJson) model).info.getTransferFirst();
+        model.renderFirst(pos.get(0),pos.get(1),pos.get(2),1f,0.6f);
+        model.effect(entity, entity.limbSwing, entity.limbSwingAmount, entity.ticksExisted, 0, 0, 1f);
+            }
         }
 
-    }
 }

@@ -9,6 +9,7 @@ import com.lh_lshen.mcbbs.huajiage.init.sound.SoundLoader;
 import com.lh_lshen.mcbbs.huajiage.potion.PotionLoader;
 import com.lh_lshen.mcbbs.huajiage.stand.StandLoader;
 import com.lh_lshen.mcbbs.huajiage.stand.StandUtil;
+import com.lh_lshen.mcbbs.huajiage.stand.entity.EntityStandBase;
 import com.lh_lshen.mcbbs.huajiage.stand.helper.StandPowerHelper;
 import com.lh_lshen.mcbbs.huajiage.stand.instance.StandBase;
 import com.lh_lshen.mcbbs.huajiage.stand.states.StandStateBase;
@@ -76,7 +77,7 @@ public class StateStarPlatinumDefault extends StandStateBase {
                     }
                 }
 
-                if (i instanceof EntityLivingBase) {
+                if (i instanceof EntityLivingBase && !(i instanceof EntityStandBase)) {
                     EntityLivingBase target = (EntityLivingBase) i;
 
                     if (target != user) {
@@ -110,7 +111,7 @@ public class StateStarPlatinumDefault extends StandStateBase {
                         target.motionZ = back.z;
                     }
 
-                } else if (i instanceof EntityItem || i instanceof EntityXPOrb) {
+                } else if (i instanceof EntityItem || i instanceof EntityXPOrb || i instanceof EntityStandBase) {
 
                     continue;
 

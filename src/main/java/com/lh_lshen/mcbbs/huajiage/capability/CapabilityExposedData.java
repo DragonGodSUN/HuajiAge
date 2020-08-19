@@ -24,7 +24,7 @@ public class CapabilityExposedData {
 				cmp_stand.setBoolean("stand_hand", instance.isHandDisplay());
 	        	cmp_stand.setInteger("stand_stage", instance.getStage());
 				cmp_stand.setString("stand_state", instance.getState());
-				cmp_stand.setString("stand_model", instance.getModel());
+				cmp_stand.setString("stand_model.json", instance.getModel());
 	        	
 	            return cmp_stand;
 	        }
@@ -40,7 +40,7 @@ public class CapabilityExposedData {
 				boolean is_hand_display = cmp.getBoolean("stand_hand");
 	        	int stage = cmp.getInteger("stand_stage");
 	        	String state = cmp.getString("stand_state");
-	        	String model = cmp.getString("stand_model");
+	        	String model = cmp.getString("stand_model.json");
 	        	
 	        	instance.setStand(stand);
 	        	instance.setTrigger(is_triggered);

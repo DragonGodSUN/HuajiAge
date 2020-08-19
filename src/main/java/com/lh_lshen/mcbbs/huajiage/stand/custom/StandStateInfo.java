@@ -12,7 +12,8 @@ public class StandStateInfo {
     private boolean hand;
     private int stage;
 
-    public StandStateInfo(String stand, String stateId, String stateKey, String modelId, List<String> stateTags, Object script, boolean isHandDisplay, int stage) {
+    public StandStateInfo(String stand, String stateId, String stateKey, String modelId, List<String> stateTags,
+                          Object script, boolean isHandDisplay, int stage) {
         this.stand = stand;
         this.stateId = stateId;
         this.stateKey = stateKey;

@@ -9,6 +9,7 @@ import com.lh_lshen.mcbbs.huajiage.client.model.stand.HAModelFactory;
 import com.lh_lshen.mcbbs.huajiage.client.model.stand.ModelStandBase;
 import com.lh_lshen.mcbbs.huajiage.client.model.stand.ModelTheWorld;
 import com.lh_lshen.mcbbs.huajiage.client.resources.CustomResourceLoader;
+import com.lh_lshen.mcbbs.huajiage.client.resources.pojo.StandModelInfo;
 import com.lh_lshen.mcbbs.huajiage.common.CommonProxy;
 import com.lh_lshen.mcbbs.huajiage.config.ConfigHuaji;
 import net.minecraft.client.model.ModelRenderer;
@@ -33,6 +34,7 @@ import java.util.*;
 public class ModelStandJson extends ModelStandBase {
     public final AxisAlignedBB renderBoundingBox;
     public CustomModelPOJO pojo;
+    public StandModelInfo info;
     private EntityStandWrapper entityStandWrapper;
     private List<Float> positions = Lists.newArrayList();
     private List<Float> rotations = Lists.newArrayList();
@@ -109,14 +111,8 @@ public class ModelStandJson extends ModelStandBase {
             } else {
                 // 没有父骨骼的模型才进行渲染
                 //viewFirst模型不渲染
-                if(name.equals("firstOnly")){
-                    shouldRenderFirst.add(model);
-                }else {
+                if(!name.equals("firstOnly")){
                     shouldRender.add(model);
-                }
-                if(name.equals("viewFirst"))
-                {
-                    shouldRenderFirst.add(model);
                 }
             }
 
@@ -144,6 +140,7 @@ public class ModelStandJson extends ModelStandBase {
         this.positions = json.positions;
         this.rotations = json.rotations;
         this.setModelID(json.getModelID());
+        this.setInfo(json.info);
 //        initTranslate(0,0,0);
 //        initRotations(0,0,0,0);
 //        this.setModelID(json.getModelID());
@@ -212,11 +209,14 @@ public class ModelStandJson extends ModelStandBase {
 
     @Override
     public void render(Entity entityIn, float limbSwing, float limbSwingAmount, float ageInTicks, float netHeadYaw, float headPitch, float scale) {
-        GlStateManager.translate(0, MathHelper.sin(ageInTicks/20)*0.1,0);
+        if (!info.isNoFloat()) {
+            GlStateManager.translate(0, MathHelper.sin(ageInTicks/20)*0.1,0);
+        }
         for (ModelRenderer model : shouldRender) {
             model.render(scale);
         }
     }
+
 
     @Override
     public void setRotationAngles(float limbSwing, float limbSwingAmount, float ageInTicks,
@@ -292,6 +292,10 @@ public class ModelStandJson extends ModelStandBase {
         this.animations = animations;
     }
 
+    public void setInfo(StandModelInfo info) {
+        this.info = info;
+    }
+
     /**
      * 基岩版的旋转中心计算方式和 Java 版不太一样，需要进行转换
      * <p>
@@ -362,9 +366,18 @@ public class ModelStandJson extends ModelStandBase {
     public void renderFirst(float x, float y, float z, float scale, float alpha) {
        GlStateManager.translate(x,y,z);
        GlStateManager.color(1,1,1,alpha);
-       for (ModelRenderer model : shouldRenderFirst){
-           model.render(scale);
-       }
+       ModelRendererWrapper viewFirst = modelMap.get("viewFirst");
+       ModelRendererWrapper firstOnly = modelMap.get("firstOnly");
+//        for (ModelRenderer model : shouldRenderFirst){
+//           model.render(scale);
+//       }
+        if(viewFirst!=null){
+            viewFirst.getModelRenderer().render(scale);
+        }
+        if(firstOnly!=null){
+            firstOnly.getModelRenderer().render(scale);
+        }
+
        GlStateManager.color(1,1,1,1);
     }
 

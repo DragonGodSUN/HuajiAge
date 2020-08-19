@@ -37,7 +37,7 @@ public class SyncExposedStandDataMessage implements IMessage {
         tags.setBoolean("stand_hand", hand);
         tags.setInteger("stand_stage", stage);
         tags.setString("stand_state", state);
-        tags.setString("stand_model", model);
+        tags.setString("stand_model.json", model);
         nbt =tags;
     }
 

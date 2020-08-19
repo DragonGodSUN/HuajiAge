@@ -256,7 +256,13 @@ stand.huajiage.skill.maid.start=\(>￣▽￣<)/
 
 patchouil.huajiage.book.name=§e§lJO§6级宝典
 patchouil.huajiage.book.landing=在这个宇宙中，存在着一种名为滑稽的奇特之物，它们无处不在，并构成了千千万万的事物，据说，持有滑稽的星辉之力，便可得到传说中鬼畜先辈的无上之力
-
+*****************************************替身包翻译****************************************************
+stand.huajiage_healthy_life.bike.name=自行车
+stand.huajiage.skill.huajiage_healthy_life.bike.start=叮叮~
+stand.huajiage_healthy_life.bike.default=默认
+model.huajiage_healthy_life.bike_base.name=无证自行车
+model.huajiage_healthy_life.bike_standard.name=自行车
+model.huajiage_healthy_life.bike_standard.desc=标准装备的青色单车
 *****************************************下方为未启用的一代翻译******************************************
 item.huaJiCry.name=我哭了
 item.huajiAxe.name=§b滑稽斧头

@@ -368,6 +368,15 @@
         "stream": true
       }
     ]
+  },
+  "bike_ring_ear0": {
+    "category": "neutral",
+    "sounds": [
+      {
+        "name": "huajiage:bike_ring_ear0",
+        "stream": true
+      }
+    ]
   }
 
 }

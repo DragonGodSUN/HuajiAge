@@ -1,0 +1,23 @@
+{
+	"pack_name": "{stand_pack.huajiage_healthy_life.name}",
+	"author": ["LH_Lshen"],
+	"description": ["{maid_pack.huajiage_healthy_life.desc}"],
+	"date": "2020-8-17",
+	"version": "1.0.0",
+	"model_list": [
+		{
+			"model_id": "huajiage:bike_base",
+			"no_float":true,
+            "no_light":true,
+            "transfer":[0,0.8,0]
+		},
+		{
+			"model_id": "huajiage:bike_standard",
+			"description": ["{model.huajiage.bike_standard.desc}"],
+			"no_float":true,
+			"no_light":true,
+			"transfer":[0,-0.25,-0.2],
+			"transfer_first":[0,2,-5]
+		}
+	]
+}

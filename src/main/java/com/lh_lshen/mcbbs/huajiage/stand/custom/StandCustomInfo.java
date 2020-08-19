@@ -38,6 +38,10 @@ public class StandCustomInfo {
     @SerializedName("sounds")
     private List<String> sounds;
 
+    // 替身是否收到重力影响
+    @SerializedName("gravity")
+    private boolean gravity;
+
     // 作者
     @SerializedName("author")
     private String author;
@@ -74,6 +78,10 @@ public class StandCustomInfo {
 
     public List<String> getSounds() {
         return sounds;
+    }
+
+    public boolean hasGravity() {
+        return gravity;
     }
 
     public String getAuthor() {

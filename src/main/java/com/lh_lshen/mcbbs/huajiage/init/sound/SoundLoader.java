@@ -1,24 +1,14 @@
 package com.lh_lshen.mcbbs.huajiage.init.sound;
 
-import java.util.ArrayList;
-import java.util.HashMap;
-import java.util.List;
-import java.util.Map;
-
 import com.lh_lshen.mcbbs.huajiage.HuajiAge;
-
-import net.minecraft.init.Bootstrap;
-import net.minecraft.init.SoundEvents;
-import net.minecraft.item.Item;
 import net.minecraft.util.ResourceLocation;
 import net.minecraft.util.SoundEvent;
 import net.minecraftforge.event.RegistryEvent;
 import net.minecraftforge.fml.common.Mod;
-import net.minecraftforge.fml.common.event.FMLInitializationEvent;
 import net.minecraftforge.fml.common.eventhandler.SubscribeEvent;
-import net.minecraftforge.fml.common.registry.ForgeRegistries;
-import net.minecraftforge.fml.common.registry.GameRegistry;
-import net.minecraftforge.oredict.OreDictionary;
+
+import java.util.ArrayList;
+import java.util.List;
 
 
 @Mod.EventBusSubscriber(modid=HuajiAge.MODID)
@@ -65,6 +55,7 @@ public class SoundLoader {
 	public static final SoundEvent STAND_KILLER_QUEEN_SHOW_1=registerSound("stand_killer_queen_show_1");
 	public static final SoundEvent STAND_KILLER_QUEEN_SHOW_2=registerSound("stand_killer_queen_show_2");
 	public static final SoundEvent SHEER_HEART_ATTACK=registerSound("sheer_heart_attack_target");
+	public static final SoundEvent BIKE_RING_1=registerSound("bike_ring_ear0");
 	@SubscribeEvent
 	public static void register(RegistryEvent.Register<SoundEvent> event) {
 		for(SoundEvent sound:SOUND_LIST){

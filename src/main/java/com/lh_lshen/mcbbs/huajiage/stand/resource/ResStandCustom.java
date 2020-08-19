@@ -76,9 +76,14 @@ public class ResStandCustom extends StandRes {
             model = StandClientUtil.getModelByData(entity, StandLoader.getStand(data.getStand()));
         }
         Minecraft.getMinecraft().getTextureManager().bindTexture(STAND_TEX);
-            GlStateManager.rotate(180,0,0,1);
-            model.setRotationAngles( entity.limbSwing, entity.limbSwingAmount, entity.ticksExisted, 0, 0, 1f, entity, 0.5f ,1.5f);
-            model.renderFirst(0,-4,-3,1f,0.6f);
+        model.setRotationAngles( entity.limbSwing, entity.limbSwingAmount, entity.ticksExisted, 0, 0, 1f, entity, 0.5f ,1.5f);
+        GlStateManager.rotate(180,0,0,1);
+        if(model instanceof ModelStandJson){
+            List<Float> pos = ((ModelStandJson) model).info.getTransferFirst();
+            model.renderFirst(pos.get(0),pos.get(1),pos.get(2),1f,0.6f);
+        }else {
+              model.renderFirst(0,-4,-3,1f,0.6f);
+        }
             model.effect(entity, entity.limbSwing, entity.limbSwingAmount, entity.ticksExisted, entity.rotationYaw, entity.rotationPitch, 1f);
     }
 

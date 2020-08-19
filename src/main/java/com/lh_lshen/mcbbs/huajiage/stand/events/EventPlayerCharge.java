@@ -2,7 +2,6 @@ package com.lh_lshen.mcbbs.huajiage.stand.events;
 
 import com.lh_lshen.mcbbs.huajiage.HuajiAge;
 import com.lh_lshen.mcbbs.huajiage.capability.*;
-import com.lh_lshen.mcbbs.huajiage.stand.EnumStandtype;
 import com.lh_lshen.mcbbs.huajiage.stand.StandUtil;
 import com.lh_lshen.mcbbs.huajiage.stand.instance.StandBase;
 

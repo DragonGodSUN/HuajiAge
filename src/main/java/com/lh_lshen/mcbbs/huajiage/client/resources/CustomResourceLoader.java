@@ -78,21 +78,22 @@ public class CustomResourceLoader {
                 for (StandModelInfo standModelItem : pack.getModelList()) {
                     // 尝试加载模型
                     ModelStandJson modelJson = loadModel(standModelItem.getModel());
-                    if (standModelItem.getTransfer()!=null && standModelItem.getTransfer().size()>=3) {
-                        modelJson.setPositions(standModelItem.getTransfer().get(0),
-                                               standModelItem.getTransfer().get(1),
-                                               standModelItem.getTransfer().get(2));
-                    }
-                    if (standModelItem.getRotation()!=null && standModelItem.getRotation().size()>=4) {
-                        modelJson.setRotations(standModelItem.getRotation().get(0),
-                                               standModelItem.getRotation().get(1),
-                                               standModelItem.getRotation().get(2),
-                                               standModelItem.getRotation().get(3));
-                    }
                     // 加载动画
                     @Nullable List<Object> animations = CustomJsAnimationManger.getCustomAnimation(standModelItem);
                     if (modelJson != null) {
-                            putStandModelData(standModelItem, modelJson, animations);
+                        modelJson.setInfo(standModelItem);
+                        if (standModelItem.getTransfer()!=null && standModelItem.getTransfer().size()>=3) {
+                            modelJson.setPositions(standModelItem.getTransfer().get(0),
+                                                   standModelItem.getTransfer().get(1),
+                                                   standModelItem.getTransfer().get(2));
+                        }
+                        if (standModelItem.getRotation()!=null && standModelItem.getRotation().size()>=4) {
+                            modelJson.setRotations(standModelItem.getRotation().get(0),
+                                                   standModelItem.getRotation().get(1),
+                                                   standModelItem.getRotation().get(2),
+                                                   standModelItem.getRotation().get(3));
+                        }
+                        putStandModelData(standModelItem, modelJson, animations);
                         // 打印日志
                         LOGGER.info(MARKER, "Loaded model: {}", standModelItem.getModel());
                     }
@@ -140,6 +141,7 @@ public class CustomResourceLoader {
                 for (StandModelInfo maidModelItem : pack.getModelList()) {
                     // 尝试加载模型
                     ModelStandJson modelJson = loadModel(maidModelItem.getModel());
+                    modelJson.setInfo(maidModelItem);
                     if (maidModelItem.getTransfer()!=null && maidModelItem.getTransfer().size()>=3) {
                         modelJson.setPositions((Float) maidModelItem.getTransfer().get(0),
                                 (Float) maidModelItem.getTransfer().get(1),

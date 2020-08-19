@@ -1,6 +1,10 @@
 package com.lh_lshen.mcbbs.huajiage.stand.custom.script;
 
+import com.lh_lshen.mcbbs.huajiage.stand.entity.EntityStandBase;
+import com.lh_lshen.mcbbs.huajiage.stand.helper.StandPowerHelper;
 import net.minecraft.entity.EntityLivingBase;
+import net.minecraft.util.math.Vec3d;
+
 /**
  * 此类代码基于酒石酸团队“车万女仆”模组代码，依据MIT协议进行编写
  * 更多内容请转至：https://github.com/TartaricAcid/TouhouLittleMaid
@@ -38,5 +42,18 @@ public class EntityLivingBaseWrapper {
 
     public Vec3dWrapper getLookVec(){
        return new Vec3dWrapper(this.livingBase.getLookVec());
+    }
+
+    public float getSpeed(){
+        EntityLivingBase standEntity = StandPowerHelper.getUserStand(this.livingBase);
+        float s = (float) new Vec3d(livingBase.motionX, livingBase.motionY, livingBase.motionZ).length();
+        if (standEntity!=null) {
+            s = (float) (new Vec3d(standEntity.motionX, standEntity.motionY, standEntity.motionZ).length()-0.784);
+        }
+        return s;
+    }
+
+    public EntityStandBase getStandEntity(){
+        return StandPowerHelper.getUserStand(this.livingBase);
     }
 }

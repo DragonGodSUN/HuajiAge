@@ -1,0 +1,10 @@
+{
+  "stand": "huajiage_healthy_life:bike",
+  "name": "stand.huajiage_healthy_life.bike.name",
+  "disc": "huajiage:disc/disc_huajiage_prototype",
+  "stages": 1,
+  "attributes": [0.05,10,1200,2,50000,30,50000],
+  "sounds": ["huajiage:bike_ring_ear0"],
+  "gravity": true,
+  "author": "LH_Lshen"
+}

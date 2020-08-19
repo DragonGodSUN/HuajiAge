@@ -1,22 +1,13 @@
 package com.lh_lshen.mcbbs.huajiage.entity;
 
-import java.util.List;
-import java.util.UUID;
-
-import javax.annotation.Nonnull;
-
 import com.lh_lshen.mcbbs.huajiage.damage_source.DamageEmeraldSplash;
 import com.lh_lshen.mcbbs.huajiage.damage_source.DamageFivePower;
+import com.lh_lshen.mcbbs.huajiage.stand.entity.EntityStandBase;
 import com.lh_lshen.mcbbs.huajiage.util.NBTHelper;
-
 import net.minecraft.block.state.IBlockState;
-import net.minecraft.entity.Entity;
 import net.minecraft.entity.EntityLivingBase;
-import net.minecraft.entity.IProjectile;
 import net.minecraft.entity.boss.EntityDragon;
 import net.minecraft.entity.effect.EntityLightningBolt;
-import net.minecraft.entity.item.EntityItem;
-import net.minecraft.entity.item.EntityXPOrb;
 import net.minecraft.entity.player.EntityPlayer;
 import net.minecraft.entity.projectile.EntityThrowable;
 import net.minecraft.init.MobEffects;
@@ -26,10 +17,13 @@ import net.minecraft.network.datasync.DataParameter;
 import net.minecraft.network.datasync.DataSerializers;
 import net.minecraft.network.datasync.EntityDataManager;
 import net.minecraft.potion.PotionEffect;
-import net.minecraft.util.DamageSource;
 import net.minecraft.util.EnumParticleTypes;
 import net.minecraft.util.math.RayTraceResult;
 import net.minecraft.world.World;
+
+import javax.annotation.Nonnull;
+import java.util.List;
+import java.util.UUID;
 
 public class EntityFivePower extends EntityThrowable{
 	private static final String TAG_LIFE = "life";
@@ -81,7 +75,7 @@ public class EntityFivePower extends EntityThrowable{
 		}
 		List<EntityLivingBase> entities = this.world.getEntitiesWithinAABB(EntityLivingBase.class, this.getEntityBoundingBox().grow(1));
 		for(EntityLivingBase entity : entities) {
-			if(entity!=thrower &&player!=null&&entity!=player) {
+			if(entity!=thrower &&player!=null&&entity!=player&& !(entity instanceof EntityStandBase)) {
 				if(!isDe()) {
 					entity.setFire(3);
 					entity.attackEntityFrom(new DamageFivePower(player), 15f);

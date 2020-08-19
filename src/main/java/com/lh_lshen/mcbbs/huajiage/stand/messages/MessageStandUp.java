@@ -2,7 +2,9 @@ package com.lh_lshen.mcbbs.huajiage.stand.messages;
 
 import com.lh_lshen.mcbbs.huajiage.capability.*;
 import com.lh_lshen.mcbbs.huajiage.potion.PotionLoader;
+import com.lh_lshen.mcbbs.huajiage.stand.EnumStandTag;
 import com.lh_lshen.mcbbs.huajiage.stand.StandLoader;
+import com.lh_lshen.mcbbs.huajiage.stand.StandStates;
 import com.lh_lshen.mcbbs.huajiage.stand.StandUtil;
 import com.lh_lshen.mcbbs.huajiage.stand.entity.EntityStandBase;
 import com.lh_lshen.mcbbs.huajiage.stand.instance.StandBase;
@@ -15,6 +17,8 @@ import net.minecraftforge.fml.common.network.simpleimpl.IMessage;
 import net.minecraftforge.fml.common.network.simpleimpl.IMessageHandler;
 import net.minecraftforge.fml.common.network.simpleimpl.MessageContext;
 import net.minecraftforge.fml.relauncher.Side;
+
+import java.util.Objects;
 
 public class MessageStandUp implements IMessage {
 	private boolean isMoving;
@@ -50,9 +54,9 @@ public class MessageStandUp implements IMessage {
             	FMLCommonHandler.instance().getWorldThread(ctx.netHandler).addScheduledTask(() ->{
 				data.setState(CapabilityExposedData.States.DEFAULT.getName());
 				if(!data.isTriggered()) {
-					if(charge.canBeCost(stand.getCost()/10)) {
+					if(charge.canBeCost(1000)) {
 						charge.setMaxValue(stand.getMaxMP());
-						charge.cost(stand.getCost()/10);
+						charge.cost(1000);
 						player.addPotionEffect(new PotionEffect(PotionLoader.potionStand,stand.getDuration()));
 						data.setTrigger(true);
 						data.setHandDisplay(stand.isHandDisplay());
@@ -64,6 +68,9 @@ public class MessageStandUp implements IMessage {
 								standBase.setUserName(player.getName());
 								standBase.setPosition(player.posX, player.posY, player.posZ);
 								standBase.setType(data.getStand());
+								if(Objects.requireNonNull(StandStates.getStandState(stand.getName(), data.getState())).hasExtraData(EnumStandTag.StateTags.RIDE.getName())){
+									standBase.setTamedBy(player);
+								}
 								player.world.spawnEntity(standBase);
 							}
 						}else {

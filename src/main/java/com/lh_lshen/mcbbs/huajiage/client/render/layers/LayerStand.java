@@ -80,8 +80,9 @@ public class LayerStand implements  LayerRenderer<EntityLivingBase> {
 				if(texture!=null) {
 				livingEntityRenderer.bindTexture(texture);
 				}
-				OpenGlHelper.setLightmapTextureCoords(OpenGlHelper.lightmapTexUnit, 240f, 240f);
-
+				if(!(model instanceof ModelStandJson)||!((ModelStandJson) model).info.isNoLight()) {
+					OpenGlHelper.setLightmapTextureCoords(OpenGlHelper.lightmapTexUnit, 240f, 240f);
+				}
 				model.setPosition();
 				model.setRotationAngles(limbSwing, limbSwingAmount, ageInTicks, netHeadYaw, headPitch, scale, entitylivingbaseIn, 1f ,stand.getSpeed()*4/3);
 				model.setPunch(limbSwing, limbSwingAmount,  ageInTicks, netHeadYaw, headPitch, scale, entitylivingbaseIn, 0.3f ,stand.getSpeed()*4/3);

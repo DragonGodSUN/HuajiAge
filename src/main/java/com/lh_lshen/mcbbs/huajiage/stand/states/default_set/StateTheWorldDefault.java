@@ -5,6 +5,7 @@ import com.lh_lshen.mcbbs.huajiage.init.sound.HuajiSoundPlayer;
 import com.lh_lshen.mcbbs.huajiage.init.sound.SoundLoader;
 import com.lh_lshen.mcbbs.huajiage.stand.StandLoader;
 import com.lh_lshen.mcbbs.huajiage.stand.StandUtil;
+import com.lh_lshen.mcbbs.huajiage.stand.entity.EntityStandBase;
 import com.lh_lshen.mcbbs.huajiage.stand.instance.StandBase;
 import com.lh_lshen.mcbbs.huajiage.stand.states.StandStateBase;
 import com.lh_lshen.mcbbs.huajiage.util.HAMathHelper;
@@ -71,7 +72,7 @@ public class StateTheWorldDefault extends StandStateBase {
                 }
             }
 
-            if(i instanceof EntityLivingBase) {
+            if(i instanceof EntityLivingBase && !(i instanceof EntityStandBase)) {
 
                 EntityLivingBase target=(EntityLivingBase)i;
 
@@ -111,7 +112,7 @@ public class StateTheWorldDefault extends StandStateBase {
                     }
                 }
 
-            }else if(i instanceof EntityItem || i instanceof EntityXPOrb){
+            }else if(i instanceof EntityItem || i instanceof EntityXPOrb || i instanceof EntityStandBase){
 
                 continue;
 

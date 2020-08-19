@@ -41,7 +41,7 @@ public class StandChargeHandler  {
 		}
 	    
 	public boolean canBeCost(int cost) {
-			return this.charge-cost>0;
+			return this.charge-cost>=0;
 		}
 
 	public boolean toBeContinue() {

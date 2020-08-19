@@ -4,12 +4,16 @@ import com.github.tartaricacid.touhoulittlemaid.entity.item.AbstractEntityTrolle
 import com.github.tartaricacid.touhoulittlemaid.entity.item.EntityPortableAudio;
 import com.github.tartaricacid.touhoulittlemaid.init.MaidItems;
 import com.lh_lshen.mcbbs.huajiage.common.CommonProxy;
+import com.lh_lshen.mcbbs.huajiage.stand.entity.EntityStandBase;
+import com.lh_lshen.mcbbs.huajiage.stand.helper.StandPowerHelper;
+import net.minecraft.entity.EntityLivingBase;
 import net.minecraft.entity.SharedMonsterAttributes;
 import net.minecraft.entity.player.EntityPlayer;
 import net.minecraft.inventory.EntityEquipmentSlot;
 import net.minecraft.item.ItemStack;
 import net.minecraft.util.EnumHand;
 import net.minecraft.util.ResourceLocation;
+import net.minecraft.util.math.Vec3d;
 import net.minecraft.world.biome.Biome;
 
 /**
@@ -228,6 +232,20 @@ public class EntityStandWrapper {
 
     public boolean onHurt() {
         return player.hurtTime > 0;
+    }
+
+    public float getSpeed(){
+        EntityLivingBase standEntity = StandPowerHelper.getUserStand(player);
+        float s = 0;
+        if (standEntity!=null) {
+            s = ( new Vec3d(standEntity.motionX,0,standEntity.motionZ).normalize().equals(new Vec3d(player.getLookVec().x,0,player.getLookVec().z).normalize())?1f:-1f )
+                    *(float) (new Vec3d(standEntity.motionX,standEntity.motionY,standEntity.motionZ).length()-0.0784);
+        }
+        return s;
+    }
+
+    public EntityStandBase getStandEntity(){
+        return StandPowerHelper.getUserStand(player);
     }
 
 }

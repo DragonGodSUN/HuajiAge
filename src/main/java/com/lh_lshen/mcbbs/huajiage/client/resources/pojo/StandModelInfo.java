@@ -35,17 +35,32 @@ public class StandModelInfo implements IModelInfo {
     @SerializedName("state")
     private String state;
 
+    @SerializedName("no_float")
+    private boolean noFloat;
+
+    @SerializedName("no_light")
+    private boolean noLight;
+
     @SerializedName("transfer")
     private List<Number> transfer;
 
     @SerializedName("rotation")
     private List<Number> rotation;
 
+    @SerializedName("transfer_first")
+    private List<Number> transferFirst;
+
+    @SerializedName("rotation_first")
+    private List<Number> rotationFirst;
+
     @SerializedName("render_entity_scale")
     private float renderEntityScale = 1.0f;
 
     @SerializedName("animation")
     private List<String> animation;
+
+    @SerializedName("tags")
+    private List<String> tags;
 
 //    private ResourceLocation ID = new ResourceLocation(modelId!=null?modelId:"huajiage:the_world");
 
@@ -63,6 +78,14 @@ public class StandModelInfo implements IModelInfo {
     @Override
     public String getState() {
         return state;
+    }
+
+    public List<String> getTags() {
+        return tags;
+    }
+
+    public boolean hasTag(String tag){
+        return tags.contains(tag);
     }
 
     @Override
@@ -85,6 +108,32 @@ public class StandModelInfo implements IModelInfo {
             for(Number s : rotation){
             float f = s.floatValue();
             fl.add(f);
+            }
+            return fl;
+        }
+        return null;
+    }
+
+    @Override
+    public List<Float> getTransferFirst() {
+        if(transferFirst!=null && !transferFirst.isEmpty()){
+            List<Float> fl = Lists.newArrayList();
+            for(Number s : transferFirst){
+                float f = s.floatValue();
+                fl.add(f);
+            }
+            return fl;
+        }
+        return null;
+    }
+
+    @Override
+    public List<Float> getRotationFirst() {
+        if(rotationFirst!=null && !rotationFirst.isEmpty()){
+            List<Float> fl = Lists.newArrayList();
+            for(Number s : rotationFirst){
+                float f = s.floatValue();
+                fl.add(f);
             }
             return fl;
         }
@@ -121,6 +170,14 @@ public class StandModelInfo implements IModelInfo {
     @Override
     public ResourceLocation getModel() {
         return new ResourceLocation(model);
+    }
+
+    public boolean isNoFloat() {
+        return noFloat;
+    }
+
+    public boolean isNoLight() {
+        return noLight;
     }
 
     public float getRenderEntityScale() {
@@ -173,11 +230,16 @@ public class StandModelInfo implements IModelInfo {
                         new ResourceLocation(TouhouLittleMaid.MOD_ID, "animation/maid/default/wing/default.js").toString(),
                         new ResourceLocation(TouhouLittleMaid.MOD_ID, "animation/maid/default/tail/default.js").toString(),
                         new ResourceLocation(TouhouLittleMaid.MOD_ID, "animation/maid/default/sit/skirt_rotation.js").toString(),
-                        new ResourceLocation(TouhouLittleMaid.MOD_ID, "animation/base/float/default.js").toString()
+                        new ResourceLocation(TouhouLittleMaid.MOD_ID, "animation/base/float/default.js").toString(),
+                        new ResourceLocation(HuajiAge.MODID, "animation/rotation_yaw.js").toString(),
+                        new ResourceLocation(HuajiAge.MODID, "animation/wheel.js").toString()
                 );
             }else {
                 animation = Lists.newArrayList(
-                        new ResourceLocation(HuajiAge.MODID, "animation/head.js").toString());
+                        new ResourceLocation(HuajiAge.MODID, "animation/head.js").toString(),
+                        new ResourceLocation(HuajiAge.MODID, "animation/rotation_yaw.js").toString(),
+                        new ResourceLocation(HuajiAge.MODID, "animation/wheel.js").toString()
+                        );
             }
         }
         if (transfer == null || transfer.isEmpty()) {
@@ -185,6 +247,15 @@ public class StandModelInfo implements IModelInfo {
         }
         if (rotation == null || rotation.isEmpty()) {
             rotation = Lists.newArrayList(0f,0f,0f,0f);//degree,y,p,w
+        }
+        if (transferFirst == null || transferFirst.isEmpty()) {
+            transferFirst = Lists.newArrayList(0f,-4f,-3f);//x,y,z
+        }
+        if (rotationFirst == null || rotationFirst.isEmpty()) {
+            rotationFirst = Lists.newArrayList(0f,0f,0f,0f);//degree,y,p,w
+        }
+        if (tags == null || tags.isEmpty()) {
+            tags = Lists.newArrayList();
         }
         renderEntityScale = MathHelper.clamp(renderEntityScale, 0.7f, 1.3f);
         return this;

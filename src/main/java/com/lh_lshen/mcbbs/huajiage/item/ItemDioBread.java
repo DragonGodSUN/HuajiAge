@@ -69,6 +69,7 @@ public class ItemDioBread extends ItemFood{
 	        }
         }else {
         	player.playSound(SoundLoader.STAR_PLATINUM_THE_WORLD_1, 5f,1f);
+//        	player.startRiding()
         }
         super.onFoodEaten(stack, worldIn, player);
     }
