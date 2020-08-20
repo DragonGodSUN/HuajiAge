@@ -16,7 +16,6 @@ import java.io.File;
 import java.io.IOException;
 import java.io.InputStream;
 import java.io.InputStreamReader;
-import java.net.URL;
 import java.nio.charset.StandardCharsets;
 import java.nio.file.Files;
 import java.nio.file.Path;
@@ -68,6 +67,14 @@ public class StandResourceLoader {
 
     }
 
+    public static void loadInternalStands()  {
+        loadInternalStand("bike");
+    }
+
+    public static void loadInternalStates()  {
+        loadInternalState("bike_default");
+    }
+
     private static void checkStandFolder() {
         if (!Files.isDirectory(CONFIG_STATE_FOLDER)) {
             try {
@@ -85,33 +92,6 @@ public class StandResourceLoader {
         }
     }
 
-    public static void loadInternalStands()  {
-    URL f =HuajiAge.class.getResource(JAR_FOLDER);
-    if(f!=null){
-        File stand_f = new File(f.getFile());
-        String[] files = stand_f.list((dir, name) -> name.endsWith(ACCEPTED_STAND_SUFFIX));
-            if(files!=null && files.length>0) {
-                for (String file : files) {
-                    loadInternalStand(file);
-                    HuajiAge.LOGGER.info("Internal Stand Load: {}", file);
-                }
-            }
-        }
-    }
-
-    public static void loadInternalStates()  {
-        URL f =HuajiAge.class.getResource(JAR_STATE_FOLDER);
-        if (f!=null) {
-            File state_f = new File(f.getFile());
-            String[] files = state_f.list((dir, name) -> name.endsWith(ACCEPTED_STATE_SUFFIX));
-            if(files!=null && files.length>0) {
-                for (String file : files) {
-                    loadInternalState(file);
-                    HuajiAge.LOGGER.info("Internal State Load: {}", file);
-                }
-            }
-        }
-    }
 
     public static void loadStand(Path path, String suffix) {
         File[] files = path.toFile().listFiles((dir, name) -> name.endsWith(suffix));
@@ -160,7 +140,7 @@ public class StandResourceLoader {
 
     private static void loadInternalStand(String json) {
         InputStream stream = HuajiAge.class.getResourceAsStream(String.format("%s/%s",
-                JAR_FOLDER, json));
+                JAR_FOLDER, json + ACCEPTED_STAND_SUFFIX));
         try {
             StandCustomInfo info = loadStand(stream);
             IOUtils.closeQuietly(stream);
@@ -170,15 +150,15 @@ public class StandResourceLoader {
             HuajiAge.LOGGER.catching(e);
         }
     }
-    private static void loadInternalState(String json) {
+    private static void loadInternalState(String js) {
         InputStream stream = HuajiAge.class.getResourceAsStream(String.format("%s/%s",
-                JAR_STATE_FOLDER, json));
+                JAR_STATE_FOLDER, js + ACCEPTED_STATE_SUFFIX));
         try {
             StandStateInfo info = loadStates(stream);
             IOUtils.closeQuietly(stream);
             CUSTOM_STATE_SERVER.put(info.getStand()+"_"+info.getStateId(), info);
         } catch (NullPointerException e) {
-            HuajiAge.LOGGER.error("Exception while loading stand in {}:", json);
+            HuajiAge.LOGGER.error("Exception while loading stand in {}:", js);
             HuajiAge.LOGGER.catching(e);
         }
     }

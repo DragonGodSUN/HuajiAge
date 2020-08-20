@@ -62,6 +62,8 @@ public class CommonProxy
 		new CraftingLoader();
 		new EventLoader();
 	    new OreGenEventHandler();
+//	    StandLoader.reloadStands();
+
 
 
 //        for (RenderPlayer playerRender : Minecraft.getMinecraft().getRenderManager().getSkinMap().values()) {

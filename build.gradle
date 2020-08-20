@@ -1,7 +1,7 @@
 buildscript {
     repositories {
         jcenter()
-        maven { url = "http://files.minecraftforge.net/maven" }
+		maven { url = "http://files.minecraftforge.net/maven" }
     }
     dependencies {
         classpath 'net.minecraftforge.gradle:ForgeGradle:2.3-SNAPSHOT'
@@ -87,5 +87,7 @@ jar {
     manifest {
         // 打包 Access Transformers 文件
         attributes 'FMLAT': 'huajiage_at.cfg'
+
+        attributes 'ContainedDeps': "nashorn.jar"
     }
 }
