@@ -106,8 +106,8 @@ stand.huajiage.tip.mode=Press %s to switch Stand mode
 stand.huajiage.tip.cost=Skill Cost:  §b§l%s
 stand.huajiage.mp=Energy:
 
-entity.sheerHeartAttack.name=Sheer Heart Attack
-entity.standBase.name=STAND
+entity.SheerHeartAttack.name=Sheer Heart Attack
+entity.StandBase.name=STAND
 
 item.blance_helmet:changeMode=§ePush %s to change mode
 item.blance_helmet:unicode_tooltips.1.desc=The method of unsealing(Press Shift to see more)

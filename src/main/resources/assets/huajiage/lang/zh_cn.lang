@@ -76,8 +76,8 @@ stand.huajiage.tip.mode=按下%s键切换替身状态
 stand.huajiage.tip.cost=技能消耗:   §b§l%s
 stand.huajiage.mp=精神力：
 
-entity.sheerHeartAttack.name=枯萎穿心攻击
-entity.standBase.name=替身
+entity.SheerHeartAttack.name=枯萎穿心攻击
+entity.StandBase.name=替身
 
 item.huajiage.secondFoil.name=§e二向箔
 item.huajiage.ether.name=§4以太粒子·伪
