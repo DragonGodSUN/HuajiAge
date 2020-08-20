@@ -1,0 +1,28 @@
+{
+    "type": "minecraft:crafting_shaped",
+  "pattern": [
+    "BAB",
+    "ACA",
+    "BAB"
+  ],
+  "key": {
+    "A": {
+      "item": "minecraft:iron_block"
+    },
+    "B": {
+      "item": "minecraft:gold_ingot"
+    },
+    "C": {
+      "item": "huajiage:tarot"
+    }
+  },
+  "result": {
+
+  "type": "minecraft:item_nbt", 
+  "item": "huajiage:vehicle_pack",
+  "nbt": {
+      "VehicleModel": "huajiage:bike_standard_default"
+ 		}
+  }
+  
+}

@@ -1,7 +1,7 @@
 {
-	"pack_name": "{stand_pack.huajiage_healthy_life.name}",
+	"pack_name": "{stand_pack.huajiage.name}",
 	"author": ["LH_Lshen"],
-	"description": ["{maid_pack.huajiage_healthy_life.desc}"],
+	"description": ["{maid_pack.huajiage.desc}"],
 	"date": "2020-8-17",
 	"version": "1.0.0",
 	"model_list": [
@@ -16,8 +16,49 @@
 			"description": ["{model.huajiage.bike_standard.desc}"],
 			"no_float":true,
 			"no_light":true,
+			"tags":["bike"],
 			"transfer":[0,-0.25,-0.2],
 			"transfer_first":[0,2,-5]
-		}
+		},
+        {
+            "model_id": "huajiage:bike_color_blue",
+            "no_float":true,
+            "no_light":true,
+            "tags":["bike"],
+            "transfer":[0,-0.25,-0.2],
+            "transfer_first":[0,2,-5]
+        },
+        {
+            "model_id": "huajiage:bike_color_black",
+            "no_float":true,
+            "no_light":true,
+            "tags":["bike"],
+            "transfer":[0,-0.25,-0.2],
+            "transfer_first":[0,2,-5]
+        },
+        {
+            "model_id": "huajiage:bike_color_red",
+            "no_float":true,
+            "no_light":true,
+            "tags":["bike"],
+            "transfer":[0,-0.25,-0.2],
+            "transfer_first":[0,2,-5]
+        },
+        {
+            "model_id": "huajiage:bike_color_yellow",
+            "no_float":true,
+            "no_light":true,
+            "tags":["bike"],
+            "transfer":[0,-0.25,-0.2],
+            "transfer_first":[0,2,-5]
+        },
+        {
+            "model_id": "huajiage:bike_color_green",
+            "no_float":true,
+            "no_light":true,
+            "tags":["bike"],
+            "transfer":[0,-0.25,-0.2],
+            "transfer_first":[0,2,-5]
+        }
 	]
 }

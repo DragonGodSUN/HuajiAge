@@ -26,6 +26,10 @@ public class StandCustomInfo {
     @SerializedName("disc")
     private String disc;
 
+    // 替身标签
+    @SerializedName("stand_tags")
+    private List<String> standTags;
+
     // 替身拥有阶段
     @SerializedName("stages")
     private int stages;
@@ -63,6 +67,13 @@ public class StandCustomInfo {
         return new ResourceLocation(disc);
     }
 
+    public List<String> getStandTags() {
+        return standTags;
+    }
+
+    public boolean hasTag(String standTag){
+        return standTags.contains(standTag);
+    }
 
     public int getStages() {
         return stages;
@@ -110,6 +121,10 @@ public class StandCustomInfo {
         //如果 disc 材质地址为空，生成默认材质路径
         if (disc == null) {
             disc = HuajiAge.MODID +":"+"disc/" + "disc_"+ new ResourceLocation(stand).getNamespace()+ "_" + new ResourceLocation(stand).getPath();
+        }
+
+        if(standTags == null){
+            standTags = Lists.newArrayList();
         }
 
         // 如果stages为0，生成默认值

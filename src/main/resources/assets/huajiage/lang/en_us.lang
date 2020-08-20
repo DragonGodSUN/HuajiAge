@@ -1,6 +1,7 @@
 item.huajiage.huaji.name=HUAJI
-itemGroup.huajiage.huaji=HUAJI Age:Infinite Galaxy
-itemGroup.huajiage.jo=JOstack
+itemGroup.huajiage.huaji=HUAJI Age-Infinite Galaxy
+itemGroup.huajiage.jo=HUAJI Age-JOstack
+itemGroup.huajiage.vehicle=HUAJI Age-Vehicle
 tile.huajiage.huajiage.huajiBomb.name=HUAJI bomb
 tile.huajiage.oreHuaji.name=HUAJI Ore
 tile.huajiage.huajiStarBlock.name=HUAJI Star Block
@@ -27,6 +28,8 @@ item.huajiage.waveCrystal.name=§bWave Crystal
 item.huajiage.waveKnife.name=Wave Knife
 item.huajiage.killerQueenTrigger.name=§lTrigger
 item.huajiage.yinYangBall.name=§8§lMaster §f§lBall
+item.huajiage.vehicleKey.name=§aBike Key
+item.huajiage.vehiclePack.name=§eVehicle Pack
 
 death.attack.huajiage.hope_flower=%s was dead of world line converge
 death.attack.huajiage.second=%s has been compressed into a PNG image
@@ -104,6 +107,7 @@ stand.huajiage.tip.cost=Skill Cost:  §b§l%s
 stand.huajiage.mp=Energy:
 
 entity.sheerHeartAttack.name=Sheer Heart Attack
+entity.standBase.name=STAND
 
 item.blance_helmet:changeMode=§ePush %s to change mode
 item.blance_helmet:unicode_tooltips.1.desc=The method of unsealing(Press Shift to see more)
@@ -150,6 +154,8 @@ item.yin_yang_ball:tooltips.1=You think I'm a yin-yang Orb ? Ko no Master Ball d
 item.yin_yang_ball:tooltips.2=§eServant:%s
 item.yin_yang_ball:tooltips.3=§eMaster:%s
 item.yin_yang_ball:empty=Empty
+item.huajiage.vehicle_key.tooltip.1=I'm just a key for bike
+item.huajiage.vehicle_pack.tooltip.1=Store:
 
 huajiage.orga.1=§b To celebrate! The birth of the most powerful king of Mars---Orga Izka
 messege.huaji.blancedHelmet.active=§lFrom now on it's called %s §lSquare！
@@ -251,9 +257,12 @@ patchouil.huajiage.book.landing=HUAJI,means comical or funny things,is making up
 
 ===============================Stand Pack==========================================
 *****************************************替身包翻译****************************************************
-model.huajiage_healthy_life.bike_base.name=Bike
-model.huajiage_healthy_life.bike_standard.name=Bike
-model.huajiage_healthy_life.bike_standard.desc=A Bike
+stand.huajiage.bike_wheel.name=Bike Wheel
+stand.huajiage.skill.huajiage.bike_wheel.start=Ding Ding~
+stand.huajiage.bike_wheel.default=Default
+model.huajiage.bike_base.name=Bike
+model.huajiage.bike_standard.name=Bike
+model.huajiage.bike_standard.desc=A Bike
 ===============================Orga===========================================
 message.huajiage.orga.sing.1=§4What...... I'm a pretty good marksman
 message.huajiage.orga.sing.2=§2Head of... ah

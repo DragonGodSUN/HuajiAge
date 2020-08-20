@@ -1,6 +1,6 @@
 {
-  "stand": "huajiage_healthy_life:bike",
-  "name": "stand.huajiage_healthy_life.bike.name",
+  "stand": "huajiage:bike_wheel",
+  "name": "stand.huajiage.bike_wheel.name",
   "disc": "huajiage:disc/disc_huajiage_prototype",
   "stages": 1,
   "attributes": [0.05,10,1200,2,50000,30,50000],

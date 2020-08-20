@@ -60,6 +60,8 @@ public class ItemLoader {
 	public static Item arrowStand=new ItemArrowStand();
 	public static Item killerQueenTrigger=new ItemKillerQueenTrigger();
     public static Item yinYangBall =new ItemYinYangBall();
+    public static Item vehicleKey =new ItemVehicleKey();
+    public static Item vehiclePack =new ItemVehiclePack();
 	public static ItemFood eggRice = new ItemEggRice();
 	public static ItemFood eggRiceU = new ItemEggRiceU();
     public static ItemArmor huajiHelmet = new ItemHuajiArmor.Helmet();
@@ -130,6 +132,8 @@ public class ItemLoader {
         register(singularity,"singularity","singularity");
         register(arrowStand,"arrowStand","arrow_stand");
         register(killerQueenTrigger,"killerQueenTrigger","killer_queen_trigger");
+        register(vehicleKey,"vehicleKey","vehicle_key");
+        register(vehiclePack,"vehiclePack","vehicle_pack");
         if(CommonProxy.ModsLoader.isTouhouMaidLoaded()){
         register(yinYangBall,"yinYangBall","yin_yang_ball");
         }
@@ -195,6 +199,8 @@ public class ItemLoader {
         if(CommonProxy.ModsLoader.isTouhouMaidLoaded()){
         registerRender(yinYangBall);
         }
+        registerRender(vehicleKey);
+        registerRender(vehiclePack);
 //        registerRender(disc);
 //        for(StandBase stand : StandLoader.STAND_LIST) {
 //        	String name = disc.getRegistryName()+"_"+stand.getName();

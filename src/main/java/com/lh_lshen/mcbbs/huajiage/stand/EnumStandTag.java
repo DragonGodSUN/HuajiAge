@@ -17,8 +17,24 @@ public class EnumStandTag {
             return name;
         }
     }
+
+    public enum ModelTags{
+        BIKE("bike"),
+        ;
+
+        ModelTags(String name) {
+            this.name = name;
+        }
+        private String name;
+
+        public String getName() {
+            return name;
+        }
+    }
+
     public enum StandTags{
-        BIKE("bike");
+        ARROW("arrow"),
+        ;
 
         StandTags(String name) {
             this.name = name;

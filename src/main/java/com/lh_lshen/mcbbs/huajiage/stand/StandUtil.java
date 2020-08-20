@@ -8,6 +8,9 @@ import com.lh_lshen.mcbbs.huajiage.capability.CapabilityLoader;
 import com.lh_lshen.mcbbs.huajiage.capability.CapabilityStandChargeHandler;
 import com.lh_lshen.mcbbs.huajiage.capability.IExposedData;
 import com.lh_lshen.mcbbs.huajiage.capability.StandChargeHandler;
+import com.lh_lshen.mcbbs.huajiage.client.model.custom.ModelStandJson;
+import com.lh_lshen.mcbbs.huajiage.client.model.stand.ModelStandBase;
+import com.lh_lshen.mcbbs.huajiage.client.resources.CustomResourceLoader;
 import com.lh_lshen.mcbbs.huajiage.init.HuajiConstant;
 import com.lh_lshen.mcbbs.huajiage.init.sound.HuajiSoundPlayer;
 import com.lh_lshen.mcbbs.huajiage.network.messages.MessageParticleGenerator;
@@ -158,7 +161,9 @@ public class StandUtil {
 	}
 	
 	public static List<StandBase> getArrowStands() {
-		return new ArrayList<>(Arrays.asList(ArrowStand));
+		ArrayList<StandBase> standBases = new ArrayList<>(Arrays.asList(ArrowStand));
+		standBases.addAll(getTagStands(EnumStandTag.StandTags.ARROW.getName()));
+		return standBases;
 	
 	}
 
@@ -172,6 +177,32 @@ public class StandUtil {
 		}
 		return list;
 
+	}
+
+	public static List<StandBase> getTagStands(String tag) {
+		List<StandBase> list = Lists.newArrayList();
+		for(String key : StandResourceLoader.CUSTOM_STAND_SERVER.keySet()){
+			StandBase stand = StandLoader.getStand(key);
+			if (stand!=null && stand instanceof StandCustom) {
+				if (((StandCustom) stand).getInfo().hasTag(tag)) {
+					list.add(stand);
+				}
+			}
+		}
+		return list;
+	}
+
+	public static List<ModelStandJson> getTagModels(String tag) {
+		List<ModelStandJson> list = Lists.newArrayList();
+		for(String key : CustomResourceLoader.STAND_MODEL.getModelIdSet()){
+			CustomResourceLoader.STAND_MODEL.getInfo(key).ifPresent((info)->
+			{
+				if(info.hasTag(tag)){
+					list.add(CustomResourceLoader.STAND_MODEL.getModel(key).get());
+				}
+			});
+		}
+		return list;
 	}
 	
     public static StandBase getTypeWithIndex(int index) {

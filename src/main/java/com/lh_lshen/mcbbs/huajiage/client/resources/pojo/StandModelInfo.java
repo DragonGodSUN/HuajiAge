@@ -159,12 +159,8 @@ public class StandModelInfo implements IModelInfo {
 
     @Override
     public ResourceLocation getModelId() {
-        StringBuilder builder = new StringBuilder();
-        builder.append(modelId);
-        if(!state.contains("%custom")){
-        builder.append("_"+state);
-        }
-        return new ResourceLocation(builder.toString());
+        String builder = modelId + "_" + state;
+        return new ResourceLocation(builder);
     }
 
     @Override
@@ -254,7 +250,7 @@ public class StandModelInfo implements IModelInfo {
         if (rotationFirst == null || rotationFirst.isEmpty()) {
             rotationFirst = Lists.newArrayList(0f,0f,0f,0f);//degree,y,p,w
         }
-        if (tags == null || tags.isEmpty()) {
+        if (tags == null) {
             tags = Lists.newArrayList();
         }
         renderEntityScale = MathHelper.clamp(renderEntityScale, 0.7f, 1.3f);

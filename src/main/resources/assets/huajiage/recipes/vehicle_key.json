@@ -1,0 +1,22 @@
+{
+    "type": "minecraft:crafting_shaped",
+  "pattern": [
+    "  A",
+    " CB",
+    "A  "
+  ],
+  "key": {
+    "A": {
+      "item": "huajiage:wave_crystal"
+    },
+    "B": {
+      "item": "huajiage:neutron_star_fragment"
+    },
+    "C": {
+      "item": "huajiage:arrow_stand"
+    }
+  },
+  "result": {
+    "item": "huajiage:vehicle_key"
+  }
+}

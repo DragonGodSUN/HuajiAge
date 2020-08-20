@@ -1,7 +1,8 @@
 ﻿
 item.huajiage.huaji.name=滑稽
-itemGroup.huajiage.huaji=滑稽纪元
-itemGroup.huajiage.jo=JO梗奇点
+itemGroup.huajiage.huaji=滑稽纪元-无尽星河
+itemGroup.huajiage.jo=滑稽纪元-JO梗奇点
+itemGroup.huajiage.vehicle=滑稽纪元-载具
 tile.huajiage.oreHuaji.name=充斥着滑稽之力的石头
 tile.huajiage.huajiBomb.name=§6滑稽炸弹
 tile.huajiage.huajiStarBlock.name=§b滑稽之星压缩块
@@ -17,6 +18,8 @@ item.huajiage.huajiStarUniverse.name=§e无尽之星
 item.huajiage.eggRice.name=§e真香蛋炒饭
 item.huajiage.eggRiceU.name=§d奥义·§e真香蛋炒饭
 item.huajiage.arrowStand.name=§d觉醒之箭
+item.huajiage.vehicleKey.name=§a自行车钥匙
+item.huajiage.vehiclePack.name=§e载具改装包
 
 death.attack.huajiage.hope_flower= %s终究逃不过世界线收束的生草命运
 death.attack.huajiage.orga.shot=%s被团长乱枪带走
@@ -74,6 +77,7 @@ stand.huajiage.tip.cost=技能消耗:   §b§l%s
 stand.huajiage.mp=精神力：
 
 entity.sheerHeartAttack.name=枯萎穿心攻击
+entity.standBase.name=替身
 
 item.huajiage.secondFoil.name=§e二向箔
 item.huajiage.ether.name=§4以太粒子·伪
@@ -155,6 +159,8 @@ item.yin_yang_ball:tooltips.1=你以为我是阴阳玉？Ko no 带师球 da！§
 item.yin_yang_ball:tooltips.2=§e从者：%s
 item.yin_yang_ball:tooltips.3=§e御主：%s
 item.yin_yang_ball:empty=空
+item.huajiage.vehicle_key.tooltip.1=我只是把自行车的钥匙
+item.huajiage.vehicle_pack.tooltip.1=储存：
 
 
 message.huajiage.patchouli_missing=[{"text":"[ Huaji Age II]:","color":"yellow","bold":true},{"text":"为保证最佳游戏体验，请加载  ","color":"aqua","bold":false},{"text":"Patchouli-帕秋莉模组","color":"green","underlined":true,"bold":true,"clickEvent":{"action":"open_url","value":"https://www.curseforge.com/minecraft/mc-mods/patchouli"},"hoverEvent":{"action":"show_text","value":"https://www.curseforge.com/minecraft/mc-mods/patchouli"}},{"text":"§b来获取指南手册，这是鬼畜界先辈们为迎击§0§l♂Dark&&King§b势力耗尽其毕生修为传承下的§e§lJO§6§l级宝典","color":"yellow","bold":false}]
@@ -257,12 +263,17 @@ stand.huajiage.skill.maid.start=\(>￣▽￣<)/
 patchouil.huajiage.book.name=§e§lJO§6级宝典
 patchouil.huajiage.book.landing=在这个宇宙中，存在着一种名为滑稽的奇特之物，它们无处不在，并构成了千千万万的事物，据说，持有滑稽的星辉之力，便可得到传说中鬼畜先辈的无上之力
 *****************************************替身包翻译****************************************************
-stand.huajiage_healthy_life.bike.name=自行车
-stand.huajiage.skill.huajiage_healthy_life.bike.start=叮叮~
-stand.huajiage_healthy_life.bike.default=默认
-model.huajiage_healthy_life.bike_base.name=无证自行车
-model.huajiage_healthy_life.bike_standard.name=自行车
-model.huajiage_healthy_life.bike_standard.desc=标准装备的青色单车
+stand.huajiage.bike_wheel.name=自行车轮
+stand.huajiage.skill.huajiage.bike_wheel.start=叮叮~
+stand.huajiage.bike_wheel.default=默认
+model.huajiage.bike_base.name=无证自行车
+model.huajiage.bike_standard.name=§3§l青色单车
+model.huajiage.bike_standard.desc=青色单车
+model.huajiage.bike_color_blue.name=§b§l蓝色单车
+model.huajiage.bike_color_black.name=§0§l黑色单车
+model.huajiage.bike_color_red.name=§4§l红色单车
+model.huajiage.bike_color_yellow.name=§e§l黄色单车
+model.huajiage.bike_color_green.name=§a§l绿色单车
 *****************************************下方为未启用的一代翻译******************************************
 item.huaJiCry.name=我哭了
 item.huajiAxe.name=§b滑稽斧头
