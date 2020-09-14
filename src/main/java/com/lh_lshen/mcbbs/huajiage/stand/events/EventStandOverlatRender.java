@@ -88,8 +88,9 @@ public class EventStandOverlatRender {
 			int maxCharge = chargeHandler.getMaxValue();
 
 			if (!data.getStand().equals(StandLoader.EMPTY)) {
-				int x = (int) (ConfigHuaji.Stands.standHUDx * Minecraft.getMinecraft().displayWidth / 2);
-				int y = (int) (ConfigHuaji.Stands.standHUDy * Minecraft.getMinecraft().displayHeight / 2);
+				boolean isAuto = Minecraft.getMinecraft().gameSettings.guiScale == 0 && ( Minecraft.getMinecraft().displayWidth>1280 && Minecraft.getMinecraft().displayHeight>720 || Minecraft.getMinecraft().isFullScreen() ) ;
+				int x = (int) (ConfigHuaji.Stands.standHUDx * Minecraft.getMinecraft().displayWidth / (isAuto?4:2) );
+				int y = (int) (ConfigHuaji.Stands.standHUDy * Minecraft.getMinecraft().displayHeight / (isAuto?4:2));
 				GlStateManager.pushMatrix();
 				GlStateManager.enableBlend();
 				GlStateManager.translate(x, y, 0);
