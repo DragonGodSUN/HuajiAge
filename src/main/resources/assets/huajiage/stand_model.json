@@ -59,6 +59,17 @@
             "tags":["bike"],
             "transfer":[0,-0.25,-0.2],
             "transfer_first":[0,2,-5]
+        },
+        {
+          "model_id": "huajiage:crazy_diamond"
+        },
+        {
+          "model_id": "huajiage:crazy_diamond",
+          "state": "heal"
+        },
+        {
+          "model_id": "huajiage:crazy_diamond",
+          "state": "idle"
         }
 	]
 }

@@ -1,0 +1,11 @@
+{
+  "stand": "huajiage:crazy_diamond",
+  "name": "stand.huajiage.crazy_diamond.name",
+  "disc": "huajiage:disc/disc_huajiage_bike_healthy",
+  "stages": 1,
+  "states":["default","heal","idle"],
+  "attributes": [1,12,250,2,50000,80,100000],
+  "sounds": ["huajiage:bike_ring_ear0"],
+  "gravity": false,
+  "author": "LH_Lshen"
+}
