@@ -5,7 +5,7 @@
 		"textureheight": 128,
 		"visible_bounds_width": 5,
 		"visible_bounds_height": 5,
-		"visible_bounds_offset": [0, 0.375, 0],
+		"visible_bounds_offset": [0, 0.4375, 0],
 		"bones": [
 			{
 				"name": "head",
@@ -595,12 +595,12 @@
 				]
 			},
 			{
-				"name": "handsl",
+				"name": "left_hands_ro",
 				"pivot": [0, 20.55, 0.2]
 			},
 			{
 				"name": "handl1",
-				"parent": "handsl",
+				"parent": "left_hands_ro",
 				"pivot": [0, 20.55, 0.2],
 				"rotation": [-90, 0, 0],
 				"cubes": [
@@ -641,7 +641,7 @@
 			},
 			{
 				"name": "handl2",
-				"parent": "handsl",
+				"parent": "left_hands_ro",
 				"pivot": [0, 20.55, 0.2],
 				"rotation": [-90, 0, 0],
 				"cubes": [
@@ -682,7 +682,7 @@
 			},
 			{
 				"name": "handl3",
-				"parent": "handsl",
+				"parent": "left_hands_ro",
 				"pivot": [0, 20.55, 0.2],
 				"rotation": [-90, 0, 0],
 				"cubes": [
@@ -723,7 +723,7 @@
 			},
 			{
 				"name": "handl4",
-				"parent": "handsl",
+				"parent": "left_hands_ro",
 				"pivot": [0, 20.55, 0.2],
 				"rotation": [-90, 0, 0],
 				"cubes": [
@@ -764,7 +764,7 @@
 			},
 			{
 				"name": "handl5",
-				"parent": "handsl",
+				"parent": "left_hands_ro",
 				"pivot": [0, 20.55, 0.2],
 				"rotation": [-90, 0, 0],
 				"cubes": [
@@ -804,12 +804,12 @@
 				]
 			},
 			{
-				"name": "handsr",
+				"name": "right_hands_ro",
 				"pivot": [0, 20.55, 0.2]
 			},
 			{
 				"name": "handr1",
-				"parent": "handsr",
+				"parent": "right_hands_ro",
 				"pivot": [0, 20.55, 0.2],
 				"rotation": [-90, 0, 0],
 				"cubes": [
@@ -850,7 +850,7 @@
 			},
 			{
 				"name": "handr2",
-				"parent": "handsr",
+				"parent": "right_hands_ro",
 				"pivot": [0, 20.55, 0.2],
 				"rotation": [-90, 0, 0],
 				"cubes": [
@@ -891,7 +891,7 @@
 			},
 			{
 				"name": "handr3",
-				"parent": "handsr",
+				"parent": "right_hands_ro",
 				"pivot": [0, 20.55, 0.2],
 				"rotation": [-90, 0, 0],
 				"cubes": [
@@ -932,7 +932,7 @@
 			},
 			{
 				"name": "handr4",
-				"parent": "handsr",
+				"parent": "right_hands_ro",
 				"pivot": [0, 20.55, 0.2],
 				"rotation": [-90, 0, 0],
 				"cubes": [
@@ -973,7 +973,7 @@
 			},
 			{
 				"name": "handr5",
-				"parent": "handsr",
+				"parent": "right_hands_ro",
 				"pivot": [0, 20.55, 0.2],
 				"rotation": [-90, 0, 0],
 				"cubes": [
