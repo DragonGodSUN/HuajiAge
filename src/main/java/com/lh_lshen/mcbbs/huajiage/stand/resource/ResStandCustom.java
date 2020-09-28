@@ -3,7 +3,6 @@ package com.lh_lshen.mcbbs.huajiage.stand.resource;
 import com.google.common.collect.Lists;
 import com.lh_lshen.mcbbs.huajiage.capability.IExposedData;
 import com.lh_lshen.mcbbs.huajiage.client.model.custom.ModelStandJson;
-import com.lh_lshen.mcbbs.huajiage.client.model.stand.HAModelFactory;
 import com.lh_lshen.mcbbs.huajiage.client.model.stand.ModelStandBase;
 import com.lh_lshen.mcbbs.huajiage.client.resources.CustomResourceLoader;
 import com.lh_lshen.mcbbs.huajiage.init.sound.HuajiSoundPlayer;
@@ -63,17 +62,14 @@ public class ResStandCustom extends StandRes {
         if(data==null){
             return;
         }
-        ResourceLocation STAND_TEX = HAModelFactory.getTexture(data.getModel());
-        ModelStandBase model = StandClientUtil.getModelByID(data.getModel());
+        ResourceLocation STAND_TEX = StandClientUtil.getTexByID(entity);
+        ModelStandBase model = StandClientUtil.getModelByData(entity, StandLoader.getStand(data.getStand()));
         if(model instanceof ModelStandJson){
             this.mainAnimations = null;
-            CustomResourceLoader.STAND_MODEL.getAnimation(this.getName()).ifPresent(animations -> this.mainAnimations = animations);
+            CustomResourceLoader.STAND_MODEL.getAnimation(model.getModelID()).ifPresent(animations -> this.mainAnimations = animations);
             if (this.mainAnimations != null) {
                 ((ModelStandJson) model).setAnimations(this.mainAnimations);
             }
-        }else {
-            STAND_TEX = StandClientUtil.getTexByID(entity);
-            model = StandClientUtil.getModelByData(entity, StandLoader.getStand(data.getStand()));
         }
         Minecraft.getMinecraft().getTextureManager().bindTexture(STAND_TEX);
         model.setRotationAngles( entity.limbSwing, entity.limbSwingAmount, entity.ticksExisted, 0, 0, 1f, entity, 0.5f ,1.5f);
