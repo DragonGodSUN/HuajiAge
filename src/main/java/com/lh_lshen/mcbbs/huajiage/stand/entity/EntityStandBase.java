@@ -2,11 +2,10 @@ package com.lh_lshen.mcbbs.huajiage.stand.entity;
 
 import com.lh_lshen.mcbbs.huajiage.capability.CapabilityLoader;
 import com.lh_lshen.mcbbs.huajiage.capability.IExposedData;
-import com.lh_lshen.mcbbs.huajiage.stand.StandClientUtil;
-import com.lh_lshen.mcbbs.huajiage.stand.StandLoader;
-import com.lh_lshen.mcbbs.huajiage.stand.StandResourceLoader;
+import com.lh_lshen.mcbbs.huajiage.stand.*;
 import com.lh_lshen.mcbbs.huajiage.stand.custom.StandCustomInfo;
 import com.lh_lshen.mcbbs.huajiage.stand.instance.StandBase;
+import com.lh_lshen.mcbbs.huajiage.stand.states.StandStateBase;
 import io.netty.buffer.ByteBuf;
 import net.minecraft.block.Block;
 import net.minecraft.block.SoundType;
@@ -62,9 +61,10 @@ public class EntityStandBase extends EntityHorse implements IEntityAdditionalSpa
 	private static final DataParameter<String> USERNAME = EntityDataManager.createKey(EntityStandBase.class,
 			DataSerializers.STRING);
 
+
 	public EntityStandBase(World worldIn) {
 		super(worldIn);
-		this.setSize(1.3f,0.1f);
+		this.setSize(0.1f,0.1f);
 		}
 
 	public EntityStandBase(World worldIn,EntityLivingBase user,StandBase stand) {
@@ -82,6 +82,19 @@ public class EntityStandBase extends EntityHorse implements IEntityAdditionalSpa
 //		this(worldIn,user,stand);
 //		setEntityGrowScale(bx,by,bz);
 ////		System.out.println(this.getCollisionBorderSize());
+//	}
+
+
+//	@Override
+//	public AxisAlignedBB getEntityBoundingBox() {
+//		if(!getUserId().isEmpty() && getStandType()!=null){
+//			StandStateBase state = StandStates.getStandState(getStandType().getName(), StandUtil.getStandState(getUser()));
+//			if(state.hasExtraData(EnumStandTag.StateTags.RIDE.getName())){
+//				float d0 = 1.3f;
+//				return new AxisAlignedBB(this.posX - d0, this.posY, this.posZ - d0, this.posX + d0, this.posY + (double)this.height, this.posZ + d0);
+//			}
+//		}
+//		return super.getEntityBoundingBox();
 //	}
 
 	@Override
@@ -174,7 +187,6 @@ public class EntityStandBase extends EntityHorse implements IEntityAdditionalSpa
 		if( user==null || user.isDead ) {
 			this.setDead();
 		}
-//		this.
 		if(user !=null) {
 			IExposedData data = user.getCapability(CapabilityLoader.EXPOSED_DATA, null);
 			if(data == null || !data.isTriggered()) {
@@ -373,6 +385,13 @@ public class EntityStandBase extends EntityHorse implements IEntityAdditionalSpa
 		EntityLivingBase user = this.world.getPlayerEntityByName(ByteBufUtils.readUTF8String(additionalData));
 		if(user!=null){
 		StandClientUtil.standUpSound(mc.getMinecraft(),this, user);
+		float d0 = 1.3f;
+		String state = StandUtil.getStandState(user);
+		StandStateBase standStateBase = StandStates.getStandState(stand.getName(),state);
+		if(standStateBase!=null&&standStateBase.hasExtraData(EnumStandTag.StateTags.RIDE.getName())){
+//			setEntityBoundingBox(new AxisAlignedBB(this.posX - d0, this.posY, this.posZ - d0, this.posX + d0, this.posY + (double)this.height, this.posZ + d0));
+			setSize(1.3f,0.2f);
+			}
 		}
 	}
 

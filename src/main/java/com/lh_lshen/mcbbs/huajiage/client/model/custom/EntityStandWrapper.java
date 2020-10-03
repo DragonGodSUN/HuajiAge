@@ -3,9 +3,14 @@ package com.lh_lshen.mcbbs.huajiage.client.model.custom;
 import com.github.tartaricacid.touhoulittlemaid.entity.item.AbstractEntityTrolley;
 import com.github.tartaricacid.touhoulittlemaid.entity.item.EntityPortableAudio;
 import com.github.tartaricacid.touhoulittlemaid.init.MaidItems;
+import com.lh_lshen.mcbbs.huajiage.client.model.stand.ModelStandBase;
 import com.lh_lshen.mcbbs.huajiage.common.CommonProxy;
+import com.lh_lshen.mcbbs.huajiage.stand.StandClientUtil;
+import com.lh_lshen.mcbbs.huajiage.stand.StandUtil;
 import com.lh_lshen.mcbbs.huajiage.stand.entity.EntityStandBase;
 import com.lh_lshen.mcbbs.huajiage.stand.helper.StandPowerHelper;
+import com.lh_lshen.mcbbs.huajiage.stand.instance.StandBase;
+import net.minecraft.client.Minecraft;
 import net.minecraft.entity.EntityLivingBase;
 import net.minecraft.entity.SharedMonsterAttributes;
 import net.minecraft.entity.player.EntityPlayer;
@@ -248,4 +253,16 @@ public class EntityStandWrapper {
         return StandPowerHelper.getUserStand(player);
     }
 
+    public float getRotationFactorFirst(){
+        StandBase stand = StandUtil.getType(player);
+        ModelStandBase modelBase = StandClientUtil.getModelByData(player,stand);
+        int perspective = Minecraft.getMinecraft().gameSettings.thirdPersonView;
+        if(modelBase instanceof ModelStandJson){
+            ModelStandJson json = (ModelStandJson) modelBase;
+            if(perspective == 0){
+                return json.info.getRotationFactorFirst();
+            }
+        }
+        return 1f;
+    }
 }

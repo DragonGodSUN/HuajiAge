@@ -63,6 +63,10 @@ public class ConfigHuaji {
 		@Config.Comment("Can THE WORLD Destory blocks?")
 		@LangKey("config.huaji_age.huaji_config.the_world.blocks")
 		public boolean allowTheWorldDestory=true;
+
+		@Config.Comment("Can CRAZY DIAMOND Change the state of blocks?")
+		@LangKey("config.huaji_age.huaji_config.crazy_diamond.blocks_change")
+		public boolean allowCrazyDiamondBlock=true;
 		
 		@Config.Comment("To punish the stand users who out of time")
 		@LangKey("config.huaji_age.huaji_config.stand.punish.out_time")

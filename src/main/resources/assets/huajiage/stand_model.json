@@ -61,11 +61,15 @@
             "transfer_first":[0,2,-5]
         },
         {
-          "model_id": "huajiage:crazy_diamond"
+          "model_id": "huajiage:crazy_diamond",
+          "transfer_first": [0,-5,-6],
+          "transfer":[0,-0.25,-0.9],
+          "rotation_factor_first": 0.7
         },
         {
           "model_id": "huajiage:crazy_diamond",
-          "state": "heal"
+          "state": "heal",
+          "transfer_first": [0,-5,-5]
         },
         {
           "model_id": "huajiage:crazy_diamond",

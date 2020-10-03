@@ -17,41 +17,41 @@ Java.asJSONCompatible({
         handr6 = modelMap.get("handr6");
 
         if (handl1 != undefined) {
-            handl1.setRotateAngleY(MathHelper.cos(1.5 * ageInTicks) * 1.2 );
+            handl1.setRotateAngleY(MathHelper.cos(1.5 * ageInTicks) * 1.2 * player.getRotationFactorFirst() );
         }
         if (handl2 != undefined) {
-            handl2.setRotateAngleY(MathHelper.cos(1.5 * ageInTicks + 1.03) * 1.2 );
+            handl2.setRotateAngleY(MathHelper.cos(1.5 * ageInTicks + 1.03) * 1.2 * player.getRotationFactorFirst() );
         }
         if (handl3 != undefined) {
-            handl3.setRotateAngleY(MathHelper.cos(1.5 * ageInTicks + 1.5) * 1.2 );
+            handl3.setRotateAngleY(MathHelper.cos(1.5 * ageInTicks + 1.5) * 1.2 * player.getRotationFactorFirst() );
         }
         if (handl4 != undefined) {
-            handl4.setRotateAngleY(MathHelper.cos(1.5 * ageInTicks + 2.06) * 1.2 );
+            handl4.setRotateAngleY(MathHelper.cos(1.5 * ageInTicks + 2.06) * 1.2 * player.getRotationFactorFirst() );
                 }
         if (handl5 != undefined) {
-            handl5.setRotateAngleY(MathHelper.cos(1.5 * ageInTicks + 2.5) * 1.2 );
+            handl5.setRotateAngleY(MathHelper.cos(1.5 * ageInTicks + 2.5) * 1.2 * player.getRotationFactorFirst() );
                 }
         if (handl6 != undefined) {
-            handl6.setRotateAngleY(MathHelper.cos(1.5 * ageInTicks + 3.14) * 1.2 );
+            handl6.setRotateAngleY(MathHelper.cos(1.5 * ageInTicks + 3.14) * 1.2 * player.getRotationFactorFirst() );
                 }
 
          if (handr1 != undefined) {
-            handr1.setRotateAngleY(MathHelper.cos(1.5 * ageInTicks) * 1.2 );
+            handr1.setRotateAngleY(MathHelper.cos(1.5 * ageInTicks) * 1.2 * player.getRotationFactorFirst() );
                 }
         if (handr2 != undefined) {
-            handr2.setRotateAngleY(MathHelper.cos(1.5 * ageInTicks + 1.03) * 1.2 );
+            handr2.setRotateAngleY(MathHelper.cos(1.5 * ageInTicks + 1.03) * 1.2 * player.getRotationFactorFirst() );
         }
         if (handr3 != undefined) {
-            handr3.setRotateAngleY(MathHelper.cos(1.5 * ageInTicks + 1.5) * 1.2 );
+            handr3.setRotateAngleY(MathHelper.cos(1.5 * ageInTicks + 1.5) * 1.2 * player.getRotationFactorFirst() );
         }
         if (handr4 != undefined) {
-            handr4.setRotateAngleY(MathHelper.cos(1.5 * ageInTicks + 2.06) * 1.2 );
+            handr4.setRotateAngleY(MathHelper.cos(1.5 * ageInTicks + 2.06) * 1.2 * player.getRotationFactorFirst() );
                 }
         if (handr5 != undefined) {
-            handr5.setRotateAngleY(MathHelper.cos(1.5 * ageInTicks + 2.5) * 1.2 );
+            handr5.setRotateAngleY(MathHelper.cos(1.5 * ageInTicks + 2.5) * 1.2 * player.getRotationFactorFirst() );
                 }
         if (handr6 != undefined) {
-            handr6.setRotateAngleY(MathHelper.cos(1.5 * ageInTicks + 3.14) * 1.2 );
+            handr6.setRotateAngleY(MathHelper.cos(1.5 * ageInTicks + 3.14) * 1.2 * player.getRotationFactorFirst() );
                 }
     }
 })

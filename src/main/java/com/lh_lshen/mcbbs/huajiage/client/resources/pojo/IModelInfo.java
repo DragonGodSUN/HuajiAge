@@ -25,6 +25,8 @@ public interface IModelInfo {
 
     List<Float> getRotationFirst();
 
+    Float getRotationFactorFirst();
+
     List<ResourceLocation> getAnimation();
 
     ResourceLocation getTexture();

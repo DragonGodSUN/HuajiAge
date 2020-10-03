@@ -67,7 +67,7 @@ public class EventStands {
         {
             String state = StandUtil.getStandState(entity);
             StandStateBase stateBase = StandStates.getStandState(stand.getName(),state);
-            if(stateBase.hasExtraData(EnumStandTag.StateTags.RIDE.getName())){
+            if(stateBase!=null && stateBase.hasExtraData(EnumStandTag.StateTags.RIDE.getName())){
                 List<Entity> entityList = StandPowerHelper.getListEntity(entity,1);
                 if (entityList.size()>0) {
                     for (Entity standR:entityList) {

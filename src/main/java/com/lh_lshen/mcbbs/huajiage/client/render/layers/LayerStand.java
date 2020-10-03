@@ -45,7 +45,7 @@ public class LayerStand implements  LayerRenderer<EntityLivingBase> {
 		IExposedData data = entitylivingbaseIn.getCapability(CapabilityLoader.EXPOSED_DATA, null);
 		if (data!=null) {
 			String ex_stand = data.getStand();
-			boolean istrigger = data.isTriggered();
+			boolean is_trigger = data.isTriggered();
 			StandBase stand = StandLoader.getStand(ex_stand);
 			String state = data.getState();
 			int stage = data.getStage();
@@ -53,7 +53,7 @@ public class LayerStand implements  LayerRenderer<EntityLivingBase> {
 			ModelStandBase model =  stand != null?StandClientUtil.getModelByData(entitylivingbaseIn,stand) : null;
 			StandStateBase stateBase = StandStates.getStandState(ex_stand,state);
 
-			if(model != null&&!type.equals(StandLoader.EMPTY) && stateBase!=null && istrigger)
+			if(model != null&&!type.equals(StandLoader.EMPTY) && stateBase!=null && is_trigger)
 			{
 				//	酒石酸号模型加载
 				if (model instanceof ModelStandJson) {

@@ -53,6 +53,9 @@ public class StandModelInfo implements IModelInfo {
     @SerializedName("rotation_first")
     private List<Number> rotationFirst;
 
+    @SerializedName("rotation_factor_first")
+    private Number rotationFactorFirst;
+
     @SerializedName("render_entity_scale")
     private float renderEntityScale = 1.0f;
 
@@ -140,6 +143,10 @@ public class StandModelInfo implements IModelInfo {
         return null;
     }
 
+    @Override
+    public Float getRotationFactorFirst() {
+        return rotationFactorFirst.floatValue();
+    }
 
     @Override
     public List<String> getDescription() {
@@ -254,6 +261,7 @@ public class StandModelInfo implements IModelInfo {
         if (rotationFirst == null || rotationFirst.isEmpty()) {
             rotationFirst = Lists.newArrayList(0f,0f,0f,0f);//degree,y,p,w
         }
+
         if (tags == null) {
             tags = Lists.newArrayList();
         }

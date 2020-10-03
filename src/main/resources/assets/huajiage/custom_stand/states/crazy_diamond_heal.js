@@ -14,6 +14,8 @@ Java.asJSONCompatible({
     hand:false,
 //  可解锁该状态的替身等级，不写时默认为0
     stage:0,
+//  有关属性的标签
+    stateTags:["block_move"],
 
 /**
  * 替身放出时始终执行的方法
