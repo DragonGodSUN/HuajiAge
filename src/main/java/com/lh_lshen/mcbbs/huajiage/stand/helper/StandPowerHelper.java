@@ -7,6 +7,7 @@ import com.lh_lshen.mcbbs.huajiage.config.ConfigHuaji;
 import com.lh_lshen.mcbbs.huajiage.entity.EntityEmeraldBullet;
 import com.lh_lshen.mcbbs.huajiage.init.HuajiConstant;
 import com.lh_lshen.mcbbs.huajiage.potion.PotionLoader;
+import com.lh_lshen.mcbbs.huajiage.stand.custom.script.EntityLivingBaseWrapper;
 import com.lh_lshen.mcbbs.huajiage.stand.custom.script.WorldWrapper;
 import com.lh_lshen.mcbbs.huajiage.stand.entity.EntityStandBase;
 import com.lh_lshen.mcbbs.huajiage.util.HAMathHelper;
@@ -27,6 +28,7 @@ import net.minecraft.network.play.server.SPacketSoundEffect;
 import net.minecraft.potion.Potion;
 import net.minecraft.potion.PotionEffect;
 import net.minecraft.util.*;
+import net.minecraft.util.math.BlockPos;
 import net.minecraft.util.math.Vec3d;
 import net.minecraft.world.World;
 import net.minecraftforge.fml.common.registry.ForgeRegistries;
@@ -110,6 +112,30 @@ public class StandPowerHelper {
         {
             chargeHandler.charge(points);
         }
+    }
+
+    /**
+     * 生成粒子特效
+     * @param entity 实体
+     * @param type 类型
+     */
+    public static void createParticleEffect(Entity entity, int type){
+        switch (type){
+            case 1:
+                entity.world.playEvent(2005,entity.getPosition(),1);
+                break;
+            case 2:
+                break;
+            default:
+        }
+    }
+
+    public static void playEvent(Entity entity, int event_type, int data){
+
+    }
+
+    public static void playEvent(World world, BlockPos blockPos, int event_type, int data){
+
     }
 
 //  药水效果========================================================================================
@@ -495,6 +521,44 @@ public class StandPowerHelper {
     }
 
     /**
+     * 获取玩家周围生物实体
+     * @param user 玩家
+     * @param distance 距离
+     * @return 实体列表
+     */
+    public static List<EntityLivingBase> getListEntityLiving(EntityLivingBase user, float distance){
+        List<Entity> list = getListEntity(user,distance);
+        List<EntityLivingBase> list_living = Lists.newArrayList();
+        if (list.size()>0) {
+            for (Entity entity : list) {
+                if(entity instanceof EntityLivingBase){
+                    list_living.add((EntityLivingBase) entity);
+                }
+            }
+        }
+        return list_living;
+    }
+
+    /**
+     * 获取一定范围内的生物实体
+     * @param user 玩家
+     * @param distance 距离
+     * @param degree 角度（以玩家面朝方向起始，朝两边延伸）
+     * @return 实体列表
+     */
+    public static List<EntityLivingBase> getRangeLiving(EntityLivingBase user, float distance, float degree){
+        List<EntityLivingBase> list = getListEntityLiving(user,distance);
+        List<EntityLivingBase> livingBaseList = Lists.newLinkedList();
+        for (EntityLivingBase livingBase : list) {
+            boolean flag_degree = HAMathHelper.getDegreeXZ(user.getLookVec(),HAMathHelper.getVectorEntityEye(user, livingBase))>degree;
+            if(!flag_degree){
+                livingBaseList.add(livingBase);
+            }
+        }
+        return livingBaseList;
+    }
+
+    /**
      * 获取玩家的替身实体
      * @param user
      * @return
@@ -615,5 +679,22 @@ public class StandPowerHelper {
         addMotion(user,new Vec3d(x,y,z));
     }
 
+    /**
+     * 治疗生物
+     * @param entityLivingBase 生物实体
+     * @param point 治疗点数s
+     */
+    public static void healEntity(EntityLivingBase entityLivingBase, int point){
+        entityLivingBase.heal(point);
+    }
+
+    /**
+     * 获取一个便于操作实体的wrapper
+     * @param entityLivingBase 生物实体
+     * @return wrapper
+     */
+    public static EntityLivingBaseWrapper getEntityLivingWrapper(EntityLivingBase entityLivingBase){
+        return new EntityLivingBaseWrapper(entityLivingBase);
+    }
 
 }

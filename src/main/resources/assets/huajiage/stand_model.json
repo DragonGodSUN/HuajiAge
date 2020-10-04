@@ -69,7 +69,9 @@
         {
           "model_id": "huajiage:crazy_diamond",
           "state": "heal",
-          "transfer_first": [0,-5,-5]
+          "transfer_first": [0,-5,-6],
+          "transfer":[0,-0.25,-0.9],
+          "rotation_factor_first": 0.8
         },
         {
           "model_id": "huajiage:crazy_diamond",

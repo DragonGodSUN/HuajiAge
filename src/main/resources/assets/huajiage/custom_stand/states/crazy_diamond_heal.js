@@ -25,6 +25,15 @@ Java.asJSONCompatible({
     update: function (worldWrapper,entityWrapper,dataWrapper) {
         //范围攻击 参数（玩家，可攻击角度，伤害，攻击距离）
         Helper.MPCharge(entityWrapper.getLivingBase(),30);
+
+        var entities = Helper.getRangeLiving(entityWrapper.getLivingBase(),2,90);
+        for(i=0;i<entities.length;i++){
+            var entity = entities[i];
+            if(entity != undefined && entityWrapper.ticksExisted()%5==0 ) {
+                Helper.createParticleEffect(entity,1);
+                Helper.healEntity(entity,2);
+            }
+        }
     },
 
 /**

@@ -22,8 +22,7 @@ Java.asJSONCompatible({
  */
     update: function (worldWrapper,entityWrapper,dataWrapper) {
         //范围攻击 参数（玩家，可攻击角度，伤害，攻击距离）
-        Helper.rangePunchAttack(entityWrapper.getLivingBase(),25,10,1);
-        Helper.MPCharge(entityWrapper.getLivingBase(),30);
+        Helper.rangePunchAttack(entityWrapper.getLivingBase(),100,10,2);
     },
 
 /**

@@ -595,7 +595,12 @@
 				]
 			},
 			{
+				"name": "viewFirst",
+				"pivot": [0, 20.55, 0.2]
+			},
+			{
 				"name": "left_hands_ro",
+				"parent": "viewFirst",
 				"pivot": [0, 20.55, 0.2]
 			},
 			{
@@ -805,6 +810,7 @@
 			},
 			{
 				"name": "right_hands_ro",
+				"parent": "viewFirst",
 				"pivot": [0, 20.55, 0.2]
 			},
 			{

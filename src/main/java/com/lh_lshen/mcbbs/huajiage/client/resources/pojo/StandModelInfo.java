@@ -262,6 +262,10 @@ public class StandModelInfo implements IModelInfo {
             rotationFirst = Lists.newArrayList(0f,0f,0f,0f);//degree,y,p,w
         }
 
+        if(rotationFactorFirst == null){
+            rotationFactorFirst = (Number) 1;
+        }
+
         if (tags == null) {
             tags = Lists.newArrayList();
         }
