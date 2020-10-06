@@ -22,6 +22,7 @@ import net.minecraft.entity.player.EntityPlayer;
 import net.minecraft.entity.player.EntityPlayerMP;
 import net.minecraft.init.Blocks;
 import net.minecraft.init.MobEffects;
+import net.minecraft.init.SoundEvents;
 import net.minecraft.item.Item;
 import net.minecraft.item.ItemStack;
 import net.minecraft.network.play.server.SPacketSoundEffect;
@@ -123,6 +124,7 @@ public class StandPowerHelper {
         switch (type){
             case 1:
                 entity.world.playEvent(2005,entity.getPosition(),1);
+                entity.playSound(SoundEvents.ENTITY_EXPERIENCE_ORB_PICKUP,0.5f,1f);
                 break;
             case 2:
                 break;
@@ -515,6 +517,7 @@ public class StandPowerHelper {
         List<Entity> entities = user.world.getEntitiesWithinAABB(Entity.class,user.getEntityBoundingBox().grow(distance));
         if(entities!=null && !entities.isEmpty()){
             entities.remove(user);
+            entities.removeIf(entity -> entity instanceof EntityStandBase);
             list.addAll(entities);
         }
         return list;
@@ -629,6 +632,21 @@ public class StandPowerHelper {
             return isPlayerHasItem(user,item);
         }
         return false;
+    }
+
+    public static ItemStack getPlayerHoldItem(EntityLivingBase user, boolean isMainHand){
+        return isMainHand?user.getHeldItemMainhand():user.getHeldItemOffhand();
+    }
+
+    public static void setItemDuration(ItemStack stack, int duration){
+        if (stack.getMaxDamage()>=duration) {
+            stack.setItemDamage(stack.getMaxDamage()-duration);
+        }else {
+            stack.setItemDamage(0);
+        }
+    }
+    public static void repairItem(ItemStack stack){
+        stack.setItemDamage(0);
     }
 
 //  动作=============================================================================================

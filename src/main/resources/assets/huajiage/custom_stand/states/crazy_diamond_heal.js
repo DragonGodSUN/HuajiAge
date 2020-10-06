@@ -52,15 +52,10 @@ Java.asJSONCompatible({
      * @param entity 替身使者
      */
     capability: function (worldWrapper,entityWrapper,dataWrapper) {
-//        var pos = entityWrapper.getPos();
-//        var vec = entityWrapper.getLookVec();
-//        //时间暂停 参数（玩家，时停时间（单位：tick)，时停范围）
-//        Helper.setTimeStop(entityWrapper.getLivingBase(),100,100);
-//        Helper.removeBadPotion(entityWrapper.getLivingBase());
-//        Helper.increaseStandTime(entityWrapper.getLivingBase(),500);
-//        Helper.potionEffectAdd(entityWrapper.getLivingBase(),"minecraft:luck",250,2);
-//        Helper.potionEffectAdd(entityWrapper.getLivingBase(),"minecraft:regeneration",250,1);
-//        Helper.potionEffectAdd(entityWrapper.getLivingBase(),"minecraft:resistance",250,1);
+        // 获取玩家手上的物品 （玩家，是否是主手）
+        var item_main_hand = Helper.getPlayerHoldItem(entityWrapper.getLivingBase(),true);
+        // 修复物品（物品）
+        Helper.repairItem(item_main_hand);
 //        Helper.playSound(entityWrapper.getLivingBase(), "huajiage:bike_ring_ear0", 5, 1);
     }
 

@@ -21,8 +21,7 @@ Java.asJSONCompatible({
  * @param entity 替身使者
  */
     update: function (worldWrapper,entityWrapper,dataWrapper) {
-        //范围攻击 参数（玩家，可攻击角度，伤害，攻击距离）
-        Helper.MPCharge(entityWrapper.getLivingBase(),100);
+        Helper.MPCharge(entityWrapper.getLivingBase(),80);
     },
 
 /**
@@ -32,7 +31,8 @@ Java.asJSONCompatible({
  */
     timeOut: function (worldWrapper,entityWrapper,dataWrapper) {
         //默认超时效果
-        Helper.potionDefaultOutOfTime(entityWrapper.getLivingBase());
+       Helper.increaseStandTime(entityWrapper.getLivingBase(),100);
+       Helper.potionEffectAdd(entityWrapper.getLivingBase(),"minecraft:hunger",100,5);
 
     },
     /**
@@ -41,16 +41,10 @@ Java.asJSONCompatible({
      * @param entity 替身使者
      */
     capability: function (worldWrapper,entityWrapper,dataWrapper) {
-//        var pos = entityWrapper.getPos();
-//        var vec = entityWrapper.getLookVec();
-//        //时间暂停 参数（玩家，时停时间（单位：tick)，时停范围）
-//        Helper.setTimeStop(entityWrapper.getLivingBase(),100,100);
-//        Helper.removeBadPotion(entityWrapper.getLivingBase());
-//        Helper.increaseStandTime(entityWrapper.getLivingBase(),500);
-//        Helper.potionEffectAdd(entityWrapper.getLivingBase(),"minecraft:luck",250,2);
-//        Helper.potionEffectAdd(entityWrapper.getLivingBase(),"minecraft:regeneration",250,1);
-//        Helper.potionEffectAdd(entityWrapper.getLivingBase(),"minecraft:resistance",250,1);
-//        Helper.playSound(entityWrapper.getLivingBase(), "huajiage:bike_ring_ear0", 5, 1);
+        // 获取玩家手上的物品 （玩家，是否是主手）
+        var item_main_hand = Helper.getPlayerHoldItem(entityWrapper.getLivingBase(),true);
+        // 修复物品（物品）
+        Helper.repairItem(item_main_hand);
     }
 
 });

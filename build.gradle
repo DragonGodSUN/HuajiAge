@@ -40,7 +40,11 @@ repositories {
         name = "Progwml6 Maven"
         url = "https://dvs1.progwml6.com/files/maven/"
     }
-
+    maven {
+        // HWYLA
+        name = "Tehnut Maven"
+        url = "https://maven.tehnut.info"
+    }
     maven {
         // Patchouli
         name = 'Blamejared Maven'
@@ -52,7 +56,10 @@ dependencies {
     //  JEI
     deobfCompile "mezz.jei:jei_1.12.2:${jei_version}"
 
-    compile "vazkii.patchouli:Patchouli:${patchouli_version}"
+    deobfCompile "vazkii.patchouli:Patchouli:${patchouli_version}"
+
+    // HWYLA
+    deobfCompile "mcp.mobius.waila:Hwyla:${hwyla_version}"
 	
     // 想要了解更多，可以查询如下网址
     // http://www.gradle.org/docs/current/userguide/artifact_dependencies_tutorial.html
