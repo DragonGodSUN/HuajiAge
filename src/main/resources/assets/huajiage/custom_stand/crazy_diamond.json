@@ -4,8 +4,11 @@
   "disc": "huajiage:disc/disc_huajiage_bike_healthy",
   "stages": 1,
   "states":["default","heal","idle"],
-  "attributes": [1,12,250,2,50000,80,100000],
-  "sounds": ["huajiage:bike_ring_ear0"],
+  "attributes": [1,12,250,2,170000,80,180000],
+  "sounds": [ "huajiage:stand_crazy_diamond_1",
+              "huajiage:stand_crazy_diamond_2",
+              "huajiage:stand_crazy_diamond_3",
+              "huajiage:stand_crazy_diamond_4" ],
   "gravity": false,
   "author": "LH_Lshen"
 }

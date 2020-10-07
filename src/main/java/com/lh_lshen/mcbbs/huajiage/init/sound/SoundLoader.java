@@ -54,6 +54,12 @@ public class SoundLoader {
 	public static final SoundEvent STAND_KILLER_QUEEN_TRIGGER=registerSound("stand_killer_queen_trigger");
 	public static final SoundEvent STAND_KILLER_QUEEN_SHOW_1=registerSound("stand_killer_queen_show_1");
 	public static final SoundEvent STAND_KILLER_QUEEN_SHOW_2=registerSound("stand_killer_queen_show_2");
+	public static final SoundEvent STAND_CRAZY_DIAMOND_1=registerSound("stand_crazy_diamond_1");
+	public static final SoundEvent STAND_CRAZY_DIAMOND_2=registerSound("stand_crazy_diamond_2");
+	public static final SoundEvent STAND_CRAZY_DIAMOND_3=registerSound("stand_crazy_diamond_3");
+	public static final SoundEvent STAND_CRAZY_DIAMOND_4=registerSound("stand_crazy_diamond_4");
+	public static final SoundEvent STAND_CRAZY_DIAMOND_REPAIR_1=registerSound("stand_crazy_diamond_repair_1");
+	public static final SoundEvent STAND_CRAZY_DIAMOND_REPAIR_2=registerSound("stand_crazy_diamond_repair_2");
 	public static final SoundEvent SHEER_HEART_ATTACK=registerSound("sheer_heart_attack_target");
 	public static final SoundEvent BIKE_RING_1=registerSound("bike_ring_ear0");
 	@SubscribeEvent

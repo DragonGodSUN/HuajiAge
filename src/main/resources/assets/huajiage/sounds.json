@@ -377,6 +377,60 @@
         "stream": true
       }
     ]
+  },
+  "stand_crazy_diamond_1": {
+    "category": "neutral",
+    "sounds": [
+      {
+        "name": "huajiage:stand_crazy_diamond_1",
+        "stream": true
+      }
+    ]
+  },
+  "stand_crazy_diamond_2": {
+    "category": "neutral",
+    "sounds": [
+      {
+        "name": "huajiage:stand_crazy_diamond_2",
+        "stream": true
+      }
+    ]
+  },
+  "stand_crazy_diamond_3": {
+    "category": "neutral",
+    "sounds": [
+      {
+        "name": "huajiage:stand_crazy_diamond_3",
+        "stream": true
+      }
+    ]
+  },
+  "stand_crazy_diamond_4": {
+    "category": "neutral",
+    "sounds": [
+      {
+        "name": "huajiage:stand_crazy_diamond_4",
+        "stream": true
+      }
+    ]
+  },
+  "stand_crazy_diamond_repair_1": {
+    "category": "neutral",
+    "sounds": [
+      {
+        "name": "huajiage:stand_crazy_diamond_repair_1",
+        "stream": true
+      }
+    ]
+  },
+  "stand_crazy_diamond_repair_2": {
+    "category": "neutral",
+    "sounds": [
+      {
+        "name": "huajiage:stand_crazy_diamond_repair_2",
+        "stream": true
+      }
+    ]
   }
 
 }

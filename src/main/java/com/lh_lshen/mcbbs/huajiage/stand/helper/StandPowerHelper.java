@@ -634,10 +634,21 @@ public class StandPowerHelper {
         return false;
     }
 
+    /**
+     * 获得玩家手持的物品
+     * @param user 玩家
+     * @param isMainHand 是否为主手
+     * @return 物品
+     */
     public static ItemStack getPlayerHoldItem(EntityLivingBase user, boolean isMainHand){
         return isMainHand?user.getHeldItemMainhand():user.getHeldItemOffhand();
     }
 
+    /**
+     * 设置物品耐久度
+     * @param stack 物品
+     * @param duration 耐久
+     */
     public static void setItemDuration(ItemStack stack, int duration){
         if (stack.getMaxDamage()>=duration) {
             stack.setItemDamage(stack.getMaxDamage()-duration);
@@ -645,8 +656,23 @@ public class StandPowerHelper {
             stack.setItemDamage(0);
         }
     }
+
+    /**
+     * 完全修复物品
+     * @param stack 物品栈
+     */
     public static void repairItem(ItemStack stack){
         stack.setItemDamage(0);
+    }
+
+    /**
+     * 修复物品点数
+     * @param stack 物品栈
+     * @param duration 修复点数
+     */
+    public static void repairItem(ItemStack stack, int duration){
+        int result = stack.getItemDamage()-duration;
+        stack.setItemDamage(Math.max(result, 0));
     }
 
 //  动作=============================================================================================

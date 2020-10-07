@@ -48,10 +48,7 @@ Java.asJSONCompatible({
      * @param entity 替身使者
      */
     capability: function (worldWrapper,entityWrapper,dataWrapper) {
-//        var pos = entityWrapper.getPos();
         var vec = entityWrapper.getLookVec();
-//        //时间暂停 参数（玩家，时停时间（单位：tick)，时停范围）
-//        Helper.setTimeStop(entityWrapper.getLivingBase(),100,100);
         Helper.removeBadPotion(entityWrapper.getLivingBase());
         Helper.increaseStandTime(entityWrapper.getLivingBase(),500);
         Helper.potionEffectAdd(entityWrapper.getLivingBase(),"minecraft:luck",250,2);

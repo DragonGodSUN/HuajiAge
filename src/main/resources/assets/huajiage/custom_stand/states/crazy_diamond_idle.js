@@ -45,6 +45,10 @@ Java.asJSONCompatible({
         var item_main_hand = Helper.getPlayerHoldItem(entityWrapper.getLivingBase(),true);
         // 修复物品（物品）
         Helper.repairItem(item_main_hand);
+        //播放音效（玩家，音效ID，响度，音调）
+        Helper.playSound(entityWrapper.getLivingBase(), "huajiage:stand_crazy_diamond_repair_2", 5, 1);
+        //添加药水效果（玩家，药水ID，持续时长<tick，约为1/20秒>，等级-1）
+        Helper.potionEffectAdd(entityWrapper.getLivingBase(),"huajiage:potion_huaji_repair",250,0);
     }
 
 });
