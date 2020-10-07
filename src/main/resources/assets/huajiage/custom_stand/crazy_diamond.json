@@ -1,7 +1,7 @@
 {
   "stand": "huajiage:crazy_diamond",
   "name": "stand.huajiage.crazy_diamond.name",
-  "disc": "huajiage:disc/disc_huajiage_bike_healthy",
+  "disc": "huajiage:disc/disc_huajiage_crazy_diamond",
   "stages": 1,
   "states":["default","heal","idle"],
   "attributes": [1,12,250,2,170000,80,180000],
@@ -9,6 +9,7 @@
               "huajiage:stand_crazy_diamond_2",
               "huajiage:stand_crazy_diamond_3",
               "huajiage:stand_crazy_diamond_4" ],
+  "sounds_repeat": ["entity.player.attack.strong-0.7"],
   "gravity": false,
   "author": "LH_Lshen"
 }

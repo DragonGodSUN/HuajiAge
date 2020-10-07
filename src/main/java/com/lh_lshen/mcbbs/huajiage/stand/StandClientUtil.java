@@ -10,6 +10,9 @@ import net.minecraft.client.Minecraft;
 import net.minecraft.entity.Entity;
 import net.minecraft.entity.EntityLivingBase;
 import net.minecraft.util.ResourceLocation;
+import org.apache.commons.lang3.math.NumberUtils;
+import org.apache.commons.lang3.tuple.MutablePair;
+import org.apache.commons.lang3.tuple.Pair;
 
 public class StandClientUtil {
 //	@SideOnly(Side.CLIENT)
@@ -117,5 +120,13 @@ public class StandClientUtil {
 			return HAModelFactory.newInstance(id);
 		}
 		return new ModelTheWorld();
+	}
+
+	public static Pair<String,Number> getRepeatSounds(String sound){
+		if (sound != null && !sound.equals("") && sound.contains("-")) {
+			String[] objects = sound.split("-");
+			return new MutablePair<>(objects[0], NumberUtils.createNumber(objects[1]));
+		}
+		return null;
 	}
 }

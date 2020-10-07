@@ -217,6 +217,7 @@ public class StandResourceLoader {
         String modelId ;
         List<String> stateTags;
         boolean hand = true;
+        boolean isSoundRepeat = false;
         int stage = 0;
 
         if (scriptMaps.containsKey(stateArgs.STATE.getName())) {
@@ -260,11 +261,15 @@ public class StandResourceLoader {
             hand = (Boolean) scriptMaps.get(stateArgs.HAND.getName());
         }
 
+        if (scriptMaps.containsKey(stateArgs.SOUNDREPEAT.getName())) {
+            isSoundRepeat = (Boolean) scriptMaps.get(stateArgs.SOUNDREPEAT.getName());
+        }
+
         if (scriptMaps.containsKey(stateArgs.STAGE.getName())) {
             stage = (Integer) scriptMaps.get(stateArgs.STAGE.getName());
         }
 
-        return new StandStateInfo(id,stateId,stateKey,modelId,stateTags,scriptObject,hand,stage);
+        return new StandStateInfo(id,stateId,stateKey,modelId,stateTags,scriptObject,hand,isSoundRepeat,stage);
         }
 
     enum stateArgs {
@@ -274,6 +279,7 @@ public class StandResourceLoader {
         MODEL("modelId"),
         TAGS("stateTags"),
         HAND("hand"),
+        SOUNDREPEAT("soundRepeat"),
         STAGE("stage")
         ;
 

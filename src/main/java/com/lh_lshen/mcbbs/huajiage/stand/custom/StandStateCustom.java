@@ -27,7 +27,7 @@ public class StandStateCustom extends StandStateBase {
         this.extraDatas = stateInfo.getStateTags();
         this.isHandPlay = stateInfo.isHand();
         this.stage = stateInfo.getStage();
-        this.soundLoop = false;
+        this.soundLoop = stateInfo.isSoundRepeat();
         HuajiAge.LOGGER.info("Loaded Stand Info: {} ", isHandPlay);
     }
 

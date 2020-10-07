@@ -42,6 +42,10 @@ public class StandCustomInfo {
     @SerializedName("sounds")
     private List<String> sounds;
 
+    // 替身释放期间的重复音效
+    @SerializedName("sounds_repeat")
+    private List<String> soundRepeat;
+
     // 替身是否收到重力影响
     @SerializedName("gravity")
     private boolean gravity;
@@ -57,7 +61,6 @@ public class StandCustomInfo {
     public String getName() {
         return name;
     }
-
 
     public List<String> getStates() {
         return states;
@@ -89,6 +92,10 @@ public class StandCustomInfo {
 
     public List<String> getSounds() {
         return sounds;
+    }
+
+    public List<String> getSoundsRepeat() {
+        return soundRepeat;
     }
 
     public boolean hasGravity() {
@@ -139,6 +146,10 @@ public class StandCustomInfo {
 
         if (sounds == null){
             sounds = Lists.newArrayList();
+        }
+
+        if(soundRepeat == null){
+            soundRepeat = Lists.newArrayList();
         }
 
         if(author == null){

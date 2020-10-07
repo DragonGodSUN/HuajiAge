@@ -10,10 +10,11 @@ public class StandStateInfo {
     private List<String> stateTags;
     private Object script;
     private boolean hand;
+    private boolean isSoundRepeat;
     private int stage;
 
     public StandStateInfo(String stand, String stateId, String stateKey, String modelId, List<String> stateTags,
-                          Object script, boolean isHandDisplay, int stage) {
+                          Object script, boolean isHandDisplay, boolean isSoundRepeat, int stage) {
         this.stand = stand;
         this.stateId = stateId;
         this.stateKey = stateKey;
@@ -21,6 +22,7 @@ public class StandStateInfo {
         this.stateTags = stateTags;
         this.script = script;
         this.hand = isHandDisplay;
+        this.isSoundRepeat = isSoundRepeat;
         this.stage = stage;
     }
 
@@ -46,6 +48,10 @@ public class StandStateInfo {
 
     public boolean isHand() {
         return hand;
+    }
+
+    public boolean isSoundRepeat() {
+        return isSoundRepeat;
     }
 
     public int getStage() {

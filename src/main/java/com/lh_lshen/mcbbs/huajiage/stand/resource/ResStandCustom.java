@@ -5,6 +5,7 @@ import com.lh_lshen.mcbbs.huajiage.capability.IExposedData;
 import com.lh_lshen.mcbbs.huajiage.client.model.custom.ModelStandJson;
 import com.lh_lshen.mcbbs.huajiage.client.model.stand.ModelStandBase;
 import com.lh_lshen.mcbbs.huajiage.client.resources.CustomResourceLoader;
+import com.lh_lshen.mcbbs.huajiage.init.sound.HuajiMovingSound;
 import com.lh_lshen.mcbbs.huajiage.init.sound.HuajiSoundPlayer;
 import com.lh_lshen.mcbbs.huajiage.stand.StandClientUtil;
 import com.lh_lshen.mcbbs.huajiage.stand.StandLoader;
@@ -19,6 +20,7 @@ import net.minecraft.util.SoundCategory;
 import net.minecraft.util.SoundEvent;
 import net.minecraft.util.math.MathHelper;
 import net.minecraftforge.fml.common.registry.ForgeRegistries;
+import org.apache.commons.lang3.tuple.Pair;
 
 import java.util.List;
 import java.util.Random;
@@ -39,20 +41,34 @@ public class ResStandCustom extends StandRes {
     @Override
     public void doSoundPlay(Minecraft mc, Entity entity, EntityLivingBase user) {
         List<SoundEvent> sounds = Lists.newArrayList();
-        for(String s : info.getSounds()){
-            if(ForgeRegistries.SOUND_EVENTS.getValue(new ResourceLocation(s)) !=null){
-            sounds.add(ForgeRegistries.SOUND_EVENTS.getValue(new ResourceLocation(s)));
+        if (!info.getSounds().isEmpty()) {
+            for(String s : info.getSounds()){
+                if(ForgeRegistries.SOUND_EVENTS.getValue(new ResourceLocation(s)) !=null){
+                sounds.add(ForgeRegistries.SOUND_EVENTS.getValue(new ResourceLocation(s)));
+                }
             }
         }
-        if(sounds.isEmpty()){
-            return;
+
+        if(!sounds.isEmpty()){
+            IExposedData data = StandUtil.getStandData(user);
+            int size = sounds.size();
+            int index = (int) MathHelper.nextFloat(new Random(), 0, size);
+            if(null!=data&&index<size) {
+                SoundEvent sound = sounds.get(index);
+                mc.getSoundHandler().playSound(HuajiSoundPlayer.getMovingSound(entity, sound, SoundCategory.NEUTRAL, 1f));
+            }
         }
-        IExposedData data = StandUtil.getStandData(user);
-        int size = sounds.size();
-        int index = (int) MathHelper.nextFloat(new Random(), 0, size);
-        if(null!=data&&index<size) {
-            SoundEvent sound = sounds.get(index);
-            mc.getSoundHandler().playSound(HuajiSoundPlayer.getMovingSound(entity, sound, SoundCategory.NEUTRAL, 1f));
+        if (!info.getSoundsRepeat().isEmpty()) {
+            for(String sp : info.getSoundsRepeat()){
+                Pair<String, Number> sounds_r = StandClientUtil.getRepeatSounds(sp);
+                SoundEvent soundEvent = ForgeRegistries.SOUND_EVENTS.getValue(new ResourceLocation(sounds_r.getLeft()));
+                if(soundEvent != null){
+                    HuajiMovingSound repeat = new HuajiMovingSound(entity, soundEvent, SoundCategory.NEUTRAL);
+                    repeat.setVolume(sounds_r.getRight().floatValue());
+                    repeat.setLoop();
+                    mc.getSoundHandler().playSound(repeat);
+                }
+            }
         }
     }
 
