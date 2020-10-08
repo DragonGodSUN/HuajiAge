@@ -110,10 +110,12 @@ public class ItemDiscStand extends Item {
 	public void getSubItems(CreativeTabs tab, NonNullList<ItemStack> items) {
 		if (this.isInCreativeTab(tab)) {
             for (StandBase stand : StandUtil.getArrowStands()) {
-            	String type = stand.getName();
-            	items.add(getItemData(new ItemStack(this),type,0));
-            	items.add(getItemData(new ItemStack(this),type,1));
-            	}
+				if (!(stand instanceof StandCustom)) {
+					String type = stand.getName();
+					items.add(getItemData(new ItemStack(this),type,0));
+					items.add(getItemData(new ItemStack(this),type,1));
+				}
+			}
 			for (StandBase stand : StandUtil.getCustomStands()) {
 				String type = stand.getName();
 				items.add(getItemData(new ItemStack(this),type,0));

@@ -102,4 +102,13 @@ public class HAMathHelper {
         float f3 = MathHelper.sin(-pitch * 0.017453292F);
         return new Vec3d((double)(f1 * f2), (double)f3, (double)(f * f2));
     }
+
+    public static class CommonMath{
+		public static double sin(double d){
+			return MathHelper.sin((float) d);
+		}
+		public static double cos(double d){
+			return MathHelper.cos((float) d);
+		}
+	}
 }

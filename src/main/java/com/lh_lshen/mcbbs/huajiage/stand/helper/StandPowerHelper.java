@@ -687,8 +687,10 @@ public class StandPowerHelper {
      * @param duration 修复点数
      */
     public static void repairItem(ItemStack stack, int duration){
-        int result = stack.getItemDamage()-duration;
-        stack.setItemDamage(Math.max(result, 0));
+        if (!stack.isEmpty()&&stack.getItemDamage()>0) {
+            int result = stack.getItemDamage()-duration;
+            stack.setItemDamage(Math.max(result, 0));
+        }
     }
 
 //  动作=============================================================================================

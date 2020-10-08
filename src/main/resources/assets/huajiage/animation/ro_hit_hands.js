@@ -1,4 +1,4 @@
-var MathHelper = Java.type("net.minecraft.util.math.MathHelper");
+var MathHelper = Java.type("com.lh_lshen.mcbbs.huajiage.util.HAMathHelper.CommonMath");
 
 Java.asJSONCompatible({
     animation: function (player, limbSwing, limbSwingAmount, ageInTicks, netHeadYaw, headPitch, scale, modelMap) {

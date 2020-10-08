@@ -93,14 +93,22 @@ public class EventCrazyDiamond {
         if(entity instanceof  EntityPlayer){
             EntityPlayer player = (EntityPlayer) entity;
             if(player.isPotionActive(PotionLoader.potionRepair)){
-                if(!player.inventory.allInventories.isEmpty()){
-                    for(int i=0; i<player.inventory.allInventories.size(); i++){
-                        List<ItemStack> inventory = player.inventory.allInventories.get(i);
-                        for (ItemStack item : inventory) {
+//                if(!player.inventory.allInventories.isEmpty()){
+//                    for(int i=0; i<player.inventory.allInventories.size(); i++){
+                        List<ItemStack> armorInventory = player.inventory.armorInventory;
+                        List<ItemStack> mainInventory = player.inventory.mainInventory;
+                        List<ItemStack> offHandInventory = player.inventory.offHandInventory;
+                        for (ItemStack item : armorInventory) {
                             StandPowerHelper.repairItem(item, 2);
                         }
-                    }
-                }
+                        for (ItemStack item : mainInventory) {
+                            StandPowerHelper.repairItem(item, 2);
+                        }
+                        for (ItemStack item : offHandInventory) {
+                            StandPowerHelper.repairItem(item, 2);
+                        }
+//                    }
+//                }
             }
         }
     }
