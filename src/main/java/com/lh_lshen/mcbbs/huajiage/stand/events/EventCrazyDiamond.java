@@ -97,9 +97,7 @@ public class EventCrazyDiamond {
                     for(int i=0; i<player.inventory.allInventories.size(); i++){
                         List<ItemStack> inventory = player.inventory.allInventories.get(i);
                         for (ItemStack item : inventory) {
-                            if (!item.isEmpty() && player.ticksExisted%40==0) {
-                                StandPowerHelper.repairItem(item, item.getMaxDamage()/10);
-                            }
+                            StandPowerHelper.repairItem(item, 2);
                         }
                     }
                 }

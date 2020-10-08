@@ -85,7 +85,7 @@ item.huajiage.singularity.name=§lThe Singularity
 item.huajiage.lordKey.name=§eLord Key
 
 potion.huaji=HUAJI
-potion.huaji.five=Five-fold Power
+potion.huajiage.five=Five-fold Power
 potion.huajiage.flower=Hope Flower
 potion.huajiage.requiem=§eRequiem
 potion.huajiage.requiem.target=§eRequiem Target
@@ -97,6 +97,7 @@ key.huajiage.switch=Switch
 key.huajiage.stand_up=Stand Up
 key.huajiage.stand_skill=Stand Power
 key.huajiage.stand_switch=Stand Mode Change
+potion.huajiage.repair=§b§lItem Repair
 
 stand.huajiage.name=Stand:
 stand.huajiage.stage=Stage:
@@ -228,6 +229,7 @@ config.huaji_age.huaji_config.density_fog_time_stop=The fog density in time stop
 config.huaji_age.huaji_config.stand.punish.glow=Glow the player which let stand idle
 config.huaji_age.huaji_config.maid_limb_swing=The swing speed of maid
 config.huaji_age.huaji_config.maid_limb_swing_amount=The swing amount of maid
+config.huaji_age.huaji_config.crazy_diamond.blocks_change=Should Crazy Diamond change the structure of bolcks?
 
 
 stand.huajiage.empty=Empty
@@ -245,6 +247,7 @@ stand.state.huajiage.punch=Punch
 stand.state.huajiage.protect=Protect
 stand.state.huajiage.fly=Fly
 
+
 stand.huajiage.skill.the_world.start=§e§lThe World!!!
 stand.huajiage.skill.star_platinum.start=§5§lStar Platinum!The World!!! 
 stand.huajiage.skill.hierophant_green.start=§a§lTake that! Emerald splash with a radius of 20 meters!!!
@@ -256,13 +259,23 @@ patchouil.huajiage.book.name=§e§lHUAJI§6Book
 patchouil.huajiage.book.landing=HUAJI,means comical or funny things,is making up awkwardly or funnily for hilarious festivals. In this universe, there is a peculiar thing named HUAJI, which is ubiquitous and constitutes thousands of things. It is said that holding the funny starlight power can obtain the supreme power of the legendary HUAJI ancestor.
 
 ===============================Stand Pack==========================================
-*****************************************替身包翻译****************************************************
 stand.huajiage.bike_wheel.name=Bike Wheel
 stand.huajiage.skill.huajiage.bike_wheel.start=Ding Ding~
 stand.huajiage.bike_wheel.default=Default
 model.huajiage.bike_base.name=Bike
 model.huajiage.bike_standard.name=Bike
 model.huajiage.bike_standard.desc=A Bike
+model.huajiage.bike_color_blue.name=§b§lBlue Bike
+model.huajiage.bike_color_black.name=§0§lBlack Bike
+model.huajiage.bike_color_red.name=§4§lRed Bike
+model.huajiage.bike_color_yellow.name=§e§lYellow Bike
+model.huajiage.bike_color_green.name=§a§lGreen Bike
+
+stand.huajiage.crazy_diamond.name=§b§lCrazy Diamond
+stand.huajiage.skill.huajiage.crazy_diamond.start=§b§lCrazy Diamond! Durararararararararara!!!
+stand.huajiage.crazy_diamond.default=Default
+stand.huajiage.crazy_diamond.heal=Heal
+stand.huajiage.crazy_diamond.idle=Idle
 ===============================Orga===========================================
 message.huajiage.orga.sing.1=§4What...... I'm a pretty good marksman
 message.huajiage.orga.sing.2=§2Head of... ah

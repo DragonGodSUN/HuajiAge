@@ -12,6 +12,7 @@ import com.lh_lshen.mcbbs.huajiage.stand.helper.TimeStopHelper;
 import com.lh_lshen.mcbbs.huajiage.stand.instance.StandHierophantGreen;
 import com.lh_lshen.mcbbs.huajiage.util.NBTHelper;
 import net.minecraft.entity.player.EntityPlayer;
+import net.minecraft.init.Items;
 import net.minecraft.init.MobEffects;
 import net.minecraft.item.Item;
 import net.minecraft.item.ItemStack;
@@ -62,6 +63,8 @@ public class ItemLootTableTest extends Item {
 			return "Time Stop ---Jostar";
 		case 6:
 			return "Sheer Heart Attack";
+		case 7:
+			return "Give Broken Items";
 //		case 7:
 //			return "Clear up the list of Stand Users";
 		}
@@ -77,7 +80,7 @@ public class ItemLootTableTest extends Item {
 				int stage = data.getStage();
 				if (playerIn.isSneaking()) {
 					int mode = getmode(stack);
-					if (mode < 6) {
+					if (mode < 7) {
 						modeSwitch(stack, mode + 1);
 					} else {
 						modeSwitch(stack, 0);
@@ -180,6 +183,25 @@ public class ItemLootTableTest extends Item {
 								attack.motionY = vec.y * 0.5;
 								attack.motionZ = vec.z * 0.5;
 								playerIn.world.spawnEntity(attack);
+							}
+							break;
+						case 7:
+							if (!playerIn.world.isRemote) {
+								ItemStack golden_sword = new ItemStack(Items.GOLDEN_SWORD);
+								golden_sword.setItemDamage(golden_sword.getMaxDamage()-1);
+								playerIn.inventory.addItemStackToInventory(golden_sword);
+								ItemStack diamond_sword = new ItemStack(Items.DIAMOND_SWORD);
+								diamond_sword.setItemDamage(diamond_sword.getMaxDamage()-1);
+								playerIn.inventory.addItemStackToInventory(diamond_sword);
+								ItemStack diamond_chest = new ItemStack(Items.DIAMOND_CHESTPLATE);
+								diamond_chest.setItemDamage(diamond_chest.getMaxDamage()-1);
+								playerIn.inventory.addItemStackToInventory(diamond_chest);
+								ItemStack orga_hair = new ItemStack(ItemLoader.orgaHair);
+								orga_hair.setItemDamage(orga_hair.getMaxDamage()-1);
+								playerIn.inventory.addItemStackToInventory(orga_hair);
+								ItemStack star_sword = new ItemStack(ItemLoader.starSword);
+								star_sword.setItemDamage(star_sword.getMaxDamage()-1);
+								playerIn.inventory.addItemStackToInventory(star_sword);
 							}
 							break;
 					}

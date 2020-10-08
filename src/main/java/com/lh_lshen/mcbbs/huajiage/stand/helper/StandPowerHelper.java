@@ -524,6 +524,22 @@ public class StandPowerHelper {
     }
 
     /**
+     * 获取玩家周边实体（包括替身在内）
+     * @param user 玩家
+     * @param distance 距离
+     * @return 实体列表
+     */
+    public static List<Entity> getListEntityIncludingStand(EntityLivingBase user, float distance){
+        List<Entity> list = Lists.newArrayList();
+        List<Entity> entities = user.world.getEntitiesWithinAABB(Entity.class,user.getEntityBoundingBox().grow(distance));
+        if(entities!=null && !entities.isEmpty()){
+            entities.remove(user);
+            list.addAll(entities);
+        }
+        return list;
+    }
+
+    /**
      * 获取玩家周围生物实体
      * @param user 玩家
      * @param distance 距离

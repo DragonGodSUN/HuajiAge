@@ -1,10 +1,8 @@
 package com.lh_lshen.mcbbs.huajiage.potion;
 
 import com.lh_lshen.mcbbs.huajiage.HuajiAge;
-
 import net.minecraft.client.Minecraft;
 import net.minecraft.client.gui.Gui;
-import net.minecraft.entity.SharedMonsterAttributes;
 import net.minecraft.potion.Potion;
 import net.minecraft.potion.PotionEffect;
 import net.minecraft.util.ResourceLocation;
@@ -13,7 +11,7 @@ public class PotionFiveBuff extends Potion {
 
 	protected PotionFiveBuff() {
 		super(false, 0xFFFF00);
-        this.setPotionName("potion.huaji.five");
+        this.setPotionName("potion.huajiage.five");
         this.setIconIndex(0, 0);
 //        this.registerPotionAttributeModifier(SharedMonsterAttributes.MAX_HEALTH, "ebb91868-6aed-11e9-a923-1681be663d3e",5, 1);
 //        this.registerPotionAttributeModifier(SharedMonsterAttributes.ATTACK_DAMAGE, "05fd4064-6aee-11e9-a923-1681be663d3e",5, 1);

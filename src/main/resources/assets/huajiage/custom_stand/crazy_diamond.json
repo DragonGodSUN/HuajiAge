@@ -2,6 +2,7 @@
   "stand": "huajiage:crazy_diamond",
   "name": "stand.huajiage.crazy_diamond.name",
   "disc": "huajiage:disc/disc_huajiage_crazy_diamond",
+  "stand_tags": ["arrow"],
   "stages": 1,
   "states":["default","heal","idle"],
   "attributes": [1,12,250,2,170000,80,180000],

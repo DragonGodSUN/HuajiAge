@@ -55,12 +55,13 @@ item.huajiage.killerQueenTrigger.name=§l点赞
 item.huajiage.yinYangBall.name=§8§l带 §f§l师 §8§l球
 
 potion.huaji=滑稽·施工中
-potion.huaji.five=§d五五开
+potion.huajiage.five=§d五五开
 potion.huajiage.flower=希望之花
 potion.huajiage.orga.target=奥尔加因果打击
 potion.huajiage.requiem=§e镇魂曲
 potion.huajiage.requiem.target=§e镇魂曲木大目标
 potion.huajiage.stand=§b§lStand Power
+potion.huajiage.repair=§b§l物品修复
 
 key.category.huajiage=滑稽纪元
 key.huajiage.switch=转换模式
@@ -237,6 +238,7 @@ config.huaji_age.huaji_config.stand.punish.glow=使替身处于放出闲置状�
 config.huaji_age.huaji_config.point_universe_star=聚合炉所需星辰点数总量
 config.huaji_age.huaji_config.maid_limb_swing=女仆四肢摆动的速度
 config.huaji_age.huaji_config.maid_limb_swing_amount=女仆四肢摆动的幅度
+config.huaji_age.huaji_config.crazy_diamond.blocks_change=是否允许疯狂钻石改变方块结构
 
 stand.huajiage.empty=缺失
 stand.huajiage.default=默认
@@ -254,7 +256,7 @@ stand.state.huajiage.protect=保护
 stand.state.huajiage.fly=飞行
 
 stand.huajiage.skill.the_world.start=§e§l咋瓦鲁多 ! ! ! 时间停止吧 !
-stand.huajiage.skill.star_platinum.start=§5§l食堂泼辣酱——§b§l咋瓦鲁多 ! 
+stand.huajiage.skill.star_platinum.start=§5§l食堂泼辣酱——§b§l咋瓦鲁多 !
 stand.huajiage.skill.hierophant_green.start=§a§l接招吧!半径20米的绿宝石水花!!!
 stand.huajiage.skill.orga_requiem.start=§4§l不要停下来啊！！！无限循环街道的真实！
 stand.huajiage.skill.killer_queen.start=§e§l烤鸡要没了！
@@ -274,6 +276,12 @@ model.huajiage.bike_color_black.name=§0§l黑色单车
 model.huajiage.bike_color_red.name=§4§l红色单车
 model.huajiage.bike_color_yellow.name=§e§l黄色单车
 model.huajiage.bike_color_green.name=§a§l绿色单车
+
+stand.huajiage.crazy_diamond.name=§b§lCrazy Diamond-疯狂钻石
+stand.huajiage.skill.huajiage.crazy_diamond.start=§b§lCrazy Diamond! 嘟啦啦啦啦拉啦啦啦啦！！！
+stand.huajiage.crazy_diamond.default=默认
+stand.huajiage.crazy_diamond.heal=治愈
+stand.huajiage.crazy_diamond.idle=闲置
 *****************************************下方为未启用的一代翻译******************************************
 item.huaJiCry.name=我哭了
 item.huajiAxe.name=§b滑稽斧头

@@ -11,7 +11,7 @@ Java.asJSONCompatible({
 //  模型ID
     modelId:"huajiage:crazy_diamond",
 //  替身放出时，第一人称是否显示手臂，不写时默认为true
-    hand:false,
+    hand:true,
 //  可解锁该状态的替身等级，不写时默认为0
     stage:0,
 

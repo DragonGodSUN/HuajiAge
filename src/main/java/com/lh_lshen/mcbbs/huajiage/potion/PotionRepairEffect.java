@@ -11,7 +11,7 @@ public class PotionRepairEffect extends Potion {
 
 	protected PotionRepairEffect() {
 		super(false, 0xFFFF00);
-        this.setPotionName("potion.huaji.repair");
+        this.setPotionName("potion.huajiage.repair");
         this.setIconIndex(0, 0);
 	}
     @Override
@@ -30,7 +30,7 @@ public class PotionRepairEffect extends Potion {
      
         mc.getTextureManager().bindTexture(new ResourceLocation(HuajiAge.MODID + ":" + "potions/potion_01.png"));
 
-        Gui.drawModalRectWithCustomSizedTexture(x , y , 24, 0, 20, 20, 256, 256);
+        Gui.drawModalRectWithCustomSizedTexture(x , y + 3, 0, 89, 18, 18, 256, 256);
     }
 }
 	
