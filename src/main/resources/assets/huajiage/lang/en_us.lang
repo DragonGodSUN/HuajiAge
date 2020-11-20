@@ -221,7 +221,7 @@ config.huaji_age.huaji_config.stand.punish.out_time=Punish for stand users(Out o
 config.huaji_age.huaji_config.stand.weak_up_fail=The possibility of Stand weak up fail 
 config.huaji_age.huaji_config.stand.mask_time_stop_noise=Noise mask in time stop
 config.huaji_age.huaji_config.stand.mask_time_stop=Gears effects for time stop
-config.huaji_age.huaji_config.icon_time_stop=The icon display in time stop
+config.huaji_age.huaji_config.icon_time_stop=The icon display in the time stop
 config.huaji_age.huaji_config.stand.fog_time_stop=The fog in the time stop(do not recommend if your GPU is not supported)
 config.huaji_age.huaji_config.stand.huaji_splash=Use HUAJI particle to replace the emerald splash
 config.huaji_age.huaji_config.orga.flower=Use Hope Flower BGM
@@ -230,7 +230,7 @@ config.huaji_age.huaji_config.stand.punish.glow=Glow the player which let stand 
 config.huaji_age.huaji_config.maid_limb_swing=The swing speed of maid
 config.huaji_age.huaji_config.maid_limb_swing_amount=The swing amount of maid
 config.huaji_age.huaji_config.crazy_diamond.blocks_change=Should Crazy Diamond change the structure of bolcks?
-
+config.huaji_age.huaji_config.invert_time_stop=The Time of invert effect in the time stop
 
 stand.huajiage.empty=Empty
 stand.huajiage.default=Default

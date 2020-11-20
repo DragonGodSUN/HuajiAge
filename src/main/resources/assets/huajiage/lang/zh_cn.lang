@@ -239,6 +239,7 @@ config.huaji_age.huaji_config.point_universe_star=聚合炉所需星辰点数总
 config.huaji_age.huaji_config.maid_limb_swing=女仆四肢摆动的速度
 config.huaji_age.huaji_config.maid_limb_swing_amount=女仆四肢摆动的幅度
 config.huaji_age.huaji_config.crazy_diamond.blocks_change=是否允许疯狂钻石改变方块结构
+config.huaji_age.huaji_config.invert_time_stop=时停反转特效持续时间
 
 stand.huajiage.empty=缺失
 stand.huajiage.default=默认

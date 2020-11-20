@@ -1,7 +1,6 @@
 package com.lh_lshen.mcbbs.huajiage.config;
 
 import com.lh_lshen.mcbbs.huajiage.HuajiAge;
-
 import net.minecraft.client.resources.I18n;
 import net.minecraftforge.common.config.Config;
 import net.minecraftforge.common.config.Config.LangKey;
@@ -137,6 +136,11 @@ public class ConfigHuaji {
 		@LangKey("config.huaji_age.huaji_config.density_fog_time_stop")
 		@RangeDouble(min = 0, max = 0.001f)
 		public float timeStopFog = 0.0005f;
+
+		@Config.Comment("The time of invert effect in time stop")
+		@LangKey("config.huaji_age.huaji_config.invert_time_stop")
+		@Config.RangeInt(min = 0, max = 500)
+		public int timeStopEffect = 150;
 
 		@Config.Comment("The swing speed of maid")
 		@LangKey("config.huaji_age.huaji_config.maid_limb_swing")
