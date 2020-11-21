@@ -139,8 +139,8 @@ public class ConfigHuaji {
 
 		@Config.Comment("The time of invert effect in time stop")
 		@LangKey("config.huaji_age.huaji_config.invert_time_stop")
-		@Config.RangeInt(min = 0, max = 500)
-		public int timeStopEffect = 150;
+		@Config.RangeDouble(min = 0, max = 5.0)
+		public double timeStopEffect = 1.5;
 
 		@Config.Comment("The swing speed of maid")
 		@LangKey("config.huaji_age.huaji_config.maid_limb_swing")

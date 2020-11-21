@@ -29,7 +29,7 @@ public class EventViewRender {
 	@SubscribeEvent
 	public static void TimeStopRenderTest(TickEvent.RenderTickEvent evt) {
 		Minecraft mc = Minecraft.getMinecraft();
-		int t0 = ConfigHuaji.Stands.timeStopEffect;
+		int t0 = (int)(ConfigHuaji.Stands.timeStopEffect*100);
 		boolean flag =  mc.player!=null && StandUtil.getStandBuffTime(mc.player)>0;
 		if(flag){
 			ticks++;
