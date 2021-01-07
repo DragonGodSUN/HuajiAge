@@ -66,7 +66,7 @@ public class TimeStopHelper {
 	public static void doTimeStopClient(WorldClient world, Vec3d pos ,StandBase stand) {
 		double rand=Math.random()*100;
         if(!stand.getName().equals(StandLoader.STAR_PLATINUM.getName())) {
-	        if(rand<25) { 	
+	        if(rand<25) {
 	            world.playSound(pos.x, pos.y, pos.z, SoundLoader.THE_WORLD, SoundCategory.PLAYERS, 5f,1f, true);
 	        }else if(rand<50){
 	        	world.playSound(pos.x, pos.y, pos.z, SoundLoader.THE_WORLD_1, SoundCategory.PLAYERS, 5f,1f, true);

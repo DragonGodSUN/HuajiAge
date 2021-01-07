@@ -6,9 +6,11 @@ import com.lh_lshen.mcbbs.huajiage.HuajiAge;
 import com.lh_lshen.mcbbs.huajiage.capability.*;
 import com.lh_lshen.mcbbs.huajiage.config.ConfigHuaji;
 import com.lh_lshen.mcbbs.huajiage.network.StandNetWorkHandler;
+import com.lh_lshen.mcbbs.huajiage.stand.StandLoader;
 import com.lh_lshen.mcbbs.huajiage.stand.StandUtil;
 import com.lh_lshen.mcbbs.huajiage.stand.instance.StandBase;
-import com.lh_lshen.mcbbs.huajiage.stand.messages.*;
+import com.lh_lshen.mcbbs.huajiage.stand.messages.SyncExposedStandDataMessage;
+import com.lh_lshen.mcbbs.huajiage.stand.messages.SyncStandChargeMessage;
 import com.lh_lshen.mcbbs.huajiage.util.ServerUtil;
 import net.minecraft.entity.Entity;
 import net.minecraft.entity.EntityLivingBase;
@@ -116,6 +118,14 @@ public class EventPlayerCapability {
             if(chargeHandler!=null) chargeHandler.setDirty(true);
             if(data!=null) data.setDirty(true);
 
+//            if(data != null && chargeHandler !=null){
+//                StandBase standBase = StandLoader.getStand(data.getStand());
+//                if(standBase != null && chargeHandler.getMaxValue() != standBase.getCharge()){
+//                    chargeHandler.setMaxValue(standBase.getMaxMP());
+//                }
+//            }
+
+
         }
 
     }
@@ -127,16 +137,7 @@ public class EventPlayerCapability {
     public static void playerTickEvent(TickEvent.PlayerTickEvent event) {
         EntityPlayer player = event.player;
         if (event.side == Side.SERVER && event.phase == Phase.END) {
-            
-            if (player.hasCapability(CapabilityStandChargeHandler.STAND_CHARGE, null)) {
-            	StandChargeHandler charge = player.getCapability(CapabilityStandChargeHandler.STAND_CHARGE, null);
-                if (charge != null && charge.isDirty()) {
-                	StandNetWorkHandler.HANDLER.sendTo(new SyncStandChargeMessage(charge.getChargeValue(),charge.getMaxValue(), charge.getBuffer())
-                            , (EntityPlayerMP) player);
-                    charge.setDirty(false);
-                }
-            }
-            
+
             if (player.hasCapability(CapabilityLoader.EXPOSED_DATA, null)) {
                 IExposedData data = player.getCapability(CapabilityLoader.EXPOSED_DATA, null);
                 if (data != null && data.isDirty()) {
@@ -145,8 +146,23 @@ public class EventPlayerCapability {
                     data.setDirty(false);
                 }
             }
-            
-            
+
+            if (player.hasCapability(CapabilityStandChargeHandler.STAND_CHARGE, null)) {
+            	StandChargeHandler charge = player.getCapability(CapabilityStandChargeHandler.STAND_CHARGE, null);
+                IExposedData data = player.getCapability(CapabilityLoader.EXPOSED_DATA, null);
+            	if (charge != null && charge.isDirty()) {
+                	StandNetWorkHandler.HANDLER.sendTo(new SyncStandChargeMessage(charge.getChargeValue(),charge.getMaxValue(), charge.getBuffer())
+                            , (EntityPlayerMP) player);
+                    charge.setDirty(false);
+                }
+                if(data != null && charge !=null){
+                    StandBase standBase = StandLoader.getStand(data.getStand());
+                    if(standBase != null && charge.getMaxValue() != standBase.getCharge()){
+                        charge.setMaxValue(standBase.getMaxMP());
+                    }
+                }
+            }
+
         }
     }
 

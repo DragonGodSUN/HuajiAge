@@ -46,9 +46,11 @@ public class EventViewRender {
 					mc.entityRenderer.loadShader(new ResourceLocation("shaders/post/desaturate.json"));
 				}
 			}
+			if (StandUtil.getStandBuffTime(mc.player)==1){
+				mc.entityRenderer.stopUseShader();
+			}
 
 		}else {
-			mc.entityRenderer.stopUseShader();
 			ticks = 0;
 		}
 	}
@@ -82,9 +84,16 @@ public class EventViewRender {
 	@SubscribeEvent
 	public static void TimeStopRender3(FOVModifier evt) {
 		if(evt.getEntity() instanceof EntityLivingBase) {
-				if(StandUtil.getStandBuffTime((EntityLivingBase) evt.getEntity())>0) {
-					evt.setFOV(evt.getFOV() + 25f);
+			int time = StandUtil.getStandBuffTime((EntityLivingBase) evt.getEntity());
+			int t0 = (int)(ConfigHuaji.Stands.timeStopEffect*100);
+			float fov = evt.getFOV();
+			if(time>0) {
+				if(ticks<t0){
+					evt.setFOV(fov+30f);
+				} else {
+					evt.setFOV(fov+10f);
 				}
+			}
 		}
 	}
 	 @SubscribeEvent
