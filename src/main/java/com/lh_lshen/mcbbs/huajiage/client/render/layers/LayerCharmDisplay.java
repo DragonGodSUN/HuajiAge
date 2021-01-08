@@ -1,6 +1,6 @@
 package com.lh_lshen.mcbbs.huajiage.client.render.layers;
 
-import com.lh_lshen.mcbbs.huajiage.item.ItemLoader;
+import com.lh_lshen.mcbbs.huajiage.init.loaders.ItemLoader;
 import com.lh_lshen.mcbbs.huajiage.util.NBTHelper;
 import net.minecraft.client.Minecraft;
 import net.minecraft.client.entity.AbstractClientPlayer;

@@ -5,7 +5,7 @@ import com.lh_lshen.mcbbs.huajiage.HuajiAge;
 import com.lh_lshen.mcbbs.huajiage.api.IStandState;
 import com.lh_lshen.mcbbs.huajiage.config.ConfigHuaji;
 import com.lh_lshen.mcbbs.huajiage.init.HuajiConstant;
-import com.lh_lshen.mcbbs.huajiage.potion.PotionLoader;
+import com.lh_lshen.mcbbs.huajiage.init.loaders.PotionLoader;
 import net.minecraft.entity.EntityLivingBase;
 import net.minecraft.init.MobEffects;
 import net.minecraft.potion.PotionEffect;

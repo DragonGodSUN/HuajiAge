@@ -12,7 +12,7 @@
 package com.lh_lshen.mcbbs.huajiage.client.render.model;
 
 import com.lh_lshen.mcbbs.huajiage.entity.EntityRoadRoller;
-import com.lh_lshen.mcbbs.huajiage.item.ItemLoader;
+import com.lh_lshen.mcbbs.huajiage.init.loaders.ItemLoader;
 
 import net.minecraft.client.Minecraft;
 import net.minecraft.client.model.ModelBase;

@@ -1,9 +1,7 @@
 package com.lh_lshen.mcbbs.huajiage.network.messages;
 
-import java.util.UUID;
-
 import com.lh_lshen.mcbbs.huajiage.item.ItemHeroBow;
-import com.lh_lshen.mcbbs.huajiage.item.ItemLoader;
+import com.lh_lshen.mcbbs.huajiage.init.loaders.ItemLoader;
 
 import io.netty.buffer.ByteBuf;
 import net.minecraft.entity.player.EntityPlayerMP;

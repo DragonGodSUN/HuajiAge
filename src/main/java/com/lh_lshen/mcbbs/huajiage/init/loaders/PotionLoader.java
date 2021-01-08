@@ -1,6 +1,7 @@
-package com.lh_lshen.mcbbs.huajiage.potion;
+package com.lh_lshen.mcbbs.huajiage.init.loaders;
 
 import com.lh_lshen.mcbbs.huajiage.HuajiAge;
+import com.lh_lshen.mcbbs.huajiage.potion.*;
 import net.minecraft.potion.Potion;
 import net.minecraftforge.event.RegistryEvent;
 import net.minecraftforge.fml.common.eventhandler.SubscribeEvent;
@@ -16,7 +17,7 @@ public class PotionLoader {
 	 public static Potion potionStand;
 	 public static Potion potionRepair;
 
-	  
+
 	    @SubscribeEvent
 	    public static void onPotionRegistration(RegistryEvent.Register<Potion> event) {
 	    	potionHuajiProtection=new PotionHuajiProtection() ;
@@ -28,7 +29,7 @@ public class PotionLoader {
 	    	potionStand=new PotionStand();
 	    	potionRepair=new PotionRepairEffect();
 
-	    	
+
 	        event.getRegistry().registerAll(potionHuajiProtection.setRegistryName(HuajiAge.MODID, "potion_huaji"),
 	        		                        potionfive.setRegistryName(HuajiAge.MODID, "potion_huaji_five_buff"),
 	        		                        potionFlowerHope.setRegistryName(HuajiAge.MODID, "potion_huaji_flower"),
@@ -38,7 +39,7 @@ public class PotionLoader {
 	        		                        potionStand.setRegistryName(HuajiAge.MODID, "potion_huaji_stand"),
 											potionRepair.setRegistryName(HuajiAge.MODID, "potion_huaji_repair")
 	        		);
-	        
+
 	    }
-	  
+
 }

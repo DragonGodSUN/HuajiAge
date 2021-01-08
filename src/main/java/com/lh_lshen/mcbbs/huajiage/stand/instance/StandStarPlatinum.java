@@ -1,7 +1,7 @@
 package com.lh_lshen.mcbbs.huajiage.stand.instance;
 
 import com.lh_lshen.mcbbs.huajiage.capability.CapabilityExposedData;
-import com.lh_lshen.mcbbs.huajiage.stand.StandLoader;
+import com.lh_lshen.mcbbs.huajiage.init.loaders.StandLoader;
 import com.lh_lshen.mcbbs.huajiage.stand.helper.TimeStopHelper;
 import com.lh_lshen.mcbbs.huajiage.stand.messages.MessageDoStandPowerClient;
 import com.lh_lshen.mcbbs.huajiage.stand.resource.StandRes;
@@ -37,7 +37,7 @@ public class StandStarPlatinum extends StandBase {
 
 	@Override
 	public void doStandCapability(EntityLivingBase user) {
-		TimeStopHelper.setTimeStop(user, 5*20);
+		TimeStopHelper.setTimeStop(user, 5*20+20);
 		TimeStopHelper.setEntityTimeStopRange(user,120);
 		TimeStopHelper.extraEffects(user, 5);
 		if(user instanceof EntityPlayer) {

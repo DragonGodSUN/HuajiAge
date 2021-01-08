@@ -3,12 +3,9 @@ package com.lh_lshen.mcbbs.huajiage.item;
 import javax.annotation.Nullable;
 
 import com.lh_lshen.mcbbs.huajiage.config.ConfigHuaji;
-import com.lh_lshen.mcbbs.huajiage.crativetab.CreativeTabLoader;
+import com.lh_lshen.mcbbs.huajiage.init.loaders.CreativeTabLoader;
 import com.lh_lshen.mcbbs.huajiage.util.NBTHelper;
 
-import net.minecraft.client.Minecraft;
-import net.minecraft.client.renderer.block.model.ItemCameraTransforms.TransformType;
-import net.minecraft.client.renderer.texture.TextureMap;
 import net.minecraft.entity.Entity;
 import net.minecraft.entity.EntityLivingBase;
 import net.minecraft.entity.player.EntityPlayer;
@@ -19,8 +16,6 @@ import net.minecraft.item.ItemStack;
 import net.minecraft.util.ResourceLocation;
 import net.minecraft.util.text.translation.I18n;
 import net.minecraft.world.World;
-import net.minecraftforge.client.event.EntityViewRenderEvent.CameraSetup;
-import net.minecraftforge.common.util.Constants.NBT;
 import net.minecraftforge.fml.relauncher.Side;
 import net.minecraftforge.fml.relauncher.SideOnly;
 

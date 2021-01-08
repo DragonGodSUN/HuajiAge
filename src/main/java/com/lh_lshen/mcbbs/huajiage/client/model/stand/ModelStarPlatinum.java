@@ -5,7 +5,7 @@
 // - ZeuX
 package com.lh_lshen.mcbbs.huajiage.client.model.stand;
 
-import com.lh_lshen.mcbbs.huajiage.stand.StandLoader;
+import com.lh_lshen.mcbbs.huajiage.init.loaders.StandLoader;
 import net.minecraft.client.model.ModelBox;
 import net.minecraft.client.model.ModelRenderer;
 import net.minecraft.client.renderer.GlStateManager;

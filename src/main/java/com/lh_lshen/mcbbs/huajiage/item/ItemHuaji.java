@@ -4,7 +4,7 @@ import java.util.List;
 
 import com.lh_lshen.mcbbs.huajiage.api.HuajiAgeAPI;
 import com.lh_lshen.mcbbs.huajiage.api.IMultiBlock;
-import com.lh_lshen.mcbbs.huajiage.crativetab.CreativeTabLoader;
+import com.lh_lshen.mcbbs.huajiage.init.loaders.CreativeTabLoader;
 
 import net.minecraft.block.state.IBlockState;
 import net.minecraft.entity.player.EntityPlayer;

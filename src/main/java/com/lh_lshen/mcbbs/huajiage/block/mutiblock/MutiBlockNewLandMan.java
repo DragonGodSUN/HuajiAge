@@ -5,13 +5,10 @@ import java.util.List;
 import com.google.common.collect.Lists;
 import com.lh_lshen.mcbbs.huajiage.HuajiAge;
 import com.lh_lshen.mcbbs.huajiage.api.IMultiBlock;
-import com.lh_lshen.mcbbs.huajiage.block.BlockLoader;
+import com.lh_lshen.mcbbs.huajiage.init.loaders.BlockLoader;
 import com.lh_lshen.mcbbs.huajiage.tileentity.TileEntityNewLandMan;
 
-import net.minecraft.block.BlockLadder;
 import net.minecraft.block.state.IBlockState;
-import net.minecraft.init.Blocks;
-import net.minecraft.item.EnumDyeColor;
 import net.minecraft.tileentity.TileEntity;
 import net.minecraft.util.EnumFacing;
 import net.minecraft.util.ResourceLocation;

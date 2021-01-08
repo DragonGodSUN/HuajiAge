@@ -83,6 +83,7 @@ item.huajiage.tarot.name=Fate Tarot
 item.huajiage.disc.name=§oDisc  
 item.huajiage.singularity.name=§lThe Singularity
 item.huajiage.lordKey.name=§eLord Key
+item.huajiage.reoCherry.name=§5Reo Cherry
 
 potion.huaji=HUAJI
 potion.huajiage.five=Five-fold Power
@@ -157,6 +158,9 @@ item.yin_yang_ball:tooltips.3=§eMaster:%s
 item.yin_yang_ball:empty=Empty
 item.huajiage.vehicle_key.tooltip.1=I'm just a key for bike
 item.huajiage.vehicle_pack.tooltip.1=Store:
+item.huajiage.reo_cherry.tooltip.1=reoreoreoreoreoreoreoreo~
+item.huajiage.reo_cherry.tooltip.2=A cherry that keeps making strange noises
+item.huajiage.reo_cherry.tooltip.3=Store MP:
 
 huajiage.orga.1=§b To celebrate! The birth of the most powerful king of Mars---Orga Izka
 messege.huaji.blancedHelmet.active=§lFrom now on it's called %s §lSquare！
@@ -198,6 +202,7 @@ message.huajiage.maid_ball.stand_load_4=§eUndead!Infinity!Ah-ha-ha-ha-ha~ Stand
 message.huajiage.maid_ball.stand_load_5=§eUh-ha-ha-ha-ha-ha~
 message.huajiage.maid_ball.stand_load_6=§eI won't pass the game level! lady!
 message.huajiage.maid_ball.stand_load_7=§eAh ~ Marisa ~
+message.huajiage.reo_cherry.reo=reo~reo~reo~reo~reo~reo~
 
 gui.huajiage.poly.cook=Process
 gui.huajiage.poly.fuel=Fuel Point

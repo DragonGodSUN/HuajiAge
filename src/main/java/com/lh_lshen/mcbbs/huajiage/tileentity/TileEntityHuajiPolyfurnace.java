@@ -1,10 +1,10 @@
 package com.lh_lshen.mcbbs.huajiage.tileentity;
 
-import com.lh_lshen.mcbbs.huajiage.block.BlockLoader;
+import com.lh_lshen.mcbbs.huajiage.init.loaders.BlockLoader;
 import com.lh_lshen.mcbbs.huajiage.capability.EnergyStore;
 import com.lh_lshen.mcbbs.huajiage.config.ConfigHuaji;
 import com.lh_lshen.mcbbs.huajiage.data.InvWrapperRestricted;
-import com.lh_lshen.mcbbs.huajiage.item.ItemLoader;
+import com.lh_lshen.mcbbs.huajiage.init.loaders.ItemLoader;
 import com.lh_lshen.mcbbs.huajiage.recipelist.HuajiPolyRecipeList;
 import net.minecraft.block.state.IBlockState;
 import net.minecraft.entity.player.EntityPlayer;

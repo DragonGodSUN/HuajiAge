@@ -1,55 +1,29 @@
 package com.lh_lshen.mcbbs.huajiage.item;
 
-import java.util.List;
-
-import javax.annotation.Nullable;
-
-import org.lwjgl.input.Keyboard;
-
-import com.lh_lshen.mcbbs.huajiage.crativetab.CreativeTabLoader;
 import com.lh_lshen.mcbbs.huajiage.entity.EntityHeroArrow;
-import com.lh_lshen.mcbbs.huajiage.entity.EntitySecondFoil;
 import com.lh_lshen.mcbbs.huajiage.init.HuajiConstant;
+import com.lh_lshen.mcbbs.huajiage.init.loaders.CreativeTabLoader;
+import com.lh_lshen.mcbbs.huajiage.init.loaders.ItemLoader;
+import com.lh_lshen.mcbbs.huajiage.init.loaders.PotionLoader;
 import com.lh_lshen.mcbbs.huajiage.init.sound.SoundLoader;
 import com.lh_lshen.mcbbs.huajiage.network.HuajiAgeNetWorkHandler;
 import com.lh_lshen.mcbbs.huajiage.network.messages.MessageLeftClickModeChange;
-import com.lh_lshen.mcbbs.huajiage.potion.PotionLoader;
 import com.lh_lshen.mcbbs.huajiage.util.NBTHelper;
-
-import mezz.jei.network.PacketHandler;
 import net.minecraft.client.util.ITooltipFlag;
-import net.minecraft.creativetab.CreativeTabs;
 import net.minecraft.enchantment.EnchantmentHelper;
 import net.minecraft.entity.Entity;
-import net.minecraft.entity.EntityLiving;
 import net.minecraft.entity.EntityLivingBase;
 import net.minecraft.entity.player.EntityPlayer;
 import net.minecraft.entity.projectile.EntityArrow;
-import net.minecraft.entity.projectile.EntityEgg;
 import net.minecraft.init.Enchantments;
 import net.minecraft.init.Items;
 import net.minecraft.init.MobEffects;
 import net.minecraft.init.SoundEvents;
-import net.minecraft.item.EnumAction;
-import net.minecraft.item.EnumRarity;
-import net.minecraft.item.IItemPropertyGetter;
-import net.minecraft.item.Item;
-import net.minecraft.item.ItemArrow;
-import net.minecraft.item.ItemBow;
-import net.minecraft.item.ItemStack;
+import net.minecraft.item.*;
 import net.minecraft.nbt.NBTTagCompound;
-import net.minecraft.potion.Potion;
 import net.minecraft.potion.PotionEffect;
-import net.minecraft.stats.StatList;
-import net.minecraft.util.ActionResult;
-import net.minecraft.util.DamageSource;
-import net.minecraft.util.EnumActionResult;
-import net.minecraft.util.EnumHand;
-import net.minecraft.util.ResourceLocation;
-import net.minecraft.util.SoundCategory;
-import net.minecraft.util.text.TextComponentString;
+import net.minecraft.util.*;
 import net.minecraft.util.text.TextComponentTranslation;
-import net.minecraft.util.text.TextFormatting;
 import net.minecraft.util.text.translation.I18n;
 import net.minecraft.world.World;
 import net.minecraftforge.common.MinecraftForge;
@@ -57,6 +31,10 @@ import net.minecraftforge.event.entity.player.PlayerInteractEvent;
 import net.minecraftforge.fml.common.eventhandler.SubscribeEvent;
 import net.minecraftforge.fml.relauncher.Side;
 import net.minecraftforge.fml.relauncher.SideOnly;
+import org.lwjgl.input.Keyboard;
+
+import javax.annotation.Nullable;
+import java.util.List;
 
 public class ItemHeroBow extends ItemBow{
  public ItemHeroBow() 
@@ -147,7 +125,7 @@ public void onPlayerStoppedUsing(ItemStack stack, World worldIn, EntityLivingBas
                     if
                     (isOpen(stack)&&
                     (entityplayer.getActiveItemStack().getItem() != ItemLoader.heroBow ? 0.0F : (float)(stack.getMaxItemUseDuration() - entityplayer.getItemInUseCount()) / 20.0F)>=1) { 
-                    if(!entityplayer.isPotionActive(PotionLoader.potionFlowerHope)) { 
+                    if(!entityplayer.isPotionActive(PotionLoader.potionFlowerHope)) {
                     EntityHeroArrow entityarrow = new EntityHeroArrow(worldIn,entityLiving);
                     entityarrow.shoot(entityplayer, entityplayer.rotationPitch, entityplayer.rotationYaw, 1F, f * 6.0F, 1.0F);
           

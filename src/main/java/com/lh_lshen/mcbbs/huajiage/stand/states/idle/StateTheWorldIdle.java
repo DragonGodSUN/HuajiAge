@@ -2,8 +2,8 @@ package com.lh_lshen.mcbbs.huajiage.stand.states.idle;
 
 import com.google.common.collect.Lists;
 import com.lh_lshen.mcbbs.huajiage.config.ConfigHuaji;
-import com.lh_lshen.mcbbs.huajiage.potion.PotionLoader;
-import com.lh_lshen.mcbbs.huajiage.stand.StandLoader;
+import com.lh_lshen.mcbbs.huajiage.init.loaders.PotionLoader;
+import com.lh_lshen.mcbbs.huajiage.init.loaders.StandLoader;
 import com.lh_lshen.mcbbs.huajiage.stand.helper.StandPowerHelper;
 import com.lh_lshen.mcbbs.huajiage.stand.states.StandStateBase;
 import net.minecraft.entity.EntityLivingBase;

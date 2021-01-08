@@ -1,7 +1,8 @@
 package com.lh_lshen.mcbbs.huajiage.stand.entity;
 
-import com.lh_lshen.mcbbs.huajiage.capability.CapabilityLoader;
+import com.lh_lshen.mcbbs.huajiage.init.loaders.CapabilityLoader;
 import com.lh_lshen.mcbbs.huajiage.capability.IExposedData;
+import com.lh_lshen.mcbbs.huajiage.init.loaders.StandLoader;
 import com.lh_lshen.mcbbs.huajiage.stand.*;
 import com.lh_lshen.mcbbs.huajiage.stand.custom.StandCustomInfo;
 import com.lh_lshen.mcbbs.huajiage.stand.instance.StandBase;

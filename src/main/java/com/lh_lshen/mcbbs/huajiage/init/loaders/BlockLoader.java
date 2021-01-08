@@ -1,8 +1,7 @@
-package com.lh_lshen.mcbbs.huajiage.block;
+package com.lh_lshen.mcbbs.huajiage.init.loaders;
 
 import com.lh_lshen.mcbbs.huajiage.HuajiAge;
-import com.lh_lshen.mcbbs.huajiage.crativetab.CreativeTabLoader;
-
+import com.lh_lshen.mcbbs.huajiage.block.*;
 import net.minecraft.block.Block;
 import net.minecraft.client.renderer.block.model.ModelResourceLocation;
 import net.minecraft.item.Item;
@@ -11,11 +10,9 @@ import net.minecraftforge.client.model.ModelLoader;
 import net.minecraftforge.fml.common.event.FMLInitializationEvent;
 import net.minecraftforge.fml.common.event.FMLPreInitializationEvent;
 import net.minecraftforge.fml.common.registry.ForgeRegistries;
-import net.minecraftforge.fml.common.registry.GameRegistry;
 import net.minecraftforge.fml.relauncher.Side;
 import net.minecraftforge.fml.relauncher.SideOnly;
 import net.minecraftforge.oredict.OreDictionary;
-import net.minecraftforge.registries.GameData;
 
 public class BlockLoader {
 	 public static Block oreHuaji = new OreHuaji();

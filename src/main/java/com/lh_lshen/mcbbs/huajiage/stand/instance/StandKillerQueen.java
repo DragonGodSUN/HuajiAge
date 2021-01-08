@@ -3,7 +3,7 @@ package com.lh_lshen.mcbbs.huajiage.stand.instance;
 import com.lh_lshen.mcbbs.huajiage.capability.*;
 import com.lh_lshen.mcbbs.huajiage.entity.EntitySheerHeartAttack;
 import com.lh_lshen.mcbbs.huajiage.init.sound.SoundLoader;
-import com.lh_lshen.mcbbs.huajiage.stand.StandLoader;
+import com.lh_lshen.mcbbs.huajiage.init.loaders.StandLoader;
 import com.lh_lshen.mcbbs.huajiage.stand.StandUtil;
 import com.lh_lshen.mcbbs.huajiage.stand.helper.StandPowerHelper;
 import com.lh_lshen.mcbbs.huajiage.stand.messages.MessageDoStandPowerClient;

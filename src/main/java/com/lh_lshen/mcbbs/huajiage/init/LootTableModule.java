@@ -2,6 +2,7 @@ package com.lh_lshen.mcbbs.huajiage.init;
 
 import com.lh_lshen.mcbbs.huajiage.HuajiAge;
 
+import com.lh_lshen.mcbbs.huajiage.init.loaders.LootTablesLoader;
 import net.minecraft.util.ResourceLocation;
 import net.minecraft.world.storage.loot.LootEntry;
 import net.minecraft.world.storage.loot.LootEntryTable;

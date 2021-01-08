@@ -2,7 +2,7 @@ package com.lh_lshen.mcbbs.huajiage.item;
 
 import java.util.List;
 
-import com.lh_lshen.mcbbs.huajiage.crativetab.CreativeTabLoader;
+import com.lh_lshen.mcbbs.huajiage.init.loaders.CreativeTabLoader;
 import com.lh_lshen.mcbbs.huajiage.init.HuajiConstant;
 import com.lh_lshen.mcbbs.huajiage.init.sound.HuajiSoundPlayer;
 import com.lh_lshen.mcbbs.huajiage.init.sound.SoundLoader;

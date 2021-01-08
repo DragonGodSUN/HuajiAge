@@ -66,20 +66,20 @@ public class SoundLoader {
 	public static void register(RegistryEvent.Register<SoundEvent> event) {
 		for(SoundEvent sound:SOUND_LIST){
 			event.getRegistry().register(sound);
-			
+
 		}
-		
+
 	}
 	private static SoundEvent registerSound(String name){
 		SoundEvent event =new SoundEvent(new ResourceLocation(HuajiAge.MODID,name)).setRegistryName(HuajiAge.MODID,name);
 		SOUND_LIST.add(event);
 		return event;
-		
+
 	}
 	public static SoundEvent getSoundByIndex(int index)
 	{
 		return SOUND_LIST.get(index);
-		
+
 	}
 	public static SoundEvent getSound(String name)
 	{

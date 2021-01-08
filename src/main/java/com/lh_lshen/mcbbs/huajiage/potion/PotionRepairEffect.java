@@ -9,7 +9,7 @@ import net.minecraft.util.ResourceLocation;
 
 public class PotionRepairEffect extends Potion {
 
-	protected PotionRepairEffect() {
+	public PotionRepairEffect() {
 		super(false, 0xFFFF00);
         this.setPotionName("potion.huajiage.repair");
         this.setIconIndex(0, 0);

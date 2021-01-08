@@ -1,7 +1,7 @@
 package com.lh_lshen.mcbbs.huajiage.init;
 
 import com.lh_lshen.mcbbs.huajiage.HuajiAge;
-import com.lh_lshen.mcbbs.huajiage.stand.StandLoader;
+import com.lh_lshen.mcbbs.huajiage.init.loaders.StandLoader;
 import net.minecraft.util.ResourceLocation;
 
 public  class HuajiConstant {

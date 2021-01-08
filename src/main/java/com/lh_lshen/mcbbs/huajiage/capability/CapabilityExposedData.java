@@ -1,6 +1,7 @@
 package com.lh_lshen.mcbbs.huajiage.capability;
 
-import com.lh_lshen.mcbbs.huajiage.stand.StandLoader;
+import com.lh_lshen.mcbbs.huajiage.init.loaders.CapabilityLoader;
+import com.lh_lshen.mcbbs.huajiage.init.loaders.StandLoader;
 import net.minecraft.nbt.NBTBase;
 import net.minecraft.nbt.NBTTagCompound;
 import net.minecraft.util.EnumFacing;
@@ -53,7 +54,7 @@ public class CapabilityExposedData {
 	    }
 	    
 	    public static class Implementation implements IExposedData{
-	    	static Implementation.Factory FACTORY = new Implementation.Factory();
+	    	public static Implementation.Factory FACTORY = new Implementation.Factory();
 	    	String standName = StandLoader.EMPTY;
 	    	boolean isTriggered = false;
 	    	boolean isHandDisplay = true;

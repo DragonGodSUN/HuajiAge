@@ -1,8 +1,9 @@
 package com.lh_lshen.mcbbs.huajiage.item;
 
 import com.lh_lshen.mcbbs.huajiage.capability.IExposedData;
-import com.lh_lshen.mcbbs.huajiage.crativetab.CreativeTabLoader;
-import com.lh_lshen.mcbbs.huajiage.stand.StandLoader;
+import com.lh_lshen.mcbbs.huajiage.init.loaders.CreativeTabLoader;
+import com.lh_lshen.mcbbs.huajiage.init.loaders.ItemLoader;
+import com.lh_lshen.mcbbs.huajiage.init.loaders.StandLoader;
 import com.lh_lshen.mcbbs.huajiage.stand.StandUtil;
 import com.lh_lshen.mcbbs.huajiage.stand.custom.StandCustom;
 import com.lh_lshen.mcbbs.huajiage.stand.custom.StandCustomInfo;

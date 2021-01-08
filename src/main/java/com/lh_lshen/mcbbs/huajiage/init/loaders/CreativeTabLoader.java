@@ -1,5 +1,8 @@
-package com.lh_lshen.mcbbs.huajiage.crativetab;
+package com.lh_lshen.mcbbs.huajiage.init.loaders;
 
+import com.lh_lshen.mcbbs.huajiage.crativetab.CreativeTabHuaji;
+import com.lh_lshen.mcbbs.huajiage.crativetab.CreativeTabJO;
+import com.lh_lshen.mcbbs.huajiage.crativetab.CreativeTabVehicle;
 import net.minecraft.creativetab.CreativeTabs;
 import net.minecraftforge.fml.common.event.FMLPreInitializationEvent;
 

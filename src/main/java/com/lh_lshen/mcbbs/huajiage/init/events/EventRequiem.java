@@ -1,20 +1,15 @@
 package com.lh_lshen.mcbbs.huajiage.init.events;
 
-import java.util.UUID;
-
-import org.apache.logging.log4j.core.util.UuidUtil;
-
 import com.lh_lshen.mcbbs.huajiage.damage_source.DamageRequiem;
 import com.lh_lshen.mcbbs.huajiage.init.HuajiConstant;
+import com.lh_lshen.mcbbs.huajiage.init.loaders.ItemLoader;
+import com.lh_lshen.mcbbs.huajiage.init.loaders.PotionLoader;
+import com.lh_lshen.mcbbs.huajiage.init.loaders.StandLoader;
 import com.lh_lshen.mcbbs.huajiage.init.sound.SoundLoader;
-import com.lh_lshen.mcbbs.huajiage.item.ItemLoader;
 import com.lh_lshen.mcbbs.huajiage.item.ItemOrgaArmorBase;
-import com.lh_lshen.mcbbs.huajiage.potion.PotionLoader;
-import com.lh_lshen.mcbbs.huajiage.stand.StandLoader;
 import com.lh_lshen.mcbbs.huajiage.stand.StandUtil;
 import com.lh_lshen.mcbbs.huajiage.stand.instance.StandBase;
 import com.lh_lshen.mcbbs.huajiage.util.NBTHelper;
-
 import net.minecraft.client.Minecraft;
 import net.minecraft.entity.Entity;
 import net.minecraft.entity.EntityLivingBase;

@@ -7,9 +7,9 @@ import java.util.stream.IntStream;
 
 import javax.annotation.Nullable;
 
-import com.lh_lshen.mcbbs.huajiage.block.BlockLoader;
+import com.lh_lshen.mcbbs.huajiage.init.loaders.BlockLoader;
 import com.lh_lshen.mcbbs.huajiage.data.InvWrapperRestricted;
-import com.lh_lshen.mcbbs.huajiage.item.ItemLoader;
+import com.lh_lshen.mcbbs.huajiage.init.loaders.ItemLoader;
 import com.lh_lshen.mcbbs.huajiage.recipelist.HuajiRecipeList;
 
 import net.minecraft.block.state.IBlockState;
@@ -28,7 +28,6 @@ import net.minecraft.util.EnumFacing;
 import net.minecraft.util.ITickable;
 import net.minecraft.util.math.MathHelper;
 import net.minecraft.util.text.ITextComponent;
-import net.minecraft.util.text.TextComponentString;
 import net.minecraft.util.text.TextComponentTranslation;
 import net.minecraft.world.EnumSkyBlock;
 public  class TileEntityHuajiBlender extends TileEntity implements IInventory, ITickable,ISidedInventory {

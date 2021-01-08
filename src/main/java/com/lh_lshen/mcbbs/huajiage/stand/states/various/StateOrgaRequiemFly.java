@@ -1,7 +1,7 @@
 package com.lh_lshen.mcbbs.huajiage.stand.states.various;
 
 import com.lh_lshen.mcbbs.huajiage.config.ConfigHuaji;
-import com.lh_lshen.mcbbs.huajiage.potion.PotionLoader;
+import com.lh_lshen.mcbbs.huajiage.init.loaders.PotionLoader;
 import com.lh_lshen.mcbbs.huajiage.stand.StandUtil;
 import com.lh_lshen.mcbbs.huajiage.stand.helper.StandPowerHelper;
 import com.lh_lshen.mcbbs.huajiage.stand.instance.StandBase;

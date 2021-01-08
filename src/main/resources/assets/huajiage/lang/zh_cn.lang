@@ -53,6 +53,7 @@ item.huajiage.waveCrystal.name=§b波澜结晶
 item.huajiage.waveKnife.name=波澜怒涛之刃
 item.huajiage.killerQueenTrigger.name=§l点赞
 item.huajiage.yinYangBall.name=§8§l带 §f§l师 §8§l球
+item.huajiage.reoCherry.name=§5Reo樱桃
 
 potion.huaji=滑稽·施工中
 potion.huajiage.five=§d五五开
@@ -162,6 +163,9 @@ item.yin_yang_ball:tooltips.3=§e御主：%s
 item.yin_yang_ball:empty=空
 item.huajiage.vehicle_key.tooltip.1=我只是把自行车的钥匙
 item.huajiage.vehicle_pack.tooltip.1=储存：
+item.huajiage.reo_cherry.tooltip.1=reoreoreoreoreoreoreoreo~
+item.huajiage.reo_cherry.tooltip.2=不断发出奇怪声响的樱桃
+item.huajiage.reo_cherry.tooltip.3=储存精神力：
 
 
 message.huajiage.patchouli_missing=[{"text":"[ Huaji Age II]:","color":"yellow","bold":true},{"text":"为保证最佳游戏体验，请加载  ","color":"aqua","bold":false},{"text":"Patchouli-帕秋莉模组","color":"green","underlined":true,"bold":true,"clickEvent":{"action":"open_url","value":"https://www.curseforge.com/minecraft/mc-mods/patchouli"},"hoverEvent":{"action":"show_text","value":"https://www.curseforge.com/minecraft/mc-mods/patchouli"}},{"text":"§b来获取指南手册，这是鬼畜界先辈们为迎击§0§l♂Dark&&King§b势力耗尽其毕生修为传承下的§e§lJO§6§l级宝典","color":"yellow","bold":false}]
@@ -203,6 +207,7 @@ message.huajiage.maid_ball.stand_load_4=§e扶鸡米！不老不死！呃哈哈~
 message.huajiage.maid_ball.stand_load_5=§e唔呼呼呼呼呼呼呼呼呼~
 message.huajiage.maid_ball.stand_load_6=§e我不通关了！二小姐！
 message.huajiage.maid_ball.stand_load_7=§e啊~魔理沙~
+message.huajiage.reo_cherry.reo=reo~reo~reo~reo~reo~reo~
 
 
 gui.huajiage.poly.cook=§l进程

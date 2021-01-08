@@ -1,7 +1,8 @@
-package com.lh_lshen.mcbbs.huajiage.item;
+package com.lh_lshen.mcbbs.huajiage.init.loaders;
 
 import com.lh_lshen.mcbbs.huajiage.HuajiAge;
 import com.lh_lshen.mcbbs.huajiage.common.CommonProxy;
+import com.lh_lshen.mcbbs.huajiage.item.*;
 import net.minecraft.client.renderer.block.model.ModelResourceLocation;
 import net.minecraft.item.Item;
 import net.minecraft.item.ItemArmor;
@@ -64,6 +65,7 @@ public class ItemLoader {
     public static Item vehiclePack =new ItemVehiclePack();
 	public static ItemFood eggRice = new ItemEggRice();
 	public static ItemFood eggRiceU = new ItemEggRiceU();
+	public static ItemFood reoCherry = new ItemReoCherry();
     public static ItemArmor huajiHelmet = new ItemHuajiArmor.Helmet();
     public static ItemArmor huajiChestplate = new ItemHuajiArmor.Chestplate();
     public static ItemArmor huajiLeggings = new ItemHuajiArmor.Leggings();
@@ -136,6 +138,7 @@ public class ItemLoader {
         register(vehiclePack,"vehiclePack","vehicle_pack");
         if(CommonProxy.ModsLoader.isTouhouMaidLoaded()){
         register(yinYangBall,"yinYangBall","yin_yang_ball");
+        register(reoCherry,"reoCherry","reo_cherry");
         }
     }
 
@@ -199,6 +202,7 @@ public class ItemLoader {
         if(CommonProxy.ModsLoader.isTouhouMaidLoaded()){
         registerRender(yinYangBall);
         }
+        registerRender(reoCherry);
         registerRender(vehicleKey);
         registerRender(vehiclePack);
 //        registerRender(disc);

@@ -1,13 +1,8 @@
-package com.lh_lshen.mcbbs.huajiage.init;
+package com.lh_lshen.mcbbs.huajiage.init.loaders;
 
 import com.lh_lshen.mcbbs.huajiage.client.events.EventKeyInput;
 import com.lh_lshen.mcbbs.huajiage.client.events.EventPlayerRotation;
 import com.lh_lshen.mcbbs.huajiage.client.events.EventToolTip;
-import com.lh_lshen.mcbbs.huajiage.client.events.HAModelRegistryEvent;
-import com.lh_lshen.mcbbs.huajiage.particle.ParticleLoader;
-import com.lh_lshen.mcbbs.huajiage.stand.events.EventStandOverlatRender;
-import com.lh_lshen.mcbbs.huajiage.stand.events.EventViewRender;
-
 import net.minecraftforge.common.MinecraftForge;
 
 public class EventClientLoader {

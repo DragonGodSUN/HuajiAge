@@ -2,7 +2,7 @@ package com.lh_lshen.mcbbs.huajiage.item;
 
 import java.util.List;
 
-import com.lh_lshen.mcbbs.huajiage.crativetab.CreativeTabLoader;
+import com.lh_lshen.mcbbs.huajiage.init.loaders.CreativeTabLoader;
 import com.lh_lshen.mcbbs.huajiage.entity.EntityOrgaHairKnife;
 
 import net.minecraft.client.resources.I18n;
@@ -14,11 +14,9 @@ import net.minecraft.item.ItemStack;
 import net.minecraft.util.ActionResult;
 import net.minecraft.util.EnumActionResult;
 import net.minecraft.util.EnumHand;
-import net.minecraft.util.SoundEvent;
 import net.minecraft.util.math.MathHelper;
 import net.minecraft.util.math.Vec3d;
 import net.minecraft.world.World;
-import net.minecraftforge.event.entity.player.PlayerInteractEvent.RightClickEmpty;
 
 public class ItemOrgaHairKnife extends Item {
 	public ItemOrgaHairKnife()

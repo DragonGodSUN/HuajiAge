@@ -1,7 +1,7 @@
 package com.lh_lshen.mcbbs.huajiage.stand.states.default_set;
 
 import com.lh_lshen.mcbbs.huajiage.entity.EntityEmeraldBullet;
-import com.lh_lshen.mcbbs.huajiage.stand.StandLoader;
+import com.lh_lshen.mcbbs.huajiage.init.loaders.StandLoader;
 import com.lh_lshen.mcbbs.huajiage.stand.StandUtil;
 import com.lh_lshen.mcbbs.huajiage.stand.instance.StandBase;
 import com.lh_lshen.mcbbs.huajiage.stand.states.StandStateBase;

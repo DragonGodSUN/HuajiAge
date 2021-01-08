@@ -1,4 +1,4 @@
-package com.lh_lshen.mcbbs.huajiage.entity;
+package com.lh_lshen.mcbbs.huajiage.init.loaders;
 
 import com.lh_lshen.mcbbs.huajiage.HuajiAge;
 import com.lh_lshen.mcbbs.huajiage.client.render.entity.RenderEmeraldBullet;
@@ -10,6 +10,7 @@ import com.lh_lshen.mcbbs.huajiage.client.render.entity.RenderRoadRoller;
 import com.lh_lshen.mcbbs.huajiage.client.render.entity.RenderSecondFoil;
 import com.lh_lshen.mcbbs.huajiage.client.render.entity.RenderSheerHeartAttack;
 import com.lh_lshen.mcbbs.huajiage.client.render.entity.RenderStandBase;
+import com.lh_lshen.mcbbs.huajiage.entity.*;
 import com.lh_lshen.mcbbs.huajiage.stand.entity.EntityStandBase;
 
 import net.minecraft.entity.Entity;

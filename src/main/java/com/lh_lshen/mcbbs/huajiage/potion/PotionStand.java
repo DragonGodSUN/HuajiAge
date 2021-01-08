@@ -9,7 +9,7 @@ import net.minecraft.potion.PotionEffect;
 import net.minecraft.util.ResourceLocation;
 
 public class PotionStand extends Potion {
-	protected PotionStand() {
+	public PotionStand() {
 		super(false, 0xffffff);
         this.setPotionName("potion.huajiage.stand");
         this.setIconIndex(64, 0);

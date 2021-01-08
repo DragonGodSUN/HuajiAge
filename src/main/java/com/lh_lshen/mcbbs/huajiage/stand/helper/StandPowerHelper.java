@@ -6,7 +6,7 @@ import com.lh_lshen.mcbbs.huajiage.capability.StandChargeHandler;
 import com.lh_lshen.mcbbs.huajiage.config.ConfigHuaji;
 import com.lh_lshen.mcbbs.huajiage.entity.EntityEmeraldBullet;
 import com.lh_lshen.mcbbs.huajiage.init.HuajiConstant;
-import com.lh_lshen.mcbbs.huajiage.potion.PotionLoader;
+import com.lh_lshen.mcbbs.huajiage.init.loaders.PotionLoader;
 import com.lh_lshen.mcbbs.huajiage.stand.custom.script.EntityLivingBaseWrapper;
 import com.lh_lshen.mcbbs.huajiage.stand.custom.script.WorldWrapper;
 import com.lh_lshen.mcbbs.huajiage.stand.entity.EntityStandBase;

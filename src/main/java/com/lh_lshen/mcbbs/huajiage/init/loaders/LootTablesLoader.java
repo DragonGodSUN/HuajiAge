@@ -1,16 +1,13 @@
-package com.lh_lshen.mcbbs.huajiage.init;
+package com.lh_lshen.mcbbs.huajiage.init.loaders;
+
+import com.lh_lshen.mcbbs.huajiage.HuajiAge;
+import net.minecraft.util.ResourceLocation;
+import net.minecraft.world.storage.loot.LootTableList;
 
 import java.util.HashSet;
 import java.util.Set;
 
-import com.lh_lshen.mcbbs.huajiage.HuajiAge;
-
-import net.minecraft.util.ResourceLocation;
-import net.minecraft.world.storage.loot.LootTableList;
-import net.minecraftforge.fml.common.event.FMLInitializationEvent;
-import net.minecraftforge.fml.common.event.FMLPreInitializationEvent;
-
-import static com.lh_lshen.mcbbs.huajiage.init.LootTablesLoader.RegistrationHandler.create;
+import static com.lh_lshen.mcbbs.huajiage.init.loaders.LootTablesLoader.RegistrationHandler.create;
 //This code is mainly based on @Choonster's Test Mod 3
 //https://github.com/Choonster-Minecraft-Mods/TestMod3/blob/1.12.2/src/main/java/choonster/testmod3/init/ModLootTables.java
 //Follow the MIT License

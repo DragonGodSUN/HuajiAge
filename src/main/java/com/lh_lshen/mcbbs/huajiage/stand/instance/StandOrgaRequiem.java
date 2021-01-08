@@ -1,10 +1,10 @@
 package com.lh_lshen.mcbbs.huajiage.stand.instance;
 
 import com.lh_lshen.mcbbs.huajiage.capability.CapabilityExposedData;
-import com.lh_lshen.mcbbs.huajiage.capability.CapabilityLoader;
 import com.lh_lshen.mcbbs.huajiage.capability.IExposedData;
-import com.lh_lshen.mcbbs.huajiage.item.ItemLoader;
-import com.lh_lshen.mcbbs.huajiage.potion.PotionLoader;
+import com.lh_lshen.mcbbs.huajiage.init.loaders.CapabilityLoader;
+import com.lh_lshen.mcbbs.huajiage.init.loaders.ItemLoader;
+import com.lh_lshen.mcbbs.huajiage.init.loaders.PotionLoader;
 import com.lh_lshen.mcbbs.huajiage.stand.resource.StandRes;
 import com.lh_lshen.mcbbs.huajiage.stand.resource.StandResLoader;
 import com.lh_lshen.mcbbs.huajiage.stand.states.default_set.StateOrgaRequiemDefault;

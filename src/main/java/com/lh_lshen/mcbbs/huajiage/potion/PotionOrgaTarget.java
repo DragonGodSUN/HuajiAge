@@ -12,7 +12,7 @@ import net.minecraft.util.ResourceLocation;
 
 public class PotionOrgaTarget extends Potion {
 
-	protected PotionOrgaTarget() {
+	public PotionOrgaTarget() {
 		super(false,0X7d0f00);
         this.setPotionName("potion.huajiage.orga.target");
         this.setIconIndex(0, 0);

@@ -12,7 +12,7 @@ import net.minecraft.util.ResourceLocation;
 
 public class PotionHuajiProtection extends Potion {
 
-	protected PotionHuajiProtection() {
+	public PotionHuajiProtection() {
 		super(false, 0xFFFF00);
         this.setPotionName("potion.huaji");
         this.setIconIndex(0, 0);

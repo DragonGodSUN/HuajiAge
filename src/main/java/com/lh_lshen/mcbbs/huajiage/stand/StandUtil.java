@@ -4,17 +4,17 @@ import com.google.common.collect.Lists;
 import com.lh_lshen.mcbbs.huajiage.HuajiAge;
 import com.lh_lshen.mcbbs.huajiage.api.HuajiAgeAPI;
 import com.lh_lshen.mcbbs.huajiage.api.IStand;
-import com.lh_lshen.mcbbs.huajiage.capability.CapabilityLoader;
 import com.lh_lshen.mcbbs.huajiage.capability.CapabilityStandChargeHandler;
 import com.lh_lshen.mcbbs.huajiage.capability.IExposedData;
 import com.lh_lshen.mcbbs.huajiage.capability.StandChargeHandler;
 import com.lh_lshen.mcbbs.huajiage.client.model.custom.ModelStandJson;
-import com.lh_lshen.mcbbs.huajiage.client.model.stand.ModelStandBase;
 import com.lh_lshen.mcbbs.huajiage.client.resources.CustomResourceLoader;
 import com.lh_lshen.mcbbs.huajiage.init.HuajiConstant;
+import com.lh_lshen.mcbbs.huajiage.init.loaders.CapabilityLoader;
+import com.lh_lshen.mcbbs.huajiage.init.loaders.PotionLoader;
+import com.lh_lshen.mcbbs.huajiage.init.loaders.StandLoader;
 import com.lh_lshen.mcbbs.huajiage.init.sound.HuajiSoundPlayer;
 import com.lh_lshen.mcbbs.huajiage.network.messages.MessageParticleGenerator;
-import com.lh_lshen.mcbbs.huajiage.potion.PotionLoader;
 import com.lh_lshen.mcbbs.huajiage.stand.custom.StandCustom;
 import com.lh_lshen.mcbbs.huajiage.stand.custom.StandCustomInfo;
 import com.lh_lshen.mcbbs.huajiage.stand.instance.StandBase;
@@ -28,6 +28,8 @@ import net.minecraft.util.ResourceLocation;
 import java.util.ArrayList;
 import java.util.Arrays;
 import java.util.List;
+
+;
 
 public class StandUtil {
 	private static final StandBase[] ArrowStand = {StandLoader.THE_WORLD,StandLoader.STAR_PLATINUM,StandLoader.HIEROPHANT_GREEN,

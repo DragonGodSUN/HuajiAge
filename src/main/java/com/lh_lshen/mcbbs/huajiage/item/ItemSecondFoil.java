@@ -1,59 +1,30 @@
 package com.lh_lshen.mcbbs.huajiage.item;
 
-import java.awt.image.BufferStrategy;
-import java.util.List;
+import com.lh_lshen.mcbbs.huajiage.init.loaders.ItemLoader;
 
-import org.apache.logging.log4j.core.config.builder.api.Component;
-
-import com.google.common.base.Predicate;
-import com.lh_lshen.mcbbs.huajiage.crativetab.CreativeTabLoader;
-import com.lh_lshen.mcbbs.huajiage.entity.EntityMultiKnife;
+import com.lh_lshen.mcbbs.huajiage.init.loaders.CreativeTabLoader;
 import com.lh_lshen.mcbbs.huajiage.entity.EntitySecondFoil;
-import com.lh_lshen.mcbbs.huajiage.init.EventLoader;
+import com.lh_lshen.mcbbs.huajiage.init.loaders.EventLoader;
 import com.lh_lshen.mcbbs.huajiage.init.HuajiConstant;
 
-import net.minecraft.client.Minecraft;
-import net.minecraft.creativetab.CreativeTabs;
-import net.minecraft.enchantment.EnchantmentHelper;
 import net.minecraft.entity.Entity;
-import net.minecraft.entity.EntityList;
 import net.minecraft.entity.EntityLiving;
 import net.minecraft.entity.EntityLivingBase;
-import net.minecraft.entity.ai.EntityAIFindEntityNearest;
-import net.minecraft.entity.ai.EntityAINearestAttackableTarget;
 import net.minecraft.entity.item.EntityItem;
-import net.minecraft.entity.monster.EntityShulker;
 import net.minecraft.entity.player.EntityPlayer;
-import net.minecraft.entity.projectile.EntityEgg;
 import net.minecraft.init.SoundEvents;
 import net.minecraft.item.Item;
 import net.minecraft.item.ItemStack;
-import net.minecraft.item.ItemTool;
 import net.minecraft.nbt.NBTTagCompound;
-import net.minecraft.network.datasync.DataParameter;
-import net.minecraft.network.datasync.DataSerializers;
-import net.minecraft.network.datasync.EntityDataManager;
-import net.minecraft.stats.StatList;
 import net.minecraft.util.ActionResult;
 import net.minecraft.util.DamageSource;
 import net.minecraft.util.EntityDamageSource;
 import net.minecraft.util.EnumActionResult;
 import net.minecraft.util.EnumHand;
-import net.minecraft.util.SoundCategory;
-import net.minecraft.util.datafix.fixes.EntityId;
-import net.minecraft.util.datafix.fixes.MinecartEntityTypes;
-import net.minecraft.util.math.AxisAlignedBB;
-import net.minecraft.util.text.ITextComponent;
-import net.minecraft.util.text.TextComponentString;
 import net.minecraft.util.text.TextComponentTranslation;
-import net.minecraft.util.text.translation.I18n;
 import net.minecraft.world.World;
 import net.minecraftforge.common.MinecraftForge;
-import net.minecraftforge.common.util.EnumHelper;
-import net.minecraftforge.event.entity.item.ItemEvent;
-import net.minecraftforge.event.entity.item.ItemExpireEvent;
 import net.minecraftforge.event.entity.item.ItemTossEvent;
-import net.minecraftforge.event.entity.player.PlayerInteractEvent;
 import net.minecraftforge.fml.common.eventhandler.SubscribeEvent;
 
 public class ItemSecondFoil extends Item {   
@@ -91,7 +62,7 @@ private NBTTagCompound getTagCompoundSafe(ItemStack stack) {
 		stack.damageItem(1,attacker);
 		target.onDeath(new EntityDamageSource(HuajiConstant.DamageSource.SECOND,attacker));
 		 target.playSound(SoundEvents.BLOCK_GLASS_BREAK, 1.0F, 1.0F);
-		Item v=ItemLoader.expendedView;
+		Item v= ItemLoader.expendedView;
         attacker.world.spawnEntity(new EntityItem(attacker.world, target.posX, target.posY, target.posZ, new ItemStack(v)));
 		// TODO Auto-generated method stub
 		return true;

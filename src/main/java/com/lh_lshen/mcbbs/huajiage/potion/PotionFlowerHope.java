@@ -12,7 +12,7 @@ import net.minecraft.util.ResourceLocation;
 
 public class PotionFlowerHope extends Potion {
 
-	protected PotionFlowerHope() {
+	public PotionFlowerHope() {
 		super(false, 930000);
         this.setPotionName("potion.huajiage.flower");
         this.setIconIndex(0, 0);

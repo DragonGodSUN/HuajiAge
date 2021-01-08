@@ -12,7 +12,7 @@ import net.minecraft.util.ResourceLocation;
 
 public class PotionRequiem extends Potion {
 
-	protected PotionRequiem() {
+	public PotionRequiem() {
 		super(false,0X7d0f00);
         this.setPotionName("potion.huajiage.requiem");
         this.setIconIndex(0, 0);

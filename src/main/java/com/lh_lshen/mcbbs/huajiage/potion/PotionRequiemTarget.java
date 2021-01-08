@@ -20,7 +20,7 @@ import net.minecraftforge.fml.common.eventhandler.SubscribeEvent;
 
 public class PotionRequiemTarget extends Potion {
 
-	protected PotionRequiemTarget() {
+	public PotionRequiemTarget() {
 		super(false,0Xfff600);
         this.setPotionName("potion.huajiage.requiem.target");
         this.setIconIndex(0, 0);

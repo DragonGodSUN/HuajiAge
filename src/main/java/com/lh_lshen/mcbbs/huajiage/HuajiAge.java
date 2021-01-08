@@ -3,7 +3,7 @@ package com.lh_lshen.mcbbs.huajiage;
 
 import com.lh_lshen.mcbbs.huajiage.api.HuajiAgeAPI;
 import com.lh_lshen.mcbbs.huajiage.api.HuajiAgeAPIImpl;
-import com.lh_lshen.mcbbs.huajiage.command.HACommands;
+import com.lh_lshen.mcbbs.huajiage.init.loaders.HACommands;
 import com.lh_lshen.mcbbs.huajiage.common.CommonProxy;
 import net.minecraftforge.fml.common.Mod;
 import net.minecraftforge.fml.common.Mod.EventHandler;

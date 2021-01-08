@@ -1,14 +1,6 @@
 package com.lh_lshen.mcbbs.huajiage.client;
 
-import java.lang.reflect.Field;
-import java.util.Map;
-
-import com.lh_lshen.mcbbs.huajiage.entity.EntityLoader;
-
-import net.minecraft.client.renderer.entity.RenderManager;
-import net.minecraft.client.renderer.entity.RenderPlayer;
-import net.minecraft.launchwrapper.Launch;
-import net.minecraftforge.fml.client.FMLClientHandler;
+import com.lh_lshen.mcbbs.huajiage.init.loaders.EntityLoader;
 
 public class EntityRenderLoader {
 	 public EntityRenderLoader()

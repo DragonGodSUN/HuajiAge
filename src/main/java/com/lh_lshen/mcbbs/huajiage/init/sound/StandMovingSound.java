@@ -1,7 +1,5 @@
 package com.lh_lshen.mcbbs.huajiage.init.sound;
 
-import com.lh_lshen.mcbbs.huajiage.potion.PotionLoader;
-
 import net.minecraft.entity.Entity;
 import net.minecraft.entity.EntityLivingBase;
 import net.minecraft.entity.player.EntityPlayer;

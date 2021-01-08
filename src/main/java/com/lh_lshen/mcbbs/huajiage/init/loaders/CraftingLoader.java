@@ -1,10 +1,7 @@
 
 
 
-package com.lh_lshen.mcbbs.huajiage.common;
-
-import com.lh_lshen.mcbbs.huajiage.block.BlockLoader;
-import com.lh_lshen.mcbbs.huajiage.item.ItemLoader;
+package com.lh_lshen.mcbbs.huajiage.init.loaders;
 
 import net.minecraft.init.Blocks;
 import net.minecraft.init.Items;

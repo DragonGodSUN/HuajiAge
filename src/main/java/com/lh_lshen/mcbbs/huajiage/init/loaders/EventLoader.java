@@ -1,13 +1,10 @@
-package com.lh_lshen.mcbbs.huajiage.init;
+package com.lh_lshen.mcbbs.huajiage.init.loaders;
 
-import com.lh_lshen.mcbbs.huajiage.client.events.EventKeyInput;
 import com.lh_lshen.mcbbs.huajiage.entity.EntitySecondFoil;
 import com.lh_lshen.mcbbs.huajiage.init.events.EventOrga;
 import com.lh_lshen.mcbbs.huajiage.init.events.EventPlayerFlying;
 import com.lh_lshen.mcbbs.huajiage.init.events.EventRequiem;
-import com.lh_lshen.mcbbs.huajiage.potion.PotionLoader;
 import com.lh_lshen.mcbbs.huajiage.util.NBTHelper;
-
 import net.minecraft.entity.Entity;
 import net.minecraft.entity.EntityLiving;
 import net.minecraft.entity.EntityLivingBase;
@@ -80,7 +77,7 @@ public class EventLoader {
 	     public void onHuajiPotion(LivingUpdateEvent event)
 	     {
 		  EntityLivingBase entity = event.getEntityLiving();
-		  PotionEffect effect = entity.getActivePotionEffect(PotionLoader.potionHuajiProtection); 
+		  PotionEffect effect = entity.getActivePotionEffect(PotionLoader.potionHuajiProtection);
 	            
           if (effect != null ){
 	             { EntityLiving c=(EntityLiving) event.getEntityLiving();

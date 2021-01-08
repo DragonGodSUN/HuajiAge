@@ -1,18 +1,13 @@
 package com.lh_lshen.mcbbs.huajiage.block;
 
-import java.util.Random;
-
 import com.lh_lshen.mcbbs.huajiage.HuajiAge;
-import com.lh_lshen.mcbbs.huajiage.crativetab.CreativeTabLoader;
+import com.lh_lshen.mcbbs.huajiage.init.loaders.BlockLoader;
+import com.lh_lshen.mcbbs.huajiage.init.loaders.CreativeTabLoader;
+import com.lh_lshen.mcbbs.huajiage.init.loaders.ItemLoader;
 import com.lh_lshen.mcbbs.huajiage.init.sound.SoundLoader;
-import com.lh_lshen.mcbbs.huajiage.inventroy.GuiHuajiBlenderElementLoader;
 import com.lh_lshen.mcbbs.huajiage.inventroy.GuiHuajiPolyElementLoader;
-import com.lh_lshen.mcbbs.huajiage.item.ItemHuajiStarPoly;
-import com.lh_lshen.mcbbs.huajiage.item.ItemLoader;
 import com.lh_lshen.mcbbs.huajiage.tileentity.TileEntityHuajiPolyfurnace;
 import com.lh_lshen.mcbbs.huajiage.util.NBTHelper;
-import com.lh_lshen.mcbbs.huajiage.tileentity.TileEntityHuajiPolyfurnace;
-
 import net.minecraft.block.BlockContainer;
 import net.minecraft.block.material.Material;
 import net.minecraft.block.properties.PropertyBool;
@@ -23,31 +18,24 @@ import net.minecraft.creativetab.CreativeTabs;
 import net.minecraft.entity.EntityLivingBase;
 import net.minecraft.entity.item.EntityItem;
 import net.minecraft.entity.player.EntityPlayer;
-import net.minecraft.init.SoundEvents;
 import net.minecraft.inventory.IInventory;
 import net.minecraft.inventory.InventoryHelper;
 import net.minecraft.item.Item;
-import net.minecraft.item.ItemHangingEntity;
 import net.minecraft.item.ItemStack;
-import net.minecraft.nbt.NBTTagCompound;
 import net.minecraft.tileentity.TileEntity;
-import net.minecraft.util.EnumBlockRenderType;
-import net.minecraft.util.EnumFacing;
-import net.minecraft.util.EnumHand;
-import net.minecraft.util.EnumParticleTypes;
-import net.minecraft.util.NonNullList;
-import net.minecraft.util.SoundCategory;
+import net.minecraft.util.*;
 import net.minecraft.util.math.BlockPos;
-import net.minecraft.util.math.MathHelper;
 import net.minecraft.util.text.TextComponentString;
 import net.minecraft.world.IBlockAccess;
 import net.minecraft.world.World;
 import net.minecraftforge.fml.relauncher.Side;
 import net.minecraftforge.fml.relauncher.SideOnly;
 
+import java.util.Random;
+
 public class HuajiPolyfurnace extends BlockContainer {
 
-	protected HuajiPolyfurnace() {
+	public HuajiPolyfurnace() {
 		super(Material.IRON);
 		 this.setHardness(2F);
 	        this.setSoundType(blockSoundType.METAL);

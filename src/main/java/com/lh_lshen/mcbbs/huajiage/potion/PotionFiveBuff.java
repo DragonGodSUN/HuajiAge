@@ -9,7 +9,7 @@ import net.minecraft.util.ResourceLocation;
 
 public class PotionFiveBuff extends Potion {
 
-	protected PotionFiveBuff() {
+	public PotionFiveBuff() {
 		super(false, 0xFFFF00);
         this.setPotionName("potion.huajiage.five");
         this.setIconIndex(0, 0);

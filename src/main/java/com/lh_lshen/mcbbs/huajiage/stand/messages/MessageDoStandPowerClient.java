@@ -1,6 +1,6 @@
 package com.lh_lshen.mcbbs.huajiage.stand.messages;
 
-import com.lh_lshen.mcbbs.huajiage.stand.StandLoader;
+import com.lh_lshen.mcbbs.huajiage.init.loaders.StandLoader;
 import com.lh_lshen.mcbbs.huajiage.stand.instance.StandBase;
 
 import io.netty.buffer.ByteBuf;

@@ -1,7 +1,7 @@
 package com.lh_lshen.mcbbs.huajiage.stand.states.default_set;
 
 import com.lh_lshen.mcbbs.huajiage.init.HuajiConstant;
-import com.lh_lshen.mcbbs.huajiage.potion.PotionLoader;
+import com.lh_lshen.mcbbs.huajiage.init.loaders.PotionLoader;
 import com.lh_lshen.mcbbs.huajiage.stand.states.StandStateBase;
 import net.minecraft.entity.EntityLivingBase;
 import net.minecraft.init.MobEffects;

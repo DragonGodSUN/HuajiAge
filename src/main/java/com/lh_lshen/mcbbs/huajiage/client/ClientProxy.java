@@ -3,7 +3,7 @@ package com.lh_lshen.mcbbs.huajiage.client;
 import com.lh_lshen.mcbbs.huajiage.HuajiAge;
 import com.lh_lshen.mcbbs.huajiage.client.model.stand.HAModelFactory;
 import com.lh_lshen.mcbbs.huajiage.common.CommonProxy;
-import com.lh_lshen.mcbbs.huajiage.init.EventClientLoader;
+import com.lh_lshen.mcbbs.huajiage.init.loaders.EventClientLoader;
 import com.lh_lshen.mcbbs.huajiage.particle.ParticleLoader;
 import com.lh_lshen.mcbbs.huajiage.stand.resource.StandResLoader;
 

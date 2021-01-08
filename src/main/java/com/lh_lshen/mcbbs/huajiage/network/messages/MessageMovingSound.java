@@ -1,7 +1,7 @@
 package com.lh_lshen.mcbbs.huajiage.network.messages;
 
 import com.lh_lshen.mcbbs.huajiage.stand.StandClientUtil;
-import com.lh_lshen.mcbbs.huajiage.stand.StandLoader;
+import com.lh_lshen.mcbbs.huajiage.init.loaders.StandLoader;
 import io.netty.buffer.ByteBuf;
 import net.minecraft.client.Minecraft;
 import net.minecraft.client.multiplayer.WorldClient;

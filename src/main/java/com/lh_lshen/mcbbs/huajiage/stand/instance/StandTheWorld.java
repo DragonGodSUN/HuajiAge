@@ -2,7 +2,7 @@ package com.lh_lshen.mcbbs.huajiage.stand.instance;
 
 import com.lh_lshen.mcbbs.huajiage.capability.CapabilityExposedData;
 import com.lh_lshen.mcbbs.huajiage.init.HuajiConstant;
-import com.lh_lshen.mcbbs.huajiage.stand.StandLoader;
+import com.lh_lshen.mcbbs.huajiage.init.loaders.StandLoader;
 import com.lh_lshen.mcbbs.huajiage.stand.helper.TimeStopHelper;
 import com.lh_lshen.mcbbs.huajiage.stand.messages.MessageDoStandPowerClient;
 import com.lh_lshen.mcbbs.huajiage.stand.resource.StandRes;
@@ -38,7 +38,7 @@ public class StandTheWorld extends StandBase {
 
 	@Override
 	public void doStandCapability(EntityLivingBase user) {
-		TimeStopHelper.setTimeStop(user, HuajiConstant.Tags.THE_WORLD_TIME);
+		TimeStopHelper.setTimeStop(user, HuajiConstant.Tags.THE_WORLD_TIME+20);
 		TimeStopHelper.setEntityTimeStopRange(user,120);
 		TimeStopHelper.extraEffects(user, 9);
 		if(user instanceof EntityPlayer) {
