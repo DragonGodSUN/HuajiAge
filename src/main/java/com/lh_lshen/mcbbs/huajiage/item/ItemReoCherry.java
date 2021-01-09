@@ -1,13 +1,9 @@
 package com.lh_lshen.mcbbs.huajiage.item;
 
-import com.lh_lshen.mcbbs.huajiage.capability.IExposedData;
-import com.lh_lshen.mcbbs.huajiage.capability.StandChargeHandler;
 import com.lh_lshen.mcbbs.huajiage.init.loaders.CreativeTabLoader;
-import com.lh_lshen.mcbbs.huajiage.init.loaders.StandLoader;
-import com.lh_lshen.mcbbs.huajiage.stand.StandUtil;
+import com.lh_lshen.mcbbs.huajiage.init.sound.SoundLoader;
 import net.minecraft.client.util.ITooltipFlag;
 import net.minecraft.entity.player.EntityPlayer;
-import net.minecraft.item.ItemFood;
 import net.minecraft.item.ItemStack;
 import net.minecraft.util.text.TextComponentString;
 import net.minecraft.util.text.translation.I18n;
@@ -15,11 +11,10 @@ import net.minecraft.world.World;
 
 import java.util.List;
 
-public class ItemReoCherry extends ItemFood{
+public class ItemReoCherry extends ItemFoodMP{
     private int mp;
 	public ItemReoCherry() {
-		super(3, 1f, false);
-		setMp(5000);
+		super(3, 1f,20000,false);
 		setAlwaysEdible();
 		setCreativeTab(CreativeTabLoader.tabJo);
 	}
@@ -27,18 +22,13 @@ public class ItemReoCherry extends ItemFood{
 	@Override
     public void onFoodEaten(ItemStack stack, World worldIn, EntityPlayer player)
     {
+        super.onFoodEaten(stack, worldIn, player);
         if (!worldIn.isRemote)
         {
-            IExposedData data = StandUtil.getStandData(player);
-            StandChargeHandler chargeHandler = StandUtil.getChargeHandler(player);
             player.heal(1f);
             player.sendMessage(new TextComponentString(I18n.translateToLocal("message.huajiage.reo_cherry.reo")));
-            if(data!=null && chargeHandler!=null && StandLoader.getStand(data.getStand())!=null){
-                chargeHandler.charge(mp);
-            }
-
         }
-        super.onFoodEaten(stack, worldIn, player);
+        player.playSound(SoundLoader.REO_CHERRY,1f,1f);
     }
 
     @Override

@@ -7,6 +7,7 @@ public class StandChargeHandler  {
 	private int charge = 0;
 	private int max = 5000*20;
 	private int buffer = 0;
+	public String buffTag = "empty";
 	private boolean dirty;
 
 	public void setChargeValue(int value) {
@@ -24,6 +25,11 @@ public class StandChargeHandler  {
 		markDirty();
 	}
 
+	public void setBuffTag(String buffTag) {
+		this.buffTag = buffTag;
+		markDirty();
+	}
+
 	public int getChargeValue() {
 		return charge;
 	}
@@ -34,6 +40,10 @@ public class StandChargeHandler  {
 
 	public int getBuffer() {
 		return buffer;
+	}
+
+	public String getBuffTag() {
+		return buffTag;
 	}
 
 	public boolean canBeCharge() {

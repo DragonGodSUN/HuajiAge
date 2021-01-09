@@ -152,7 +152,7 @@ public class EventPlayerCapability {
             	StandChargeHandler charge = player.getCapability(CapabilityStandChargeHandler.STAND_CHARGE, null);
                 IExposedData data = player.getCapability(CapabilityLoader.EXPOSED_DATA, null);
             	if (charge != null && charge.isDirty()) {
-                	StandNetWorkHandler.HANDLER.sendTo(new SyncStandChargeMessage(charge.getChargeValue(),charge.getMaxValue(), charge.getBuffer())
+                	StandNetWorkHandler.HANDLER.sendTo(new SyncStandChargeMessage(charge.getChargeValue(),charge.getMaxValue(), charge.getBuffer(), charge.getBuffTag())
                             , (EntityPlayerMP) player);
                     charge.setDirty(false);
                 }

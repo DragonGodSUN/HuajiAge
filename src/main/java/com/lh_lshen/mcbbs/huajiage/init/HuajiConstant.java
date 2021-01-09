@@ -26,6 +26,10 @@ public  class HuajiConstant {
 		public static final String REQUIEM=HuajiAge.MODID+"."+"requiem";
 		public static final String REQUIEM_OWNER=HuajiAge.MODID+"."+"requiem_owner";
 	}
+
+	public class BuffTags{
+		public static final String TIME_STOP=HuajiAge.MODID+"."+"buff"+"."+"time_stop";
+	}
 	
 //	Stand type
 	public class StandType{

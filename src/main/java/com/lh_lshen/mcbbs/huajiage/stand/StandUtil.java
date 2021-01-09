@@ -129,15 +129,17 @@ public class StandUtil {
 		return 0;
 	}
 	
-	public static void standEffectLoad(EntityLivingBase entity) {
+	public static void standEffectLoad(EntityLivingBase entity, boolean isLoadEffect) {
 		  if(!entity.isPotionActive(PotionLoader.potionStand)) {
 			  StandBase stand = StandUtil.getType(entity);
 			  if(stand!=null) 
 			  {
 				  entity.addPotionEffect(new PotionEffect(PotionLoader.potionStand,60,0));
-				  HuajiSoundPlayer.playToNearbyClient(entity, SoundEvents.ENTITY_EXPERIENCE_ORB_PICKUP,0.5f);
-				  ServerUtil.sendPacketToNearbyPlayers(entity, new MessageParticleGenerator(entity.getPositionVector(), EnumParticleTypes.FIREWORKS_SPARK,60,3,1));
-	  		  }
+				  if (isLoadEffect) {
+					  HuajiSoundPlayer.playToNearbyClient(entity, SoundEvents.ENTITY_EXPERIENCE_ORB_PICKUP,0.5f);
+					  ServerUtil.sendPacketToNearbyPlayers(entity, new MessageParticleGenerator(entity.getPositionVector(), EnumParticleTypes.FIREWORKS_SPARK,60,3,1));
+				  }
+			  }
 		  }
 			  if(entity.isPotionActive(PotionLoader.potionStand)&&entity.getActivePotionEffect(PotionLoader.potionStand).getDuration()<20) {
 				  entity.addPotionEffect(new PotionEffect(PotionLoader.potionStand,60,0));
@@ -215,6 +217,16 @@ public class StandUtil {
     	}
     	return null;
     }
+
+    public static boolean isStandMatch(EntityLivingBase user,StandBase stand){
+		IExposedData data = StandUtil.getStandData(user);
+		if (data!=null){
+		StandBase standBase = StandLoader.getStand(data.getStand());
+			return standBase!=null && standBase.equals(stand);
+		}
+		return false;
+	}
+
 //	public static class StandTypeHelper {
 //		public static StandSkillType getStandSkillType(EntityLivingBase entity) {
 //			

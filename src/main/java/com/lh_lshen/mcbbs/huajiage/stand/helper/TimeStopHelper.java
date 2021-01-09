@@ -32,6 +32,7 @@ public class TimeStopHelper {
 		if( entity instanceof EntityPlayer) {
 			StandChargeHandler chargeHandler = StandUtil.getChargeHandler((EntityLivingBase) entity);
 			chargeHandler.setBuffer(ticks);
+			chargeHandler.setBuffTag(HuajiConstant.BuffTags.TIME_STOP);
 		}
 	}
 	

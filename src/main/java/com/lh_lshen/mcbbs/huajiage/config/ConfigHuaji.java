@@ -132,10 +132,10 @@ public class ConfigHuaji {
 		@RangeDouble(min = 0, max = 5.0)
 		public double timeStopScale = 1.0;
 		
-		@Config.Comment("The density of fog in time stop")
-		@LangKey("config.huaji_age.huaji_config.density_fog_time_stop")
-		@RangeDouble(min = 0, max = 0.001f)
-		public float timeStopFog = 0.0005f;
+//		@Config.Comment("The density of fog in time stop")
+//		@LangKey("config.huaji_age.huaji_config.density_fog_time_stop")
+//		@RangeDouble(min = 0, max = 0.001f)
+//		public float timeStopFog = 0.0005f;
 
 		@Config.Comment("The time of invert effect in time stop")
 		@LangKey("config.huaji_age.huaji_config.invert_time_stop")

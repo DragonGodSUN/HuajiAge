@@ -189,6 +189,15 @@
       }
     ]
   },
+  "the_world_re": {
+    "category": "neutral",
+    "sounds": [
+      {
+        "name": "huajiage:the_world_re",
+        "stream": true
+      }
+    ]
+  },
    "road_roller": {
     "category": "neutral",
     "sounds": [
@@ -428,6 +437,15 @@
     "sounds": [
       {
         "name": "huajiage:stand_crazy_diamond_repair_2",
+        "stream": true
+      }
+    ]
+  },
+  "reo_cherry": {
+    "category": "player",
+    "sounds": [
+      {
+        "name": "huajiage:reo_cherry",
         "stream": true
       }
     ]

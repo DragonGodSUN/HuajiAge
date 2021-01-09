@@ -35,6 +35,7 @@ public class SoundLoader {
 	public static final SoundEvent THE_WORLD_1=registerSound("the_world_1");
 	public static final SoundEvent THE_WORLD_2=registerSound("the_world_2");
 	public static final SoundEvent THE_WORLD_3=registerSound("the_world_3");
+	public static final SoundEvent THE_WORLD_RE=registerSound("the_world_re");
 	public static final SoundEvent ROAD_ROLLER=registerSound("road_roller");
 	public static final SoundEvent DIO_FLAG=registerSound("dio_flag");
 	public static final SoundEvent DIO_HIT=registerSound("dio_hit");
@@ -62,6 +63,7 @@ public class SoundLoader {
 	public static final SoundEvent STAND_CRAZY_DIAMOND_REPAIR_2=registerSound("stand_crazy_diamond_repair_2");
 	public static final SoundEvent SHEER_HEART_ATTACK=registerSound("sheer_heart_attack_target");
 	public static final SoundEvent BIKE_RING_1=registerSound("bike_ring_ear0");
+	public static final SoundEvent REO_CHERRY=registerSound("reo_cherry");
 	@SubscribeEvent
 	public static void register(RegistryEvent.Register<SoundEvent> event) {
 		for(SoundEvent sound:SOUND_LIST){

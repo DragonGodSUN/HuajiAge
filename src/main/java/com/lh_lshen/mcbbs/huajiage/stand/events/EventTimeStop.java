@@ -105,7 +105,7 @@ public class EventTimeStop {
 		  {
 			  star = true;
 		  }
-		  StandUtil.standEffectLoad(player);
+		  StandUtil.standEffectLoad(player,true);
 		  if(!star) {
 	 	      MessageDioHitClient msg1 = new MessageDioHitClient(targetPosition, false); 
 	 	      MessageDioHitClient msg2 =new MessageDioHitClient(targetPosition, true); 

@@ -5,6 +5,7 @@ import com.lh_lshen.mcbbs.huajiage.capability.StandChargeHandler;
 import io.netty.buffer.ByteBuf;
 import net.minecraft.client.Minecraft;
 import net.minecraft.entity.player.EntityPlayer;
+import net.minecraftforge.fml.common.network.ByteBufUtils;
 import net.minecraftforge.fml.common.network.simpleimpl.IMessage;
 import net.minecraftforge.fml.common.network.simpleimpl.IMessageHandler;
 import net.minecraftforge.fml.common.network.simpleimpl.MessageContext;
@@ -15,14 +16,16 @@ public class SyncStandChargeMessage implements IMessage {
     private int charge;
     private int max;
     private int buffer;
+    private String buffTag;
 
     public SyncStandChargeMessage() {
     	
     }
-    public SyncStandChargeMessage(int value, int max, int buffer) {
+    public SyncStandChargeMessage(int value, int max, int buffer, String buffTag) {
         this.charge = value;
         this.max = max;
         this.buffer = buffer;
+        this.buffTag = buffTag;
     }
 
     @Override
@@ -30,6 +33,8 @@ public class SyncStandChargeMessage implements IMessage {
         this.charge = buf.readInt();
         this.max = buf.readInt();
         this.buffer = buf.readInt();
+        this.buffTag = ByteBufUtils.readUTF8String(buf);
+
     }
 
     @Override
@@ -37,6 +42,7 @@ public class SyncStandChargeMessage implements IMessage {
         buf.writeInt(charge);
         buf.writeInt(max);
         buf.writeInt(buffer);
+        ByteBufUtils.writeUTF8String(buf,buffTag);
     }
 
     public int getChargeValue() {
@@ -49,6 +55,10 @@ public class SyncStandChargeMessage implements IMessage {
 
     public int getBuffer() {
         return buffer;
+    }
+
+    public String getBuffTag() {
+        return buffTag;
     }
 
     public static class Handler implements IMessageHandler<SyncStandChargeMessage, IMessage> {
@@ -66,6 +76,7 @@ public class SyncStandChargeMessage implements IMessage {
                         charge.setChargeValue(message.getChargeValue());
                         charge.setMaxValue(message.getMaxValue());
                         charge.setBuffer(message.getBuffer());
+                        charge.setBuffTag(message.getBuffTag());
                     }
                 });
             }

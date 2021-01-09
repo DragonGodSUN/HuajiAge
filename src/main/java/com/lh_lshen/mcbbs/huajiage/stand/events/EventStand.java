@@ -114,7 +114,7 @@ public class EventStand {
 					return;
 				}
 			  if(NBTHelper.getEntityInteger(evt.getEntityLiving(), HuajiConstant.Tags.THE_WORLD)>0) {
-				StandUtil.standEffectLoad(evt.getEntityLiving());
+				StandUtil.standEffectLoad(evt.getEntityLiving(),false);
 			  }
 			  float op =evt.getOriginalSpeed();
 			  if(evt.getEntityPlayer().isPotionActive(PotionLoader.potionStand)) {
