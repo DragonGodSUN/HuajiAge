@@ -70,13 +70,14 @@ public class StandResourceLoader {
     public static void loadInternalStands()  {
         loadInternalStand("bike");
         loadInternalStand("crazy_diamond");
+        loadInternalStand("hermit_purple");
     }
 
     public static void loadInternalStates()  {
         loadInternalState("bike_default");
         loadInternalState("crazy_diamond_default");
         loadInternalState("crazy_diamond_heal");
-        loadInternalState("crazy_diamond_idle");
+        loadInternalState("hermit_purple_default");
     }
 
     private static void checkStandFolder() {

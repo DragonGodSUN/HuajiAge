@@ -91,18 +91,18 @@ public class ConfigHuaji {
 		@LangKey("config.huaji_age.huaji_config.stand.moving_sound")
 		public boolean allowStandSound=true;
 		
-		@Config.Comment("Need the fog of time stop?")
-		@LangKey("config.huaji_age.huaji_config.stand.fog_time_stop")
-		public boolean allowFogTimeStop=false;
-		
+//		@Config.Comment("Need the fog of time stop?")
+//		@LangKey("config.huaji_age.huaji_config.stand.fog_time_stop")
+//		public boolean allowFogTimeStop=false;
+
 		@Config.Comment("Need the mask of time stop?")
 		@LangKey("config.huaji_age.huaji_config.stand.mask_time_stop")
 		public boolean allowMaskTimeStop=true;
-		
+
 		@Config.Comment("Use the noise version mask of time stop?")
 		@LangKey("config.huaji_age.huaji_config.stand.mask_time_stop_noise")
 		public boolean useTimeStopNoiseMask=true;
-		
+
 		@Config.Comment("Use the HUAJI splash replace the image of emerald splash?")
 		@LangKey("config.huaji_age.huaji_config.stand.huaji_splash")
 		public boolean useHuajiSplash=false;

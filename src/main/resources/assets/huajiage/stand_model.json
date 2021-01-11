@@ -76,6 +76,10 @@
         {
           "model_id": "huajiage:crazy_diamond",
           "state": "idle"
+        },
+        {
+          "model_id": "huajiage:hermit_purple",
+          "transfer":[0,0,0]
         }
 	]
 }

@@ -61,6 +61,9 @@ public class SoundLoader {
 	public static final SoundEvent STAND_CRAZY_DIAMOND_4=registerSound("stand_crazy_diamond_4");
 	public static final SoundEvent STAND_CRAZY_DIAMOND_REPAIR_1=registerSound("stand_crazy_diamond_repair_1");
 	public static final SoundEvent STAND_CRAZY_DIAMOND_REPAIR_2=registerSound("stand_crazy_diamond_repair_2");
+	public static final SoundEvent STAND_HERMIT_PURPLE_1=registerSound("stand_hermit_purple_1");
+	public static final SoundEvent STAND_HERMIT_PURPLE_2=registerSound("stand_hermit_purple_2");
+	public static final SoundEvent STAND_HERMIT_PURPLE_WAVE=registerSound("stand_hermit_purple_wave");
 	public static final SoundEvent SHEER_HEART_ATTACK=registerSound("sheer_heart_attack_target");
 	public static final SoundEvent BIKE_RING_1=registerSound("bike_ring_ear0");
 	public static final SoundEvent REO_CHERRY=registerSound("reo_cherry");

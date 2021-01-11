@@ -185,6 +185,21 @@ public class StandPowerHelper {
     }
 
     /**
+     * 延长药水时间
+     * @param user
+     * @param type
+     * @param duration
+     * @param level
+     * @param buffer
+     */
+    public static void increasePotionTime(EntityLivingBase user, String type, int duration, int level, int buffer){
+        Potion potion = getPotion(type);
+        if (!user.isPotionActive(potion) || user.isPotionActive(potion)&&user.getActivePotionEffect(potion).getDuration()<buffer){
+            potionEffectAdd(user,type,duration,level);
+        }
+    }
+
+    /**
      * 移除指定药水效果
      * @param user
      * @param type

@@ -1,0 +1,14 @@
+{
+  "stand": "huajiage:hermit_purple",
+  "name": "stand.huajiage.hermit_purple.name",
+  "disc": "huajiage:disc/disc_star_platinum",
+  "stand_tags": ["arrow"],
+  "stages": 1,
+  "states":["default"],
+  "attributes": [0.5,0,500,5,50000,80,100000],
+  "sounds": [ "huajiage:stand_hermit_purple_1",
+              "huajiage:stand_hermit_purple_2"
+              ],
+  "gravity": false,
+  "author": "LH_Lshen"
+}

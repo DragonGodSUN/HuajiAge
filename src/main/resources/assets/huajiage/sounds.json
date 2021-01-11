@@ -449,6 +449,32 @@
         "stream": true
       }
     ]
+  },
+  "stand_hermit_purple_1": {
+    "category": "neutral",
+    "sounds": [
+      {
+        "name": "huajiage:stand_hermit_purple_1",
+        "stream": true
+      }
+    ]
+  },
+  "stand_hermit_purple_2": {
+    "category": "neutral",
+    "sounds": [
+      {
+        "name": "huajiage:stand_hermit_purple_2",
+        "stream": true
+      }
+    ]
+  },
+  "stand_hermit_purple_wave": {
+    "category": "neutral",
+    "sounds": [
+      {
+        "name": "huajiage:stand_hermit_purple_wave",
+        "stream": true
+      }
+    ]
   }
-
 }
