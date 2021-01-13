@@ -1,6 +1,7 @@
 package com.lh_lshen.mcbbs.huajiage.client.model.custom;
 
 import com.google.common.collect.Lists;
+import com.lh_lshen.mcbbs.huajiage.capability.IExposedData;
 import com.lh_lshen.mcbbs.huajiage.client.model.custom.pojo.BonesItem;
 import com.lh_lshen.mcbbs.huajiage.client.model.custom.pojo.CubesItem;
 import com.lh_lshen.mcbbs.huajiage.client.model.custom.pojo.CustomModelPOJO;
@@ -12,6 +13,7 @@ import com.lh_lshen.mcbbs.huajiage.client.resources.CustomResourceLoader;
 import com.lh_lshen.mcbbs.huajiage.client.resources.pojo.StandModelInfo;
 import com.lh_lshen.mcbbs.huajiage.common.CommonProxy;
 import com.lh_lshen.mcbbs.huajiage.config.ConfigHuaji;
+import com.lh_lshen.mcbbs.huajiage.stand.StandUtil;
 import net.minecraft.client.model.ModelRenderer;
 import net.minecraft.client.renderer.GlStateManager;
 import net.minecraft.entity.Entity;
@@ -227,12 +229,18 @@ public class ModelStandJson extends ModelStandBase {
         Invocable invocable = (Invocable) CommonProxy.NASHORN_ENGINE;
         if (entityIn instanceof EntityPlayer) {
             entityStandWrapper.setData((EntityPlayer)entityIn, swingProgress, isRiding);
+            IExposedData data = StandUtil.getStandData((EntityPlayer)entityIn);
             String modelId = this.getModelID();
-            if(modelId!=null){
+            if(data!=null && modelId!=null){
                 try {
                     for (Object animation : animations) {
-                        invocable.invokeMethod(animation, "animation",
-                                entityStandWrapper, limbSwing * ConfigHuaji.Stands.maidLimbSwing , limbSwingAmount * ConfigHuaji.Stands.maidLimbSwingAmount , ageInTicks, netHeadYaw, headPitch, scaleFactor, modelMap);
+                        if(data.getStand().equals("maid")) {
+                            invocable.invokeMethod(animation, "animation",
+                                    entityStandWrapper, limbSwing * ConfigHuaji.Stands.maidLimbSwing, limbSwingAmount * ConfigHuaji.Stands.maidLimbSwingAmount, ageInTicks, netHeadYaw, headPitch, scaleFactor, modelMap);
+                        }else {
+                            invocable.invokeMethod(animation, "animation",
+                                    entityStandWrapper, limbSwing , limbSwingAmount , ageInTicks, netHeadYaw, headPitch, scaleFactor, modelMap);
+                        }
                     }
                 } catch (Exception e) {
                     e.printStackTrace();
