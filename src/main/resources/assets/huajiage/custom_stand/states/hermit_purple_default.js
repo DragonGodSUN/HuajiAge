@@ -10,6 +10,8 @@ Java.asJSONCompatible({
     stateKey:"stand.huajiage.hermit_purple.default",
 //  模型ID
     modelId:"huajiage:hermit_purple",
+//  一些属性标签，便于使用mod内置的能力
+    stateTags:["element_light"],
 //  替身放出时，第一人称是否显示手臂，不写时默认为true
     hand:true,
 //  替身放出时，是否有重复音乐播放

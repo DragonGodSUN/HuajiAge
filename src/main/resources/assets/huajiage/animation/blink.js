@@ -6,5 +6,6 @@ Java.asJSONCompatible({
             remainder = ageInTicks % 60;
             blink.setHidden(!(55 < remainder && remainder < 60));
         }
+
     }
 })
