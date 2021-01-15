@@ -67,6 +67,7 @@ public class SoundLoader {
 	public static final SoundEvent SHEER_HEART_ATTACK=registerSound("sheer_heart_attack_target");
 	public static final SoundEvent BIKE_RING_1=registerSound("bike_ring_ear0");
 	public static final SoundEvent REO_CHERRY=registerSound("reo_cherry");
+	public static final SoundEvent WAVE_OVERDRIVE_1=registerSound("wave_overdrive_1");
 	@SubscribeEvent
 	public static void register(RegistryEvent.Register<SoundEvent> event) {
 		for(SoundEvent sound:SOUND_LIST){

@@ -26,9 +26,10 @@ Java.asJSONCompatible({
  */
     update: function (worldWrapper,entityWrapper,dataWrapper) {
          Helper.increasePotionTime(entityWrapper.getLivingBase(),"luck",60,0,10);
-         Helper.increasePotionTime(entityWrapper.getLivingBase(),"speed",60,2,10);
-         Helper.increasePotionTime(entityWrapper.getLivingBase(),"strength",60,4,10);
-         Helper.increasePotionTime(entityWrapper.getLivingBase(),"jump_boost",60,2,10);
+         Helper.increasePotionTime(entityWrapper.getLivingBase(),"unluck",60,0,10);
+         Helper.increasePotionTime(entityWrapper.getLivingBase(),"speed",60,3,10);
+         Helper.increasePotionTime(entityWrapper.getLivingBase(),"strength",60,3,10);
+         Helper.increasePotionTime(entityWrapper.getLivingBase(),"jump_boost",60,3,10);
     },
 
 /**
@@ -37,8 +38,8 @@ Java.asJSONCompatible({
  * @param entity 替身使者
  */
     timeOut: function (worldWrapper,entityWrapper,dataWrapper) {
-        //默认超时效果
-        Helper.potionDefaultOutOfTime(entityWrapper.getLivingBase());
+       Helper.increaseStandTime(entityWrapper.getLivingBase(),100);
+       Helper.potionEffectAdd(entityWrapper.getLivingBase(),"minecraft:hunger",100,5);
 
     },
     /**

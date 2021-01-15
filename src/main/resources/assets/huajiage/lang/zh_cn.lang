@@ -288,6 +288,10 @@ stand.huajiage.skill.huajiage.crazy_diamond.start=§b§lCrazy Diamond! 嘟啦啦
 stand.huajiage.crazy_diamond.default=默认
 stand.huajiage.crazy_diamond.heal=治愈
 stand.huajiage.crazy_diamond.idle=闲置
+
+stand.huajiage.hermit_purple.name=§5§lHermit Purple-隐者之紫
+stand.huajiage.skill.huajiage.hermit_purple.start=§5§lHermit Purple! §e§l以及波纹！！！
+stand.huajiage.hermit_purple.default=默认
 *****************************************下方为未启用的一代翻译******************************************
 item.huaJiCry.name=我哭了
 item.huajiAxe.name=§b滑稽斧头

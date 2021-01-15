@@ -1,14 +1,13 @@
 {
-    "energyhit": {
-    "category": "neutral",
-    "sounds": [
+  "energyhit": {
+  "category": "neutral",
+  "sounds": [
       {
         "name": "huajiage:energyhit",
         "stream": true
       }
     ]
   },
-
  "charge": {
     "category": "neutral",
     "sounds": [
@@ -446,6 +445,15 @@
     "sounds": [
       {
         "name": "huajiage:reo_cherry",
+        "stream": true
+      }
+    ]
+  },
+  "wave_overdrive_1": {
+    "category": "neutral",
+    "sounds": [
+      {
+        "name": "huajiage:wave_overdrive_1",
         "stream": true
       }
     ]

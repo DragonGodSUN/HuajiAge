@@ -281,6 +281,10 @@ stand.huajiage.skill.huajiage.crazy_diamond.start=§b§lCrazy Diamond! Durararar
 stand.huajiage.crazy_diamond.default=Default
 stand.huajiage.crazy_diamond.heal=Heal
 stand.huajiage.crazy_diamond.idle=Idle
+
+stand.huajiage.hermit_purple.name=§5§lHermit Purple
+stand.huajiage.skill.huajiage.hermit_purple.start=§5§lHermit Purple! §e§lAnd Overdirve!!!
+stand.huajiage.hermit_purple.default=Default
 ===============================Orga===========================================
 message.huajiage.orga.sing.1=§4What...... I'm a pretty good marksman
 message.huajiage.orga.sing.2=§2Head of... ah
