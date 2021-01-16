@@ -179,6 +179,7 @@ public class CapabilityExposedData {
 		DEFAULT("default"),
 		IDLE("idle"),
 		PUNCH("punch"),
+		OVERDRIVE("overdrive"),
 		PROTECT("protect");
 
 		States(String name) {

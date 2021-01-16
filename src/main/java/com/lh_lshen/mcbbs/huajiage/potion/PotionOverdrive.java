@@ -8,11 +8,11 @@ import net.minecraft.potion.Potion;
 import net.minecraft.potion.PotionEffect;
 import net.minecraft.util.ResourceLocation;
 
-public class PotionRequiem extends Potion {
+public class PotionOverdrive extends Potion {
 
-	public PotionRequiem() {
-		super(false,0X7d0f00);
-        this.setPotionName("potion.huajiage.requiem");
+	public PotionOverdrive() {
+		super(false, 0X7d0f00);
+        this.setPotionName("potion.huajiage.overdrive");
         this.setIconIndex(0, 0);
        
 	}
@@ -33,7 +33,7 @@ public class PotionRequiem extends Potion {
      
         mc.getTextureManager().bindTexture(new ResourceLocation(HuajiAge.MODID + ":" + "potions/potion_01.png"));
 
-        Gui.drawModalRectWithCustomSizedTexture(x+2, y+2 , 0, 53, 18, 18, 256, 256);
+        Gui.drawModalRectWithCustomSizedTexture(x+2, y+2 , 0, 19, 18, 18, 256, 256);
     }
     @Override
     public void performEffect(EntityLivingBase entityLivingBaseIn, int amplifier) {

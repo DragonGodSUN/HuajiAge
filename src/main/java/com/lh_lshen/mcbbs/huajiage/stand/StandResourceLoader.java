@@ -78,6 +78,7 @@ public class StandResourceLoader {
         loadInternalState("crazy_diamond_default");
         loadInternalState("crazy_diamond_heal");
         loadInternalState("hermit_purple_default");
+        loadInternalState("hermit_purple_overdrive");
     }
 
     private static void checkStandFolder() {

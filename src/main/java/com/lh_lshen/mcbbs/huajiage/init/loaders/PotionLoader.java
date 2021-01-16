@@ -16,6 +16,7 @@ public class PotionLoader {
 	 public static Potion potionRequiemTarget;
 	 public static Potion potionStand;
 	 public static Potion potionRepair;
+	 public static Potion potionOverdrive;
 
 
 	    @SubscribeEvent
@@ -28,6 +29,7 @@ public class PotionLoader {
 	    	potionRequiemTarget=new PotionRequiemTarget() ;
 	    	potionStand=new PotionStand();
 	    	potionRepair=new PotionRepairEffect();
+	    	potionOverdrive=new PotionOverdrive();
 
 
 	        event.getRegistry().registerAll(potionHuajiProtection.setRegistryName(HuajiAge.MODID, "potion_huaji"),
@@ -37,7 +39,8 @@ public class PotionLoader {
 	        		                        potionRequiem.setRegistryName(HuajiAge.MODID, "potion_huaji_requiem"),
 	        		                        potionRequiemTarget.setRegistryName(HuajiAge.MODID, "potion_huaji_requiem_target"),
 	        		                        potionStand.setRegistryName(HuajiAge.MODID, "potion_huaji_stand"),
-											potionRepair.setRegistryName(HuajiAge.MODID, "potion_huaji_repair")
+											potionRepair.setRegistryName(HuajiAge.MODID, "potion_huaji_repair"),
+											potionOverdrive.setRegistryName(HuajiAge.MODID, "potion_huaji_overdrive")
 	        		);
 
 	    }

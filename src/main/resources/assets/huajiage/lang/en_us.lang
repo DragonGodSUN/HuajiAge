@@ -92,13 +92,14 @@ potion.huajiage.requiem=§eRequiem
 potion.huajiage.requiem.target=§eRequiem Target
 potion.huajiage.orga.target=Orga Target
 potion.huajiage.stand=§b§lStand Power
+potion.huajiage.repair=§b§lItem Repair
+potion.huajiage.overdrive=§eOverDrive
 
 key.category.huajiage=HUAJI Age
 key.huajiage.switch=Switch
 key.huajiage.stand_up=Stand Up
 key.huajiage.stand_skill=Stand Power
 key.huajiage.stand_switch=Stand Mode Change
-potion.huajiage.repair=§b§lItem Repair
 
 stand.huajiage.name=Stand:
 stand.huajiage.stage=Stage:
@@ -284,7 +285,9 @@ stand.huajiage.crazy_diamond.idle=Idle
 
 stand.huajiage.hermit_purple.name=§5§lHermit Purple
 stand.huajiage.skill.huajiage.hermit_purple.start=§5§lHermit Purple! §e§lAnd Overdirve!!!
+stand.huajiage.skill.huajiage.hermit_purple.run=§b§lEscaping!
 stand.huajiage.hermit_purple.default=Default
+stand.huajiage.hermit_purple.overdrive=§e§lOverdrive
 ===============================Orga===========================================
 message.huajiage.orga.sing.1=§4What...... I'm a pretty good marksman
 message.huajiage.orga.sing.2=§2Head of... ah

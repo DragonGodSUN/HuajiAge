@@ -63,6 +63,7 @@ potion.huajiage.requiem=§e镇魂曲
 potion.huajiage.requiem.target=§e镇魂曲木大目标
 potion.huajiage.stand=§b§lStand Power
 potion.huajiage.repair=§b§l物品修复
+potion.huajiage.overdrive=§e波纹疾走
 
 key.category.huajiage=滑稽纪元
 key.huajiage.switch=转换模式
@@ -291,7 +292,9 @@ stand.huajiage.crazy_diamond.idle=闲置
 
 stand.huajiage.hermit_purple.name=§5§lHermit Purple-隐者之紫
 stand.huajiage.skill.huajiage.hermit_purple.start=§5§lHermit Purple! §e§l以及波纹！！！
+stand.huajiage.skill.huajiage.hermit_purple.run=§b§l泥给龙达哟~
 stand.huajiage.hermit_purple.default=默认
+stand.huajiage.hermit_purple.overdrive=§e§l波纹疾走
 *****************************************下方为未启用的一代翻译******************************************
 item.huaJiCry.name=我哭了
 item.huajiAxe.name=§b滑稽斧头

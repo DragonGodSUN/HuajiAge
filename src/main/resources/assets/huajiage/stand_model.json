@@ -80,6 +80,11 @@
         {
           "model_id": "huajiage:hermit_purple",
           "transfer":[0,-0.1,0]
+        },
+        {
+          "model_id": "huajiage:hermit_purple",
+          "state": "overdrive",
+          "transfer":[0,-0.1,0]
         }
 	]
 }

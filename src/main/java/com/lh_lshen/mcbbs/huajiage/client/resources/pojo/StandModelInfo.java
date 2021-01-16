@@ -236,6 +236,7 @@ public class StandModelInfo implements IModelInfo {
                         new ResourceLocation(TouhouLittleMaid.MOD_ID, "animation/base/float/default.js").toString(),
                         new ResourceLocation(HuajiAge.MODID, "animation/rotation_yaw.js").toString(),
                         new ResourceLocation(HuajiAge.MODID, "animation/flash_frames.js").toString(),
+                        new ResourceLocation(HuajiAge.MODID, "animation/flash_frames_fast.js").toString(),
                         new ResourceLocation(HuajiAge.MODID, "animation/ro_arms.js").toString(),
                         new ResourceLocation(HuajiAge.MODID, "animation/ro_hands.js").toString(),
                         new ResourceLocation(HuajiAge.MODID, "animation/ro_hit_hands.js").toString(),
@@ -245,6 +246,7 @@ public class StandModelInfo implements IModelInfo {
                 animation = Lists.newArrayList(
                         new ResourceLocation(HuajiAge.MODID, "animation/head.js").toString(),
                         new ResourceLocation(HuajiAge.MODID, "animation/flash_frames.js").toString(),
+                        new ResourceLocation(HuajiAge.MODID, "animation/flash_frames_fast.js").toString(),
                         new ResourceLocation(HuajiAge.MODID, "animation/rotation_yaw.js").toString(),
                         new ResourceLocation(HuajiAge.MODID, "animation/ro_arms.js").toString(),
                         new ResourceLocation(HuajiAge.MODID, "animation/ro_hands.js").toString(),
