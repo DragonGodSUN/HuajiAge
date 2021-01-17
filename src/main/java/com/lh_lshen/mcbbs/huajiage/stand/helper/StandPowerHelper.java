@@ -31,6 +31,7 @@ import net.minecraft.potion.PotionEffect;
 import net.minecraft.util.*;
 import net.minecraft.util.math.BlockPos;
 import net.minecraft.util.math.Vec3d;
+import net.minecraft.util.text.TextComponentTranslation;
 import net.minecraft.world.World;
 import net.minecraftforge.fml.common.registry.ForgeRegistries;
 
@@ -219,12 +220,12 @@ public class StandPowerHelper {
      */
     public static void removeBadPotion(EntityLivingBase user){
         Collection<Potion> potions = ForgeRegistries.POTIONS.getValuesCollection();
-        for(Potion p : potions){
-            if(p.isBadEffect()){
-                removePotion(user,p.getName());
+            for(Potion p : potions){
+                if(p.isBadEffect()){
+                    removePotion(user,p.getRegistryName().getNamespace()+":"+p.getRegistryName().getPath());
+                }
             }
         }
-    }
 
     /**
      * 获取药水类型
@@ -708,6 +709,30 @@ public class StandPowerHelper {
         }
     }
 
+//  通讯=============================================================================================
+
+    /**
+     * 在客户端上向玩家发送讯息
+     * @param user
+     * @param text
+     */
+    public static void sendMessageClient(EntityLivingBase user, String text, Object... args){
+        if (user.world.isRemote){
+        user.sendMessage(new TextComponentTranslation(text,args));
+        }
+    }
+
+    /**
+     * 在服务端上向玩家发送讯息
+     * @param user
+     * @param text
+     */
+    public static void sendMessage(EntityLivingBase user, String text, Object... args){
+        if (!user.world.isRemote){
+            user.sendMessage(new TextComponentTranslation(text,args));
+        }
+    }
+
 //  动作=============================================================================================
 
     /**
@@ -754,6 +779,16 @@ public class StandPowerHelper {
      */
     public static void addMotion(EntityLivingBase user, float x, float y, float z){
         addMotion(user,new Vec3d(x,y,z));
+    }
+
+    /**
+     * 给生物添加一个向前的矢量
+     * @param user
+     * @param amplification
+     */
+    public static void addMotionForward(EntityLivingBase user,float amplification){
+        Vec3d vec = user.getLookVec();
+        addMotion(user,(float)vec.x * amplification,(float)vec.y * amplification,(float)vec.z * amplification);
     }
 
     /**

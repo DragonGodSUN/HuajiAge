@@ -458,6 +458,15 @@
       }
     ]
   },
+  "wave_overdrive_run": {
+    "category": "neutral",
+    "sounds": [
+      {
+        "name": "huajiage:wave_overdrive_run",
+        "stream": true
+      }
+    ]
+  },
   "stand_hermit_purple_1": {
     "category": "neutral",
     "sounds": [
@@ -481,6 +490,15 @@
     "sounds": [
       {
         "name": "huajiage:stand_hermit_purple_wave",
+        "stream": true
+      }
+    ]
+  },
+  "stand_hermit_purple_camera_broken": {
+    "category": "neutral",
+    "sounds": [
+      {
+        "name": "huajiage:stand_hermit_purple_camera_broken",
         "stream": true
       }
     ]

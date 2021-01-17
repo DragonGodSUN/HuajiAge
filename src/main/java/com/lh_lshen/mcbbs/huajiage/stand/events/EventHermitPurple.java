@@ -3,6 +3,9 @@ package com.lh_lshen.mcbbs.huajiage.stand.events;
 import com.lh_lshen.mcbbs.huajiage.HuajiAge;
 import com.lh_lshen.mcbbs.huajiage.capability.CapabilityExposedData;
 import com.lh_lshen.mcbbs.huajiage.capability.IExposedData;
+import com.lh_lshen.mcbbs.huajiage.capability.StandChargeHandler;
+import com.lh_lshen.mcbbs.huajiage.damage_source.DamageOverdrive;
+import com.lh_lshen.mcbbs.huajiage.init.HuajiConstant;
 import com.lh_lshen.mcbbs.huajiage.init.loaders.PotionLoader;
 import com.lh_lshen.mcbbs.huajiage.init.sound.SoundLoader;
 import com.lh_lshen.mcbbs.huajiage.stand.EnumStandTag;
@@ -21,6 +24,8 @@ import net.minecraftforge.event.entity.living.LivingEvent;
 import net.minecraftforge.event.entity.living.LivingHurtEvent;
 import net.minecraftforge.fml.common.Mod;
 import net.minecraftforge.fml.common.eventhandler.SubscribeEvent;
+
+import java.util.List;
 
 @Mod.EventBusSubscriber(modid = HuajiAge.MODID)
 public class EventHermitPurple {
@@ -99,4 +104,22 @@ public class EventHermitPurple {
         }
     }
 
+    @SubscribeEvent
+    public static void onOverdrive(LivingEvent.LivingUpdateEvent event){
+        EntityLivingBase livingBase = event.getEntityLiving();
+        IExposedData data = StandUtil.getStandData(livingBase);
+        StandChargeHandler chargeHandler = StandUtil.getChargeHandler(livingBase);
+        if (data!=null && chargeHandler!=null){
+            boolean isMatch = data.getStand().equals("huajiage:hermit_purple") && chargeHandler.getBuffTag().equals(HuajiConstant.BuffTags.OVER_DRIVE);
+            if (isMatch && livingBase.isPotionActive(PotionLoader.potionOverdrive) && chargeHandler.getBuffer()>0){
+                List<EntityLivingBase> targets = livingBase.world.getEntitiesWithinAABB(EntityLivingBase.class,livingBase.getEntityBoundingBox().grow(2));
+                for (EntityLivingBase e : targets){
+                    if (e != livingBase) {
+                        e.attackEntityFrom(new DamageOverdrive(livingBase),livingBase.getHealth()/2);
+                    }
+                }
+            livingBase.fallDistance = 0;
+            }
+        }
+    }
 }

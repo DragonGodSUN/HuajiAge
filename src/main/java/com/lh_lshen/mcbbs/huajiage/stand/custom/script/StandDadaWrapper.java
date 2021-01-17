@@ -55,6 +55,10 @@ public class StandDadaWrapper {
         return chargeHandler.getBuffer();
     }
 
+    public String getBufferTag(){
+        return chargeHandler.getBuffTag();
+    }
+
     public void setMP(int mp){
         chargeHandler.setChargeValue(mp);
     }
@@ -65,5 +69,9 @@ public class StandDadaWrapper {
 
     public void setBuffer(int buffer){
         chargeHandler.setBuffer(buffer);
+    }
+
+    public void setBufferTag(String tag){
+        chargeHandler.setBuffTag(tag);
     }
 }

@@ -29,6 +29,7 @@ public  class HuajiConstant {
 
 	public class BuffTags{
 		public static final String TIME_STOP=HuajiAge.MODID+"."+"buff"+"."+"time_stop";
+		public static final String OVER_DRIVE=HuajiAge.MODID+"."+"buff"+"."+"overdrive";
 	}
 	
 //	Stand type

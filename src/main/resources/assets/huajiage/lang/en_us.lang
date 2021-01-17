@@ -41,6 +41,7 @@ death.attack.huajiage.dio.hit=%s was killed in a second
 death.attack.huajiage.singularity=%s was squeezed to a point
 death.attack.huajiage.void_break=%s was broken down by void
 death.attack.huajiage.wave_hit=%s was destroyed by wave
+death.attack.huajiage.overdrive_hit=%s was destroyed by §eoverdrive
 
 
 item.huajiage.orgaRequiem.name=§9Orga Requiem
@@ -286,6 +287,9 @@ stand.huajiage.crazy_diamond.idle=Idle
 stand.huajiage.hermit_purple.name=§5§lHermit Purple
 stand.huajiage.skill.huajiage.hermit_purple.start=§5§lHermit Purple! §e§lAnd Overdirve!!!
 stand.huajiage.skill.huajiage.hermit_purple.run=§b§lEscaping!
+stand.huajiage.skill.huajiage.hermit_purple.telepathy.need_camera=§e§lYou need a camera which is expensive
+stand.huajiage.skill.huajiage.hermit_purple.telepathy.item_null=§e§lYour item held can't be telepathized
+stand.huajiage.skill.huajiage.hermit_purple.telepathy=§b§lTelepathy: %s-%s
 stand.huajiage.hermit_purple.default=Default
 stand.huajiage.hermit_purple.overdrive=§e§lOverdrive
 ===============================Orga===========================================

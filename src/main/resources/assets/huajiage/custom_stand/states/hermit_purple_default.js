@@ -26,6 +26,7 @@ Java.asJSONCompatible({
  */
     update: function (worldWrapper,entityWrapper,dataWrapper) {
     var level = dataWrapper.getStage();
+         Helper.MPCharge(entityWrapper.getLivingBase(),80);
          Helper.increasePotionTime(entityWrapper.getLivingBase(),"luck",60,0,10);
          Helper.increasePotionTime(entityWrapper.getLivingBase(),"speed",60,3+level,10);
          Helper.increasePotionTime(entityWrapper.getLivingBase(),"strength",60,3+level,10);
@@ -48,6 +49,8 @@ Java.asJSONCompatible({
      * @param entity 替身使者
      */
     capability: function (worldWrapper,entityWrapper,dataWrapper) {
+        Helper.sendMessage(entityWrapper.getLivingBase(),"stand.huajiage.skill.huajiage.hermit_purple.telepathy");
+        Helper.playSound(entityWrapper.getLivingBase(), "huajiage:stand_hermit_purple_camera_broken", 1, 1);
 
     }
 

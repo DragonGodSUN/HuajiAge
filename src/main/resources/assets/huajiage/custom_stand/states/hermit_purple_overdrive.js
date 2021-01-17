@@ -26,7 +26,7 @@ Java.asJSONCompatible({
  */
     update: function (worldWrapper,entityWrapper,dataWrapper) {
     var level = dataWrapper.getStage();
-         Helper.increasePotionTime(entityWrapper.getLivingBase(),"huajiage:potion_huaji_overdrive",60,3,10);
+         Helper.increasePotionTime(entityWrapper.getLivingBase(),"huajiage:potion_huaji_overdrive",60,1,10);
          Helper.increasePotionTime(entityWrapper.getLivingBase(),"regeneration",60,3,10);
          Helper.increasePotionTime(entityWrapper.getLivingBase(),"speed",60,3+level,10);
          Helper.increasePotionTime(entityWrapper.getLivingBase(),"strength",60,3+level,10);
@@ -50,6 +50,15 @@ Java.asJSONCompatible({
      * @param entity 替身使者
      */
     capability: function (worldWrapper,entityWrapper,dataWrapper) {
+        Helper.sendMessage(entityWrapper.getLivingBase(),"stand.huajiage.skill.huajiage.hermit_purple.run");
+        Helper.playSound(entityWrapper.getLivingBase(), "huajiage:wave_overdrive_run", 6, 1);
+        Helper.removeBadPotion(entityWrapper.getLivingBase());
+        Helper.potionEffectAdd(entityWrapper.getLivingBase(),"minecraft:speed",200,10);
+        Helper.potionEffectAdd(entityWrapper.getLivingBase(),"minecraft:jump_boost",200,10);
+        Helper.addItemToplayer(entityWrapper.getLivingBase(),"minecraft:ender_pearl",2);
+
+        dataWrapper.setBuffer(200);
+        dataWrapper.setBufferTag("huajiage.buff.overdrive");
 
     }
 

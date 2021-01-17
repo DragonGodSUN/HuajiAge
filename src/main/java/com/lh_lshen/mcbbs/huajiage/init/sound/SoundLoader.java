@@ -64,10 +64,12 @@ public class SoundLoader {
 	public static final SoundEvent STAND_HERMIT_PURPLE_1=registerSound("stand_hermit_purple_1");
 	public static final SoundEvent STAND_HERMIT_PURPLE_2=registerSound("stand_hermit_purple_2");
 	public static final SoundEvent STAND_HERMIT_PURPLE_WAVE=registerSound("stand_hermit_purple_wave");
+	public static final SoundEvent STAND_HERMIT_PURPLE_CAMERA_BROKEN=registerSound("stand_hermit_purple_camera_broken");
 	public static final SoundEvent SHEER_HEART_ATTACK=registerSound("sheer_heart_attack_target");
 	public static final SoundEvent BIKE_RING_1=registerSound("bike_ring_ear0");
 	public static final SoundEvent REO_CHERRY=registerSound("reo_cherry");
 	public static final SoundEvent WAVE_OVERDRIVE_1=registerSound("wave_overdrive_1");
+	public static final SoundEvent WAVE_OVERDRIVE_RUN=registerSound("wave_overdrive_run");
 	@SubscribeEvent
 	public static void register(RegistryEvent.Register<SoundEvent> event) {
 		for(SoundEvent sound:SOUND_LIST){

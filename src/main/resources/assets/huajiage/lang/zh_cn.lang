@@ -32,6 +32,7 @@ death.attack.huajiage.dio.hit=%s在时停中被连打暴击而横飞过了安静
 death.attack.huajiage.singularity=%s被压缩成了一个无穷小的点
 death.attack.huajiage.void_break=%s被§eLord.Lu§f恐怖如斯的虚空之力§7碾成了渣渣
 death.attack.huajiage.wave_hit=%s被§b波§9澜§b呼§9吸§b法§7消灭了
+death.attack.huajiage.overdrive_hit=%s被§e波纹呼吸法§7消灭了
 
 huajiage.burstout=§e·真名解放
 huajiage.stellawarning=§e警告：真名解放状态下可能会造成不可挽回的后果，请不要轻易将此状态下的弓弦拉满！！！
@@ -292,7 +293,10 @@ stand.huajiage.crazy_diamond.idle=闲置
 
 stand.huajiage.hermit_purple.name=§5§lHermit Purple-隐者之紫
 stand.huajiage.skill.huajiage.hermit_purple.start=§5§lHermit Purple! §e§l以及波纹！！！
-stand.huajiage.skill.huajiage.hermit_purple.run=§b§l泥给龙达哟~
+stand.huajiage.skill.huajiage.hermit_purple.run=§b§l泥给路达哟~
+stand.huajiage.skill.huajiage.hermit_purple.telepathy.need_camera=§e§l需要一个价值三万日元的相机
+stand.huajiage.skill.huajiage.hermit_purple.telepathy.item_null=§e§l手中的物品无法进行念写
+stand.huajiage.skill.huajiage.hermit_purple.telepathy=§b§l念写：%s-%s
 stand.huajiage.hermit_purple.default=默认
 stand.huajiage.hermit_purple.overdrive=§e§l波纹疾走
 *****************************************下方为未启用的一代翻译******************************************
