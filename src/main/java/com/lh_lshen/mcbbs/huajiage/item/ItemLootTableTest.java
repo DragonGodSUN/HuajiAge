@@ -9,6 +9,7 @@ import com.lh_lshen.mcbbs.huajiage.init.loaders.PotionLoader;
 import com.lh_lshen.mcbbs.huajiage.init.loaders.StandLoader;
 import com.lh_lshen.mcbbs.huajiage.init.sound.SoundLoader;
 import com.lh_lshen.mcbbs.huajiage.stand.StandUtil;
+import com.lh_lshen.mcbbs.huajiage.stand.helper.TelepathyHelper;
 import com.lh_lshen.mcbbs.huajiage.stand.helper.TimeStopHelper;
 import com.lh_lshen.mcbbs.huajiage.stand.instance.StandHierophantGreen;
 import com.lh_lshen.mcbbs.huajiage.util.NBTHelper;
@@ -110,6 +111,10 @@ public class ItemLootTableTest extends Item {
 
 									playerIn.sendMessage(new TextComponentTranslation("message.huajiage:player_received_loot.no_loot"));
 								}
+								ItemStack stack_off = playerIn.getHeldItemOffhand();
+								String result = TelepathyHelper.telepathizeItem(playerIn,stack_off.getItem().getRegistryName().toString());
+								playerIn.sendMessage(new TextComponentTranslation("telepathy.result.position"+"."+result));
+								playerIn.sendMessage(new TextComponentTranslation(playerIn.dimension+""));
 							}
 							break;
 						}

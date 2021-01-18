@@ -49,8 +49,18 @@ Java.asJSONCompatible({
      * @param entity 替身使者
      */
     capability: function (worldWrapper,entityWrapper,dataWrapper) {
+
+        var item_main_hand = Helper.getPlayerHoldItem(entityWrapper.getLivingBase(),true);
+        var item_off_hand = Helper.getPlayerHoldItem(entityWrapper.getLivingBase(),false);
+        if(Helper.getItemRegistryName(item_main_hand) == "huajiage:huaji"){
         Helper.sendMessage(entityWrapper.getLivingBase(),"stand.huajiage.skill.huajiage.hermit_purple.telepathy");
         Helper.playSound(entityWrapper.getLivingBase(), "huajiage:stand_hermit_purple_camera_broken", 1, 1);
+        Helper.telepathizeItem(entityWrapper.getLivingBase(),item_off_hand);
+        Helper.consumeItem(item_main_hand,1);
+        }else{
+        Helper.sendMessage(entityWrapper.getLivingBase(),"stand.huajiage.skill.huajiage.hermit_purple.telepathy.need_camera");
+        Helper.MPCharge(entityWrapper.getLivingBase(),50000);
+        }
 
     }
 

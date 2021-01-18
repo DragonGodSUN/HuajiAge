@@ -125,7 +125,7 @@ public class ConfigHuaji {
 		@Config.Comment("The Y position of Stand on HUD")
 		@LangKey("config.huaji_age.huaji_config.stand_HUD_y")
 		@RangeDouble(min = 0, max = 1.0f)
-		public double standHUDy = 0.7f;
+		public double standHUDy = 0.64f;
 		
 		@Config.Comment("The scale of effect icon of time stop")
 		@LangKey("config.huaji_age.huaji_config.icon_time_stop")

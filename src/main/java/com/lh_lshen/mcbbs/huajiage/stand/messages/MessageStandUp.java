@@ -73,6 +73,7 @@ public class MessageStandUp implements IMessage {
 								standBase.setType(data.getStand());
 								if(Objects.requireNonNull(StandStates.getStandState(stand.getName(), data.getState())).hasExtraData(EnumStandTag.StateTags.RIDE.getName())){
 									standBase.setTamedBy(player);
+									standBase.setEntity(true);
 								}
 								player.world.spawnEntity(standBase);
 							}

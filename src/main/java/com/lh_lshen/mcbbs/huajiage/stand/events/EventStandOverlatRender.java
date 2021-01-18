@@ -11,8 +11,13 @@ import com.lh_lshen.mcbbs.huajiage.init.loaders.ItemLoader;
 import com.lh_lshen.mcbbs.huajiage.init.loaders.PotionLoader;
 import com.lh_lshen.mcbbs.huajiage.init.loaders.StandLoader;
 import com.lh_lshen.mcbbs.huajiage.stand.StandClientUtil;
+import com.lh_lshen.mcbbs.huajiage.stand.StandStates;
 import com.lh_lshen.mcbbs.huajiage.stand.StandUtil;
+import com.lh_lshen.mcbbs.huajiage.stand.custom.StandCustom;
+import com.lh_lshen.mcbbs.huajiage.stand.custom.StandStateCustom;
+import com.lh_lshen.mcbbs.huajiage.stand.custom.StandStateInfo;
 import com.lh_lshen.mcbbs.huajiage.stand.instance.StandBase;
+import com.lh_lshen.mcbbs.huajiage.stand.states.StandStateBase;
 import net.minecraft.client.Minecraft;
 import net.minecraft.client.gui.Gui;
 import net.minecraft.client.renderer.GlStateManager;
@@ -85,6 +90,7 @@ public class EventStandOverlatRender {
 				return;
 			}
 			int stage = data.getStage();
+			String state = data.getState();
 			int charge = chargeHandler.getChargeValue();
 			int maxCharge = chargeHandler.getMaxValue();
 
@@ -115,7 +121,8 @@ public class EventStandOverlatRender {
 				}
 				Minecraft.getMinecraft().fontRenderer.drawString(TextFormatting.BOLD + I18n.format("stand.huajiage.name"), 8 + x, 2 + 16 + y, 0xffffff, true);
 				Minecraft.getMinecraft().fontRenderer.drawString(TextFormatting.BOLD + I18n.format("stand.huajiage.stage") + "  " + stage, 8 + x, 20 + 16 + y, 0xffffff, true);
-				Minecraft.getMinecraft().fontRenderer.drawString(TextFormatting.BOLD + I18n.format("stand.huajiage.mp") + "  " + charge + "/" + maxCharge, 8 + x, 30 + 16 + y, chargeHandler.canBeCost(stand.getCost()) ? 0x00fffc : 0xffffff, true);
+				Minecraft.getMinecraft().fontRenderer.drawString(TextFormatting.BOLD + I18n.format("stand.huajiage.state") + "  " + EventStandOverlatRender.getStateInfo(data.getStand(),state), 8 + x, 30 + 16 + y, 0xffffff, true);
+				Minecraft.getMinecraft().fontRenderer.drawString(TextFormatting.BOLD + I18n.format("stand.huajiage.mp") + "  " + charge + "/" + maxCharge, 8 + x, 40 + 16 + y, chargeHandler.canBeCost(stand.getCost()) ? 0x00fffc : 0xffffff, true);
 				if (ConfigHuaji.Stands.allowStandTip) {
 					Minecraft.getMinecraft().fontRenderer.drawString(TextFormatting.BOLD + I18n.format("stand.huajiage.tip", KeyLoader.standUp.getKeyModifier() + "+" + Keyboard.getKeyName(Math.max(KeyLoader.standUp.getKeyCode(), 0))), 5, 0, 0xffffff, true);
 					if (stage > 0) {
@@ -126,7 +133,7 @@ public class EventStandOverlatRender {
 					}
 				}
 				if (stage > 0) {
-					Minecraft.getMinecraft().fontRenderer.drawString(TextFormatting.BOLD + I18n.format("stand.huajiage.tip.cost", stand.getCost()), 8 + x, 40 + 16 + y, 0xffffff, true);
+					Minecraft.getMinecraft().fontRenderer.drawString(TextFormatting.BOLD + I18n.format("stand.huajiage.tip.cost", stand.getCost()), 8 + x, 50 + 16 + y, 0xffffff, true);
 				}
 				GlStateManager.scale(1, 1, 1);
 
@@ -134,6 +141,19 @@ public class EventStandOverlatRender {
 
 		}
 
+	}
+
+	public static String getStateInfo(String stand_id, String state){
+		StandBase stand = StandLoader.getStand(stand_id);
+		String stand_state_format="stand.state.huajiage"+"."+state;
+		if(stand instanceof StandCustom){
+			StandStateBase standState = StandStates.getStandState(stand.getName(),state);
+			if(standState instanceof StandStateCustom){
+				StandStateInfo stateInfo = ((StandStateCustom)standState).getStateInfo();
+				stand_state_format = stateInfo.getStateKey();
+			}
+		}
+		return I18n.format(stand_state_format);
 	}
 	    
 }

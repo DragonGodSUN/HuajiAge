@@ -112,7 +112,7 @@ public class EventHermitPurple {
         if (data!=null && chargeHandler!=null){
             boolean isMatch = data.getStand().equals("huajiage:hermit_purple") && chargeHandler.getBuffTag().equals(HuajiConstant.BuffTags.OVER_DRIVE);
             if (isMatch && livingBase.isPotionActive(PotionLoader.potionOverdrive) && chargeHandler.getBuffer()>0){
-                List<EntityLivingBase> targets = livingBase.world.getEntitiesWithinAABB(EntityLivingBase.class,livingBase.getEntityBoundingBox().grow(2));
+                List<EntityLivingBase> targets = livingBase.world.getEntitiesWithinAABB(EntityLivingBase.class,livingBase.getEntityBoundingBox().grow(1));
                 for (EntityLivingBase e : targets){
                     if (e != livingBase) {
                         e.attackEntityFrom(new DamageOverdrive(livingBase),livingBase.getHealth()/2);

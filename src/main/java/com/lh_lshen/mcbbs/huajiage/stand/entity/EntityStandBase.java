@@ -29,6 +29,7 @@ import net.minecraft.util.EnumHand;
 import net.minecraft.util.EnumHandSide;
 import net.minecraft.util.SoundEvent;
 import net.minecraft.util.math.BlockPos;
+import net.minecraft.util.math.Vec3d;
 import net.minecraft.world.World;
 import net.minecraftforge.fml.common.network.ByteBufUtils;
 import net.minecraftforge.fml.common.registry.IEntityAdditionalSpawnData;
@@ -54,6 +55,7 @@ public class EntityStandBase extends EntityHorse implements IEntityAdditionalSpa
 	private static final String TAG_TYPE = "type";
 	private static final String TAG_USER = "user";
 	private static final String TAG_USER_NAME = "userName";
+	private static final String TAG_HAS_ENTITY = "hasEntity";
 
 	private static final DataParameter<String> TYPE = EntityDataManager.createKey(EntityStandBase.class,
 			DataSerializers.STRING);
@@ -61,6 +63,8 @@ public class EntityStandBase extends EntityHorse implements IEntityAdditionalSpa
 			DataSerializers.STRING);
 	private static final DataParameter<String> USERNAME = EntityDataManager.createKey(EntityStandBase.class,
 			DataSerializers.STRING);
+	private static final DataParameter<Boolean> HAS_ENTITY = EntityDataManager.createKey(EntityStandBase.class,
+			DataSerializers.BOOLEAN);
 
 
 	public EntityStandBase(World worldIn) {
@@ -104,6 +108,7 @@ public class EntityStandBase extends EntityHorse implements IEntityAdditionalSpa
 		dataManager.register(TYPE, StandLoader.THE_WORLD.getName());
 		dataManager.register(USER, noUser);
 		dataManager.register(USERNAME, "steve");
+		dataManager.register(HAS_ENTITY, false);
 	}
 
 	@Override
@@ -120,6 +125,7 @@ public class EntityStandBase extends EntityHorse implements IEntityAdditionalSpa
 		cmp.setString(TAG_TYPE, getType());
 		cmp.setString(TAG_USER, getUserId());
 		cmp.setString(TAG_USER_NAME, getUserName());
+		cmp.setBoolean(TAG_HAS_ENTITY, hasEntity());
 	}
 
 	@Override
@@ -193,10 +199,11 @@ public class EntityStandBase extends EntityHorse implements IEntityAdditionalSpa
 			if(data == null || !data.isTriggered()) {
 				this.setDead();
 			}
-			if(!this.isBeingRidden()){
-			this.posX = user.posX;
-			this.posY = user.posY;
-			this.posZ = user.posZ;
+			if(!hasEntity()){
+			Vec3d look = user.getLookVec();
+			this.posX = user.posX-look.x*2;
+			this.posY = user.posY-look.y*2;
+			this.posZ = user.posZ-look.z*2;
 			}
 		}
 
@@ -426,7 +433,11 @@ public class EntityStandBase extends EntityHorse implements IEntityAdditionalSpa
 	private String getUserName() {
 		return dataManager.get(USERNAME);
 	}
-	
+
+	private boolean hasEntity() {
+		return dataManager.get(HAS_ENTITY);
+	}
+
 	public void setUserName(String name) {
 		this.dataManager.set(USERNAME, name);;
 	}
@@ -444,9 +455,15 @@ public class EntityStandBase extends EntityHorse implements IEntityAdditionalSpa
 		dataManager.set(TYPE, type);
 	}
 
+	public void setEntity(boolean has_entity) {
+		dataManager.set(HAS_ENTITY, has_entity);
+	}
+
 	public void setEntitySize(float w, float h){
 		this.setSize(w,h);
 	}
+
+
 
 //	@SideOnly(Side.CLIENT)
 //	private static boolean keyForward() {

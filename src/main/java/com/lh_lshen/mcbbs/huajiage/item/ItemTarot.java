@@ -31,6 +31,7 @@ import java.util.List;
 
 public class ItemTarot extends Item {
 	private static final String DEFAULT_STAND_ID = StandLoader.EMPTY;
+	private static final String DEFAULT_STAND_STATE = "default";
 	public ItemTarot()
 	{
 		 super();
@@ -73,6 +74,7 @@ public class ItemTarot extends Item {
 				if(flag && !stand.equals(DEFAULT_STAND_ID)) {
 					setStandTag(playerIn, stack, stand, stage ,data.getModel());
 					data.setStand(DEFAULT_STAND_ID);
+					data.setState(DEFAULT_STAND_STATE);
 					data.setStage(0);
 					data.setModel(DEFAULT_STAND_ID);
 					if(StandLoader.getStand(data.getStand())!=null){
@@ -90,6 +92,7 @@ public class ItemTarot extends Item {
 				if(stand.equals(DEFAULT_STAND_ID)&&!standTag.equals(DEFAULT_STAND_ID)) {
 				data.setStand(standTag);
 				data.setStage(stageTag);
+				data.setState(DEFAULT_STAND_STATE);
 				data.setModel(modelTag);
 				data.setTrigger(false);
 				playerIn.playSound(SoundEvents.BLOCK_GLASS_BREAK, 1f, 1f);

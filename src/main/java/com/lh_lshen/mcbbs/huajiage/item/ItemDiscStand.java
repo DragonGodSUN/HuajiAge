@@ -31,6 +31,7 @@ import java.util.List;
 
 public class ItemDiscStand extends Item {
 	private static final String DEFAULT_STAND_ID ="empty";
+	private static final String DEFAULT_STAND_STATE = "default";
 
 	public ItemDiscStand()
 	{
@@ -168,6 +169,7 @@ public class ItemDiscStand extends Item {
 			if(!standTag.equals(DEFAULT_STAND_ID)) {
 					data.setStand(standTag);
 					data.setStage(stageTag);
+					data.setState(DEFAULT_STAND_STATE);
 					data.setModel(modelTag);
 					data.setTrigger(false);
 					playerIn.getHeldItem(handIn).shrink(1);

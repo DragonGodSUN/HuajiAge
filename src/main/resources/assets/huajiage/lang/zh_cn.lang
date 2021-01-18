@@ -74,6 +74,7 @@ key.huajiage.stand_switch=切换替身状态
 
 stand.huajiage.name=替身：
 stand.huajiage.stage=阶段：
+stand.huajiage.state=模式：
 stand.huajiage.tip=按下%s键以放出或收回替身
 stand.huajiage.tip.skill=按下%s键释放技能
 stand.huajiage.tip.mode=按下%s键切换替身状态
@@ -270,6 +271,17 @@ stand.huajiage.skill.orga_requiem.start=§4§l不要停下来啊！！！无限�
 stand.huajiage.skill.killer_queen.start=§e§l烤鸡要没了！
 stand.huajiage.skill.maid.start=\(>￣▽￣<)/
 
+telepathy.result.position.enderPortal=末地传送门
+telepathy.result.position.village=村庄
+telepathy.result.position.endCity=末影城
+telepathy.result.position.dimension.miss=该维度未检测到目标
+telepathy.result.position.temple=沙漠神殿
+telepathy.result.position.mansion=山庄
+telepathy.result.position.monument=海洋神庙
+telepathy.result.position.mineshaft=矿道
+telepathy.result.position.fortress=堡垒
+telepathy.result.position.null=***************
+
 patchouil.huajiage.book.name=§e§lJO§6级宝典
 patchouil.huajiage.book.landing=在这个宇宙中，存在着一种名为滑稽的奇特之物，它们无处不在，并构成了千千万万的事物，据说，持有滑稽的星辉之力，便可得到传说中鬼畜先辈的无上之力
 *****************************************替身包翻译****************************************************
@@ -296,7 +308,7 @@ stand.huajiage.skill.huajiage.hermit_purple.start=§5§lHermit Purple! §e§l以
 stand.huajiage.skill.huajiage.hermit_purple.run=§b§l泥给路达哟~
 stand.huajiage.skill.huajiage.hermit_purple.telepathy.need_camera=§e§l需要一个价值三万日元的相机
 stand.huajiage.skill.huajiage.hermit_purple.telepathy.item_null=§e§l手中的物品无法进行念写
-stand.huajiage.skill.huajiage.hermit_purple.telepathy=§b§l念写：%s-%s
+stand.huajiage.skill.huajiage.hermit_purple.telepathy=§b§l念写：
 stand.huajiage.hermit_purple.default=默认
 stand.huajiage.hermit_purple.overdrive=§e§l波纹疾走
 *****************************************下方为未启用的一代翻译******************************************

@@ -460,7 +460,7 @@ public class StandPowerHelper {
         shootProjectile(user,user.world,emeraldBullet,x,y,z,motionX,motionY,motionZ,speed);
     }
 
-//  时间停止========================================================================================
+//  替身攻击========================================================================================
     /**
      * 时间停止
      * @param user 玩家
@@ -470,6 +470,16 @@ public class StandPowerHelper {
     public static void setTimeStop(EntityLivingBase user, int ticks, float range){
         TimeStopHelper.setTimeStop(user,ticks);
         TimeStopHelper.setEntityTimeStopRange(user,range);
+    }
+
+    /**
+     * 念写物品
+     * @param user 玩家
+     * @param stack 物品栈
+     */
+    public static void telepathizeItem(EntityLivingBase user, ItemStack stack){
+        String result = TelepathyHelper.telepathizeItem(user,stack.getItem().getRegistryName().toString());
+        user.sendMessage(new TextComponentTranslation("telepathy.result.position"+"."+result));
     }
 
 //  音效播放========================================================================================
@@ -677,6 +687,24 @@ public class StandPowerHelper {
     }
 
     /**
+     * 获取物品ID
+     * @param stack 物品栈
+     * @return ID
+     */
+    public static String getItemRegistryName(ItemStack stack){
+        return stack.getItem().getRegistryName().toString();
+    }
+
+    /**
+     * 消耗物品
+     * @param stack 物品栈
+     * @param quantity 数量
+     */
+    public static void consumeItem(ItemStack stack, int quantity){
+        stack.shrink(quantity);
+    }
+
+    /**
      * 设置物品耐久度
      * @param stack 物品
      * @param duration 耐久
@@ -808,5 +836,6 @@ public class StandPowerHelper {
     public static EntityLivingBaseWrapper getEntityLivingWrapper(EntityLivingBase entityLivingBase){
         return new EntityLivingBaseWrapper(entityLivingBase);
     }
+
 
 }

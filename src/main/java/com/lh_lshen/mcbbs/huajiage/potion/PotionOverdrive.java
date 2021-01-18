@@ -33,7 +33,7 @@ public class PotionOverdrive extends Potion {
      
         mc.getTextureManager().bindTexture(new ResourceLocation(HuajiAge.MODID + ":" + "potions/potion_01.png"));
 
-        Gui.drawModalRectWithCustomSizedTexture(x+2, y+2 , 0, 19, 18, 18, 256, 256);
+        Gui.drawModalRectWithCustomSizedTexture(x+2, y+2 , 0, 106, 18, 18, 256, 256);
     }
     @Override
     public void performEffect(EntityLivingBase entityLivingBaseIn, int amplifier) {
