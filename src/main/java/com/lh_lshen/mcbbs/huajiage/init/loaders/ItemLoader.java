@@ -57,6 +57,7 @@ public class ItemLoader {
 	public static Item huajiStarPoly=new ItemHuajiStarPoly();
 	public static Item tarot=new ItemTarot();
 	public static Item disc=new ItemDiscStand();
+	public static Item camera=new ItemExpensiveCamera();
 	public static Item singularity=new ItemSingularity();
 	public static Item arrowStand=new ItemArrowStand();
 	public static Item killerQueenTrigger=new ItemKillerQueenTrigger();
@@ -131,6 +132,7 @@ public class ItemLoader {
         register(lordKey,"lordKey","lord_key");
         register(tarot,"tarot","tarot");
         register(disc,"disc","disc");
+        register(camera,"expensiveCamera","expensive_camera");
         register(singularity,"singularity","singularity");
         register(arrowStand,"arrowStand","arrow_stand");
         register(killerQueenTrigger,"killerQueenTrigger","killer_queen_trigger");
@@ -196,6 +198,7 @@ public class ItemLoader {
         registerRender(lordKey);
         registerRender(huajiStarPoly);
         registerRender(tarot);
+        registerRender(camera);
         registerRender(singularity);
         registerRender(arrowStand);
         registerRender(killerQueenTrigger);

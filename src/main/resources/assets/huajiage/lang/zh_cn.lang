@@ -20,6 +20,7 @@ item.huajiage.eggRiceU.name=§d奥义·§e真香蛋炒饭
 item.huajiage.arrowStand.name=§d觉醒之箭
 item.huajiage.vehicleKey.name=§a自行车钥匙
 item.huajiage.vehiclePack.name=§e载具改装包
+item.huajiage.expensiveCamera.name=§5相机
 
 death.attack.huajiage.hope_flower= %s终究逃不过世界线收束的生草命运
 death.attack.huajiage.orga.shot=%s被团长乱枪带走
@@ -169,6 +170,8 @@ item.huajiage.vehicle_pack.tooltip.1=储存：
 item.huajiage.reo_cherry.tooltip.1=reoreoreoreoreoreoreoreo~
 item.huajiage.reo_cherry.tooltip.2=不断发出奇怪声响的樱桃
 item.huajiage.reo_cherry.tooltip.3=储存精神力：
+item.huajiage.expensive_camera.tooltips.1=一台价值30000日元的相机，某个拍照时劲用得大了一点的老头如此说道 §b(按住shift以查看更多)
+item.huajiage.expensive_camera.tooltips.2=可配合替身§5§l隐者之紫§7进行§b念写§7，可用于探测建筑结构的方位
 
 
 message.huajiage.patchouli_missing=[{"text":"[ Huaji Age II]:","color":"yellow","bold":true},{"text":"为保证最佳游戏体验，请加载  ","color":"aqua","bold":false},{"text":"Patchouli-帕秋莉模组","color":"green","underlined":true,"bold":true,"clickEvent":{"action":"open_url","value":"https://www.curseforge.com/minecraft/mc-mods/patchouli"},"hoverEvent":{"action":"show_text","value":"https://www.curseforge.com/minecraft/mc-mods/patchouli"}},{"text":"§b来获取指南手册，这是鬼畜界先辈们为迎击§0§l♂Dark&&King§b势力耗尽其毕生修为传承下的§e§lJO§6§l级宝典","color":"yellow","bold":false}]

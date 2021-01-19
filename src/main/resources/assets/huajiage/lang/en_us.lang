@@ -85,6 +85,7 @@ item.huajiage.disc.name=§oDisc
 item.huajiage.singularity.name=§lThe Singularity
 item.huajiage.lordKey.name=§eLord Key
 item.huajiage.reoCherry.name=§5Reo Cherry
+item.huajiage.expensiveCamera.name=§5Expensive Camera
 
 potion.huaji=HUAJI
 potion.huajiage.five=Five-fold Power
@@ -164,6 +165,9 @@ item.huajiage.vehicle_pack.tooltip.1=Store:
 item.huajiage.reo_cherry.tooltip.1=reoreoreoreoreoreoreoreo~
 item.huajiage.reo_cherry.tooltip.2=A cherry that keeps making strange noises
 item.huajiage.reo_cherry.tooltip.3=Store MP:
+item.huajiage.expensive_camera.tooltips.1=A very expensive camera §b(Press Shift to see more)
+item.huajiage.expensive_camera.tooltips.1=A 30,000 yen camera, says an old man who destroyed one while taking a picture §b(Press Shift to see more)
+item.huajiage.expensive_camera.tooltips.2=With §5§lHermit Purple§7,it can be used for telepathy, to detect the orientation of the building structure
 
 huajiage.orga.1=§b To celebrate! The birth of the most powerful king of Mars---Orga Izka
 messege.huaji.blancedHelmet.active=§lFrom now on it's called %s §lSquare！
