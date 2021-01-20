@@ -77,6 +77,7 @@ public class StandResourceLoader {
         loadInternalState("bike_default");
         loadInternalState("crazy_diamond_default");
         loadInternalState("crazy_diamond_heal");
+        loadInternalState("crazy_diamond_idle");
         loadInternalState("hermit_purple_default");
         loadInternalState("hermit_purple_overdrive");
     }

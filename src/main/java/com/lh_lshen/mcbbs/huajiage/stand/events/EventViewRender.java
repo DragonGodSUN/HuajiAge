@@ -31,12 +31,15 @@ public class EventViewRender {
 	public static void TimeStopRenderTest(TickEvent.RenderTickEvent evt) {
 		Minecraft mc = Minecraft.getMinecraft();
 		int t0 = (int)(ConfigHuaji.Stands.timeStopEffect*100);
-		boolean hasTag = mc.player!=null
+		boolean hasTag = mc.player!=null && StandUtil.getChargeHandler(mc.player)!=null
 				&& StandUtil.getChargeHandler(mc.player).getBuffTag().equals(HuajiConstant.BuffTags.TIME_STOP);
 		boolean flag = hasTag && StandUtil.getStandBuffTime(mc.player)>0;
 		if(flag){
 			ticks++;
-			if (ticks < t0) {
+			if (ticks == 10 && mc.entityRenderer.isShaderActive()) {
+				mc.entityRenderer.stopUseShader();
+			}
+			if (ticks > 10 && ticks < t0) {
 				if (!mc.entityRenderer.isShaderActive()) {
 					mc.entityRenderer.loadShader(new ResourceLocation("shaders/post/invert.json"));
 				}
@@ -82,9 +85,9 @@ public class EventViewRender {
 	
 	@SubscribeEvent
 	public static void TimeStopRender2(FOVModifier evt) {
-		boolean hasTag = evt.getEntity()!=null
+		boolean hasTag = evt.getEntity()!=null && StandUtil.getChargeHandler((EntityLivingBase) evt.getEntity()) != null
 				&& StandUtil.getChargeHandler((EntityLivingBase) evt.getEntity()).getBuffTag().equals(HuajiConstant.BuffTags.TIME_STOP);
-		if(evt.getEntity() instanceof EntityLivingBase && hasTag) {
+		if(hasTag) {
 			int time = StandUtil.getStandBuffTime((EntityLivingBase) evt.getEntity());
 			int t0 = (int)(ConfigHuaji.Stands.timeStopEffect*100);
 			float fov = evt.getFOV();
@@ -100,7 +103,7 @@ public class EventViewRender {
 	 @SubscribeEvent
 	    public static void TimeStopRender4(RenderGameOverlayEvent event) {
 		 	Minecraft mc = Minecraft.getMinecraft();
-		 	boolean hasTag = mc.player!=null
+		 	boolean hasTag = mc.player!=null && StandUtil.getChargeHandler(mc.player)!=null
 				 && StandUtil.getChargeHandler(mc.player).getBuffTag().equals(HuajiConstant.BuffTags.TIME_STOP);
 		 	boolean flag = hasTag && StandUtil.getStandBuffTime(mc.player)>0 ;
 		 	ScaledResolution scaledRes = new ScaledResolution(mc);
