@@ -15,6 +15,7 @@ public class LootTablesLoader {
 	public static final ResourceLocation LOOT_TABLE_HUAJI = create("huaji_loot");
 	public static final ResourceLocation LOOT_TABLE_STAND_DESERT = create("stand_loot_desert");
 	public static final ResourceLocation LOOT_TABLE_STAND_TEMPLE = create("stand_loot_temple");
+	public static final ResourceLocation LOOT_TABLE_STAND_NETHER = create("stand_loot_nether");
 
 	/**
 	 * Register this mod's {@link LootTable}s.

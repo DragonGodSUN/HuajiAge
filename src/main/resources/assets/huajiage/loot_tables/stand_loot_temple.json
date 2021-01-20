@@ -43,11 +43,13 @@
                         },
                         {
                             "function": "huajiage:set_nbts_random",
-                            "number":2,
+                            "number":3,
                             "tag1":
                             "{StandId:the_world}",
-                             "tag2":
-                            "{StandId:hierophant_green}"
+                            "tag2":
+                            "{StandId:hierophant_green}",
+                            "tag3":
+                            "{StandId:hermit_purple}"
                             
                         },
                         {

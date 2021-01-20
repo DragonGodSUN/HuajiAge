@@ -57,19 +57,19 @@ public class ItemExpensiveCamera extends Item {
 					StandBase standBase = StandLoader.getStand(data.getStand());
 					if (standBase != null ){
 						boolean isEnough = chargeHandler.canBeCost(standBase.getCost());
-						if (isEnough) {
+						if (worldIn.isRemote) {
+							MessagePerfromSkill msg = new MessagePerfromSkill(standBase.getCost());
+							StandNetWorkHandler.sendToServer(msg);
+						}
+						if (!worldIn.isRemote && isEnough) {
+							StandPowerHelper.sendMessage(playerIn, "stand.huajiage.skill.huajiage.hermit_purple.telepathy");
+							StandPowerHelper.playSound(playerIn, "huajiage:stand_hermit_purple_camera_broken", 1, 1);
+							StandPowerHelper.telepathizeItem(playerIn, item_off_hand);
+						}
+						if (isEnough && data.getStage()<1){
+							worldIn.playEvent(2001, playerIn.getPosition().add(0, playerIn.getPositionEyes(playerIn.ticksExisted).y-playerIn.getPosition().getY(), 0), Blocks.WOOL.getStateId(Blocks.WOOL.getStateFromMeta(15)));
 							if (!worldIn.isRemote) {
-								MessagePerfromSkill msg = new MessagePerfromSkill(standBase.getCost());
-								StandNetWorkHandler.sendToServer(msg);
-								StandPowerHelper.sendMessage(playerIn, "stand.huajiage.skill.huajiage.hermit_purple.telepathy");
-								StandPowerHelper.playSound(playerIn, "huajiage:stand_hermit_purple_camera_broken", 1, 1);
-								StandPowerHelper.telepathizeItem(playerIn, item_off_hand);
-							}
-							if (data.getStage()<1){
-								worldIn.playEvent(2001, playerIn.getPosition().add(0, playerIn.getPositionEyes(playerIn.ticksExisted).y-playerIn.getPosition().getY(), 0), Blocks.WOOL.getStateId(Blocks.WOOL.getStateFromMeta(15)));
-								if (!worldIn.isRemote) {
-									item_main_hand.shrink(1);
-								}
+								item_main_hand.shrink(1);
 							}
 						}
 					}

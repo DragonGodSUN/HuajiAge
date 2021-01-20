@@ -20,8 +20,8 @@ import net.minecraftforge.fml.common.eventhandler.SubscribeEvent;
 public class LootTableModule {
 
 	/**
-	 * When the {@link LootTableList#CHESTS_SIMPLE_DUNGEON} {@link LootTable} is loaded, add a new {@link LootPool} with
-	 * a single {@link LootEntryTable} that points to {@link ModLootTables#LOOT_TABLE_TEST}.
+	 * When the {link LootTableList#CHESTS_SIMPLE_DUNGEON} {link LootTable} is loaded, add a new {link LootPool} with
+	 * a single {link LootEntryTable} that points to {link ModLootTables#LOOT_TABLE_TEST}.
 	 * <p>
 	 * Test for this thread:
 	 * http://www.minecraftforum.net/forums/mapping-and-modding/minecraft-mods/modification-development/2781780-chest-loot
@@ -40,6 +40,10 @@ public class LootTableModule {
 		
 		if (event.getName().equals(LootTableList.CHESTS_JUNGLE_TEMPLE)) {
 			LootTableModule.addPool(LootTablesLoader.LOOT_TABLE_STAND_TEMPLE, event);
+		}
+
+		if (event.getName().equals(LootTableList.CHESTS_NETHER_BRIDGE)) {
+			LootTableModule.addPool(LootTablesLoader.LOOT_TABLE_STAND_NETHER, event);
 		}
 		
 	}
