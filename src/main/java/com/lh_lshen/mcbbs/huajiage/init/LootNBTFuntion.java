@@ -82,6 +82,12 @@ public class LootNBTFuntion extends LootFunction {
                 }
                 for (int i = 0; i < size; i++) {
                     NBTTagCompound nbtTag = JsonToNBT.getTagFromJson(JsonUtils.getString(object, "tag" + (i + 1)));
+                    if (nbtTag.hasKey("StandId")){
+                        String id = nbtTag.getString("StandId");
+                        if (id.contains("-")){
+                            nbtTag.setString("StandId",id.replace("-",":"));
+                        }
+                    }
                     list.appendTag(nbtTag);
                 }
                 return new LootNBTFuntion(conditions, list, size);

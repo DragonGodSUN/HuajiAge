@@ -1,10 +1,7 @@
 package com.lh_lshen.mcbbs.huajiage.item;
 
-import java.util.List;
-
-import com.lh_lshen.mcbbs.huajiage.init.loaders.CreativeTabLoader;
 import com.lh_lshen.mcbbs.huajiage.entity.EntityOrgaHairKnife;
-
+import com.lh_lshen.mcbbs.huajiage.init.loaders.CreativeTabLoader;
 import net.minecraft.client.resources.I18n;
 import net.minecraft.client.util.ITooltipFlag;
 import net.minecraft.entity.player.EntityPlayer;
@@ -17,6 +14,8 @@ import net.minecraft.util.EnumHand;
 import net.minecraft.util.math.MathHelper;
 import net.minecraft.util.math.Vec3d;
 import net.minecraft.world.World;
+
+import java.util.List;
 
 public class ItemOrgaHairKnife extends Item {
 	public ItemOrgaHairKnife()
@@ -40,7 +39,7 @@ public class ItemOrgaHairKnife extends Item {
 			hair.setPitch(playerIn.rotationPitch);
 			float r =(float) Math.random()*360;
 			hair.setRotationRandom(r);
-			hair.setDamage(10f);
+			hair.setDamage(playerIn.getMaxHealth()/2);
 			worldIn.spawnEntity(hair);
 			playerIn.inventory.getCurrentItem().shrink(1);
 		}

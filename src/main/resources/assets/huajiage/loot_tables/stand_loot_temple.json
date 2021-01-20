@@ -49,13 +49,13 @@
                             "tag2":
                             "{StandId:hierophant_green}",
                             "tag3":
-                            "{StandId:hermit_purple}"
+                            "{StandId:huajiage-hermit_purple}"
                             
                         },
                         {
                             "function": "set_nbt",
                             "tag":
-                            "{StandStage:0}"
+                            "{StandStage:0,StandModel:empty}"
                             
                         }
                     ]

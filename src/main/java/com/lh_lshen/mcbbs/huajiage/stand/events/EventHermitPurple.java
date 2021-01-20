@@ -11,6 +11,7 @@ import com.lh_lshen.mcbbs.huajiage.init.sound.SoundLoader;
 import com.lh_lshen.mcbbs.huajiage.stand.EnumStandTag;
 import com.lh_lshen.mcbbs.huajiage.stand.StandStates;
 import com.lh_lshen.mcbbs.huajiage.stand.StandUtil;
+import com.lh_lshen.mcbbs.huajiage.stand.entity.EntityStandBase;
 import com.lh_lshen.mcbbs.huajiage.stand.instance.StandBase;
 import com.lh_lshen.mcbbs.huajiage.stand.states.StandStateBase;
 import net.minecraft.entity.Entity;
@@ -114,7 +115,7 @@ public class EventHermitPurple {
             if (isMatch && livingBase.isPotionActive(PotionLoader.potionOverdrive) && chargeHandler.getBuffer()>0){
                 List<EntityLivingBase> targets = livingBase.world.getEntitiesWithinAABB(EntityLivingBase.class,livingBase.getEntityBoundingBox().grow(1));
                 for (EntityLivingBase e : targets){
-                    if (e != livingBase) {
+                    if (e != livingBase && !(e instanceof EntityStandBase)) {
                         e.attackEntityFrom(new DamageOverdrive(livingBase),livingBase.getHealth()/2);
                     }
                 }

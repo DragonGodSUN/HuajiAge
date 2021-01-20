@@ -1,7 +1,7 @@
 package com.lh_lshen.mcbbs.huajiage.item;
 
 
-import com.lh_lshen.mcbbs.huajiage.capability.*;
+import com.lh_lshen.mcbbs.huajiage.capability.IExposedData;
 import com.lh_lshen.mcbbs.huajiage.common.CommonProxy;
 import com.lh_lshen.mcbbs.huajiage.init.loaders.CreativeTabLoader;
 import com.lh_lshen.mcbbs.huajiage.init.loaders.ItemLoader;
@@ -26,6 +26,7 @@ import net.minecraft.util.NonNullList;
 import net.minecraft.world.World;
 import net.minecraftforge.fml.relauncher.Side;
 import net.minecraftforge.fml.relauncher.SideOnly;
+import org.lwjgl.input.Keyboard;
 
 import java.util.List;
 
@@ -136,7 +137,8 @@ public class ItemDiscStand extends Item {
 		String stand = getStandId(stack);
 		int stage = getStandStage(stack);
 		String model = getStandModel(stack);
-		tooltip.add(I18n.format("item.huajiage.disc.tooltip.1")+I18n.format(StandUtil.getLocalName(stand)));
+		boolean isPress = Keyboard.isKeyDown(Keyboard.KEY_LSHIFT) || Keyboard.isKeyDown(Keyboard.KEY_RSHIFT);
+		tooltip.add(I18n.format("item.huajiage.disc.tooltip.1")+I18n.format(StandUtil.getLocalName(stand))+(isPress?stand:""));
 		tooltip.add(I18n.format("item.huajiage.disc.tooltip.2")+stage);
 		if (!model.equals(DEFAULT_STAND_ID)) {
 			tooltip.add(I18n.format("item.huajiage.disc.tooltip.3")+model);

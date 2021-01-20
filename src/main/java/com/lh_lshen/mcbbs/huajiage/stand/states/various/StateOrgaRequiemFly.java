@@ -24,7 +24,7 @@ public class StateOrgaRequiemFly extends StandStateBase {
     public void doTask(EntityLivingBase user) {
         StandBase type = StandUtil.getType(user);
         if(type!=null){
-        StandPowerHelper.rangePunchAttack(user,45,10,2);
+        StandPowerHelper.rangePunchAttack(user,45,user.getMaxHealth()/2,2);
         }
         if(!user.isPotionActive(MobEffects.INVISIBILITY)||user.isPotionActive(MobEffects.INVISIBILITY)&&user.getActivePotionEffect(MobEffects.INVISIBILITY).getDuration()<10){
             user.addPotionEffect(new PotionEffect(MobEffects.INVISIBILITY, 20*5));

@@ -32,6 +32,7 @@ item.huajiage.vehicleKey.name=§aBike Key
 item.huajiage.vehiclePack.name=§eVehicle Pack
 
 death.attack.huajiage.hope_flower=%s was dead of world line converge
+death.attack.huajiage.orga.shot=%s was shot by Orga
 death.attack.huajiage.second=%s has been compressed into a PNG image
 death.attack.huajiage.stella=%s become the stella in the sky
 death.attack.huajiage.KeDaiJinLa=%s feels good

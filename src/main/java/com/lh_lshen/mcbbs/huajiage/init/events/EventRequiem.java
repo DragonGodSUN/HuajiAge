@@ -48,15 +48,15 @@ public class EventRequiem {
 			target.getEntityData().setInteger(HuajiConstant.Tags.REQUIEM, target.getEntityData().getInteger(HuajiConstant.Tags.REQUIEM) - 1);
 				if(!(target instanceof EntityPlayer)) {
 					if(target.ticksExisted %5==0) {
-					target.attackEntityFrom(new DamageRequiem(player),12f);
+					target.attackEntityFrom(new DamageRequiem(player),player.getMaxHealth()/3);
 					}
 				}else {
 					if(target.ticksExisted %10==0) {
 					if(target instanceof EntityDragon) {
 						EntityDragon d = ((EntityDragon) target);
-						d.attackEntityFromPart(d.dragonPartHead, new DamageRequiem(player),12f);
+						d.attackEntityFromPart(d.dragonPartHead, new DamageRequiem(player),12f+player.getMaxHealth());
 						}else {
-						target.attackEntityFrom(new DamageRequiem(player),12f);
+						target.attackEntityFrom(new DamageRequiem(player),12f+player.getMaxHealth());
 						}
 					}
 				}
@@ -97,16 +97,16 @@ public class EventRequiem {
 		if(!(target instanceof EntityPlayer)&&!target.isPotionActive(PotionLoader.potionFlowerHope)&&!target.isPotionActive(PotionLoader.potionRequiem)) {
 			if(target.ticksExisted %5==0) {
 				if(player!=null) {
-				target.attackEntityFrom(new DamageRequiem(player),12f);
+				target.attackEntityFrom(new DamageRequiem(player),12f+player.getMaxHealth());
 				}else {
-				target.attackEntityFrom(new DamageSource(HuajiConstant.DamageSource.REQUIEM_DAMAGE),12f);	
+				target.attackEntityFrom(new DamageSource(HuajiConstant.DamageSource.REQUIEM_DAMAGE),32f);
 				}
 			}else {
 				if(target.ticksExisted %10==0) {
 					if(player!=null) {
-						target.attackEntityFrom(new DamageRequiem(player),12f);
+						target.attackEntityFrom(new DamageRequiem(player),12f+player.getMaxHealth());
 						}else {
-						target.attackEntityFrom(new DamageSource(HuajiConstant.DamageSource.REQUIEM_DAMAGE),12f);	
+						target.attackEntityFrom(new DamageSource(HuajiConstant.DamageSource.REQUIEM_DAMAGE),32f);
 						}
 					}	
 				}			

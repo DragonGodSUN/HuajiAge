@@ -75,6 +75,7 @@ public class EventPlayerCapability {
             NBTBase nbt = storage.writeNBT(capability, event.getOriginal().getCapability(capability, null), null);
             if(nbt instanceof NBTTagCompound){
                 ((NBTTagCompound) nbt).setBoolean("stand_put",false);
+                ((NBTTagCompound) nbt).setString("stand_state","default");
             }
             storage.readNBT(capability, event.getEntityPlayer().getCapability(capability, null), null, nbt);
         }
