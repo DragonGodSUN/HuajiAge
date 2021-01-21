@@ -138,9 +138,9 @@ public class ItemLoader {
         register(killerQueenTrigger,"killerQueenTrigger","killer_queen_trigger");
         register(vehicleKey,"vehicleKey","vehicle_key");
         register(vehiclePack,"vehiclePack","vehicle_pack");
+        register(reoCherry,"reoCherry","reo_cherry");
         if(CommonProxy.ModsLoader.isTouhouMaidLoaded()){
         register(yinYangBall,"yinYangBall","yin_yang_ball");
-        register(reoCherry,"reoCherry","reo_cherry");
         }
     }
 
