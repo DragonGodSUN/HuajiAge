@@ -1,0 +1,16 @@
+{
+  "stand": "huajiage:white_snake",
+  "name": "stand.huajiage.white_snake.name",
+  "disc": "huajiage:disc/disc_huajiage_white_snake",
+  "stand_tags": ["arrow","dark_core"],
+  "stages": 1,
+  "states":["default","punch"],
+  "attributes": [1,5,500,2,5000,50,15000],
+  "sounds": [ "huajiage:stand_white_snake_1",
+              "huajiage:stand_white_snake_2",
+              "huajiage:stand_white_snake_3",
+              "huajiage:stand_white_snake_4" ],
+  "sounds_repeat": ["entity.player.attack.strong-0.7"],
+  "gravity": false,
+  "author": "LH_Lshen"
+}

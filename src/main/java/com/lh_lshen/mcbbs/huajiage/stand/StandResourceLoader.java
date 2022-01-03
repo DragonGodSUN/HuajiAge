@@ -71,6 +71,7 @@ public class StandResourceLoader {
         loadInternalStand("bike");
         loadInternalStand("crazy_diamond");
         loadInternalStand("hermit_purple");
+        loadInternalStand("white_snake");
     }
 
     public static void loadInternalStates()  {
@@ -80,6 +81,8 @@ public class StandResourceLoader {
         loadInternalState("crazy_diamond_idle");
         loadInternalState("hermit_purple_default");
         loadInternalState("hermit_purple_overdrive");
+        loadInternalState("white_snake_default");
+        loadInternalState("white_snake_punch");
     }
 
     private static void checkStandFolder() {

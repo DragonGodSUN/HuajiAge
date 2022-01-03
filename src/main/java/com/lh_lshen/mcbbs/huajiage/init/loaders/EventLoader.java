@@ -6,16 +6,12 @@ import com.lh_lshen.mcbbs.huajiage.init.events.EventPlayerFlying;
 import com.lh_lshen.mcbbs.huajiage.init.events.EventRequiem;
 import com.lh_lshen.mcbbs.huajiage.util.NBTHelper;
 import net.minecraft.entity.Entity;
-import net.minecraft.entity.EntityLiving;
 import net.minecraft.entity.EntityLivingBase;
 import net.minecraft.entity.item.EntityItem;
 import net.minecraft.entity.player.EntityPlayer;
-import net.minecraft.potion.PotionEffect;
-import net.minecraft.util.EnumParticleTypes;
 import net.minecraft.util.math.BlockPos;
 import net.minecraft.world.World;
 import net.minecraftforge.common.MinecraftForge;
-import net.minecraftforge.event.entity.living.LivingEvent.LivingUpdateEvent;
 import net.minecraftforge.fml.common.eventhandler.Cancelable;
 import net.minecraftforge.fml.common.eventhandler.EventBus;
 import net.minecraftforge.fml.common.eventhandler.SubscribeEvent;
@@ -73,20 +69,20 @@ public class EventLoader {
 	        }
 	    }
 	 
-	@SubscribeEvent
-	     public void onHuajiPotion(LivingUpdateEvent event)
-	     {
-		  EntityLivingBase entity = event.getEntityLiving();
-		  PotionEffect effect = entity.getActivePotionEffect(PotionLoader.potionHuajiProtection);
-	            
-          if (effect != null ){
-	             { EntityLiving c=(EntityLiving) event.getEntityLiving();
-	                    event.getEntityLiving().getEntityWorld().spawnParticle(EnumParticleTypes.CLOUD,c.posX, c.posY,c.posZ, 0.5, 0.5, 0.5, 1);
-	                
-	             	}
-	             
-          		}
-          
-	     	}
+//	@SubscribeEvent
+//	     public void onHuajiPotion(LivingUpdateEvent event)
+//	     {
+//		  EntityLivingBase entity = event.getEntityLiving();
+//		  PotionEffect effect = entity.getActivePotionEffect(PotionLoader.potionHuajiProtection);
+//
+//          if (effect != null && entity.world.isRemote ){
+//	             { EntityLiving c=(EntityLiving) event.getEntityLiving();
+//	                    event.getEntityLiving().getEntityWorld().spawnParticle(EnumParticleTypes.CLOUD,c.posX, c.posY,c.posZ, 0.5, 0.5, 0.5, 1);
+//
+//	             	}
+//
+//          		}
+//
+//	     	}
 
 	}

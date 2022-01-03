@@ -85,6 +85,19 @@
           "model_id": "huajiage:hermit_purple",
           "state": "overdrive",
           "transfer":[0,-0.1,0]
+        },
+        {
+          "model_id": "huajiage:white_snake",
+          "transfer_first": [0,-5,-6],
+          "transfer":[0,-0.25,-0.9],
+          "rotation_factor_first": 0.7
+        },
+        {
+          "model_id": "huajiage:white_snake",
+          "state": "punch",
+          "transfer_first": [0,-5,-6],
+          "transfer":[0,-0.25,-0.9],
+          "rotation_factor_first": 0.7
         }
 	]
 }

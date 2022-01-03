@@ -7,6 +7,7 @@ public class EnumStandTag {
         RIDE("ride"),
         BLOCK_MOVE("block_move"),
         ELEMENT_LIGHT("element_light"),
+        DISC_DEPRIVE("disc_deprive"),
         SOUND_DIE("sound-die:")
         ;
 

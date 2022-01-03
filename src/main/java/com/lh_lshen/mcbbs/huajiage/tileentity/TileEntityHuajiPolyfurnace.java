@@ -153,7 +153,8 @@ public class TileEntityHuajiPolyfurnace extends TileEntityMachineEnergy implemen
 						   }
 						 }
 		        if(this.itemPool>=ConfigHuaji.Huaji.point_star) {
-					ItemStack input  =(ItemStack)this.inventory.get(0);
+//		        	标记：可优化机制
+					ItemStack input  =new ItemStack(ItemLoader.huajiStar);
 					ItemStack output =(ItemStack)this.inventory.get(2);
 					ItemStack result =(ItemStack)HuajiPolyRecipeList.instance().getSmeltingResult(input);
 					if(output.isEmpty()) {
