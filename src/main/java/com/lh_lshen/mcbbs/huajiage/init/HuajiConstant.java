@@ -69,6 +69,7 @@ public  class HuajiConstant {
 	public static final String OVERDRIVE_HIT=HuajiAge.MODID+"."+"overdrive_hit";
 	public static final String HOPE_HIT=HuajiAge.MODID+"."+"hope_hit";
 	public static final String DISC_DEPRIVE=HuajiAge.MODID+"."+"disc_deprive";
+	public static final String SELF_ATTACK=HuajiAge.MODID+"."+"self_attack";
 	}
 	
  

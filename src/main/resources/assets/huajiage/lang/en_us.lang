@@ -43,6 +43,9 @@ death.attack.huajiage.singularity=%s was squeezed to a point
 death.attack.huajiage.void_break=%s was broken down by void
 death.attack.huajiage.wave_hit=%s was destroyed by wave
 death.attack.huajiage.overdrive_hit=%s was destroyed by §eoverdrive
+death.attack.huajiage.hope_hit=%s was absorbed by hope flowers
+death.attack.huajiage.disc_deprive=%s was decayed
+death.attack.huajiage.self_attack=%s attacked himself/herself
 
 
 item.huajiage.orgaRequiem.name=§9Orga Requiem

@@ -65,6 +65,7 @@ public class ItemLoader {
     public static Item vehicleKey =new ItemVehicleKey();
     public static Item vehiclePack =new ItemVehiclePack();
     public static Item discMind =new ItemDiscMind();
+    public static Item discCommand =new ItemDiscCommand();
 	public static ItemFood eggRice = new ItemEggRice();
 	public static ItemFood eggRiceU = new ItemEggRiceU();
 	public static ItemFood reoCherry = new ItemReoCherry();
@@ -141,6 +142,7 @@ public class ItemLoader {
         register(vehiclePack,"vehiclePack","vehicle_pack");
         register(reoCherry,"reoCherry","reo_cherry");
         register(discMind,"discMind","disc_mind");
+        register(discCommand,"discCommand","disc_command");
         if(CommonProxy.ModsLoader.isTouhouMaidLoaded()){
         register(yinYangBall,"yinYangBall","yin_yang_ball");
         }
@@ -211,6 +213,7 @@ public class ItemLoader {
         registerRender(vehicleKey);
         registerRender(vehiclePack);
         registerRender(discMind);
+        registerRender(discCommand);
 //        registerRender(disc);
 //        for(StandBase stand : StandLoader.STAND_LIST) {
 //        	String name = disc.getRegistryName()+"_"+stand.getName();

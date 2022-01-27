@@ -34,6 +34,9 @@ death.attack.huajiage.singularity=%s被压缩成了一个无穷小的点
 death.attack.huajiage.void_break=%s被§eLord.Lu§f恐怖如斯的虚空之力§7碾成了渣渣
 death.attack.huajiage.wave_hit=%s被§b波§9澜§b呼§9吸§b法§7消灭了
 death.attack.huajiage.overdrive_hit=%s被§e波纹呼吸法§7消灭了
+death.attack.huajiage.hope_hit=%s误食了希望之花变成了屑
+death.attack.huajiage.disc_deprive=%s衰败而亡
+death.attack.huajiage.self_attack=%s自我了断了
 
 huajiage.burstout=§e·真名解放
 huajiage.stellawarning=§e警告：真名解放状态下可能会造成不可挽回的后果，请不要轻易将此状态下的弓弦拉满！！！
