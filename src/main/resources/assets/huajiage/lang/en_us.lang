@@ -90,6 +90,8 @@ item.huajiage.singularity.name=§lThe Singularity
 item.huajiage.lordKey.name=§eLord Key
 item.huajiage.reoCherry.name=§5Reo Cherry
 item.huajiage.expensiveCamera.name=§5Expensive Camera
+item.huajiage.discMind.name=Mind Disc
+item.huajiage.discCommand.name=Command Disc
 
 potion.huaji=HUAJI
 potion.huajiage.five=Five-fold Power
@@ -214,6 +216,7 @@ message.huajiage.maid_ball.stand_load_5=§eUh-ha-ha-ha-ha-ha~
 message.huajiage.maid_ball.stand_load_6=§eI won't pass the game level! lady!
 message.huajiage.maid_ball.stand_load_7=§eAh ~ Marisa ~
 message.huajiage.reo_cherry.reo=reo~reo~reo~reo~reo~reo~
+message.huajiage.disc_command.fail=You do not have permission to use this command disc
 
 gui.huajiage.poly.cook=Process
 gui.huajiage.poly.fuel=Fuel Point
@@ -312,6 +315,9 @@ stand.huajiage.skill.huajiage.hermit_purple.telepathy.item_null=§e§lYour item 
 stand.huajiage.skill.huajiage.hermit_purple.telepathy=§b§lTelepathy:
 stand.huajiage.hermit_purple.default=Default
 stand.huajiage.hermit_purple.overdrive=§e§lOverdrive
+
+stand.huajiage.white_snake.name=§1§lWhite Snake
+stand.huajiage.skill.huajiage.white_snake.start=§1§lWhite Snake! Give me a disc
 ===============================Orga===========================================
 message.huajiage.orga.sing.1=§4What...... I'm a pretty good marksman
 message.huajiage.orga.sing.2=§2Head of... ah

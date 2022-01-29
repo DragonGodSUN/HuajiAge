@@ -6,7 +6,9 @@ import com.lh_lshen.mcbbs.huajiage.capability.StandChargeHandler;
 import com.lh_lshen.mcbbs.huajiage.config.ConfigHuaji;
 import com.lh_lshen.mcbbs.huajiage.entity.EntityEmeraldBullet;
 import com.lh_lshen.mcbbs.huajiage.init.HuajiConstant;
+import com.lh_lshen.mcbbs.huajiage.init.loaders.ItemLoader;
 import com.lh_lshen.mcbbs.huajiage.init.loaders.PotionLoader;
+import com.lh_lshen.mcbbs.huajiage.item.ItemDiscCommand;
 import com.lh_lshen.mcbbs.huajiage.stand.custom.script.EntityLivingBaseWrapper;
 import com.lh_lshen.mcbbs.huajiage.stand.custom.script.WorldWrapper;
 import com.lh_lshen.mcbbs.huajiage.stand.entity.EntityStandBase;
@@ -480,6 +482,33 @@ public class StandPowerHelper {
     public static void telepathizeItem(EntityLivingBase user, ItemStack stack){
         String result = TelepathyHelper.telepathizeItem(user,stack.getItem().getRegistryName().toString());
         user.sendMessage(new TextComponentTranslation("telepathy.result.position"+"."+result));
+    }
+
+    /**
+     *给予玩家命令光碟
+     * @param user 玩家
+     * @param id ID
+     */
+    public static void giveDisc(EntityLivingBase user, String command){
+        if(user instanceof EntityPlayer){
+            ItemStack disc = new ItemStack(ItemLoader.discCommand);
+            ItemDiscCommand.setOwner(disc,user.getName(),user.getUniqueID().toString());
+            ItemDiscCommand.setCommandType(disc,command);
+            ((EntityPlayer) user).inventory.addItemStackToInventory(disc);
+//            switch (id){
+//            case 1:
+//                ItemDiscCommand.setCommandType(disc,ItemDiscCommand.TYPES_COMMAND.EXPLOSION.getCommand());
+//                break;
+//            case 2:
+//                ItemDiscCommand.setCommandType(disc,ItemDiscCommand.TYPES_COMMAND.MOVE.getCommand());
+//                break;
+//            case 3:
+//                ItemDiscCommand.setCommandType(disc,ItemDiscCommand.TYPES_COMMAND.SELF_ATTACK.getCommand());
+//                break;
+//            default:
+//                break;
+//            }
+        }
     }
 
 //  音效播放========================================================================================

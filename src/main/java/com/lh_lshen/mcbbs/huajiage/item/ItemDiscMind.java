@@ -25,9 +25,9 @@ public class ItemDiscMind extends Item {
 
 	@Override
 	public void addInformation(ItemStack stack, World worldIn, List<String> tooltip, ITooltipFlag flagIn) {
-		tooltip.add(I18n.format("item.huajiage.disc_mind:tooltips.1")
+		tooltip.add(I18n.format("item.huajiage.disc_mind.tooltips.1")
 				+TextFormatting.GRAY +getOwnerName(stack));
-		tooltip.add(I18n.format("item.huajiage.disc_mind:tooltips.2")
+		tooltip.add(I18n.format("item.huajiage.disc_mind.tooltips.2")
 				+ TextFormatting.GRAY +getOwnerUUID(stack));
 	
 		super.addInformation(stack, worldIn, tooltip, flagIn);

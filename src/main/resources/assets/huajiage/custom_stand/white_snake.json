@@ -5,7 +5,7 @@
   "stand_tags": ["arrow","dark_core"],
   "stages": 1,
   "states":["default","punch"],
-  "attributes": [1,5,500,2,5000,50,15000],
+  "attributes": [1,5,500,2,15000,50,15000],
   "sounds": [ "huajiage:stand_white_snake_1",
               "huajiage:stand_white_snake_2",
               "huajiage:stand_white_snake_3",

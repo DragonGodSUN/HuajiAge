@@ -49,10 +49,9 @@ Java.asJSONCompatible({
      * @param entity 替身使者
      */
     capability: function (worldWrapper,entityWrapper,dataWrapper) {
-
-        var item_main_hand = Helper.getPlayerHoldItem(entityWrapper.getLivingBase(),true);
-        var item_off_hand = Helper.getPlayerHoldItem(entityWrapper.getLivingBase(),false);
-
+        Helper.giveDisc(entityWrapper.getLivingBase(),"explosion");
+        Helper.giveDisc(entityWrapper.getLivingBase(),"move_up");
+        Helper.giveDisc(entityWrapper.getLivingBase(),"self_attack");
 
     }
 

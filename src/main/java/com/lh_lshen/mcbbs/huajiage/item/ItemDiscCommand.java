@@ -12,10 +12,8 @@ import net.minecraft.entity.player.EntityPlayer;
 import net.minecraft.item.IItemPropertyGetter;
 import net.minecraft.item.Item;
 import net.minecraft.item.ItemStack;
-import net.minecraft.util.ActionResult;
-import net.minecraft.util.EnumHand;
-import net.minecraft.util.NonNullList;
-import net.minecraft.util.ResourceLocation;
+import net.minecraft.util.*;
+import net.minecraft.util.text.TextComponentTranslation;
 import net.minecraft.util.text.TextFormatting;
 import net.minecraft.world.World;
 import net.minecraftforge.fml.relauncher.Side;
@@ -28,7 +26,7 @@ public class ItemDiscCommand extends Item {
 	public ItemDiscCommand()
 	{
 		 super();
-		 this.setMaxStackSize(1);
+		 this.setMaxStackSize(16);
 		 this.setCreativeTab(CreativeTabLoader.tabJo);
 		 this.addPropertyOverride(new ResourceLocation("command_type"), new IItemPropertyGetter()
 		 {
@@ -83,6 +81,12 @@ public class ItemDiscCommand extends Item {
 		ItemStack stack = playerIn.getHeldItem(handIn);
 		String type = getCommandType(stack);
 		if (!stack.isEmpty()&&stack.getItem() instanceof ItemDiscCommand) {
+			if (!getOwnerUUID(stack).isEmpty() && !playerIn.getUniqueID().toString().equals(getOwnerUUID(stack))){
+				if(worldIn.isRemote){
+					playerIn.sendMessage(new TextComponentTranslation("message.huajiage.disc_command.fail"));
+				}
+				return new ActionResult<>(EnumActionResult.FAIL,stack);
+			}
 			if (!worldIn.isRemote){
 				EntityDiscCommand disc = new EntityDiscCommand(worldIn);
 				disc.setCommand(getCommandType(stack));
@@ -93,17 +97,18 @@ public class ItemDiscCommand extends Item {
 				disc.shoot(playerIn,playerIn.rotationPitch,playerIn.rotationYaw,0f,1f,0f);
 				worldIn.spawnEntity(disc);
 			}
+			stack.shrink(1);
 		}
 		return super.onItemRightClick(worldIn, playerIn, handIn);
 	}
 
 	@Override
 	public void addInformation(ItemStack stack, World worldIn, List<String> tooltip, ITooltipFlag flagIn) {
-		tooltip.add(I18n.format("item.huajiage.disc_command:tooltips.1")
+		tooltip.add(I18n.format("item.huajiage.disc_command.tooltips.1")
 				+TextFormatting.GRAY +getOwnerName(stack));
-		tooltip.add(I18n.format("item.huajiage.disc_command:tooltips.2")
+		tooltip.add(I18n.format("item.huajiage.disc_command.tooltips.2")
 				+ TextFormatting.GRAY +getOwnerUUID(stack));
-		tooltip.add(I18n.format("item.huajiage.disc_command:tooltips.3")
+		tooltip.add(I18n.format("item.huajiage.disc_command.tooltips.3")
 				+ TextFormatting.GRAY +getCommandType(stack));
 	
 		super.addInformation(stack, worldIn, tooltip, flagIn);

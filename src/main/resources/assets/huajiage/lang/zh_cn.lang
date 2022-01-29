@@ -59,6 +59,8 @@ item.huajiage.waveKnife.name=波澜怒涛之刃
 item.huajiage.killerQueenTrigger.name=§l点赞
 item.huajiage.yinYangBall.name=§8§l带 §f§l师 §8§l球
 item.huajiage.reoCherry.name=§5Reo樱桃
+item.huajiage.discMind.name=意识Disc
+item.huajiage.discCommand.name=命令Disc
 
 potion.huaji=滑稽·施工中
 potion.huajiage.five=§d五五开
@@ -175,6 +177,11 @@ item.huajiage.reo_cherry.tooltip.2=不断发出奇怪声响的樱桃
 item.huajiage.reo_cherry.tooltip.3=储存精神力：
 item.huajiage.expensive_camera.tooltips.1=一台价值30000日元的相机，某个拍照时劲用得大了一点的老头如此说道 §b(按住shift以查看更多)
 item.huajiage.expensive_camera.tooltips.2=可配合替身§5§l隐者之紫§7进行§b念写§7，可用于探测建筑结构的方位
+item.huajiage.disc_mind.tooltips.1=记录意识：
+item.huajiage.disc_mind.tooltips.2=实体UUID：
+item.huajiage.disc_command.tooltips.1=使用者：
+item.huajiage.disc_command.tooltips.2=实体UUID：
+item.huajiage.disc_command.tooltips.3=命令：
 
 
 message.huajiage.patchouli_missing=[{"text":"[ Huaji Age II]:","color":"yellow","bold":true},{"text":"为保证最佳游戏体验，请加载  ","color":"aqua","bold":false},{"text":"Patchouli-帕秋莉模组","color":"green","underlined":true,"bold":true,"clickEvent":{"action":"open_url","value":"https://www.curseforge.com/minecraft/mc-mods/patchouli"},"hoverEvent":{"action":"show_text","value":"https://www.curseforge.com/minecraft/mc-mods/patchouli"}},{"text":"§b来获取指南手册，这是鬼畜界先辈们为迎击§0§l♂Dark&&King§b势力耗尽其毕生修为传承下的§e§lJO§6§l级宝典","color":"yellow","bold":false}]
@@ -217,6 +224,7 @@ message.huajiage.maid_ball.stand_load_5=§e唔呼呼呼呼呼呼呼呼呼~
 message.huajiage.maid_ball.stand_load_6=§e我不通关了！二小姐！
 message.huajiage.maid_ball.stand_load_7=§e啊~魔理沙~
 message.huajiage.reo_cherry.reo=reo~reo~reo~reo~reo~reo~
+message.huajiage.disc_command.fail=你没有使用这张命令光碟的权限
 
 
 gui.huajiage.poly.cook=§l进程
@@ -317,6 +325,11 @@ stand.huajiage.skill.huajiage.hermit_purple.telepathy.item_null=§e§l手中的�
 stand.huajiage.skill.huajiage.hermit_purple.telepathy=§b§l念写：
 stand.huajiage.hermit_purple.default=默认
 stand.huajiage.hermit_purple.overdrive=§e§l波纹疾走
+
+stand.huajiage.white_snake.name=§1§lWhite Snake-白蛇
+stand.huajiage.skill.huajiage.white_snake.start=§1§lWhite Snake! 给我一张光盘
+stand.huajiage.white_snake.default=默认
+stand.huajiage.white_snake.punch=§l连击
 *****************************************下方为未启用的一代翻译******************************************
 item.huaJiCry.name=我哭了
 item.huajiAxe.name=§b滑稽斧头
