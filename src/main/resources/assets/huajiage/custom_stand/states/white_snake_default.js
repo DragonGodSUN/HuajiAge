@@ -27,7 +27,7 @@ Java.asJSONCompatible({
     update: function (worldWrapper,entityWrapper,dataWrapper) {
     var level = dataWrapper.getStage();
          Helper.increasePotionTime(entityWrapper.getLivingBase(),"luck",60,0,10);
-         Helper.increasePotionTime(entityWrapper.getLivingBase(),"speed",60,level,10);
+         Helper.increasePotionTime(entityWrapper.getLivingBase(),"speed",60,2+level,10);
          Helper.increasePotionTime(entityWrapper.getLivingBase(),"jump_boost",60,level,10);
          Helper.increasePotionTime(entityWrapper.getLivingBase(),"invisibility",60,0,10);
     },

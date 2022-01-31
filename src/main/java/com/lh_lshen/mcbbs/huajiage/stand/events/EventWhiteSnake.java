@@ -3,6 +3,7 @@ package com.lh_lshen.mcbbs.huajiage.stand.events;
 import com.lh_lshen.mcbbs.huajiage.HuajiAge;
 import com.lh_lshen.mcbbs.huajiage.capability.IExposedData;
 import com.lh_lshen.mcbbs.huajiage.damage_source.DamageDiscDeprive;
+import com.lh_lshen.mcbbs.huajiage.damage_source.DamageStandHit;
 import com.lh_lshen.mcbbs.huajiage.init.HuajiConstant;
 import com.lh_lshen.mcbbs.huajiage.init.loaders.ItemLoader;
 import com.lh_lshen.mcbbs.huajiage.init.loaders.PotionLoader;
@@ -57,9 +58,14 @@ public class EventWhiteSnake {
                             if (!livingBase.world.isRemote) {
                                 livingBase.entityDropItem(discMind,0.25f);
                             }
+                            if (entity.world.isRemote){
+                                entity.sendMessage(new TextComponentTranslation("YOU WERE ONE MOVE ... TOO LATE ... %s",livingBase.getName()));
+//                                entity.playSound(SoundEvents.WEATHER_RAIN);
+                            }
 
                         }else {
-                            if (attacker instanceof EntityPlayer && attacker.world.isRemote){
+                            if (attacker instanceof EntityPlayer && attacker.world.isRemote
+                                && !(event.getSource() instanceof DamageStandHit)){
                                 attacker.sendMessage(new TextComponentTranslation("This creature's mind had been deprived"));
                             }
                         }

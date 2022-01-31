@@ -4,6 +4,7 @@ import com.google.common.collect.Lists;
 import com.lh_lshen.mcbbs.huajiage.capability.CapabilityStandChargeHandler;
 import com.lh_lshen.mcbbs.huajiage.capability.StandChargeHandler;
 import com.lh_lshen.mcbbs.huajiage.config.ConfigHuaji;
+import com.lh_lshen.mcbbs.huajiage.damage_source.DamageStandHit;
 import com.lh_lshen.mcbbs.huajiage.entity.EntityEmeraldBullet;
 import com.lh_lshen.mcbbs.huajiage.init.HuajiConstant;
 import com.lh_lshen.mcbbs.huajiage.init.loaders.ItemLoader;
@@ -67,7 +68,7 @@ public class StandPowerHelper {
             if(i instanceof EntityDragon) {
                 EntityDragon dragon =(EntityDragon)i;
                 if(flag_player) {
-                    dragon.attackEntityFromPart(dragon.dragonPartHead,new EntityDamageSource(HuajiConstant.DamageSource.STAND_PUNCH_DAMAGE, user).setExplosion(), damage);
+                    dragon.attackEntityFromPart(dragon.dragonPartHead,new DamageStandHit(user).setExplosion(), damage);
                 }else {
                     dragon.attackEntityFromPart(dragon.dragonPartHead, DamageSource.GENERIC, damage);
                 }
@@ -80,7 +81,7 @@ public class StandPowerHelper {
                     }else {
                         if(flag_player) {
                             EntityPlayer player =(EntityPlayer) user;
-                            target.attackEntityFrom(DamageSource.causePlayerDamage(player), damage);
+                            target.attackEntityFrom(new DamageStandHit(user), damage);
                         }else {
                             target.attackEntityFrom(DamageSource.ANVIL, damage);
                         }
@@ -487,7 +488,6 @@ public class StandPowerHelper {
     /**
      *给予玩家命令光碟
      * @param user 玩家
-     * @param id ID
      */
     public static void giveDisc(EntityLivingBase user, String command){
         if(user instanceof EntityPlayer){

@@ -96,7 +96,7 @@
           "model_id": "huajiage:white_snake",
           "state": "punch",
           "transfer_first": [0,-5,-6],
-          "transfer":[0,-0.25,-0.9],
+          "transfer":[0,-0.25,-1.5],
           "rotation_factor_first": 0.7
         }
 	]
