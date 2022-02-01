@@ -95,6 +95,7 @@ public class ItemLootTableTest extends Item {
 				if (!playerIn.isSneaking()) {
 					switch (getmode(stack)) {
 						case 0: {
+							playerIn.playSound(SoundLoader.STAND_WHITE_SNAKE_HIT_2, 5f, 1f);
 							if (!worldIn.isRemote) {
 
 								final LootTable lootTable = worldIn.getLootTableManager().getLootTableFromLocation(LootTablesLoader.LOOT_TABLE_STAND_TEMPLE);

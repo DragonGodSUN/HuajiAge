@@ -7,6 +7,7 @@ import com.lh_lshen.mcbbs.huajiage.damage_source.DamageStandHit;
 import com.lh_lshen.mcbbs.huajiage.init.HuajiConstant;
 import com.lh_lshen.mcbbs.huajiage.init.loaders.ItemLoader;
 import com.lh_lshen.mcbbs.huajiage.init.loaders.PotionLoader;
+import com.lh_lshen.mcbbs.huajiage.init.sound.SoundLoader;
 import com.lh_lshen.mcbbs.huajiage.item.ItemDiscMind;
 import com.lh_lshen.mcbbs.huajiage.item.ItemDiscStand;
 import com.lh_lshen.mcbbs.huajiage.stand.EnumStandTag;
@@ -14,6 +15,7 @@ import com.lh_lshen.mcbbs.huajiage.stand.StandStates;
 import com.lh_lshen.mcbbs.huajiage.stand.StandUtil;
 import com.lh_lshen.mcbbs.huajiage.stand.instance.StandBase;
 import com.lh_lshen.mcbbs.huajiage.stand.states.StandStateBase;
+import com.lh_lshen.mcbbs.huajiage.util.HAMathHelper;
 import com.lh_lshen.mcbbs.huajiage.util.NBTHelper;
 import net.minecraft.entity.Entity;
 import net.minecraft.entity.EntityLivingBase;
@@ -22,11 +24,14 @@ import net.minecraft.init.MobEffects;
 import net.minecraft.init.SoundEvents;
 import net.minecraft.item.ItemStack;
 import net.minecraft.potion.PotionEffect;
+import net.minecraft.util.math.MathHelper;
 import net.minecraft.util.text.TextComponentTranslation;
 import net.minecraftforge.event.entity.living.LivingAttackEvent;
 import net.minecraftforge.event.entity.living.LivingEvent;
 import net.minecraftforge.fml.common.Mod;
 import net.minecraftforge.fml.common.eventhandler.SubscribeEvent;
+
+import java.util.Random;
 
 @Mod.EventBusSubscriber(modid = HuajiAge.MODID)
 public class EventWhiteSnake {
@@ -49,25 +54,35 @@ public class EventWhiteSnake {
                     if (! livingBase.isDead ){
                         float amount = event.getAmount();
                         boolean isDeprived = NBTHelper.getEntityBoolean(livingBase,"disc_deprive");
-                        if (!isDeprived){
-                            ItemStack discMind = new ItemStack(ItemLoader.discMind);
-                            ItemDiscMind.setOwner(discMind,livingBase.getName(),livingBase.getUniqueID().toString());
+                        if (HAMathHelper.getDistance(livingBase.getPosition(),attacker.getPosition())<=5
+                            && (attacker.getHeldItemMainhand().isEmpty())) {
+                            if (!isDeprived){
+                                ItemStack discMind = new ItemStack(ItemLoader.discMind);
+                                ItemDiscMind.setOwner(discMind,livingBase.getName(),livingBase.getUniqueID().toString());
 
-                            livingBase.playSound(SoundEvents.BLOCK_COMPARATOR_CLICK, 1f, 1f);
-                            NBTHelper.setEntityBoolean(livingBase,"disc_deprive",true);
-                            if (!livingBase.world.isRemote) {
-                                livingBase.entityDropItem(discMind,0.25f);
-                            }
-                            if (entity.world.isRemote){
-                                entity.sendMessage(new TextComponentTranslation("YOU WERE ONE MOVE ... TOO LATE ... %s",livingBase.getName()));
-//                                entity.playSound(SoundEvents.WEATHER_RAIN);
+                                livingBase.playSound(SoundEvents.BLOCK_COMPARATOR_CLICK, 1f, 1f);
+                                NBTHelper.setEntityBoolean(livingBase,"disc_deprive",true);
+                                if (!livingBase.world.isRemote) {
+                                    livingBase.entityDropItem(discMind,0.25f);
+                                }
+                                if (attacker.world.isRemote){
+                                    float i = MathHelper.nextFloat(new Random(),0,10);
+                                    attacker.sendMessage(new TextComponentTranslation("stand.huajiage.skill.huajiage.white_snake.mind_deprive.success",livingBase.getName()));
+                                    if (i<3.3){
+                                        entity.playSound(SoundLoader.STAND_WHITE_SNAKE_HIT_1,1f,1f);
+                                    }else if (i>3.3&&i<6.6){
+                                        entity.playSound(SoundLoader.STAND_WHITE_SNAKE_HIT_2,1f,1f);
+                                    }else {
+                                        entity.playSound(SoundLoader.STAND_WHITE_SNAKE_HIT_3,1f,1f);
+                                    }
+                                }
+                            }else {
+                                if (attacker instanceof EntityPlayer && attacker.world.isRemote
+                                        && !(event.getSource() instanceof DamageStandHit)){
+                                    attacker.sendMessage(new TextComponentTranslation("stand.huajiage.skill.huajiage.white_snake.mind_deprive.fail"));
+                                }
                             }
 
-                        }else {
-                            if (attacker instanceof EntityPlayer && attacker.world.isRemote
-                                && !(event.getSource() instanceof DamageStandHit)){
-                                attacker.sendMessage(new TextComponentTranslation("This creature's mind had been deprived"));
-                            }
                         }
 
 //                        livingBase.playSound(SoundLoader.WAVE_OVERDRIVE_1,1f,1f);

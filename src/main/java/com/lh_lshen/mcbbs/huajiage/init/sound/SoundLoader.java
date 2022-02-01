@@ -65,6 +65,14 @@ public class SoundLoader {
 	public static final SoundEvent STAND_HERMIT_PURPLE_2=registerSound("stand_hermit_purple_2");
 	public static final SoundEvent STAND_HERMIT_PURPLE_WAVE=registerSound("stand_hermit_purple_wave");
 	public static final SoundEvent STAND_HERMIT_PURPLE_CAMERA_BROKEN=registerSound("stand_hermit_purple_camera_broken");
+	public static final SoundEvent STAND_WHITE_SNAKE_1=registerSound("stand_white_snake_1");
+	public static final SoundEvent STAND_WHITE_SNAKE_2=registerSound("stand_white_snake_2");
+	public static final SoundEvent STAND_WHITE_SNAKE_3=registerSound("stand_white_snake_3");
+	public static final SoundEvent STAND_WHITE_SNAKE_HIT_1=registerSound("stand_white_snake_hit_1");
+	public static final SoundEvent STAND_WHITE_SNAKE_HIT_2=registerSound("stand_white_snake_hit_2");
+	public static final SoundEvent STAND_WHITE_SNAKE_HIT_3=registerSound("stand_white_snake_hit_3");
+	public static final SoundEvent STAND_WHITE_SNAKE_MAKE_DISC_1=registerSound("stand_white_snake_make_disc_1");
+	public static final SoundEvent STAND_WHITE_SNAKE_MAKE_DISC_2=registerSound("stand_white_snake_make_disc_2");
 	public static final SoundEvent SHEER_HEART_ATTACK=registerSound("sheer_heart_attack_target");
 	public static final SoundEvent BIKE_RING_1=registerSound("bike_ring_ear0");
 	public static final SoundEvent REO_CHERRY=registerSound("reo_cherry");

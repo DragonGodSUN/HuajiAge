@@ -53,6 +53,9 @@ Java.asJSONCompatible({
         Helper.giveDisc(entityWrapper.getLivingBase(),"move_up");
         Helper.giveDisc(entityWrapper.getLivingBase(),"self_attack");
 
+        //播放音效（玩家，音效ID，响度，音调）
+        Helper.playSound(entityWrapper.getLivingBase(), "huajiage:stand_white_snake_make_disc_1", 5, 1);
+
     }
 
 });

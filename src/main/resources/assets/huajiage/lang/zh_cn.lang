@@ -225,6 +225,7 @@ message.huajiage.maid_ball.stand_load_6=§e我不通关了！二小姐！
 message.huajiage.maid_ball.stand_load_7=§e啊~魔理沙~
 message.huajiage.reo_cherry.reo=reo~reo~reo~reo~reo~reo~
 message.huajiage.disc_command.fail=你没有使用这张命令光碟的权限
+message.huajiage.disc_mind.mind_recover=意识已恢复
 
 
 gui.huajiage.poly.cook=§l进程
@@ -330,6 +331,8 @@ stand.huajiage.white_snake.name=§1§lWhite Snake-白蛇
 stand.huajiage.skill.huajiage.white_snake.start=§1§lWhite Snake! 给我一张光盘
 stand.huajiage.white_snake.default=默认
 stand.huajiage.white_snake.punch=§l连击
+stand.huajiage.skill.huajiage.white_snake.mind_deprive.success=棋差一着啊 %s
+stand.huajiage.skill.huajiage.white_snake.mind_deprive.fail=该生物的意识DISC已被剥夺
 *****************************************下方为未启用的一代翻译******************************************
 item.huaJiCry.name=我哭了
 item.huajiAxe.name=§b滑稽斧头

@@ -29,6 +29,13 @@ public class HAMathHelper {
 		  double vec = new Vec3d(target_pos.x-source_pos.x, target_pos.y-source_pos.y, target_pos.z-source_pos.z).length();
 		  return vec;
 	}
+
+	public static double getDistance(BlockPos source_pos , BlockPos target_pos) {
+		double vec = new Vec3d(target_pos.getX()-source_pos.getX(),
+				target_pos.getY()-source_pos.getY(), target_pos.getZ()-source_pos.getZ()).length();
+		return vec;
+	}
+
 	public static float getAABBSize(AxisAlignedBB box) {
 		float a =MathHelper.abs( (float) (box.maxX-box.minX));
 		float b =MathHelper.abs( (float) (box.maxY-box.minY));

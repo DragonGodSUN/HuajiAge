@@ -9,6 +9,7 @@ import net.minecraft.entity.player.EntityPlayer;
 import net.minecraft.init.SoundEvents;
 import net.minecraft.item.Item;
 import net.minecraft.item.ItemStack;
+import net.minecraft.util.ActionResult;
 import net.minecraft.util.EnumHand;
 import net.minecraft.util.text.TextComponentTranslation;
 import net.minecraft.util.text.TextFormatting;
@@ -47,16 +48,43 @@ public class ItemDiscMind extends Item {
 						}
 						if (playerIn.world.isRemote){
 							playerIn.playSound(SoundEvents.BLOCK_COMPARATOR_CLICK, 1f, 1f);
-							playerIn.world.playEvent(2005,target.getPosition(),0);
+							playerIn.world.playEvent(2005,target.getPosition().add(0,1,0),0);
 						}
 					}else {
 						if (playerIn.world.isRemote){
-							playerIn.sendMessage(new TextComponentTranslation("item.huajiage.disc_mind:mind_exist"));
+							playerIn.sendMessage(new TextComponentTranslation("message.huajiage.disc_mind.mind_recover"));
 						}
 					}
 			}
 		}
 		return super.itemInteractionForEntity(stack, playerIn, target, hand);
+	}
+
+	@Override
+	public ActionResult<ItemStack> onItemRightClick(World worldIn, EntityPlayer playerIn, EnumHand handIn) {
+		ItemStack stack = playerIn.getHeldItem(handIn);
+		if (stack.getItem() instanceof ItemDiscMind){
+			String name = playerIn.getName();
+			String uuid = playerIn.getUniqueID().toString();
+			if (name.equals(getOwnerName(stack)) && uuid.equals(getOwnerUUID(stack))){
+				boolean isDeprived = NBTHelper.getEntityBoolean(playerIn,"disc_deprive");
+				if (isDeprived){
+					NBTHelper.setEntityBoolean(playerIn,"disc_deprive",false);
+					if (!playerIn.world.isRemote){
+						stack.shrink(1);
+					}
+					if (playerIn.world.isRemote){
+						playerIn.playSound(SoundEvents.BLOCK_COMPARATOR_CLICK, 1f, 1f);
+						playerIn.world.playEvent(2005,playerIn.getPosition().add(0,1,0),0);
+					}
+				}else {
+					if (playerIn.world.isRemote){
+						playerIn.sendMessage(new TextComponentTranslation("message.huajiage.disc_mind.mind_recover"));
+					}
+				}
+			}
+		}
+		return super.onItemRightClick(worldIn, playerIn, handIn);
 	}
 
 	public static String getOwnerName(ItemStack stack){
