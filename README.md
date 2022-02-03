@@ -1,6 +1,5 @@
 # HuajiAgeII:Infinite Galaxy-滑稽纪元II：无尽星辰
 
-
 这是个兴趣使然的模组
 
 时隔两年，当我重返Minecraft的时候，我被盖亚III一次又一次地打爆了……
@@ -19,6 +18,10 @@
 本模组依据MIT协议开源，代码其实写的不大好，各位就将就着看看吧。
 本人还是Minecraft制作初学者，从我的代码中明显可以看出众多明显可以改进的代码。
 所以各位大神看看就好了【手动滑稽】
+
+###### **注：由于本模组的部分鬼畜音效素材来源涉及版权问题，不符合MIT协议的要求，故不在此发布，不要将其从模组中提取并用于商业用途**
+
+###### **Warning: Some of the audio materials in this mod are not published because of copyright issues and do not meet the requirements of the MIT agreement.Do not use them for commercial purposes**  
 
 # 在此鸣谢
 特别感谢下列大大的教程与参考代码
