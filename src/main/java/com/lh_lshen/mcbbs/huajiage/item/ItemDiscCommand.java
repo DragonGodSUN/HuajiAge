@@ -104,13 +104,13 @@ public class ItemDiscCommand extends Item {
 
 	@Override
 	public void addInformation(ItemStack stack, World worldIn, List<String> tooltip, ITooltipFlag flagIn) {
-		tooltip.add(I18n.format("item.huajiage.disc_command.tooltips.1")
-				+TextFormatting.GRAY +getOwnerName(stack));
-		tooltip.add(I18n.format("item.huajiage.disc_command.tooltips.2")
-				+ TextFormatting.GRAY +getOwnerUUID(stack));
-		tooltip.add(I18n.format("item.huajiage.disc_command.tooltips.3")
-				+ TextFormatting.GRAY +getCommandType(stack));
-	
+		tooltip.add(I18n.format("item.huajiage.disc_command.tooltips.1"
+				,TextFormatting.GRAY +getOwnerName(stack)));
+		tooltip.add(I18n.format("item.huajiage.disc_command.tooltips.2"
+				,TextFormatting.GRAY +getOwnerUUID(stack)));
+		tooltip.add(I18n.format("item.huajiage.disc_command.tooltips.3",
+				TextFormatting.GRAY + getCommandTypeLocalText(getCommandType(stack))));
+		tooltip.add(I18n.format("item.huajiage.disc_command.tooltips.4"));
 		super.addInformation(stack, worldIn, tooltip, flagIn);
 	}
 
@@ -151,6 +151,11 @@ public class ItemDiscCommand extends Item {
 			return NBTHelper.getTagCompoundSafe(stack).getString(TAGS.TYPE.getTag());
 		}
 		return "";
+	}
+
+	public static String getCommandTypeLocalText(String type){
+		TextComponentTranslation translation = new TextComponentTranslation("item.huajiage.disc_command.tooltips.type."+type);
+		return translation.getFormattedText();
 	}
 
 	public static void setCommandType(ItemStack stack, String type){

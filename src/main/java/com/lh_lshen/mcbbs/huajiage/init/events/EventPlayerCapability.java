@@ -3,12 +3,13 @@ package com.lh_lshen.mcbbs.huajiage.init.events;
 //Learn More : https://github.com/TartaricAcid/TouhouLittleMaid
 
 import com.lh_lshen.mcbbs.huajiage.HuajiAge;
-import com.lh_lshen.mcbbs.huajiage.capability.*;
-import com.lh_lshen.mcbbs.huajiage.config.ConfigHuaji;
+import com.lh_lshen.mcbbs.huajiage.capability.CapabilityExposedData;
+import com.lh_lshen.mcbbs.huajiage.capability.CapabilityStandChargeHandler;
+import com.lh_lshen.mcbbs.huajiage.capability.IExposedData;
+import com.lh_lshen.mcbbs.huajiage.capability.StandChargeHandler;
 import com.lh_lshen.mcbbs.huajiage.init.loaders.CapabilityLoader;
-import com.lh_lshen.mcbbs.huajiage.network.StandNetWorkHandler;
 import com.lh_lshen.mcbbs.huajiage.init.loaders.StandLoader;
-import com.lh_lshen.mcbbs.huajiage.stand.StandUtil;
+import com.lh_lshen.mcbbs.huajiage.network.StandNetWorkHandler;
 import com.lh_lshen.mcbbs.huajiage.stand.instance.StandBase;
 import com.lh_lshen.mcbbs.huajiage.stand.messages.SyncExposedStandDataMessage;
 import com.lh_lshen.mcbbs.huajiage.stand.messages.SyncStandChargeMessage;
@@ -20,7 +21,6 @@ import net.minecraft.entity.player.EntityPlayerMP;
 import net.minecraft.nbt.NBTBase;
 import net.minecraft.nbt.NBTTagCompound;
 import net.minecraft.util.ResourceLocation;
-import net.minecraft.util.text.TextComponentTranslation;
 import net.minecraftforge.common.capabilities.Capability;
 import net.minecraftforge.common.capabilities.Capability.IStorage;
 import net.minecraftforge.common.capabilities.ICapabilitySerializable;
@@ -90,18 +90,18 @@ public class EventPlayerCapability {
     	Entity entity = evt.getEntity();
 		if(entity instanceof EntityPlayer) {
 		EntityPlayer player = (EntityPlayer) entity;
-		StandBase stand = StandUtil.getType(player);
-			if(stand != null) {
-				StandChargeHandler chargeHandler = player.getCapability(CapabilityStandChargeHandler.STAND_CHARGE, null);
-				IExposedData data = player.getCapability(CapabilityLoader.EXPOSED_DATA, null);
+        StandChargeHandler chargeHandler = player.getCapability(CapabilityStandChargeHandler.STAND_CHARGE, null);
+        IExposedData data = player.getCapability(CapabilityLoader.EXPOSED_DATA, null);
 
-				if(chargeHandler!=null) chargeHandler.setDirty(true);
-				if(data!=null) data.setDirty(true);
-				
-			}
-			if(stand != null && ConfigHuaji.Stands.allowStandLostTip) {
-				player.sendMessage(new TextComponentTranslation("message.huajiage.stand.lost"));
-			}
+        if(chargeHandler!=null) chargeHandler.setDirty(true);
+        if(data!=null) data.setDirty(true);
+//		StandBase stand = StandUtil.getType(player);
+//			if(stand != null) {
+
+//			}
+//			if(stand != null && ConfigHuaji.Stands.allowStandLostTip) {
+//				player.sendMessage(new TextComponentTranslation("message.huajiage.stand.lost"));
+//			}
 		}
 	}
 

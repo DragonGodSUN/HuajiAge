@@ -91,6 +91,7 @@ item.huajiage.lordKey.name=§eLord Key
 item.huajiage.reoCherry.name=§5Reo Cherry
 item.huajiage.expensiveCamera.name=§5Expensive Camera
 item.huajiage.discMind.name=Mind Disc
+item.huajiage.discMemory.name=Memory Disc
 item.huajiage.discCommand.name=Command Disc
 
 potion.huaji=HUAJI
@@ -163,8 +164,8 @@ item.huajiage.wave_knife.hotbar.wave_reset=Reset Time - §b%ss
 item.huajiage.wave_knife.hotbar.wave_charge=Hit Charge - §e%s
 item.orga_knife:tooltips.1=The Orga leader's sharp, blade-shaped bangs are full of the element of hope (for throwing use, the lower the hit, the higher the damage, and the mark can be attached during the execution of the Requiem).
 item.yin_yang_ball:tooltips.1=You think I'm a yin-yang Orb ? Ko no Master Ball da!§b(Press shift to see more)
-item.yin_yang_ball:tooltips.2=§eServant:%s
-item.yin_yang_ball:tooltips.3=§eMaster:%s
+item.yin_yang_ball:tooltips.2=§eServant: %s
+item.yin_yang_ball:tooltips.3=§eMaster: %s
 item.yin_yang_ball:empty=Empty
 item.huajiage.vehicle_key.tooltip.1=I'm just a key for bike
 item.huajiage.vehicle_pack.tooltip.1=Store:
@@ -174,6 +175,21 @@ item.huajiage.reo_cherry.tooltip.3=Store MP:
 item.huajiage.expensive_camera.tooltips.1=A very expensive camera §b(Press Shift to see more)
 item.huajiage.expensive_camera.tooltips.1=A 30,000 yen camera, says an old man who destroyed one while taking a picture §b(Press Shift to see more)
 item.huajiage.expensive_camera.tooltips.2=With §5§lHermit Purple§7,it can be used for telepathy, to detect the orientation of the building structure
+item.huajiage.disc_mind.tooltips.1=Record: %s
+item.huajiage.disc_mind.tooltips.2=Entity UUID: %s
+item.huajiage.disc_mind.tooltips.3=§bYou can use this item to restore consciousness to yourself or another creature (right-click the creature)
+item.huajiage.disc_memory.tooltips.1=Record: %s
+item.huajiage.disc_memory.tooltips.2=Entity Type: %s
+item.huajiage.disc_memory.tooltips.3=Entity UUID: %s
+item.huajiage.disc_memory.tooltips.4=§bYou can right click on that DISC to read the data
+item.huajiage.disc_command.tooltips.1=User: %s
+item.huajiage.disc_command.tooltips.2=Entity UUID: %s
+item.huajiage.disc_command.tooltips.3=Command: %s
+item.huajiage.disc_command.tooltips.4=§bRight click to throw
+item.huajiage.disc_command.tooltips.type.explosion=Explosion
+item.huajiage.disc_command.tooltips.type.move_up=Move Upward
+item.huajiage.disc_command.tooltips.type.self_attack=Attack Itself
+
 
 huajiage.orga.1=§b To celebrate! The birth of the most powerful king of Mars---Orga Izka
 messege.huaji.blancedHelmet.active=§lFrom now on it's called %s §lSquare！
@@ -218,6 +234,7 @@ message.huajiage.maid_ball.stand_load_7=§eAh ~ Marisa ~
 message.huajiage.reo_cherry.reo=reo~reo~reo~reo~reo~reo~
 message.huajiage.disc_command.fail=You do not have permission to use this command disc
 message.huajiage.disc_mind.mind_recover=The mind has been recovered
+message.huajiage.disc_memory.insert.fail.type=The type of creature is unsuitable
 
 gui.huajiage.poly.cook=Process
 gui.huajiage.poly.fuel=Fuel Point
@@ -319,8 +336,11 @@ stand.huajiage.hermit_purple.overdrive=§e§lOverdrive
 
 stand.huajiage.white_snake.name=§1§lWhite Snake
 stand.huajiage.skill.huajiage.white_snake.start=§1§lWhite Snake! Give me a disc
+stand.huajiage.white_snake.default=Default
+stand.huajiage.white_snake.punch=§lPunch
 stand.huajiage.skill.huajiage.white_snake.mind_deprive.success=YOU WERE ONE MOVE ... TOO LATE ... %s
 stand.huajiage.skill.huajiage.white_snake.mind_deprive.fail=This creature's mind had been deprived
+stand.huajiage.skill.huajiage.white_snake.mind_deprive.stand_block=You can't take the Stand DISC with the stage higher than you
 ===============================Orga===========================================
 message.huajiage.orga.sing.1=§4What...... I'm a pretty good marksman
 message.huajiage.orga.sing.2=§2Head of... ah

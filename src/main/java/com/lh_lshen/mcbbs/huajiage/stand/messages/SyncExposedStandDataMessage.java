@@ -1,9 +1,7 @@
 package com.lh_lshen.mcbbs.huajiage.stand.messages;
 
-import com.lh_lshen.mcbbs.huajiage.init.loaders.CapabilityLoader;
 import com.lh_lshen.mcbbs.huajiage.capability.IExposedData;
-import com.lh_lshen.mcbbs.huajiage.stand.StandUtil;
-import com.lh_lshen.mcbbs.huajiage.stand.instance.StandBase;
+import com.lh_lshen.mcbbs.huajiage.init.loaders.CapabilityLoader;
 import io.netty.buffer.ByteBuf;
 import net.minecraft.client.Minecraft;
 import net.minecraft.entity.player.EntityPlayer;
@@ -71,7 +69,7 @@ public class SyncExposedStandDataMessage implements IMessage {
                     EntityPlayer user = Minecraft.getMinecraft().player;
                     EntityPlayer player =message.isUser ?
                          user:Minecraft.getMinecraft().world.getPlayerEntityByUUID(UUID.fromString(message.user));
-                    StandBase stand = StandUtil.getType(user);
+//                    StandBase stand = StandUtil.getType(user);
                     NBTTagCompound nbt = message.nbt;
 
                     if (player == null ) {
@@ -81,12 +79,8 @@ public class SyncExposedStandDataMessage implements IMessage {
                     IExposedData data = player.getCapability(CapabilityLoader.EXPOSED_DATA, null);
                     if (data != null ) {
                     	 IStorage<IExposedData> storage = CapabilityLoader.EXPOSED_DATA.getStorage();
-	                    	 if(stand!=null) {
-	                    	 storage.readNBT(CapabilityLoader.EXPOSED_DATA, data, null, nbt);
-	                    	 }else {
-                    		 nbt.setBoolean("stand_put", false);
-                    		 storage.readNBT(CapabilityLoader.EXPOSED_DATA, data, null, nbt);
-	                    	 }
+                         storage.readNBT(CapabilityLoader.EXPOSED_DATA, data, null, nbt);
+
                     	}
                 });
             }

@@ -7,7 +7,9 @@ import com.lh_lshen.mcbbs.huajiage.damage_source.DamageStandHit;
 import com.lh_lshen.mcbbs.huajiage.init.HuajiConstant;
 import com.lh_lshen.mcbbs.huajiage.init.loaders.ItemLoader;
 import com.lh_lshen.mcbbs.huajiage.init.loaders.PotionLoader;
+import com.lh_lshen.mcbbs.huajiage.init.loaders.StandLoader;
 import com.lh_lshen.mcbbs.huajiage.init.sound.SoundLoader;
+import com.lh_lshen.mcbbs.huajiage.item.ItemDiscMemory;
 import com.lh_lshen.mcbbs.huajiage.item.ItemDiscMind;
 import com.lh_lshen.mcbbs.huajiage.item.ItemDiscStand;
 import com.lh_lshen.mcbbs.huajiage.stand.EnumStandTag;
@@ -40,6 +42,7 @@ public class EventWhiteSnake {
     public static void onOverdriveAttack(LivingAttackEvent event){
         EntityLivingBase livingBase = event.getEntityLiving();
         Entity entity = event.getSource().getTrueSource();
+        float amount = event.getAmount();
         if (entity instanceof  EntityLivingBase) {
             EntityLivingBase attacker = (EntityLivingBase) entity;
             StandBase stand = StandUtil.getType(attacker);
@@ -47,64 +50,64 @@ public class EventWhiteSnake {
             if( stand!=null && data!=null && attacker.isPotionActive(PotionLoader.potionStand))
             {
                 String state = StandUtil.getStandState(attacker);
-                int level = data.getStage();
-                boolean isWake = level>0;
+                int stage = data.getStage();
+                boolean isWake = stage>0;
                 StandStateBase stateBase = StandStates.getStandState(stand.getName(),state);
-                if(stateBase.hasExtraData(EnumStandTag.StateTags.DISC_DEPRIVE.getName())){
-                    if (! livingBase.isDead ){
-                        float amount = event.getAmount();
+                if(stateBase != null && stateBase.hasExtraData(EnumStandTag.StateTags.DISC_DEPRIVE.getName())){
+                    if (!livingBase.isDead && HAMathHelper.getDistance(livingBase.getPosition(),attacker.getPosition())<=5 ){
                         boolean isDeprived = NBTHelper.getEntityBoolean(livingBase,"disc_deprive");
-                        if (HAMathHelper.getDistance(livingBase.getPosition(),attacker.getPosition())<=5
-                            && (attacker.getHeldItemMainhand().isEmpty())) {
-                            if (!isDeprived){
-                                ItemStack discMind = new ItemStack(ItemLoader.discMind);
-                                ItemDiscMind.setOwner(discMind,livingBase.getName(),livingBase.getUniqueID().toString());
+                        if (!isDeprived){
+                            IExposedData data_hurt = StandUtil.getStandData(livingBase);
 
-                                livingBase.playSound(SoundEvents.BLOCK_COMPARATOR_CLICK, 1f, 1f);
-                                NBTHelper.setEntityBoolean(livingBase,"disc_deprive",true);
-                                if (!livingBase.world.isRemote) {
-                                    livingBase.entityDropItem(discMind,0.25f);
-                                }
-                                if (attacker.world.isRemote){
-                                    float i = MathHelper.nextFloat(new Random(),0,10);
-                                    attacker.sendMessage(new TextComponentTranslation("stand.huajiage.skill.huajiage.white_snake.mind_deprive.success",livingBase.getName()));
-                                    if (i<3.3){
-                                        entity.playSound(SoundLoader.STAND_WHITE_SNAKE_HIT_1,1f,1f);
-                                    }else if (i>3.3&&i<6.6){
-                                        entity.playSound(SoundLoader.STAND_WHITE_SNAKE_HIT_2,1f,1f);
-                                    }else {
-                                        entity.playSound(SoundLoader.STAND_WHITE_SNAKE_HIT_3,1f,1f);
+                            ItemStack discMind = ItemDiscMind.getDiscMind(livingBase);
+                            ItemStack discMemory = ItemDiscMemory.getDiscMemory(livingBase);
+                                boolean isStandUser =data_hurt != null && !data_hurt.getStand().equals(StandLoader.EMPTY);
+                                if (!isStandUser) {
+                                    livingBase.playSound(SoundEvents.BLOCK_COMPARATOR_CLICK, 1f, 1f);
+                                    NBTHelper.setEntityBoolean(livingBase,"disc_deprive",true);
+                                    if (!livingBase.world.isRemote) {
+                                        livingBase.entityDropItem(discMind,0.25f);
+                                        livingBase.entityDropItem(discMemory,0.25f);
+                                    }
+                                    if (attacker.world.isRemote){
+                                        attacker.sendMessage(new TextComponentTranslation("stand.huajiage.skill.huajiage.white_snake.mind_deprive.success",livingBase.getName()));
+                                    }
+                                    playSounds(livingBase);
+                                }else {
+                                    if (!data_hurt.getStand().equals(StandLoader.EMPTY)) {
+                                        String hurtStand = data_hurt.getStand();
+                                        int hurtStage = data_hurt.getStage();
+                                        String hurtModel = data_hurt.getModel();
+                                        boolean hasStand = !hurtStand.equals(StandLoader.EMPTY);
+                                        if (hasStand){
+                                            if (hurtStage<=stage){
+                                                if (!attacker.world.isRemote) {
+                                                    NBTHelper.setEntityBoolean(livingBase,"disc_deprive",true);
+                                                    livingBase.entityDropItem(ItemDiscStand.getItemData(new ItemStack(ItemLoader.disc),hurtStand,hurtStage,hurtModel),-0.5f);
+                                                    livingBase.entityDropItem(ItemDiscMemory.getDiscMemory(livingBase),-0.25f);
+                                                    data_hurt.setTrigger(false);
+                                                    data_hurt.setStand("empty");
+                                                    data_hurt.setStage(0);
+                                                    data_hurt.setState("default");
+                                                    data_hurt.setModel(HuajiConstant.StandModels.DEFAULT_MODEL_ID);
+                                                }
+                                                playSounds(livingBase);
+                                            }else {
+                                                if (attacker.world.isRemote){
+                                                    attacker.sendMessage(new TextComponentTranslation("stand.huajiage.skill.huajiage.white_snake.mind_deprive.stand_block"));
+                                                }
+                                            }
+                                        }
                                     }
                                 }
-                            }else {
-                                if (attacker instanceof EntityPlayer && attacker.world.isRemote
-                                        && !(event.getSource() instanceof DamageStandHit)){
-                                    attacker.sendMessage(new TextComponentTranslation("stand.huajiage.skill.huajiage.white_snake.mind_deprive.fail"));
-                                }
-                            }
 
-                        }
-
-//                        livingBase.playSound(SoundLoader.WAVE_OVERDRIVE_1,1f,1f);
-
-                        if (livingBase instanceof EntityPlayer){
-                            StandBase stand_hurt = StandUtil.getType(livingBase);
-                            IExposedData data_hurt = StandUtil.getStandData(livingBase);
-                            if (stand_hurt != null && data_hurt != null){
-                                String type = data_hurt.getStand();
-                                int stage = data_hurt.getStage();
-                                String model = data_hurt.getModel();
-                                if (!livingBase.world.isRemote) {
-                                    ((EntityPlayer)(livingBase)).dropItem(ItemDiscStand.getItemData(new ItemStack(ItemLoader.disc),type,stage,model),true);
-                                    data.setStand("empty");
-                                    data.setStage(0);
-                                    data.setState("default");
-                                    data.setModel(HuajiConstant.StandModels.DEFAULT_MODEL_ID);
-                                    data.setTrigger(false);
-                                }
-//                                livingBase.playSound(SoundEvents.BLOCK_COMPARATOR_CLICK, 1f, 1f);
+                        }else {
+                            if (attacker instanceof EntityPlayer && attacker.world.isRemote
+                                && !(event.getSource() instanceof DamageStandHit)){
+                                attacker.sendMessage(new TextComponentTranslation("stand.huajiage.skill.huajiage.white_snake.mind_deprive.fail"));
                             }
                         }
+
                     }
                 }
             }
@@ -114,20 +117,27 @@ public class EventWhiteSnake {
     @SubscribeEvent
     public static void onDiscDeprive(LivingEvent.LivingUpdateEvent event){
         EntityLivingBase livingBase = event.getEntityLiving();
-        if (!livingBase.getEntityWorld().isRemote){
-            boolean isDiscDeprived = NBTHelper.getEntityBoolean(livingBase,"disc_deprive");
-            if (isDiscDeprived){
-                if (!livingBase.isPotionActive(MobEffects.WITHER)
-                 && !livingBase.isPotionActive(MobEffects.NAUSEA)){
-                    livingBase.addPotionEffect(new PotionEffect(MobEffects.WITHER,60));
-                    livingBase.addPotionEffect(new PotionEffect(MobEffects.NAUSEA,60));
-                }
-                if (livingBase.getHealth()>0 && livingBase.ticksExisted%20==0){
-                    livingBase.attackEntityFrom(new DamageDiscDeprive(),livingBase.getMaxHealth()/10);
-                }
+        boolean isDiscDeprived = NBTHelper.getEntityBoolean(livingBase,"disc_deprive");
+        if (isDiscDeprived) {
+            if (!livingBase.isPotionActive(MobEffects.WITHER)
+                    && !livingBase.isPotionActive(MobEffects.NAUSEA)) {
+                livingBase.addPotionEffect(new PotionEffect(MobEffects.WITHER, 60));
+                livingBase.addPotionEffect(new PotionEffect(MobEffects.NAUSEA, 60));
+            }
+            if (livingBase.getHealth() > 0 && livingBase.ticksExisted % 20 == 0) {
+                livingBase.attackEntityFrom(new DamageDiscDeprive(), livingBase.getMaxHealth() / 10);
+            }
         }
+    }
 
+    public static void playSounds(EntityLivingBase entity){
+        float i = MathHelper.nextFloat(new Random(),0,10);
+        if (i<3.3){
+            entity.playSound(SoundLoader.STAND_WHITE_SNAKE_HIT_1,1f,1f);
+        }else if (i>3.3&&i<6.6){
+            entity.playSound(SoundLoader.STAND_WHITE_SNAKE_HIT_2,1f,1f);
+        }else {
+            entity.playSound(SoundLoader.STAND_WHITE_SNAKE_HIT_3,1f,1f);
         }
-
     }
 }

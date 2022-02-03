@@ -29,7 +29,7 @@ death.attack.huajiage.stella=%s化为了天空中的一颗流星
 death.attack.huajiage.KeDaiJinLa=%s感到非常带劲
 death.attack.huajiage.requiem.back=%s被自己干掉了
 death.attack.huajiage.requiem.hit=%s被替身木大木大木大木大木大
-death.attack.huajiage.dio.hit=%s在时停中被连打暴击而横飞过了安静的街道
+death.attack.huajiage.dio.hit=%s被连打暴击横飞过了安静的街道
 death.attack.huajiage.singularity=%s被压缩成了一个无穷小的点
 death.attack.huajiage.void_break=%s被§eLord.Lu§f恐怖如斯的虚空之力§7碾成了渣渣
 death.attack.huajiage.wave_hit=%s被§b波§9澜§b呼§9吸§b法§7消灭了
@@ -59,7 +59,8 @@ item.huajiage.waveKnife.name=波澜怒涛之刃
 item.huajiage.killerQueenTrigger.name=§l点赞
 item.huajiage.yinYangBall.name=§8§l带 §f§l师 §8§l球
 item.huajiage.reoCherry.name=§5Reo樱桃
-item.huajiage.discMind.name=意识Disc
+item.huajiage.discMind.name=心智Disc
+item.huajiage.discMemory.name=记忆Disc
 item.huajiage.discCommand.name=命令Disc
 
 potion.huaji=滑稽·施工中
@@ -119,9 +120,10 @@ item.huajiage.loot.name=§l卖鱼强
 item.huajiage.lordCore.name=§3§l挂者核心
 item.huajiage.huajiStarPoly.name=§o§l多重叠加态滑稽之星
 item.huajiage.singularity.name=§l特异点
+
+
 item.singularity.tooltip.warning=警告！！！你最好穿上最好的装备来抵御特异点的作用！必须确保在效果结束前的存活！死者是无法抵达新世界的！！！
 item.lord_key:tooltips.1=上古时代流传下来的神秘钥匙，据说能进一步解放§3§l挂者核心§7中§e§lLord.Lu§7的恐怖如斯的至尊之力
-
 item.blance_helmet:unicode_tooltips.1.desc=释放力量的唯一方法§b（按住Shift以查看更多）
 item.blance_helmet:unicode_tooltips.2.desc=§4只有§3§l挂者核心§4能够释放其无上威力
 item.blance_helmet:unicode_tooltips.3.desc=这个头盔封印着Lord.Lu的力量
@@ -151,7 +153,7 @@ item.huajiage.tarot.tooltip.2=阶段：
 item.huajiage.tarot.tooltip.3=模型：
 item.huajiage.tarot.tooltip.author=作者：
 item.huajiage.disc.tooltip.1=存储替身：
-item.huajiage.disc.tooltip.2=阶段：  
+item.huajiage.disc.tooltip.2=阶段：
 item.huajiage.disc.tooltip.3=模型：
 item.huajiage.disc.tooltip.author=作者：
 item.wave_knife.tooltip.1=波澜 - §9%s
@@ -177,11 +179,20 @@ item.huajiage.reo_cherry.tooltip.2=不断发出奇怪声响的樱桃
 item.huajiage.reo_cherry.tooltip.3=储存精神力：
 item.huajiage.expensive_camera.tooltips.1=一台价值30000日元的相机，某个拍照时劲用得大了一点的老头如此说道 §b(按住shift以查看更多)
 item.huajiage.expensive_camera.tooltips.2=可配合替身§5§l隐者之紫§7进行§b念写§7，可用于探测建筑结构的方位
-item.huajiage.disc_mind.tooltips.1=记录意识：
-item.huajiage.disc_mind.tooltips.2=实体UUID：
-item.huajiage.disc_command.tooltips.1=使用者：
-item.huajiage.disc_command.tooltips.2=实体UUID：
-item.huajiage.disc_command.tooltips.3=命令：
+item.huajiage.disc_mind.tooltips.1=记录意识：%s
+item.huajiage.disc_mind.tooltips.2=实体UUID：%s
+item.huajiage.disc_mind.tooltips.3=§b可使用该物品使自身或其他生物（右击该生物）恢复被白蛇夺取的意识
+item.huajiage.disc_memory.tooltips.1=记录意识：%s
+item.huajiage.disc_memory.tooltips.2=实体类型：%s
+item.huajiage.disc_memory.tooltips.3=实体UUID：%s
+item.huajiage.disc_memory.tooltips.4=§b可用该DISC右击同类生物以读取数据
+item.huajiage.disc_command.tooltips.1=使用者：%s
+item.huajiage.disc_command.tooltips.2=实体UUID：%s
+item.huajiage.disc_command.tooltips.3=命令：%s
+item.huajiage.disc_command.tooltips.4=§b右击以掷出
+item.huajiage.disc_command.tooltips.type.explosion=爆炸
+item.huajiage.disc_command.tooltips.type.move_up=飞天
+item.huajiage.disc_command.tooltips.type.self_attack=自裁
 
 
 message.huajiage.patchouli_missing=[{"text":"[ Huaji Age II]:","color":"yellow","bold":true},{"text":"为保证最佳游戏体验，请加载  ","color":"aqua","bold":false},{"text":"Patchouli-帕秋莉模组","color":"green","underlined":true,"bold":true,"clickEvent":{"action":"open_url","value":"https://www.curseforge.com/minecraft/mc-mods/patchouli"},"hoverEvent":{"action":"show_text","value":"https://www.curseforge.com/minecraft/mc-mods/patchouli"}},{"text":"§b来获取指南手册，这是鬼畜界先辈们为迎击§0§l♂Dark&&King§b势力耗尽其毕生修为传承下的§e§lJO§6§l级宝典","color":"yellow","bold":false}]
@@ -226,6 +237,7 @@ message.huajiage.maid_ball.stand_load_7=§e啊~魔理沙~
 message.huajiage.reo_cherry.reo=reo~reo~reo~reo~reo~reo~
 message.huajiage.disc_command.fail=你没有使用这张命令光碟的权限
 message.huajiage.disc_mind.mind_recover=意识已恢复
+message.huajiage.disc_memory.insert.fail.type=插入失败，由于生物类型不匹配
 
 
 gui.huajiage.poly.cook=§l进程
@@ -332,7 +344,8 @@ stand.huajiage.skill.huajiage.white_snake.start=§1§lWhite Snake! 给我一张�
 stand.huajiage.white_snake.default=默认
 stand.huajiage.white_snake.punch=§l连击
 stand.huajiage.skill.huajiage.white_snake.mind_deprive.success=棋差一着啊 %s
-stand.huajiage.skill.huajiage.white_snake.mind_deprive.fail=该生物的意识DISC已被剥夺
+stand.huajiage.skill.huajiage.white_snake.mind_deprive.fail=该生物的心智DISC已被剥夺
+stand.huajiage.skill.huajiage.white_snake.mind_deprive.stand_block=平角裤平角裤，你的抛瓦太过弱小了,DISC无法取出
 *****************************************下方为未启用的一代翻译******************************************
 item.huaJiCry.name=我哭了
 item.huajiAxe.name=§b滑稽斧头

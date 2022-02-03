@@ -178,6 +178,9 @@ public class ItemDiscStand extends Item {
 					if(StandLoader.getStand(data.getStand())!=null){
 						StandUtil.setChargeMax(playerIn,StandLoader.getStand(data.getStand()).getMaxMP());
 					}
+					if (NBTHelper.getEntityBoolean(playerIn,"disc_deprive")){
+						NBTHelper.setEntityBoolean(playerIn,"disc_deprive",false);
+					}
 				if(!type.equals(DEFAULT_STAND_ID)) {
 					if(!worldIn.isRemote) {
 					playerIn.dropItem(getItemData(new ItemStack(ItemLoader.disc),type,stage,model),true);

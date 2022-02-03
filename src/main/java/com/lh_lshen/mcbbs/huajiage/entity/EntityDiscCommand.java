@@ -109,13 +109,13 @@ public class EntityDiscCommand extends EntityThrowable{
 								break;
 							case "explosion":
 								result.entityHit.world.createExplosion(null,this.posX,this.posY,this.posZ,1f,false);
-								result.entityHit.attackEntityFrom(DamageSource.OUT_OF_WORLD,10f);
+								result.entityHit.attackEntityFrom(DamageSource.FIREWORKS,20f);
 								break;
 							case "move_up":
 								result.entityHit.motionY = 3f;
 								break;
 							case "self_attack":
-								result.entityHit.attackEntityFrom(new DamageSelfAttack(), ((EntityLivingBase) result.entityHit).getMaxHealth()/3);
+								result.entityHit.attackEntityFrom(new DamageSelfAttack(), 3f+((EntityLivingBase) result.entityHit).getMaxHealth()/3);
 								break;
 						}
 						this.setDead();

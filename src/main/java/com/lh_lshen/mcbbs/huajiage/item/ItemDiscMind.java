@@ -1,6 +1,7 @@
 package com.lh_lshen.mcbbs.huajiage.item;
 
 import com.lh_lshen.mcbbs.huajiage.init.loaders.CreativeTabLoader;
+import com.lh_lshen.mcbbs.huajiage.init.loaders.ItemLoader;
 import com.lh_lshen.mcbbs.huajiage.util.NBTHelper;
 import net.minecraft.client.resources.I18n;
 import net.minecraft.client.util.ITooltipFlag;
@@ -26,11 +27,11 @@ public class ItemDiscMind extends Item {
 
 	@Override
 	public void addInformation(ItemStack stack, World worldIn, List<String> tooltip, ITooltipFlag flagIn) {
-		tooltip.add(I18n.format("item.huajiage.disc_mind.tooltips.1")
-				+TextFormatting.GRAY +getOwnerName(stack));
-		tooltip.add(I18n.format("item.huajiage.disc_mind.tooltips.2")
-				+ TextFormatting.GRAY +getOwnerUUID(stack));
-	
+		tooltip.add(I18n.format("item.huajiage.disc_mind.tooltips.1"
+				,TextFormatting.GRAY +getOwnerName(stack)));
+		tooltip.add(I18n.format("item.huajiage.disc_mind.tooltips.2"
+				,TextFormatting.GRAY +getOwnerUUID(stack)));
+		tooltip.add(I18n.format("item.huajiage.disc_mind.tooltips.3"));
 		super.addInformation(stack, worldIn, tooltip, flagIn);
 	}
 
@@ -116,6 +117,12 @@ public class ItemDiscMind extends Item {
 	public static void setOwner(ItemStack stack, String name, String uuid){
 		setOwnerName(stack,name);
 		setOwnerUUID(stack,uuid);
+	}
+
+	public static ItemStack getDiscMind(EntityLivingBase livingBase){
+		ItemStack discMind = new ItemStack(ItemLoader.discMind);
+		ItemDiscMind.setOwner(discMind,livingBase.getName(),livingBase.getUniqueID().toString());
+		return discMind;
 	}
 
 	public enum TAGS{
