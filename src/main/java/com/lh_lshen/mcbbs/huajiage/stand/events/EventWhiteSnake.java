@@ -61,7 +61,7 @@ public class EventWhiteSnake {
 
                             ItemStack discMind = ItemDiscMind.getDiscMind(livingBase);
                             ItemStack discMemory = ItemDiscMemory.getDiscMemory(livingBase);
-                                boolean isStandUser =data_hurt != null && !data_hurt.getStand().equals(StandLoader.EMPTY);
+                            boolean isStandUser =data_hurt != null && !data_hurt.getStand().equals(StandLoader.EMPTY);
                                 if (!isStandUser) {
                                     livingBase.playSound(SoundEvents.BLOCK_COMPARATOR_CLICK, 1f, 1f);
                                     NBTHelper.setEntityBoolean(livingBase,"disc_deprive",true);

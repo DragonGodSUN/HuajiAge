@@ -59,8 +59,8 @@ item.huajiage.waveKnife.name=波澜怒涛之刃
 item.huajiage.killerQueenTrigger.name=§l点赞
 item.huajiage.yinYangBall.name=§8§l带 §f§l师 §8§l球
 item.huajiage.reoCherry.name=§5Reo樱桃
-item.huajiage.discMind.name=心智Disc
-item.huajiage.discMemory.name=记忆Disc
+item.huajiage.discMind.name=§3心智Disc
+item.huajiage.discMemory.name=§6记忆Disc
 item.huajiage.discCommand.name=命令Disc
 
 potion.huaji=滑稽·施工中
@@ -237,6 +237,7 @@ message.huajiage.maid_ball.stand_load_7=§e啊~魔理沙~
 message.huajiage.reo_cherry.reo=reo~reo~reo~reo~reo~reo~
 message.huajiage.disc_command.fail=你没有使用这张命令光碟的权限
 message.huajiage.disc_mind.mind_recover=意识已恢复
+message.huajiage.disc_mind.insert.fail.type=插入失败，由于名称不匹配
 message.huajiage.disc_memory.insert.fail.type=插入失败，由于生物类型不匹配
 
 

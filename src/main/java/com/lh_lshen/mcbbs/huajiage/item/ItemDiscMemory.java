@@ -70,6 +70,13 @@ public class ItemDiscMemory extends Item {
 		return super.itemInteractionForEntity(stack, playerIn, target, hand);
 	}
 
+	@Override
+	public String getItemStackDisplayName(ItemStack stack) {
+		if (!getOwnerName(stack).isEmpty()){
+			return super.getItemStackDisplayName(stack)+" "+getOwnerName(stack);
+		}
+		return super.getItemStackDisplayName(stack);
+	}
 
 	public static String getOwnerName(ItemStack stack){
 		if (stack.getItem() instanceof ItemDiscMemory) {

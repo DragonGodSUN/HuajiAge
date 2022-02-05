@@ -1,5 +1,6 @@
 package com.lh_lshen.mcbbs.huajiage.item;
 
+import com.lh_lshen.mcbbs.huajiage.common.CommonProxy;
 import com.lh_lshen.mcbbs.huajiage.init.loaders.CreativeTabLoader;
 import com.lh_lshen.mcbbs.huajiage.init.loaders.ItemLoader;
 import com.lh_lshen.mcbbs.huajiage.util.NBTHelper;
@@ -10,13 +11,17 @@ import net.minecraft.entity.player.EntityPlayer;
 import net.minecraft.init.SoundEvents;
 import net.minecraft.item.Item;
 import net.minecraft.item.ItemStack;
-import net.minecraft.util.ActionResult;
-import net.minecraft.util.EnumHand;
+import net.minecraft.nbt.NBTTagCompound;
+import net.minecraft.tileentity.TileEntity;
+import net.minecraft.util.*;
+import net.minecraft.util.math.BlockPos;
 import net.minecraft.util.text.TextComponentTranslation;
 import net.minecraft.util.text.TextFormatting;
 import net.minecraft.world.World;
+import net.minecraftforge.fml.common.registry.ForgeRegistries;
 
 import java.util.List;
+import java.util.Objects;
 
 public class ItemDiscMind extends Item {
 	public ItemDiscMind()
@@ -86,6 +91,45 @@ public class ItemDiscMind extends Item {
 			}
 		}
 		return super.onItemRightClick(worldIn, playerIn, handIn);
+	}
+
+	@Override
+	public EnumActionResult onItemUse(EntityPlayer player, World worldIn, BlockPos pos, EnumHand hand, EnumFacing facing, float hitX, float hitY, float hitZ) {
+		TileEntity tileEntity = worldIn.getTileEntity(pos);
+		ItemStack stack = player.getHeldItem(hand);
+		if (stack.getItem() instanceof ItemDiscMind
+			&& tileEntity!=null && tileEntity.getClass().getName().contains("TileEntityGarageKit")
+			&& CommonProxy.ModsLoader.isTouhouMaidLoaded()){
+			if ( tileEntity.getTileData().hasKey("MaidData") && ForgeRegistries.ENTITIES.containsKey(new ResourceLocation("touhou_little_maid", "entity.passive.maid"))){
+				NBTTagCompound data = tileEntity.getTileData().getCompoundTag("MaidData");
+				EntityLivingBase maid = (EntityLivingBase) Objects.requireNonNull(ForgeRegistries.ENTITIES.getValue(new ResourceLocation("touhou_little_maid", "entity.passive.maid"))).newInstance(worldIn);
+				maid.setPosition(pos.getX(),pos.getY()+1f,pos.getZ());
+				maid.readEntityFromNBT(data);
+				maid.setHealth(5);
+				NBTHelper.setEntityBoolean(maid,"disc_deprive",false);
+				if (maid.getName().equals(getOwnerName(stack))) {
+					if (!worldIn.isRemote){
+						worldIn.spawnEntity(maid);
+					}
+					stack.shrink(1);
+					worldIn.setBlockToAir(pos);
+					worldIn.playSound(pos.getX(), pos.getY(),pos.getZ(),SoundEvents.UI_BUTTON_CLICK, SoundCategory.NEUTRAL,1f,1f,false);
+				}else {
+					if (worldIn.isRemote) {
+						player.sendMessage(new TextComponentTranslation("message.huajiage.disc_mind.insert.fail.type"));
+					}
+				}
+			}
+		}
+		return super.onItemUse(player, worldIn, pos, hand, facing, hitX, hitY, hitZ);
+	}
+
+	@Override
+	public String getItemStackDisplayName(ItemStack stack) {
+		if (!getOwnerName(stack).isEmpty()){
+			return super.getItemStackDisplayName(stack)+" "+getOwnerName(stack);
+		}
+		return super.getItemStackDisplayName(stack);
 	}
 
 	public static String getOwnerName(ItemStack stack){

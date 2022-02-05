@@ -90,8 +90,8 @@ item.huajiage.singularity.name=§lThe Singularity
 item.huajiage.lordKey.name=§eLord Key
 item.huajiage.reoCherry.name=§5Reo Cherry
 item.huajiage.expensiveCamera.name=§5Expensive Camera
-item.huajiage.discMind.name=Mind Disc
-item.huajiage.discMemory.name=Memory Disc
+item.huajiage.discMind.name=§3Mind Disc
+item.huajiage.discMemory.name=§6Memory Disc
 item.huajiage.discCommand.name=Command Disc
 
 potion.huaji=HUAJI
@@ -234,6 +234,7 @@ message.huajiage.maid_ball.stand_load_7=§eAh ~ Marisa ~
 message.huajiage.reo_cherry.reo=reo~reo~reo~reo~reo~reo~
 message.huajiage.disc_command.fail=You do not have permission to use this command disc
 message.huajiage.disc_mind.mind_recover=The mind has been recovered
+message.huajiage.disc_mind.insert.fail.type=The name of creature is unsuitable
 message.huajiage.disc_memory.insert.fail.type=The type of creature is unsuitable
 
 gui.huajiage.poly.cook=Process
