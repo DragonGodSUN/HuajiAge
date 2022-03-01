@@ -2,12 +2,12 @@ package com.lh_lshen.mcbbs.huajiage.item;
 
 import com.github.tartaricacid.touhoulittlemaid.block.BlockGarageKit;
 import com.github.tartaricacid.touhoulittlemaid.entity.passive.EntityMaid;
-import com.github.tartaricacid.touhoulittlemaid.init.MaidItems;
 import com.github.tartaricacid.touhoulittlemaid.util.ItemDropUtil;
 import com.github.tartaricacid.touhoulittlemaid.util.MaidRayTraceHelper;
 import com.lh_lshen.mcbbs.huajiage.capability.IExposedData;
 import com.lh_lshen.mcbbs.huajiage.client.resources.CustomResourceLoader;
 import com.lh_lshen.mcbbs.huajiage.common.CommonProxy;
+import com.lh_lshen.mcbbs.huajiage.init.loaders.CreativeTabLoader;
 import com.lh_lshen.mcbbs.huajiage.init.loaders.ItemLoader;
 import com.lh_lshen.mcbbs.huajiage.init.loaders.StandLoader;
 import com.lh_lshen.mcbbs.huajiage.stand.StandUtil;
@@ -46,7 +46,7 @@ public class ItemYinYangBall extends Item {
 		super();
 		this.setMaxStackSize(1);
 		if(CommonProxy.ModsLoader.isTouhouMaidLoaded()){
-		this.setCreativeTab(MaidItems.MAIN_TABS);
+		this.setCreativeTab(CreativeTabLoader.tabhuaji);
 		}
 		this.addPropertyOverride(new ResourceLocation("data"), new IItemPropertyGetter() {
 			@SideOnly(Side.CLIENT)

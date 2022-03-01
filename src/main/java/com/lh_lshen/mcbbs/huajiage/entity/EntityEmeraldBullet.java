@@ -1,6 +1,7 @@
 package com.lh_lshen.mcbbs.huajiage.entity;
 
 import com.lh_lshen.mcbbs.huajiage.damage_source.DamageEmeraldSplash;
+import com.lh_lshen.mcbbs.huajiage.util.HAMathHelper;
 import com.lh_lshen.mcbbs.huajiage.util.NBTHelper;
 import net.minecraft.block.state.IBlockState;
 import net.minecraft.entity.Entity;
@@ -28,6 +29,7 @@ public class EntityEmeraldBullet extends EntityThrowable{
 	private static final String TAG_STAY = "stay";
 	private static final String TAG_HUGE = "huge";
 	private static final String TAG_TYPE = "type";
+	private static final String TAG_TARGET = "target";
 
 	private static final DataParameter<Float> ROTATION = EntityDataManager.createKey(EntityEmeraldBullet.class,
 			DataSerializers.FLOAT);
@@ -44,6 +46,8 @@ public class EntityEmeraldBullet extends EntityThrowable{
 	private static final DataParameter<Boolean> HUGE = EntityDataManager.createKey(EntityEmeraldBullet.class,
 			DataSerializers.BOOLEAN);
 	private static final DataParameter<String> TYPE = EntityDataManager.createKey(EntityEmeraldBullet.class,
+			DataSerializers.STRING);
+	private static final DataParameter<String> TARGET = EntityDataManager.createKey(EntityEmeraldBullet.class,
 			DataSerializers.STRING);
 	public EntityEmeraldBullet(World worldIn) {
 		super(worldIn);
@@ -65,6 +69,8 @@ public class EntityEmeraldBullet extends EntityThrowable{
 		dataManager.register(STAY, 0F);
 		dataManager.register(HUGE, false);
 		dataManager.register(TYPE,"emerald");
+		dataManager.register(TARGET,"a723e52d-a1b5-4121-838b-65fa63bfc161");
+
 	}
 
 	@Override
@@ -108,21 +114,31 @@ public class EntityEmeraldBullet extends EntityThrowable{
 		}else {
 			this.setDead();
 		}
+		List<EntityLivingBase> entities=this.world.getEntitiesWithinAABB(EntityLivingBase.class,this.getEntityBoundingBox().grow(20),null);
+		for (EntityLivingBase e : entities){
+			if (e.getUniqueID().toString().equals(getTarget())){
+				Vec3d v = HAMathHelper.getVector(this.getPositionVector(), e.getPositionVector());
+				NBTHelper.setEntityFloat(this, EntityEmeraldBullet.TAGS_ENTITY.MOTION_X.getTag(), (float) v.x);
+				NBTHelper.setEntityFloat(this, EntityEmeraldBullet.TAGS_ENTITY.MOTION_Y.getTag(), (float) v.y);
+				NBTHelper.setEntityFloat(this, EntityEmeraldBullet.TAGS_ENTITY.MOTION_Z.getTag(), (float) v.z);
+			}
+		}
+
 		if(getStayTime()>0) {
 			this.motionX = 0;
 			this.motionY = 0;
 			this.motionZ =0;
 		}else{
-			Vec3d v =new Vec3d(NBTHelper.getEntityFloat(this, "huajiage.motion.x"), 
-											 NBTHelper.getEntityFloat(this, "huajiage.motion.y"),
-											 NBTHelper.getEntityFloat(this, "huajiage.motion.z"));
+			Vec3d v =new Vec3d( NBTHelper.getEntityFloat(this,TAGS_ENTITY.MOTION_X.getTag()),
+								NBTHelper.getEntityFloat(this, TAGS_ENTITY.MOTION_Y.getTag()),
+								NBTHelper.getEntityFloat(this, TAGS_ENTITY.MOTION_Z.getTag()));
 			if(v.length()>0) {
 			this.motionX = v.x;
 			this.motionY = v.y;
 			this.motionZ = v.z;
-			NBTHelper.setEntityFloat(this, "huajiage.motion.x", 0);
-			NBTHelper.setEntityFloat(this, "huajiage.motion.y", 0);
-			NBTHelper.setEntityFloat(this, "huajiage.motion.z", 0);
+			NBTHelper.setEntityFloat(this, TAGS_ENTITY.MOTION_X.getTag(), 0);
+			NBTHelper.setEntityFloat(this, TAGS_ENTITY.MOTION_Y.getTag(), 0);
+			NBTHelper.setEntityFloat(this, TAGS_ENTITY.MOTION_Z.getTag(), 0);
 			}
 			
 		}
@@ -145,7 +161,8 @@ public class EntityEmeraldBullet extends EntityThrowable{
 				world.spawnParticle(EnumParticleTypes.VILLAGER_HAPPY,posX+r1, posY+r2, posZ+r3, r1, r2, r3);
 				}
 		}
-		
+
+
 	}
 	@Override
 	protected void onImpact(RayTraceResult result) {
@@ -242,6 +259,28 @@ public class EntityEmeraldBullet extends EntityThrowable{
 		dataManager.set(TYPE, type);
 	}
 
+	public String getTarget() {
+		return dataManager.get(TARGET);
+	}
 
+	public void setTarget(String type) {
+		dataManager.set(TARGET, type);
+	}
+
+
+	public enum TAGS_ENTITY{
+		MOTION_X("huajiage.motion.x"),
+		MOTION_Y("huajiage.motion.y"),
+		MOTION_Z("huajiage.motion.z")
+		;
+		TAGS_ENTITY(String tag) {
+			this.tag = tag;
+		}
+		private final String tag;
+
+		public String getTag() {
+			return tag;
+		}
+	}
 
 }

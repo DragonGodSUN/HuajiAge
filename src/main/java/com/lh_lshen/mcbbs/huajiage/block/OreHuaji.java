@@ -1,10 +1,7 @@
 package com.lh_lshen.mcbbs.huajiage.block;
 
-import java.util.Random;
-
 import com.lh_lshen.mcbbs.huajiage.init.loaders.CreativeTabLoader;
 import com.lh_lshen.mcbbs.huajiage.init.loaders.ItemLoader;
-
 import net.minecraft.block.Block;
 import net.minecraft.block.material.Material;
 import net.minecraft.block.state.IBlockState;
@@ -13,12 +10,14 @@ import net.minecraft.util.math.BlockPos;
 import net.minecraft.util.math.MathHelper;
 import net.minecraft.world.World;
 
+import java.util.Random;
+
 public class OreHuaji extends Block {
 	public OreHuaji()
     {
         super(Material.ROCK);
         this.setHardness(15F);
-        this.setHarvestLevel("Pickaxe", 3);
+        this.setHarvestLevel("pickaxe", 3);
         this.setLightLevel(1.0f);
         this.setSoundType(blockSoundType.STONE);
         this.setCreativeTab(CreativeTabLoader.tabhuaji);
