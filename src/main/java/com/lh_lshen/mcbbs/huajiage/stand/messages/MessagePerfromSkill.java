@@ -1,6 +1,6 @@
 package com.lh_lshen.mcbbs.huajiage.stand.messages;
 
-import com.lh_lshen.mcbbs.huajiage.capability.StandChargeHandler;
+import com.lh_lshen.mcbbs.huajiage.capability.StandHandler;
 import com.lh_lshen.mcbbs.huajiage.stand.StandUtil;
 import com.lh_lshen.mcbbs.huajiage.stand.instance.StandBase;
 
@@ -38,7 +38,7 @@ public class MessagePerfromSkill implements IMessage {
         public IMessage onMessage(MessagePerfromSkill message , MessageContext ctx) {
         	EntityPlayerMP player = ctx.getServerHandler().player;
         	StandBase stand = StandUtil.getType(player);
-        	StandChargeHandler charge = StandUtil.getChargeHandler(player);
+        	StandHandler charge = StandUtil.getStandHandler(player);
         	if (ctx.side == Side.SERVER) {
             	FMLCommonHandler.instance().getWorldThread(ctx.netHandler).addScheduledTask(() ->{
 				if(null==stand) {

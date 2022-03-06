@@ -1,22 +1,22 @@
 package com.lh_lshen.mcbbs.huajiage.stand.custom.script;
 
 import com.lh_lshen.mcbbs.huajiage.capability.IExposedData;
-import com.lh_lshen.mcbbs.huajiage.capability.StandChargeHandler;
+import com.lh_lshen.mcbbs.huajiage.capability.StandHandler;
 import com.lh_lshen.mcbbs.huajiage.stand.StandUtil;
 import net.minecraft.entity.EntityLivingBase;
 
 public class StandDadaWrapper {
     private IExposedData data;
-    private StandChargeHandler chargeHandler;
+    private StandHandler chargeHandler;
 
-    public StandDadaWrapper(IExposedData data, StandChargeHandler chargeHandler) {
+    public StandDadaWrapper(IExposedData data, StandHandler chargeHandler) {
         this.data = data;
         this.chargeHandler = chargeHandler;
     }
 
     public StandDadaWrapper(EntityLivingBase livingBase) {
         this.data = StandUtil.getStandData(livingBase);
-        this.chargeHandler = StandUtil.getChargeHandler(livingBase);
+        this.chargeHandler = StandUtil.getStandHandler(livingBase);
     }
 
     public IExposedData getData() {

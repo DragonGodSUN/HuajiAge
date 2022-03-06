@@ -1,8 +1,8 @@
 package com.lh_lshen.mcbbs.huajiage.stand.helper;
 
 import com.google.common.collect.Lists;
-import com.lh_lshen.mcbbs.huajiage.capability.CapabilityStandChargeHandler;
-import com.lh_lshen.mcbbs.huajiage.capability.StandChargeHandler;
+import com.lh_lshen.mcbbs.huajiage.capability.CapabilityStandHandler;
+import com.lh_lshen.mcbbs.huajiage.capability.StandHandler;
 import com.lh_lshen.mcbbs.huajiage.config.ConfigHuaji;
 import com.lh_lshen.mcbbs.huajiage.damage_source.DamageStandHit;
 import com.lh_lshen.mcbbs.huajiage.entity.EntityEmeraldBullet;
@@ -112,7 +112,7 @@ public class StandPowerHelper {
      * @param points 点数
      */
     public static void MPCharge(EntityLivingBase user, int points){
-        StandChargeHandler chargeHandler = user.getCapability(CapabilityStandChargeHandler.STAND_CHARGE, null);
+        StandHandler chargeHandler = user.getCapability(CapabilityStandHandler.STAND_HANDLER, null);
         if( null !=chargeHandler )
         {
             chargeHandler.charge(points);

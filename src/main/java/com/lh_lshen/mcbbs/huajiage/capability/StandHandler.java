@@ -1,13 +1,17 @@
 package com.lh_lshen.mcbbs.huajiage.capability;
 
+import com.google.common.collect.Maps;
+
+import java.util.Map;
 import java.util.concurrent.Callable;
 
-public class StandChargeHandler  {
- 	static StandChargeHandler.Factory FACTORY = new StandChargeHandler.Factory();
+public class StandHandler {
+ 	static StandHandler.Factory FACTORY = new StandHandler.Factory();
 	private int charge = 0;
 	private int max = 5000*20;
 	private int buffer = 0;
 	public String buffTag = "empty";
+	public Map<String,Float> recorder = Maps.newHashMap();
 	private boolean dirty;
 
 	public void setChargeValue(int value) {
@@ -30,6 +34,11 @@ public class StandChargeHandler  {
 		markDirty();
 	}
 
+	public void setRecorder(Map<String,Float> recorder) {
+		this.recorder = recorder;
+		markDirty();
+	}
+
 	public int getChargeValue() {
 		return charge;
 	}
@@ -44,6 +53,10 @@ public class StandChargeHandler  {
 
 	public String getBuffTag() {
 		return buffTag;
+	}
+
+	public Map<String, Float> getRecorder() {
+		return recorder;
 	}
 
 	public boolean canBeCharge() {
@@ -79,7 +92,7 @@ public class StandChargeHandler  {
 		markDirty();
 	}
 	    
-	public void clear() {
+	public void zero() {
 			setChargeValue(0);
 }
 	    
@@ -89,9 +102,29 @@ public class StandChargeHandler  {
 		if( left>0 ) {
 			setChargeValue(left);
 			}else {
-				clear();
+				zero();
 			}
 		}
+
+	public void addTarget(String uuid, float value){
+		this.recorder.put(uuid,value);
+		markDirty();
+	}
+
+	public void removeTarget(String uuid){
+		this.recorder.remove(uuid);
+		markDirty();
+	}
+
+	public void addTargetValue(String uuid, float value_ex){
+		if (recorder.containsKey(uuid)) {
+			float value = this.recorder.get(uuid);
+			this.recorder.put(uuid,value + value_ex);
+		}else {
+			addTarget(uuid,value_ex);
+		}
+		markDirty();
+	}
 	    
 	public void markDirty() {
 		dirty = true;
@@ -105,10 +138,10 @@ public class StandChargeHandler  {
 		this.dirty = dirty;
 	}
 
-	private static class Factory implements Callable<StandChargeHandler> {
+	private static class Factory implements Callable<StandHandler> {
 		@Override
-		public StandChargeHandler call() {
-			return new StandChargeHandler();
+		public StandHandler call() {
+			return new StandHandler();
 		}
 	}
 }

@@ -2,12 +2,13 @@ package com.lh_lshen.mcbbs.huajiage.stand.events;
 
 import com.lh_lshen.mcbbs.huajiage.HuajiAge;
 import com.lh_lshen.mcbbs.huajiage.capability.IExposedData;
+import com.lh_lshen.mcbbs.huajiage.capability.StandHandler;
 import com.lh_lshen.mcbbs.huajiage.config.ConfigHuaji;
 import com.lh_lshen.mcbbs.huajiage.init.HuajiConstant;
+import com.lh_lshen.mcbbs.huajiage.init.loaders.StandLoader;
 import com.lh_lshen.mcbbs.huajiage.init.sound.HuajiSoundPlayer;
 import com.lh_lshen.mcbbs.huajiage.init.sound.SoundLoader;
 import com.lh_lshen.mcbbs.huajiage.network.messages.MessageParticleGenerator;
-import com.lh_lshen.mcbbs.huajiage.init.loaders.StandLoader;
 import com.lh_lshen.mcbbs.huajiage.stand.StandUtil;
 import com.lh_lshen.mcbbs.huajiage.stand.helper.TimeStopHelper;
 import com.lh_lshen.mcbbs.huajiage.stand.messages.MessageDioHitClient;
@@ -16,6 +17,7 @@ import com.lh_lshen.mcbbs.huajiage.util.ServerUtil;
 import net.minecraft.entity.Entity;
 import net.minecraft.entity.EntityLivingBase;
 import net.minecraft.entity.IProjectile;
+import net.minecraft.entity.SharedMonsterAttributes;
 import net.minecraft.entity.boss.EntityDragon;
 import net.minecraft.entity.item.EntityItem;
 import net.minecraft.entity.item.EntityTNTPrimed;
@@ -29,6 +31,7 @@ import net.minecraft.util.EntityDamageSource;
 import net.minecraft.util.EnumParticleTypes;
 import net.minecraft.util.math.Vec3d;
 import net.minecraftforge.event.entity.living.LivingEvent.LivingUpdateEvent;
+import net.minecraftforge.event.entity.living.LivingHurtEvent;
 import net.minecraftforge.event.entity.player.AttackEntityEvent;
 import net.minecraftforge.fml.common.Mod;
 import net.minecraftforge.fml.common.eventhandler.SubscribeEvent;
@@ -88,47 +91,77 @@ public class EventTimeStop {
         	}else {
         		 target.getEntityData().setInteger(HuajiConstant.Tags.DIO_HIT_EXTRA,0);
         	}
-    		
-
      }
+
 	 @SubscribeEvent
      public static void onTheWorldHit(AttackEntityEvent evt)
      {
 	  EntityPlayer player = evt.getEntityPlayer();
 	  Entity hit =evt.getTarget();
+
 	  Vec3d targetPosition = player.getPositionVector();
 	  IExposedData data = StandUtil.getStandData(player);
-	  if(data != null && NBTHelper.getEntityInteger(player,HuajiConstant.Tags.THE_WORLD)>0) {
-		  player.heal(3f);
-		  boolean star =false ;
-		  if(data.getStand().equals(StandLoader.STAR_PLATINUM.getName()))
-		  {
-			  star = true;
+	  StandHandler standHandler = StandUtil.getStandHandler(player);
+	  if(data != null && standHandler != null) {
+	  	  int time_frozen = standHandler.getBuffer();
+		  if (time_frozen >0 ||  player.getEntityData().getInteger(HuajiConstant.Tags.THE_WORLD) >0 ) {
+			  player.heal(3f);
+			  boolean star =false ;
+			  if(data.getStand().equals(StandLoader.STAR_PLATINUM.getName()))
+			  {
+				  star = true;
+			  }
+			  StandUtil.standEffectLoad(player,true);
+			  if(!star) {
+				   MessageDioHitClient msg1 = new MessageDioHitClient(targetPosition, false);
+				   MessageDioHitClient msg2 =new MessageDioHitClient(targetPosition, true);
+				 if(NBTHelper.getEntityInteger(player,HuajiConstant.Tags.DIO_FLAG)==0) {
+							  ServerUtil.sendPacketToPlayersStand(player, msg1);
+							   player.getEntityData().setInteger(HuajiConstant.Tags.DIO_FLAG, 180);
+							   }
+				 if(NBTHelper.getEntityInteger(player,HuajiConstant.Tags.DIO_FLAG)<140&&NBTHelper.getEntityInteger(player,HuajiConstant.Tags.DIO_FLAG)>0) {
+							  ServerUtil.sendPacketToPlayersStand(player, msg2);
+				 }
+			 }else {
+				 MessageParticleGenerator pacticle = new MessageParticleGenerator(targetPosition, EnumParticleTypes.FIREWORKS_SPARK, 60, 5, 1);
+				 ServerUtil.sendPacketToNearbyPlayers(player,pacticle);
+				 HuajiSoundPlayer.playToNearbyClient(player, SoundLoader.STAND_STAR_PLATINUM_REPEAT_1, 1f);
+			 }
+			  if(hit instanceof EntityLivingBase ) {
+				  hit.getEntityData().setInteger(HuajiConstant.Tags.DIO_HIT, 120);
+				  if (standHandler!=null){
+					  standHandler.addTargetValue(hit.getUniqueID().toString(), 2+(float) player.getEntityAttribute(SharedMonsterAttributes.ATTACK_DAMAGE).getAttributeValue()/5);
+				  }
+			  }
+//          evt.setCanceled(true);
 		  }
-		  StandUtil.standEffectLoad(player,true);
-		  if(!star) {
-	 	      MessageDioHitClient msg1 = new MessageDioHitClient(targetPosition, false); 
-	 	      MessageDioHitClient msg2 =new MessageDioHitClient(targetPosition, true); 
-	         if(NBTHelper.getEntityInteger(player,HuajiConstant.Tags.DIO_FLAG)==0) {     
-	        	          ServerUtil.sendPacketToPlayersStand(player, msg1);
-	         	          player.getEntityData().setInteger(HuajiConstant.Tags.DIO_FLAG, 180);
-	         	          }
-	         if(NBTHelper.getEntityInteger(player,HuajiConstant.Tags.DIO_FLAG)<140&&NBTHelper.getEntityInteger(player,HuajiConstant.Tags.DIO_FLAG)>0) {   
-	        	          ServerUtil.sendPacketToPlayersStand(player, msg2);
-	         }
-         }else {
-        	 MessageParticleGenerator pacticle = new MessageParticleGenerator(targetPosition, EnumParticleTypes.FIREWORKS_SPARK, 60, 5, 1);
-        	 ServerUtil.sendPacketToNearbyPlayers(player,pacticle);
-        	 HuajiSoundPlayer.playToNearbyClient(player, SoundLoader.STAND_STAR_PLATINUM_REPEAT_1, 1f);
-         }
-          if(hit instanceof EntityLivingBase ) {  
-              hit.getEntityData().setInteger(HuajiConstant.Tags.DIO_HIT, 120);
-              int a= NBTHelper.getEntityInteger(hit,HuajiConstant.Tags.DIO_HIT_EXTRA);
-        	  hit.getEntityData().setInteger(HuajiConstant.Tags.DIO_HIT_EXTRA,a+2);
-               }
-          evt.setCanceled(true);
-            }
+	  }
      }
+
+	@SubscribeEvent
+	public static void onTheWorldDamageCumulating(LivingHurtEvent evt)
+	{
+		Entity target = evt.getEntity();
+		Entity source = evt.getSource().getTrueSource();
+		float damage = evt.getAmount();
+		String uuid = target.getUniqueID().toString();
+		if (source instanceof EntityLivingBase ) {
+			IExposedData data = StandUtil.getStandData((EntityLivingBase) source);
+			StandHandler standHandler = StandUtil.getStandHandler((EntityLivingBase)source);
+			if (data!=null && standHandler!=null && standHandler.recorder.containsKey(uuid)) {
+				float record_damage = standHandler.getRecorder().get(uuid);
+				if (NBTHelper.getEntityInteger(source,HuajiConstant.Tags.THE_WORLD)>0) {
+					standHandler.addTargetValue(uuid,damage);
+					target.getEntityData().setInteger(HuajiConstant.Tags.DIO_HIT, 120);
+					evt.setCanceled(true);
+				}
+				if (record_damage > 0 && target.getEntityData().getInteger(HuajiConstant.Tags.TIME_STOP) == 0){
+					evt.setAmount(damage+record_damage);
+					standHandler.removeTarget(uuid);
+				}
+			}
+		}
+	}
 
   @SubscribeEvent
      public static void onTheWorld(LivingUpdateEvent evt)

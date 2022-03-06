@@ -1,7 +1,7 @@
 package com.lh_lshen.mcbbs.huajiage.stand.messages;
 
-import com.lh_lshen.mcbbs.huajiage.capability.CapabilityStandChargeHandler;
-import com.lh_lshen.mcbbs.huajiage.capability.StandChargeHandler;
+import com.lh_lshen.mcbbs.huajiage.capability.CapabilityStandHandler;
+import com.lh_lshen.mcbbs.huajiage.capability.StandHandler;
 import io.netty.buffer.ByteBuf;
 import net.minecraft.client.Minecraft;
 import net.minecraft.entity.player.EntityPlayer;
@@ -71,7 +71,7 @@ public class SyncStandChargeMessage implements IMessage {
                     if (player == null) {
                         return;
                     }
-                    StandChargeHandler charge = player.getCapability(CapabilityStandChargeHandler.STAND_CHARGE, null);
+                    StandHandler charge = player.getCapability(CapabilityStandHandler.STAND_HANDLER, null);
                     if (charge != null) {
                         charge.setChargeValue(message.getChargeValue());
                         charge.setMaxValue(message.getMaxValue());

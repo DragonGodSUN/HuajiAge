@@ -4,7 +4,7 @@ import com.google.common.collect.HashMultimap;
 import com.google.common.collect.Multimap;
 import com.lh_lshen.mcbbs.huajiage.HuajiAge;
 import com.lh_lshen.mcbbs.huajiage.capability.IExposedData;
-import com.lh_lshen.mcbbs.huajiage.capability.StandChargeHandler;
+import com.lh_lshen.mcbbs.huajiage.capability.StandHandler;
 import com.lh_lshen.mcbbs.huajiage.damage_source.DamageWave;
 import com.lh_lshen.mcbbs.huajiage.init.HuajiConstant;
 import com.lh_lshen.mcbbs.huajiage.init.loaders.CreativeTabLoader;
@@ -108,7 +108,7 @@ public class ItemWaveKnife extends ItemSword {
 		}
 		if (entityIn instanceof EntityLivingBase) {
 		IExposedData data = StandUtil.getStandData((EntityLivingBase) entityIn);
-		StandChargeHandler chargeHandler = StandUtil.getChargeHandler((EntityLivingBase) entityIn);
+		StandHandler chargeHandler = StandUtil.getStandHandler((EntityLivingBase) entityIn);
 		if (data != null && chargeHandler != null) {
 			boolean isMatch = data.getStand().equals("huajiage:hermit_purple") && chargeHandler.getBuffTag().equals(HuajiConstant.BuffTags.OVER_DRIVE);
 			if (isMatch && ((EntityLivingBase) entityIn).isPotionActive(PotionLoader.potionOverdrive) && chargeHandler.getBuffer() > 0) {

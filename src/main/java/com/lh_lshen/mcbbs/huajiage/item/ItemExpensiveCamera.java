@@ -1,7 +1,7 @@
 package com.lh_lshen.mcbbs.huajiage.item;
 
 import com.lh_lshen.mcbbs.huajiage.capability.IExposedData;
-import com.lh_lshen.mcbbs.huajiage.capability.StandChargeHandler;
+import com.lh_lshen.mcbbs.huajiage.capability.StandHandler;
 import com.lh_lshen.mcbbs.huajiage.init.loaders.CreativeTabLoader;
 import com.lh_lshen.mcbbs.huajiage.init.loaders.StandLoader;
 import com.lh_lshen.mcbbs.huajiage.network.StandNetWorkHandler;
@@ -52,7 +52,7 @@ public class ItemExpensiveCamera extends Item {
 		IExposedData data = StandUtil.getStandData(playerIn);
 		if (data != null && data.getStand().equals("huajiage:hermit_purple")) {
 			if(StandPowerHelper.getItemRegistryName(item_main_hand).equals("huajiage:expensive_camera")) {
-				StandChargeHandler chargeHandler = StandUtil.getChargeHandler(playerIn);
+				StandHandler chargeHandler = StandUtil.getStandHandler(playerIn);
 				if (chargeHandler !=null ){
 					StandBase standBase = StandLoader.getStand(data.getStand());
 					if (standBase != null ){

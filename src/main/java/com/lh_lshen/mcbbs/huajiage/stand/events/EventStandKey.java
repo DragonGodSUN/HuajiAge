@@ -2,7 +2,7 @@ package com.lh_lshen.mcbbs.huajiage.stand.events;
 
 import com.lh_lshen.mcbbs.huajiage.HuajiAge;
 import com.lh_lshen.mcbbs.huajiage.capability.IExposedData;
-import com.lh_lshen.mcbbs.huajiage.capability.StandChargeHandler;
+import com.lh_lshen.mcbbs.huajiage.capability.StandHandler;
 import com.lh_lshen.mcbbs.huajiage.client.KeyLoader;
 import com.lh_lshen.mcbbs.huajiage.config.ConfigHuaji;
 import com.lh_lshen.mcbbs.huajiage.init.loaders.CapabilityLoader;
@@ -114,7 +114,7 @@ public class EventStandKey {
 		int stage = StandUtil.getStandStage(player);
 		if(KeyLoader.standSkill.isPressed()&&stage>0) {
 			StandBase stand = StandUtil.getType(player);
-			StandChargeHandler charge = StandUtil.getChargeHandler(player);
+			StandHandler charge = StandUtil.getStandHandler(player);
 			if(null != stand) {
 				int cost = stand.getCost();
 				boolean flag = charge.canBeCost(cost);

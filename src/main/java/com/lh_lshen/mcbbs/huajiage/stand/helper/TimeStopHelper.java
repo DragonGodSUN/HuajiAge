@@ -1,6 +1,6 @@
 package com.lh_lshen.mcbbs.huajiage.stand.helper;
 
-import com.lh_lshen.mcbbs.huajiage.capability.StandChargeHandler;
+import com.lh_lshen.mcbbs.huajiage.capability.StandHandler;
 import com.lh_lshen.mcbbs.huajiage.init.HuajiConstant;
 import com.lh_lshen.mcbbs.huajiage.init.sound.SoundLoader;
 import com.lh_lshen.mcbbs.huajiage.init.loaders.ItemLoader;
@@ -30,7 +30,7 @@ public class TimeStopHelper {
 	public static void setTimeStop(Entity entity ,int ticks) {
 		NBTHelper.setEntityInteger(entity, HuajiConstant.Tags.THE_WORLD, ticks);
 		if( entity instanceof EntityPlayer) {
-			StandChargeHandler chargeHandler = StandUtil.getChargeHandler((EntityLivingBase) entity);
+			StandHandler chargeHandler = StandUtil.getStandHandler((EntityLivingBase) entity);
 			chargeHandler.setBuffer(ticks);
 			chargeHandler.setBuffTag(HuajiConstant.BuffTags.TIME_STOP);
 		}

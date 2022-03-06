@@ -1,7 +1,7 @@
 package com.lh_lshen.mcbbs.huajiage.init.loaders;
 
 import com.lh_lshen.mcbbs.huajiage.capability.CapabilityExposedData;
-import com.lh_lshen.mcbbs.huajiage.capability.CapabilityStandChargeHandler;
+import com.lh_lshen.mcbbs.huajiage.capability.CapabilityStandHandler;
 import com.lh_lshen.mcbbs.huajiage.capability.IExposedData;
 import net.minecraftforge.common.capabilities.Capability;
 import net.minecraftforge.common.capabilities.CapabilityInject;
@@ -20,7 +20,7 @@ public class CapabilityLoader {
 //		 CapabilityStandHandler.register();
 //    	 CapabilityStandStageHandler.register();
 //    	 CapabilityStandBuffHandler.register();
-    	 CapabilityStandChargeHandler.register();
+    	 CapabilityStandHandler.register();
     }
 
 }

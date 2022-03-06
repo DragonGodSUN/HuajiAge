@@ -21,8 +21,8 @@ public class EventPlayerCharge {
 		if(entity instanceof EntityPlayer) {
 			EntityPlayer player = (EntityPlayer) entity;
 			StandBase stand = StandUtil.getType(player);
-			if(player.hasCapability(CapabilityStandChargeHandler.STAND_CHARGE, null)) {
-				StandChargeHandler chargeHandler = player.getCapability(CapabilityStandChargeHandler.STAND_CHARGE, null);
+			if(player.hasCapability(CapabilityStandHandler.STAND_HANDLER, null)) {
+				StandHandler chargeHandler = player.getCapability(CapabilityStandHandler.STAND_HANDLER, null);
 				if(null != stand && null !=chargeHandler )
 					{
 						int mp =stand.getCharge();

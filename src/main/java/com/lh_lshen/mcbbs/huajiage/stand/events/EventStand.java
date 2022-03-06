@@ -3,7 +3,7 @@ package com.lh_lshen.mcbbs.huajiage.stand.events;
 import com.lh_lshen.mcbbs.huajiage.HuajiAge;
 import com.lh_lshen.mcbbs.huajiage.capability.CapabilityExposedData;
 import com.lh_lshen.mcbbs.huajiage.capability.IExposedData;
-import com.lh_lshen.mcbbs.huajiage.capability.StandChargeHandler;
+import com.lh_lshen.mcbbs.huajiage.capability.StandHandler;
 import com.lh_lshen.mcbbs.huajiage.config.ConfigHuaji;
 import com.lh_lshen.mcbbs.huajiage.init.HuajiConstant;
 import com.lh_lshen.mcbbs.huajiage.init.loaders.CapabilityLoader;
@@ -129,7 +129,7 @@ public class EventStand {
 	  public static void StandBuff(LivingUpdateEvent evt) {
 		  EntityLivingBase entity = evt.getEntityLiving();
 		  if(entity instanceof EntityPlayer) {
-		  StandChargeHandler chargeHandler = StandUtil.getChargeHandler(entity);
+		  StandHandler chargeHandler = StandUtil.getStandHandler(entity);
 		  if(chargeHandler.getBuffer()>0) {
 		  chargeHandler.bufferDecreace();
 		  }else {

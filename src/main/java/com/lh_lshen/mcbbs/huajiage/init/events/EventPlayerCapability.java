@@ -4,9 +4,9 @@ package com.lh_lshen.mcbbs.huajiage.init.events;
 
 import com.lh_lshen.mcbbs.huajiage.HuajiAge;
 import com.lh_lshen.mcbbs.huajiage.capability.CapabilityExposedData;
-import com.lh_lshen.mcbbs.huajiage.capability.CapabilityStandChargeHandler;
+import com.lh_lshen.mcbbs.huajiage.capability.CapabilityStandHandler;
 import com.lh_lshen.mcbbs.huajiage.capability.IExposedData;
-import com.lh_lshen.mcbbs.huajiage.capability.StandChargeHandler;
+import com.lh_lshen.mcbbs.huajiage.capability.StandHandler;
 import com.lh_lshen.mcbbs.huajiage.init.loaders.CapabilityLoader;
 import com.lh_lshen.mcbbs.huajiage.init.loaders.StandLoader;
 import com.lh_lshen.mcbbs.huajiage.network.StandNetWorkHandler;
@@ -45,7 +45,7 @@ public class EventPlayerCapability {
     @SubscribeEvent
     public static void onAttachCapability(AttachCapabilitiesEvent<Entity> event) {
         if (event.getObject() instanceof EntityPlayer) {
-            event.addCapability(STAND_CHARGE, new CapabilityStandChargeHandler());
+            event.addCapability(STAND_CHARGE, new CapabilityStandHandler());
 
             ICapabilitySerializable<NBTTagCompound> provider = new CapabilityExposedData.ProviderPlayer();
             event.addCapability(EXPOSED_DATA, provider);
@@ -59,8 +59,8 @@ public class EventPlayerCapability {
     public static void onPlayerClone(PlayerEvent.Clone event) {
         EntityPlayer player = event.getEntityPlayer();
 //     Stand Charge~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
-        StandChargeHandler charge = player.getCapability(CapabilityStandChargeHandler.STAND_CHARGE, null);
-        StandChargeHandler oldcharge = event.getOriginal().getCapability(CapabilityStandChargeHandler.STAND_CHARGE, null);
+        StandHandler charge = player.getCapability(CapabilityStandHandler.STAND_HANDLER, null);
+        StandHandler oldcharge = event.getOriginal().getCapability(CapabilityStandHandler.STAND_HANDLER, null);
         if (charge != null && oldcharge !=null) {
         	charge.setChargeValue(oldcharge.getChargeValue());
         	charge.setMaxValue(oldcharge.getMaxValue());
@@ -90,7 +90,7 @@ public class EventPlayerCapability {
     	Entity entity = evt.getEntity();
 		if(entity instanceof EntityPlayer) {
 		EntityPlayer player = (EntityPlayer) entity;
-        StandChargeHandler chargeHandler = player.getCapability(CapabilityStandChargeHandler.STAND_CHARGE, null);
+        StandHandler chargeHandler = player.getCapability(CapabilityStandHandler.STAND_HANDLER, null);
         IExposedData data = player.getCapability(CapabilityLoader.EXPOSED_DATA, null);
 
         if(chargeHandler!=null) chargeHandler.setDirty(true);
@@ -114,7 +114,7 @@ public class EventPlayerCapability {
         {
             EntityLivingBase player = (EntityLivingBase) evt.getEntity();
 
-            StandChargeHandler chargeHandler = player.getCapability(CapabilityStandChargeHandler.STAND_CHARGE, null);
+            StandHandler chargeHandler = player.getCapability(CapabilityStandHandler.STAND_HANDLER, null);
             IExposedData data = player.getCapability(CapabilityLoader.EXPOSED_DATA, null);
 
             if(chargeHandler!=null) chargeHandler.setDirty(true);
@@ -149,8 +149,8 @@ public class EventPlayerCapability {
                 }
             }
 
-            if (player.hasCapability(CapabilityStandChargeHandler.STAND_CHARGE, null)) {
-            	StandChargeHandler charge = player.getCapability(CapabilityStandChargeHandler.STAND_CHARGE, null);
+            if (player.hasCapability(CapabilityStandHandler.STAND_HANDLER, null)) {
+            	StandHandler charge = player.getCapability(CapabilityStandHandler.STAND_HANDLER, null);
                 IExposedData data = player.getCapability(CapabilityLoader.EXPOSED_DATA, null);
             	if (charge != null && charge.isDirty()) {
                 	StandNetWorkHandler.HANDLER.sendTo(new SyncStandChargeMessage(charge.getChargeValue(),charge.getMaxValue(), charge.getBuffer(), charge.getBuffTag())

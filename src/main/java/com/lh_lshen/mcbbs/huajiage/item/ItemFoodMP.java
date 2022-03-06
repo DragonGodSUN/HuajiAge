@@ -1,7 +1,7 @@
 package com.lh_lshen.mcbbs.huajiage.item;
 
 import com.lh_lshen.mcbbs.huajiage.capability.IExposedData;
-import com.lh_lshen.mcbbs.huajiage.capability.StandChargeHandler;
+import com.lh_lshen.mcbbs.huajiage.capability.StandHandler;
 import com.lh_lshen.mcbbs.huajiage.init.loaders.StandLoader;
 import com.lh_lshen.mcbbs.huajiage.stand.StandUtil;
 import net.minecraft.entity.player.EntityPlayer;
@@ -23,7 +23,7 @@ public class ItemFoodMP extends ItemFood{
         if (!worldIn.isRemote)
         {
             IExposedData data = StandUtil.getStandData(player);
-            StandChargeHandler chargeHandler = StandUtil.getChargeHandler(player);
+            StandHandler chargeHandler = StandUtil.getStandHandler(player);
             if(data!=null && chargeHandler!=null && StandLoader.getStand(data.getStand())!=null){
                 chargeHandler.charge(this.getMp());
             }

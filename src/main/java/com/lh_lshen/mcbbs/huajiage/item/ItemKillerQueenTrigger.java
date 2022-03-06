@@ -5,7 +5,7 @@ import java.util.Random;
 
 import javax.annotation.Nullable;
 
-import com.lh_lshen.mcbbs.huajiage.capability.StandChargeHandler;
+import com.lh_lshen.mcbbs.huajiage.capability.StandHandler;
 import com.lh_lshen.mcbbs.huajiage.init.loaders.CreativeTabLoader;
 import com.lh_lshen.mcbbs.huajiage.entity.EntitySheerHeartAttack;
 import com.lh_lshen.mcbbs.huajiage.init.loaders.ItemLoader;
@@ -97,7 +97,7 @@ public class ItemKillerQueenTrigger extends Item {
 		ItemStack stack = playerIn.getHeldItemMainhand();
 		int stage = StandUtil.getStandStage(playerIn);
 		StandBase stand = StandUtil.getType(playerIn);
-		StandChargeHandler energy = StandUtil.getChargeHandler(playerIn);
+		StandHandler energy = StandUtil.getStandHandler(playerIn);
 		if(stand!=null&&StandLoader.KILLER_QUEEN.equals(stand)&&stack.getItem() == ItemLoader.killerQueenTrigger) {
 		int cost = StandLoader.KILLER_QUEEN.getCost()/10;
 		boolean flag = energy!=null&&energy.canBeCost(cost);

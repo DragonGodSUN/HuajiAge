@@ -2,7 +2,7 @@ package com.lh_lshen.mcbbs.huajiage.stand.events;
 
 import com.lh_lshen.mcbbs.huajiage.HuajiAge;
 import com.lh_lshen.mcbbs.huajiage.capability.IExposedData;
-import com.lh_lshen.mcbbs.huajiage.capability.StandChargeHandler;
+import com.lh_lshen.mcbbs.huajiage.capability.StandHandler;
 import com.lh_lshen.mcbbs.huajiage.client.KeyLoader;
 import com.lh_lshen.mcbbs.huajiage.client.resources.CustomResourceLoader;
 import com.lh_lshen.mcbbs.huajiage.client.resources.pojo.StandModelInfo;
@@ -83,7 +83,7 @@ public class EventStandOverlatRender {
 			EntityPlayer player = Minecraft.getMinecraft().player;
 //			StandHandler standHandler = player.getCapability(CapabilityStandHandler.STAND_TYPE, null);
 //			StandStageHandler standStageHandler = player.getCapability(CapabilityStandStageHandler.STAND_STAGE, null);
-			StandChargeHandler chargeHandler = StandUtil.getChargeHandler(player);
+			StandHandler chargeHandler = StandUtil.getStandHandler(player);
 			IExposedData data = StandUtil.getStandData(player);
 			StandBase stand = StandUtil.getType(player);
 			if (data == null || stand == null || chargeHandler == null) {

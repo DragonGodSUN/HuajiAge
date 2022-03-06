@@ -2,7 +2,7 @@ package com.lh_lshen.mcbbs.huajiage.stand.messages;
 
 import com.lh_lshen.mcbbs.huajiage.capability.CapabilityExposedData;
 import com.lh_lshen.mcbbs.huajiage.capability.IExposedData;
-import com.lh_lshen.mcbbs.huajiage.capability.StandChargeHandler;
+import com.lh_lshen.mcbbs.huajiage.capability.StandHandler;
 import com.lh_lshen.mcbbs.huajiage.init.loaders.CapabilityLoader;
 import com.lh_lshen.mcbbs.huajiage.init.loaders.PotionLoader;
 import com.lh_lshen.mcbbs.huajiage.init.loaders.StandLoader;
@@ -49,7 +49,7 @@ public class MessageStandUp implements IMessage {
         	EntityPlayerMP player = ctx.getServerHandler().player;
         	IExposedData data = player.getCapability(CapabilityLoader.EXPOSED_DATA, null);
         	StandBase stand = StandUtil.getType(player);
-        	StandChargeHandler charge = StandUtil.getChargeHandler(player);
+        	StandHandler charge = StandUtil.getStandHandler(player);
         	if(data==null || stand==null || charge==null)
         	{
         		return null;

@@ -4,9 +4,9 @@ import com.google.common.collect.Lists;
 import com.lh_lshen.mcbbs.huajiage.HuajiAge;
 import com.lh_lshen.mcbbs.huajiage.api.HuajiAgeAPI;
 import com.lh_lshen.mcbbs.huajiage.api.IStand;
-import com.lh_lshen.mcbbs.huajiage.capability.CapabilityStandChargeHandler;
+import com.lh_lshen.mcbbs.huajiage.capability.CapabilityStandHandler;
 import com.lh_lshen.mcbbs.huajiage.capability.IExposedData;
-import com.lh_lshen.mcbbs.huajiage.capability.StandChargeHandler;
+import com.lh_lshen.mcbbs.huajiage.capability.StandHandler;
 import com.lh_lshen.mcbbs.huajiage.client.model.custom.ModelStandJson;
 import com.lh_lshen.mcbbs.huajiage.client.resources.CustomResourceLoader;
 import com.lh_lshen.mcbbs.huajiage.init.HuajiConstant;
@@ -45,36 +45,36 @@ public class StandUtil {
 		return null;
 	}
 
-	public static StandChargeHandler getChargeHandler(EntityLivingBase entity) {
-		   if (entity.hasCapability(CapabilityStandChargeHandler.STAND_CHARGE, null)) {
-			   StandChargeHandler charge = entity.getCapability(CapabilityStandChargeHandler.STAND_CHARGE,null);
+	public static StandHandler getStandHandler(EntityLivingBase entity) {
+		   if (entity.hasCapability(CapabilityStandHandler.STAND_HANDLER, null)) {
+			   StandHandler charge = entity.getCapability(CapabilityStandHandler.STAND_HANDLER,null);
 	    return charge;
 		   }
 		return null;
 	}
 	
-	public static int getCharge(EntityLivingBase entity,StandChargeHandler charge) {
+	public static int getCharge(EntityLivingBase entity, StandHandler charge) {
 		if(null != charge) {
 			return charge.getChargeValue();
 		}
 		return 0;
 	}
 	
-	public static int getChargeMax(EntityLivingBase entity,StandChargeHandler charge) {
+	public static int getChargeMax(EntityLivingBase entity, StandHandler charge) {
 		if(null != charge) {
 			return charge.getMaxValue();
 		}
 		return 10000;
 	}
 
-	public static void setChargeMax(EntityLivingBase entity,StandChargeHandler charge, int max) {
+	public static void setChargeMax(EntityLivingBase entity, StandHandler charge, int max) {
 		if(null != charge) {
 			charge.setMaxValue(max);
 		}
 	}
 
 	public static void setChargeMax(EntityLivingBase entity,int max) {
-		StandChargeHandler chargeHandler = getChargeHandler(entity);
+		StandHandler chargeHandler = getStandHandler(entity);
 		setChargeMax(entity,chargeHandler,max);
 	}
 
@@ -122,7 +122,7 @@ public class StandUtil {
 	}
 	
 	public static int getStandBuffTime(EntityLivingBase entity) {
-	    StandChargeHandler chargeHandler = StandUtil.getChargeHandler(entity);
+	    StandHandler chargeHandler = StandUtil.getStandHandler(entity);
 	    if(chargeHandler!=null && chargeHandler.getBuffer()>0) {
 			return chargeHandler.getBuffer();
 		}

@@ -31,8 +31,8 @@ public class EventViewRender {
 	public static void TimeStopRenderTest(TickEvent.RenderTickEvent evt) {
 		Minecraft mc = Minecraft.getMinecraft();
 		int t0 = (int)(ConfigHuaji.Stands.timeStopEffect*100);
-		boolean hasTag = mc.player!=null && StandUtil.getChargeHandler(mc.player)!=null
-				&& StandUtil.getChargeHandler(mc.player).getBuffTag().equals(HuajiConstant.BuffTags.TIME_STOP);
+		boolean hasTag = mc.player!=null && StandUtil.getStandHandler(mc.player)!=null
+				&& StandUtil.getStandHandler(mc.player).getBuffTag().equals(HuajiConstant.BuffTags.TIME_STOP);
 		boolean flag = hasTag && StandUtil.getStandBuffTime(mc.player)>0;
 		if(flag){
 			ticks++;
@@ -85,8 +85,8 @@ public class EventViewRender {
 	
 	@SubscribeEvent
 	public static void TimeStopRender2(FOVModifier evt) {
-		boolean hasTag = evt.getEntity()!=null && StandUtil.getChargeHandler((EntityLivingBase) evt.getEntity()) != null
-				&& StandUtil.getChargeHandler((EntityLivingBase) evt.getEntity()).getBuffTag().equals(HuajiConstant.BuffTags.TIME_STOP);
+		boolean hasTag = evt.getEntity()!=null && StandUtil.getStandHandler((EntityLivingBase) evt.getEntity()) != null
+				&& StandUtil.getStandHandler((EntityLivingBase) evt.getEntity()).getBuffTag().equals(HuajiConstant.BuffTags.TIME_STOP);
 		if(hasTag) {
 			int time = StandUtil.getStandBuffTime((EntityLivingBase) evt.getEntity());
 			int t0 = (int)(ConfigHuaji.Stands.timeStopEffect*100);
@@ -103,8 +103,8 @@ public class EventViewRender {
 	 @SubscribeEvent
 	    public static void TimeStopRender4(RenderGameOverlayEvent event) {
 		 	Minecraft mc = Minecraft.getMinecraft();
-		 	boolean hasTag = mc.player!=null && StandUtil.getChargeHandler(mc.player)!=null
-				 && StandUtil.getChargeHandler(mc.player).getBuffTag().equals(HuajiConstant.BuffTags.TIME_STOP);
+		 	boolean hasTag = mc.player!=null && StandUtil.getStandHandler(mc.player)!=null
+				 && StandUtil.getStandHandler(mc.player).getBuffTag().equals(HuajiConstant.BuffTags.TIME_STOP);
 		 	boolean flag = hasTag && StandUtil.getStandBuffTime(mc.player)>0 ;
 		 	ScaledResolution scaledRes = new ScaledResolution(mc);
 	        if (event.getType() == RenderGameOverlayEvent.ElementType.VIGNETTE  && ConfigHuaji.Stands.allowMaskTimeStop && flag ) {

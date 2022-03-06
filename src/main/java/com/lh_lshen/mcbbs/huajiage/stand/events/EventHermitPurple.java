@@ -3,7 +3,7 @@ package com.lh_lshen.mcbbs.huajiage.stand.events;
 import com.lh_lshen.mcbbs.huajiage.HuajiAge;
 import com.lh_lshen.mcbbs.huajiage.capability.CapabilityExposedData;
 import com.lh_lshen.mcbbs.huajiage.capability.IExposedData;
-import com.lh_lshen.mcbbs.huajiage.capability.StandChargeHandler;
+import com.lh_lshen.mcbbs.huajiage.capability.StandHandler;
 import com.lh_lshen.mcbbs.huajiage.damage_source.DamageOverdrive;
 import com.lh_lshen.mcbbs.huajiage.init.HuajiConstant;
 import com.lh_lshen.mcbbs.huajiage.init.loaders.PotionLoader;
@@ -109,7 +109,7 @@ public class EventHermitPurple {
     public static void onOverdrive(LivingEvent.LivingUpdateEvent event){
         EntityLivingBase livingBase = event.getEntityLiving();
         IExposedData data = StandUtil.getStandData(livingBase);
-        StandChargeHandler chargeHandler = StandUtil.getChargeHandler(livingBase);
+        StandHandler chargeHandler = StandUtil.getStandHandler(livingBase);
         if (data!=null && chargeHandler!=null){
             boolean isMatch = data.getStand().equals("huajiage:hermit_purple") && chargeHandler.getBuffTag().equals(HuajiConstant.BuffTags.OVER_DRIVE);
             if (isMatch && livingBase.isPotionActive(PotionLoader.potionOverdrive) && chargeHandler.getBuffer()>0){
